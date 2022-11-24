@@ -93,9 +93,14 @@ Class DCY_Chrysalis : DCY_CacoParent
 		A_Gravity();
 		bNOGRAVITY = false;
 		bFLOORCLIP = true;
+		A_NoBlocking();
 	}
 	GARD KLM 6;
-	GARD NNN 1 A_SpawnItemEx("DCY_Explosion_1_Phantom", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(20, 30));
+	GARD NNN 1
+	{
+		if (damagetype != "Massacre")
+			A_SpawnItemEx("DCY_Explosion_1_Phantom", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(20, 30));
+	}
 	GARD NOPQR 5;
 	GARD S -1;
 	Stop;
@@ -107,7 +112,7 @@ Class DCY_Chrysalis : DCY_CacoParent
 		bNOGRAVITY = true;
 		bFLOORCLIP = false;
 	}
-	Stop;
+	Goto See;
   }
 }
 
