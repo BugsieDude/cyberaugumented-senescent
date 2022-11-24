@@ -1,0 +1,97 @@
+Class DCY_TheGiantEnemySpider : DCYMonster
+{
+  Default
+  {
+	Tag "Spider Mastermind";
+	Health 3000;
+	Radius 128;
+	Height 100;
+	Mass 1000;
+	Speed 12;
+	PainChance 40;
+	Monster;
+	+BOSS
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	SeeSound "spider/sight";
+	AttackSound "spider/attack";
+	PainSound "spider/pain";
+	DeathSound "spider/death";
+	ActiveSound "spider/active";
+	Obituary "$OB_SPIDER";
+	Tag "$FN_SPIDER";
+	TeleFogSourceType "DCY_CyberTeleport";
+	TeleFogDestType "DCY_CyberTeleport";
+	Species "Spider Masterminds";
+  }
+  
+  void A_MetalII()
+  {
+	A_QuakeEx(0, 0, 1, 200, 0, 25, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+	A_StartSound("spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.7, 0.8));
+  }
+  
+  States
+  {
+  Spawn:
+	SPID A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 2;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	SPID A 3 A_MetalII();
+	SPID ABBCC 3 A_Chase();
+	SPID D 3 A_MetalII();
+	SPID DEEFF 3 A_Chase();
+	Loop;
+  Missile:
+	SPID A 20 Bright A_FaceTarget();
+	SPID G 1 Bright A_FaceTarget();
+	SPID H 1 Bright
+	{
+		A_StartSound("Deagle/Fire", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.5, 0.735);
+		A_SpawnProjectile("DCY_AlacritousGuyBullet", 40, angle: frandom(-7.5, 7.5));
+	}
+	SPID H 1 Bright A_SpidRefire();
+	Goto Missile+1;
+  Pain:
+	SPID I 3;
+	SPID I 3 A_Pain();
+	Goto See;
+  Death:
+	SPID I 1;
+	SPID I 30 A_ScreamAndUnblock();
+	SPID J 16;
+	SPID KLM 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+	}
+	SPID N 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	SPID OPQRSSSSSSSSSSSS 6;
+	SPID S -1 A_BossDeath2();
+	Stop;
+  Death.Massacre:
+	SPID I 1;
+	SPID I 30 A_ScreamAndUnblock();
+	SPID J 16;
+	SPID KLM 5 Bright;
+	SPID N 5 Bright;
+	SPID OPQRSSSSSSSSSSSS 6;
+	SPID S -1 A_BossDeath2;
+	Stop;
+  }
+}

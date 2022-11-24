@@ -1,0 +1,122 @@
+Class DCY_Helth : HealthBonus
+{
+  Default
+  {
+  Inventory.PickupSound "D4BEEP1";
+  Inventory.PickupMessage "Picked up a \c[l5]Health Container\c-. (1+ Health)";
+  }
+  States
+  {
+  Spawn:
+	HLTB ABCDCB 3 Bright;
+	Loop;
+  }
+}
+
+Class DCY_Steempack : Stimpack
+{ 
+  Default 
+  {
+  Inventory.PickupSound "D4BEEP2"; 
+  Inventory.PickupMessage "Picked up a \c[l5]Stimpack of Health\c-. (10+ Health)";
+  }
+  
+  States
+  {
+  Spawn:
+	ST1M ABCDCB 7 Bright;
+	Loop;
+  }
+}
+
+Class DCY_ThatOneMediKit : Medikit
+{
+  Default
+  {
+  Inventory.PickupSound "D4BEEP3";
+  Inventory.PickupMessage "Picked up a \c[l5]Medical Kit\c-.";
+  Health.LowMessage 30, "Picked up a \c[l5]Medical Kit\c-. ...that you REALLY need! (25+ Health)";
+  }
+  
+  States
+  {
+  Spawn:
+	MK1T ABCDCB 6 Bright;
+	Loop;
+  }
+}
+
+Class DCY_Canister : ArmorBonus
+{
+  Default
+  {
+  Inventory.PickupSound "D4ARMR1";
+  Inventory.PickupMessage "Picked up an \c[a6]Armor Canister\c-. (1+ Armor)";
+  }
+  
+  States
+  {
+  Spawn:
+	ARMB ABCDCB 3 Bright;
+	Loop;
+  }
+}
+
+Class DCY_GreenArmorThing : GreenArmor
+{
+  Default
+  {
+  Inventory.PickupSound "GreenArmor/Pickup";
+  Inventory.PickupMessage "Picked up the \c[Green]Common Armor Chestplate.\c- (100+ Armor)";
+  }
+  
+  States
+  {
+  Spawn:
+    ARM1 A 25 Bright;
+	ARM1 BCB 5 Bright;
+    Loop;
+  }
+}
+
+Class DCY_BlueArmorThing : BlueArmor
+{
+  Default
+  {
+  Inventory.PickupSound "BlueArmor/Pickup";
+  Inventory.PickupMessage "Picked up the \c[Sapphire]Defensive Chestplate.\c- (200+ Armor)";
+  }
+  
+  States
+  {
+  Spawn:
+    ARM2 A 25 Bright;
+	ARM2 BCB 7 Bright;
+    Loop;
+  }
+}
+
+Class DCY_HiResArmorThing : BlueArmor
+{
+  Default
+  {
+  Inventory.PickupSound "RedArmor/Pickup";
+  DamageFactor 0.75;
+  DamageFactor "Explosive", 0.5;
+  DamageFactor "Plasma", 0.5;
+  DamageFactor "BFG", 0.5;
+  DamageFactor "Lunacy", 0.75;
+  Armor.SavePercent 80;
+  Armor.SaveAmount 300;
+  Inventory.Icon "ARM3A0";
+  Inventory.PickupMessage "Picked up the \c[Red]Defiance Chestplate.\c- (300+ Armor)";
+  }
+  
+  States
+  {
+  Spawn:
+    ARM3 A 25 Bright;
+	ARM3 BCB 7 Bright;
+    Loop;
+  }
+}

@@ -1,0 +1,457 @@
+Class DCY_Razortherion : DCY_CacoParent
+{
+  Default
+  {
+  Speed 20.75;
+  FastSpeed 23.5;
+  Health 1250;
+  BloodColor "Green";
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +NOICEDEATH
+  +NOTARGET
+  +BOSS
+  +DONTHARMCLASS
+  +DONTOVERLAP
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  DropItem "DCY_Deterrence", 70;
+  DropItem "Blursphere", 40;
+  SeeSound "razortherion/laugh";
+  AttackSound "razortherion/laugh";
+  PainSound "lunarchiller/pain";
+  DeathSound "razortherion/death";
+  ActiveSound "";
+  HowlSound "razortherion/pain";
+  Obituary "%o was smited by Razortherion's superpowers.";
+  Tag "\c[x9]Elite Prophet Razortherion\c-";
+  DamageFactor 0.8;
+  DamageFactor "RazortherionDamage", 0.00;
+  }
+  
+  States
+  {
+  Spawn:
+	RZTH AB 10 DCY_Look();
+    Loop;
+  Look:
+	RZTH AAABBB 3 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
+	Goto See;
+  See:
+    RZTH AAABBB 2 A_Chase("Missile", "Missile");
+	TNT1 A 0 A_Jump(40, "Dodge");
+	TNT1 A 0 A_Jump(20, "TeleportThing");
+	Loop;
+  Dodge:
+	RZTH A 2 A_Dodging(30);
+	RZTH AABBB 2;
+	RZTH A 0 A_Stop();
+	Goto See;
+  TeleportThing:
+    RZTH E 10;
+	RZTH F 2;
+	TNT1 A 1
+	{
+		bShootable = false;
+		A_SpawnItemEx("DCY_RZTele", 0, 0, 37, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1;
+	RZTH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase(null, null, CHF_NOPLAYACTIVE);
+	TNT1 A 3;
+	RZTH AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Chase(null, null, CHF_NOPLAYACTIVE);
+	TNT1 A 0
+	{
+		A_SpawnItemEx("DCY_RZTele", zofs: 37, flags: SXF_NOCHECKPOSITION);
+		bShootable = true;
+	}
+	RZTH EE 8;
+	RZTH A 2;
+	Goto See;
+  Melee:
+  Missile:
+	RZTH E 0 A_Jump(128, "Blasters");
+	RZTH E 0 A_Jump(90, "Lazerz", "SpellCircle");
+	RZTH A 0 A_Jump(30, "TeleportThing");
+	RZTH EE 7 A_FaceTarget();
+	RZTH F 7
+	{
+		A_StartSound("PsiPistol/Laser", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_RZBall", 30, -7, frandom(-1.0, 1.0));
+		A_SpawnProjectile("DCY_RZBall", 30, 7, frandom(-1.0, 1.0));
+	}
+	RZTH E 7 A_FaceTarget();
+	RZTH F 10
+	{
+		A_StartSound("PsiPistol/Laser", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_RZBall", 30, -7, frandom(-1.0, 1.0));
+		A_SpawnProjectile("DCY_RZBall", 30, 7, frandom(-1.0, 1.0));
+	}
+	Goto See;
+  Blasters:
+	RZTH E 10;
+	RZTH FFFF 7
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_RZBlaster", 30, -7, frandom(-1.96, 1.96));
+		A_SpawnProjectile("DCY_RZBlaster", 30, 7, frandom(-1.96, 1.96));
+	}
+	RZTH A 7;
+	Goto See;
+  Lazerz:
+	RZTH C 5
+	{
+		A_StartSound("Razortherion/Laugh", CHAN_VOICE, 0, 1.0, 0.65);
+		A_FaceTarget();
+	}
+	RZTH CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 1 A_FaceTarget();
+	RZTH C 10
+	{
+		A_StartSound("BLAST001", CHAN_WEAPON, 1.0, 0, 0.65);
+		A_SpawnProjectile("DCY_RZLaser", 65, -25);
+		A_SpawnProjectile("DCY_RZLaser", 65, 25);
+		A_FaceTarget();
+	}
+	RZTH A 4;
+	Goto See;
+  SpellCircle:
+	RZTH C 15
+	{
+		A_StartSound("Razortherion/Laugh", CHAN_VOICE, 0, 1.0, 0.5);
+		A_FaceTarget();
+	}
+	RZTH D 15
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_RZSpell", 40, 0);
+		A_StartSound("MajorNzi/Teleport", CHAN_WEAPON, 0, 1.0, 0.5);
+	}
+	RZTH AAAAAAAAAAAAAAAAAAAAAAA 1;
+	Goto See;
+  Pain:
+	RZTH G 0;
+	RZTH G 0 A_Stop();
+	RZTH G 4;
+	RZTH G 4 A_Pain();
+	Goto See;
+  Death:
+	RZTH G 1;
+	RZTH G 10 A_Scream();
+	RZTH GGGGGHH 4 A_SpawnItemEx("DCY_RZSpirit", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), random(-3, 3), random(-2, 2), frandom(1.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
+	RZTH I 6
+	{
+		A_NoBlocking();
+		A_QuakeEx(4, 4, 4, 40, 0, 500, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1000);
+		for (int i = 6; i > 0; i--)
+			A_SpawnItemEx("DCY_RazortherionExplosion", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION, 100);
+	}
+	RZTH JKLMN 6;
+	RZTH O -1;
+	Stop;
+  Death.Massacre:
+	RZTH H 1;
+	RZTH H 6 A_Scream();
+	RZTH I 6 A_NoBlocking();
+	RZTH JKLMN 6;
+	RZTH O -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_RZSpirit : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Scale 1.645;
+  Alpha 0.645;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  +NOCLIP
+  +THRUACTORS
+  +NOINTERACTION
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	IMGH A 0 NoDelay A_SetScale(randompick(Scale.X, -Scale.X), Scale.Y);
+	IMGH AABBCCDDEEFFGGG 1 A_ChangeVelocity(frandom(0.25, -0.25), frandom(0.25, -0.25), 0.45, CVF_RELATIVE);
+	Stop;
+  }
+}
+
+Class DCY_RZTele : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  -SOLID
+  +THRUACTORS
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  Scale 0.95;
+  Alpha 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+	C28Y ABCDEFHJLNPQ 1 A_SetScale(Scale.X+0.035, Scale.Y+0.035);
+	Stop;
+  }
+}
+
+Class DCY_RZSpellTeleportFX : DCY_RZTele { Default { Scale 0.5; } }
+
+Class DCY_RZBall : DCY_FluorescentOrb
+{
+  Default
+  {
+  BounceCount 2;
+  Speed 20.5;
+  FastSpeed 25.5;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  DamageType "RazortherionDamage";
+  SeeSound "PsiPistol/Laser";
+  BounceSound "PsiPistol/Laser";
+  DamageFunction (1);
+  }
+  States
+  {
+  Spawn:
+	C3AL A 1 A_SpawnItemEx("DCY_FluorescentOrbT", flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+	Loop;
+  Death:
+	BL48 A 1
+	{
+		A_Explode(35, 50, XF_NOTMISSILE, 1);
+		A_FadeOut(0.2, 0);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_AndroidExplosion", random(-1, 1), random(-1, 1), random(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	BL48 ABAB 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_RZBallAura : DCY_FluorescentAura { Default { Scale 0.5; Alpha 0.35; Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]"; } }
+Class DCY_RazortherionExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]"; } }
+
+Class DCY_RZBlaster : FastProjectile
+{
+  Default
+  {
+  Radius 13;
+  Height 8;
+  Speed 22.5;
+  FastSpeed 26.5;
+  Damage 6;
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 1.0;
+  DamageType "RazortherionDamage";
+  SeeSound "drone/fire";
+  DeathSound "drone/fire";
+  Decal "RevenantScorch";
+  }
+  States
+  {
+  Spawn:
+    THZ4 A 1 Bright
+	{
+		A_SpawnItemEx("DCY_RZBlasterTrail");
+		A_Weave(2, 0, frandom(-2.5, 2.5), 0);
+	}
+    Loop;
+  Death:
+    THZ4 DEFGHIJKLM 1 Bright;
+    Stop;
+  }
+}
+
+Class DCY_RZBlasterTrail : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 0.85;
+  Scale 1.0;
+  +NOCLIP
+  +THRUACTORS
+  +NOINTERACTION
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+	THZ4 AAAAAAAA 1 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}
+
+Class DCY_RZSpell : CacodemonBall
+{
+  Default
+  {
+  Radius 20;
+  Height 20;
+  Alpha 1.0;
+  Scale 0.15555;
+  DamageFunction (0);
+  Speed 14.5;
+  FastSpeed 14.5;
+  Projectile;
+  +THRUACTORS
+  +NOCLIP
+  +NEVERFAST
+  +RIPPER
+  +NOEXTREMEDEATH
+  +BRIGHT
+  SeeSound "";
+  DeathSound "";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  }
+  
+  int looping;
+  int firing;
+  
+  States
+  {
+  Spawn:
+  Death:
+	VNT8 ABCDEFABCDEF 1 A_SpawnItemEx("DCY_RZSpellFX", flags: SXF_NOCHECKPOSITION);
+	VNT8 F 0
+	{	
+		A_SpawnItemEx("DCY_RZSpellTeleportFX", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		A_Stop();
+	}
+	VNT8 ABCDEF 1 A_FaceTarget();
+	VNT8 A 0
+	{
+		if (looping >= 10)
+			Return ResolveState("MissileFire");
+			
+		looping += 1;
+		Return ResolveState(null);
+	}
+	Goto Death+13;
+  MissileFire:
+	VNT8 A 0
+	{
+		A_SpawnItemEx("DCY_AndroidExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_StartSound("BLAST001", CHAN_WEAPON, 0, 1.0, 0.8);
+	}
+	VNT8 A 4
+	{
+		if (firing >= 14)
+			Return ResolveState("MissileStop");
+		
+		A_SetAngle(Angle+7);
+		
+		for (int i = 0; i < 360; i += 90)
+			A_SpawnProjectile("DCY_RZBlaster", 0, 0, Angle+i, CMF_AIMDIRECTION);
+			
+		A_StartSound("PsiPistol/Laser", CHAN_WEAPON, 0, 1.0, 0.5);
+		A_SpawnProjectile("DCY_RZBall", 0, 0, frandom(0.00, 360.00), CMF_AIMDIRECTION|CMF_OFFSETPITCH, frandom(-70.0, 70.0));
+		
+		firing++;
+		Return ResolveState(null);
+	}
+	Goto MissileFire+1;
+  MissileStop:
+	VNT8 ABCDEFABCDEF 1 A_FadeOut(0.085, 0);
+	Stop;
+  }
+}
+
+Class DCY_RZSpellFX : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 0.8;
+  Scale 0.15555;
+  +BRIGHT
+  +NOCLIP
+  +NOINTERACTION
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  }
+  
+  States
+  {
+  Spawn:
+	VNT8 ABCDEFAB 1 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}
+
+Class DCY_RZLaser : FastProjectile
+{
+  Default
+  {
+  Speed 80;
+  FastSpeed 80;
+  SeeSound "";
+  DeathSound "BLAST002";
+  Radius 10;
+  Height 10;
+  MissileType "DCY_RZLaserAura";
+  MissileHeight 6;
+  +EXTREMEDEATH
+  Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]";
+  DamageType "RazortherionDamage";
+  Damage 5;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	Loop;
+  Death:
+	TNT1 A 1 A_SpawnItemEx("DCY_AndroidExplosion", random(-15, 15), random(-15, 15), random(-15, 15), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_RZSpellTeleportFX", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_QuakeEx(5, 5, 5, 30, 0, 500, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1000);
+		A_Explode(100, 100, 0, True);
+		for (int i = 15; i > 0; i--)
+			A_SpawnItemEx("DCY_AndroidExplosion", random(-15, 15), random(-15, 15), random(-15, 15), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_RZLaserAura : Actor
+{
+  Default
+  {
+  Scale 0.2565;
+  Alpha 0.6;
+  RenderStyle "Add";
+  +NOCLIP
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+	EF1_ E 0 A_JumpIf(Alpha <= 0.0000, "Null");
+	EF1_ E 1 A_FadeOut(0.05, 0);
+	Loop;
+  }
+}

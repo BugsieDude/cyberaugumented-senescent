@@ -1,0 +1,2 @@
+excludemap TEST
+excludeactor DCYMonster

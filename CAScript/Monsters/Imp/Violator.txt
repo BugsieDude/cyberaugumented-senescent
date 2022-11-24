@@ -1,0 +1,246 @@
+Class DCY_Violator : DCY_Dastard
+{
+  Default
+  {
+  Health 80;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  Tag "Violator";
+  Speed 8;
+  PainChance 200;
+  Obituary "%o was persecuted by a Violator.";
+  }
+  
+  void A_ViolatorStatic()
+  {
+	A_SetTranslucent(randompick(0, 1), 2);
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got persecuted by a Violator.",
+		"%o is violated."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	VI0_ A 10 DCY_Look();
+	Loop;
+  Look:
+	VI0_ AABBCCDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" G 10 DCY_AlertSound();
+	Goto See;
+  See:
+	VI0_ AAABBBCCCDDD 2 A_Chase();
+	Loop;
+  Melee:
+	VI0_ EF 8 A_FaceTarget();
+	VI0_ G 8 A_CustomMeleeAttack(random(10, 40), "imp/melee");
+	VI0_ F 8;
+	Goto See;
+  Missile:
+    TNT1 A 0
+	{
+		If(target && Distance3D(target) < 365)
+			SetStateLabel("Lunge");
+		
+		Return A_Jump(30, "Dodge");
+	}
+	VI0_ A 5 A_StartSound("dcyimp/charging", CHAN_WEAPON);
+	VI0_ VVVVVVVVVVVVVVV 1
+	{
+		for (int i = -25; i < 26; i += 50)
+			A_SpawnParticleEx(0xaa2222, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+		
+		A_FaceTarget();
+	}
+	VI0_ F 5 A_FaceTarget();
+	VI0_ G 5 Bright A_SpawnProjectile("DCY_ViolationFire", 30, 0, 0);
+	VI0_ G 5 A_FaceTarget();
+	VI0_ FFF 2 A_FaceTarget();
+	TNT1 A 0
+	{
+		If(target && Distance3D(target) < 365)
+			SetStateLabel("Lunge");
+		
+		Return A_Jump(50, "Dodge");
+	}
+	Goto See;
+  LungeRarity:
+    TNT1 A 0;
+	TNT1 A 0 A_Jump(100, "Lunge");
+	Goto Missile+15;
+  Lunge:
+    TNT1 A 0 A_Jump(80, "Missile");
+    VI0_ EF 6 A_FaceTarget;
+	VI0_ G 10
+	{
+		A_StartSound("dastard/pain", CHAN_VOICE);
+		A_Hop(5);
+		A_Recoil(-14);
+	}
+	VI0_ FE 4;
+	TNT1 A 0 A_Jump(150, "MissileContinue");
+	Goto See;
+  MissileContinue:
+    TNT1 A 0;
+	Goto Missile+1;
+  Dodge:
+    VI0_ V 5 { A_StartSound("dcyimp/charging", CHAN_WEAPON); A_FaceTarget(); }
+	VI0_ V 1
+	{
+		A_Hop(7);
+		A_Dodging(frandom(10, 15));
+		A_FaceTarget();
+	}
+	VI0_ VVVVVVVVVVVVVVV 1
+	{
+		for (int i = -25; i < 26; i += 50)
+			A_SpawnParticleEx(0xaa2222, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+		
+		A_FaceTarget();
+	}
+	TNT1 A 0 A_JumpIfCloser(365, "LungeRarity");
+	Goto Missile+15;
+  Pain:
+	VI0_ H 4;
+	VI0_ H 4 A_Pain();
+	Goto See+1;
+  Death:
+    TNT1 A 0 A_Jump(128, "Death2");
+	Goto NormalDeath;
+  NormalDeath:
+    VI0_ I 1 A_SetScale(randompick(1, -1), 1);
+	VI0_ I 1 A_Scream();
+	VI0_ I 5 A_NoBlocking();
+	VI0_ JKL 4;
+	VI0_ M -1;
+	Stop;
+  Death2:
+    VI2_ A 1;
+	VI2_ A 6 A_ScreamAndUnblock();
+	VI2_ CD 7;
+	VI2_ E -1;
+	Stop;
+  XDeath:
+    TNT1 A 0 A_Jump(128, "XDeath1");
+	Goto XDeathNormal;
+  XDeathNormal:
+    VI0_ N 1;
+	VI0_ N 1 A_XScream();
+	VI0_ N 5 A_NoBlocking();
+	VI0_ OPQRST 4;
+	VI0_ U -1;
+	Stop;
+  XDeath1:
+    VI1_ A 6 A_Scream();
+	VI1_ A 0 A_StopSound(CHAN_VOICE);
+	VI1_ B 6
+	{
+		A_XScream();
+		A_NoBlocking();
+	}
+	VI1_ CDEFGH 5;
+	VI1_ I -1;
+	Stop;
+  Raise:
+	VI0_ M 0;
+	VI0_ M 3 { bCountkill = false; }
+    VI0_ LKHJI 4;
+	VI0_ H 4 A_SetScale(1, 1);
+    Goto See;
+  }
+}
+
+Class DCY_ViolationFire : DCY_ImpFireball
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.57,0.57]";
+  Speed 20;
+  FastSpeed 28;
+  Scale 0.95;
+  Damage 6;
+  }
+  
+  States
+  {
+  Spawn:
+    FBS1 AABBCC 1
+	{
+		//A_SpawnParticleEx(0xffdc9c, Texman.SetNull(), STYLE_ADD, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), fadestepf: 0, sizestep: -0.125);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+	}
+	Loop;
+  Death:
+	TNT1 A 0
+	{
+		for (int i = 7; i > 0; i--)
+			A_SpawnParticle(0xffdcdc, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(3.5, 6.4), accelz: -0.85, fadestepf: 0, sizestep: -0.125);
+	}
+	BAL1 CCDDEE 2 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_ViolationBall : DoomImpBall
+{
+  Default
+  {
+  Radius 6;
+  Height 8;
+  Speed 12;
+  Damage 4;
+  RenderStyle "Add";
+  Alpha 1.0;
+  SeeSound "DCYViolator/attack";
+  DeathSound "imp/shotx";
+  Scale 0.6;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.57,0.57]";
+  Decal "DoomImpScorch";
+  }
+  States
+  {
+  Spawn: 
+	TNT1 A 1 Bright
+	{
+		A_Weave(2, 2, 1, 1);
+		A_SpawnItemEx("DCY_ViolationBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+	SUE2 FGHIJKLM 2;
+	Stop;
+  }
+}
+
+Class DCY_ViolationBallTrail : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 0.75;
+  RenderStyle "Add";
+  Alpha 0.6;
+  +NOCLIP;
+  +NOINTERACTION;
+  +THRUACTORS;
+  }
+  States
+  {
+  Spawn:
+	SUE1 ABCDEF 1 Bright;
+    Stop;
+  }
+}

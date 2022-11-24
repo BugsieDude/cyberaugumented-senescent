@@ -1,0 +1,54 @@
+Class DCY_Beholder : DCY_SOULKING
+{
+  Default
+  {
+  Translation "128:159=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "9:12=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "48:79=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "160:167=%[0.00,0.00,0.00]:[2.00,2.00,1.01]", "168:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]", "16:47=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
+  BloodColor "Yellow";
+  SeeSound "dbeholder/sight";
+  ActiveSound "dbeholder/active";
+  PainSound "dbeholder/pain";
+  DeathSound "dbeholder/death";
+  Tag "Beholder";
+  }
+  
+  States
+  {
+  Spawn:
+	B3H0 A 10 A_Look();
+	Loop;
+  See:
+	B3H0 A 2 A_Chase();
+	Loop;
+  Missile:
+	B3H0 BC 5 A_FaceTarget();
+	B3H0 D 4 A_FaceTarget();
+	B3H0 D 1 BRIGHT
+	{
+		A_PainAttack("DCY_PhantomSoul");
+		A_FaceTarget();
+		A_Stop();
+		Return ResolveState(null);
+	}
+	Goto See;
+  Pain:
+	B3H0 E 3;
+	B3H0 E 4 A_Pain();
+	Goto See;
+  Death:
+	B3H0 G 6 BRIGHT;
+	B3H0 H 6 BRIGHT A_Scream();
+	B3H0 IIJJ 3 BRIGHT A_SpawnItemEx("DCY_Explosion_1_Phantom2", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
+	B3H0 K 6 BRIGHT A_DualPainAttack("DCY_PhantomSoul");
+	Stop;
+  Death.Massacre:
+	B3H0 H 6 BRIGHT;
+	B3H0 I 6 BRIGHT A_Scream();
+	B3H0 JKLM 6 BRIGHT;
+	Stop;
+  Raise:
+	B3H0 MLKJIH 8;
+	Goto See;
+  }
+}
+
+Class DCY_Explosion_1_Phantom2 : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }

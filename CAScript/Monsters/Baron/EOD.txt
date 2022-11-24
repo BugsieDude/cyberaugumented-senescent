@@ -1,0 +1,520 @@
+Class DCY_EOD : DCY_HeckBaron
+{
+  Default
+  {
+  Health 2400;
+  Translation "1:3=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "168:173=[255,255,255]:[225,255,134]", "174:180=[225,255,134]:[124,225,0]", "181:191=[124,225,0]:[0,64,0]", "224:231=[255,255,255]:[225,255,134]", "208:216=[255,255,255]:[225,255,134]", "217:223=[225,255,134]:[124,225,0]", "232:235=%[0.00,0.00,0.00]:[1.01,2.00,0.00]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "56:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "48:55=%[0.00,0.00,0.00]:[1.77,2.00,1.06]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[124,225,0]:[0,64,0]", "16:23=[255,255,255]:[225,255,134]", "24:31=[225,255,134]:[124,225,0]", "32:47=[124,225,0]:[0,64,0]", "192:195=[255,255,255]:[225,255,134]", "196:201=[225,255,134]:[124,225,0]", "202:207=[124,225,0]:[0,64,0]", "112:127=%[0.00,0.00,0.00]:[0.35,0.54,0.32]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=[225,255,134]:[0,64,0]";
+  BloodColor "91ff00";
+  PainChance 50;
+  DamageFactor "EOA", 0.00;
+  Tag "\c[n9]The Elucidation of Dilapidator\c-";
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  Scale 1.1;
+  +BOSS
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +NOINFIGHTING
+  +BRIGHT
+  +NOFEAR
+  +DONTHARMCLASS
+  +DONTHARMSPECIES
+  SeeSound "DCYEOD/Sight";
+  ActiveSound "DCYEOD/Active";
+  PainSound "DCYEOD/Pain";
+  DeathSound "DCYEOD/Death";
+  }
+  
+  void A_EODChase()
+  {
+	if (target && distance3D(target) > 511)
+	{
+		for (int i = 2; i > 0; i--)
+			A_Chase();
+		
+		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		tics = 2;
+	}
+	
+	else if (target && distance3D(target) < 411)
+		tics = 2;
+	else if (target && distance3D(target) < 311)
+		tics = 3;
+	
+	A_Chase();
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o met fate.",
+		"%o could not handle Dilapidation."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  void A_EODFlame()
+  {
+	if(target)
+	{
+		A_FaceTarget();
+		let flame = SpawnMissileXYZ((pos.x + 5, pos.y, pos.z + 30), target, "DCY_EODLargeFlame");
+		
+		if (flame)
+		{
+			flame.Vel3DFromAngle(GetDefaultSpeed("DCY_EODLargeFlame") / 1.35, flame.angle, BulletSlope());
+			flame.bouncecount = 0;
+		}
+	}
+  }
+  
+  void A_EODBall()
+  {
+	if (target)
+	{
+		A_FaceTarget();
+	
+		for (int i = 1; i > -2; i -= 2)
+		{
+			A_SpawnProjectile("DCY_EODBall", 30, 0, (frandom(20, 5) * i));
+			A_SpawnProjectile("DCY_EODBall", 30, 0, (frandom(20, 5) * i));
+		}
+	}
+  }
+  
+  bool flame;
+  int missile;
+  
+  States
+  {
+  Spawn:
+	DOR_ A 10 DCY_Look();
+    Loop;
+  Look:
+	DOR_ AAA 3 DCY_LookingForPlayer();
+	DOR_ B 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ BBB 3 DCY_LookingForPlayer();
+	DOR_ C 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	}
+	DOR_ CCC 3 DCY_LookingForPlayer();
+	DOR_ D 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ DDD 3 DCY_LookingForPlayer();
+	DOR_ A 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	}
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	DOR_ AAA 3 A_EODChase();
+	DOR_ B 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ BBB 3 A_EODChase();
+	DOR_ C 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	}
+	DOR_ CCC 3 A_EODChase();
+	DOR_ D 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ DDD 3 A_EODChase();
+	DOR_ A 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	}
+	Loop;
+  Melee:
+	DOR_ EF 4 Bright A_FaceTarget();
+    DOR_ G 3 Bright A_CustomMeleeAttack(7 * frandom(2, 12), "baron/melee", "");
+    DOR_ H 2 Bright;
+    DOR_ IJ 4 Bright A_FaceTarget();
+    DOR_ K 3 Bright A_CustomMeleeAttack(7 * frandom(2, 12), "baron/melee", "");
+    DOR_ L 2 Bright;
+	Goto Missile;
+  Missile:
+	DOR_ E 0
+	{
+		if (target && distance3D(target) > 400)
+			Return A_Jump(50, "CometBlast", "FloorShits");
+		else
+			Return A_Jump(50, "CometBlast");
+	}
+	Goto MissileChoose;
+  MissileChoose:
+	DOR_ E 0 A_Jump(128, "MiniBalls", "BallBarrage", "CometsAndFlames", "Teleporting");
+	Goto Balls;
+  Teleporting:
+	DOR_ A 1
+	{
+		for (int i = 0; i < 360; i += 90)
+			A_SpawnItemEx("DCY_EODTrail2", angle: angle + i + 45, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERPOINTERS|SXF_TRANSFERPITCH|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		
+		bSolid = false;
+		bShootable = false;
+		bNoPain = true;
+		bDontThrust = true;
+		A_Recoil(-9);
+		A_SetAngle(Angle + randompick(45, 135, 225, 315));
+	}
+	TNT1 AAAAAA 1 A_Recoil(-9);
+	DOR_ A 10
+	{
+		bSolid = true;
+		bNoPain = false;
+		bShootable = true;
+		bDontThrust = false;
+		A_Stop();
+	}
+	Goto See;
+  Balls:
+	DOR_ EF 4 A_FaceTarget();
+	DOR_ G 4 A_EODBall();
+	DOR_ EF 4 A_FaceTarget();
+	DOR_ G 4 A_EODBall();
+	DOR_ H 4;
+	Goto See;
+  MiniBalls:
+	DOR_ L 1
+	{
+		A_FaceTarget();
+		missile = 0;
+	}
+	DOR_ LKJI 6 A_FaceTarget();
+	DOR_ I 2
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnProjectile("DCY_EODMiniBall", 60, -35, frandom(-10, 10), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-10, 10));
+		
+		A_FaceTarget();
+		
+		missile++;
+		
+		if (missile > 15)
+			SetStateLabel("See");
+	}
+	Goto MiniBalls+5;
+  BallBarrage:
+	DOR_ H 1
+	{
+		A_FaceTarget();
+		missile = 0;
+	}
+	DOR_ HGFE 6 A_FaceTarget();
+	DOR_ E 3
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnProjectile("DCY_EODBall", 60, 35, frandom(-10, 10));
+		
+		A_FaceTarget();
+		
+		missile++;
+		
+		if (missile > 7)
+			SetStateLabel("See");
+	}
+	Goto BallBarrage+5;
+  CometsAndFlames:
+	DOR_ E 7
+	{
+		flame = randompick(0, 0, 1);
+		A_FaceTarget();
+	}
+	DOR_ F 7 A_FaceTarget();
+	DOR_ G 5
+	{
+		A_FaceTarget();
+		
+		if (flame == true)
+			A_EODFlame();
+		else
+			A_SpawnProjectile("DCY_EODComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, 35);
+	}
+	DOR_ H 5 A_FaceTarget();
+	DOR_ H 1 A_Jump(100, "See");
+	DOR_ IJ 7 A_FaceTarget();
+	DOR_ K 5
+	{
+		A_FaceTarget();
+		
+		if (flame == true)
+			A_EODFlame();
+		else
+			A_SpawnProjectile("DCY_EODComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, 35);
+	}
+	DOR_ L 5 A_FaceTarget();
+	Goto See;
+  CometBlast:
+	DOR_ M 0
+	{
+		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_StartSound("DCYEOD/Tracer", CHAN_VOICE, attenuation: 0.5);
+	}
+	DOR_ MN 10 A_FaceTarget();
+	DOR_ O 8
+	{
+		for (int i = 4; i > 0; i--)
+			A_SpawnProjectile("DCY_EODComet", 30, 0, frandom(-40, 40), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(0, -35));
+		
+		A_StartSound("SP1DJUMP", CHAN_WEAPON, attenuation: 0.75);
+	}
+	DOR_ P 8;
+	Goto See;
+  Floorshits:
+	DOR_ M 0
+	{
+		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_StartSound("DCYEOD/Floor", CHAN_VOICE, attenuation: 0.5);
+	}
+	DOR_ MN 15 A_FaceTarget();
+	DOR_ O 10
+	{
+		for (int i = 0; i < 360; i += 45)
+			A_SpawnProjectile("DCY_EODLargeFlame", 20, 0, i, CMF_AIMDIRECTION);
+	}
+	DOR_ P 10;
+	Goto See;
+  Pain:	
+	DOR_ Q 3;
+	DOR_ Q 3 A_Pain();
+	DOR_ Q 2 A_Jump(60, "Teleporting");
+	Goto See;
+  Death:
+	DOR_ Q 1;
+	DOR_ Q 20 A_Scream();
+	D0R_ E 6 A_NoBlocking();
+	D0R_ FFFFGGGGHHHHIIII 1
+	{
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
+		}
+	}
+	D0R_ J 4 A_SetRenderStyle(1.0, STYLE_ADD);
+	D0R_ K 4 A_SpawnItemEx("DCY_EODSoul", zofs: 50, zvel: 10, flags: SXF_NOCHECKPOSITION);
+	D0R_ LM 4;
+	Stop;
+  Death.Massacre:
+	DOR_ Q 1;
+	DOR_ Q 20 A_Scream();
+	D0R_ E 6 A_NoBlocking();
+	D0R_ FFFFGGGGHHHHIIII 1;
+	D0R_ J 4 A_SetRenderStyle(1.0, STYLE_ADD);
+	D0R_ K 4;
+	D0R_ LM 4;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_EODComet : DCY_GeneralComet
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  -NOGRAVITY
+  BounceType "Doom";
+  BounceFactor 0.865;
+  Speed 20;
+  FastSpeed 25;
+  BounceSound "EODCOMET";
+  BounceCount 8;
+  }
+}
+
+Class DCY_EODLargeFlameExplosion : Actor
+{
+  Default
+  {
+  Projectile;
+  DamageFunction (0);
+  Speed 0;
+  FastSpeed 0;
+  DamageType "EOA";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  +RIPPER
+  +THRUACTORS
+  Radius 20;
+  Height 20;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2 NoDelay
+	{
+		A_QuakeEx(1, 1, 1, 40, 0, 400, "", QF_SCALEDOWN|QF_3D);
+		A_Explode(30, 80, XF_NOTMISSILE, 0, 20);
+		
+		for (int i = 3; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+		}
+	}
+	TNT1 AAAAAAAAAA 1
+	{
+		A_Explode(3, 55, XF_NOTMISSILE, 0, 10);
+		A_SpawnItemEx("DCY_ImpBigFlame", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+	}
+	TNT1 A 30;
+	Stop;
+  }
+}
+
+Class DCY_EODLargeFlame : CacodemonBall
+{
+  Default
+  {
+  Speed 28;
+  +NEVERFAST
+  +RIPPER
+  DamageFunction (0);
+  Radius 20;
+  Height 20;
+  BounceCount 2;
+  BounceFactor 1.0;
+  BounceType "Hexen";
+  SeeSound "BigFireball/Attack";
+  DeathSound "";
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+	TNT1 A 4;
+	TNT1 A 2
+	{
+		A_SpawnProjectile("DCY_EODLargeFlameExplosion", -5);
+		
+		timer++;
+		
+		if (timer > 30)
+			Destroy();
+	}
+	Goto Spawn+1;
+  Death:
+	TNT1 A 0;
+	Stop;
+  }
+}
+
+Class DCY_EODBall : DoomImpBall
+{
+  Default
+  {
+  SeeSound "InfernoGallant/Ball";
+  DeathSound "Painsend/FireExplode";
+  Speed 12;
+  FastSpeed 18;
+  Damage 5;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  DamageType "EOA";
+  }
+  
+  States
+  {
+  Spawn:
+	BAL1 A 0 NoDelay A_SetRoll(frandom(-360.0, 360.0));
+	BAL1 AAABBB 1
+	{
+		A_SetRoll(Roll+8, SPF_INTERPOLATE);
+		A_SpawnItemEx("DCY_GeneralImpBallTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERROLL|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	}
+	Goto Spawn+2;
+  Death:
+	BAL1 CDE 3;
+	Stop;
+  }
+}
+
+Class DCY_EODMiniBall : DCY_EODBall
+{
+  Default
+  {
+  Scale 0.45;
+  +RIPPER
+  Damage (1);
+  -RANDOMIZE
+  SeeSound "Painsend/Fireball";
+  BounceCount 3;
+  BounceFactor 1.0;
+  Speed 25;
+  FastSpeed 30;
+  BounceType "Hexen";
+  }
+}
+
+Class DCY_EODTrail2 : Actor
+{
+  Default
+  {
+  RenderStyle "Translucent";
+  Alpha 1.0;
+  +THRUACTORS
+  +THRUSPECIES
+  -SOLID
+  +BRIGHT
+  Radius 20;
+  Height 64;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#######" 1
+	{
+		A_Recoil(-9);
+		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+	}
+	"####" "#" 10 A_Stop();
+	"####" "#####" 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_EODSoul : Actor
+{
+  Default
+  {
+  Scale 1.1;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,0.00]";
+  RenderStyle "Add";
+  +DONTSPLASH
+  +NOCLIP
+  -SOLID
+  +THRUACTORS
+  }
+  
+  States
+  {
+  Spawn:
+	D0R_ AAAABBBBCCCDDD 1
+	{
+		vel.z += 1;
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X + 0.01);
+		A_SpawnItemEx("DCY_MonsoonTrailED", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), zvel: 2, flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+		A_SpawnItemEx("DCY_Smonk", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), zvel: -4, flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), zvel: 2, flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 50);
+	}
+	TNT1 A 1
+	{
+		for (int i = 15; i > 0; i--)
+			A_SpawnItemEx("DCY_BFGThunder", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 100);
+	}
+	Stop;
+  }
+}

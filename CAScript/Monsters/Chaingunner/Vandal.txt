@@ -1,0 +1,140 @@
+Class DCY_Vandal : DCY_Plutonia
+{ //TO BE DONE
+  Default
+  {
+  Translation "168:191=%[0.04,0.04,0.09]:[0.86,0.00,1.72]", "224:231=[255,255,255]:[255,128,255]", "208:223=[255,255,255]:[154,53,255]", "232:235=%[0.00,0.00,0.00]:[0.86,0.00,1.72]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "0:2=%[0.00,0.00,0.00]:[0.51,0.51,0.51]", "5:15=%[0.00,0.00,0.00]:[0.51,0.51,0.51]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=%[0.04,0.04,0.09]:[0.86,0.00,1.72]", "16:47=%[0.04,0.04,0.09]:[0.86,0.00,1.72]", "192:207=%[0.04,0.04,0.09]:[0.86,0.00,1.72]", "112:127=%[0.04,0.04,0.09]:[0.86,0.00,1.72]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.00,0.00,0.00]:[0.86,0.00,1.72]";
+  BloodColor "Purple";
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  Tag "\c[v6]Vandal\c-";
+  SeeSound "Vandal/Sight";
+  ActiveSound "Vandal/Active";
+  PainSound "Vandal/Pain";
+  DeathSound "Vandal/Death";
+  DropItem "DCY_ShitGrenadeThrowItBackPrivate", 100;
+  DropItem "Chaingun";
+  Health 195;
+  }
+  
+  States
+  {
+  Spawn:
+	DCHR A 10 DCY_Look();
+	Loop;
+  Look:
+	DCHR AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	DCHR AABBCCDD 2 A_Chase();
+	Loop;
+  Missile:
+	DCHR E 18 A_FaceTarget();
+	DCHR E 0 A_Jump(80, "Grenade");
+	DCHR F 2 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_VandalLaser", 34, 7, frandom(-1.5, 1.5));
+		A_StartSound("Vandal/Laser", CHAN_WEAPON);
+	}
+	DCHR F 0 Bright A_MonsterRefire(32, "Cooldown");
+	DCHR E 1 A_FaceTarget();
+	DCHR E 0 A_MonsterRefire(32, "Cooldown");
+	DCHR E 0 A_Jump(15, "Grenade");
+	Goto Missile+2;
+  Grenade:
+	DCHR F 7 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_VandalGrenade", 34, 7, frandom(-0.5, 0.5));
+		A_StartSound("DarkLord/Bomb/Fire", CHAN_WEAPON, attenuation: 0.5);
+	}
+	Goto Cooldown+1;
+  Cooldown:
+	DCHR E 1 A_Jump(80, "Grenade");
+	DCHR E 1 A_Jump(50, "Dodge");
+	DCHR EA 7;
+	Goto See;
+  Dodge:
+	DCHR E 1;
+	DCHR E 5
+	{
+		A_Dodging(10);
+		A_Hop(3);
+	}
+	DCHR E 5;
+	DCHR E 5 A_Stop();
+	DCHR A 7;
+	Goto See;
+  Pain:
+	DCHR G 4;
+	DCHR G 4 A_Pain();
+	Goto See;
+  Death:
+	DCHR I 4;
+	DCHR I 2 A_Scream();
+	DCHR JKLM 4;
+	DCHR N -1;
+	Stop;
+  }
+}
+
+Class DCY_VandalGrenade : Grenade
+{
+  Default
+  {
+  Gravity 1.0;
+  BounceFactor 0.8055;
+  Radius 20;
+  Height 20;
+  Scale 1.0;
+  Alpha 1.0;
+  RenderStyle "Translucent";
+  BounceType "Hexen";
+  BounceCount 5;
+  Speed 20;
+  Damage 13;
+  +NOTARGET
+  +NEVERFAST
+  -GRENADETRAIL
+  +ROLLSPRITE
+  +BRIGHT
+  BounceSound "dune/bounce";
+  SeeSound "DarkLord/Bomb/Fire";
+  DeathSound "Explod";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.13,0.83,2.00]";
+  }
+  
+  int rolling;
+  
+  States
+  {
+  Spawn:
+	THRM A 0 NoDelay
+	{
+		A_SetRoll(random(0, 360));
+		rolling = randompick(9, -9, 14, -14);
+	}
+	Goto Spawn1;
+  Spawn1:
+	THRM AAAAAABAAAAAABAAAAAAB 1 A_SetRoll(Roll+rolling, SPF_INTERPOLATE);
+	THRM B 0 A_StartSound("DarkLord/Bomb/Charge", CHAN_WEAPON, attenuation: 0.75);
+	THRM AAAAAAB 1 A_SetRoll(Roll+rolling, SPF_INTERPOLATE);
+	Goto Spawn1+22;
+  Death:
+	NBKL A 1;
+	NBKL A 1
+	{
+		A_SetRoll(0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_StopSound(CHAN_WEAPON);
+		A_StartSound("Explod", CHAN_7, attenuation: 0.5);
+		A_Explode(75, 200, XF_NOTMISSILE, 1);
+		A_QuakeEx(3, 3, 3, 50, 0, 600, "none", QF_SCALEDOWN, 0, 0, 0, 1255);
+		A_SpawnItemEx("DCY_Explosion_1", 0, 0, 25, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	NBKL CDEGHIJKLM 3;
+	Stop;
+  }
+}

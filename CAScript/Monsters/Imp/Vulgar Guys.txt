@@ -1,0 +1,397 @@
+//Caviler
+Class DCY_Caviler : DCY_Impe
+{
+  Default
+  {
+  Health 135;
+  Speed 13;
+  FastSpeed 15;
+  DamageType "Electric";
+  Obituary "%o's veins were zapped by a Caviler.";
+  HitObituary "%o's lungs were stolen by a Caviler.";
+  Tag "Lightning Vulgar";
+  Tag "\c[Sapphire]Caviler\c-";
+  BloodColor "Blue";
+  SeeSound "Violator/See";
+  ActiveSound "Violator/See";
+  PainSound "Violator/Pain";
+  DeathSound "Violator/Death";
+  +MISSILEMORE
+  +NODROPOFF
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o's lungs were ripped off by a Caviler.",
+		"%o's veins are now zapped by a Caviler.",
+		"The Caviler zapped %o to death."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  States
+  {
+  Spawn:
+    V3LG A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" G 10 DCY_AlertSound();
+	Goto See;
+  See:
+    TNT1 A 0 A_Jump(128, "Avoid", "FastChasing");
+    V3LG AABBCCDD 3 A_Chase();
+	Loop;
+  FastChasing:
+    V3LG AABBCCDD 3 A_Chase(flags: CHF_FASTCHASE);
+	TNT1 A 0 A_Jump(128, "See");
+	Loop;
+  Avoid:
+    V3LG A 0
+	{
+		A_Dodging(8);
+		A_FaceTarget();
+	}
+	V3LG AAAAAAAAAA 1 A_Chase(flags: CHF_DONTMOVE);
+	TNT1 A 0 A_Jump(128, "FastChasing");
+	Goto See;
+  Melee:
+    V3LG E 6 A_FaceTarget();
+	V3LG F 1 A_StartSound("monster/vulswg", CHAN_WEAPON);
+	V3LG F 5 A_FaceTarget();
+	V3LG G 6 A_CustomMeleeAttack(5 * random(5, 15), "imp/melee");
+	Goto See;
+  Missile:
+    TNT1 A 0 A_Jump(50, "Spread");
+    V3LG EF 6 A_FaceTarget();
+    V3LG G 5 A_SpawnProjectile("DCY_LightningVulgarShot",37);
+    Goto See;
+  Spread:
+    V3LG EF 10 A_FaceTarget();
+	V3LG G 10
+	{
+		for (int i = -10; i < 11; i += 10)
+			A_SpawnProjectile("DCY_LightningVulgarShot",37,0,i);
+	}
+	Goto See;
+  Pain:
+    V3LG H 2;
+    V3LG H 2 A_Pain();
+	TNT1 A 0 A_Jump(80, "Avoid");
+    Goto See;
+  Death:
+    V3LG I 8;
+    V3LG J 8 A_Scream();
+    V3LG KL 6;
+    V3LG M 6 A_NoBlocking();
+    V3LG N -1;
+    Stop;
+  XDeath:
+    V3LG O 5;
+    V3LG P 5 A_XScream();
+    V3LG Q 5;
+    V3LG R 5 A_NoBlocking();
+    V3LG STU 5;
+    V3LG V -1;
+    Stop;
+  Raise:
+    V3LG ML 8;
+    V3LG KJI 6;
+    Goto See;
+  }
+}
+
+Class DCY_LightningVulgarShot : FastProjectile
+{
+  Default
+  {
+  Speed 17;
+  FastSpeed 19;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 1.0;
+  Radius 10;
+  Height 10;
+  DamageType "Lightning";
+  SeeSound "LightningVulgar/Fire";
+  DeathSound "LightningVulgar/Explode";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.02,1.02,2.00]";
+  Damage 7;
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+	P_FX AAABBB 1 A_SpawnItemEx("DCY_LightningPhaseBallTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Loop;
+  Death:
+    P_FX CDEFGH 2;
+	Stop;
+  }
+}
+
+//Pathogen
+Class DCY_Pathogen : DCY_Impe
+{
+  Default
+  {
+  Health 222;
+  SeeSound "blob/sight";
+  ActiveSound "blob/sight";
+  PainSound "blob/pain";
+  DeathSound "blob/faint";
+  Speed 14;
+  FastSpeed 18;
+  DamageType "Dark";
+  BloodColor "Black";
+  Tag "\c[g3]Pathogen\c-";
+  MeleeDamage 10;
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +NODROPOFF
+  +NOFEAR
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o has been infected. %o starts to faint of the suffering.",
+		"The pathogen shared its suffering with %o.",
+		"%o slowly fades away.",
+		"Fully reduced."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  override void tick()
+  {
+	super.tick();
+	
+	if (health > 0 && !level.isfrozen())
+		A_SpawnItemEx("DCY_DarkeningDrip", frandom(-radius, radius), frandom(-radius, radius), frandom(-height, height), zvel: -0.5, flags: SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 210);
+  }
+  
+  States
+  {
+  Spawn:
+    V4LG A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AABBCCDD 4 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" G 10 DCY_AlertSound();
+	Goto See;
+  See:
+    TNT1 A 0 A_Jump(128, "Avoid", "FastChasing");
+    V4LG AABBCCDD 4 A_Chase();
+	Loop;
+  FastChasing:
+    V4LG AABBCCDD 4 A_Chase(flags: CHF_FASTCHASE);
+	TNT1 A 0 A_Jump(128, "FASTERCHASING", "See");
+	Loop;
+  FASTERCHASING:
+    V4LG AAAABBBBCCCCDDDD 1 A_Chase(flags: CHF_FASTCHASE);
+	TNT1 A 0 A_Jump(128, "See");
+	Loop;
+  Avoid:
+	TNT1 A 0 
+	{
+		A_Dodging(25);
+		A_FaceTarget();
+	}
+	V4LG AAAAAAAAAA 1 A_Chase(flags: CHF_DONTMOVE);
+	TNT1 A 0 A_Jump(128, "FastChasing", "FASTERCHASING");
+	Goto See;
+  Melee:
+    V4LG E 6 A_FaceTarget();
+	V4LG F 1 A_StartSound("monster/vulswg", CHAN_WEAPON);
+	V4LG F 5 A_FaceTarget();
+	V4LG G 6 A_CustomMeleeAttack(5 * random(5, 10), "imp/melee");
+	Goto See;
+  Missile:
+    V4LG E 0
+	{
+		If(target && Distance3D(target) < 250)
+			Return ResolveState("Dash");
+		
+		Return ResolveState(null);
+	}
+	Goto MissileContinue;
+  MissileContinue:
+    TNT1 A 0 A_Jump(50, "DDouble");
+    V4LG EF 4 A_FaceTarget();
+    V4LG G 4 A_SpawnProjectile("DCY_DarkeningVulgarShot",37);
+    V4LG EF 4 A_FaceTarget();
+    V4LG G 4 A_SpawnProjectile("DCY_DarkeningVulgarShot",37);
+    Goto See;
+  Dash:
+    TNT1 A 0 A_Jump(128, "MissileContinue");
+    V4LG EF 12 A_FaceTarget();
+	V4LG F 1 A_StartSound("monster/vulswg", CHAN_WEAPON);
+	V4LG G 0 A_Recoil(-30);
+	V4LG GGG 3 A_CustomMeleeAttack(2 * random(5, 15), "imp/melee");
+	V4LG F 5;
+	Goto MissileContinue;
+  DDouble:
+    V4LG EF 10 A_FaceTarget();
+	V4LG G 0 A_SpawnProjectile("DCY_DarkeningVulgarShot",37,0,-10,0,0);
+	V4LG G 9 A_SpawnProjectile("DCY_DarkeningVulgarShot",37,0,10,0,0);
+	Goto See;
+  Pain:
+    V4LG H 2;
+    V4LG H 2 A_Pain();
+	TNT1 A 0 A_Jump(80, "Avoid");
+    Goto See;
+  Death:
+  XDeath:
+    V4LG I 8;
+    V4LG J 8 A_Scream();
+    V4LG KL 6;
+    V4LG M 6 { A_SpawnItemEx("DCY_DarkSplash"); A_StartSound("DRKXDTH"); A_NoBlocking(); }
+	V4LG N 5;
+    V4LG O -1;
+    Stop;
+  Death.Massacre:
+	V4LG I 8;
+    V4LG J 8 A_Scream();
+    V4LG KL 6;
+    V4LG M 6 { A_StartSound("DRKXDTH"); A_NoBlocking(); }
+	V4LG N 5;
+    V4LG O -1;
+    Stop;
+  Raise:
+    V4LG ML 8;
+    V4LG KJI 6;
+    Goto See;
+  }
+}
+
+Class DCY_DarkSplash : DCY_Effect
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  XScale 2.0;
+  YScale 0.8;
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOCLIP
+  Translation "0:255=%[2.00,2.00,2.00]:[2.00,2.00,2.00]"; //"0:255=%[0.00,0.00,0.00]:[0.00,0.00,0.00]";
+  RenderStyle "Subtract";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BloodParticleX", zofs: 2, xvel: random(-5,5), zvel: frandom(3, 6), angle: frandom(0, 360), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+		}
+	}
+	GSPL ABCDEFGHIJKLMNOPQRSTUVWXYZ 1;
+    Stop;
+  }
+}
+
+
+Class DCY_DarkeningVulgarShot : FastProjectile
+{
+  Default
+  {
+  Speed 10;
+  FastSpeed 13;
+  Radius 12;
+  Height 12;
+  Alpha 0;
+  Scale 1.0;
+  SeeSound "M0NSSHOT";
+  RenderStyle "Subtract";
+  Damage 6;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_DarkeningVulgarAura", flags: SXF_NOCHECKPOSITION);
+		A_Weave(2, 2, 1, 1);
+	}
+	Loop;
+  Death:
+	TNT1 A 2
+	{
+		for (int i = 8; i > 0; i--)
+			A_SpawnParticle(0x0e0624, 0, random(25, 50), frandom(4, 10), frandom(0, 360), velx: frandom(-5.0, 5.0), vely: frandom(-5.0, 5.0), velz: frandom(-5.0, 5.0), accelz: -0.85);
+	}
+	Stop;
+  }
+}
+
+Class DCY_DarkeningVulgarAura : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 0.8;
+  Alpha 0.805;
+  RenderStyle "Subtract";
+  +NOINTERACTION
+  +DONTSPLASH
+  +BRIGHT
+  +NOCLIP
+  Translation "0:255=%[0.00,0.00,0.00]:[1.20,2.00,1.20]";
+  }
+  States
+  {
+  Spawn:
+    ETV6 AB 1
+	{
+		If (Scale.X < 0.0001)
+			Destroy();
+		
+		A_SetScale(Scale.X - 0.075);
+	}
+	Loop;
+  }
+}
+
+Class DCY_DarkeningDrip : DCY_Effect
+{
+  Default
+  {
+  Scale 0.9;
+  +SOLID
+  Radius 2;
+  Height 4;
+  -NOGRAVITY
+  +THRUACTORS
+  }
+  
+  States
+  {
+  Spawn:
+	DR1P A 1
+	{
+		if (vel.z == 0)
+			SetStateLabel("Death");
+	}
+	Loop;
+  Death:
+	DR1P B 2 A_StartSound("DRKDRIP");
+	DR1P CDEF 2;
+	Stop;
+  }
+}

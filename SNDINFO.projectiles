@@ -1,0 +1,520 @@
+$random dcyimp/charging { impc1 impc2 impc3 impc4 }
+impc1 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge1.ogg"
+impc2 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge2.ogg"
+impc3 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge3.ogg"
+impc4 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge4.ogg"
+impc5 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge5.ogg"
+imp/attack "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire.ogg"
+$random imp/shotx { impx1 impx2 impx3 impx4 }
+impx1 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact1.ogg"
+impx2 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact2.ogg"
+impx3 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact3.ogg"
+impx4 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact4.ogg"
+
+$random caco/attack { cacof1 cacof2 }
+cacof1 "Sounds/DCY SFX/dcy_cacofire1.ogg"
+cacof2 "Sounds/DCY SFX/dcy_cacofire2.ogg"
+$alias caco/shotx imp/shotx
+
+$alias baron/attack imp/attack
+$alias baron/shotx imp/shotx
+
+$random fatso/attack { fatm1 fatm2 fatm3 }
+fatm1 "Sounds/DCY SFX/dcy_fatso_fire1.ogg"
+fatm2 "Sounds/DCY SFX/dcy_fatso_fire2.ogg"
+fatm3 "Sounds/DCY SFX/dcy_fatso_fire3.ogg"
+$alias fatso/shotx imp/shotx
+
+$random skeleton/attack { revm1 revm2 revm3 revm4 }
+revm1 "Sounds/DCY SFX/dcy_rev_rocket1.ogg"
+revm2 "Sounds/DCY SFX/dcy_rev_rocket2.ogg"
+revm3 "Sounds/DCY SFX/dcy_rev_rocket3.ogg"
+revm4 "Sounds/DCY SFX/dcy_rev_rocket4.ogg"
+
+$random cyber/hoof { cystep1 cystep2 cystep3 }
+cystep1 "Sounds/DCY SFX/dcy_cyberdemon_step1.ogg"
+cystep2 "Sounds/DCY SFX/dcy_cyberdemon_step2.ogg"
+cystep3 "Sounds/DCY SFX/dcy_cyberdemon_step3.ogg"
+
+$random spider/walk { mastwalk1 mastwalk2 mastwalk3 }
+mastwalk1 "Sounds/DCY SFX/dcy_mastermind_step1.ogg"
+mastwalk2 "Sounds/DCY SFX/dcy_mastermind_step2.ogg"
+mastwalk3 "Sounds/DCY SFX/dcy_mastermind_step3.ogg"
+
+$random baby/walk { babywalk1 babywalk2 babywalk3 }
+babywalk1 "Sounds/DCY SFX/dcy_aracno_walk1.ogg"
+babywalk2 "Sounds/DCY SFX/dcy_aracno_walk2.ogg"
+babywalk3 "Sounds/DCY SFX/dcy_aracno_walk3.ogg"
+babywalk4 "Sounds/DCY SFX/dcy_aracno_walk4.ogg"
+
+$random dasher/walk { dashw1 dashw2 dashw3 }
+dashw1 "Sounds/DCY SFX/dcy_cyberpinky_step1.ogg"
+dashw2 "Sounds/DCY SFX/dcy_cyberpinky_step2.ogg"
+dashw3 "Sounds/DCY SFX/dcy_cyberpinky_step3.ogg"
+
+$random WastelandInfiltrator/Step { CYHOOF1 CYHOOF2 CYHOOF3 CYHOOF4 CYHOOF5 CYHOOF6 }
+CYHOOF1 "Sounds/DCY SFX/dcy_cyhoof1.ogg"
+CYHOOF2 "Sounds/DCY SFX/dcy_cyhoof2.ogg"
+CYHOOF3 "Sounds/DCY SFX/dcy_cyhoof3.ogg"
+CYHOOF4 "Sounds/DCY SFX/dcy_cyhoof4.ogg"
+CYHOOF5 "Sounds/DCY SFX/dcy_cyhoof5.ogg"
+CYHOOF6 "Sounds/DCY SFX/dcy_cyhoof6.ogg"
+
+DemonicSword/Out "Sounds/DCY SFX/dcy_demonsword_out.ogg"
+DemonicSword/Slash "Sounds/DCY SFX/dcy_demonsword.ogg"
+
+Ghostly GHOSTLY
+Power/Recharge POWERRGN
+Kabewm7 KABEWM7
+Kabewm7/Alternate KABEWM7A
+Power/OverchargeStart POWEROV2
+Power/Overcharge POWEROVC
+Power/OhFuck OHFUCC
+
+LEKICK LEKICK
+
+Cyberdemon/RailgunCharge VAMCBEAM
+Cyberdemon/RailgunFire VAMCBEAF
+
+EXOTURTC EXOTURTC
+PLSORB2 PLSORB2
+
+WtfLmao/BigAssOrb BIGASORB
+
+DCYComet/Spawn		DCYCOMET
+DCYComet/Explode	CMTIMPAC
+$limit DCYComet/Explode 0
+LngFire		LNG_HIT
+LngHit		LNG2_HIT
+mealstrom/boltcrackle		dsbolt
+
+Lazer/Fire LAZER
+Lazer/Fire2 LAZER2
+
+Le/Laser LELASER
+Le/LaserThing LELASER0
+
+MINCHARG MINCHARG
+
+PlasmaLaser "Sounds/Projectiles/PLASLASR.ogg"
+PlasmaLaser2 "Sounds/Projectiles/PLASLASR.wav"
+PlasmaOrb PLASBALL
+
+Corrupt/Flame CORRFLAM
+Misc/BigSmash BIGCRUSH
+
+PLSBFIRE PLSBFIRE
+SUPERLSR SUPERLSR
+
+M0NSSHOT M0NSSHOT
+
+DSPREXPL DSPREXPL
+DSPREXP2 DSPREXP2
+
+DSFLESH DSFLESH
+CYBRLASC CYBRLASC
+CYBRLASR CYBRLASR
+BOSSMGUN BOSSMGUN
+BOSSMISL BOSSMISL
+CYBRSMSH CYBRSMSH
+CYBRSMS2 CYBRSMS2
+CYBRFOOT CYBRFOOT
+
+BigFireball/Attack BIGFBATK
+
+$rolloff BigFireball/Attack 500 1245
+
+$random BigAssComet/Attack { BIGCMATK BIGCMAT2 }
+BIGCMATK BIGCMATK
+BIGCMAT2 BIGCMAT2
+$rolloff BigComet/Attack 500 1245
+BigAssComet/Death BIGCMEXP
+$rolloff BigComet/Death 500 1245
+
+Misc/Heartbeat HRTBEAT
+
+Kaiser/Charge KAISCHRG
+KaiserDrone/Laser KAISDLSR
+Kaiser/MetalHit KAISMHIT
+Kaiser/Laser KAISLASR
+Kaiser/Beam KAISBLSR
+
+dcy/disht1 dydisht1
+dcy/disht2 dydisht2
+dcy/blur dcyblur
+
+Warwire/Laser WARWLASR
+
+$random ArachPlasma { EXOPLAS1 EXOPLAS2 EXOPLAS3 EXOPLAS4 }
+EXOPLAS1 EXOPLAS1
+EXOPLAS2 EXOPLAS2
+EXOPLAS3 EXOPLAS3
+EXOPLAS4 EXOPLAS4
+
+LASERII LASERII
+$limit LASERII 0
+LASRX turlas
+$limit LASRX 0
+
+BishopAttack pop
+BishopMissileExplode bshhit2
+dcy/acosit dsac0sit
+dcy/acopai dsac0pai
+dcy/acodth dsac0dth
+dcy/acoact dsac0act
+
+PARTDIE1 PARTDIE1
+$limit PARTDIE1 0
+
+$random Weapons/ZombiePlasma { ZOMBPLS1 ZOMBPLS2 ZOMBPLS3 ZOMBPLS4 ZOMBPLS5 }
+ZOMBPLS1 ZOMBPLS1
+ZOMBPLS2 ZOMBPLS2
+ZOMBPLS3 ZOMBPLS3
+ZOMBPLS4 ZOMBPLS4
+ZOMBPLS5 ZOMBPLS5
+
+$random Weapons/ZombieLaser { ZOMBLSR1 ZOMBLSR2 }
+ZOMBLSR1 ZOMBLSR1
+ZOMBLSR2 ZOMBLSR2
+
+Vandal/Laser VANDLASR
+$limit Vandal/Laser 0
+
+LASRSH0T LASRSH0T
+UNHLYSHT UNHLYSHT
+ULHLYSHX ULHLYSHX
+FLECTRE FLECTRE
+
+$random DTHSOUL { DTHSOULS DTHSOUL2 DTHSOUL3 DTHSOUL4 }
+DTHSOULS DTHSOULS
+DTHSOUL2 DTHSOUL2
+DTHSOUL3 DTHSOUL3
+DTHSOUL4 DTHSOUL4
+DTHSOULP DTHSOULP
+
+$random DCYExplode2 { NAPEXPZ1 NAPEXPZ2 NAPEXPZ3 }
+NAPEXPZ1 NAPEXPZ1
+NAPEXPZ2 NAPEXPZ2
+NAPEXPZ3 NAPEXPZ3
+
+FIR3LOOP FIR3LOOP
+
+Grenade/Charge GRENCHRG
+
+$random DarkLord/Bomb/Fire { DBMBFAR1 DBMBFAR2 }
+DBMBFAR1 DBMBFAR1
+DBMBFAR2 DBMBFAR2
+DarkLord/Bomb/AltFire DBMBFIRE
+DarkLord/Bomb/Charge DBMBCHRG
+
+SmallBall/Fire SMOLBALL
+Reality/Fucking/Breaks RLTYBROK
+FireGeyser/Hum FIREGYS2
+FireGeyser/Start FIREGYSR
+
+ALASER ALASER
+ALASERX ALASERX
+BLASER BLASER
+BLASFAR BLASFAR
+BLASERX BLASERX
+
+DCYSparkle1 SPARKL31
+DCYSparkle2 SPARKL32
+MISLDR0P MISLDR0P
+NEONSHP1 NEONSHP1
+NEONSHP2 NEONSHP2
+
+SELFBOOM SELFBOOM
+
+XTRMCHR1 XTRMCHR1
+XTRMCHR2 XTRMCHR2
+XTRMCHR3 XTRMCHR3
+$random XTRMCHR { XTRMCHR1 XTRMCHR2 XTRMCHR3 }
+
+hknight/axewhoosh kgtatk
+hknight/hit hrnhit
+hknight/melee KGTAT2
+
+StarProjectile/See STARSIT
+StarProjectile/Explode NAVYSTAR
+
+skeleton/seeker S33K3R
+$volume skeleton/seeker 0.5
+
+$limit skeleton/seeker 0
+
+ElectricBall/Sight LB2LSHOT
+ElectricBall/Death LB2LDTH
+
+DSSUPPLS DSSUPPLS
+RBGSH0T RBGSH0T
+
+STRKBALL STRKBALL
+FLAMTHRW FLAMTHRW
+
+MAGI2SHT "Sounds/Projectiles/MAGI2SHT.wav"
+MAGISHT1 "Sounds/Projectiles/MAGISHT1.wav"
+SPIRBM1 "Sounds/Projectiles/SPIRBM1.wav"
+SPIRBM2 "Sounds/Projectiles/SPIRBM2.wav"
+SPIRFIR "Sounds/Projectiles/SPIRFIR.wav"
+BIGBOOMX "Sounds/Projectiles/BIGBOOMX.wav"
+DSBGLAS1 "Sounds/Projectiles/DSBGLAS1.wav"
+DSBGLAS2 "Sounds/Projectiles/DSBGLAS2.wav"
+DSGLAS1 "Sounds/Projectiles/DSGLAS1.wav"
+DSGLAS2 "Sounds/Projectiles/DSGLAS2.wav"
+DSHOLY2 "Sounds/Projectiles/DSHOLY2.wav"
+DSHOLY2A "Sounds/Projectiles/DSHOLY2A.wav"
+
+SHMPBOOM SHMPBOOM
+TracerExplode TRACEXPL
+
+JSEXPL1 JSEXPL1
+JSEXPL2 JSEXPL2
+JSEXPL3 JSEXPL3
+$random JSEXPL { JSEXPL1 JSEXPL2 JSEXPL3 }
+
+BIGSLZR BIGSLZR
+BIGSLZR2 BIGSLZR2
+ELECSPRK ELECSPRK
+ELECSPR2 ELECSPR2
+
+$limit BIGSLZR 0
+$limit ELECSPR2 0
+
+RegulusSeeker/Charge P2FLMBLF
+RegulusSeeker/Loop P2FLMBLL
+RegulusSeeker/Death P2FLMBLX
+
+THNDSHCK THNDSHCK //From Ancients Awakened
+
+//OMEGAPSYCHO
+FIRE001 FIRE001
+$limit FIRE001 0
+BLAST002 BLAST002
+SHINE001 SHINE001
+SHINE002 SHINE002
+FLAME001 FLAME01
+FLAME002 FLAME02
+LIGTFIR1 LIGTFIR1
+LIGT001 LIGT001
+LIGT002 LIGT002
+$limit LIGT002 0
+LIGTCHRG LIGTCHRG
+LIGTFIRE LIGTFIRE
+DRKSHINE DRKSHINE
+$limit DRKSHINE 0
+QUAKE001 QUAKE001
+BOWFIRE9 BOWFIRE9
+HOVER001 HOVER001
+BLAST003 BLAST003
+LIFESTEL LIFESTEL
+LASER001 LASER001
+EXPLD001 EXPLD001
+PAIN001 PAIN001
+BALL001 BALL001
+BALL002 BALL002
+HOLYSHIT HOLYSHIT
+
+//Other
+SFXSPAWN SFXSPAWN
+SFXSPAW2 SFXSPAW2
+READYSFX READYSFX
+BALLCHRG BALLCHRG
+BALLWHSH BALLWHSH
+FALDS1 FALDS1
+
+MBALFIRE MBALFIRE
+MBALEXPL MBALEXPL
+
+MBALFIR2 MBALFIR2
+MBALEXP2 MBALEXP2
+
+Eerie/Emergency EMERGENC
+$pitchshift Eerie/Emergency 0
+Acid/Raise GSTACIDR
+$pitchshift Acid/Raise 0
+
+Overcharge/Start OVERCHR1
+Overcharge/Finish OVERCHR2
+$pitchshift Overcharge/Start 0
+$pitchshift Overcharge/Finished 0
+
+FIREBOOM FIREBOOM
+
+PowerLaser/Charge POWERCHR
+PowerLaser/BLAAAAAAAAARGH POWERLSR
+
+QueenBFG/Fire2 QBFGFIR2
+QueenBFG/SuperFire QBFGSFIR
+
+MetalSlug/Cannon MSCANNON
+MetalSlug/Laser MSLASER
+
+Slasher/FireSpin SLASHER
+
+LaserBlast/Bewm DSLBLAST
+$limit LaserBlast/Bewm 0
+
+BIGASSLAZOR/FIRE BIGLAZOR
+LIVIDBOL LIVIDBOL
+
+MagicProjectile/Shot MAGIFIRE
+MagicProjectile/Death MAGIDIE
+
+LightningBewm LGTBEWM
+GL1SSBRK GL1SSBRK
+
+SoulScream/1 SOUSCRM1
+SoulScream/2 SOUSCRM2
+$random Soul/Scream {SOUSCRM1 SOUSCRM2}
+
+GSH/Smash GSSMASH
+GSH/Transform GSTRNSFR
+GSH/Crash GSCRASH
+
+$random RevenantJet/Start { D4RVJET1 D4RVJET2 D4RVJET3 }
+D4RVJET1 D4RVJET1
+D4RVJET2 D4RVJET2
+D4RVJET3 D4RVJET3
+
+RevenantJet/Loop D4RVJET4
+
+$random RevenantJet/Stop { D4RVJET5 D4RVJET6 }
+D4RVJET5 D4RVJET5
+D4RVJET6 D4RVJET6
+
+PsiPistol/Lightning LIGETNG
+$random PsiPistol/Laser { LAZEHR LAZEHR2 }
+LAZEHR LAZEHR
+LAZEHR2 LAZEHR2
+PsiPistol/LargeLaser BIGLAZHR
+PsiPistol/SmallLaser SMALLAZR
+$limit PsiPistol/SmallLaser 0
+
+LightningVulgar/Fire ZAPPER
+LightningVulgar/Explode ZAPPERX
+
+MLSRLOOP MLSRLOOP
+$pitchshift MLSRLOOP 0
+//Other Explosionz
+$random BigLightningExplode { BIGLGXP1 BIGLGXP2 BIGLGXP3 BIGLGXP4 }
+BIGLGXP1 BIGLGXP1
+BIGLGXP2 BIGLGXP2
+BIGLGXP3 BIGLGXP3
+BIGLGXP4 BIGLGXP4
+
+//R-Type Dree
+R3WAVCHR R3WAVCHR
+R3WAVE R3WAVE
+R3BLSRCH R3BLSRCH
+R3BLSRC2 R3BLSRC2
+R3BLSRFR R3BLSRFR
+R3LASR1 R3LASR1
+R3LASR2 R3LASR2
+R3LASR3 R3LASR3
+R3LASR4 R3LASR4
+R3EXPL1 R3EXPL1
+R3EXPL2 R3EXPL2
+R3EXPL3 R3EXPL3
+R3MINIEX R3MINIEX
+R3BEAM1 R3BEAM1
+R3BEAM2 R3BEAM2
+R3BEAMRF R3BEAMRF
+R3BEMRF2 R3BEMRF2
+R3BEMRF3 R3BEMRF3
+R3SHOT1 R3SHOT1
+R3ALRM R3ALRM
+R3APPEAR R3APPEAR
+R3DISSAP R3DISSAP
+R3PORTAL R3PORTAL
+R3CHRG R3CHRG
+R3CHRLOP R3CHRLOP
+R3EXLIFE R3EXLIFE
+R3ITMGET R3ITMGET
+R3ITMGT2 R3ITMGT2
+R3ITMGT3 R3ITMGT3
+R3ITMGT4 R3ITMGT4
+R3PAUSE R3PAUSE
+R3OVERHT R3OVERHT
+
+//Other Sounds Lmao
+OEXPLD1 OEXPLD1
+OEXPLD2 OEXPLD2
+OEXPLD3 OEXPLD3
+OEXPLD4 OEXPLD4
+OEXPLD5 OEXPLD5
+
+//Space Manbow Sounds
+SMBOSHIT SMBOSHIT
+SMBIGEXP SMBIGEXP
+SMLASER SMLASER
+SMLASER2 SMLASER2
+SMLASER3 SMLASER3
+SMMINLSR SMMINLSR
+SMLITNG SMLITNG
+SMLSRCHR SMLSRCHR
+SMLSRLOP SMLSRLOP
+SMITEMUP SMITEMUP
+SMITMUP2 SMITMUP2
+SMPOWRUP SMPOWRUP
+SMPLYDED SMPLYDED
+SMSHPRDY SMSHPRDY
+SMOPCOR SMOPCOR
+SMCORDON SMCORDON
+SMCORCLS SMCORCLS
+SMEXPL1 SMEXPL1
+SMEXPL2 SMEXPL2
+SMEXPL3 SMEXPL3
+
+//X-Men 2 Sounds
+CLONDIE CLONDIE
+RETRSHOT RETRSHOT
+XMENSHT1 XMENSHT1
+CLONBALL CLONBALL
+XMENTRSF XMENTRSF
+XMENTRS2 XMENTRS2
+XMENTRS3 XMENTRS3
+XMENTRS4 XMENTRS4
+CLONSPHR CLONSPHR
+CLONSPHL CLONSPHL
+$random Misc/MadRoar { CLONROAR CLONROA2 }
+CLONROAR CLONROAR
+CLONROA2 CLONROA2
+CLONLIGT CLONLIGT
+XMENXPLD XMENXPLD
+CLONHURT CLONHURT
+
+$pitchshift SMLSRLOP 0
+
+//Moar
+$random dcyminishield/die { MSHDEXP1 MSHDEXP2 MSHDEXP3 }
+MSHDEXP1 MSHDEXP1
+MSHDEXP2 MSHDEXP2
+MSHDEXP3 MSHDEXP3
+
+EXLAZER EXLAZER
+
+EXLRFIRE EXLRFIRE
+EXLRLOOP EXLRLOOP
+EXLREND EXLREND
+
+TORPMISL TORPMISL
+
+RETFIRE RETFIRE
+RETEXPL0 RETEXPL0
+
+ARPDBALL ARPDBALL
+ARPDBALX ARPDBALX
+
+FIR4FIRE FIR4FIRE
+FIR4IMPC FIR4IMPC
+
+ASXSHT1 ASXSHT1
+
+LAVABUBL "Sounds/Projectiles/dcy_lavaball_bubble.ogg"
+$random DCYLavaImpact { LAVAIMP1 LAVAIMP2 }
+LAVAIMP1 LAVAIMP1
+LAVAIMP2 LAVAIMP2
+
+DCYGhostProjectile "Sounds/Projectiles/dcy_ghost_scream.wav"
+BLERGH BLERGH

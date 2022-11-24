@@ -1,0 +1,172 @@
+DEFAULTLISTMENU
+{
+	Font "DSBIGFONT", "w1", "l5"
+	IfGame(Doom, Chex)
+	{
+		Selector "M_SKULL1", -32, -5
+		Linespacing 16
+		Font "DSBIGFONT", "w1", "f0"
+	}
+	IfGame(Strife)
+	{
+		Selector "M_CURS1", -28, -5
+		Linespacing 19
+	}
+	IfGame(Heretic, Hexen)
+	{
+		Selector "M_SLCTR1", -28, -1
+		Linespacing 20
+	}
+}
+
+LISTMENU "MainMenu"
+{
+	IfGame(Doom, Chex, Heretic, Hexen, Strife)
+	{
+		StaticPatch 65, 2, "M_DOOM"
+		Position 97, 72
+		IfOption(ReadThis)
+		{
+			Position 97, 62
+		}
+	}
+	IfGame(Doom, Chex, Heretic, Hexen, Strife)
+	{
+		TextItem "New Game", "n", "PlayerclassMenu"
+		TextItem "Extras", "i", "ExtrasMenu"
+		TextItem "Options","o", "OptionsMenu"
+		TextItem "Load Game", "l", "LoadGameMenu"
+		TextItem "Save Game", "s", "SaveGameMenu"
+		TextItem "Quit Game", "q", "QuitMenu"
+	}
+}
+
+OptionMenu "ExtrasMenu"
+{
+    Title "Extras"
+	StaticText "This is the extras menu."
+	StaticText "You can choose any option you want."
+	Submenu "Enemy-Tier Info", "EnemyTierInfoMenu"
+	StaticText "brb replacing this to a codex someday"
+	Submenu "Class Info", "ClassInfoMenu"
+	StaticText "This extra option shows the info of all classes."
+}
+
+OptionValue "DisableEnable2"
+{
+  0, "Enabled"
+  1, "Disabled"
+}
+
+OptionValue "DisableEnableAnnounce"
+{
+  0, "Announce"
+  1, "No Announce"
+}
+
+OptionValue "DisableEnableBoss"
+{
+  0, "Bosses On"
+  1, "Bosses Off"
+  2, "No Strongs"
+}
+
+OptionValue "EnableDisable2"
+{
+  0, "Disabled"
+  1, "Enabled"
+}
+
+OptionValue "EnableDisableStealth"
+{
+  0, "Normal"
+  1, "Customized"
+  2, "Combined"
+}
+
+OptionMenu "ModOptionsMenu"
+{
+    Title "- Cyberaugumented Setting Menu -"
+    StaticText ""
+    StaticText "This is the settings menu for Cyberaugumented."
+	StaticText "You can feel free to change anything. But don't break the game tho."
+	StaticText ""
+	SubMenu "Enemies", "DisableEnableEnemies"
+	SubMenu "Dashing", "CyberaugumentedDashingMenu"
+	SubMenu "Weapon Swaying", "WeaponSwayMenu"
+	StaticText ""
+	Option "Enemy Announcements",	"cyberaugumented_noenemyannouncements",	"DisableEnableAnnounce"
+	StaticText "Disables/Enables the announcements"
+	StaticText "for the boss-tiers."
+	StaticText ""
+	Option "HUD Shake",	"cl_hudshake",	"EnableDisable2"
+}
+
+OptionValue "DisableEnableSound"
+{
+  1, "Sound On"
+  0, "Sound Off"
+}
+
+OptionMenu "DisableEnableEnemies"
+{
+  Title "Enemies to Disable"
+  
+  Option "This is a WIP!", "this_enemy_option_will_um_yknow", "DisableEnable2"
+}
+
+AddOptionMenu "OptionsMenu"
+{
+	StaticText " "
+	Submenu "C.A. Option Menu", "ModOptionsMenu"
+}
+
+OptionMenu "CyberaugumentedDashingMenu" 
+{
+	Title "Dashing Options"
+	StaticText ""
+	Option "Enable Double Jump", 	"sv_allowdoublejump", "YesNo"
+	Option "Enable Dashing", 	"sv_allowdash", "YesNo"
+	Slider "Dash Cooldown", "sv_dashcooldown", 0, 350, 35
+	StaticText "Dash Cooldown in tick (Default 35)", White
+	StaticText ""
+	Option "Enable Dash Sound", 	"cl_allowdashsound", "YesNo"
+	Option "Enable Double Jump Sound", "cl_allowdjumpsound", "YesNo"
+	StaticText ""
+	Option "Dash Sound Type", "cl_dashsoundtype", "DashSoundType"
+	Option "Double Jump Sound Type", "cl_djumpsoundtype", "DJumpSoundType"
+	StaticText ""
+	Slider "Dash Power", "sv_dashpower", 0, 200, 24
+	Slider "Dash  Power Upwards", "sv_dashpowerup", 0, 200, 8
+	StaticText ""
+	StaticText "TIP: Sprinting is replaced by dash. So you'll have to use the run key to dash!"
+	//StaticText ""
+	//StaticText "RESET:"
+	//StaticText "Type PUKENAME ResetShieldCvarsToDefault in Console"
+}
+
+OptionValue "DashSoundType"
+{
+	0, "DOOM Eternal"
+	1, "Dash Sound"
+}
+
+OptionValue "DJumpSoundType"
+{
+	0, "Double Jump Sound"
+	1, "DOOM (2016)"
+
+}
+
+OptionMenu "WeaponSwayMenu"
+{
+	Class "WeaponSwayMenu"
+	Title "$WPNSWAYMNU_TITLE"
+	Position -32
+
+	StaticText ""
+
+	WeaponSwayOption "$WPNSWAYMNU_ENABLED",		"$WPNSWAYMNU_HELPTEXT_ENABLED",		"cl_weaponsway",			"YesNo"
+	WeaponSwayOption "$WPNSWAYMNU_INVERT",		"$WPNSWAYMNU_HELPTEXT_INVERT",		"cl_weaponsway_invert",		"YesNo"
+	WeaponSwayOption "$WPNSWAYMNU_VERTICAL",	"$WPNSWAYMNU_HELPTEXT_VERTICAL",	"cl_weaponsway_vertical",	"YesNo"
+}

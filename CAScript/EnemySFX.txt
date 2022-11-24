@@ -1,0 +1,432 @@
+Class DCY_GeneralImpBallTrail : DCY_Effect
+{
+  Default
+  {
+  Alpha 0.85;
+  RenderStyle "Add";
+  Scale 1.0;
+  Radius 0;
+  Height 0;
+  +NOINTERACTION
+  +NOCLIP
+  +ROLLSPRITE
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    BAL1 AAABBBAAA 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetRoll(random(0, 360));
+	}
+	Stop;
+  }
+}
+
+Class DCY_GeneralComet : Actor
+{
+  Default
+  {
+  Radius 12;
+  Height 12;
+  Speed 15;
+  Damage 2;
+  Scale 0.85;
+  RenderStyle "Normal";
+  Alpha 1.0;
+  +NEVERFAST
+  +EXTREMEDEATH
+  Projectile;
+  SeeSound "DCYComet/Spawn";
+  DeathSound "DCYComet/Explode";
+  Decal "Scorch";
+  }
+  States
+  {
+  Spawn:
+    CGMT AABBCC 1 Bright A_SpawnItemEx("DCY_CometTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+    Loop;
+  Death:
+	CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_Explode(100, 100, XF_NOTMISSILE, 1);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_SCALEDOWN, falloff: 400);
+	}
+    CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    CGMT EEFF 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+	}
+	CGMT GGHHII 1 Bright A_SetScale(Scale.X+0.25, Scale.Y+0.25);
+	TNT1 A 25;
+    Stop;
+  }
+}
+
+Class DCY_CometTrail : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 0.5;
+  Scale 1.0;
+  +BRIGHT
+  +NOCLIP
+  +NOINTERACTION
+  +ROLLSPRITE
+  }
+  
+  States
+  {
+  Spawn:
+	FRTG A 0 NoDelay A_SetRoll(frandom(0, 360));
+	FRTG ABCDEFGHI 2
+	{
+		A_SetScale(Scale.X-0.01, Scale.Y-0.01);
+		A_FadeOut(0.035, 0);
+	}
+	Stop;
+  }
+}
+
+Class DCY_GunmetalInfiltratorBallTrail : DCY_Effect
+{
+  Default
+  {
+  Speed 0;
+  Damage 0;
+  Speed 0;
+  Radius 1;
+  Height 1;
+  RenderStyle "Add";
+  Projectile;
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  -SOLID
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    GBL8 AAAAABBBBB 1 Bright A_FadeOut();
+	Stop;
+  }
+}
+
+Class DCY_FatThrower : Actor
+{
+  Default
+  {
+  Speed 32;
+  FastSpeed 35;
+  Damage (0);
+  Radius 18;
+  Height 18;
+  Scale 0.7;
+  Alpha 0.1;
+  DamageType "Fire";
+  RenderStyle "Add";
+  Projectile;
+  +NEVERFAST;
+  +RIPPER;
+  +NOEXTREMEDEATH;
+  }
+  States
+  {
+  Spawn:
+	EXP_ AABCDEFGHIJKLM 1 Bright
+	{
+		A_Explode(2, 30, 0, 1);
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = 3; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_ThrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	Goto Death;
+  Death:
+    TNT1 A 1 A_Die;
+	Stop;
+  }
+}
+
+Class DCY_ManesThrower : DCY_FatThrower
+{
+  Default { Translation "0:255=%[0.00,0.00,0.00]:[0.64,0.64,0.64]"; }
+  
+  States
+  {
+  Spawn:
+	EXP_ ABCDEGHJM 1 Bright
+	{
+		A_Explode(4, 35, 0, 1);
+		A_SpawnItemEx("DCY_AndroidExplosionSmaller", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
+		for (int i = 3; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_WretchedthrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	Goto Death;
+  }
+}
+
+Class DCY_ThrowerEffect : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 0.25;
+  Alpha 0.035;
+  RenderStyle "Add";
+  +NOCLIP
+  +NOGRAVITY
+  +THRUACTORS
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+    EXP_ ABCDEFGHIJKLM 1 Bright;
+	Stop;
+  }
+}
+
+Class DCY_WretchedthrowerEffect : DCY_ThrowerEffect { Default { Alpha 0.1; Scale 0.65; -NOGRAVITY; } }
+
+Class DCY_WretchedFlame : DCY_FatThrower
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[0.18,0.87,2.00]";
+  DamageType "WretchedFire";
+  Alpha 0.1;
+  }
+  States
+  {
+  Spawn:
+	EXP_ A 0;
+	EXP_ ABCDEFGHIJKLM 1 Bright
+	{
+		A_Explode(4, 30, 0, 1);
+		A_SpawnItemEx("DCY_AndroidExplosionSmall", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
+		for (int i = 3; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_WretchedthrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	Goto Death;
+  }
+}
+
+Class DCY_WastelandFlame : DCY_FatThrower
+{
+  Default
+  {
+  DamageType "Fire";
+  Alpha 0.1;
+  }
+  States
+  {
+  Spawn:
+	EXP_ A 0;
+	EXP_ ABCDEFGHIJKLM 1 Bright
+	{
+		A_Explode(4, 30, 0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
+		for (int i = 3; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_WretchedthrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	Goto Death;
+  }
+}
+
+Class DCY_OverdemoniacExplosion : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  +ROLLSPRITE
+  +BRIGHT
+  +NOCLIP
+  +NOINTERACTION
+  +NOBLOCKMAP
+  Radius 0;
+  Height 0;
+  Alpha 1.0;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]";
+  }
+  States
+  {
+  Spawn:
+	SUPH A 0 NoDelay A_SetRoll(Roll+random(0, 360));
+	SUPH ABCDEFGHIJKLMNNOOPPQQRR 1;
+	Stop;
+  }
+}
+
+Class DCY_SorcererOrbit : LostSoul
+{
+  Default
+  {
+  Health 0x7FFFFFFF;
+  Radius 6;
+  Height 6;
+  SeeSound "";
+  ActiveSound "";
+  PainSound "";
+  DeathSound "";
+  AttackSound "";
+  PainChance 0;
+  RenderStyle "Normal";
+  Alpha 1.0;
+  -ZDOOMTRANS
+  +PAINLESS
+  +NOPAIN
+  +NOGRAVITY
+  +DROPOFF
+  +FLOAT
+  +NEVERRESPAWN
+  +NOBLOOD
+  +NOCLIP
+  +NOINTERACTION
+  +THRUACTORS
+  +THRUSPECIES
+  +THRUGHOST
+  -SOLID
+  +NOINFIGHTING
+  DamageFactor 0;
+  Tag "\c[Purple]Sorcerer Orbit\c-";
+  Obituary "bruh";
+  HitObituary "bruh";
+  }
+  States
+  {
+  Spawn:
+  See:
+    SBMP A 0
+	{
+		A_SetAngle(360);
+		A_SetAngle(360);
+	}
+    SBMP ABCDEFGHIJKLMNOP 2
+	{
+		A_Warp(AAPTR_MASTER, 0, 70, 70, Angle, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE);
+		Angle += 5;
+		A_SpawnItemEx("DCY_SorcererAura", zofs: 5, flags: SXF_NOCHECKPOSITION);
+	}
+    Goto Spawn+1;
+  Pain:
+    Goto See;
+  Death:
+    TNT1 A 0 A_Stop();
+    SBS3 D 3 A_Explode(255, 255);
+    SBS3 E 3;
+    SBS3 FGH 2;
+    Stop;
+  }
+}
+
+Class DCY_SorcererAura : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.45;
+  Scale 1;
+  RenderStyle "Add";
+  +NOCLIP
+  +NOINTERACTION
+  +THRUACTORS
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	EF1_ L 1
+	{
+		if (Alpha < 0.000000001)
+		{
+			Return ResolveState("Null");
+		}
+		
+		A_FadeOut(0.025, 0);
+		A_SetScale(Scale.X-0.075, Scale.Y-0.075);
+		A_ChangeVelocity(frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5));
+		Return ResolveState(null);
+	}
+	Loop;
+  }
+}
+
+Class DCY_ElecTrailBase : DCY_Effect
+{
+  Default
+  {
+  +NOGRAVITY
+  +BRIGHT
+  +THRUACTORS
+  +NOCLIP
+  +ROLLSPRITE
+  +NOINTERACTION
+  -SOLID
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+	ASZ0 ABCABCABC 1
+	{
+		A_SetScale(Scale.X - 0.01);
+		A_FadeOut(0.1);
+		A_SetRoll(frandom(0, 360));
+	}
+	Stop;
+  }
+}
+
+Class DCY_ElecDeathBase : DCY_ElecTrailBase
+{
+  States
+  {
+  Spawn:
+	4L4C ABCDEFG 2;
+	Stop;
+  }
+}
+
+Class DCY_MechaZombieBall : DoomImpBall
+{
+  Default
+  {
+  Speed 22;
+  FastSpeed 29;
+  }
+}

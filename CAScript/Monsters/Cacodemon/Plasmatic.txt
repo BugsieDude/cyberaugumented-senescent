@@ -1,0 +1,240 @@
+Class DCY_PlasmaticWizard : DCY_CacoParent
+{
+  Default
+  {
+  Health 650;
+  Radius 20;
+  Height 56;
+  Speed 17;
+  PainChance 55;
+  +QUICKTORETALIATE
+  +MISSILEMORE
+  +NOFEAR
+  +NOGRAVITY
+  +FLOAT
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  DamageType "PlasmaW";
+  DropItem "DCY_Eminence", 128;
+  DropItem "DCY_Eminence", 128;
+  DamageFactor "PlasmaW", 0.00;
+  BloodColor "Blue";
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  SeeSound "PWizard/Sight";
+  PainSound "PWizard/Pain";
+  DeathSound "PWizard/Death";
+  ActiveSound "PWizard/Active";
+  MeleeSound "wizard/melee";
+  Obituary "%o was fried by one of the Plasmatic Helltactician's attacks.";
+  Tag "\c[n5]Plasmatic \c[l5]Helltactician\c-";
+  }
+  
+  void A_PlasmaticDash()
+  {
+	A_SpawnItemEx("DCY_PWZFX1", flags: SXF_NOCHECKPOSITION);
+	A_Chase();
+  }
+  
+  void A_PlasmaticAttack(bool attacking)
+  {
+	A_Wander();
+	A_Wander();
+	A_FaceTarget();
+	
+	if (attacking == true)
+		A_SpawnProjectile("DCY_WizardPlasma", 30, 10, random(-4, 4), 0, random(-4, 4));
+  }
+  
+  States
+  {
+  Spawn:
+    PWIZ AB 10 DCY_Look();
+    Loop;
+  Look:
+	PWIZ AAABBB 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
+	Goto See;
+  See:
+    PWIZ A 0 A_SetTranslucent(1, 0);
+	TNT1 A 0 A_Jump(90, "Dash");
+    PWIZ AAABBB 2 A_Chase();
+    Loop;
+  Dash:
+    PWIZ A 1 A_StartSound("dcy/blur");
+    PWIZ AAAAAAAAAAAAAAA 1 A_PlasmaticDash();
+    PWIZ A 0 A_Jump(96,"See");
+    Goto Dash+1;
+  Melee: //AKA Plasmatic Slap
+    PWIZ N 7 A_FaceTarget();
+	PWIZ O 0 A_Recoil(-20);
+	PWIZ O 9;
+	PWIZ P 0 A_Stop();
+	PWIZ P 9 A_CustomMeleeAttack(random(10, 100), "");
+	Goto See;
+  Missile:
+    PWIZ C 0 A_Jump(64, "Missile2", "Missile3", "Melee");
+    PWIZ C 4 A_FaceTarget();
+    PWIZ D 4
+	{
+		A_SpawnProjectile("DCY_WizardPlasma", 30, 10, -4);
+		A_SpawnProjectile("DCY_WizardPlasma", 30, 0, 0);
+		A_SpawnProjectile("DCY_WizardPlasma", 30, -10, 4);
+	}
+    Goto See;
+  Missile2:
+    PWIZ C 4 A_FaceTarget();
+    PWIZ D 2 A_PlasmaticAttack(false);
+	PWIZ D 2 A_PlasmaticAttack(true);
+	PWIZ D 2 A_PlasmaticAttack(false);
+	PWIZ D 2 A_PlasmaticAttack(true);
+	PWIZ D 2 A_PlasmaticAttack(false);
+	PWIZ D 2 A_PlasmaticAttack(true);
+	PWIZ D 2 A_PlasmaticAttack(false);
+	PWIZ D 2 A_PlasmaticAttack(true);
+	PWIZ D 2 A_PlasmaticAttack(false);
+	PWIZ D 2 A_PlasmaticAttack(true);
+    Goto See;
+  Missile3:
+    PWIZ NO 10 A_FaceTarget();
+    PWIZ P 10
+	{
+		A_StartSound("WH1PLASR", attenuation: 0.5);
+		A_SpawnProjectile("DCY_WizardBlast", 15, 0, 0);
+	}
+    Goto See;
+  Pain:
+    PWIZ E 0 A_SetTranslucent(1,0);
+    PWIZ E 4;
+    PWIZ E 4 A_Pain();
+    Goto See;
+  Death:
+    PWIZ E 1;
+    PWIZ E 5 A_SetTranslucent(1,0);
+    PWIZ F 6;
+    PWIZ G 6 A_Scream();
+    PWIZ H 6;
+    PWIZ I 6 A_Fall();
+    PWIZ JKL 6;
+    PWIZ M -1;
+    Stop;
+  Raise:
+    PWIZ ML 8;
+    PWIZ KJI 6;
+    Goto See;
+  }
+}
+
+Class DCY_PWZFX1 : DCY_Effect
+{
+   Default
+   {
+   Radius 1;
+   Height 1;
+   Speed 0;
+   Scale 1.0;
+   Alpha 0.95;
+   RenderStyle "AddStencil";
+   StencilColor "2452b2";
+   +NOCLIP
+   -SOLID
+   +NOGRAVITY
+   +CLIENTSIDEONLY
+   }
+   States
+   {
+   Spawn:
+      NULL A 3;
+	  Goto FadeOut;
+   FadeOut:
+      PWIZ A 1 A_FadeOut(0.1);
+      Loop;
+   }
+}
+
+Class DCY_WizardPlasma : CacodemonBall
+{
+  Default
+  {
+  DamageFunction 3;
+  Speed 15;
+  FastSpeed 20;
+  Radius 8;
+  Height 8;
+  RenderStyle "Add";
+  Scale 1.25;
+  Projectile;
+  +THRUGHOST
+  +BRIGHT
+  DamageType "PlasmaW";
+  SeeSound "WH1PSWNG";
+  DeathSound "";
+  Translation "0:255=%[0.00,0.00,0.50]:[0.67,1.28,2.00]";
+  }
+  States
+  {
+  Spawn:
+    BLPL ABCD 1 A_SpawnItemEx("DCY_WizardPlasmaTrail");
+	Loop;
+  Death:
+	TNT1 A 3;
+	Stop;
+  }
+}
+
+Class DCY_WizardPlasmaTrail : DCY_PlasmaTrail { Default { Alpha 0.5; Scale 1.0; Translation "0:255=%[0.00,0.00,0.00]:[0.42,0.55,1.47]"; } }
+
+Class DCY_WizardBlast : CacodemonBall
+{
+  Default
+  {
+  Speed 20;
+  Scale 2.3;
+  Projectile;
+  +STRIFEDAMAGE
+  +ROLLSPRITE
+  +NOGRAVITY
+  Radius 20;
+  Height 20;
+  DamageFunction 28;
+  Translation "0:255=%[0.00,0.00,0.50]:[0.67,1.28,2.00]";
+  SeeSound "WH1PLASR";
+  Deathsound "BLAST002";
+  RenderStyle "Add";
+  DamageType "PlasmaW";
+  Decal "BigScorch";
+  }
+  
+  States
+  {
+  Spawn:
+    CFX3 AAABBB 1
+	{
+		A_Weave(3, 3, 1, 1);
+		A_SetRoll(Roll+15);
+		A_SpawnItemEx("DCY_FluorescentOrbT", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
+	}
+    Loop;
+  Death:
+    TNT1 A 1;
+	TNT1 A 0
+	{
+		for (int i = 0; i < 360; i += 90)
+		{
+			A_SpawnProjectile("DCY_WizardPlasmaSlow", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+		}
+		
+		for (int i = 45; i < 360; i += 90)
+		{
+			A_SpawnProjectile("DCY_WizardPlasma", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+		}
+		
+		A_QuakeEx(4, 4, 4, 30, 0, 500, "none", QF_RELATIVE|QF_SCALEDOWN|QF_3D, falloff: 1000);
+	}
+    TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_WizardPlasmaSlow : DCY_WizardPlasma { Default { Speed 23.5; } }

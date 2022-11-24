@@ -1,0 +1,120 @@
+Class DCY_RadiationCorpulence : DCY_SkinnyFat
+{
+  Default
+  {
+  Health 600;
+  SeeSound "LightningEttinSight";
+  ActiveSound "LightningEttinActive";
+  AttackSound "LightningEttinSight";
+  PainSound "LightningEttinPain";
+  DeathSound "LightningEttinDeath";
+  Tag "Corpulence";
+  BloodType "AndroidNeonFluid";
+  BloodColor "9eff03";
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got acidified by an corpulence.",
+		"Acid",
+		"My bones are disintegrating.",
+		"%o couldn't go on any longer."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+	
+  States
+  {
+  Spawn:
+	B01_ A 10 A_Look();
+	Loop;
+  See:
+	B01_ AABBCCDDEEFF 4 A_Chase();
+	Loop;
+  Missile:
+	B01_ G 20
+	{
+		A_StartSound("LightningEttinSight", pitch: 0.965);
+		A_FaceTarget();
+	}
+	B01_ H 10 Bright
+	{
+		A_FatAttack3("DCY_RBall");
+		Return A_Jump(128, "Spread");
+	}
+	B01_ IG 4 A_FaceTarget();
+	B01_ H 10 Bright A_FatAttack2("DCY_RBall");
+	B01_ IG 4 A_FaceTarget();
+	B01_ H 10 Bright A_FatAttack1("DCY_RBall");
+	B01_ IG 4 A_FaceTarget();
+	Goto See;
+  Spread:
+	B01_ H 10 Bright
+	{
+		for (int i = -10; i < 11; i += 20)
+			A_SpawnProjectile("DCY_RBall", 36, i, i, CMF_OFFSETPITCH, -2);
+	}
+	B01_ IG 10 A_FaceTarget();
+	Goto See;
+  Pain:
+	B01_ J 4;
+	B01_ J 4 A_Pain();
+	Goto See;
+  Death:
+	B01_ K 1;
+	B01_ K 10 A_Scream();
+	B01_ LM 6;
+	B01_ N 1 A_NoBlocking();
+	B01_ NOPQRS 5;
+	B01_ T -1 A_BossDeath2();
+	Stop;
+  Raise:
+	B01_ SRQPONMLK 4;
+	Goto See;
+  }
+}
+
+Class DCY_RBall : FatShot
+{
+  Default
+  {
+  DamageType "Poison";
+  PoisonDamage 2, 5, 0;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.24,2.00,0.49]";
+  SeeSound "AcidBall/Shoot";
+  DeathSound "AcidBall/Death2";
+  Radius 10;
+  Height 10;
+  DamageFunction 5;
+  Speed 20;
+  FastSpeed 30;
+  Scale 1.5;
+  -NOGRAVITY
+  Gravity 0.085;
+  }
+  States
+  {
+  Spawn:
+    FVUL AABB 1
+	{
+		A_SpawnParticleEx(0x328700, TexMan.CheckForTexture("graphics/particles/dcygas.png"), 0, SPF_ROLL|SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(15, 20), xoff: frandom(-2, 2), yoff: frandom(-2, 2), zoff: frandom(-2, 2), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.04, startroll: frandom(0, 360));
+		for (int i = 2; i > 0; i--)
+			A_SpawnParticle(0xc5ffa3, SPF_FULLBRIGHT, 40, frandom(9, 13), 0, frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), fadestepf: 0, sizestep: -0.45);
+		
+		A_SpawnItemEx("DCY_XBallTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+    FVUL C 1 Bright;
+	FVUL C 1 Bright
+	{
+		for (int i = 12; i > 0; i--)
+			A_SpawnItemEx("AndroidNeonFluid", random(-3, 3), random(-3, 3), random(-3, 3), random(-5, 5), random(-5, 5), random(3, 7), Angle - 180 + frandom(-45, 45), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 135);
+    }
+	FVUL CCCDDDEEFF 1 Bright A_FadeOut(0.065, 0);
+	Stop;
+  }
+}

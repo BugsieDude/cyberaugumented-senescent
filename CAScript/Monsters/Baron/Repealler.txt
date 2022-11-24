@@ -1,0 +1,347 @@
+Class DCY_Repealler : DCY_BaronParent
+{
+  Default
+  {
+  Health 1500;
+  BloodColor "Yellow";
+  SeeSound "Repealler/Sight";
+  ActiveSound "Repealler/Active";
+  PainSound "Repealler/Pain";
+  DeathSound "Repealler/Death";
+  BloodColor "Yellow";
+  DropItem "DCY_Emphasis", 160;
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  Tag "\c[y4]Repealler\c-";
+  DamageFactor "Electric", 0.00;
+  +BRIGHT
+  +MISSILEEVENMORE
+  }
+  
+  void A_RepeallerStep()
+  {
+	A_StartSound("BIGSTEPP", CHAN_BODY, attenuation: 0.8);
+	A_QuakeEx(0, 0, 1, 10, 0, 400, "", QF_3D|QF_SCALEDOWN);
+  }
+  
+  void A_RepeallerMissile()
+  {
+	A_FaceTarget();
+	
+	if (micromissile)
+		A_SpawnProjectile("DCY_RepeallerMicroRocket", 34, 10);
+	else
+		A_SpawnProjectile("DCY_RepeallerRocket", 34, 10);
+	
+	missile--;
+	
+	if (!missile)
+		SetStateLabel("Cooldown");
+  }
+  
+  int missile;
+  bool micromissile;
+  
+  States
+  {
+  Spawn:
+	3LCY A 10 DCY_Look();
+    Loop;
+  Look:
+	3LCY AAAABBBB 3 DCY_LookingForPlayer();
+	3LCY C 0 A_RepeallerStep();
+	3LCY CCCCDDDD 3 DCY_LookingForPlayer();
+	3LCY A 0 A_RepeallerStep();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
+	Goto See;
+  See:
+	3LCY AAAABBBB 3 A_Chase();
+	3LCY C 0 A_RepeallerStep();
+	3LCY CCCCDDDD 3 A_Chase();
+	3LCY A 0 A_RepeallerStep();
+	Loop;
+  Melee:
+	3LCY GH 4 A_FaceTarget();
+	3LCY I 4 A_CustomMeleeAttack(10 * random(1, 7), "baron/melee");
+	3LCY H 4;
+	Goto See;
+  Missile:
+	3LCY E 0 A_Jump(80, "BigOrb");
+	3LCY E 0 A_Jump(128, "MicroMissile");
+	3LCY E 10 { micromissile = false; missile = 5; A_FaceTarget(); }
+	3LCY F 4 A_RepeallerMissile();
+	3LCY E 6 A_FaceTarget();
+	Goto Missile+3;
+  MicroMissile:
+	3LCY E 10 { micromissile = true; missile = random(14, 18); A_FaceTarget(); }
+	3LCY F 2 A_RepeallerMissile();
+	3LCY E 2 A_FaceTarget();
+	Goto MicroMissile+1;
+  Cooldown:
+	3LCY E 15;
+	Goto See;
+  BigOrb:
+	3LCY E 1 A_StartSound("Repealler/Active", CHAN_VOICE, attenuation: 0.75);
+	3LCY EEEEE 8
+	{
+		A_SpawnItemEx("DCY_RepeallerAura", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_SETMASTER);
+		A_FaceTarget();
+	}
+	3LCY F 10
+	{
+		A_StartSound("LightningPulse/MainFire", CHAN_WEAPON, attenuation: 0.5);
+		A_SpawnProjectile("DCY_RepeallerOrb", 34, 10);
+	}
+	3LCY E 15;
+	Goto See;
+  Pain:
+	3LCY J 4;
+	3LCY J 4 A_Pain();
+	Goto See;
+  Death:
+	3LCY J 4;
+	3LCY K 12 A_Scream();
+	3LCY LMN 5;
+	3LCY O 5
+	{
+		A_NoBlocking();
+		
+		A_StartSound("V3RYEXPL", CHAN_BODY, attenuation: 0.5);
+		
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Repealler", 0, 0, 30, i / 2, 0, i / 2);
+	}
+	3LCY PQ 5;
+	3LCY R -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_RepeallerAura : DCY_DivinePhantomExplosion3
+{
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (master)
+			angle = master.angle;
+	}
+}
+
+Class DCY_Explosion_1_RepeallerS : DCY_Explosion_1_Small { Default { Translation "0:255=%[0.28,0.20,0.05]:[2.00,2.00,1.01]"; } }
+Class DCY_Explosion_1_Repealler : DCY_Explosion_1_Biggie { Default { Scale 0.6; Translation "0:255=%[0.28,0.20,0.05]:[2.00,2.00,1.01]"; } }
+
+Class DCY_RepeallerRocket : DCY_TransmuterTorpedo
+{
+  Default
+  {
+  Translation "80:111=%[0.00,0.00,0.00]:[0.63,0.63,0.63]", "160:255=%[0.00,0.00,0.00]:[2.00,2.00,0.42]", "13:79=%[0.00,0.00,0.00]:[2.00,2.00,0.42]";
+  Speed 20;
+  +SEEKERMISSILE
+  SeeSound "ROBOBOMB";
+  DeathSound "ROBOEXP2";
+  }
+  
+  States
+  {
+  Spawn:
+	HMIS A 1
+	{
+		A_SeekerMissile(1, 1);
+		A_SpawnParticle(0xebe93f, SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);
+		A_SpawnItemEx("DCY_SpiritBlood", 0, 0, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
+		A_SpawnItemEx("DCY_FluorescentJetFlare", 0, 0, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+    BAL3 C 1
+	{
+		A_SetRenderStyle(0.875, STYLE_ADD);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Phantom", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION);
+		for (int i = random(10, 20); i > 0; i--)
+			A_SpawnParticle(0xebe93f, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.5, 12.4), accelz: -1);
+		
+		A_Explode(30, 85, XF_NOTMISSILE, 1);
+	}
+		
+    BAL3 C 1 Bright A_Explode(30, 85, XF_NOTMISSILE, 1);
+	BAL3 CCCDDDDEEEE 1 Bright
+	{
+	  A_FadeOut(0.085, 0);
+	  A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+	}
+	TNT1 A 1 Bright;
+    Stop;
+  }
+}
+
+Class DCY_RepeallerOrb : DoomImpBall
+{
+  Default
+  {
+  Speed 5;
+  +NEVERFAST
+  DamageFunction 2;
+  +RIPPER
+  +BRIGHT
+  Radius 25;
+  Height 25;
+  DamageType "Electric";
+  SeeSound "LightningPulse/Fire";
+  DeathSound "LightningPulse/Explode";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+	LFX1 STUVW 1
+	{
+		if (timer < 40)
+			vel += Vel.Unit() * 0.65;
+		
+		timer++;
+		
+		for(int i = 2; i > 0; i--)
+			A_SpawnParticleEx(0xfff9bf, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 20, frandom(10, 20), frandom(0, 360), frandom(-35, 35), frandom(-35, 35), frandom(-35, 35), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1));
+		
+		A_SpawnItemEx("DCY_FluorescentJetFlare", flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Arc", flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 120);
+	}
+	Loop;
+  Death:
+	SFE1 A 1
+	{
+		A_QuakeEx(2, 2, 2, 38, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 45, 0, 1250, "", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 35, 0, 1250, "", QF_SCALEDOWN, 0, 0, 0, 0, 0, 0.7, frandom(0.7, -0.7));
+		A_Explode(180, 200, XF_NOTMISSILE, True);
+		A_SpawnItemEx("DCY_RepeallerTrailBarrage", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	}
+    SFE1 AAAABBBCCDEF 1 A_SpawnProjectile("DCY_RepeallerSmallOrb", 0, 0, frandom(-360, 360), CMF_OFFSETPITCH, frandom(-360, 360));
+	Stop;
+  }
+}
+
+Class DCY_RepeallerSmallOrb : DCY_RepeallerOrb
+{
+  Default
+  {
+  SeeSound "";
+  DamageFunction 2;
+  -RIPPER
+  Radius 8;
+  Height 8;
+  Scale 0.25;
+  Speed 15;
+  BounceCount 4;
+  BounceType "Hexen";
+  BounceFactor 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+	LFX1 STUVW 1
+	{
+		A_SpawnItemEx("DCY_Arc", flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 200);
+		A_SpawnParticleEx(0xfff9bf, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 7, frandom(10, 20), frandom(0, 360), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1));
+	}
+	Loop;
+  Death:
+	LFX1 STUVW 1
+	{
+		A_FadeOut(0.2, 0);
+		A_SpawnItemEx("DCY_Arc", flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
+	}
+	Stop;
+  }
+}
+
+Class DCY_RepeallerTrailBarrage : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("DCY_RepeallerExplodeTrail", 0, 0, 0, random(-10, 10), random(-10, 10), random(-10, 10), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Stop;
+  }
+}
+
+Class DCY_RepeallerExplodeTrail : DCY_ProjectileBaseTrail
+{
+  Default { Scale 0.75; }
+  
+  States
+  {
+  Spawn:
+	SFE1 AAAABBBCCCDDDEEE 1 A_FadeOut(0.05, 0);
+	Stop;
+  }
+}
+
+Class DCY_RepeallerMicroRocket : DCY_CyberMicromissile
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
+  Speed 6;
+  +NEVERFAST
+  +SEEKERMISSILE
+  Scale 1;
+  Damage 5;
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+	SMOL A 1
+	{
+		if (timer > 20)
+			A_SpawnItemEx("DCY_FluorescentJetFlareSmall", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERTRANSLATION);
+		else
+			A_SpawnItemEx("DCY_RocketSmonk", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERTRANSLATION, failchance: 128);
+		
+		vel.y += frandom(1, -1);
+		vel.z += frandom(0.5, -0.5);
+		
+		if (timer == 20)
+		{
+			A_SeekerMissile(9999, 9999, SMF_LOOK);
+			A_ScaleVelocity(4);
+		}
+		
+		timer++;
+	}
+	Loop;
+  Death:
+	SMOL B 1
+	{
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_RepeallerS");
+		A_QuakeEx(1, 1, 1, 20, 0, 100, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 200);
+	}
+	SMOL CDEFGHIJKL 1;
+	TNT1 A 8;
+	Stop;
+  }
+}

@@ -1,0 +1,467 @@
+Class DCY_HexodenicanTrail : Actor
+{
+  Default
+  {
+  RenderStyle "AddStencil";
+  StencilColor "00 BA 03";
+  +BRIGHT
+  +NOCLIP
+  +ROLLSPRITE
+  +NOINTERACTION
+  +DONTSPLASH
+  Scale 1.245;
+  Alpha 0.765;
+  Radius 0;
+  Height 0;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 1
+	{
+		if (Alpha < 0)
+			Destroy();
+		A_FadeOut(0.1, 0);
+	}
+	Loop;
+  }
+}
+
+Class DCY_HexodenicanTrail2 : DCY_HexodenicanTrail
+{
+  Default { Alpha 0.1; }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 1
+	{
+		if (Alpha < 0)
+			Destroy();
+		A_FadeOut(0.0075, 0);
+		
+		A_SetScale(Scale.X + 0.0001);
+	}
+	Loop;
+  }
+}
+
+Class DCY_ProjectileBaseTrail : DCY_HexodenicanTrail { Default { RenderStyle "Add"; Scale 0.8; StencilColor "White"; } }
+
+Class DCY_ShadowTrailBase : DCY_ProjectileBaseTrail
+{
+  Default
+  {
+  RenderStyle "Subtract";
+  Alpha 0.3;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.85,0.85,0.85]";
+  }
+  
+  States
+  {
+  Spawn:
+	SZ84 "#" 1 A_FadeOut(0.01);
+	Wait;
+  }
+}
+
+Class DCY_TransfixerTrail : DCY_HexodenicanTrail { Default { StencilColor "Purple"; } }
+Class DCY_ManesTrail : DCY_HexodenicanTrail2 { Default { StencilColor "Black"; RenderStyle "Stencil"; Alpha 0.125; } }
+Class DCY_DivinePhantomExplosion2 : DCY_HexodenicanTrail { Default { StencilColor "Yellow"; } }
+Class DCY_DivinePhantomExplosion3 : DCY_HexodenicanTrail
+{
+  Default
+  {
+  StencilColor "Yellow";
+  Alpha 0.5;
+  Scale 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 0;
+	"####" "#" 1;
+	"####" "#######" 1 A_FadeOut(0.075, 0);
+	Stop;
+  }
+}
+
+Class DCY_DivinePhantomExplosion : DCY_DivinePhantomExplosion2
+{
+  States
+  {
+  Spawn:
+	"####" "#" 0;
+	"####" "#" 1;
+	"####" "####################" 1
+	{
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X + 0.15, Scale.Y + 0.15);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VariegationTrail : DCY_HexodenicanTrail { Default { StencilColor "Gray"; } }
+
+Class DCY_CrusaderRush : DCY_HexodenicanTrail { Default { StencilColor "Red"; } }
+Class DCY_ExarchGhost : DCY_HexodenicanTrail { Default { StencilColor "263561"; } }
+Class DCY_NullifierRush : DCY_HexodenicanTrail { Default { StencilColor "Orange"; } }
+
+Class DCY_TresherTrail : DCY_Effect
+{
+  Default
+  {
+	Radius 0;
+	Height 0;
+	RenderStyle "AddStencil";
+	Alpha 0.95;
+	Scale 1.0;
+	+NOINTERACTION;
+	+NOCLIP;
+	+BRIGHT;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+	SKE2 "#" 0;
+	Goto SpawnContinue;
+  SpawnContinue:
+	"####" "#" 1
+	{
+		A_FadeOut(0.0001, 1);
+		SetShade("d31d1d");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.0001, 1);
+		SetShade("bc1f1a");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.001, 1);
+		SetShade("#bc2710");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.01, 1);
+		SetShade("a0290e");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.1, 1); A_SetScale(Scale.X+0.1, Scale.Y+0.1);
+		SetShade("9b2c0d");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.15, 1);
+		SetShade("8a1e00");
+	}
+	"####" "#" 1
+	{
+		A_FadeOut(0.2, 1);
+		SetShade("7a2300");
+	}
+	"####" "#" 1 A_FadeOut(0.2, 1);
+	Stop;
+  }
+}
+
+Class DCY_AssailantTrail : DCY_TresherTrail
+{
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+	UU9_ "#" 0;
+	Goto SpawnContinue;
+  }
+}
+
+Class DCY_UltraspellerTrail : DCY_Effect
+{
+  Default
+  {
+	Radius 0;
+	Height 0;
+	RenderStyle "AddStencil";
+	Alpha 1.0;
+	Scale 1.05;
+	+NOINTERACTION;
+	+NOCLIP;
+	+NOTIMEFREEZE;
+	+BRIGHT;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+	CWGY "#" 0;
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("4669ab"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("3e4794"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("483e94"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("603e94"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("693e94"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("4c3e94"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("3e4494"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("3e5894"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("3e6d94"); }
+	"####" "#" 1 { A_FadeOut(0.1, 1); SetShade("3e8694"); }
+	Stop;
+  }
+}
+
+Class DCY_UltraspellerAura : DCY_UltraspellerTrail
+{
+  Default
+  {
+    Scale 1.1;
+	StencilColor "3e8694";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+	CWGY "#" 0;
+	"####" "#####################" 1 { A_FadeOut(0.05); A_SetScale(Scale.X+0.05, Scale.Y+0.05); }
+	Stop;
+  }
+}
+
+Class DCY_UltraspellerAura2 : DCY_UltraspellerTrail
+{
+  Default
+  {
+    Scale 1.1;
+	StencilColor "3e8694";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+	CWGY "#" 0;
+	"####" "##########" 1 { A_FadeOut(0.1); A_SetScale(Scale.X+0.1, Scale.Y+0.1); }
+	Stop;
+  }
+}
+
+Class DCY_DeathDealerTrail : DCY_UltraspellerTrail
+{
+  Default
+  {
+	-NOTIMEFREEZE;
+	Scale 1.01;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	BF_T "#" 0;
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("f1ffa1"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("e1ff87"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("a9ff47"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("82eb21"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("60bf08"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("2d6e04"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("033302"); }
+	Stop;
+  }
+}
+
+Class DCY_EODTrail : DCY_DeathDealerTrail 
+{
+  Default
+  {
+	Scale 1.1;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	DOR_ "#" 0;
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("f1ffa1"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("e1ff87"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("a9ff47"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("82eb21"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("60bf08"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("2d6e04"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("033302"); }
+	Stop;
+  }
+}
+
+Class DCY_UpheavalAura : DCY_UltraspellerTrail
+{
+  Default
+  {
+	Scale 1.1;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 0;
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ff788c"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ff638a"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ff3870"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("a61639"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("6b0d1d"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("33050c"); }
+	Stop;
+  }
+}
+
+Class DCY_MaelstromAuraSpawn : DCY_UltraspellerTrail
+{
+  Default
+  {
+	Scale 1.05;
+	Alpha 0.0;
+	RenderStyle 'AddShaded';
+	+NOTIMEFREEZE;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 0;
+	"####" "#" 1;
+	"####" "#" 1 { A_SetRenderStyle(0.4, STYLE_ADDSHADED); A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("cd8484"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ffe1b7"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("b9c454"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("79be41"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("41be88"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("348498"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("343e98"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("3a215f"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("351233"); }
+	Stop;
+  }
+}
+
+Class DCY_MaelstromAura : DCY_MaelstromAuraSpawn
+{
+  Default
+  {
+	Scale 1.0;
+	RenderStyle 'AddStencil';
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 0;
+	"####" "#" 1;
+	"####" "#" 2 { A_SetRenderStyle(0.1, STYLE_ADDSTENCIL); A_FadeOut(0.01, 1); SetShade("cd8484"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("ff2600"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("c97f1e"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("75cf21"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("21cfa4"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("187ca1"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("121575"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("320b52"); }
+	"####" "#" 2 { A_FadeOut(0.01, 1); SetShade("24051a"); }
+	Stop;
+  }
+}
+
+Class DCY_ExoTrail : DCY_UltraspellerTrail
+{
+  Default
+  {
+    Scale 1.0;
+	Alpha 1.0;
+	RenderStyle 'AddStencil';
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	FAEM "#" 1;
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("e7b8ff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("cf91ff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("b86bff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("812de0"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("400fa3"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("1e065c"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("0d0326"); }
+	Stop;
+  }
+}
+
+Class DCY_AversionTrail : DCY_ExoTrail
+{
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TBB2 "#" 1;
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("e7b8ff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("cf91ff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("b86bff"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("812de0"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("400fa3"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("1e065c"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("0d0326"); }
+	Stop;
+  }
+}
+
+Class DCY_EavesdropperTrail : DCY_HexodenicanTrail { Default { StencilColor "4b1ec7"; } }
+
+Class DCY_EavesdropperDeathTrail : DCY_DivinePhantomExplosion { Default { StencilColor "4b1ec7"; } }
+
+Class DCY_LemuresTrail : DCY_ExoTrail
+{
+  Default
+  {
+  -NOTIMEFREEZE
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	L3ML "#" 1;
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("e3fff1"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("c7ffe4"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("75fab8"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("33f5a4"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("10b584"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("086e54"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("032e24"); }
+	Stop;
+  }
+}
+
+Class DCY_PhasicRazerTrail : DCY_HexodenicanTrail
+{
+  Default
+  {
+  StencilColor "Purple";
+  Scale 1.0;
+  Alpha 0.15;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 1
+	{
+		if (Alpha < 0)
+			Destroy();
+		A_FadeOut(0.005, 0);
+	}
+	Loop;
+  }
+}

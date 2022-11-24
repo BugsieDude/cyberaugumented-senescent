@@ -1,0 +1,283 @@
+Class DCY_DecedentBigwig : DCY_ShotgunZombe
+{
+  Default
+  {
+  Translation "16:47=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "160:255=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "112:127=%[0.00,0.00,0.00]:[0.00,1.01,2.00]";
+  Health 128;
+  Tag "Decedent Bigwig";
+  Obituary "%o got outsmarted by a Decedent Bigwig.";
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  PainChance 50;
+  +MISSILEMORE
+  +NOTARGET
+  +NOINFIGHTING
+  +NEVERFAST
+  +NOBLOODDECALS
+  +DONTHARMCLASS
+  Species "Decedent";
+  Speed 12;
+  FastSpeed 14;
+  SeeSound "HoodGuy/Sight";
+  ActiveSound "HoodGuy/Active";
+  PainSound "HoodGuy/Pain";
+  DeathSound "HoodGuy/Death";
+  AttackSound "";
+  DropItem "RocketAmmo";
+  DropItem "DCY_UltramodernEnergy", 45;
+  DropItem "Pistol";
+  }
+  
+  int buildinasentry;
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got outsmarted by an Decedent Bigwig.",
+		"Capitalism.",
+		"Turret supremacy!",
+		"When will you go to a trip with a turret?"
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	UGEP A 10 DCY_Look();
+	Loop;
+  Look:
+	UGEP AABBCCDD 3 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	UGEP AABBCCDD 2 A_Chase();
+	Loop;
+  Missile:
+	UGEP E 0 A_Jump(80, "Dodge");
+	UGEP E 0 A_Jump(55, "Sentry");
+	Goto MissileContinue;
+  MissileContinue:
+	UGEP E 10 A_FaceTarget();
+	UGEP F 3 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_MechaZombiePlasma2", 33, 0, frandom(-1.0, 1.0));
+	}
+	UGEP EEEEEE 3 A_FaceTarget();
+	UGEP F 3 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_MechaZombiePlasma2", 33, 0, frandom(-1.0, 1.0));
+	}
+	UGEP EEEEEE 3;
+	Goto See;
+  Sentry:
+	UGEP E 0
+	{
+		If (Health < 35 || buildinasentry >= 4)
+			Return ResolveState("MissileContinue");
+		
+		buildinasentry += 1;
+		A_StartSound("HoodGuy/Sight", CHAN_VOICE, 0, 1, 0.8);
+		Return ResolveState(null);
+	}
+	UGEP E 10 A_FaceTarget();
+	UGEP E 10 A_SpawnProjectile("DCY_DecedentTurretSpawn", 20, 0, 0, CMF_AIMDIRECTION|CMF_OFFSETPITCH, random(-4, 4));
+	UGEP A 10;
+	Goto See;
+  Pain:
+	UGEP G 4;
+	UGEP G 4 A_Pain();
+	Goto See;
+  Death:
+	UGEP H 1;
+	UGEP H 7 A_Scream();
+	UGEP I 6 A_NoBlocking();
+	UGEP JK 6;
+	UGEP L -1;
+	Stop;
+  XDeath:
+	UGEP M 1;
+	UGEP M 6 { A_StartSound("Android/Gib", CHAN_VOICE); A_NoBlocking(); }
+	UGEP NOPQRST 5;
+	UGEP U -1;
+	Stop;
+  Raise:
+	UGEP KJ 4;
+	UGEP IHGA 2;
+	Goto See;
+  }
+}
+
+Class DCY_DecedentTurretSpawn : Actor
+{
+  Default
+  {
+  Radius 20;
+  Height 24;
+  RenderStyle "Normal";
+  Alpha 1.0;
+  Scale 1.0;
+  DamageFunction (0);
+  +THRUACTORS
+  +THRUGHOST
+  +THRUSPECIES
+  +MTHRUSPECIES
+  +BOUNCEONWALLS
+  +BOUNCEONCEILINGS
+  Speed 9;
+  BounceCount 4;
+  BounceFactor 0.65;
+  Translation "80:111=%[0.00,0.00,0.00]:[1.05,1.04,1.24]", "48:79=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "128:159=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "13:15=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "160:255=%[0.00,0.00,0.00]:[0.00,0.00,1.26]";
+  BounceType "Hexen";
+  DeathSound "ATurret/Sight";
+  }
+  
+  States
+  {
+  Spawn:
+	RTUR A 1
+	{
+		if (pos.z <= floorz)
+		{
+			A_SpawnItemEx("DCY_DecedentTurret", flags: SXF_NOCHECKPOSITION|SXF_SETMASTER);
+			A_Stop();
+			Destroy();
+		}
+		
+		A_SetAngle(Angle+20);
+		Return ResolveState(null);
+	}
+	Loop;
+  Death:
+	RTUS A 1
+	{
+		A_SpawnItemEx("DCY_DecedentTurret", flags: SXF_NOCHECKPOSITION|SXF_SETMASTER);
+		A_Stop();
+	}
+	Stop;
+  }
+}
+
+Class DCY_DecedentTurret : DCYMonster
+{
+  Default
+  {
+  Translation "80:111=%[0.00,0.00,0.00]:[1.05,1.04,1.24]", "48:79=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "128:159=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "13:15=%[0.00,0.00,0.00]:[0.00,0.00,1.26]", "160:255=%[0.00,0.00,0.00]:[0.00,0.00,1.26]";
+  Radius 20;
+  Height 24;
+  Health 100;
+  Speed 0;
+  RenderStyle "Normal";
+  Alpha 1.0;
+  Scale 1.0;
+  +MISSILEEVENMORE
+  +MISSILEMORE
+  +NOBLOOD
+  +DONTTHRUST
+  +LOOKALLAROUND
+  +NEVERRESPAWN
+  +STANDSTILL
+  +THRUSPECIES
+  +DONTHARMCLASS
+  -COUNTKILL
+  Species "Decedent";
+  Tag "Decedent Turret";
+  Obituary "$o was blown to pieces by a Decedent Bigwig's turret sentry.";
+  SeeSound "ATurret/Sight";
+  PainSound "ATurret/Pain";
+  DeathSound "ATurret/Death";
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"$o was blown into pieces by a turret sentry.",
+		"Capitalism.",
+		"Turret supremacy!",
+		"When will you go to a trip with a turret?"
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+  Idle:
+  Looking:
+	RTUR A 5
+	{
+		A_Look();
+		A_SetAngle(Angle-20);
+	}
+	RTUR AA 5
+	{
+		A_Look();
+		A_SetAngle(Angle+20);
+	}
+	RTUR A 5
+	{
+		A_Look();
+		A_SetAngle(Angle-20);
+	}
+	Loop;
+  See:
+	RTUR A 1 A_FaceTarget();
+	RTUR A 4
+	{
+		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		A_SetAngle(Angle-20);
+	}
+	RTUR AA 4
+	{
+		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		A_SetAngle(Angle+20);
+	}
+	RTUR A 4
+	{
+		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		A_SetAngle(Angle-20);
+	}
+	Loop;
+  Missile:
+	RTUR A 1 A_Stop();
+	RTUR AAAAAAAAA 1 A_FaceTarget();
+	RTUR B 1 A_SpawnProjectile("DCY_TransmuterTorpedo", 17);
+	RTUR BBBB 1 Bright A_FaceTarget();
+	RTUR AAAAAAAAAAAAA 1 A_FaceTarget();
+	RTUR A 0 A_MonsterRefire(128, "Cooldown");
+	Goto Missile+2;
+  Cooldown:
+	RTUR A 0;
+	RTUR A 0 A_Pain();
+	Goto Looking;
+  Pain:
+	Goto Missile;
+  Death:
+	RTUR A 1;
+	RTUR A 7 A_Scream();
+	RTUR A 1
+	{
+		let d = DCY_Variables.Get();
+		let x = d.alternateturretsound;
+		
+		if (x)
+			A_StartSound("TURRDTH");
+		else
+			A_StartSound("TURRDTH2");
+	}
+	RTUR AAA 0 A_SpawnItemEx("DCY_AndroidExplosion", random(-10, 10), random(-10, 10), random(10, 22), frandom(-0.9, 0.9), frandom(-0.9, 0.9), frandom(-0.9, 0.9), random(0, 360), SXF_NOCHECKPOSITION);
+	RTUR C -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}

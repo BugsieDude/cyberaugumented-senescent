@@ -1,0 +1,117 @@
+Class DCY_Prestidigitator : DCY_VileParent
+{
+  Default
+  {
+  Health 1500;
+  Tag "\c[t8]Prestidigitator\c-";
+  Obituary "mindbroken";
+  SeeSound "Prestidigitator/Sight";
+  ActiveSound "Prestidigitator/Active";
+  PainSound "Prestidigitator/Pain";
+  DeathSound "Prestidigitator/Death";
+  +BRIGHT
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +NOTARGET
+  }
+  
+  int ghost;
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if(health > 0 && !isFrozen())
+		A_SpawnItemEx("DCY_PrestidigitatorTrail", zofs: 5, xvel: frandom(-5.0, 5.0), yvel: frandom(-5.0, 5.0), zvel: frandom(-5.0, 5.0), flags: SXF_TRANSFERSPRITEFRAME);
+  }
+  
+  int scream;
+  
+  States
+  {
+  Spawn:
+	FWDZ E 10 A_Look();
+	Loop;
+  See:
+	FWDZ E 4 A_VileChase();
+	Loop;
+  Missile:
+	FWDZ E 5 { ghost = 0; }
+	FWDZ E 1
+	{
+		ghost++;
+		
+		for (int i = 20; i > 0; i--)
+		{
+			A_Chase(null, null);
+			A_Wander();
+		}
+		
+		if (ghost > 20)
+			SetStateLabel("Cooldown");
+		
+		if (target && distance3D(target) < 200)
+		{
+			scream = 0;
+			Return A_Jump(10, "Scream");
+		}
+			
+		A_SpawnItemEx("DCY_PrestidigitatorGhost", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+		
+		Return ResolveState(null);
+	}
+	Goto Missile+1;
+  Scream:
+	FWDZ EFG 3 A_FaceTarget();
+	FWDZ G 1
+	{
+		A_StopAllSounds();
+		
+		for (int i = 3; i > 0; i--)
+			A_StartSound("GLITSCRM", CHAN_VOICE + i, attenuation: ATTN_NONE);
+	}
+	FWDZ G 1
+	{
+		A_Explode(3, 380, XF_NOTMISSILE);
+		A_FaceTarget();
+		A_QuakeEx(12, 12, 0, 10, 0, 2000, "", QF_SCALEDOWN|QF_3D);
+		scream++;
+		
+		if (scream > 50)
+		{
+			A_StopSound(CHAN_VOICE);
+			SetStateLabel("See");
+		}
+	}
+	Goto Scream+4;
+  Cooldown:
+	FWDZ E 10;
+	Goto See;
+  }
+}
+
+Class DCY_PrestidigitatorTrail : DCY_ProjectileBaseTrail { Default { Scale 1.0; Alpha 1.0; Translation "0:255=%[0.00,0.00,0.00]:[0.93,0.21,0.58]"; } }
+
+Class DCY_PrestidigitatorGhost : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  +NOINTERACTION
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	FWDZ E 15;
+	FWDZ E 1
+	{
+		if (Alpha < 0)
+			Destroy();
+		
+		A_FadeOut(0.1, 0);
+	}
+	Goto Spawn+1;
+  }
+}

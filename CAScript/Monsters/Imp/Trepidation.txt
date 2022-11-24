@@ -1,0 +1,154 @@
+Class DCY_Trepidation : DCY_Violator
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
+  RenderStyle "Subtract";
+  Alpha 1.0;
+  Health 145;
+  Tag "\c[g2]Trepidation\c-";
+  +MISSILEEVENMORE
+  +THRUSPECIES
+  SeeSound "Trepidation/Sight";
+  ActiveSound "Trepidation/Active";
+  PainSound "Trepidation/Pain";
+  AttackSound "Trepidation/Attack";
+  DeathSound "Trepidation/Death";
+  DropItem "BlurSphere", 128;
+  DropItem "BlurSphere", 50;
+  Obituary "$o blacked out.";
+  HitObituary "%o blacked out.";
+  +GHOST
+  }
+  
+  override void Tick()
+  {
+	Super.Tick();
+	
+	if (!level.isFrozen() && Health > 0 && Alpha > 0.2)
+		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), zvel: frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+  }
+  
+  States
+  {
+  Spawn:
+	NMRE A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AAABBBCCCDDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	NMRE AAABBBCCCDDD 3
+	{
+		A_Chase();
+		Return A_Jump(5, "Stealthy");
+	}
+	Loop;
+  Stealthy:
+	NMRE F 10;
+	NMRE E 1 A_StartSound("Trepidation/Teleport", CHAN_WEAPON);
+	NMRE EEEEE 1 A_FadeOut(0.2, 0);
+	NMRE E 0
+	{
+		bShootable = false;
+		bNoPain = true;
+		A_HideThing();
+	}
+	NMRE AAAABBBBCCCCDDDD 2
+	{
+		A_Chase(null, null);
+		A_Wander();
+		A_Chase(null, null);
+		A_Wander();
+	}
+	NMRE E 1 A_StartSound("Trepidation/Teleport", CHAN_WEAPON);
+	NMRE EEEEE 1 A_FadeIn(0.2, 0);
+	NMRE E 0
+	{
+		bShootable = true;
+		bNoPain = false;
+		A_UnHideThing();
+	}
+	Goto See;
+  Melee:
+	NMRE EF 4 A_FaceTarget();
+	NMRE G 4 A_CustomMeleeAttack(10 * random(1, 8), "Trepidation/Teleport");
+	NMRE F 4 A_FaceTarget();
+	Goto See;
+  Missile:
+	NMRE E 0 A_Jump(128, "Barrage");
+	NMRE EF 8 A_FaceTarget();
+	NMRE G 8
+	{
+		A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 0);
+		A_SpawnProjectile("DCY_TrepidationBall", 40, -2, -10);
+		A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 10);
+	}
+	NMRE F 8 A_JumpIf(target && Distance3D(target) < 256, "Dash");
+	Goto See;
+  Barrage:
+	NMRE EF 4 A_FaceTarget();
+	NMRE G 4 A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 0);
+	NMRE FEF 4 A_FaceTarget();
+	NMRE G 4 A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 0);
+	NMRE FEF 4 A_FaceTarget();
+	NMRE G 4 A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 0);
+	NMRE FEF 4 A_FaceTarget();
+	NMRE G 4 A_SpawnProjectile("DCY_TrepidationBall", 40, -2, 0);
+	NMRE F 4;
+	NMRE F 8 A_JumpIf(target && Distance3D(target) < 256, "Dash");
+	Goto See;
+  Dash:
+	NMRE EF 8 A_FaceTarget();
+	NMRE G 1 A_Recoil(-30);
+	NMRE GGGGGGG 2 A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+	NMRE F 6 A_Stop();
+	Goto See;
+  Pain:
+	NMRE H 4;
+	NMRE H 4
+	{
+		A_Pain();
+		Return A_Jump(30, "Stealthy");
+	}
+	Goto See;
+  Death:
+	NMRE H 4;
+	NMRE H 10 A_ScreamAndUnblock();
+	NMRE IIIJJJKKKLLLMMMNNO 1 A_SetScale(Scale.X-0.01, Scale.Y-0.01);
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_TrepidationBall : DoomImpBall
+{
+  Default
+  {
+  RenderStyle "Subtract";
+  SeeSound "";
+  DeathSound "";
+  Damage 6;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
+  Scale 0.75;
+  }
+  
+  States
+  {
+  Spawn:
+	BAL1 A 1
+	{
+		A_SetRoll(Roll+3);
+		A_SpawnItemEx("DCY_Smonk", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERRENDERSTYLE|SXF_NOCHECKPOSITION);
+	}
+	Loop;
+  Death:
+	BAL1 AAAAA 1 A_FadeOut(0.2);
+	Stop;
+  }
+}

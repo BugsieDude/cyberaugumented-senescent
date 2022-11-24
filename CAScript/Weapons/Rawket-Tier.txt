@@ -1,0 +1,130 @@
+Class DCY_CuethemetalslugannounceersayingRocketLauncher : Weapon Replaces RocketLauncher
+{
+  Default
+  {
+	Tag "Rocket Launcher";
+	Weapon.SelectionOrder 2500;
+	Weapon.SlotNumber 5;
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	+WEAPON.NOAUTOFIRE;
+	+WEAPON.EXPLOSIVE;
+	Weapon.AmmoGive 2;
+	Weapon.AmmoUse 1;
+	Weapon.AmmoType "RocketAmmo";
+	Inventory.PickupSound "dcy/rocketpickup";
+	Inventory.PickupMessage "You got the Rocket Launcher! I'm pretty sure you know how to make a confetti party, right?";
+  }
+  
+  action void A_CyberaugumentedRocket()
+  {
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_StartSound("RocketLauncher/Kaboom", CHAN_WEAPON, 0, 1.0, 0.85);
+	A_FireProjectile("DCY_OverhauledRocket", 0, 0);
+	A_QuakeEx(1, 1, 1, 25, 0, 150, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 295);
+	A_WeaponOffset(frandom(-3.5, 3.5), frandom(0, 4.35), WOF_ADD|WOF_INTERPOLATE);
+	A_GunFlash();
+  }
+
+  States
+  {
+  Spawn:
+	RCK_ Z -1;
+	Stop;
+  Select:
+	RCC_ WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	RCC_ YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	RCC_ A 1 A_WeaponReady();
+	Loop;
+  Fire:
+	RCC_ A 0;
+	RCC_ ABC 1;
+	RCC_ D 1 A_CyberaugumentedRocket();
+	RCC_ E 1 Bright;
+	RCC_ FGHI 1 Bright;
+	RCC_ J 0 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	RCC_ J 2 A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	RCC_ KLMN 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	RCC_ N 0 A_Refire;
+	Goto Ready;
+  Flash:
+	TNT1 A 3 Bright A_Light1();
+    TNT1 B 2 Bright;
+    TNT1 CD 3 Bright A_Light2();
+    Goto LightDone;
+  }
+}
+
+Class DCY_ShitGrenadeThrowItBackPrivate : Weapon
+{
+  Default
+  {
+	Tag "Grenade Launcher";
+	Weapon.SelectionOrder 2500;
+	Weapon.SlotNumber 5;
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	+WEAPON.NOAUTOFIRE;
+	+WEAPON.EXPLOSIVE;
+	Weapon.AmmoGive 2;
+	Weapon.AmmoUse 1;
+	Weapon.AmmoType "RocketAmmo";
+	Inventory.PickupSound "dcy/rocketpickup";
+	Inventory.PickupMessage "You got the Grenade Launcher! A great weapon when your explosives cannot reach in certain areas. It's time to make a lot of crimes in demonland.";
+  }
+  
+  action void A_CyberaugumentedGrenade()
+  {
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_StartSound("Grenade/Launch", CHAN_WEAPON, 0, 0.85, 0.85);
+	
+	if (countInv("DCY_PhotocoagulatorPower"))
+		A_FireProjectile("DCY_Napalm", 0, 0, pitch: -7.5);
+	else
+		A_FireProjectile("DCY_Grenade", 0, 0, pitch: -7.5);
+		
+	A_QuakeEx(1, 1, 1, 25, 0, 150, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 295);
+	A_WeaponOffset(frandom(-4.5, 4.5), frandom(0, 4.35), WOF_ADD|WOF_INTERPOLATE);
+	A_GunFlash();
+  }
+
+  States
+  {
+  Spawn:
+	RCK_ Z -1;
+	Stop;
+  Select:
+	GNN_ WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	GNN_ YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	GNN_ A 1 A_WeaponReady();
+	Loop;
+  Fire:
+	GNN_ A 2;
+	GNN_ B 2 Bright;
+	GNN_ C 2 Bright A_CyberaugumentedGrenade();
+	GNN_ D 2 Bright;
+	GNN_ EFGHI 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	GNN_ J 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	GNN_ J 0 A_Refire();
+	Goto Ready;
+  Flash:
+	TNT1 A 3 Bright A_Light(1);
+    TNT1 B 2 Bright;
+    TNT1 CD 3 Bright A_Light(2);
+    Goto LightDone;
+  }
+}

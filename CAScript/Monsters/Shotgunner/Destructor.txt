@@ -1,0 +1,186 @@
+Class DCY_Destructor : DCY_ShotgunZombe
+{
+  Default
+  {
+  Health 110;
+  Translation "16:47=%[0.00,0.00,0.00]:[1.29,0.00,0.00]", "48:79=%[0.00,0.00,0.00]:[1.10,0.57,0.47]";
+  Tag "\c[Red]Unholy Destructor\c-";
+  Obituary "%o was executed by the Destructor's strength.";
+  Speed 8;
+  FastSpeed 12;
+  SeeSound "Destructor/Sight";
+  ActiveSound "Destructor/Sight";
+  PainSound "Shadow/Pain";
+  DeathSound "Shadow/Death";
+  +NOTARGET
+  +NODROPOFF
+  +DONTHARMCLASS
+  DropItem "DCY_Eminence";
+  }
+  
+  void A_Destructor()
+  {
+	A_ChangeVelocity(random(-5, 5), random(-5, 5), 0);
+  }
+  
+  void A_DestructorFire()
+  {
+	A_FaceTarget();
+	A_SpawnProjectile("DCY_DestructorMissile", 30, 0, random(-3, 3));
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o was executed by the Unholy Destructor's strength.",
+		"You got all messed up.",
+		"Something has gone wrong.",
+		"Hey guys, it's Goofaton Slapstick here. I slapped my balls when I saw the Destructor. My brother, Gerald IV the Foolish, has imploded the universe. we're fucking dying"
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	UUU_ A 10 DCY_Look();
+	Loop;
+  Look:
+	UUU_ AABBCCDD 3 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    TNT1 A 0 A_Jump(192, "Dodge");
+	UUU_ AABBCCDD 2 A_Chase();
+	Loop;
+  Dodge:
+	UUU_ A 0 A_Destructor();
+	UUU_ AA 2 A_Chase(null, null, CHF_DONTMOVE);
+	UUU_ A 0 A_Destructor();
+	UUU_ BB 2 A_Chase("Missile", "Missile", CHF_DONTMOVE);
+	UUU_ A 0 A_Destructor();
+	UUU_ CC 2 A_Chase(null, null, CHF_DONTMOVE);
+	UUU_ A 0 A_Destructor();
+	UUU_ DD 2 A_Chase("Missile", "Missile", CHF_DONTMOVE);
+	TNT1 A 0 A_Jump(128, "See");
+	Loop;
+  Missile:
+    TNT1 A 0 A_Jump(80, "More", "Spread");
+    UUU_ E 10 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 3 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 10 A_FaceTarget();
+	Goto See;
+  More:
+    UUU_ E 10 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 3 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 3 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 3 A_FaceTarget();
+	UUU_ F 3 A_DestructorFire();
+	UUU_ E 10 A_FaceTarget();
+	Goto See;
+  Spread:
+    UUU_ E 20 A_FaceTarget();
+	UUU_ F 3
+	{
+		A_FaceTarget();
+		A_StartSound("RVNSTAF2", CHAN_WEAPON);
+		
+		for (int i = 3; i > 0; i--)
+			A_SpawnProjectile("DCY_DestructorMissile", 30, 0, random(-7, 7), CMF_OFFSETPITCH|CMF_TRACKOWNER, random(-5, 5));
+	}
+	UUU_ EEEEAA 3 A_FaceTarget();
+	Goto See;
+  Pain:
+	UUU_ G 4;
+	UUU_ G 4
+	{
+		A_Pain();
+		Return A_Jump(80, "PainMissile");
+	}
+	Goto See;
+  PainMissile:
+	UUU_ G 2;
+    UUU_ G 2
+	{
+		A_Pain();
+		Return A_Jump(100, "More", "Spread", "Missile");
+	}
+	Goto Missile;
+  Death:
+  Death.Fire:
+    UUU_ H 1;
+	UUU_ H 1 A_Scream();
+	UUU_ H 6 A_Fall();
+	UUU_ IJKLM 6;
+	UUU_ N -1;
+	Stop;
+  XDeath:
+    UUU_ O 1;
+	UUU_ O 1 A_XScream();
+	UUU_ O 5 A_Fall();
+	UUU_ PQRSTUV 5;
+	UUU_ W -1;
+	Stop;
+  Raise:
+    Stop;
+  }
+}
+
+Class DCY_DestructorMissile : DCY_ConsulProj
+{
+  Default
+  {
+  Damage 2;
+  Radius 10;
+  Height 10;
+  Scale 0.5;
+  Speed 25.5;
+  FastSpeed 30.5;
+  MissileType "DCY_DestructorMissileTrail";
+  SeeSound "STF3FIRE";
+  MissileHeight 6;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+	F8PJ AAABBBCCCDDD 1;
+	Loop;
+  Death:
+	F8PJ EFGHIJK 3;
+	Stop;
+  }
+}
+
+Class DCY_DestructorMissileTrail : DCY_ConsulAura
+{
+  Default
+  {
+  Scale 0.15;
+  Alpha 0.15;
+  }
+  States
+  {
+  Spawn:
+	EF1_ J 1
+	{
+		If (Alpha <= 0.00000001)
+			Return ResolveState("Null");
+		
+		A_FadeOut(0.025, 0);
+		Return ResolveState(null);
+	}
+	Loop;
+  }
+}

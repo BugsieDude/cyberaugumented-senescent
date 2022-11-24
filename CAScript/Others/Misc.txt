@@ -1,0 +1,1097 @@
+//Terraria's Dummy-like thing
+Class DCY_Effect : Actor
+{ 
+  Default
+  {
+  +DONTSPLASH
+  DistanceCheck "cl_effectdistance";
+  }
+  
+  bool tickin;
+  
+  private int dcye;
+  flagdef choking: dcye, 0;
+}
+
+Class DCY_Pellucid : DoomImp
+{
+  Default
+  {
+  Health 0x7FFFFFFF;
+  Mass 0x7FFFFFFFF;
+  +NOTIMEFREEZE;
+  +DONTTHRUST;
+  +NOBLOOD;
+  +FLOORHUGGER;
+  Gravity 9999.9999;
+  DamageFactor 1.0;
+  BounceFactor 0.0;
+  Scale 1.25;
+  Radius 30;
+  Height 65;
+  Tag "\c[Gray]- \c[Sapphire]Pellucid\c[Gray] - (\c[DarkGray]Damage Tester\c[Gray])\c-";
+  SeeSound "";
+  PainSound "";
+  DeathSound "";
+  HowlSound "";
+  BounceSound "";
+  WallBounceSound "";
+  ActiveSound "";
+  +BRIGHT;
+  +NOTARGET;
+  }
+  States
+  {
+  Spawn:
+  See:
+  Idle:
+	DUMY AAAA 4;
+	DUMY BBCD 4 A_SpawnItemEx("DCY_ProjectileBaseTrail", 0, 0, 4, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	DUMY DDDD 4;
+	DUMY CCBA 4 A_SpawnItemEx("DCY_ProjectileBaseTrail", 0, 0, 4, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	Loop;
+  Pain:
+	"####" "#" 4;
+	Goto Idle;
+  Death:
+	DUMY AAAAA 4 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_Smonk : DCY_Effect
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 0.725;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  +ROLLSPRITE
+  +NOGRAVITY
+  -SOLID
+  }
+  
+  States
+  {
+  Spawn:
+	SM03 A 0 NoDelay
+	{
+		A_SetRoll(frandom(0, 360));
+		alpha = frandom(0.55, 0.65);
+	}
+	SM03 AAABBBCCCDDEEFF 1 A_FadeOut(0.05, 0);
+	Stop;
+  }
+}
+
+Class DCY_RocketSmonk : DCY_Smonk
+{
+  Default
+  {
+  Scale 0.63;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1 NoDelay
+	{
+		A_SetRoll(frandom(0, 360));
+		A_SetRenderStyle(frandom(0.55, 0.65), STYLE_ADD);
+	}
+	TNT1 A 2;
+	SM03 AAABBBCCCDDEEFF 1 A_FadeOut(0.05, 0);
+	Stop;
+  }
+}
+
+//Bullet Puffs
+Class DCY_RemasteredBulletPuff : BulletPuff Replaces BulletPuff
+{
+  Default
+  {
+  Scale 0.85;
+  RenderStyle "Add";
+  Alpha 0.85;
+  Radius 1;
+  Height 1;
+  VSpeed 0;
+  -ALLOWPARTICLES;
+  +RANDOMIZE;
+  -EXPLODEONWATER;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SetScale(frandompick(-0.85, 0.85), 1);
+	TNT1 A 1
+	{
+		A_StartSound("Rec", CHAN_BODY);
+		
+		for (int i = 4; i > 0; i--)
+		{
+			if (pos.z <= floorz)
+			{
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 1, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 60);
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 1, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 28);
+			}
+			else
+			{
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 60);
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 28);
+			}
+			
+			if (pos.z >= ceilingz - height)
+			{
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, -1, frandom(4.0, 14.5), 0, frandom(-3.0, -6.0), frandom(0, 360), SXF_NOCHECKPOSITION, 60);
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, -1, frandom(4.0, 14.5), 0, frandom(-3.0, -6.0), frandom(0, 360), SXF_NOCHECKPOSITION, 28);
+			}
+			else
+			{
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 60);
+				A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 28);
+			}
+		}
+		
+		A_SpawnItemEx("DCY_BulletPuffGlow", flags: SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_ChainsawPuff : DCY_RemasteredBulletPuff
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SetScale(frandompick(-0.85, 0.85), 1);
+	TNT1 A 1
+	{
+		A_StartSound("Chainsaw/Hit", CHAN_BODY);
+		for (int i = 5; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 12.0)+frandom(3.0, -2.0), frandom(-40.0, 40.0), SXF_NOCHECKPOSITION, 28);
+			A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 12.0)+frandom(3.0, -2.0), frandom(-40.0, 40.0), SXF_NOCHECKPOSITION, 60);
+		}
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BulletPuffSpark : DCY_Effect
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Alpha 1.0;
+  Scale 0.1;
+  Gravity 0.485;
+  Speed 15;
+  +BRIGHT;
+  +MISSILE;
+  +FORCEXYBILLBOARD;
+  +DONTSPLASH;
+  +THRUACTORS;
+  +NOBLOCKMONST;
+  +CANNOTPUSH;
+  +NOTRIGGER;
+  BounceFactor 0.5;
+  BounceType "DOOM";
+  RenderStyle "Add";
+  }
+  States
+  {
+  Spawn:
+	NULL A 0 NoDelay
+	{
+		A_ScaleVelocity(0.6, AAPTR_DEFAULT);
+		If(!random(0, 1))
+		{
+			A_SetScale(Scale.X*2);
+		}
+		A_SetScale(Scale.X*frandom(0.75, 1.115));
+	}
+	NULL A 3;
+	Goto FadeOut;
+  FadeOut:
+	NULL A 1
+	{
+		If(Scale.X <= 0)
+			Destroy();
+
+		A_ScaleVelocity(0.965);
+		A_SetScale(Scale.X-0.01);
+		A_FadeOut(0.001, 0);
+	}
+	Loop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BulletPuffGlow : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  +NOCLIP;
+  +THRUACTORS;
+  +ROLLSPRITE;
+  +NOGRAVITY;
+  +BRIGHT;
+  Alpha 1.0;
+  Scale 0.085;
+  }
+  States
+  {
+  Spawn:
+	FLR_ B 0 NoDelay
+	{
+		A_SetScale(Scale.X+frandom(0.1, 0.035), Scale.Y+frandom(0.1, 0.035));
+		A_SetTranslucent(frandom(0.7, 0.9), 1);
+		A_SetRoll(frandom(0.0, 359.9999999999999999));
+	}
+	Goto Loope;
+  Loope:
+	FLR_ B 1;
+	FLR_ B 1
+	{
+		If(Alpha <= 0 || Scale.X <= 0)
+			Destroy();
+			
+		A_FadeOut(0.3, 0);
+		A_SetScale(Scale.X-Pitch, Scale.Y-Pitch);
+		A_SetPitch(Pitch+0.05, SPF_INTERPOLATE);
+	}
+	Goto Loope+1;
+  }
+}
+
+Class DCY_CrucibleChainsawPuff : DCY_ChainsawPuff
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,1.01]";
+  +NOTIMEFREEZE;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SetScale(frandompick(-0.85, 0.85), 1);
+	TNT1 A 1
+	{
+		A_StartSound("Chainsaw/Hit", CHAN_BODY);
+		A_SpawnItemEx("DCY_CruciblePuff", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		for (int i = 5; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_CrucibleBulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 10.0)+frandom(1.0, -2.0), frandom(-60.0, 60.0), SXF_NOCHECKPOSITION, 28);
+			A_SpawnItemEx("DCY_CrucibleBulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 10.0)+frandom(1.0, -2.0), frandom(-60.0, 60.0), SXF_NOCHECKPOSITION, 60);
+			A_SpawnItemEx("DCY_BulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 45);
+		}
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_CruciblePuff : DCY_BulletPuffSpark
+{
+  Default
+  {
+  Scale 0.2666;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.47,0.47]";
+  +ROLLSPRITE;
+  }
+  States
+  {
+  Spawn:
+	KAB3 A 0 NoDelay A_SetRoll(frandom(0, 360));
+	KAB3 AEHKQTW 1;
+	Stop;
+  }
+}
+  
+Class DCY_CrucibleBulletPuffSpark : DCY_BulletPuffSpark
+{
+  Default
+  {
+  Scale 0.35;
+  +NOTIMEFREEZE;
+  +BOUNCEONWALLS;
+  +BOUNCEONCEILINGS;
+  +BOUNCEONFLOORS;
+  +CANBOUNCEWATER;
+  -NOBLOCKMAP;
+  BounceType "Hexen";
+  BounceFactor 1.0;
+  }
+  States
+  {
+  Spawn:
+	NULL A 0 NoDelay
+	{
+		A_ScaleVelocity(1, AAPTR_DEFAULT);
+		If(!random(0, 1))
+		{
+			A_SetScale(Scale.X*2);
+		}
+		A_SetScale(Scale.X*frandom(0.75, 1.115));
+	}
+	NULL A 3;
+	Goto FadeOut;
+  FadeOut:
+	NULL A 1
+	{
+		If(Scale.X <= 0)
+		{
+			Return ResolveState("Stahp");
+		}
+		Else
+		{
+			A_ScaleVelocity(1);
+			A_SetScale(Scale.X-0.025);
+			A_FadeOut(0.00025, 0);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Stahp:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_AndroidPuffSpark : DCY_BulletPuffSpark
+{
+  Default
+  {
+  Scale 0.25;
+  +NOTIMEFREEZE;
+  +BOUNCEONWALLS;
+  +BOUNCEONCEILINGS;
+  +BOUNCEONFLOORS;
+  +CANBOUNCEWATER;
+  -NOBLOCKMAP;
+  Gravity 1.0;
+  BounceType "Hexen";
+  BounceFactor 1.0;
+  }
+  States
+  {
+  Spawn:
+	NULL A 0 NoDelay
+	{
+		A_ScaleVelocity(1, AAPTR_DEFAULT);
+		If(!random(0, 1))
+		{
+			A_SetScale(Scale.X*2);
+		}
+		A_SetScale(Scale.X*frandom(0.75, 1.115));
+	}
+	NULL A 3;
+	Goto FadeOut;
+  FadeOut:
+	NULL A 1
+	{
+		If(Scale.X <= 0)
+		{
+			Return ResolveState("Stahp");
+		}
+		Else
+		{
+			A_ScaleVelocity(1);
+			A_SetScale(Scale.X-0.025);
+			A_FadeOut(0.00045, 0);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Stahp:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_RedAndroidPuffSpark : DCY_AndroidPuffSpark {}
+Class DCY_PhasicAndroidPuffSpark : DCY_AndroidPuffSpark {}
+Class DCY_GreenPuffSpark : DCY_AndroidPuffSpark {}
+
+//Colored Versions
+Class DCY_BlueBulletPuff : DCY_RemasteredBulletPuff
+{
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SetScale(frandompick(-0.85, 0.85), 1);
+	TNT1 A 1
+	{
+		A_StartSound("Rec", CHAN_BODY);
+		
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BlueBulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 60);
+			A_SpawnItemEx("DCY_BlueBulletPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 28);
+		}
+		
+		A_SpawnItemEx("DCY_BlueBulletPuffGlow", flags: SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BlueBulletPuffSpark : DCY_BulletPuffSpark { Default { Scale 0.3; } }
+Class DCY_BlueBulletPuffGlow : DCY_BulletPuffGlow { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.77,1.39,2.00]"; } }
+
+Class DCY_BFG10kLaserPuff : DCY_RemasteredBulletPuff
+{
+  Default
+  {
+  +NOTIMEFREEZE;
+  +NOINTERACTION;
+  +ALWAYSPUFF;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SetScale(frandompick(-0.85, 0.85), 1);
+	TNT1 A 1
+	{
+		
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BFG10kLaserPuffSpark", 0, 0, 0, frandom(10.0, 20.5), 0, Pitch+frandom(2.0, 13.0)+frandom(5.0, -5.0), frandom(-360.0, 360.0)+frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 28);
+			A_SpawnItemEx("DCY_BFG10kLaserPuffSpark", 0, 0, 0, frandom(10.0, 20.5), 0, Pitch+frandom(2.0, 13.0)+frandom(5.0, -5.0), frandom(-360.0, 360.0)+frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 60);
+		}
+
+		A_SpawnItemEx("DCY_BFG10kLaserPuffGlow", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_BFG10kLaserPuffGlow", flags: SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BFG10kLaserPuffSpark : DCY_BulletPuffSpark
+{
+  Default
+  {
+  Scale 0.5;
+  +NOTIMEFREEZE;
+  +BOUNCEONWALLS;
+  +BOUNCEONFLOORS;
+  BounceType "Hexen";
+  Gravity 0.7;
+  BounceFactor 9999999;
+  BounceCount 999999999;
+  Radius 1;
+  Height 1;
+  }
+  States
+  {
+  Spawn:
+	NULL A 0 NoDelay
+	{
+		A_ScaleVelocity(1, AAPTR_DEFAULT);
+		If(!random(0, 1))
+		{
+			A_SetScale(Scale.X*2);
+		}
+		A_SetScale(Scale.X*frandom(0.75, 1.115));
+		A_Gravity();
+	}
+	NULL A 3;
+	Goto FadeOut;
+  FadeOut:
+	NULL A 1
+	{
+		If(Scale.X <= 0)
+		{
+			Return ResolveState("Stahp");
+		}
+		Else
+		{
+			A_ScaleVelocity(1);
+			A_Gravity();
+			A_SetScale(Scale.X-0.055);
+			A_FadeOut(0.000751, 0);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Stahp:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BFG10kLaserPuffGlow : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  +BRIGHT;
+  +NOCLIP;
+  Radius 0;
+  Height 0;
+  +NOINTERACTION;
+  +NOTIMEFREEZE;
+  +ROLLSPRITE;
+  Scale 2.0;
+  }
+  States
+  {
+  Spawn:
+	EF1_ U 1
+	{
+		If(Alpha <= 0.000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else If(Scale.X <= 0.000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_SetScale(Scale.X-0.1, Scale.Y-0.1);
+			A_FadeOut(0.2, 0);
+			A_SetRoll(Roll+25);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BallistaPuff : DCY_RemasteredBulletPuff
+{
+  Default
+  {
+  +NOTIMEFREEZE;
+  +NOINTERACTION;
+  +ALWAYSPUFF;
+  DamageType "Ballista";
+  Scale 1.4;
+  Mass 5;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1 NoDelay
+	{
+		A_Explode(200, 200, XF_NOTMISSILE);
+		A_StartSound("Ballista/Explode", CHAN_6, CHANF_DEFAULT, 1.0);
+		A_SpawnItemEx("DCY_BallistaPuffII", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_BallistaPuffII", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
+	}
+	TNT1 AAA 0
+	{
+		for (int i = 12; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BallistaSpark", 0, 0, 0, frandom(10.0, 20.5), 0, Pitch+frandom(2.0, 13.0)+frandom(5.0, -5.0), frandom(-360.0, 360.0)+frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 28);
+		}
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_BallistaPuffII : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  VSpeed 0;
+  Scale 1.2;
+  Alpha 1.0;
+  RenderStyle "Add";
+  Mass 5;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.36,0.79]";
+  +NOCLIP;
+  +BRIGHT;
+  +NOINTERACTION;
+  +THRUACTORS;
+  +ALWAYSPUFF;
+  }
+  States
+  {
+  Spawn:
+	C28Y ACEGJLNPQ 1;
+	Stop;
+  }
+}
+
+Class DCY_BallistaSpark : DCY_BulletPuffSpark
+{
+  Default
+  {
+  Scale 0.6;
+  +NOTIMEFREEZE;
+  +BOUNCEONWALLS;
+  +BOUNCEONFLOORS;
+  +BOUNCEONCEILINGS;
+  BounceType "Hexen";
+  Gravity 1.0;
+  BounceFactor 9999999;
+  BounceCount 999999999;
+  Radius 0;
+  Height 0;
+  }
+  States
+  {
+  Spawn:
+	NULL A 0 NoDelay
+	{
+		A_ScaleVelocity(1, AAPTR_DEFAULT);
+		If(!random(0, 1))
+		{
+			A_SetScale(Scale.X*2);
+		}
+		A_SetScale(Scale.X*frandom(0.75, 1.115));
+		A_Gravity();
+	}
+	NULL A 3;
+	Goto FadeOut;
+  FadeOut:
+	NULL A 1
+	{
+		If(Scale.X <= 0)
+		{
+			Return ResolveState("Stahp");
+		}
+		Else
+		{
+			A_ScaleVelocity(1);
+			A_Gravity();
+			A_SetScale(Scale.X-0.025);
+			A_FadeOut(0.000751, 0);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Stahp:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_AExplosionSpark : DCY_BallistaSpark {}
+
+Class DCY_NeonicRing : BulletPuff
+{
+  Default
+  {
+  Scale 0.45;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Mass 5;
+  Radius 0;
+  VSpeed 0;
+  Height 0;
+  -SOLID;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  +FLATSPRITE;
+  +ROLLSPRITE;
+  +ALWAYSPUFF;
+  DamageType "Neonic";
+  Translation "0:255=%[0.00,0.00,0.18]:[1.01,2.00,2.00]";
+  }
+  States
+  {
+  Spawn:
+	C28Y A 0 NoDelay
+	{
+		A_SetAngle(random(0, 360));
+		A_SetRoll(random(0, 360));
+		A_SetPitch(random(0, 360));
+	}
+	C28Y A 1;
+	C28Y B 1 A_Explode(50, 25, 0, 0);
+	C28Y DFGIJLMNPQ 1;
+	Stop;
+  }
+}
+
+Class DCY_GreenRing : DCY_NeonicRing
+{ 
+  Default
+  { 
+  Scale 0.25;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,1.01]";
+  } 
+  
+  States
+  {
+  Spawn:
+	C28Y A 0 NoDelay
+	{
+		A_SetAngle(random(0, 360));
+		A_SetRoll(random(0, 360));
+		A_SetPitch(random(0, 360));
+	}
+	C28Y A 1;
+	C28Y B 1 A_Explode(5, 25, 0, 0);
+	C28Y DFGIJLMNPQ 1;
+	Stop;
+  }
+}
+
+Class DCY_GreenRingTrail : DCY_Effect
+{
+  Default
+  {
+  Scale 0.075;
+  Alpha 1.0;
+  RenderStyle "Add";
+  -ROLLSPRITE;
+  +WALLSPRITE;
+  +NOCLIP;
+  +NOGRAVITY;
+  +BRIGHT;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,1.01]";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	C28Y ABDFILMPQ 1;
+	Stop;
+  }
+}
+
+  
+Class DCY_OverdemoniacPuff : BulletPuff
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.31]:[1.01,2.00,2.00]";
+  DamageType "Arcane";
+  Scale 0.5;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Radius 0;
+  VSpeed 0;
+  Height 0;
+  -SOLID;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  +ALWAYSPUFF;
+  }
+  States
+  {
+  Spawn:
+	PQBM A 1;
+	PQBM B 1
+	{
+		A_QuakeEx(4, 4, 4, 40, 0, 200, "", QF_SCALEDOWN, 0, 0, 0, 400);
+		A_Explode(50, 25, 0, 0);
+		A_StartSound("THNDSHCK", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.35);
+		A_SpawnItemEx("DCY_AndroidExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+	}
+	PQBM CDEFGHIKNPRTU 1;
+	TNT1 A 40;
+	Stop;
+  }
+}
+
+Class DCY_OverdemoniacPuff2 : DCY_OverdemoniacPuff
+{
+  Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]"; }
+  States
+  {
+  Spawn:
+	PQBM A 1;
+	PQBM B 1
+	{
+		A_QuakeEx(4, 4, 4, 40, 0, 200, "", QF_SCALEDOWN, 0, 0, 0, 400);
+		A_Explode(50, 25, 0, 0);
+		A_StartSound("THNDSHCK", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.35);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+	}
+	PQBM CDEFGHIKNPRTU 1;
+	TNT1 A 40;
+	Stop;
+  }
+}
+
+Class DCY_UltracerestPuff : BulletPuff
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.50]:[1.34,2.00,2.00]";
+  Scale 1.0;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Radius 0;
+  VSpeed 0;
+  Height 0;
+  -SOLID;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  +ALWAYSPUFF;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	SUPH A 1
+	{
+		A_QuakeEx(3, 3, 3, 20, 0, 200, "", QF_SCALEDOWN, 0, 0, 0, 400);
+		A_Explode(50, 40, 0, 0);
+		A_StartSound("UCLASERX", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.65);
+		A_SpawnItemEx("DCY_AndroidExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	SUPH ABCDEFGHIJKLMNOPQR 1;
+	TNT1 A 40;
+	Stop;
+  }
+}
+
+Class DCY_ArbiterPuff : BulletPuff
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.50]:[1.34,2.00,2.00]";
+  Scale 0.355;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Radius 0;
+  VSpeed 0;
+  Height 0;
+  -SOLID;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  +ALWAYSPUFF;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1
+	{
+		A_QuakeEx(3, 3, 3, 20, 0, 200, "", QF_SCALEDOWN, 0, 0, 0, 400);
+		A_SpawnItemEx("DCY_AndroidExplosionSmaller", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 100);
+	}
+	TNT1 A 20;
+	Stop;
+  }
+}
+
+//Walk Flames
+Class DCY_WalkFlames : DCY_Effect
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Scale 1.25;
+  RenderStyle "Add";
+  Alpha 1.0;
+  +NOCLIP;
+  +RANDOMIZE;
+  +NODROPOFF;
+  +THRUACTORS;
+  +FLOORHUGGER;
+  +CLIENTSIDEONLY;
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 5;
+    FRTF ABCDE 1 Bright A_SetScale(Scale.X+0.045, Scale.Y+0.045);
+    FRTF C 0 A_Jump(40, "MoreFlames");
+	Goto MoreFlames+4;
+  MoreFlames:
+    FRTF C 0 A_SpawnItemEx("DCY_WalkFlames", 0, frandom(14.0, 24.0), 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+    FRTF C 0 A_SpawnItemEx("DCY_WalkFlames", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+    FRTF C 0 A_SpawnItemEx("DCY_WalkFlames", 0, frandom(-14.0, -24.0), 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+    FRTF FGHIJ 1 Bright A_SetScale(Scale.X+0.045, Scale.Y+0.045);
+	FRTF KLMNO 2 Bright
+	{
+		A_FadeOut(0.2, 0);
+		A_SetScale(Scale.X+0.045, Scale.Y+0.045);
+	}
+    Stop;
+  }
+}
+
+Class DCY_BlueWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.67,1.14,2.00]"; } }
+Class DCY_GreenWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,1.01]"; } }
+Class DCY_RedWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,1.01]"; } }
+Class DCY_OrangeWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,0.50]"; } }
+Class DCY_PurpleWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.26,0.52,2.00]"; } }
+Class DCY_YellowWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }
+Class DCY_LightBlueWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.04,1.20,2.00]"; } }
+Class DCY_LightCyanWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.20,1.37,1.37]"; } }
+Class DCY_WhiteWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]"; } }
+Class DCY_VantablackWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]"; RenderStyle "Subtract"; } }
+Class DCY_JadeWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]"; } }
+
+//Lightnin
+Class DCY_BigAssLightning : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 1.0;
+  YScale 5.0;
+  XScale 4.5;
+  RenderStyle "Add";
+  Projectile;
+  Speed 0;
+  DamageType "Lunacy";
+  +FORCEYBILLBOARD;
+  +BRIGHT;
+  +FLOORHUGGER;
+  +NOCLIP;
+  +NOTIMEFREEZE;
+  +THRUACTORS;
+  }
+  States
+  {
+  Spawn:
+	LIG1 A 1;
+	LIG1 A 4
+	{
+		A_SpawnItemEx("DCY_BigAssLightningTrail", 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0));
+		A_SpawnItemEx("DCY_BigAssLightningStrike");
+		A_StartSound("Lightning/Strike", CHAN_BODY, CHANF_DEFAULT, attenuation: ATTN_NONE);
+		A_StartSound("Lightning/StrikeClose", CHAN_WEAPON, CHANF_DEFAULT, attenuation: 0.75);
+		A_QuakeEx(7, 7, 7, 100, 0, 1000, "", QF_SCALEDOWN, falloff: 2000);
+		A_Explode(300, 300, XF_NOTMISSILE);
+	}
+	LIG1 ABCDEFG 5
+	{
+		A_SetScale(frandompick(-4.5, 4.5), 5.0);
+		A_SpawnItemEx("DCY_BigAssLightningTrail", 0, 0, 0, frandom(-12.0, 12.0), frandom(-12.0, 12.0));
+	}
+	Stop;
+  }
+}
+
+Class DCY_BigAssLightningTrail : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.75;
+  YScale 5.0;
+  XScale 4.5;
+  RenderStyle "Add";
+  +FORCEYBILLBOARD;
+  +BRIGHT;
+  +NOINTERACTION;
+  +NOCLIP;
+  +NOTIMEFREEZE;
+  +THRUACTORS;
+  }
+  States
+  {
+  Spawn:
+	LIG1 A 0;
+	LIG1 A 0 A_SetScale(frandompick(-4.5, 4.5), 5.0);
+	LIG1 ABCDEFG 3 A_FadeOut(0.15, 0);
+	Stop;
+  }
+}
+
+Class DCY_BigAssLightningStrike : DCY_BigAssLightningTrail
+{
+  Default
+  {
+  YScale 4.5;
+  }
+  States
+  {
+  Spawn:
+	LIG2 AAABBBCCCDDDEEEEFFFFGGGGGHHHHHIIIIII 1 A_SetScale(Scale.X+0.3, Scale.Y+0.3);
+	Stop;
+  }
+}
+
+Class DCY_Arc : Actor
+{
+  Default
+  {
+  Scale 0.5;
+  Alpha 1.0;
+  RenderStyle "Add";
+  +DONTSPLASH
+  -SOLID
+  +NOINTERACTION
+  +ROLLSPRITE
+  +FLATSPRITE
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	L1G5 A 0 NoDelay { A_SetScale(frandompick(Scale.X, -Scale.X), Scale.Y); A_SetRoll(frandom(0, 360)); A_SetAngle(frandom(0, 360)); A_SetPitch(frandom(0, 360)); }
+	L1G5 A 2;
+	Stop;
+  }
+}
+
+//BARREL
+Class DCY_ABarrelofExplosives : ExplosiveBarrel
+{
+  Default
+  {
+  Scale 0.9;
+  Tag "Barrel bundled with \c[x1]Explosives\c-";
+  }
+  States
+  {
+  Spawn:
+    BAR1 AB 2;
+    Loop;
+  Death:
+	BAR1 ABA 2;
+    BEXP A 2 Bright;
+    BEXP B 2 Bright A_Scream();
+    BEXP C 3 Bright;
+    BEXP D 3 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-20, 20), frandom(-20, 20), frandom(10, 30), flags: SXF_NOCHECKPOSITION);
+		A_Explode();
+		A_QuakeEx(2, 2, 2, 40, 0, 400, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 800);
+	}
+    NBKL DEFGHIJKLM 2 Bright
+	{
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetScale(frandompick(-0.85, 0.85), 0.85);
+	}
+    TNT1 A 1050 Bright A_BarrelDestroy();
+    TNT1 A 5
+	{
+		A_SetScale(0.9, 0.9);
+		A_SetRenderStyle(1.0, STYLE_NORMAL);
+		A_Respawn();
+	}
+    Wait;
+  }
+}

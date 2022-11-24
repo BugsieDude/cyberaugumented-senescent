@@ -1,0 +1,83 @@
+Class DCY_SkinnyFat : DCYMonster
+{
+  Default
+  {
+	Health 600;
+	Radius 48;
+	Height 64;
+	Mass 1000;
+	Speed 8;
+	PainChance 80;
+	Monster;
+	+FLOORCLIP
+	+BOSSDEATH
+	SeeSound "fatso/sight";
+	PainSound "fatso/pain";
+	DeathSound "fatso/death";
+	ActiveSound "fatso/active";
+	Obituary "$OB_FATSO";
+	Tag "$FN_MANCU";
+	Species "Mancubi";
+  }
+  
+  void A_FatThrower()
+  {
+	A_SpawnProjectile("DCY_FatThrower", 30, -13);
+	A_SpawnProjectile("DCY_FatThrower", 30, 13);
+	A_FaceTarget();
+  }
+  
+  States
+  {
+  Spawn:
+	FATT A 10 DCY_Look();
+	Loop;
+  Look:
+	FATT AABBCCDDEEFF 5 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	FATT AABBCCDDEEFF 4 A_Chase();
+	Loop;
+  Missile:
+    FATT G 0;
+	FATT G 0 A_JumpIf(target && distance3D(target) < 256, "FLAMETHROWERATK");
+    FATT G 20 A_FatRaise();
+    FATT H 0 Bright;
+	FATT H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 11.25, CMF_TRACKOWNER);
+	FATT H 0 Bright A_SpawnProjectile("FatShot", 30, 13, 0, CMF_TRACKOWNER);
+    FATT HIG 7 A_FaceTarget();
+    FATT H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 0, CMF_TRACKOWNER);
+	FATT H 0 Bright A_SpawnProjectile("FatShot", 30, 13, -11.25, CMF_TRACKOWNER);
+    FATT HIG 7 A_FaceTarget();
+    FATT H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 5.625, CMF_TRACKOWNER);
+	FATT H 0 Bright A_SpawnProjectile("FatShot", 30, 13, 5.625, CMF_TRACKOWNER);
+    FATT HIGG 7 A_FaceTarget();
+    Goto See;
+  FLAMETHROWERATK:
+    FATT G 1 A_FatRaise();
+	FATT GGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FaceTarget();
+	FATT G 1 A_StartSound("FLAMTHRW", CHAN_WEAPON);
+	FATT HHHHHHHHHHHH 2 Bright A_FatThrower();
+	FATT HIG 10;
+	Goto See;
+  Pain:
+	FATT J 3;
+	FATT J 3 A_Pain();
+	Goto See;
+  Death:
+	FATT K 6;
+	FATT L 6 A_Scream();
+	FATT M 6 A_NoBlocking();
+	FATT NOPQRS 6;
+	FATT T -1 A_BossDeath2;
+	Stop;
+  Raise:
+	FATT R 5;
+	FATT QPONMLK 5;
+	Goto See;
+  }
+}

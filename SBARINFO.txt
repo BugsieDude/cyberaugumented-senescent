@@ -1,0 +1,13 @@
+Mugshot "BERSERK"
+{
+	AAAA1 70;
+}
+
+MugShot "XDeath"
+{
+	XDTH0 3;
+	XDTH1 1;
+	XDTH2 2;
+	XDTH3 2;
+	XDTH4 -1;
+}

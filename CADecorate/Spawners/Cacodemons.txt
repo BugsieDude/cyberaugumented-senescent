@@ -1,0 +1,14 @@
+ACTOR DCY_RedMeatball : RandomSpawner Replaces Cacodemon
+{
+  DropItem "DCY_FlyingMeatballOutofTouch", 256, 1200
+  DropItem "DCY_Malwrath", 256, 700
+  DropItem "DCY_Wretched", 256, 550
+  DropItem "DCY_Inscrutable", 256, 320
+  DropItem "DCY_Chrysalis", 256, 155
+  DropItem "DCY_ColonialWizard", 256, 100
+  DropItem "DCY_PlasmaticWizard", 256, 100
+  DropItem "DCY_HellCustodian", 256, 96
+  DropItem "DCY_Monsoon", 256, 70
+  DropItem "DCY_Razortherion", 256, 60
+  DropItem "DCY_Visitant", 256, 2
+}

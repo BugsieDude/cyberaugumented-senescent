@@ -1,0 +1,125 @@
+Class DCY_Larrikin : DCY_KnightHell
+{
+  Default
+  {
+  Health 1000;
+  Translation "48:143=%[0.00,0.00,0.00]:[0.41,0.41,0.41]", "13:15=%[0.00,0.00,0.00]:[0.41,0.41,0.41]", "236:255=%[0.00,0.00,0.00]:[0.41,0.41,0.41]", "144:235=%[0.00,0.00,0.00]:[1.93,0.75,0.44]", "16:47=%[0.00,0.00,0.00]:[1.93,0.75,0.44]", "3:3=%[0.00,0.00,0.00]:[0.41,0.41,0.41]";
+  Tag "\c[l6]Larrikin\c-";
+  Speed 15;
+  FastSpeed 18;
+  SeeSound "Larrikin/Sight";
+  ActiveSound "Larrikin/Active";
+  PainSound "Larrikin/Pain";
+  DeathSound "Larrikin/Death";
+  BloodColor "Orange";
+  Scale 1.1;
+  }
+  
+  void A_LarrikinCleavingLaser()
+  {
+	if (target)
+	{
+		A_FaceTarget();
+		A_StartSound("Rifle/LaserAlt", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_LarrikinLaser", 34, 17, frandom(-2.0, 2.0));
+	}
+  }
+  
+  int missile;
+  
+  States
+  {
+  Spawn:
+	EI83 A 10 DCY_Look();
+	Loop;
+  Look:
+	EI83 AABBB 3 DCY_LookingForPlayer();
+	EI83 C 3
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("TerminatorBase/Footstep", volume: 0.65, pitch: 1.5);
+	}
+	EI83 CCDDD 3 DCY_LookingForPlayer();
+	EI83 A 3
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("TerminatorBase/Footstep", volume: 0.65, pitch: 1.5);
+	}
+	EI83 "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" E 20 { A_FaceTarget(); DCY_AlertSound(); }
+	Goto See;
+  See:
+	EI83 AABBB 3 A_Chase();
+	EI83 C 3
+	{
+		A_Chase();
+		A_StartSound("TerminatorBase/Footstep", volume: 0.65, pitch: 1.5);
+	}
+	EI83 CCDDD 3 A_Chase();
+	EI83 A 3
+	{
+		A_Chase();
+		A_StartSound("TerminatorBase/Footstep", volume: 0.65, pitch: 1.5);
+	}
+	Loop;
+  Melee:
+	EI83 GH 4 A_FaceTarget();
+	EI83 I 5 A_CustomMeleeAttack(5 * frandom(1, 10), "baron/melee");
+	Goto See;
+  Lunge:
+	EI83 GH 6 A_FaceTarget();
+	EI83 I 20
+	{
+		A_Hop(5);
+		A_Recoil(-20);
+	}
+	EI83 HA 5;
+	Goto Missile+1;
+  Missile:
+	EI83 E 25
+	{
+		missile = random(0, 5);
+		A_FaceTarget();
+		
+		if (target && distance3D(target) < 240)
+			SetStateLabel("Lunge");
+	}
+	EI83 F 4 Bright A_LarrikinCleavingLaser();
+	EI83 E 4
+	{
+		A_FaceTarget();
+		missile++;
+		
+		if (missile > 10)
+			SetStateLabel("See");
+	}
+	Goto Missile+1;
+  RecoilBack:
+	EI83 A 10
+	{
+		A_Hop(5);
+		A_Recoil(20);
+	}
+	Goto See;
+  Pain:
+	EI83 O 3;
+	EI83 O 4
+	{
+		A_Pain();
+		Return A_Jump(50, "RecoilBack");
+	}
+	Goto See;
+  Death:
+	EI83 J 1;
+	EI83 J 7 A_Scream();
+	EI83 K 6 A_NoBlocking();
+	EI83 LM 6;
+	EI83 N -1;
+	Stop;
+  Raise:
+	EI83 NMLKJA 6;
+	Goto See;
+  }
+}

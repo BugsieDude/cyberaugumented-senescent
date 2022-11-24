@@ -1,0 +1,651 @@
+Class DCY_Epitome : Weapon
+{
+  Default
+  {
+  Tag "The Epitome [Staff of Ultimate Aura]";
+  Inventory.PickupMessage "\c[Sapphire]You hold the Epitome with your hands, and feel the power of... Zapping.\cL";
+  Obituary "$o got electrocuted in a fancy way by $k's Epitome.";
+  Height 60;
+  Radius 20;
+  Weapon.AmmoType "DCY_Eminence";
+  Weapon.AmmoUse 10;
+  Weapon.AmmoGive 100;
+  Weapon.BobStyle "Alpha";
+  Weapon.BobRangeX 0.45;
+  Weapon.BobRangeY 0.25;
+  Weapon.BobSpeed 1.45;
+  Weapon.SlotNumber 9;
+  Inventory.Icon "8ECTA0";
+  Inventory.PickupSound "8BITHOLY";
+  +FLOATBOB;
+  +FLOORCLIP;
+  +DONTGIB;
+  }
+  States
+  {
+  Spawn:
+	8ECT A -1 Bright;
+	Stop;
+  Ready:
+	EP8T AABBCCBB 1 Bright A_WeaponReady();
+	Loop;
+  Select:
+	EP8T WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	EP8T YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Fire:
+	EP8T A 0 Bright;
+	EP8T ABCDEFJ 1 Bright;
+	EP8T K 2 Bright
+	{
+		A_FireProjectile("DCY_EpitomeLightningBall", frandom(-1.0, 1.0), 0);
+		invoker.DepleteAmmo(invoker.bAltFire, true);
+		A_StartSound("LIGTFIRE", CHAN_WEAPON, attenuation: 0.75);
+		A_Quake(1, 45, 0, 2000, "None");
+		A_Quake(3, 25, 0, 1500, "None");
+	}
+	EP8T KMOPQRS 2 Bright;
+	EP8T S 0 Bright A_Refire();
+	Goto Ready;
+  AltFire:
+	EP8T A 0 Bright
+	{
+		A_StartSound("BCGNCHRG", CHAN_WEAPON, attenuation: 0.75);
+		A_QuakeEx(1, 1, 1, 50, 0, 500, "none", QF_SCALEUP, 0, 0, 0, 1000);
+	}
+	EP8T ABCTUTUTUTUTUTUTUTUTUTUTUTUTUTUT 1 Bright A_WeaponOffset(frandom(0.25, -0.25), frandom(32.25, 33.25), WOF_INTERPOLATE);
+	EP8T A 0 Bright
+	{
+		A_QuakeEx(2, 2, 2, 70, 0, 500, "none", QF_SCALEUP, 0, 0, 0, 1000);
+		A_WeaponOffset(0, 32);
+	}
+	EP8T TUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTU 1 Bright A_WeaponOffset(frandom(1.0, -1.0), frandom(32.0, 34.0), WOF_INTERPOLATE);
+	EP8T TUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTHIJ 1 Bright A_WeaponOffset(frandom(2.0, -2.0), frandom(31.0, 36.0), WOF_INTERPOLATE);
+	EP8T J 0 Bright A_SetBlend("Blue", 0.75, 14);
+	EPT8 J 0 Bright A_WeaponOffset(0, 32);
+	Goto AltHold;
+  AltHold:
+	EP8T K 1 Bright
+	{
+		A_StartSound("LIGTFIRE", CHAN_WEAPON, attenuation: 0.75, pitch: 0.875);
+		invoker.DepleteAmmo(invoker.bAltFire, ammouse: 4);
+		A_FireProjectile("DCY_EpitomeLightningBall", frandom(-20.0, 20.0), 1, 0, frandom(-3.0, 3.0));
+		A_WeaponOffset(frandom(2.0, -2.0), frandom(31.0, 38.0), WOF_INTERPOLATE);
+	}
+	EP8T LNP 1 Bright;
+	EP8T K 0 Bright A_Refire("AltHold");
+	Goto HoldDone;
+  HoldDone:
+	EP8T KLMNOPQR 3 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	EP8T S 3 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Flash:
+    TNT1 A 3 A_Light1();
+	TNT1 A 0 A_Light0();
+	Goto LightDone;
+  }
+}
+
+Class DCY_EpitomeLightningBall : DCY_MultidimensionalZapperBall
+{
+  Default
+  {
+  DamageType "PlayerStun";
+  Damage 200;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.85,1.20,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	LFX2 KLMNO 1 A_Weave(3, 3, 1, 1);
+	Loop;
+  Death:
+    SFE1 A 1;
+	SFE1 A 0 
+	{
+		A_QuakeEx(6, 6, 6, 15, 0, 400, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(4, 4, 4, 25, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(3, 3, 3, 32, 0, 800, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(2, 2, 2, 38, 0, 1000, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 45, 0, 1250, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 35, 0, 1250, "none", QF_SCALEDOWN, 0, 0, 0, 0, 0, 0.7, frandom(0.7, -0.7));
+		A_Explode(400, 250, XF_NOTMISSILE, True);
+		A_SpawnItemEx("DCY_MultidimensionalZapperExplodeTrailBarrage", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    SFE1 AAAABBBBCCCCDDDDEEEEFFFF 1 A_Explode(200, 100, XF_NOTMISSILE, True);
+	Stop;
+  }
+}
+
+Class DCY_EradicatorRing : DCY_BionicRing { Default { Scale 2.0; Translation "0:255=%[0.00,0.00,0.50]:[1.43,2.00,2.00]"; } }
+
+Class DCY_EternalVoid : Weapon
+{
+  Default
+  {
+  Tag "U.A.C-26 Zeta ''Eternal Void'' Eradicating Black-Hole Projectile Releaser";
+  Inventory.PickupMessage "\c[k2]...the Eternal Void.\cL";
+  Obituary "$o is now extinct.";
+  Weapon.BobStyle "Alpha";
+  Weapon.BobRangeX 0.45;
+  Weapon.BobRangeY 0.25;
+  Weapon.BobSpeed 1.45;
+  Scale 0.75;
+  Weapon.AmmoType "DCY_UltramodernEnergy";
+  Weapon.AmmoUse 100;
+  Weapon.AmmoGive 100;
+  Weapon.SlotNumber 9;
+  Inventory.Icon "BHL_Z0";
+  +FLOORCLIP
+  +DONTGIB
+  +SKYEXPLODE
+  +FORCERADIUSDMG
+  Inventory.PickupSound "EternalVoid/Pickup";
+  }
+  States
+  {
+  Spawn:
+	BHL_ YZ 1 Bright;
+	Loop;
+  Ready:
+	BKH_ AB 1 Bright A_WeaponReady();
+	Loop;
+  Select:
+	BKH_ XXYYZ 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	BKH_ ZZYYX 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Fire:
+	BKH_ A 1 Bright
+	{
+		A_SetBlend("Purple", 0.4, 40, "Blue");
+		A_StartSound("EternalVoid/Charge", CHAN_WEAPON);
+		A_QuakeEx(4, 4, 4, 30, 0, 1000, "none", QF_SCALEDOWN);
+	}
+	BKH_ BABCBACBACBBCDECEDECEA 1 Bright A_WeaponOffset(frandom(-1.5, 1.5), frandom(31.5, 32.5), WOF_INTERPOLATE);
+	BKH_ D 1 Bright
+	{
+		A_WeaponOffset(random(-3.0, 3.0), random(31.0, 34.0), WOF_INTERPOLATE);
+		A_QuakeEx(4, 4, 4, 30, 0, 1000, "none", QF_SCALEUP, 0, 0, 0, 2000, 0, 1.0, frandom(-1.0, 1.0));
+	}
+	BKH_ CADEBCEDBECEDBEDBC 1 Bright A_WeaponOffset(frandom(-3.0, 3.0), frandom(31.0, 34.0), WOF_INTERPOLATE);
+	BKH_ FG 1 Bright;
+	BKH_ H 1 Bright
+	{
+		A_StartSound("EternalVoid/Fire", CHAN_WEAPON, CHANF_DEFAULT);
+		A_QuakeEx(3, 3, 3, 34, 0, 1281, "none", QF_SCALEDOWN|QF_RELATIVE, 0, 0, 0, 0, 0, 1.5, frandom(-1.5, 1.5));
+		A_FireProjectile("DCY_DestructiveBlackHolePlasmaBall", 0, 1);
+		A_Recoil(25);
+		A_GunFlash();
+	}
+	BKH_ IJKLMNOP 2 Bright;
+	BKH_ DEBCEDBCDEBCBBCBCBABBABAA 1 Bright;
+	Goto Ready;
+  Flash:
+	TNT1 A 10 A_Light1();
+	Goto LightDone;
+  }
+}
+
+Class DCY_BHFX1 : Actor //Aura
+{
+  Default
+  {
+  RenderStyle "Add";
+  Alpha .01;
+  Scale 1.0;
+  +NOCLIP
+  +BRIGHT
+  +NOBLOCKMAP
+  +NOINTERACTION
+  +NOFRICTIONBOUNCE
+  +ROLLSPRITE
+  +FORCEXYBILLBOARD
+  }
+  States
+  {
+  Spawn:
+	PKCH C 0 NoDelay A_SetRoll(frandom(0.0, 360.0));
+	PKCH C 1 Bright
+	{
+		If(Alpha >= 0.15)
+		{
+			Return ResolveState("Fade");
+		}
+		Else
+		{
+			A_FadeIn(0.0075, 0);
+			A_SetScale(Scale.X+0.0055, Scale.Y+0.0055);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Fade:
+	PKCH C 1 Bright
+	{
+		If(Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.0075, 0);
+			A_SetScale(Scale.X+0.0055, Scale.Y+0.0055);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX2 : DCY_BHFX1 //Rings
+{
+  Default
+  {
+  Scale 1.5;
+  +FLATSPRITE;
+  }
+  
+  int rscale;
+  
+  States
+  {
+  Spawn:
+	PKCH D 0 NoDelay
+	{
+		A_SetRoll(frandom(0.0, 360.0));
+		A_SetAngle(frandom(0.0, 360.0));
+		A_SetPitch(frandom(0.0, 360.0));
+		rscale = frandom(3.0, 1.5);
+		A_SetScale(rscale, rscale);
+	}
+	PKCH D 1 Bright
+	{
+		If(Alpha >= 0.64)
+		{
+			Return ResolveState("Fade");
+		}
+		Else
+		{
+			A_FadeIn(0.0045, 0);
+			A_SetRoll(Roll+10, SPF_INTERPOLATE);
+			A_SetPitch(Pitch+0.001, SPF_INTERPOLATE);
+			A_SetAngle(Angle+0.001, SPF_INTERPOLATE);
+			Return ResolveState(null);
+		}
+	}
+	Goto Spawn+1;
+  Fade:
+	PKCH D 1 Bright
+	{
+		If(Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.045, 0);
+			A_SetRoll(Roll+10, SPF_INTERPOLATE);
+			A_SetPitch(Pitch+0.001, SPF_INTERPOLATE);
+			A_SetAngle(Angle+0.001, SPF_INTERPOLATE);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX3 : DCY_BHFX2 //Rings
+{
+  Default
+  {
+  Scale 0.5;
+  }
+  States
+  {
+  Spawn:
+	PKCH E 0 NoDelay
+	{
+		A_SetRoll(frandom(0.0, 360.0));
+		A_SetAngle(frandom(0.0, 360.0));
+		A_SetPitch(frandom(0.0, 360.0));
+	}
+	PKCH E 1 Bright
+	{
+		If(Alpha >= 1)
+		{
+			Return ResolveState("Fade");
+		}
+		Else
+		{
+			A_FadeIn(0.4, 0);
+			A_SetRoll(Roll+5, SPF_INTERPOLATE);
+			A_SetScale(Scale.X+0.5, Scale.X+0.5);
+			Return ResolveState(null);
+		}
+	}
+	Goto Spawn+1;
+  Fade:
+	PKCH D 1 Bright
+	{
+		If(Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.2, 0);
+			A_SetRoll(Roll+5, SPF_INTERPOLATE);
+			A_SetScale(Scale.X+0.25, Scale.X+0.25);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX5 : DCY_BHFX1 //Lighter Aura
+{
+  Default
+  {
+  Alpha .01;
+  Scale 1.0;
+  +NOCLIP
+  +BRIGHT
+  +NOBLOCKMAP
+  +NOINTERACTION
+  +NOFRICTIONBOUNCE
+  +ROLLSPRITE
+  +FORCEXYBILLBOARD
+  }
+  
+  States
+  {
+  Spawn:
+	PKCH B 0 NoDelay A_SetRoll(frandom(0.0, 360.0));
+	PKCH B 1 Bright
+	{
+		If (Alpha >= 0.4)
+		{
+			Return ResolveState("Fade");
+		}
+
+		A_FadeIn(0.05, 0);
+		A_SetScale(Scale.X+0.055, Scale.Y+0.055);
+		Return ResolveState(null);
+	}
+	Loop;
+  Fade:
+	PKCH B 1 Bright
+	{
+		If (Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.05, 0);
+			A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX4 : DCY_BHFX2 //Faster Rings
+{
+  Default
+  {
+  Scale 2.0;
+  }
+  States
+  {
+  Spawn:
+	PKCH E 0 NoDelay
+	{
+		A_SetRoll(frandom(0.0, 360.0));
+		A_SetAngle(frandom(0.0, 360.0));
+		A_SetPitch(frandom(0.0, 360.0));
+		rscale = frandom(2.3, 1.0);
+		A_SetScale(rscale, rscale);
+	}
+	PKCH E 1 Bright
+	{
+		If(Alpha >= 0.64)
+		{
+			Return ResolveState("Fade");
+		}
+		Else
+		{
+			A_FadeIn(0.075, 0);
+			A_SetRoll(Roll+30, SPF_INTERPOLATE);
+			A_SetPitch(Pitch+1, SPF_INTERPOLATE);
+			A_SetAngle(Angle+1, SPF_INTERPOLATE);
+			Return ResolveState(null);
+		}
+	}
+  Goto Spawn+1;
+  Fade:
+	PKCH E 1 Bright
+	{
+		If(Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.2, 0);
+			A_SetRoll(Roll+30, SPF_INTERPOLATE);
+			A_SetPitch(Pitch+1, SPF_INTERPOLATE);
+			A_SetAngle(Angle+1, SPF_INTERPOLATE);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX6 : DCY_BHFX1 //Lens Flare
+{
+  Default
+  {
+  Scale 5;
+  }
+  
+  States
+  {
+  Spawn:
+	PKCH B 0 NoDelay
+	{
+		A_SetScale(randompick(5, -5), 5);
+		A_SetRoll(randompick(0, 180));
+	}
+	PKCH F 1 Bright
+	{
+		If(Alpha >= 0.75)
+		{
+			Return ResolveState("Fade");
+		}
+		Else
+		{
+			A_FadeIn(0.2, 0);
+			A_SetScale(Scale.X+0.055, Scale.Y+0.055);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Fade:
+	PKCH F 1 Bright
+	{
+		If(Alpha <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.1, 0);
+			A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}
+
+Class DCY_BHFX7 : DCY_BHFX1 //Lens Flare
+{
+  Default
+  {
+  Scale 7;
+  RenderStyle "Subtract";
+  Alpha 0.75;
+  }
+  States
+  {
+  Spawn:
+	PKCH A 3 A_FadeOut(0.25, 0);
+	Stop;
+  }
+}
+
+Class DCY_BHFX8 : DCY_BHFX7
+{
+  Default
+  {
+  Scale 10.0;
+  Alpha 1.0;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.13,0.97,2.00]";
+  }
+  States
+  {
+  Spawn:
+	KABE A 0 NoDelay A_SetRoll(frandom(0, 360));
+	KABE ABCDEFHKMOQSTVW 1 Bright;
+	Stop;
+  }
+}
+
+Class DCY_DestructiveBlackHolePlasmaBall : FastProjectile
+{
+  Default
+  {
+  Speed 400;
+  Scale 6.0;
+  RenderStyle "Subtract";
+  Radius 18;
+  Height 18;
+  Alpha 1.0;
+  DamageType "Player";
+  +BRIGHT
+  +THRUGHOST
+  +THRUSPECIES
+  +SKYEXPLODE
+  +ALWAYSPUFF
+  +FORCERADIUSDMG
+  +MTHRUSPECIES
+  +RIPPER
+  Damage (100);
+  +NEVERFAST;
+  DeathSound "EternalVoid/Explode";
+  }
+  
+  float bvolume;
+  int bloop;
+  
+  States
+  {
+  Spawn:
+	PLSS A 1 Bright;
+	Loop;
+  Death:
+	PKCH A 0
+	{
+		A_SetRenderStyle(1.0, STYLE_SUBTRACT);
+		A_SetScale(0.1, 0.1);
+		bvolume = 1;
+		A_FadeIn(1.0);
+		A_Explode(4000, 1000, 0, False, 0);
+		A_StartSound("EternalVoid/Explode", CHAN_WEAPON, 0, 1.0, 0.15);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 80);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 29);
+		A_SpawnItemEx("DCY_BHFX8", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 70);
+		A_SpawnItemEx("DCY_BHFX8", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 70);
+	}
+	PKCH A 1
+	{
+		If(Scale.X > 7.0 || Scale.Y > 7.0)
+		{
+		Return ResolveState("Loopers");
+		}
+
+		A_SetScale(Scale.X + 0.5, Scale.Y + 0.5);
+		A_Explode(1500, 1000, 0, False, 0);
+		A_RadiusThrust(1000, 200, RTF_AFFECTSOURCE, 100);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 180);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 129);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 100);
+		A_SpawnItemEx("DCY_BHFX1", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 200);
+		A_SpawnItemEx("DCY_BHFX1", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 180);
+		A_SpawnItemEx("DCY_BHFX2", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 222);
+		A_SpawnItemEx("DCY_BHFX3", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 190);
+		A_SpawnItemEx("DCY_BHFX4", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 100);
+		A_SpawnItemEx("DCY_BHFX6", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 28);
+		A_SpawnItemEx("DCY_BHFX8", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 70);
+		A_SpawnItemEx("DCY_BHFX8", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 70);
+		A_SpawnItemEx("DCY_BHFX7", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_BHFX5", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 20);
+		Return ResolveState(null);
+	}
+	Goto Death+1;
+  Loopers:
+	PKCH A 0 A_JumpIf(bloop >= 128, "Explode");
+	PKCH A 1
+	{
+		A_SpawnItemEx("DCY_BHFX1", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 200);
+		A_SpawnItemEx("DCY_BHFX1", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 180);
+		A_SpawnItemEx("DCY_BHFX2", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 222);
+		A_SpawnItemEx("DCY_BHFX4", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 222);
+		A_SpawnItemEx("DCY_BHFX6", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION, 30);
+		A_SpawnItemEx("DCY_BHFX5", 0, 0, 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.0, -1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 180);
+		A_RadiusThrust(-1500, 1800, 0, 1000);
+		A_SetSize(100, 100);
+		A_RadiusThrust(100, 100, RTF_AFFECTSOURCE, 100);
+		A_StartSound("EternalVoid/ProjectileLoop", CHAN_BODY, CHANF_LOOPING, 1.0, 0.15);
+		A_Explode((512), 200, 0, False, 0);
+		bloop++;
+		Return ResolveState(null);
+	}
+	PKCH AAA 1
+	{
+		A_RadiusThrust(-1500, 1800, 0, 1000);
+		A_RadiusThrust(100, 100, RTF_AFFECTSOURCE, 100);
+		A_StartSound("EternalVoid/ProjectileLoop", CHAN_BODY, CHANF_LOOPING, 1.0, 0.15);
+		A_Explode((512), 200, 0, False, 0);
+	}
+	Loop;
+  Explode:
+	PKCH A 1
+	{
+		If(Scale.X <= 0.0000000001)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_SoundVolume(CHAN_BODY, bvolume);
+			bvolume -= 0.0225;
+			A_SetScale(Scale.X - 0.15, Scale.Y - 0.15);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}

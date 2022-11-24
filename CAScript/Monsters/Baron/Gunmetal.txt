@@ -1,0 +1,275 @@
+Class DCY_GunmetalInfiltrator : DCY_BaronParent
+{
+  Default
+  {
+  Health 1750;
+  Speed 10;
+  MeleeDamage 8;
+  +QUICKTORETALIATE;
+  +MISSILEMORE;
+  +NOFEAR;
+  +DONTHARMCLASS;
+  +NEVERRESPAWN;
+  +Bright;
+  BloodColor "010101";
+  DropItem "Blursphere", 25;
+  SeeSound "GunmetalInfiltrator/Sight";
+  ActiveSound "GunmetalInfiltrator/Active";
+  PainSound "GunmetalInfiltrator/Pain";
+  DeathSound "GunmetalInfiltrator/Death";
+  Obituary "%o was liquidated by a Gunmetal Infiltrator.";
+  HitObituary "%o was slashed in half by a Gunmetal Infiltrator.";
+  Tag "\c[w3]Gunmetal Infiltrator\c-";
+  }
+  States
+  {
+  Spawn:
+    GNM8 A 10 A_Look();
+	Loop;
+  See:
+    TNT1 A 0 A_Jump(30, "Rush");
+	GNM8 AAAABBBBCCCCDDDD 2 A_Chase();
+    Loop;
+  Rush:
+    TNT1 A 0 A_StartSound("AM2DASH", CHAN_WEAPON);
+    GNM8 AAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 
+	{
+		A_Chase();
+		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+	}
+	Goto See;
+  Melee:
+    GNM8 EF 6 A_FaceTarget();
+	GNM8 G 6 A_CustomMeleeAttack(8 * random(1, 10), "Baron/Melee", "");
+	Goto See;
+  Missile:
+    TNT1 A 0 A_Jump(50, "Seeker", "Comet", "Quad");
+    GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, 0);
+	GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, 0);
+	TNT1 A 0 A_JumpIfCloser(500, "DashSlash");
+	Goto See;
+  MissileContinue:
+    TNT1 A 0 A_Jump(50, "Seeker", "Comet");
+    GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, 0);
+	GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, 0);
+	Goto See;
+  Quad:
+    GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, random(2, -2));
+	GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, random(2, -2));
+	GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, random(2, -2));
+	GNM8 EF 3 A_FaceTarget();
+	GNM8 G 3 A_SpawnProjectile("DCY_GBall", 35, 0, random(2, -2));
+	TNT1 A 0 A_JumpIfCloser(500, "DashSlash");
+	Goto See;
+  DashSlash:
+    TNT1 A 0 A_Jump(130, "MissileContinue");
+	NULL A 0 A_FaceTarget();
+	GNM8 EF 9 A_FaceTarget(80, 80);
+	GNM8 G 1
+	{
+		bNoDropOff = true;
+		A_Hop(4);
+		A_CustomMeleeAttack(20, "baron/melee");
+		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+	}
+	GNM8 GGGGGGGGGGG 1
+	{
+		A_Recoil(-3.5);
+		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		A_CustomMeleeAttack(20, "baron/melee");
+	}
+	NULL A 0 { bNoDropOff = false; }
+	Goto See;
+  Seeker:
+    GNM8 EF 8 A_FaceTarget();
+	GNM8 G 0 A_SpawnProjectile("DCY_GSeeker", 35, 0, -20);
+	GNM8 G 8 A_SpawnProjectile("DCY_GSeeker", 35, 0, 20);
+	Goto See;
+  Comet:
+    GNM8 EF 10 A_FaceTarget();
+	GNM8 G 10 A_SpawnProjectile("DCY_GComet", 35, 0, 0);
+	Goto See;
+  Pain:
+	GNM8 H 4;
+    GNM8 H 4 A_Pain();
+	Goto See;
+  Death:
+  XDeath:
+    GNM8 I 8;
+    GNM8 J 6 A_Scream();
+	GNM8 K 5;
+    GNM8 L 4 A_NoBlocking();
+	TNT1 A 0 A_Quake(2, 10, 0, 300, "none");
+	TNT1 A 0 A_Quake(1, 15, 0, 600, "none");
+    GNM8 MNOPQRSTUV 5;
+    GNM8 W -1 A_BossDeath2();
+    Stop;
+  Death.Massacre:
+    GNM8 I 8;
+    GNM8 J 6 A_Scream();
+	GNM8 K 5;
+    GNM8 L 4 A_NoBlocking();
+    GNM8 MNOPQRSTUV 5;
+    GNM8 W -1 A_BossDeath2();
+    Stop;
+  Raise:
+	GNM8 VUTSRQPOMNLKJI 3;
+	Goto See;
+  }
+}
+
+Class DCY_GTrail : DCY_Effect
+{
+  Default
+  {
+  Speed 0;
+  Damage 0;
+  Speed 0;
+  Radius 1;
+  Height 1;
+  Alpha 0;
+  Projectile;
+  +NOINTERACTION
+  -SOLID
+  }
+  States
+  {
+  Spawn:
+    GNM8 "#" 1;
+	GNM8 "#" 1 A_FadeIn(0.9);
+	Goto SpawnLoop;
+  SpawnLoop:
+    "####" "#" 1;
+    "####" "##########" 1 Bright A_FadeOut();
+	Stop;
+  }
+}
+
+Class DCY_GBall : BaronBall
+{
+  Default
+  {
+  Speed 14;
+  FastSpeed 20;
+  Damage 6;
+  Projectile;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  +RANDOMIZE
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+    BAL7 AAAAABBBBB 1 Bright A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Loop;
+  Death:
+    BAL7 CBE 3 Bright;
+	Stop;
+  }
+}
+
+Class DCY_GSeeker : DCY_GBall
+{
+  Default
+  {
+  Projectile;
+  Damage 5;
+  Speed 10;
+  RenderStyle "Subtract";
+  +SEEKERMISSILE
+  }
+  States
+  {
+  Spawn:
+    BAL7 AAAABBBB 1 Bright
+	{
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION);
+		A_SeekerMissile(3, 1, 0);
+	}
+	Loop;
+  Death:
+    BAL7 CBE 3 Bright;
+	Stop;
+  }
+}
+
+Class DCY_GComet : Actor
+{
+  Default
+  {
+  Radius 8;
+  Height 12;
+  Speed 40;
+  Damage 10;
+  Scale 1.0;
+  Projectile;
+  +THRUSPECIES;
+  SeeSound "Comet/Spawn";
+  DeathSound "Comet/Explode";
+  DamageType "Gunmetal";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  }
+  States
+  {
+  Spawn: 
+    GMCT AAAABBBBCCCC 1 Bright A_SpawnItemEx("DCY_GCTrail", flags: SXF_NOCHECKPOSITION);
+    Loop;
+  Death:
+    CGMT D 0 Bright;
+	CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_Explode(100, 100, XF_NOTMISSILE, 1);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_SCALEDOWN, falloff: 400);
+	}
+    CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    CGMT EEFF 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+	}
+	CGMT GGHHII 1 Bright A_SetScale(Scale.X+0.25, Scale.Y+0.25);
+	TNT1 A 25;
+    Stop;
+  }
+}
+
+Class DCY_GCTrail : Actor
+{
+  Default
+  {
+  Radius 3;
+  Height 3;
+  Scale 0.75;
+  Speed 0;
+  Projectile;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  RenderStyle "Add";
+  Alpha 1.0;
+  +ROLLSPRITE
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 0 NoDelay A_SetRoll(frandom(0, 360));
+    GMCT DDDEEEFFFGGGHHHIII 1 Bright A_FadeOut(0.06, 0);
+    Stop;
+  }
+}

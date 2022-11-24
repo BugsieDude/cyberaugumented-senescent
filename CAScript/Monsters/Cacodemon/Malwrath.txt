@@ -1,0 +1,118 @@
+Class DCY_Malwrath : DCY_FlyingMeatballOutOfTouch
+{
+  Default
+  {
+  Health 350;
+  Tag "Malwrath";
+  Translation "112:127=%[0.00,0.00,0.00]:[2.00,2.00,1.01]", "48:79=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "128:159=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "160:167=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "16:47=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "168:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
+  Obituary "%o got burned into a yellow smoke by a Malwrath.";
+  HitObituary "%o was food for a Malwrath.";
+  BloodColor "Yellow";
+  SeeSound "Malwrath/Sight";
+  ActiveSound "Malwrath/Active";
+  PainSound "Malwrath/Pain";
+  DeathSound "Malwrath/Death";
+  +QUICKTORETALIATE
+  Speed 14;
+  FastSpeed 17.5;
+  }
+  
+  States
+  {
+  Spawn:
+    CALI A 10 DCY_Look();
+    Loop;
+  Look:
+	CALI A 3 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
+	Goto See;
+  See:
+    CALI A 3 A_Chase();
+	Loop;
+  Missile:
+	CALI B 0 A_JumpIf(target && Distance3D(target) < 256, "Lunge");
+	Goto MissileContinue;
+  MissileContinue:
+	CALI B 0 A_Jump(100, "WeavingBall");
+	Goto NormalMissile;
+  NormalMissile:
+	CALI EEEFFF 2 Bright A_FaceTarget();
+	CALI G 0 A_SpawnProjectile("DCY_MalwrathBall", 24, 0, random(-3, 3));
+	CALI GGGFFF 2 Bright A_FaceTarget();
+	CALI G 0 A_SpawnProjectile("DCY_MalwrathBall", 24, 0, random(-3, 3));
+	CALI GGGFFF 2 Bright;
+	Goto See;
+  WeavingBall:
+    TNT1 A 0 A_Jump(128, "Double");
+	CALI BBBBBBB 1 Bright A_FaceTarget();
+	CALI C 0 A_SpawnProjectile("DCY_MalwrathWeavingBall", 35);
+	CALI CCCCDD 2 Bright;
+	CALI DDD 1 Bright;
+	Goto See;
+  Double:
+    CALI BBBBBBB 1 Bright A_FaceTarget();
+	CALI C 0 A_SpawnProjectile("DCY_MalwrathWeavingBall", 35);
+	CALI CCCDDD 1 Bright A_FaceTarget();
+	CALI DDD 1 Bright A_FaceTarget();
+	CALI BBBBBBB 1 Bright A_FaceTarget();
+	CALI C 0 A_SpawnProjectile("DCY_MalwrathWeavingBall", 35);
+	CALI CCCCDD 2 Bright;
+	CALI DDD 1 Bright;
+	Goto See;
+  Melee:
+    CALI GF 8 Bright A_FaceTarget();
+	CALI G 0 A_CustomMeleeAttack(10*random(1, 6), "caco/melee");
+	CALI EF 8 Bright;
+	Goto See;
+  Lunge:
+	TNT1 A 0 A_Jump(140, "MissileContinue");
+	CALI EEFF 3 A_FaceTarget();
+	CALI F 0 A_FaceTarget();
+	CALI F 0 A_Recoil(-15);
+	CALI G 8;
+	CALI G 0 A_Stop();
+	CALI G 0 A_Recoil(-10);
+	CALI G 4;
+	CALI G 0 A_Stop();
+	CALI G 0 A_Recoil(-8);
+	CALI G 3;
+	CALI G 0 A_Stop();
+	CALI G 0 A_Recoil(-6);
+	CALI G 3;
+	CALI G 0 A_Stop();
+	CALI G 0 A_Recoil(-4);
+	CALI G 2;
+	CALI GGFFEE 1 A_Stop();
+	Goto MissileContinue;
+  Pain:
+    CALI H 3;
+	CALI H 2 A_Pain();
+	Goto See;
+  Death:
+	CALI J 1;
+	CALI J 1 A_SetFloorClip();
+	CALI J 4 A_Scream();
+	CALI KLMN 6;
+	Wait;
+  Death.Massacre:
+	CALI J 1;
+	CALI J 1 A_SetFloorClip();
+	CALI J 4 A_Scream();
+	CALI KLMN 6;
+	Wait;
+  Crash:
+	CALI OP 6;
+	CALI Q 6 A_NoBlocking();
+	CALI R 6;
+	CALI S -1;
+	Stop;
+  Raise:
+	CALI RQPONMLKJ 3;
+	Goto See;
+  }
+}
+
+Class DCY_MalwrathWeavingBall : DCY_PainsendWeavingBall { Default { Speed 15; FastSpeed 22; Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }
+Class DCY_MalwrathBall : DCY_PainsendFireball { Default { Speed 15; FastSpeed 22; Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }

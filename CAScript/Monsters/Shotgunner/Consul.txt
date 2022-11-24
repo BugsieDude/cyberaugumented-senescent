@@ -1,0 +1,179 @@
+Class DCY_DarkIonConsul : DCY_ShotgunZombe
+{
+  Default
+  {
+  PainChance 100;
+  Height 64;
+  Radius 16;
+  Mass 250;
+  Speed 6;
+  +DONTOVERLAP
+  +QUICKTORETALIATE
+  +MISSILEMORE
+  +NEVERRESPAWN
+  +DONTHARMCLASS
+  DropItem "DCY_Eminence", 198;
+  DropItem "Clip";
+  DropItem "Shotgun", 180;
+  Tag "\c[g3]Dark Ion Consul\c-";
+  BloodColor "01 01 01";
+  SeeSound "DarkConsul/Sight";
+  DeathSound "DarkConsul/Death";
+  HowlSound "DarkConsul/Pain";
+  AttackSound "DarkConsul/Active";
+  PainSound "DarkConsul/Pain";
+  ActiveSound "DarkConsul/Active";
+  Obituary "%o was slain by a Dark Ion Consul.";
+  }
+  States
+  {
+  Spawn:
+    Y9MD A 10 DCY_Look();
+	Loop;
+  Look:
+	Y9MD AAABBBCCCDDD 7
+	{
+		A_Chase("See", "See", CHF_DONTMOVE|CHF_NOPLAYACTIVE);
+		DCY_LookingForPlayer();
+	}
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    Y9MD AAAABBBBCCCCDDDD 2 A_Chase();
+	Loop;
+  MissileStart:
+    Goto Missile+1;
+  Missile:
+    TNT1 A 0 A_JumpIf(target && distance3D(target) < 190, "Dash");
+    TNT1 A 0 A_Jump(20, "Triple");
+    Y9MD EJ 5 A_FaceTarget();
+	Y9MD K 3 Bright
+	{
+		A_StartSound("Deagle/Fire", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
+	}
+	Goto See;
+  Dash:
+    TNT1 A 0 A_Jump(150, "MissileStart");
+	Y9MD EF 6 A_FaceTarget();
+	Y9MD GGGG 2 A_Recoil(-8);
+	TNT1 A 0 A_Stop();
+	Goto MissileStart;
+  Triple:
+    Y9MD EJ 5 A_FaceTarget();
+	Y9MD K 10 Bright
+	{
+		A_StartSound("Deagle/Fire", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
+	}
+	Y9MD J 16 A_FaceTarget();
+	Y9MD K 10 Bright
+	{
+		A_StartSound("Deagle/Fire", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
+	}
+	Y9MD J 16 A_FaceTarget();
+	Y9MD K 10 Bright
+	{
+		A_StartSound("Deagle/Fire", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
+	}
+	Y9MD J 16 A_FaceTarget();
+	Goto See;
+  Pain:
+    Y9MD H 5 A_Pain();
+	Goto See;
+  Death:
+    Y9IM A 2;
+	Y9IM A 2 A_ScreamAndUnblock();
+    Y9IM ABCDEFG 5;
+	Y9IM H -1;
+	Stop;
+  XDeath:
+    Y9IM I 2;
+	Y9IM I 1 A_XScream();
+    Y9IM I 2 A_NoBlocking();
+	Y9IM JKLMNOP 5;
+	Y9IM Q -1;
+	Stop;
+  Death.Fire:
+	TNT1 A 0;
+	TNT1 A 0
+	{
+		A_Scream();
+		A_NoBlocking();
+	}
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright;
+	FUUU V -1;
+	Stop;
+  Raise:
+    Y9IM GFEDCBA 5;
+	Goto See;
+  }
+}
+
+Class DCY_ConsulProj : FastProjectile
+{
+  Default
+  {
+  Speed 25;
+  FastSpeed 30;
+  Damage (7);
+  Radius 8;
+  Height 8;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 0.5;
+  SeeSound "RETRSHOT";
+  DeathSound "MagicProjectile/Death";
+  Translation "5:255=%[0.00,0.00,0.00]:[2.00,0.13,0.13]";
+  +NOEXTREMEDEATH
+  -RANDOMIZE
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	SUE2 AB 1 A_SpawnItemEx("DCY_FluorescentOrbT", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), xvel: frandom(0, -2), zvel: frandom(3, 0), flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+	Loop;
+  Death:
+    SUE2 CDE 3;
+	Stop;
+  }
+}
+
+Class DCY_ConsulAura : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 0.085;
+  Scale 0.385;
+  +BRIGHT
+  +NOINTERACTION
+  +NOCLIP
+  +DONTSPLASH
+  }
+  States
+  {
+  Spawn:
+	EF1_ C 1
+	{
+		If (alpha <= 0.00001)
+		{
+			Return ResolveState("Null");
+		}
+		
+		A_SetScale(Scale.X-0.00001, Scale.Y-0.00001);
+		A_FadeOut(0.025, 0);
+		Return ResolveState(null);
+	}
+	Loop;
+  }
+}

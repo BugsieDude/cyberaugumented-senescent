@@ -1,0 +1,1150 @@
+Model DCY_TracerPlayer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_PistolTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_RifleTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_SSGTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_DeathbringerTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_EnemyTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_TripartiteTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_DeagleTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_EnemyDeagleTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_ExplosivePistolTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracerfire.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_ExplosiveSSGTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracerfire.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_ExplosiveDeathbringerTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracerfire.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_ExplosiveDeagleTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracerfire.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_ZombieTracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_Zombie2Tracer
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_AlacritousGuyBullet
+{
+  Path "CAModels"
+  SKIN 0 "tracerfire.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_AracgunnerBullet
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_AracgunnerBullet2
+{
+  Path "CAModels"
+  SKIN 0 "tracer1.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_VeneratedLaserBeam
+{
+  Path "CAModels"
+  SKIN 0 "graytracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  FrameIndex TRAC B 0 0
+}
+
+Model DCY_SiriusLaser
+{ 
+  Path "CAModels"
+  SKIN 0 "graytracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_ObliterationBFGProjectile
+{ 
+  Path "CAModels"
+  SKIN 0 "ntracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC C 0 0
+}
+
+Model DCY_ObliterationBFGProjectileBlu
+{ 
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_MechaZombiePlasma
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_MechaZombiePlasma2
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_UltracerestMechaZombiePlasma
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_KaiserMechaZombiePlasma
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_AbyssalAndroidPlasma
+{
+  Path "CAModels"
+  SKIN 0 "vermilliontracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC F 0 0
+}
+
+Model DCY_AbyssalAndroidPlasma2
+{
+  Path "CAModels"
+  SKIN 0 "vermilliontracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC F 0 0
+}
+
+Model DCY_PhasicRazerLaser
+{
+  Path "CAModels"
+  SKIN 0 "ntracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC C 0 0
+}
+
+Model DCY_ArcheBullet
+{
+  Path "CAModels"
+  SKIN 0 "ntracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC C 0 0
+}
+
+Model DCY_UmbraLaser
+{
+  Path "CAModels"
+  SKIN 0 "umbratracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC G 0 0
+}
+
+Model DCY_WRay
+{
+  Path "CAModels"
+  SKIN 0 "cyanlaser.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_JadeLaser
+{
+  Path "CAModels"
+  SKIN 0 "greentracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC D 0 0
+}
+
+Model DCY_ExplosiveJadeLaser
+{
+  Path "CAModels"
+  SKIN 0 "greentracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC D 0 0
+}
+
+Model DCY_JadeLaserEnemy
+{
+  Path "CAModels"
+  SKIN 0 "greentracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC D 0 0
+}
+
+Model DCY_EspionPlasma
+{ 
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_TransfixerPlasma
+{ 
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_EspionSmallPlasma
+{ 
+  Path "CAModels"
+  SKIN 0 "greentracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_EspionEmissionTracer
+{ 
+  Path "CAModels"
+  SKIN 0 "umbratracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_NephelomaTracer
+{ 
+  Path "CAModels"
+  SKIN 0 "ntracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_ArbiterTracer
+{
+  Path "CAModels"
+  SKIN 0 "navytracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_BlueZombieTracer
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_RazorwindLaser
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_RazorwindSmallLaser
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_DronePlasma
+{
+  Path "CAModels"
+  SKIN 0 "dronetracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC F 0 0
+}
+
+Model DCY_ChrysalisLaser
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "chrysalazer.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_OverdemoniacBeam
+{
+  Path "CAModels"
+  SKIN 0 "ultracybertracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC E 0 0
+}
+
+Model DCY_VandalLaser
+{
+  Path "CAModels"
+  SKIN 0 "umbratracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRAC G 0 0
+}
+
+Model DCY_EmissionTracer
+{
+  Path "CAModels"
+  SKIN 0 "dronetracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC F 0 0
+}
+
+Model DCY_CrusaderSlash
+{
+  Path "CAModels"
+  SKIN 0 "crusader_slash.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC A 0 0
+}
+
+Model DCY_CrusaderSlashTrail
+{
+  Path "CAModels"
+  SKIN 0 "crusader_slash.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC A 0 0
+}
+
+//Sparks
+Model DCY_BulletPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "sparktracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_BlueBulletPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "bluespark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_AndroidPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "androidspark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_RedAndroidPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "redspark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_PhasicAndroidPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "purplespark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_GreenPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "jadespark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_BFG10kLaserPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "bfgspark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_BallistaSpark
+{
+  Path "CAModels"
+  SKIN 0 "sparktracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_CrucibleBulletPuffSpark
+{
+  Path "CAModels"
+  SKIN 0 "lazor05.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+Model DCY_AExplosionSpark
+{
+  Path "CAModels"
+  SKIN 0 "androidspark.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex NULL A 0 0
+}
+
+//LASERS
+Model DCY_BFG10kLASERTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor04.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_SmallBFG10kLaser
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor04.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_BallistaTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor02.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_RazerLaser
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor05.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_PhasicRailLaser
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor03.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_EradicatorRay
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_VirtuosoTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning1.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L A 0 0
+}
+
+Model DCY_VirtuosoTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning2.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L B 0 0
+}
+
+Model DCY_VirtuosoTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning3.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L C 0 0
+}
+
+Model DCY_VirtuosoTrail1
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning1.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L A 0 0
+}
+
+Model DCY_VirtuosoTrail1
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning2.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L B 0 0
+}
+
+Model DCY_VirtuosoTrail1
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning3.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L C 0 0
+}
+
+Model DCY_VisitantThunder
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning1.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L A 0 0
+}
+
+Model DCY_VisitantThunder
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning2.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L B 0 0
+}
+
+Model DCY_VisitantThunder
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "clightning3.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 45.0
+  FrameIndex TH_L C 0 0
+}
+
+Model DCY_NeonicWandTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_OverdemoniacLaser
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_OverdemoniacLaser2
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "grayscalelazor.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_KaiserLazer
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_ArbiterLazer
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_ArbiterLazerFade
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_EternalVoidTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor04.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_GehennaTrack
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "gehennatrack.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_VamchnormTrack
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "gehennatrack.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_VamchnormLazer
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "lazor01.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_SiriusTrack
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "siriustrack.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+//Black Hole Shits
+
+Model DCY_DestructiveBlackHolePlasmaBall
+{
+  Path "CAModels" 
+  Model 0 "tracer.md3"
+  Skin 0 "lazor04.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
+Model DCY_DestructiveBlackHolePlasmaBall
+{
+  Path "CAModels" 
+  Model 0 "VoidSphere.md3"
+  Skin 0 "VoidSphere.png"
+  Scale 1.0 1.0 1.0
+  Offset 0.00 0.00 0.00 
+  AngleOffset 0.00
+  FrameIndex PKCH A 0 0 
+}
+
+Model DCY_BHFX7
+{
+  Path "CAModels" 
+  Model 0 "VoidSphere.md3"
+  Skin 0 "VoidSphere.png"
+  Scale 1.0 1.0 1.0
+  Offset 0.00 0.00 0.00 
+  AngleOffset 0.00
+  FrameIndex PKCH A 0 0 
+}
+
+Model DCY_SiriusBFGSphereTrail
+{
+  Path "CAModels" 
+  Model 0 "Cloudsphere.md3"
+  Skin 0 "siriuscloud.png"
+  Scale 1.0 1.0 1.0
+  Offset 0.00 0.00 0.00 
+  AngleOffset 0.00
+  FrameIndex PKCH A 0 0 
+}
+
+Model DCY_SiriusBFGSphere2
+{
+  Path "CAModels" 
+  Model 0 "Cloudsphere.md3"
+  Skin 0 "siriuscloud2.png"
+  Scale 1.0 1.0 1.0
+  Offset 0.00 0.00 0.00 
+  AngleOffset 0.00
+  FrameIndex PKCH A 0 0 
+}

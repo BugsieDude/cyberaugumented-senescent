@@ -1,0 +1,140 @@
+CLASS CyberaugumentedEventHandler : EventHandler
+{
+  ui int inputtic;
+  float temp1;
+  
+  /*override void WorldThingDied(WorldEvent e)
+  {
+	if (e.Thing.bIsMonster && e.DamageSource && e.DamageSource.Player && e.Thing.Target)
+	{
+	e.Thing.Spawn("HealthBonus", (pos.x, pos.y, (e.Thing.Height / 2)));
+	}
+  }*/
+  
+  override void NetworkProcess(ConsoleEvent e)
+  {
+	if(e.Player >= 0 && PlayerInGame[e.Player] && Players[e.Player].Mo)
+    {
+		if(e.name == "DCY_Dash")
+		{
+			let DashInitiate = CyberaugumentedProtagonist(players[e.player].mo);
+			
+			if (DashInitiate)
+				DashInitiate.CyberDash();
+		}
+	}
+  }
+  
+  override void WorldThingSpawned(WorldEvent e)
+  {
+	//Effect Choker
+    if(sv_effectchoker && e.thing && e.thing is "DCY_Effect")
+        e.thing.Destroy();
+  }
+  
+  override void NewGame()
+  {
+	//DCY_Startup();
+  }
+  
+  void DCY_Startup()
+  {
+	let c = DCY_Variables.Get();
+	
+	if (!c.gameannounce)
+	{
+		S_StartSound("misc/hellotherer", 10, CHANF_NOPAUSE);
+		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Welcome to Cyberaugumented.\n\nYou'll see where this goes out.", (240, 150), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.3, 2, 1), speed: 0.05, strength: 1.0, frequency: 10.0, id: 78);
+		c.gameannounce = true;
+	}
+  }
+  
+  override void WorldLoaded(WorldEvent e)
+  {
+	let x = DCY_Variables.Get();
+	x.alternateturretsound = randompick(0, 1);
+	
+	temp1 = 15;
+  }
+  
+  void DTemperature(sound soundx, string colorx, string messagex)
+  {
+	if (soundx)
+		S_StartSound(soundx, 10, CHANF_NOPAUSE);
+	
+	console.printf("\c".."["..colorx.."]"..messagex.."\c-");
+  }
+  
+  override void WorldTick()
+  {
+	let d = DCY_Variables.Get();
+	let temp = d.temperature;
+	
+	temp1 += temp;
+	
+	if (temp1 < -150 && !d.temperaturecoldxannounce)
+	{
+		DTemperature("TemperatureDCYX", "j0", "You're going to die.");
+		d.temperaturecoldxannounce = true;
+	}
+	if (temp1 < -50 && !d.temperaturecoldannounce)
+	{
+		DTemperature("TemperatureDCY", "j1", "Things are about to get cold.");
+		d.temperaturecoldannounce = true;
+	}
+	if (temp1 > 50 && !d.temperaturehotannounce)
+	{
+		DTemperature("TemperatureDCY", "x1", "Time for a fryer simulation.");
+		d.temperaturehotannounce = true;
+	}
+	if (temp1 > 150 && !d.temperaturehotxannounce)
+	{
+		DTemperature("TemperatureDCYX", "q7", "You're going to burn.");
+		d.temperaturehotxannounce = true;
+	}
+  }
+  
+  /*void DCY_TemperatureLevel(sector mySector)
+  {
+	let d = DCY_Variables.Get();
+	
+	double z;
+
+	Vector3 mins = (double.max, double.max, double.max);
+	Vector3 maxs = -mins;
+
+	for (int i = 0; i < mySector.lines.Size(); i++)
+	{
+	  Line l = mySector.lines[i];
+	  mins.x = min(mins.x, l.v1.p.x, l.v2.p.x);
+	  maxs.x = max(maxs.x, l.v1.p.x, l.v2.p.x);
+	  
+	  mins.y = min(mins.y, l.v1.p.y, l.v2.p.y);
+	  maxs.y = max(maxs.y, l.v1.p.y, l.v2.p.y);
+
+	  double floor1 = mySector.floorPlane.ZAtPoint(l.v1.p);
+	  double floor2 = mySector.floorPlane.ZAtPoint(l.v2.p);
+	  mins.z = min(mins.z, floor1, floor2);
+
+	  double ceiling1 = mySector.ceilingPlane.ZAtPoint(l.v1.p);
+	  double ceiling2 = mySector.ceilingPlane.ZAtPoint(l.v2.p);
+	  maxs.z = max(maxs.z, ceiling1, ceiling2);
+	}
+	
+	double z;
+	Sector lowest;
+	[z, lowest] = mySector.LowestFloorAt(mySector.centerspot);
+
+	string texName = TexMan.GetName(lowest.GetTexture(Sector.floor));
+	
+	if (texName == "LAVA01")
+		d.temperature += 1;
+  }*/
+}
+
+Class DCY_Completionist : EventHandler
+{
+  int kills, secrets, items;
+  int tk, ts, ti;
+  bool kill, secret, item;
+}

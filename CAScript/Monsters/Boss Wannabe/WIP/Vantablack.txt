@@ -1,0 +1,80 @@
+ACTOR SuperArmageddonVolunteer : ZombieMan //Domination Zombie formerly...
+{
+  Health 1555
+  Tag "\c[g2]Super Armageddon Volunteer\c-"
+  Speed 20
+  +NEVERFAST
+  DamageFactor 0.75
+  DamageFactor "Explosive", 0.45
+  DamageFactor "Cosmical", 0.5
+  +NOBLOOD
+  +FLOORCLIP
+  +MISSILEMORE
+  +NOINFIGHTING
+  +DONTHARMSPECIES
+  +NORADIUSDMG
+  +QUICKTORETALIATE
+  +MISSILEEVENMORE  
+  +NOICEDEATH
+  +NEVERRESPAWN
+  +DONTGIB
+  +FASTMELEE
+  +BOSS
+  +DONTHURTSPECIES
+  +DONTHARMSPECIES
+  +NOTARGET
+  +NOTIMEFREEZE
+  +NOFEAR
+  Obituary "$o saw the Lunacy-Power-Infected elite zombie guard, the \c[g2]Super Armageddon Volunteer\c-."
+  States
+  {
+  Spawn:
+	DMZM A 0
+	DMZM A 0 A_JumpIf(ACS_NamedExecuteWithResult("DisableEnemyAnnouncements") == 1, "SpawnLoop")
+	Goto SpawnAnnouncement
+  SpawnAnnouncement:
+    DMZM A 0
+	DMZM A 0 ACS_NamedExecuteAlways("AnnounceDominationZombie", 0)
+  SpawnLoop:
+	DMZM A 10 A_Look
+	Loop
+  See:
+	DMZM AABBCCDD 4
+	{
+		A_Chase;
+		Return A_JumpIfCloser(222, "BackUp");
+	}
+	Loop
+  BackUp:
+	DMZM AABBCCDD 4
+	{
+		A_Recoil(2);
+		A_FaceTarget;
+		A_Chase("Missile", "", CHF_DONTMOVE);
+	}
+	Goto See
+  Missile:
+	Stop
+  Pain:
+	DMZM G 4
+	DMZM G 4 A_Pain
+	Goto See
+  Death:
+  XDeath:
+	DMZM G 10
+    DMZM H 10 A_ScreamAndUnblock
+	DMZM IJ 8
+	DMZM KLMN 5
+    DMZM O -1
+    Stop
+  Raise:
+	Stop
+  }
+}
+
+ACTOR DominationBullet : ZombieTracer
+{
+  Damage (5 * random(1, 10))
+  Speed 100
+  DamageType "Domination"
+}

@@ -1,0 +1,8 @@
+Class DCY_Besmirch : DCY_SOULKING
+{
+  Default
+  {
+  Health 800;
+  Tag "\c[l0]Besmirch\c-";
+  }
+}

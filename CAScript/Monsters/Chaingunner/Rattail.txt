@@ -1,0 +1,178 @@
+Class DCY_Rattail : DCY_Plutonia
+{
+  Default
+  {
+  Translation "168:174=[255,255,255]:[128,255,255]", "174:180=[128,255,255]:[6,102,219]", "181:191=[6,102,219]:[0,2,64]", "224:231=[255,255,255]:[128,255,255]", "208:216=[255,255,255]:[128,255,255]", "217:223=[128,255,255]:[6,102,219]", "232:235=%[0.00,0.00,0.00]:[0.05,0.80,1.72]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "56:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "48:55=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[128,255,255]:[6,102,219]", "16:23=[255,255,255]:[128,255,255]", "24:31=[128,255,255]:[6,102,219]", "32:47=[6,102,219]:[0,2,64]", "192:195=[255,255,255]:[128,255,255]", "196:201=[128,255,255]:[6,102,219]", "202:207=[6,102,219]:[0,2,64]", "112:127=%[0.00,0.00,0.00]:[0.66,0.74,1.11]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=[128,255,255]:[6,102,219]", "1:2=%[0.00,0.00,0.00]:[0.41,0.55,0.84]", "5:8=%[0.00,0.00,0.00]:[0.57,0.57,0.57]";
+  Health 300;
+  BloodType "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  Tag "\c[l5]Rattail\c-";
+  SeeSound "Rattail/Sight";
+  ActiveSound "Rattail/Active";
+  PainSound "Rattail/Pain";
+  DeathSound "Rattail/Death";
+  DropItem "DCY_UltramodernEnergy", 45;
+  DropItem "DCY_UltramodernEnergy";
+  DropItem "Pistol";
+  DropItem "Chaingun";
+  }
+  
+  int missile;
+  
+  static const string Sounds[] = { "Rattail/Sight", "Rattail/Attack" };
+  
+  void A_Rattail(bool spread)
+  {
+	A_FaceTarget();
+	
+	if (!spread)
+		A_SpawnProjectile("DCY_RattailSphere", 35, 10, frandom(-2, 2));
+	else
+		A_SpawnProjectile("DCY_RattailSphere", 35, 10, frandom(-5, 5));
+		
+	A_StartSound("Weapons/ZombiePlasma", CHAN_WEAPON);
+  }
+  
+  States
+  {
+  Spawn:
+	R1TT A 10 DCY_Look();
+	Loop;
+  Look:
+	R1TT AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	R1TT AABBCCDD 2 A_Chase();
+	Loop;
+  Missile:
+	R1TT E 10
+	{
+		missile = 0;
+		A_FaceTarget();
+		
+		if (target && distance3D(target) < 200)
+			SetStateLabel("Ballthrower");
+		
+		if (health < 140)
+			SetStateLabel("FastMissile");
+	}
+	R1TT F 5 A_Rattail(false);
+	R1TT E 3
+	{
+		A_FaceTarget();
+		missile++;
+		
+		if (missile > 3)
+			SetStateLabel("See");
+	}
+	Goto Missile+1;
+  BallThrower:
+	R1TT E 15
+	{
+		A_StartSound(Sounds[random(0, 1)], CHAN_VOICE);
+		A_FaceTarget();
+	}
+	R1TT FEFEFEFEFEFEFEFEFEFEFEFE 2
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_RattailSpherule", 35, 10, frandom(-12, 12), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-12, 12));
+	}
+	R1TT E 15;
+	Goto See;
+  FastMissile:
+	R1TT E 10 A_FaceTarget();
+	R1TT F 2 A_Rattail(true);
+	R1TT E 3
+	{
+		A_FaceTarget();
+		missile++;
+		
+		if (missile > 5)
+			SetStateLabel("See");
+	}
+	Goto FastMissile+1;
+  Pain:
+	R1TT G 4;
+	R1TT G 4 A_Pain();
+	Goto See;
+  Death:
+	R1TT G 10;
+	R2TT A 5 A_Scream();
+	R2TT B 5 A_NoBlocking();
+	R2TT CDEF 5;
+	R2TT G -1;
+	Stop;
+  Raise:
+	R2TT FEDCBA 5;
+	Goto See;
+  }
+}
+
+Class DCY_RattailSphere : CacodemonBall
+{
+  Default
+  {
+  Speed 35;
+  FastSpeed 45;
+  Scale 0.415;
+  +BRIGHT
+  Radius 15;
+  Height 15;
+  SeeSound "Weapons/ZombiePlasma";
+  DeathSound "LASRSH0T";
+  Translation "0:255=%[0.00,0.03,0.28]:[0.80,1.41,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	S0U2 ABCDE 1
+	{
+		A_SpawnItemEx("DCY_FluorescentJetFlare", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+		A_SpawnParticle(0x9aedff, SPF_FULLBRIGHT, frandom(10, 15), frandom(10, 15), frandom(-15, 15), frandom(-13, 13), frandom(-13, 13), frandom(-13, 13));
+	}
+	Loop;
+  Death:
+	XZXZ EFGHIJ 3 Bright;
+	Stop;
+  }
+}
+
+Class DCY_FluorescentJetFlareSmaller : DCY_FluorescentJetFlareSmall { Default { Scale 0.2; } }
+
+Class DCY_RattailSpherule : DCY_RattailSphere
+{
+  Default
+  {
+  Scale 0.5;
+  Radius 5;
+  Height 5;
+  Speed 20;
+  FastSpeed 30;
+  SeeSound "FLECTRE";
+  DeathSound "ULHLYSHX";
+  +ROLLSPRITE
+  +RIPPER
+  Damage 1;
+  BounceFactor 1.0;
+  BounceCount 2;
+  BounceType "Hexen";
+  }
+  
+  States
+  {
+  Spawn:
+	SUE1 ABCDCB 1
+	{
+		A_SetRoll(Roll + 12);
+		A_SpawnItemEx("DCY_FluorescentJetFlareSmaller", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+	MMIS BCDEF 3;
+	Stop;
+  }
+}

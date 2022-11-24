@@ -1,0 +1,258 @@
+Class DCY_HellRazer : DCY_Impe
+{
+  Default
+  {
+  Health 200;
+  Speed 10;
+  SeeSound "HellRazer/Sight";
+  ActiveSound "HellRazer/Active";
+  AttackSound "D4RAILGF";
+  PainSound "MechaZombie/Pain";
+  HowlSound "MechaZombie/Pain";
+  DeathSound "MechaZombie/Death";
+  Tag "\c[Red]Hellrazer\c-";
+  DropItem "Chaingun", 192;
+  DropItem "DCY_Emphasis", 37;
+  DropItem "DCY_Palisade", 50;
+  Obituary "%o got razed.";
+  DropItem "Cell", 150;
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "Red";
+  PainChance 35;
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  +NODROPOFF
+  +DONTOVERLAP
+  +DONTHARMCLASS
+  +NOINFIGHTING
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got razed.",
+		"One day, a little robot did not eat all of his food, so der Machtzerstorer came to %h and obliterated %p's testicles. %g now has no testicles. \n%o:",
+		"%o couldn't stand it any longer."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  int laser;
+  int missile;
+  int fdeath;
+  
+  States
+  {
+  Spawn:
+    PRZR A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AABBCCDD 4 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" E 10 DCY_AlertSound();
+	Goto See;
+  See:
+    PRZR AABBCCDD 4
+	{
+		A_StopSound(CHAN_7);
+		A_Chase();
+	}
+	Loop;
+  Missile:
+    TNT1 A 0
+	{
+		If(target && Distance3D(target) < 200)
+			Return ResolveState("CloseMissile");
+		
+		Return ResolveState(null);
+	}
+	Goto NormalMissile;
+  CloseMissile:
+	TNT1 A 0
+	{
+		if (target && distance3D(target) > 450)
+			Return A_Jump(80, "Railgun", "NormalMissile");
+		else
+			Return A_Jump(80, "NormalMissile");
+	}
+	Goto RazerBeam;
+  Melee:
+  RazerBeam:
+    TNT1 A 0
+	{
+		A_StartSound("MechaZombie/Attack", CHAN_VOICE);
+		laser = 0;
+	}
+	PRZR EEEEEEEEEE 1 A_FaceTarget();
+	TNT1 A 0 A_StartSound("D4RazerBeam/Start", CHAN_AUTO, 0, 1.0, 0.9);
+	Goto RazerLoop;
+  RazerLoop:
+    TNT1 A 0 A_StartSound("D4RazerBeam/Laser", CHAN_7, CHANF_LOOPING, 1.0, 0.95);
+	PRZR F 1
+	{
+		if (laser >= 45)
+			SetStateLabel("RazerbeamStop");
+		
+		A_CustomRailgun(random(1, 6), 0, "", "", RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT, 0, 70, null, 0, 0, 400, 2, 7, 0, "DCY_RazerTrail2", -2);
+		A_FaceTarget(0.80, 0.80);
+		laser += 1;
+	}
+    Goto RazerLoop+1;
+  RazerBeamStop:
+    TNT1 A 0 A_StopSound(CHAN_7);
+    PRZR E 5 A_StartSound("D4RazerBeam/Stop", 0, CHAN_AUTO, 1.0, 0.9);
+	Goto See;
+  NormalMissile:
+	TNT1 A 0
+	{
+		missile = 0;
+		
+		if (target && distance3D(target) > 450)
+			Return A_Jump(60, "Railgun");
+		
+		Return ResolveState(null);
+	}
+    PRZR EEEEEE 1 A_FaceTarget();
+	PRZR F 2
+	{
+		A_SpawnProjectile("DCY_HellRazerPlasma", 32, 0, frandom(-8, 8), CMF_OFFSETPITCH, frandom(-4, 4));
+		A_FaceTarget();
+	}
+	PRZR E 2
+	{
+		if (missile > 11)
+			SetStateLabel("See");
+		
+		missile++;
+		
+		A_FaceTarget();
+	}
+	Goto NormalMissile+7;
+  Railgun:
+    TNT1 A 0
+	{
+		A_FaceTarget();
+		A_StartSound("DSWTH", CHAN_WEAPON, 0, 1.0, 0.45);
+	}
+    PRZR EEEEEEEEEEEEEEEEEE 1 A_FaceTarget(0.80, 0.80);
+	PRZR F 10
+	{
+		A_StartSound("D4RAILGF", CHAN_6, 0, 1.0, 0.75);
+		A_CustomRailgun(128, flags: RGF_SILENT|RGF_FULLBRIGHT, sparsity: 30, spawnclass: "DCY_RazerLaser");
+	}
+	Goto See;
+  Pain:
+    TNT1 A 0 A_StopSound(CHAN_7);
+	PRZR G 4;
+    PRZR G 4 A_Pain();
+	Goto See;
+  Death:
+  XDeath:
+  Death.Fire:
+	TNT1 A 0 A_StopSound(CHAN_7);
+    TNT1 A 0 A_Jump(256, "Death1", "Death2");
+	Goto Death1;
+  Death1:
+    PRZR I 1 { fdeath = 1; }
+	PRZR I 8 A_Scream();
+	TNT1 A 0 A_Fall();
+	PRZR JKL 8;
+	PRZR M -1;
+	Stop;
+  Death2:
+    PRZR N 1 { fdeath = 2; }
+	PRZR N 8 A_Scream();
+	TNT1 A 0 A_Fall();
+	PRZR OPQ 8;
+	PRZR R -1;
+	Stop;
+  Raise:
+    PRZR M 0
+	{
+		if (fdeath = 1)
+		{
+			Return ResolveState("Raise1");
+		}
+		if (fdeath = 2)
+		{
+			Return ResolveState("Raise2");
+		}
+		
+		Return ResolveState(null);
+	}
+	Goto Raise1;
+  Raise1:
+    PRZR MLKJI 8;
+	TNT1 A 0 { fdeath = 0; }
+	Goto See;
+  Raise2:
+    PRZR RQPON 8;
+	TNT1 A 0 { fdeath = 0; }
+	Goto See;
+  }
+}
+
+Class DCY_PowerRazerBeam : FastProjectile
+{
+  Default
+  {
+  Speed 250;
+  FastSpeed 250;
+  Radius 8;
+  Height 8;
+  Damage (1);
+  +RIPPER
+  +THRUGHOST
+  +THRUSPECIES
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 1.0;
+  MissileType "DCY_PowerRazerBeamLightning";
+  MissileHeight 6;
+  }
+  States
+  {
+  Spawn:
+    TNT1 AAAAAA 0;
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_PowerRazerBeamLightning : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.5;
+  Scale 0.75;
+  RenderStyle "Add";
+  +NOCLIP;
+  +NOINTERACTION;
+  +BRIGHT;
+  }
+  States
+  {
+  Spawn:
+	BLX1 Z 0;
+    BLX1 Z 0 A_Jump(192, "Spawn0", "Spawn1", "Spawn2");
+	Loop;
+  Spawn0:
+	BLX1 X 0;
+	BLX1 XYZXYZ 1 A_FadeOut(0.2, 0);
+	Stop;
+  Spawn1:
+	BLX1 Y 0;
+	BLX1 YZXYZX 1 A_FadeOut(0.2, 0);
+	Stop;
+  Spawn2:
+	BLX1 Z 0;
+	BLX1 ZXYZXY 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}

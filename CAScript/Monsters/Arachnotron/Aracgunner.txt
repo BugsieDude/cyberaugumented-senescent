@@ -1,0 +1,84 @@
+Class DCY_Aracgunner : DCY_SmallEnemySpider
+{
+  Default
+  {
+  Health 555;
+  Tag "Aracgunner";
+  Speed 13;
+  FastSpeed 16;
+  Translation "168:191=192:207", "16:47=193:207";
+  SeeSound "Aracgunner/Sight";
+  ActiveSound "Aracgunner/Active";
+  PainSound "Baby/Pain";
+  DeathSound "Aracgunner/Death";
+  Obituary "%o was gunned down by a Aracgunner.";
+  +DONTHARMCLASS
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  Scale 1.1125;
+  }
+  States
+  {
+  Spawn:
+    CSPI A 10 A_LookEx(0, 0, 0, 0, 180, "ThereHeIs");
+	Loop;
+  ThereHeIs:
+    CSPI A 20;
+	Goto See;
+  See:
+    CSPI A 3 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    CSPI ABBCC 3 A_Chase();
+    CSPI D 3 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    CSPI DEEFF 3 A_Chase();
+    Loop;
+  Missile:
+	CSPI A 20 A_FaceTarget();
+	CSPI A 0 A_Jump(94, "Shotgunny");
+	Goto Chaingunny;
+  Chaingunny:
+	CSPI H 1
+	{
+		A_FaceTarget();
+		A_StartSound("Rifle/Fire", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_AracgunnerBullet", 30, 0, random(-1, 1), CMF_OFFSETPITCH|CMF_TRACKOWNER, random(-1, 1));
+	}
+	CSPI G 2 A_FaceTarget();
+	CSPI G 0 A_Jump(2, "See");
+	CSPI G 0 A_MonsterRefire(100, "See");
+	Loop;
+  Shotgunny:
+    CSPI A 10 A_FaceTarget();
+	CSPI H 2
+	{
+		A_StartSound("Shotgun/Fire", CHAN_WEAPON);
+		
+		for (int i = 7; i > 0; i--)
+			A_SpawnProjectile("DCY_AracgunnerBullet2", 30, 0, random(-5, 5), CMF_OFFSETPITCH|CMF_TRACKOWNER, random(-4, 4));
+		
+		A_FaceTarget();
+	}
+	CSPI GGGGGGGGG 2 A_FaceTarget();
+	CSPI G 0 A_Jump(20, "See");
+	CSPI G 0 A_MonsterRefire(50, "See");
+	Goto Shotgunny+1;
+  Pain:
+    CSPI I 3;
+    CSPI I 3 A_Pain();
+    Goto See+1;
+  Death:
+    CSPI J 20 A_Scream();
+    CSPI K 7 A_NoBlocking();
+    CSPI LMNO 7;
+    CSPI P -1 A_BossDeath2();
+    Stop;
+  Death.Massacre:
+    CSPI J 20 A_Scream();
+    CSPI K 7 A_NoBlocking();
+    CSPI LMNO 7;
+    CSPI P -1 A_BossDeath2();
+    Stop;
+  Raise:
+    CSPI PONMLKJ 5;
+    Goto See+1;
+  }
+}

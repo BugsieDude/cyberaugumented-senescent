@@ -1,0 +1,79 @@
+Class DCY_Mindmonarch : DCY_TheGiantEnemySpider
+{
+  Default
+  {
+  Health 5000;
+  BloodColor "Purple";
+  Tag "\c[w6]Mindmonarch\c-";
+  SeeSound "MM/Sight";
+  ActiveSound "MM/Active";
+  PainSound "MM/Pain";
+  DeathSound "MM/Death";
+  }
+  
+  void A_BigLaser(string laser)
+  {
+	A_FaceTarget(0.5, 2.5);
+	A_SpawnProjectile(laser, 55, flags: CMF_AIMDIRECTION, pitch: pitch);
+  }
+  
+  int laser;
+  
+  States
+  {
+  Spawn:
+	NMBD A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 2;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	NMBD AABBCCDDEEFF 4 A_Chase();
+	Loop;
+  Missile:
+	NMBD G 0 { laser = 80; }
+	NMBD GGGGGGGGGG 5 A_FaceTarget();
+	NMBD F 1 A_StartSound("BIGASSLAZOR/FIRE", CHAN_WEAPON, attenuation: 0.5);
+	NMBD F 1
+	{
+		if (laser < 0)
+			SetStateLabel("Cooldown");
+		
+		A_BigLaser("DCY_MindmasterLaser");
+		laser--;
+	}
+	Goto Missile+12;
+  Cooldown:
+	NMBD A 68;
+	Goto See;
+  Pain:
+	NMBD I 4;
+	NMBD I 4 A_Pain();
+	Goto See;
+  Death:
+	NMBD I 5;
+	NMBD I 10 A_Scream();
+	NMBD JKLM 6;
+	NMBD N 6
+	{
+		A_NoBlocking();
+		A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);
+	}
+	NMBD OP 6 A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);
+	NMBD QRS 5;
+	NMBD S -1;
+	Stop;
+  Death.Massacre:
+	NMBD I 5;
+	NMBD I 10 A_Scream();
+	NMBD JKLM 6;
+	NMBD NOP 6;
+	NMBD QRS 5;
+	NMBD S -1;
+	Stop;
+  }
+}

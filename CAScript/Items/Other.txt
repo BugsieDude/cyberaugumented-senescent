@@ -1,0 +1,426 @@
+Class DCY_Palisade : CustomInventory Replaces BlurSphere
+{
+  Default
+  {
+  Inventory.PickupMessage "Palisade... At least ya have some protection in your soul!";
+  Inventory.PickupSound "Ring/Get";
+  Inventory.UseSound "Ring/Get";
+  Inventory.Amount 1;
+  Inventory.MaxAmount 3;
+  Inventory.InterHubAmount 3;
+  Scale 1.25;
+  Tag "Palisade - Portable Resistance for 40 seconds.";
+  Inventory.Icon "0RSRI0";
+  +FLOATBOB
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  }
+  
+  States
+  {
+  Spawn:
+	0RSR AABBCCDDEEFFGGHH 1 Bright;
+	Loop;
+  Use:
+	TNT1 A 32
+	{
+		A_SetBlend("Cyan", 0.5, 25, "Blue");
+		A_GiveInventory("DCY_PalisadePower", 1);
+	}
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_PalisadePower : PowerProtection
+{
+  Mixin CYPowerup;
+  
+  Default
+  {
+  DamageFactor "Normal", 0.625;
+  Powerup.Duration -40;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("PALIWARN", "PALIEND", "00c8ff", "00c8ff", false);
+  }
+}
+
+Class DCY_Deterrence : CustomInventory
+{
+  Default
+  {
+  Inventory.PickupMessage "Deterrence. That might regen a lot of your health no problem. Say hello to self medical care!";
+  Inventory.PickupSound "REGEN01";
+  Inventory.UseSound "REGEN02";
+  Inventory.Amount 1;
+  Inventory.MaxAmount 3;
+  Inventory.InterHubAmount 3;
+  Scale 1.25;
+  Tag "Deterrence - Portable Regeneration for 1 minute.";
+  Inventory.Icon "SPDSF0";
+  +FLOATBOB
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  }
+  
+  States
+  {
+  Spawn:
+	SPDS AAABBBCCCDDDEEE 1 Bright;
+	Loop;
+  Use:
+	TNT1 A 32
+	{
+		A_SetBlend("White", 0.5, 45, "Green");
+		A_GiveInventory("DCY_DeterrencePower", 1);
+	}
+	Stop;
+  }
+}
+
+Class DCY_DeterrencePower : PowerRegeneration
+{
+  Mixin CYPowerup;
+  
+  Default
+  {
+  DamageFactor "Normal", 0.925;
+  Powerup.Strength 15;
+  Powerup.Duration -60;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("DETEWARN", "RUNE03", "ffff00", "73ff00", true);
+  }
+}
+
+Class DCY_Barricade : CustomInventory
+{
+  Default
+  {
+  Inventory.PickupMessage "The Barricade gives you the ability to spam weapons whenever something's... That sounds dumb.";
+  Inventory.PickupSound "ITEMGET";
+  Inventory.UseSound "DSGETPO2";
+  Inventory.Amount 1;
+  Inventory.MaxAmount 3;
+  Inventory.InterHubAmount 3;
+  Scale 1.25;
+  Tag "Barricade - Portable Infinite Ammo for 20 seconds.";
+  Inventory.Icon "ERKOF0";
+  +FLOATBOB
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  }
+  
+  States
+  {
+  Spawn:
+	ERKO AABBCCDDEE 1 Bright;
+	Loop;
+  Use:
+	TNT1 A 25
+	{
+		A_SetBlend("Red", 0.5, 25);
+		A_GiveInventory("DCY_BarricadePower", 1);
+	}
+	Stop;
+  }
+}
+
+Class DCY_BarricadePower : PowerInfiniteAmmo
+{
+  Mixin CYPowerup;
+  
+  Default
+  {
+  DamageFactor "Normal", 0.925;
+  Powerup.Strength 15;
+  Powerup.Color "e7 37 58", 0.15;
+  Powerup.Duration -20;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("ITEMWARN", "", "ff7700", "ba4727", true);
+  }
+}
+
+Class DCY_AllMap : AllMap
+{
+  Default
+  {
+  Inventory.PickupSound "AllMap/PickedUp";
+  ActiveSound "AllMap/Loop";
+  Inventory.PickupMessage "\c[Orange]Automap\c- gained.";
+  }
+  
+  States
+  {
+  Spawn:
+	MAYY ABCDCB 6 Bright A_LoopActiveSound();
+	Loop;
+  Pickup:
+	MAYY A 0 Bright A_StopSound(CHAN_BODY);
+	Stop;
+  }
+}
+
+Class DCY_VesticalAbettance : CustomInventory
+{
+  Default
+  {
+  +COUNTITEM
+  +NOTIMEFREEZE
+  +INVENTORY.BIGPOWERUP
+  +INVENTORY.FANCYPICKUPSOUND
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  Inventory.Amount 1;
+  Inventory.MaxAmount 4;
+  Inventory.InterHubAmount 4;
+  Inventory.Icon "VTCPE0";
+  Scale 0.765;
+  Tag "Abettance - Increases your HEALTH and ARMOR by adding 200.";
+  Inventory.PickupMessage "Got an Abettance!";
+  Inventory.PickupSound "SPELL05";
+  }
+  
+  string information;
+  
+  static const string messages[] =
+  {
+	"\c+...Gah. Weird feeling.\c-",
+	"\c+I hope you feel better now.\c-",
+	"\c+Ready to kill? Or are you just getting healed all by yourself?\c-",
+	"\c+Usin' this to kill a big horde of enemies.\c-",
+	"\c+Some areas are just crazy mad.\c-"
+  };
+  
+  string messagenum;
+  States
+  {
+  Spawn:
+    VTCP ABCDCB 3 Bright;
+	Loop;
+  Pickup:
+	Stop;
+  Use:
+	TNT1 A 1
+	{
+		invoker.information = "(200+ Health & 800+ Armor)";
+		invoker.messagenum = invoker.messages[random(0, 4)];
+		A_GiveInventory("DCY_VesticalHealth");
+		A_GiveInventory("DCY_VesticalShield");
+		A_SetBlend("White", 0.7, 30, "Orange");
+		A_StartSound("princeofpersia2/potionsfx", CHAN_5);
+		A_StartSound("D4REGEN2", CHAN_ITEM);
+		A_Log(invoker.messagenum.." "..invoker.information);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VesticalHealth : Health
+{
+  Default
+  {
+  +INVENTORY.AUTOACTIVATE;
+  +INVENTORY.ALWAYSPICKUP;
+  -COUNTITEM;
+  Scale 1.3;
+  Inventory.Amount 200;
+  Inventory.MaxAmount 600;
+  Inventory.Icon "VTCPA0";
+  Inventory.PickupMessage "...um.";
+  Inventory.PickupSound "";
+  }
+}
+
+Class DCY_VesticalShield : BasicArmorPickup
+{
+  Default
+  {
+  Inventory.PickupMessage "Hey, that's cheatin!";
+  +INVENTORY.QUIET;
+  +INVENTORY.AUTOACTIVATE;
+  +INVENTORY.ALWAYSPICKUP;
+  Inventory.Icon "VTCPA0";
+  Armor.SavePercent 800;
+  Armor.SaveAmount 800;
+  }
+}
+
+Class DCY_Berserk : Berserk
+{
+  Default
+  {
+  Inventory.PickupMessage "\c[Red]RIP AND TEAR\c-.";
+  Inventory.PickupSound "Berserk/Pickup";
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.41,0.43,0.43]";
+  +FLOATBOB
+  }
+  
+  States
+  {
+  Spawn:
+	BSKR AAABBBCCCDDD 1 A_SpawnItemEx("DCY_MegasphereAura", random(-1, 1), random(-1, 1), random(24, 28), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Loop;
+  Pickup:
+	TNT1 A 0 A_Jump(30, "DeItem");
+	Goto PickupReady;
+  DeItem:
+	TNT1 A 0
+	{
+		A_StartSound("RIPANDTEAR", CHAN_6);
+		A_StartSound("RIPANDTEAR", CHAN_7);
+	}
+	Goto PickupReady;
+  PickupReady:
+	TNT1 A 50
+	{
+		A_GiveInventory("DCY_BerserkStrength");
+		A_GiveInventory("DCY_BerserkInvulnerability");
+		A_GiveInventory("DCY_BerserkDamage");
+		A_GiveInventory("DCY_BerserkSpeed");
+		A_SetBlend("White", 1.0, 25, "Red");
+		A_QuakeEx(4, 4, 4, 40, 0, 2000, flags: QF_SCALEDOWN, rollintensity: 2.0, rollwave: 0.141);
+		A_SetMugshotState("BERSERK");
+		A_StartSound("Berserk/Pickup", CHAN_5);
+		HealThing(200, 0);
+	}
+    Stop;
+  }
+}
+
+Class DCY_BerserkSpeed : PowerSpeed
+{
+  Mixin CYPowerup;
+  
+  Default 
+  {
+  Powerup.Duration -30; 
+  Powerup.Color "FF 00 00", 0.25; 
+  Speed 1.25;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("Berserk/Warning", "Berserk/End", "ba2727", "ba2727", true);
+  }
+}
+
+Class DCY_BerserkStrength : PowerStrength { Default { Powerup.Duration -30; Powerup.Color "FF 00 00", 0.25; } }
+Class DCY_BerserkDamage : PowerDamage { Default { DamageFactor "Normal", 2; Powerup.Duration -30; } }
+Class DCY_BerserkInvulnerability : PowerInvulnerable { Default { Powerup.Duration -30; } }
+
+Class DCY_Photocoagulator : CustomInventory
+{
+  Default
+  {
+  Inventory.Amount 1;
+  Inventory.MaxAmount 1;
+  Inventory.InterHubAmount 1;
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  Inventory.PickupMessage "Photocoagulator! It enhances bullet-based weapons I think...";
+  Inventory.PickupSound "PHTCPKUP";
+  Inventory.UseSound "SPELL06";
+  Tag "Photocoagulator - Guns turn explosive.";
+  Inventory.Icon "MAYXZ0";
+  }
+  
+  States
+  {
+  Spawn:
+	MAYX ABCDEFGHIJ 4 Bright;
+	Loop;
+  Use:
+	TNT1 A 32
+	{
+		A_SpawnItemEx("DCY_PhotocoagulatorRingThing", 0, 0, 30, 0, 0, 0, angle, SXF_NOCHECKPOSITION);
+		A_QuakeEx(2, 2, 2, 22, 0, 200, "none", QF_SCALEDOWN);
+		A_SetBlend("Blue", 0.75, 25, "Blue");
+		A_GiveInventory("DCY_PhotocoagulatorPower", 1);
+	}
+	Stop;
+  }
+}
+
+Class DCY_PhotocoagulatorPower : PowerWeaponLevel2
+{
+  Mixin CYPowerup;
+  
+  Default
+  {
+  Powerup.Duration -40;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("PHTCWARN", "PHTCEND", "69c0ff", "1751ff", true);
+  }
+}
+
+Class DCY_Emphasis : CustomInventory
+{
+  Default
+  {
+  Inventory.Amount 1;
+  Inventory.MaxAmount 1;
+  Inventory.InterHubAmount 1;
+  +INVENTORY.INVBAR
+  +INVENTORY.HUBPOWER
+  Inventory.PickupMessage "Emphasis! Something something Level 2 weapons... but for plasma.";
+  Inventory.PickupSound "SPR1POW1";
+  Inventory.UseSound "SPR1POW2";
+  Tag "Emphasis - Turns plasmatic weapons into something different.";
+  Inventory.Icon "MAYWZ0";
+  }
+  
+  States
+  {
+  Spawn:
+	MAYW ABCDEFGH 6 Bright;
+	Loop;
+  Use:
+	TNT1 A 32
+	{
+		A_QuakeEx(2, 2, 2, 22, 0, 200, "none", QF_SCALEDOWN);
+		A_SetBlend("9003fc", 0.75, 15, "Purple");
+		A_GiveInventory("DCY_EmphasisPower", 1);
+	}
+	Stop;
+  }
+}
+
+Class DCY_EmphasisPower : PowerWeaponLevel2
+{
+  Mixin CYPowerup;
+  
+  Default
+  {
+  Powerup.Duration -40;
+  }
+  
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	time = EffectTics;
+	PowerTimer("EPHAWARN", "EPHAEND", "9003fc", "2803fc", false);
+  }
+}

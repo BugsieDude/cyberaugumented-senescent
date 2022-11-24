@@ -1,0 +1,77 @@
+Class DCY_Qualm : DCY_SkinnyFat
+{
+  Default
+  {
+  Health 900;
+  SeeSound "LightningEttinSight";
+  ActiveSound "LightningEttinActive";
+  AttackSound "LightningEttinSight";
+  PainSound "LightningEttinPain";
+  DeathSound "LightningEttinDeath";
+  Tag "Qualm";
+  BloodType "AndroidNeonFluid";
+  BloodColor "9eff03";
+  +MISSILEMORE
+  +FLOAT
+  +NOGRAVITY
+  -FLOORCLIP
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got radiated.",
+		"Qualm is worry or fear."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  override void Tick()
+  {
+	Super.Tick();
+	
+	If (Health > 0 && !IsFrozen())
+	{
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare",0,random(10,20),10,0,0,random(-4,-6),0,128,188);
+			A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare",0,random(-10,-20),10,0,0,random(-4,-6),0,128,188);
+		}
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	QUAL AB 2 A_Look();
+	Loop;
+  See:
+	QUAL AABBCCDD 3 A_Chase();
+	Loop;
+  Missile:
+	Goto See;
+  Pain:
+	QUAL J 4;
+	QUAL J 4 A_Pain();
+	Goto See;
+  Death:
+	QUAL K 1;
+	QUAL K 10 A_Scream();
+	QUAL LM 6;
+	QUAL N 1 A_NoBlocking();
+	QUAL NOPQRS 5;
+	QUAL T -1
+	{
+		A_BossDeath2();
+		A_SetFloorClip();
+	}
+	Stop;
+  Raise:
+	QUAL S 4 A_UnsetFloorClip();
+	QUAL RQPONMLK 4;
+	Goto See;
+  }
+}
+  

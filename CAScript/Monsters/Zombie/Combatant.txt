@@ -1,0 +1,101 @@
+Class DCY_Combatant : DCY_Zombe
+{
+  Default
+  {
+  Health 45;
+  Tag "Combatant";
+  Obituary "%o got shot by a Combatant.";
+  Translation "112:127=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "80:111=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "5:8=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "1:3=%[0.00,0.00,0.00]:[0.59,0.59,0.59]", "128:159=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "236:239=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "13:15=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "48:79=%[0.09,0.03,0.02]:[1.03,0.64,0.43]", "16:47=%[0.00,0.00,0.00]:[1.01,0.00,0.00]", "9:12=%[0.00,0.00,0.00]:[0.10,0.03,0.00]";
+  }
+  
+  void A_Combatant()
+  {
+	A_FaceTarget();
+	A_SpawnProjectile("DCY_ZombieTracer", 33, -3, frandom(-2.0, 2.0));
+	A_StartSound("PIS5FIRE", CHAN_WEAPON);
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o ran and got the gun.",
+		"%o got shot by a Combatant.",
+		"%o angered the Combatant."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	RR3_ A 10 DCY_Look();
+	Loop;
+  Look:
+	RR3_ AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		
+		if (random(0, 20) == 0)
+			SetStateLabel("Stand");
+	}
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Stand:
+	RR3_ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	RR3_ AABBCCDD 2 A_Chase();
+	Loop;
+  Missile:
+	RR3_ A 0
+	{
+		if (random(0, 5) == 0)
+		{
+			tics = 10;
+			A_Dodging(10);
+		}
+		else
+			tics = 0;
+		
+		A_FaceTarget();
+	}
+	RR3_ E 10 A_FaceTarget();
+	RR3_ F 2 Bright A_Combatant();
+	RR3_ E 2 A_FaceTarget();
+	RR3_ F 2 Bright A_Combatant();
+	RR3_ E 2 A_FaceTarget();
+	RR3_ F 2 Bright A_Combatant();
+	RR3_ E 10;
+	Goto See;
+  Pain:
+	RR3_ G 4;
+	RR3_ G 3 A_Pain();
+	Goto See;
+  Death:
+	RR3_ H 5;
+	RR3_ I 5 A_ScreamAndUnblock();
+	RR3_ JKLM 4;
+	RR3_ N -1;
+	Stop;
+  XDeath:
+	RR3_ O 6;
+	RR3_ P 4
+	{
+		A_NoBlocking();
+		A_XScream();
+	}
+	RR3_ QRSTU 4;
+	RR3_ V -1;
+	Stop;
+  Raise:
+	RR3_ NM 4;
+	RR3_ LKJIH 3;
+	Goto See;
+  }
+}

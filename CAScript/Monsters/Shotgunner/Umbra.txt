@@ -1,0 +1,98 @@
+Class DCY_Umbra : DCY_ShotgunZombe
+{
+  Default
+  {
+  Health 127;
+  Tag "\c[k5]Umbra\c-";
+  Translation "112:127=%[0.00,0.00,0.00]:[0.70,0.24,0.24]", "48:79=%[0.00,0.00,0.00]:[0.36,0.36,0.36]", "128:159=%[0.00,0.00,0.00]:[0.50,0.50,0.50]", "0:0=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "160:255=%[0.00,0.00,0.00]:[0.79,0.69,1.31]", "16:47=%[0.00,0.00,0.00]:[0.79,0.69,1.31]";
+  +NOBLOOD
+  +MISSILEMORE
+  +FLOAT
+  +NOGRAVITY
+  +NODROPOFF
+  +DONTHARMCLASS
+  +THRUSPECIES
+  +THRUGHOST
+  SeeSound "Umbra/Sight";
+  ActiveSound "Umbra/Active";
+  PainSound "Umbra/Pain";
+  DeathSound "Umbra/Death";
+  Speed 3;
+  FastSpeed 5;
+  DropItem "Cell", 80;
+  DropItem "Shell";
+  DropItem "Clip";
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o messed with an umbra.",
+		"Fade in. Fade out. Alpha equals zero.",
+		"Ouch..."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  int missile;
+	
+  States
+  {
+  Spawn:
+	CYBS A 10 DCY_Look();
+	Loop;
+  Look:
+	CYBS A 3 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	CYBS A 3 A_Chase();
+	Loop;
+  Missile:
+	CYBS E 10 { missile = random(0, 1); A_FaceTarget(); }
+	CYBS F 4 Bright
+	{
+		A_SpawnProjectile("DCY_UmbraPlasma", 33, 5);
+		A_FaceTarget();
+	}
+	CYBS E 9
+	{
+		A_SetTics(random(2, 5));
+		A_FaceTarget();
+		
+		missile++;
+		
+		if (missile > 3)
+			SetStateLabel("See");
+	}
+	Goto Missile+1;
+  Pain:
+	CYBS G 3 A_Stop();
+	CYBS G 3 A_Pain();
+	Goto See;
+  Death:
+  Death.Fire:
+	CYBS H 5;
+	CYBS I 4 A_Scream();
+	CYBS J 4 A_Fall();
+	CYBS KLM 3;
+	CYBS N -1;
+	Stop;
+  XDeath:
+	CYBS O 1;
+	CYBS O 4 A_Scream();
+	CYBS P 4 A_Fall();
+	CYBS QRSTUV 3;
+	CYBS W -1;
+	Stop;
+  Raise: 
+	CYBS KJ 5;
+	CYBS IH 5;
+	Goto See ;
+  }
+}

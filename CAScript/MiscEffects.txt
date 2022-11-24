@@ -1,0 +1,75 @@
+Class DCY_BionicRing : Actor
+{
+  Default
+  {
+  Scale 1.35;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Radius 0;
+  Height 0;
+  -SOLID;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.65,0.62]";
+  }
+  States
+  {
+  Spawn:
+	C28Y ABCDEFGHIJKLMNOPQ 1 A_SetScale(Scale.X+0.2, Scale.Y+0.2);
+	Stop;
+  }
+}
+
+Class DCY_EmissionSphere : DCY_BionicRing
+{
+  Default
+  {
+  Scale 0.2;
+  }
+  States
+  {
+  Spawn:
+	C28Y AAA 0 Bright A_SpawnItemEx("DCY_AndroidExplosionSmall", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	C28Y ABCDEFGHIJLMOQ 1 A_SetScale(Scale.X+0.052, Scale.Y+0.052);
+	Stop;
+  }
+}
+
+Class DCY_SpiritRing : DCY_BionicRing { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.10,1.39,2.00]"; } }
+Class DCY_SpiritExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.10,1.39,2.00]"; } }
+
+Class DCY_SpiritTrail : DCY_Effect
+{
+  Default
+  {
+  Alpha 0.35;
+  RenderStyle "Add";
+  +BRIGHT;
+  +NOCLIP;
+  +NOINTERACTION;
+  +THRUGHOST;
+  +THRUSPECIES;
+  Scale 1.0;
+  Radius 0;
+  Height 0;
+  }
+  States
+  {
+  Spawn:
+	SPER "#" 1
+	{
+		If(Alpha <= 0.00000000)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_FadeOut(0.05, 0);
+			A_SetScale(Scale.X+0.01, Scale.Y+0.01);
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  }
+}

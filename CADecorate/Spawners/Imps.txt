@@ -1,0 +1,30 @@
+ACTOR DCY_Impo : RandomSpawner Replaces DoomImp
+{
+  DropItem "DCY_Dastard", 256, 2200
+  DropItem "DCY_Painsend", 256, 1000
+  DropItem "DCY_Violator", 256, 850
+  DropItem "DCY_Pryer", 256, 1500
+  DropItem "DCY_Serpent", 256, 740
+  DropItem "DCY_Perserver", 256, 430
+  DropItem "DCY_LiquidatorTypeImp", 256, 100
+  DropItem "DCY_SubzeroUmbrage", 256, 120
+  DropItem "DCY_SiriusImp", 256, 110
+  DropItem "DCY_RegulusImp", 256, 80
+  DropItem "DCY_Terminalist", 256, 90
+  DropItem "DCY_Sacker", 256, 70
+  DropItem "DCY_LightningPhase", 256, 70
+  DropItem "DCY_Caviler", 256, 56
+  DropItem "DCY_Pathogen", 256, 44
+  DropItem "DCY_AbyssalSycophant", 256, 150
+  DropItem "DCY_NimbusImp", 256, 25
+  DropItem "DCY_Anathema", 256, 20
+  DropItem "DCY_Trepidation", 256, 19
+  DropItem "DCY_Manes", 256, 19
+  DropItem "DCY_HellRazer", 256, 27
+  DropItem "DCY_AtramentousImp", 256, 27
+  DropItem "DCY_PhasicRazer", 256, 23
+  DropItem "DCY_DivinePhantom", 256, 8
+  DropItem "DCY_Eavesdropper", 256, 6
+  DropItem "DCY_ExoImp", 256, 4
+  DropItem "DCY_Ultracerest", 256, 1
+}

@@ -1,0 +1,161 @@
+Class DCY_Terminalist : DCY_Impe
+{
+  Default
+  {
+  Translation "48:79=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "5:15=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "1:2=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "128:159=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "192:207=%[0.00,0.00,0.00]:[2.00,0.37,0.37]", "240:247=%[0.00,0.00,0.00]:[2.00,0.37,0.37]";
+  Tag "\c[DarkRed]Terminalist\c-";
+  Obituary "%o failed to get the Terminalist to be destroyed and was atomized.";
+  HitObituary "%o was scronched by the Terminalist in the ribcage fast and dead.";
+  Health 100;
+  SeeSound "TerminalImp/Sight";
+  ActiveSound "TerminalImp/Active";
+  PainSound "TerminalImp/Pain";
+  DeathSound "TerminalImp/Death";
+  AttackSound "imp/melee";
+  DropItem "DCY_Emphasis", 40;
+  MeleeDamage 8;
+  Speed 12.5;
+  FastSpeed 17.5;
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +ALWAYSFAST
+  DamageFactor "Plasma", 0.9;
+  }
+  
+  States
+  {
+  Spawn:
+    CIMP A 10 DCY_Look();
+	Loop;
+  Look:
+	CIMP AABBCCDD 4 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    TNT1 A 0 A_Jump(12, "Avoid");
+    CIMP AABBCCDD 3 A_Chase("Melee", "Missile", CHF_FASTCHASE);
+	Goto See+1;
+  Melee:
+    CIMP E 5 A_FaceTarget();
+	CIMP F 5
+	{
+		A_FaceTarget();
+		A_CustomMeleeAttack(8, "");
+		Return A_Jump(45, "Missile");
+	}
+	Goto See;
+  Lunge:
+    CIMP E 9 A_FaceTarget();
+	TNT1 A 0 A_Jump(192, "Missile");
+	CIMP F 1
+	{
+		A_FaceTarget();
+		A_Recoil(-15);
+		bSlidesOnWalls = true;
+	}
+	CIMP FFFFFFFFFFF 1 A_CustomMeleeAttack(8, "imp/melee");
+	CIMP F 0 { bSlidesOnWalls = false; }
+	Goto Missile;
+  Avoid:
+    CIMP A 2
+	{
+		bSlidesOnWalls = true;
+		A_Hop(3);
+		A_Dodging(12);
+	}
+	CIMP AAAAA 1 A_Chase();
+	TNT1 A 0 { bSlidesOnWalls = false; }
+	Goto See;
+  Missile:
+    CIMP E 10
+	{
+		bSlidesOnWalls = false;
+		A_FaceTarget();
+	}
+	CIMP F 10 A_FaceTarget();
+	CIMP G 10
+	{
+		If (target && Distance3D(target) < 200)
+			Return ResolveState("Lunge");
+		
+		A_SpawnProjectile("DCY_TLaser", 32, 0);
+		Return A_Jump(50, "Avoid");
+	}
+    Goto See;
+  Pain:
+    CIMP H 4;
+	CIMP H 3 A_Pain();
+	Goto See;
+  Death:
+    CIMP I 7;
+    CIMP J 6 A_Scream();
+    CIMP K 4;
+    CIMP L 4 A_NoBlocking();
+    CIMP M -1;
+    Stop;
+  XDeath:
+    CIMP N 5;
+    CIMP O 4 A_XScream();
+    CIMP P 4;
+    CIMP Q 4 A_NoBlocking();
+    CIMP RST 4;
+    CIMP U -1;
+    Stop;
+  Raise:
+    CIMP MLKJI 8;
+    Goto See;
+  }
+}
+
+Class DCY_TLaser : FastProjectile
+{
+  Default
+  {
+  Obituary "That laser disintegrated %o molecule by molecule.";
+  DamageType "Disintegration";
+  Speed 45;
+  Damage 4;
+  SeeSound "R3LASR3";
+  DeathSound "R3MINIEX";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.37,0.37]";
+  MissileType "DCY_TLTrail";
+  MissileHeight 6;
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 1.0;
+  Radius 14;
+  Height 6;
+  }
+  States
+  {
+  Spawn:
+    TML_ A 1 Bright;
+    Loop;
+  Death:
+	TNT1 A 1;
+    TNT1 A 5
+	{
+		A_Explode(2, 17, 0, 0);
+		A_SpawnItemEx("DCY_AndroidExplosionSmall", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_TLTrail : DCY_GunmetalInfiltratorBallTrail
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.37,0.37]";
+  }
+  
+  States
+  {
+  Spawn:
+    TML_ AAAAA 1 Bright A_FadeOut(0.2, 0);
+	Stop;
+  }
+}

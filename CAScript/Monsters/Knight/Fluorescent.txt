@@ -1,0 +1,187 @@
+Class DCY_FluorescentChevalier : DCY_KnightHell
+{
+  Default
+  {
+  Tag "\c[e3]Soul Chevalier\c-";
+  Health 700;
+  Translation "112:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]", "0:111=%[0.00,0.00,0.00]:[0.59,0.59,0.59]";
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +NODROPOFF
+  +ALWAYSFAST
+  +DONTGIB
+  +QUICKTORETALIATE
+  +BRIGHT
+  BloodColor "6895de";
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  MeleeDamage 15;
+  SeeSound "SKnight/Sight";
+  ActiveSound "SKnight/Active";
+  PainSound "SKnight/Pain";
+  DeathSound "SKnight/Death";
+  MeleeSound "knight/melee";
+  DamageFactor "FWave", 0.00;
+  }
+  
+  States
+  {
+  Spawn:
+    PYRO A 10 DCY_Look();
+	Loop;
+  Look:
+	PYRO AAAABBBBCCCCDDDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    PYRO AAAABBBBCCCCDDDD 2 A_Chase();
+	Loop;
+  Melee:
+    PYRO EF 6 A_FaceTarget();
+	PYRO G 6 A_CustomMeleeAttack(7 * random(1, 10), "knight/melee", "");
+	PYRO IJ 6 A_FaceTarget();
+	PYRO K 6 A_CustomMeleeAttack(7 * random(1, 10), "knight/melee", "");
+    Goto See;
+  Missile:
+    TNT1 A 0 A_Jump(64, "Wave", "Spread");
+    PYRO EF 7 A_FaceTarget();
+	PYRO G 5 A_SpawnProjectile("DCY_FBall", 30, 0, 0);
+	PYRO H 5;
+	PYRO IJ 7 A_FaceTarget();
+	PYRO K 5 A_SpawnProjectile("DCY_FBall", 30, 0, 0);
+	PYRO L 5;
+	Goto See;
+  Spread:
+    PYRO MN 10 A_FaceTarget();
+	PYRO O 7
+	{
+		A_SpawnProjectile("DCY_FBall", 30, 0, 0);
+		A_SpawnProjectile("DCY_FBall", 30, 0, 10);
+		A_SpawnProjectile("DCY_FBall", 30, 0, -10);
+	}
+	PYRO P 7;
+	Goto See;
+  Wave:
+    PYRO NNMMN 8 A_FaceTarget();
+	PYRO O 8
+	{
+		A_SpawnProjectile("DCY_FWave", 5, -25, 0, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+		A_SpawnProjectile("DCY_FWave", 5, 25, 0, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+		A_SpawnProjectile("DCY_FWave", 5, 0, 0, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+	}
+	PYRO OP 8;
+	Goto See;
+  Pain:
+    PYRO Q 7 A_Pain();
+	Goto See;
+  Death:
+    PYRO R 1;
+	PYRO R 7 A_ScreamAndUnblock();
+	PYRO STUVWXY 8;
+	PYRO Z -1;
+	Stop;
+  Raise:
+    PYRO YXWVUTSTR 8;
+	Goto See;
+  }
+}
+
+Class DCY_FBall : FastProjectile
+{
+  Default
+  {
+  Speed 13;
+  FastSpeed 19;
+  Damage 7;
+  Radius 10;
+  Height 10;
+  RenderStyle "Add";
+  Alpha 1.0;
+  SeeSound "Freedoom/Imp/Attack";
+  DeathSound "Freedoom/Imp/ShotX";
+  Translation "0:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]";
+  +NEVERFAST
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    BAL7 AABB 1
+	{
+		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_Weave(2, 2, 1, 0);
+	}
+	Loop;
+  Death:
+	BAL7 CCDDEE 1
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+	}
+	Stop;
+  }
+}
+
+Class DCY_FAura1 : Actor
+{
+  Default
+  { 
+  Scale 1.3;
+  Alpha 0.5;
+  RenderStyle "Add";
+  Radius 0;
+  Height 0;
+  DamageType "FWave";
+  Translation "0:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]";
+  +BRIGHT
+  +DONTSPLASH
+  +NOCLIP
+  +NOINTERACTION
+  } 
+  States
+  {
+  Spawn:
+	FTR3 ABCDEFGIJ 2 A_Explode(1, 30);
+	Stop;
+  }
+}
+
+Class DCY_FWave : CacodemonBall
+{
+  Default
+  {
+  Radius 21;
+  Height 0;
+  Speed 22;
+  FastSpeed 24.5;
+  RenderStyle "Add";
+  DamageType "FWave";
+  Scale 1.0;
+  Alpha 1.0;
+  SeeSound "";
+  DeathSound "";
+  Translation "0:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]";
+  +BRIGHT
+  +FLOORHUGGER
+  +FLOORCLIP
+  +DONTSPLASH
+  +RIPPER
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_FAura1");
+		A_Weave(2, 0, 4, 0);
+		A_Explode(3, 40, XF_NOTMISSILE, 1);
+	}
+	Loop;
+  Death:
+    TNT1 A 2;
+	Stop;
+  }
+}

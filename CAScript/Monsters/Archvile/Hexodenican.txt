@@ -1,0 +1,325 @@
+Class DCY_Hexodenican : DCY_VileParent
+{
+  Default
+  {
+  SeeSound "HX/Sight";
+  ActiveSound "HX/Active";
+  PainSound "HX/Pain";
+  DeathSound "HX/Death";
+  Health 1000;
+  Tag "\c[n9]Hexodenican\c-";
+  +MISSILEMORE
+  +NOTARGET
+  +DONTHARMCLASS
+  +FIRERESIST
+  +NORADIUSDMG
+  +BRIGHT
+  DamageFactor "Hex", 0.000;
+  BloodType "AndroidNeonFluid";
+  BloodColor "Green";
+  Obituary "%o was hexed by the Hexodenican's mastery.";
+  HitObituary "%o was hexed by the Hexodenican's mastery.";
+  Scale 1.245;
+  Speed 10;
+  +NEVERFAST;
+  PainChance 20;
+  }
+  States
+  {
+  Spawn:
+	H3X_ A 10 A_Look();
+	Loop;
+  See:
+	H3X_ AAAAABBBBBCCCCCDDDDD 1
+	{
+		A_Chase();
+		if (!sv_effectchoker) A_SpawnItemEx("DCY_HexodenicanTrail2", -13, 0, 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	Loop;
+  Missile:
+  ThrowGravityFireball:
+	H3X_ J 0 A_JumpIfCloser(180, "FireFloor");
+	H3X_ J 6 A_FaceTarget();
+	H3X_ JJI 5;
+	H3X_ H 5 A_SpawnProjectile("DCY_HexFireball", 55, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, -30);
+	H3X_ HGGA 3;
+	Goto See;
+  FireFloor:
+	H3X_ HIJ 5 A_FaceTarget();
+	H3X_ K 4
+	{
+		A_FaceTarget();
+		A_StartSound("FLAME001", CHAN_WEAPON, attenuation: 0.85);
+		
+		for (int i = 45; i < 360; i += 90)
+			A_SpawnProjectile("DCY_HexGroundFire", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+	}
+	H3X_ LAA 4;
+	Goto See;
+  Pain:
+	H3X_ M 4;
+	H3X_ M 2 A_Pain();
+	Goto See;
+  Death:
+	H3X_ M 1;
+	H3X_ M 1 A_Scream();
+	H3X_ MMMMMMMMMMMMMMMMMMMM 2 A_SpawnItemEx("DCY_HexodenicanTrail", zofs: 6, zvel: 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	H3X_ UVWX 5;
+	H3X_ YZ 4 A_NoBlocking();
+	H4X_ ABC 2;
+	H4X_ C -1;
+	Stop;
+  Death.Massacre:
+	H3X_ M 1;
+	H3X_ M 20 A_Scream();
+	H3X_ UVWX 5;
+	H3X_ YZ 4 A_NoBlocking();
+	H4X_ ABC 2;
+	H4X_ C -1;
+	Stop;
+  }
+}
+
+Class DCY_HexFireball : CacodemonBall
+{
+  Default
+  {
+  Damage 20;
+  +NEVERFAST
+  +BRIGHT
+  -NOGRAVITY
+  Gravity 1.1;
+  Speed 23;
+  DamageType "Hex";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.76,1.52,0.00]";
+  SeeSound "FIRE001";
+  DeathSound "FIRE002";
+  Radius 20;
+  Height 30;
+  Scale 1.0;
+  Alpha 1.0;
+  }
+  States
+  {
+  Spawn:
+	EB77 ABCDEF 2 Bright
+	{
+		A_SpawnItemEx("DCY_HexBallTrail", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION);
+		A_Weave(1, 0, frandom(-3.0, 3.0), 0);
+	}
+	Loop;
+  Death:
+	EB77 GHI 3 Bright;
+	EB77 I 1 Bright
+	{
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 80);
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 80);
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 80);
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 80);
+	}
+	EB77 JK 3 Bright;
+	EB77 L 4 Bright
+	{
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 128);
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 128);
+		A_SpawnItemEx("DCY_HexFire", frandom(-50.0, 50.0), frandom(-50.0, 50.0), 0, 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 128);
+	}
+	EB77 MNOPQ 3 Bright A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_HexBallTrail : DCY_HexodenicanTrail
+{
+  Default { RenderStyle "Add"; }
+  
+  States
+  {
+  Spawn:
+	F43E A 1 A_SetScale(frandompick(-1.205, 1.205), 0.75);
+	F43E A 2
+	{
+		A_Explode(10, 80, XF_NOTMISSILE, 0);
+	}
+	F43E BCDEFG 2 A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+	Stop;
+  }
+}
+
+Class DCY_HexGroundFire : DCY_ArchfireProjectile
+{
+  Default
+  {
+  Speed 20;
+  +NEVERFAST;
+  DamageType "Hex";
+  SeeSound "FLAME001";
+  +DONTSPLASH
+  DeathSound "";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.76,1.52,0.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	{
+		If(fire >= 10)
+		{
+			Return ResolveState("Null");
+		}
+		Else
+		{
+			A_SpawnItemEx("DCY_ArchfireHexo", 0, 0, 5, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERPOINTERS);
+			A_SpawnItemEx("DCY_HexFireSmall", 0, 0, 5, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+			fire++;
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  Death:
+	Stop;
+  }
+}
+
+Class DCY_ArchfireHexo : DCY_Archfire { Default { DamageType "Hex"; } }
+
+Class DCY_HexFire : DCY_Effect
+{
+  Default
+  {
+  Scale 2.5;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.76,1.52,0.00]";
+  RenderStyle "Add";
+  Alpha 0.1;
+  +NOCLIP
+  +FLOORHUGGER
+  +BRIGHT
+  +THRUSPECIES
+  +THRUACTORS
+  +DONTSPLASH
+  Radius 41;
+  Height 32;
+  DamageType "Hex";
+  }
+  
+  int loop;
+  
+  States
+  {
+  Spawn:
+	EB77 M 0 NoDelay A_SetScale(frandompick(-2.5, 2.5), 2.5);
+	EB77 MNOPQR 2
+	{
+		A_FadeIn(0.1, 0);
+		A_SpawnItemEx("DCY_HexFireTrail", frandom(-30.0, 30.0), frandom(-30.0, 30.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 16.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 200);
+	}
+	Goto Looper;
+  Looper:
+	EB77 MMNNOOPPQQRR 1
+	{
+		If(loop >= 333)
+		{
+			Return ResolveState("FadeOut");
+		}
+		Else
+		{
+			A_SpawnItemEx("DCY_HexFireTrail", frandom(-30.0, 30.0), frandom(-30.0, 30.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 12.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 220);
+			A_SpawnItemEx("DCY_HexFireTrail", frandom(-30.0, 30.0), frandom(-30.0, 30.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 12.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 200);
+			A_SpawnItemEx("DCY_HexFireTrail", frandom(-30.0, 30.0), frandom(-30.0, 30.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 12.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 190);
+			loop++;
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  FadeOut:
+	EB77 MNOPQR 2 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}
+
+Class DCY_HexFireSmall : DCY_HexFire
+{
+  Default
+  {
+  Scale 1.35;
+  Radius 24;
+  Height 17;
+  }
+  
+  States
+  {
+  Spawn:
+	EB77 M 0 NoDelay A_SetScale(frandompick(-1.35, 1.35), 1.35);
+	EB77 MNOPQR 2
+	{
+		A_FadeIn(0.1, 0);
+		A_SpawnItemEx("DCY_HexFireTrailSmall", frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 16.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 200);
+	}
+	Goto Looper;
+  Looper:
+	EB77 MMNNOOPPQQRR 1
+	{
+		If(loop >= 30)
+		{
+			Return ResolveState("FadeOut");
+		}
+		Else
+		{
+			A_Explode(randompick(0, 1, 2), 30, XF_NOTMISSILE, 1);
+			A_SpawnItemEx("DCY_HexFireTrailSmall", frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 16.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 200);
+			A_SpawnItemEx("DCY_HexFireTrailSmall", frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(1.0, 5.0), 0, 0, frandom(7.0, 16.0), frandom(0.00, 360.00), SXF_NOCHECKPOSITION, 180);
+			loop++;
+			Return ResolveState(null);
+		}
+	}
+	Loop;
+  FadeOut:
+	EB77 MNOPQR 2 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}
+
+Class DCY_HexFireTrail : DCY_GunmetalInfiltratorBallTrail
+{
+  Default
+  {
+  Scale 0.75;
+  Alpha 0.6;
+  +BRIGHT
+  +CLIENTSIDEONLY
+  +ROLLSPRITE
+  +DONTSPLASH
+  }
+  
+  States
+  {
+  Spawn:
+	9RH_ A 0;
+	Goto SpawnII;
+  SpawnII:
+	"####" "#" 0 A_SetRoll(frandom(0.00, 360.00));
+    "####" "#" 0 A_Jump(128, "Spawn2");
+	Goto Spawn1;
+  Spawn1:
+    "####" "#" 1
+	{
+		A_FadeOut(0.1, 1);
+		A_SetRoll(Roll+30);
+		A_SetScale(Scale.X-0.035, Scale.Y-0.035);
+	}
+	"####" "#" 0 A_JumpIf(Scale.X <= 0.000001, "Null");
+	Loop;
+  Spawn2:
+    "####" "#" 1
+	{
+		A_FadeOut(0.1, 1);
+		A_SetRoll(Roll-30);
+		A_SetScale(Scale.X-0.035, Scale.Y-0.035);
+	}
+	"####" "#" 0 A_JumpIf(Scale.X <= 0.000001, "Null");
+	Loop;
+  }
+}
+
+Class DCY_HexFireTrailSmall : DCY_HexFireTrail { Default { Scale 0.5; } }

@@ -1,0 +1,302 @@
+//Backpacks
+Class DCY_Backpack : Backpack Replaces Backpack
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/backpack";
+  Inventory.PickupMessage "Time to get those weapons locked up. (Ammo increased.)";
+  }
+  
+  States
+  {
+  Spawn:
+    BCPA ABCDEFG 3;
+    Loop;
+  }
+}
+
+Class DCY_Clip : Clip Replaces Clip
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/clip";
+  Inventory.PickupMessage "Picked up a clip of bullets.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ A -1;
+	Loop;
+  Pickup:
+	DCA_ A 0
+	{
+		A_TakeInventory("DCY_Clip");
+		A_GiveInventory("Clip");
+	}
+	Stop;
+  }
+}
+
+Class DCY_ClipBox : ClipBox Replaces ClipBox
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/clip";
+  Inventory.PickupMessage "Picked up a box containing a good amount of clips.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ B -1;
+	Loop;
+  Pickup:
+	DCA_ B 0
+	{
+		A_TakeInventory("DCY_Clipbox");
+		A_GiveInventory("Clipbox");
+	}
+	Stop;
+  }
+}
+
+Class DCY_Shell : Shell Replaces Shell
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/shell";
+  Inventory.PickupMessage "Picked up 4 shells specifically for your shotgun needs.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ C -1;
+	Loop;
+  Pickup:
+	DCA_ C 0
+	{
+		A_TakeInventory("DCY_Shell");
+		A_GiveInventory("Shell");
+	}
+	Stop;
+  }
+}
+
+Class DCY_Shellbox : ShellBox Replaces ShellBox
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/shell";
+  Inventory.PickupMessage "Acquired the box of shells.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ D -1;
+	Loop;
+  Pickup:
+	DCA_ D 0
+	{
+		A_TakeInventory("DCY_Shellbox");
+		A_GiveInventory("Shellbox");
+	}
+	Stop;
+  }
+}
+
+Class DCY_RocketA : RocketAmmo Replaces RocketAmmo
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/rocket";
+  Inventory.PickupMessage "Obtained a unactivated rocket for ammo.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ E -1;
+	Loop;
+  Pickup:
+	DCA_ E 0
+	{
+		A_TakeInventory("DCY_RocketA");
+		A_GiveInventory("RocketAmmo");
+	}
+	Stop;
+  }
+}
+
+Class DCY_RocketBox : RocketBox Replaces RocketBox
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/rocket";
+  Inventory.PickupMessage "Picked up a box, which contains a good load of rockets.";
+  }
+  
+  States
+  {
+  Spawn:
+	DCA_ F -1;
+	Loop;
+  Pickup:
+	DCA_ F 0
+	{
+		A_TakeInventory("DCY_RocketBox");
+		A_GiveInventory("RocketBox");
+	}
+	Stop;
+  }
+}
+
+Class DCY_Cell : Cell Replaces Cell
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/cell";
+  Inventory.PickupMessage "Acquired an energy cell.";
+  }
+  
+  States
+  {
+  Spawn:
+	_DLL HGFABCDEDCBAFGH 9 Bright;
+	Loop;
+  Pickup:
+	_DLL A 0
+	{
+		A_TakeInventory("DCY_Cell");
+		A_GiveInventory("Cell");
+	}
+	Stop;
+  }
+}
+
+Class DCY_Cellpack : Cellpack Replaces Cellpack
+{
+  Default
+  {
+  Inventory.PickupSound "dcy/cellpack";
+  Inventory.PickupMessage "A cell with a bunch of energy in it.";
+  }
+  
+  States
+  {
+  Spawn:
+	_DLX ABCDCB 3 Bright;
+	Loop;
+  Pickup:
+	_DLX A 0
+	{
+		A_TakeInventory("DCY_Cellpack");
+		A_GiveInventory("Cellpack");
+	}
+	Stop;
+  }
+}
+
+
+Class DCY_Eminence : Ammo
+{
+  Default
+  {
+  Inventory.Amount 8;
+  Inventory.MaxAmount 150;
+  Ammo.BackpackAmount 16;
+  Ammo.BackpackMaxAmount 250;
+  Inventory.PickupMessage "Gathered some Eminence.";
+  Inventory.PickupSound "Eminence/Pickup";
+  Inventory.Icon "_2BMA0";
+  +FLOATBOB;
+  Scale 0.85;
+  }
+  States
+  {
+  Spawn:
+    _2BM ABCDEFGHIJKL 2 Bright;
+	Loop;
+  }
+}
+
+Class DCY_EminencePack : DCY_Eminence
+{
+  Default
+  {
+  Inventory.Amount 40;
+  Ammo.BackpackAmount 40;
+  Inventory.PickupSound "ARTPKUP";
+  Inventory.PickupMessage "You feel Incandescence.";
+  Scale 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+    _2DM ABCDEFGHIJKLMNOP 2 Bright;
+	Loop;
+  }
+}
+
+
+Class DCY_CinerealPrestige : Ammo
+{
+  Default
+  {
+  Inventory.Amount 10;
+  Inventory.MaxAmount 250;
+  Ammo.BackpackAmount 15;
+  Ammo.BackpackMaxAmount 400;
+  Inventory.PickupMessage "The Cinereal Prestige is in your hands.";
+  Inventory.PickupSound "CinerealPrestige/Pickup";
+  }
+  States
+  {
+  Spawn:
+    ZCLP A -1;
+    Stop;
+  }
+}
+
+Class DCY_ProtoCell : Ammo
+{
+  Default
+  {
+  Inventory.PickupMessage "Picked up an Prototype Energy Power Unit.";
+  Inventory.PickupSound "items/cell";
+  Inventory.Icon "CELLA0";
+  Inventory.Amount 10;
+  Inventory.MaxAmount 300;
+  Ammo.BackpackAmount 20;
+  Ammo.BackpackMaxAmount 600;
+  }
+  States
+  { 
+  Spawn:
+    CELL A 1;
+    Loop;
+  }
+}
+
+Class DCY_UltramodernEnergy : Ammo
+{
+  Default
+  {
+  Inventory.PickupMessage "You got the Ultramodern Energy Cell.";
+  Inventory.PickupSound "SmallItem/Pickup";
+  Inventory.Icon "C2LLB0";
+  Inventory.Amount 15;
+  Inventory.MaxAmount 500;
+  Ammo.BackpackAmount 30;
+  Ammo.BackpackMaxAmount 500;
+  }
+  States
+  { 
+  Spawn:
+    C2LL AB 1 Bright;
+    Loop;
+  }
+}

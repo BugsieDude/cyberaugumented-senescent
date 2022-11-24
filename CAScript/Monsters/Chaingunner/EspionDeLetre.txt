@@ -1,0 +1,160 @@
+Class DCY_EspionDeLetre : DCY_Plutonia
+{
+  Default
+  {
+  Health 400;
+  Tag "\c[j1]Espion de L'être\c-";
+  SeeSound "Raison/Sight";
+  PainSound "Raison/Attack";
+  AttackSound "Raison/Attack";
+  ActiveSound "Raison/Active";
+  DeathSound "Raison/Death";
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  +NOINFIGHTING
+  +QUICKTORETALIATE
+  +DONTHARMCLASS
+  PainChance 70;
+  DropItem "Cellpack";
+  }
+  
+  bool bigplasma;
+  bool emission;
+  bool seen;
+  int hop;
+  
+  void A_EspionShoot()
+  {
+	if (target)
+	{
+	  A_FaceTarget();
+	  
+	  if (bigplasma == true && health > 100)
+	  {
+		A_SpawnProjectile("DCY_EspionPlasma", 30);
+		A_StartSound("Pistol/LaserChargedShot", CHAN_WEAPON, attenuation: 0.5);
+	  }
+	  else
+	  {
+		if (health <= 180 && emission == true)
+			A_SpawnProjectile("DCY_EspionEmissionTracer", 30, 0, frandom(-3.0, 3.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-3.0, 3.0));
+		else
+			A_SpawnProjectile("DCY_EspionSmallPlasma", 30, 0, frandom(-2.0, 2.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-2.0, 2.0));
+	  }
+	}
+  }
+
+  override void Tick()
+  {
+	Super.Tick();
+	
+	if (health > 0)
+	{
+		if (hop == 100 && seen == true)
+		{
+			A_Hop(randompick(6, 5));
+			A_Dodging(8);
+			hop = 0;
+		}
+			
+		hop = random(0, 200);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	DBGE A 10
+	{
+		seen = false;
+		DCY_Look();
+	}
+	Loop;
+  Look:
+	DBGE AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" G 10 DCY_AlertSound();
+	Goto See;
+  See:
+	DBGE AABBCCDD 2
+	{
+		seen = true;
+		A_Chase();
+	}
+	Loop;
+  Missile:
+	DBGE E 1
+	{
+		if (Health <= 100)
+			Return ResolveState("LowHealthMissile");
+		
+		bigplasma = randompick(0, 0, 1);
+		
+		A_FaceTarget();
+		
+		if (bigplasma == false)
+			A_StartSound("DSUHH", attenuation: 0.5);
+		else
+			A_StartSound("Pistol/LaserCharge", attenuation: 0.5);
+		
+		Return ResolveState(null);
+	}
+	DBGE E 29 A_FaceTarget();
+	DBGE F 3 A_EspionShoot();
+	DBGE E 2
+	{
+		if (bigplasma == true)
+			A_SetTics(10);
+		else
+			A_SetTics(2);
+		
+		A_FaceTarget();
+	}
+	DBGE E 1
+	{
+		if (bigplasma == true)
+			Return ResolveState("See");
+		Return A_MonsterRefire(100, "See");
+	}
+	Goto Missile+2;
+  LowHealthMissile:
+	DBGE E 1
+	{
+		A_FaceTarget();
+		emission = true;
+		A_StartSound("RPLSSELC", attenuation: 0.5);
+	}
+	DBGE E 49 { A_FaceTarget(); bigplasma == false; }
+	DBGE F 3 A_EspionShoot();
+	DBGE E 4 A_FaceTarget();
+	DBGE E 1 A_MonsterRefire(100, "See");
+	Goto LowHealthMissile+2;
+  Pain:
+	DBGE G 4;
+	DBGE G 4 A_Pain();
+	Goto See;
+  Death:
+  Death.Fire:
+	DBGE H 1 A_SetScale(frandompick(Scale.x, -Scale.x), Scale.y);
+	DBGE H 5 { seen = false; A_ScreamAndUnblock(); }
+	DBGE IJK 5;
+	DBGE L -1;
+	Stop;
+  XDeath:
+	DBGE O 1;
+	DBGE O 4 { seen = false; A_NoBlocking(); A_StartSound("Android/Gib", CHAN_VOICE); }
+	DBGE PQRSTUV 4;
+	DBGE W -1;
+	Stop;
+  Raise:
+	DBGE LKJIH 5;
+	DBGE H 1
+	{
+		seen = true;
+		emission = false;
+		A_SetScale(Scale.x, Scale.y);
+	}
+	Goto See;
+  }
+}

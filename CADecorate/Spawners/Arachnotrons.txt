@@ -1,0 +1,15 @@
+ACTOR DCY_HOLYSHITTHERESASmallEnemySpider : RandomSpawner Replaces Arachnotron
+{
+  DropItem "DCY_SmallEnemySpider", 256, 1300
+  DropItem "DCY_Aracgunner", 256, 1010
+  DropItem "DCY_Receptacle", 256, 950
+  DropItem "DCY_Tracnomechatron", 256, 500
+  DropItem "DCY_IonArachnotron", 256, 300
+  DropItem "DCY_Tripartite", 256, 300
+  DropItem "DCY_BattlemindGeomancer", 256, 240
+  DropItem "DCY_FluorescentSentinel", 256, 180
+  DropItem "DCY_Transfixer", 256, 128
+  DropItem "DCY_Goliath", 256, 100
+  DropItem "DCY_Convector", 256, 66
+  DropItem "DCY_Arachnoaversion", 256, 1
+}

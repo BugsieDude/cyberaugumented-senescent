@@ -1,0 +1,361 @@
+Class DCyb_HUD : BaseStatusBar
+{
+  Array<class<Ammo> > hudammolist;
+  
+  bool SpriteSpawnState;
+  bool drawarmor;
+  bool overarmor;
+  bool lowhealth;
+  bool drawhealth;
+  bool overhealth;
+  float xx;
+  float yy;
+  int hudammosize;
+  bool cy_init;
+  const CY_RESW = 320;
+  const CY_RESH = 200;
+  
+  string tn;
+  
+  HUDFont dcyb_font, dcyb_font2;
+  InventoryBarState dcyb_diparms;
+  
+  enum DCyb_BarStates
+  {
+	barlow,
+	barnormal,
+	barover,
+	barinvul
+  }
+  
+  virtual void DCyb_HUDSet () {}
+  virtual void DCyb_HUDDraw () {}
+  
+  int CY_GetCVar(name cvarname)
+  {
+	let cvar = CVar.GetCVar(cvarname, CPlayer);
+
+	if(cvar == null)
+		return 0;
+
+	return cvar.GetInt();
+  }
+	
+  override void Init()
+  {
+	super.Init();
+	
+    SetSize(32, 320, 200);
+	
+    Font fnt = "SMALLFONT";
+	dcyb_font = HUDFont.Create(fnt);
+    fnt = "SMALLFONT";
+	dcyb_font2 = HUDFont.Create(fnt, fnt.GetCharWidth("0"), true);
+
+    dcyb_diparms = InventoryBarState.Create(dcyb_font, boxgfx : "CHUDITEM", selgfx : "CHUDITEH", leftgfx : "CHUDARR1", rightgfx : "CHUDARL1");
+	
+	DCyb_HUDSet();
+  }
+  
+  override void Draw (int state, double TicFrac)
+  {
+	Super.Draw(state, TicFrac);
+
+	// One-time setup.
+	if (!cy_init)
+	{
+		DCyb_HUDDraw();
+		// Setup is over. Get the list size of the ammo list overrides.
+		hudammosize = hudammolist.Size();
+		cy_init = true;
+	}
+	if(state == HUD_StatusBar)
+	{
+		BeginStatusBar();
+		CA_DrawStatusBar(TicFrac);
+	}
+	else if(state == HUD_Fullscreen)
+	{
+		BeginHUD(resW : CY_RESW, resH : CY_RESH);
+		CA_DrawHUD();
+	}
+  }
+  
+  protected void CA_DrawStatusBar(double TicFrac)
+  {
+	DrawImage("VANTABAR", (0, 168), DI_ITEM_OFFSETS);
+  }
+  
+  //Hud Stuff
+  virtual void CA_DrawKeys()
+  {
+    DrawImage("CHUDKEYS", (-22 + xx, -32 + yy), DI_ITEM_RIGHT_TOP);
+	DrawString(dcyb_font, "Keys", (-26 + xx, -30 + yy), flags: DI_TEXT_ALIGN_RIGHT);
+	
+	textureid keysprite;
+	vector2 size;
+	vector2 pos = (-62 + xx, -25 + yy);
+	int count = 0;
+	
+	for (let i = CPlayer.mo.Inv; i != null; i = i.Inv)
+	{
+	  if (i is "Key")
+	  {
+	    if (count >= 10) { break; }
+		
+		keysprite = i.AltHUDIcon;
+		
+		if (!keysprite.IsValid())
+		{
+		  if (SpriteSpawnState && i.SpawnState && i.SpawnState.sprite != 0)
+			keysprite = i.SpawnState.GetSpriteTexture(0);
+		  else
+			keysprite = i.Icon;
+		  
+		  if(!keysprite.IsValid())
+			continue;
+		}
+		
+		 size = TexMan.GetScaledSize(keysprite);
+		 DrawTexture(keysprite, pos, DI_ITEM_CENTER, box : (22, 22));
+		 pos.x -= 12;
+		 count++;
+	  }
+	}
+  }
+  
+  virtual void CA_DrawInventory()
+  {
+	let invsel = CPlayer.mo.InvSel;
+	bool drawinv = !level.NoInventoryBar && invsel;
+	vector2 ipos = (32 + xx, -50 + yy);
+	
+	DrawImage("CHUDITEM", ipos, DI_ITEM_OFFSETS);
+	
+	if(drawinv)
+	{
+		DrawInventoryIcon(invsel, (ipos.x + 16, ipos.y + 16), DI_ITEM_CENTER|DI_ALTICONFIRST|DI_SKIPSPAWN, invsel.Amount <= 0 ? 0.5 : 1.0, boxsize : (20, 20));
+		
+		if(invsel.Amount > 1)
+			DrawString(dcyb_font, FormatNumber(invsel.Amount, 0, 4), (ipos.x + 19, ipos.y + 12), DI_TEXT_ALIGN_RIGHT);
+	}
+  }
+  
+  virtual void CA_DrawStatBars()
+  {
+	vector2 bpos = (68 + xx, -50 + yy);
+	int curpnts;
+	int maxpnts;
+	int armpnts = 0;
+	int maxarmpnts = 0;
+	
+	let basicarmorf = BasicArmor(CPlayer.mo.FindInventory("BasicArmor"));
+	
+	DrawImage("CHUDBAR", bpos, DI_ITEM_OFFSETS); //Armor Bar
+	DrawImage("CHUDIARM", (bpos.x + 2, bpos.y + 2), DI_ITEM_OFFSETS);
+	
+	DrawImage("CHUDBAR", (bpos.x, bpos.y + 16), DI_ITEM_OFFSETS); //Health Bar
+	DrawImage("CHUDIHLT", (bpos.x + 3, bpos.y + 18), DI_ITEM_OFFSETS);
+	
+	if (basicarmorf)
+	{
+		armpnts += basicarmorf.Amount;
+		maxarmpnts += basicarmorf.ActualSaveAmount;
+	}
+	
+	curpnts = CPlayer.health <= 0 ? 0 : CPlayer.health;
+	maxpnts = CPlayer.mo.GetMaxHealth();
+			
+	for (int i = 0; i < 2; i++)
+	{	
+		if (i == 0)
+		{	
+			curpnts = CPlayer.health <= 0 ? 0 : CPlayer.health;
+			maxpnts = CPlayer.mo.GetMaxHealth();
+			
+			DrawBar("CHUDHBAR", "CHUDBBAR", curpnts, maxpnts, (bpos.x + 19, bpos.y + 22), 0, SHADER_HORZ, DI_ITEM_LEFT_TOP, 1.0);
+			DrawString(dcyb_font, FormatNumber(curpnts, 0, 10), (bpos.x + 55, bpos.y + 20), DI_TEXT_ALIGN_CENTER);
+		}
+		else
+		{
+			curpnts = armpnts;
+			maxpnts = maxarmpnts;
+			
+			DrawBar("CHUDABAR", "CHUDBBAR", curpnts, maxpnts, (bpos.x + 19, bpos.y + 6), 0, SHADER_HORZ, DI_ITEM_LEFT_TOP, 1.0);
+			DrawString(dcyb_font, FormatNumber(armpnts, 0, 10), (bpos.x + 55, bpos.y + 4), DI_TEXT_ALIGN_CENTER);
+		}
+	}
+  }
+  
+  virtual void CA_DrawAmmo()
+  {
+	vector2 apos = (-38 + xx, -35 + yy);
+	Inventory dcyb_ammo1, dcyb_ammo2;
+	[dcyb_ammo1, dcyb_ammo2] = GetCurrentAmmo();
+	int ammoY = 29;
+	
+	if (dcyb_ammo2 != null && dcyb_ammo2 != dcyb_ammo1)
+		DrawImage("CHUDAB2X", (-79 + xx, -70 + yy), DI_ITEM_OFFSETS);
+	else if (dcyb_ammo1 != null)
+		DrawImage("CHUDABOX", (-79 + xx, -53 + yy), DI_ITEM_OFFSETS);
+	
+	if (dcyb_ammo1 != null)
+	{
+		DrawInventoryIcon(dcyb_ammo1, apos, boxsize: (20, 15));
+		DrawString(dcyb_font, FormatNumber(dcyb_ammo1.Amount, 3), (apos.x - 12, apos.y - 12), DI_TEXT_ALIGN_RIGHT);
+	}
+	if (dcyb_ammo2 != null && dcyb_ammo2 != dcyb_ammo1)
+	{
+		DrawInventoryIcon(dcyb_ammo2, (apos.x, apos.y - 17), boxsize: (20, 15));
+		DrawString(dcyb_font, FormatNumber(dcyb_ammo2.Amount, 3), (apos.x - 12, apos.y - ammoY), DI_TEXT_ALIGN_RIGHT);
+	}
+  }
+  
+  virtual void CA_DrawTemperature()
+  {
+	let temp1 = CyberaugumentedEventHandler(EventHandler.Find("CyberaugumentedEventHandler")).temp1;
+	
+	//Spaghetti Code ffs
+	if (temp1 < -272)
+		tn = "Absolute Zero";
+	if (temp1 > -272 && temp1 < -40)
+		tn = "Verglas Embodied";
+	if (temp1 > -40 && temp1 < -20)
+		tn = "Road to Abyss";
+	if (temp1 > -20 && temp1 < -10)
+		tn = "Hypothermia";
+	if (temp1 > -10 && temp1 < 0)
+		tn = "Frostbite";
+	if (temp1 > 0 && temp1 < 10)
+		tn = "Cold";
+	if (temp1 > 10)
+		tn = "Normal State";
+	if (temp1 > 30)
+		tn = "Heatful";
+	if (temp1 > 43)
+		tn = "Spicy Season";
+	if (temp1 > 57)
+		tn = "Utmost";
+	if (temp1 > 65)
+		tn = "Land of Flame";
+	if (temp1 > 71)
+		tn = "Burning Plane";
+	if (temp1 > 80)
+		tn = "Son of Sun";
+	if (temp1 > 95)
+		tn = "Welcome to Core";
+	if (temp1 > 100)
+		tn = "Death Landscape";
+	if (temp1 > 150)
+		tn = "Frying Simulation";
+	if (temp1 > 500)
+		tn = "Help";
+		
+	vector2 apos = (32 + xx, -83 + yy);
+	int temp = 0;
+	
+	DrawImage("CHUDT3MP", apos, DI_ITEM_LEFT_TOP);
+	DrawString(dcyb_font, FormatNumber(temp1, -273, 9999), (apos.x + 33, apos.y + 2.5), flags: DI_TEXT_ALIGN_RIGHT);
+	DrawString(dcyb_font, tn, (apos.x + 4, apos.y + 17.5), flags: DI_TEXT_ALIGN_LEFT, Font.CR_UNTRANSLATED);
+  }
+  
+  protected void CA_DrawHUD()
+  {
+	CA_DrawKeys();
+	CA_DrawInventory();
+	
+	if (isInventoryBarVisible())
+	{
+	  DCY_DrawInvBar(dcyb_diparms, (0, 0), 6, DI_ITEM_CENTER|DI_SCREEN_CENTER|DI_DRAWCURSORFIRST|DI_ALTICONFIRST|DI_SKIPSPAWN);
+	}
+	
+	CA_DrawStatBars();
+	CA_DrawAmmo();
+	CA_DrawTemperature();
+  }
+  
+  void DCY_DrawInvBar(InventoryBarState parms, Vector2 position, int numfields, int flags = 0, double bgalpha = 1.)
+  {
+	double width = parms.boxsize.X * numfields;
+	[position, flags] = AdjustPosition(position, flags, width, parms.boxsize.Y);
+	
+	CPlayer.mo.InvFirst = ValidateInvFirst(numfields);
+	if (CPlayer.mo.InvFirst == null) return;	// Player has no listed inventory items.
+	
+	Vector2 boxsize = parms.boxsize;
+	// First draw all the boxes
+	for(int i = 0; i < numfields; i++)
+	{
+		DrawTexture(parms.box, position + (boxsize.X * i, 0), flags | DI_ITEM_LEFT_TOP, bgalpha);
+	}
+	
+	// now the items and the rest
+	
+	Vector2 itempos = position + boxsize / 2;
+	Vector2 textpos = position + boxsize - (1, 1 + parms.amountfont.mFont.GetHeight());
+
+	int i = 0;
+	Inventory item;
+	for(item = CPlayer.mo.InvFirst; item != NULL && i < numfields; item = item.NextInv())
+	{
+		for(int j = 0; j < 2; j++)
+		{
+			if (j ^ !!(flags & DI_DRAWCURSORFIRST))
+			{
+				if (item == CPlayer.mo.InvSel)
+				{
+					double flashAlpha = bgalpha;
+					if (flags & DI_ARTIFLASH) flashAlpha *= itemflashFade;
+					DrawTexture(parms.selector, position + parms.selectofs + ((boxsize.X) * i, 0), flags | DI_ITEM_LEFT_TOP, flashAlpha);
+				}
+			}
+			else
+			{
+				DrawInventoryIcon(item, itempos + ((boxsize.X) * i, 0), flags | DI_ITEM_CENTER, item.Amount <= 0 ? 0.5 : 1.0, boxsize : (20, 20), scale : (1, 1));
+			}
+		}
+		
+		if (parms.amountfont != null && (item.Amount > 1 || (flags & DI_ALWAYSSHOWCOUNTERS)))
+		{
+			DrawString(parms.amountfont, FormatNumber(item.Amount, 0, 4), textpos + ((boxsize.X - 1) * i, 0), flags | DI_TEXT_ALIGN_RIGHT, parms.cr, parms.itemalpha);
+		}
+		i++;
+	}
+	// Is there something to the left?
+	if (CPlayer.mo.FirstInv() != CPlayer.mo.InvFirst)
+	{
+		DrawTexture(parms.left, position + (-parms.arrowoffset.X, parms.arrowoffset.Y), flags | DI_ITEM_RIGHT|DI_ITEM_VCENTER);
+	}
+	// Is there something to the right?
+	if (item != NULL)
+	{
+		DrawTexture(parms.right, position + parms.arrowoffset + (width, 0), flags | DI_ITEM_LEFT|DI_ITEM_VCENTER);
+	}
+  }
+	
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (!CY_GetCVar("cl_hudshake"))
+	{
+		xx = 0;
+		yy = 0;
+		return;
+	}
+	else
+	{
+		if (CPlayer.mo.CountInv("DCY_BerserkSpeed"))
+		{
+			xx = frandom(-1.5, 1.5);
+			yy = frandom(-1.5, 1.5);
+		}
+		else
+		{
+			xx = 0;
+			yy = 0;
+		}
+		return;
+	}
+  }
+}

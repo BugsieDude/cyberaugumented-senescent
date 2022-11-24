@@ -1,0 +1,79 @@
+Class DCY_Convector : DCY_ArachnoParent
+{
+  Default
+  {
+  Health 1400;
+  DamageType "Fire";
+  Scale 1.2;
+  +BOSS
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +DONTFALL
+  +NOGRAVITY
+  +FLOAT
+  Tag "\c[x1]Convector\c-";
+  SeeSound "Convector/Sight";
+  ActiveSound "Convector/Hover";
+  PainSound "Convector/Pain";
+  DeathSound "Convector/Death";
+  DropItem "DCY_Emphasis", 160;
+  DropItem "DCY_Photocoagulator", 160;
+  }
+  
+  override void Tick()
+  {
+	Super.Tick();
+	
+	If (Health > 0 && !IsFrozen())
+	{
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(35, 32), frandom(35, 32),35,0,0,frandom(-4,-6),0,128);
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-35, -32), frandom(-35, -32),35,0,0,frandom(-4,-6),0,128);
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-35, -32), frandom(35, 32),35,0,0,frandom(-4,-6),0,128);
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(35, 32), frandom(-35, -32),35,0,0,frandom(-4,-6),0,128);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	HFBT AB 2 A_Look();
+	Loop;
+  See:
+	HFBT AB 2 A_Chase();
+	Loop;
+  Missile:
+	HFBT ABABABABABAB 2 A_FaceTarget();
+	HFBT V 40 A_StartSound("Convector/MinigunReady", CHAN_WEAPON, attenuation: 0.5);
+	HFBT KL 3
+	{
+		A_StartSound("PIS3FIRE", CHAN_WEAPON, attenuation: 0.5, pitch: 0.75);
+		
+		for (int i = 15; i > -16; i -= 15)
+			A_SpawnProjectile("DCY_AlacritousGuyBullet", 8, i, frandom(-15, 15), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-7, 7));
+		
+		A_FaceTarget();
+		Return A_MonsterRefire(100, "See");
+	}
+	Goto Missile+13;
+  Pain:
+	HFBT A 2;
+	HFBT B 2 A_Pain();
+	Goto See;
+  Death:
+	HFBT E 1;
+	HFBT E 1 A_Scream();
+	HFBT EFG 6;
+	HFBT H 6
+	{
+		A_StartSound("Archon/Explode");
+		
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-10, 10), frandom(-10, 10), 30 + frandom(-10, 10), flags: SXF_NOCHECKPOSITION);
+	}
+	HFBT IJ 6;
+	HFBT J 1 A_BossDeath2();
+	Stop;
+  Raise:
+	Stop;
+  }
+}

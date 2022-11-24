@@ -1,0 +1,239 @@
+Class DCY_Aamon : DCY_HeckBaron
+{
+  Default
+  {
+  Health 2700;
+  Tag "\c[x1]Aamon\c-";
+  SeeSound "DCYAamon/Sight";
+  ActiveSound "DCYAamon/Active";
+  PainSound "DCYAamon/Pain";
+  DeathSound "DCYAamon/Death";
+  +BOSS
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +NEVERFAST
+  Speed 15;
+  DamageType "Fire";
+  DamageFactor "Fire", 0;
+  Scale 1.05;
+  Translation "168:191=%[0.00,0.00,0.00]:[1.44,0.79,0.57]", "236:239=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "16:47=%[0.00,0.00,0.00]:[1.45,0.79,0.57]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "112:127=%[0.50,0.00,0.00]:[2.00,2.00,1.01]", "248:255=%[0.50,0.07,0.00]:[2.00,2.00,1.01]";
+  BloodColor "Orange";
+  BloodType "AndroidNeonFluid";
+  }
+  
+  int loop1;
+  int fireloop;
+  
+  void A_AamonRushBegin()
+  {
+	loop1 -= 1;
+	
+	if (loop1 <= 0)
+		SetStateLabel("RushStart");
+	
+	if (loop1 < 20)
+		tics = 1;
+	
+	A_FaceTarget();
+  }
+  
+  void A_AamonRush(bool canrush)
+  {
+	if (canrush == true && vel.xy ~== (0, 0))
+	{
+		A_Stop();
+		A_Recoil(12);
+		vel.z += 10;
+		SetStateLabel("POUNDTHATASS");
+		frame = 1;
+	}
+		
+	A_Recoil(-10);
+	
+	for (int i = -15; i < 16; i += 30)
+		A_SpawnItemEx("DCY_NapalmFire", 1, i, flags: SXF_NOCHECKPOSITION, failchance: 80);
+	
+	A_SpawnItemEx("DCY_GTrail", zofs: 5, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+  }
+  
+  void A_AamonFireball(int limit)
+  {
+	if (fireloop > limit)
+	{
+		fireloop = 0;
+		SetStateLabel("See");
+	}
+	
+	fireloop++;
+    A_FaceTarget();
+	A_SpawnProjectile("DCY_AamonFireball", 30, frandom(-2, 2));
+  }
+  
+  States
+  {
+  Spawn:
+	30SS A 10 A_Look();
+	Loop;
+  See:
+	30SS AABBCCDD 2 A_Chase();
+	Loop;
+  Missile:
+	30SS A 0
+	{
+		fireloop = 0;
+		
+		if (target && distance2D(target) < 456)
+			SetStateLabel("GrandSlam");
+		if (target && distance2D(target) > 900)
+			Return A_Jump(80, "Rush");
+		
+		Return ResolveState(Null);
+	}
+	Goto Fireballs;
+  Fireballs:
+	30SS EF 2 A_FaceTarget();
+	30SS G 3 A_AamonFireball(6);
+	30SS XY 2 A_FaceTarget();
+	30SS Z 3 A_AamonFireball(6);
+	Loop;
+  Melee:
+	30SS EF 3;
+	30SS G 3 A_CustomMeleeAttack(10 * random(5, 13), "baron/melee");
+	30SS F 3 A_CustomMeleeAttack(10 * random(5, 13), "baron/melee");
+	Goto See;
+  Rush:
+	30SS A 2 { loop1 = 40; }
+	30SS A 2 { A_StartSound("DemonicSpider/Step", CHAN_BODY); A_AamonRushBegin(); }
+	30SS B 2 A_AamonRushBegin();
+	30SS C 2 { A_StartSound("DemonicSpider/Step", CHAN_BODY); A_AamonRushBegin(); }
+	30SS D 2 A_AamonRushBegin();
+	Goto Rush+1;
+  RushStart:
+	30SS A 1 { A_AamonRush(false); A_StartSound("DemonicSpider/Step", CHAN_BODY); }
+	30SS B 1 A_AamonRush(false);
+	30SS C 1 { A_AamonRush(false); A_StartSound("DemonicSpider/Step", CHAN_BODY); }
+	30SS D 1 A_AamonRush(false);
+	30SS A 1 { A_AamonRush(true); A_StartSound("DemonicSpider/Step", CHAN_BODY); }
+	30SS B 1 A_AamonRush(true);
+	30SS C 1 { A_AamonRush(true); A_StartSound("DemonicSpider/Step", CHAN_BODY); }
+	30SS D 1 A_AamonRush(true);
+	Goto RushStart+3;
+  GRANDSLAM:
+	30SS QPS 5 A_FaceTarget();
+	30SS S 1
+	{
+		loop1 = 10;
+		A_Recoil(-20);
+		vel.z += 20;
+		bNoPain = true;
+		bPainless = true;
+	}
+	30SS SSSSSSSS 1 A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+	30SS S 1 { bNoGravity = true; A_Stop(); }
+	30SS S 1
+	{
+		if (loop1 <= 0)
+		{
+			bNoGravity = false;
+			A_Recoil(-20);
+			vel.z -= 30;
+			SetStateLabel("SLAMGOOOO");
+		}
+		
+		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-20, 20), frandom(-20, 20), frandom(10, 60), zvel: 1, flags: SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+		loop1--;
+	}
+	Goto GRANDSLAM+13;
+  SLAMGOOOO:
+	30SS S 1
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-20, 20), frandom(-20, 20), frandom(10, 60), zvel: 1, flags: SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION, failchance: 100);
+	  
+		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+		
+		if (vel.z == 0)
+			SetStateLabel("POUNDTHATASS");
+	}
+	Loop;
+  POUNDTHATASS:
+	30SS R 30
+	{
+		A_QuakeEx(0, 0, 5, 50, 0, 2000, "", QF_SCALEDOWN|QF_3D);
+		A_StartSound("Earthpound", CHAN_6, attenuation: 0.5, pitch: 0.8);
+		A_StartSound("Misc/BigSmash", CHAN_5, volume: 0.5, attenuation: 0.5);
+		A_Explode(256, 178, XF_NOTMISSILE);
+		
+		for (int i = 0; i < 360; i += 45)
+			A_SpawnProjectile("DCY_AamonPoundFire", 15, 0, i, CMF_AIMDIRECTION, -50);
+		
+		bNoPain = false;
+		bPainless = false;
+	}
+	Goto See;
+  Pain:
+	30SS H 4;
+	30SS H 4 A_Pain();
+	Goto See;
+  Death:
+	30SS H 6;
+	30SS I 5 A_Scream();
+	30SS JK 5;
+	30SS L 4 A_NoBlocking();
+	30SS MN 4;
+	30SS O -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_AamonPoundfire : DoomImpBall
+{
+  Default
+  {
+  -NOGRAVITY
+  Gravity 1.2;
+  Speed 21;
+  +NEVERFAST
+  +MTHRUSPECIES
+  SeeSound "";
+  DeathSound "STRKBALL";
+  DamageType "Fire";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1 A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+	Loop;
+  Death:
+	TNT1 A 1
+	{
+		A_Explode(20, 90);
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_NOCHECKPOSITION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_AamonFireBall : DCY_ImpFireball
+{
+  Default
+  {
+  Speed 25;
+  FastSpeed 35;
+  Damage 7;
+  Scale 1.5;
+  DamageType "Fire";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.08,0.59,0.16]";
+  }
+  
+  States
+  {
+  Spawn:
+	BAL1 AB 1 A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Loop;
+  }
+}

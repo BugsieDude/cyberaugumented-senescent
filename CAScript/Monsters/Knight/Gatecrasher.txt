@@ -1,0 +1,150 @@
+Class DCY_Gatecrasher : DCY_KnightHell
+{
+  Default
+  {
+  Health 700;
+  +MISSILEMORE;
+  HitObituary "%o was in ashes by a Gatecrasher";
+  Obituary "%o was incinerated by a Gatecrasher.";
+  Translation "16:47=%[0.00,0.00,0.00]:[0.70,0.42,0.42]", "48:79=%[0.00,0.00,0.00]:[0.58,0.58,0.58]", "112:255=%[0.00,0.00,0.00]:[0.42,1.21,2.00]";
+  Tag "\c[l7]Gatecrasher\c-";
+  SeeSound "Gatecrasher/Sight";
+  ActiveSound "Gatecrasher/Active";
+  PainSound "Gatecrasher/Pain";
+  DeathSound "Gatecrasher/Death";
+  MeleeSound "baron/melee";
+  BloodColor "Blue";
+  }
+  
+  States
+  {
+  Spawn:
+    BOSS A 10 DCY_Look();
+	Loop;
+  Look:
+	BOSS AAABBBCCCDDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    BOSS AABBCCDD 2 A_Chase();
+	Loop;
+  Melee:
+    BOSS EEEFFF 2 A_FaceTarget();
+	BOSS G 8 A_CustomMeleeAttack(7 * random(1, 10), "knight/melee", "");
+	BOSS F 8 A_FaceTarget();
+	BOSS G 8 A_CustomMeleeAttack(7 * random(1, 10), "knight/melee", "");
+	Goto See;
+  Missile:
+    TNT1 A 0 A_Jump(128, "BouncingShits");
+    BOSS EF 6 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherBall", 30, 0, random(-1, 1));
+	BOSS F 6 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherBall", 30, 0, random(-1, 1));
+	BOSS F 6 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherBall", 30, 0, random(-1, 1));
+	Goto See;
+  BouncingShits:
+    BOSS EF 9 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherRipper", 30, 0, random(-1, 1));
+	BOSS F 9 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherRipper", 30, 0, random(-1, 1));
+	BOSS F 9 A_FaceTarget();
+	BOSS G 6 A_SpawnProjectile("DCY_GatecrasherRipper", 30, 0, random(-1, 1));
+	Goto See;
+  Pain:
+	BOSS H 4;
+	BOSS H 4 A_Pain();
+	Goto See;
+  Death:
+	BOSS I 7;
+	BOSS I 7 A_Scream();
+	BOSS IIIIIIII 1;
+	BOSS I 7 A_NoBlocking();
+	BOSS KLMN 7;
+	BOSS O -1;
+	Stop;
+  Raise:
+    BOSS NMLKJI 5;
+	Goto See;
+  }
+}
+
+Class DCY_GatecrasherBall : BaronBall
+{
+  Default
+  {
+  Damage 5;
+  Alpha 0.85;
+  SeeSound "elementalimp/fire";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.89,1.45,2.00]";
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	BAL7 AABB 1
+	{
+		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		A_Weave(3, 0, 2, 0);
+	}
+	Loop;
+  Death:
+	BAL7 C 0 
+	{
+		for (int i = 9; i > 0; i--)
+			A_SpawnParticle(0x5daafc, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	BAL7 CCDDEE 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.025, Scale.Y+0.025);
+	}
+	Stop;
+  }
+}
+
+Class DCY_GatecrasherRipper : FastProjectile
+{
+  Default
+  {
+  DamageFunction (random(1, 2));
+  Speed 12.5;
+  FastSpeed 15.5;
+  Scale 1.35;
+  Radius 10;
+  Height 10;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.89,1.45,2.00]";
+  SeeSound "elementalimp/fire";
+  DeathSound "imp/shotx";
+  Projectile;
+  +RANDOMIZE
+  +NEVERFAST
+  +RIPPER
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	ETV6 AABB 1 A_Weave(3, 3, 2, 1);
+	Loop;
+  Death:
+    BAL7 C 0 
+	{
+		for (int i = 9; i > 0; i--)
+			A_SpawnParticle(0x5daafc, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	BAL7 CCDDEE 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.025, Scale.Y+0.025);
+	}
+	Stop;
+  }
+}

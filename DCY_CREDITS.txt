@@ -1,0 +1,173 @@
+I'd like to list the creators of the resources used in there as a part of respect.
+First off, here are some major contributors for this mod, just for you guys to know
+who made this mod a living reality.
+
+================================================================================
+DISCLAIMERS
+================================================================================
+
+Please do not edit my mod and release it to the whole world showing your
+'original' mod or addon. This is called theft. If you'd like to add things from
+my mod, please ask me. Please do not repost my mod at any time.
+
+================================================================================
+CONTRIBUTOR TEAM + CREATOR
+================================================================================
+
+Bugsie - The CREATOR of Cyberaugumented. Good. Good. That's me... Damn it, xd
+sulflix - A big contributor for Cyberaugumented, and the idea of the Argent Chainsaw.
+tsran - Cool ass monster spriter and bug fixer. (Urozon, etc.)
+
+================================================================================
+BETATESTERS
+================================================================================
+
+sulflix
+tsran
+Deimos Anomaly
+reuzel
+
+================================================================================
+Special thanks to...
+================================================================================
+
+Agent_Ash - For helping me with ZScript
+Boondorl and the entire ZDoom server - Helping me making this mod a reality
+Deimos Anomaly ("What the bruh...") - The main idea of dynamic spawners and the temperature system.
+reuzel - For supporting this mod
+
+You - For downloading and trying out Cyberaugumented.
+
+================================================================================
+CREATORS OF RESOURCES USED IN THIS MOD
+================================================================================
+
+id Software - Sounds
+Midway Software - (PSX Doom) Sounds
+Bethesda Software & id Software - DOOM (2016) and DOOM Eternal
+MicroProse - Monster sounds
+Rondo of Blood | Dracula X (Konami) - Projectile effect sprites
+Raven Software - Monster Sprites, sounds (Hexen II and Heretic II)
+Huy Pham - Hell Cleric sprites
+Rogue Entertaiment - Monster sprites
+Krafton - Monster Sounds (TERA)
+Dolphman - Lightning Vulgar sprites
+Rare Ltd. - Interface & Enviroment sounds (Killer Instinct)
+FromSoftware - Bloodborne Sounds
+Activision Blizzard - Diablo Sounds
+Overlord (Mew) - Hellfire Cyberdemon and Cerebral Commander sprites
+Bridgeburner (Aka. Eriance) - Mindmaster, Dastard, Vulgars, Infernis, Hexodenican, Wretched, Espouser, etc. sprites
+DoomedArchvile - Alacritous Guy Sprites
+HorrorMovieGuy - Monster sprites
+raymoohawk - Automaton Supervisor and Decedent Bigwig sprites
+Urric - Overdemoniac Sprites
+Xim - Destructor, Transmuter sprites
+WildStudios & WildTangent - Pickup Sounds
+Interplay Entertainment - Sounds
+Tripwire Interactive - Monster sounds (Blue Void Incarnate, Abater, Destructive Earl, etc.)
+KDiZD - Z-Exec sprites (along with frankenspriting from id and Rogue Entertainment)
+Vader - Malwrath Sprites
+Rottking - Perserver Sprites
+zrrion the insect - Lightning arc effect sprites
+Melvinflynt - Abyssal Exarch, Vizier, Sacker, etc. (Doom X) sprites [I miss you, Doom X.]
+Reaper Doom - Sacker (Elite Imp Edits) sprites
+High Councilor - Monster Sprites (Maltreat, Lemures, Arachnoaversion, Qualm, Inciter, etc.)
+DustedPandemonic - War (Destructive Earl) Sprites
+Captain Toenail - Ion Arachnotron and Aracgunner sprites
+General Roasterock - Acrobat sprites
+Realm667 Community - Majority of sprites
+Inti Creates - (Blaster Master Zero) Sounds
+Alvex (Hades) - Sounds
+Naxat Soft - (Nexzr, Fausette Amour, etc.) Lightning Phase sounds, Multidimensional Caster's Sliced Death sound
+Irem - (R-Type III, R-Type Leo) Sounds
+Konami (Contra III, Gradius III) - Sounds
+Nigoro (La-Mulana 2013) - Sounds
+Visceral Games - (Dead Space) Lightning Phase sounds
+Bill the Demon [Macintosh Game] - Barricade sounds
+OMEGAPSYCHO (I don't know the origin of FLAME001 and related) - Sounds
+Alpha Doom - Sounds
+Colorful Hell and LCA - Inspiration of minibosses. [Old LCA is better, fight me]
+Sergei/TSF/Sonik.O.Fan - Weapon sprites
+Relic Entertainment - Sounds
+Official Ultimate Apocalypse Mod Team - Sounds
+Dissy EX - Creator of the Reimagined sounds series
+Wereknight - Former spriter
+MUGEN - Cool ass effect sprites
+VICE - (Hell Razer) Sprites
+Xegethra/Amaranthus616 - Black Metal Baron, Heavy Metal Imp, etc. Sprites
+SNK Corp. - (Metal Slug) Sprites for Water Splashes
+BloodyAcid - Sprites
+Craneo - Mr. Funny Funny Man
+Digital Extremes - Sounds
+Epic Games - (Unreal Tournament, Gears of War) Sounds
+Jukem - Weapon sprites
+Team D-13 - Sounds
+Nintendo - Sounds
+Retro Studios - Sounds
+Bungie / Microsoft - (Halo) Sounds
+NEC Avenue - (Download 2, Super Darius 2) Sounds
+System Erasure - Sounds
+MagicWazard - Original TERRAIN/Splashing code
+PyroScourge - Thor Sprites
+Vivendi Games - Sounds
+JoyMasher - Archon Explosion sounds
+Ryemanni - Upheaval Laser sounds (Rayman Redemption)
+CWolf - Upheavalbringer/Archdictator sprites
+Cherno - Sprites
+Player Incognito - Sirius Crisis sounds
+Backbone Entertainment - Sounds
+Techland (Dying Light) - Sounds
+Tarsier Studios (Little Nightmares) - Sounds
+ipxsnds.wad - Enviromental sounds
+Marisa Kirisame (:3) - notHudMessage
+Major Cooke - notHudMessge
+Trent Reznor - Sounds
+REV - LIQUIIIIIIIIIIIID
+Square Enix - Sounds
+Matrix Software - Sounds
+Kaneko - Sounds
+Taito - Sounds
+Hudson Soft (Sapphire) - Sounds
+Flight-Plan (Metamor Jupiter) - Player Sounds and other Sounds
+Capcom (Monster Hunter 3 Ultimate, etc.) - Sounds
+Tecmo (Raiga: Strato Fighter) - Sounds (Arbiter why)
+Obsidian Entertainment (Wasteland 2: Director's Cut) - Sounds
+Human Head Studios (Prey: 2017) - Sounds
+EOA - Tracer & Spark models
+TG5 - Sprites
+Ultra64 - Rattail Sprites
+Kamina - Sounds
+Nash - The Weapon Swaying script
+Fuzzball - For the NewTextColors_260 text colors
+Konjak (Iconoclasts) - Exhauster fucking dies sound
+Valve Studios (Team Fortress 2, Half-Life 2, etc) - Sounds
+Titanium - Sprites and Sounds
+Feralidragon - Sounds
+Arkore - Deracinator sprites
+Udderdude (XOP) - Sprites and Sounds
+Falcon Delta - Sprites
+Kikiyama (Yume Nikki) - Inspiration for design
+Yume 2kki Team - Sounds
+Don't Ask Software - Creator of Commodore SAM (Used for Overdemoniac and Intermission)
+REVENGE - Sounds
+Croteam - Sounds
+Apogee Software / 3D Realms - Sounds
+Monolith Productions - Sounds
+Headgames - (X-Men 2) Sounds
+ParadoX - Sprites
+ravage - Sprites
+osjclatchford - Sprites
+Skeleton - Sprites
+ItsNatureToDie - Sprites
+Orka - Sprites
+DimosHunter - Sprites
+Tango Gameworks - Sounds
+
+================================================================================
+MUSIC AND FANFARES
+================================================================================
+TITLEMAP - 
+
+================================================================================
+VOICE ACTORS
+================================================================================

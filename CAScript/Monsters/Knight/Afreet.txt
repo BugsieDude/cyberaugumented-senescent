@@ -1,0 +1,13 @@
+Class DCY_Afreet : DCY_BaronParent
+{
+  Default
+  {
+  Translation "80:111=%[0.00,0.00,0.00]:[0.33,0.33,0.33]", "128:159=%[0.00,0.00,0.00]:[0.62,0.62,0.62]", "1:3=%[0.00,0.00,0.00]:[0.54,0.54,0.54]", "5:8=%[0.00,0.00,0.00]:[0.54,0.54,0.54]";
+  DamageFactor 0.5;
+  Health 1100;
+  BloodColor "Red";
+  Tag "\c[i7]Arnament Afreet\c-";
+  Obituary "%o fucked up.";
+  HitObituary "%o is now two pieces of sliced meat.";
+  }
+}

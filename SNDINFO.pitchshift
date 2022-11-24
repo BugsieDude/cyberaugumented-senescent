@@ -1,0 +1,41 @@
+$pitchshift MREIDISR 0
+$pitchshift MREIDIS2 0
+$pitchshift MREIDIS3 0
+$pitchshift FlashingExplosion 0
+
+$pitchshift menu/activate 0
+$pitchshift menu/prompt 0
+$pitchshift menu/cursor 0
+$pitchshift menu/change 0
+$pitchshift menu/invalid 0
+$pitchshift menu/dismiss 0
+$pitchshift menu/backup 0
+$pitchshift menu/choose 0
+$pitchshift menu/clear 0
+
+$pitchshift MajorNzi/Teleport 0
+$pitchshift MajorNzi/Explode 0
+
+$pitchshift OBLTFIRE 0
+$pitchshift OBLTFIR2 0
+$pitchshift OBLTFIR3 0
+
+$pitchshift CinerealOrdnance/Active 0
+$pitchshift CinerealOrdnance/Idle 0
+$pitchshift CinerealOrdnance/Charge 0
+$pitchshift CinerealOrdnance/Cooldown 0
+
+$pitchshift misc/secret 0
+$pitchshift DSSECRET 0
+$pitchshift DSSECRT2 0
+
+$pitchshift misc/startupdone 0
+
+$pitchshift SoulSphere/PickedUp 0
+$pitchshift InvulnerabilitySphere/PickedUp 0
+$pitchshift InvulnerabilitySphere/Warning 0
+$pitchshift Raze/Pickup 0
+$pitchshift RadiationSphere/PickedUp 0
+$pitchshift Berserk/Warning 0
+$pitchshift PowerGem/Pickup 0
+$pitchshift GreaterPowerGem/Pickup 0

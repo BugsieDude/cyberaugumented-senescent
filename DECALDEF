@@ -1,0 +1,69 @@
+decal Scorch
+{
+	pic PLASMA2
+	shade "00 00 00"
+	x-scale 1
+	y-scale 1
+	randomflipx
+	randomflipy
+}
+
+/*
+fader GatFade
+{
+		DecayStart 2
+		DecayTime 1
+}
+stretcher GatStretch
+{
+   GoalX 0.3
+   GoalY 0.3
+   StretchStart 1
+   StretchTime 3
+}
+
+Combiner GatComb
+{
+	GatFade
+	GatStretch
+}
+decal GatLower
+   {
+       pic LAZRA0
+       shade "255 30 0"
+       randomflipx
+       randomflipy
+	   x-scale 0.4
+	   y-scale 0.4
+	   animator GatComb
+	   add 0.3
+	   fullbright
+
+   }
+ decal GatDecal1
+   {
+       pic LAZRB0
+       shade "10 10 10"
+       randomflipx
+       randomflipy
+	   x-scale 0.5
+	   y-scale 0.5
+	   lowerdecal GatLower
+   }
+   decal GatDecal2
+   {
+       pic LAZRB0
+       shade "10 10 10"
+       randomflipx
+       randomflipy
+	   x-scale 0.5
+	   y-scale 0.5
+	   lowerdecal GatLower
+   }
+   decalgroup GatDecal
+   {
+       GatDecal1        1
+       GatDecal2        1
+   }
+   generator Lazor       GatDecal
+*/

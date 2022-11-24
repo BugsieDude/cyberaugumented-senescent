@@ -1,0 +1,297 @@
+Class DCY_Arbiter : DCY_NavyTerminator
+{
+  Default
+  {
+  SeeSound "Arbiter/Sight";
+  ActiveSound "Arbiter/Active";
+  PainSound "Arbiter/Pain";
+  Speed 13;
+  +NEVERFAST
+  DamageFactor 0.99;
+  Health 6789;
+  Tag "The \c[l5]Arbiter\c- - ''Terminator Supertype-666c''";
+  Obituary "%o got a giant painful hole in the face and the chest by the Arbiter.";
+  +NOGRAVITY
+  +FLOAT
+  +BRIGHT
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  FloatSpeed 13;
+  }
+  
+  void A_ArbiterRocket()
+  {
+	A_StartSound("ROBOMIS2", CHAN_WEAPON, 1.0, 0.5, 1.0);
+	A_SpawnProjectile("DCY_ArbiterTorpedo", 52, 15, frandom(-10.0, 10.0));
+	A_FaceTarget();
+  }
+  
+  override void Tick()
+  {
+    super.Tick();
+	
+	If (Health > 0 && !IsFrozen() && !sv_effectchoker)
+	{
+		for (int i = 4; i > 0; i--)
+			A_SpawnItemEx("DCY_FluorescentJetFlare", frandom(-17.0, 17.0), frandom(-17.0, 17.0), frandom(48.0, 51.0), 0, 0, frandom(-2.0, -5.0), flags: SXF_NOCHECKPOSITION, 150);
+	  
+		A_SpawnItemEx("DCY_AndroidExplosionSmaller", frandom(-17.0, 17.0), frandom(-17.0, 17.0), frandom(48.0, 51.0), 0, 0, frandom(-1.0, -2.5), flags: SXF_NOCHECKPOSITION, 150);
+	}
+	
+  }
+  
+  void A_ArbiterVoice(double att, int max)
+  {
+	if (voiceline == 0)
+		A_StartSound("Arbiter/Attack1", CHAN_VOICE, attenuation: att);
+	if (voiceline == 3)
+		A_StartSound("Arbiter/Attack2", CHAN_VOICE, attenuation: att);
+	if (voiceline == 6)
+		A_StartSound("Arbiter/Attack3", CHAN_VOICE, attenuation: att);
+		
+	voiceline = random(0, max);
+  }
+  
+  bool soundplayed;
+  
+  States
+  {
+  Spawn:
+	ARBR AB 3 DCY_Look();
+	Loop;
+  Look:
+	ARBR AB 3 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	ARBR AB 3 A_Chase();
+	ARBR A 0 A_Jump(65, "Dodge");
+	Loop;
+  Dodge:
+	ARBR A 3
+	{
+		A_Dodging(frandom(10.0, 25.0));
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+	}
+	ARBR BABAB 3 A_Chase(null, "Missile", CHF_DONTMOVE);
+	ARBR A 3 A_Stop();
+	Goto See;
+  Missile:
+	ARBR G 0 A_JumpIfCloser(300, "CloseMissile");
+	ARBR G 0 A_Jump(128, "Rockets");
+	ARBR G 0 A_Jump(80, "THECOMBO");
+	ARBR G 10
+	{
+		A_ArbiterVoice(1.0, 10);
+		A_Stop();
+		A_FaceTarget();
+	}
+	ARBR HI 2
+	{
+		A_SpawnProjectile("DCY_ArbiterTracer", 52, -15, frandom(-3.5, 3.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("SRFLFIRE", CHAN_WEAPON, CHANF_OVERLAP);
+		A_FaceTarget();
+	}
+	ARBR G 0 A_MonsterRefire(128, "Cooldown");
+	ARBR G 0 A_Jump(13, "Rockets");
+	ARBR G 0 A_Jump(5, "THECOMBOSTARTED");
+	Goto Missile+4;
+  CloseMissile:
+	ARBR G 0 A_Jump(128, "Rockets");
+	ARBR G 0 A_Jump(80, "THECOMBO");
+	ARBR G 0 A_Jump(74, "Lazor");
+	ARBR G 10
+	{
+		A_ArbiterVoice(1.0, 10);
+		A_Stop();
+		A_FaceTarget();
+	}
+	ARBR HI 2
+	{
+		A_SpawnProjectile("DCY_ArbiterTracer", 52, -15, frandom(-3.5, 3.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("SRFLFIRE", CHAN_WEAPON, CHANF_OVERLAP);
+		A_FaceTarget();
+	}
+	ARBR G 0 A_MonsterRefire(128, "Cooldown");
+	ARBR G 0 A_Jump(13, "Rockets");
+	ARBR G 0 A_Jump(5, "THECOMBOSTARTED", "LAZOR");
+	Goto CloseMissile+4;
+  MissileContinue:
+	Goto Missile+3;
+  THECOMBO:
+	ARBR M 30 A_FaceTarget();
+	Goto THECOMBOSTARTED;
+  THECOMBOSTARTED:
+	ARBR P 1 Bright;
+	ARBR P 2 Bright
+	{
+		if (soundplayed == false)
+		{
+			A_ArbiterVoice(0.5, 6);
+			soundplayed = true;
+		}
+		
+		A_StartSound("ROBOMIS2", CHAN_WEAPON, CHANF_OVERLAP, 1.0, 0.5, 1.0);
+		A_SpawnProjectile("DCY_ArbiterTorpedo", 52, 15, frandom(-10.0, 10.0));
+		A_SpawnProjectile("DCY_ArbiterTracer", 52, -15, frandom(-3.5, 3.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("SRFLFIRE", CHAN_WEAPON, CHANF_OVERLAP);
+		A_FaceTarget();
+	}
+	ARBR NONONONONO 2
+	{
+		A_SpawnProjectile("DCY_ArbiterTracer", 52, -15, frandom(-3.5, 3.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("SRFLFIRE", CHAN_WEAPON, CHANF_OVERLAP);
+		A_FaceTarget();
+	}
+	ARBR O 0 A_MonsterRefire(128, "Cooldown3");
+	Goto THECOMBOSTARTED+1;
+  Rockets:
+	ARBR E 0 A_Jump(90, "MissileContinue");
+	ARBR E 30
+	{
+		A_ArbiterVoice(0.95, 10);
+		A_FaceTarget();
+	}
+	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR E 14 A_FaceTarget();
+	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR E 14 A_FaceTarget();
+	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR E 14 A_FaceTarget();
+	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	Goto Cooldown2;
+  Lazor:
+	ARBR J 0
+	{
+		if (voiceline == 0)
+			A_StartSound("Arbiter/Attack1", CHAN_VOICE, attenuation: ATTN_NONE);
+		if (voiceline == 1)
+			A_StartSound("Arbiter/Attack2", CHAN_VOICE, attenuation: ATTN_NONE);
+		if (voiceline == 2)
+			A_StartSound("Arbiter/Attack3", CHAN_VOICE, attenuation: ATTN_NONE);
+		
+		voiceline = random(0, 2);
+	}
+	ARBR JJJ 30
+	{
+		A_StartSound("Power/OverchargeStart", CHAN_WEAPON, 0, 1.0, 0.25);
+		A_FaceTarget();
+	}
+	ARBR JJJJJJJJJJJJJJJJJJJJJJJJ 1 A_FaceTarget();
+	ARBR K 1
+	{
+		A_FaceTarget(1.3, 1.3);
+		A_StartSound("Eradicator/Laser", CHAN_WEAPON, 0, 0.45, 0.25,0.635);
+		A_StartSound("Le/Laser", CHAN_5, 0, 0.45, 0.15);
+		A_StartSound("DREADLSR", CHAN_6, 0, 1.0, ATTN_NONE);
+		A_CustomRailgun(15, -10, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_ArbiterPuff", sparsity: 70, spawnclass: "DCY_ArbiterLazerFade", spawnofs_z: 25);
+		A_QuakeEx(2, 2, 2, 30, 0, 400, "", QF_SCALEDOWN, 0, 0, 0, 800);
+	}
+	ARBR KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 1
+	{
+		A_FaceTarget(1.3, 1.3);
+		A_CustomRailgun(15, -10, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_ArbiterPuff", sparsity: 70, spawnclass: "DCY_ArbiterLazerFade", spawnofs_z: 25);
+		A_QuakeEx(2, 2, 2, 30, 0, 400, "", QF_SCALEDOWN, 0, 0, 0, 800);
+	}
+	ARBR K 1
+	{
+		A_FaceTarget(1.3, 1.3);
+		A_CustomRailgun(15, -10, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_ArbiterPuff", sparsity: 70, spawnclass: "DCY_ArbiterLazerFade", spawnofs_z: 25);
+		A_QuakeEx(2, 2, 2, 30, 0, 400, "", QF_SCALEDOWN, 0, 0, 0, 800);
+	}
+	ARBR J 30;
+	Goto See;
+  Cooldown:
+	ARBR G 20;
+	Goto See;
+  Cooldown2:
+	ARBR E 20;
+	Goto See;
+  Cooldown3:
+	ARBR M 20 { soundplayed = false; }
+	Goto See;
+  Pain:
+	ARBR A 3;
+	ARBR B 3 A_Pain();
+	Goto See;
+  Death:
+	ARBR Q 1;
+	ARBR Q 3 A_StartSound("TerminatorBase/Explode", CHAN_VOICE, CHANF_NOSTOP, 1.0, ATTN_NONE, 0.65);
+	ARBR QQQQQ 3;
+	ARBR QQQQQQQR 3 A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(30, 80), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	ARBR S 3
+	{
+		A_Fall();
+		A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(30, 80), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	ARBR TTTT 0 A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(50, 70), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	TNT1 A 50;
+	TNT1 A 1 A_BossDeath2();
+	Stop;
+  Death.Massacre:
+	ARBR Q 1;
+	ARBR Q 3 A_StartSound("TerminatorBase/Explode", CHAN_VOICE, CHANF_NOSTOP, 1.0, ATTN_NONE, 0.65);
+	ARBR QQQQQ 3;
+	ARBR QQQQQQQR 3;
+	ARBR S 3 A_Fall();
+	TNT1 A 50;
+	TNT1 A 1 A_BossDeath2();
+	Stop;
+  }
+}
+
+Class DCY_ArbiterTorpedo : DCY_TransmuterTorpedo
+{
+  Default
+  {
+  Scale 1.0;
+  Speed 22.5;
+  FastSpeed 24.5;
+  Radius 16;
+  Height 9;
+  SeeSound "ROBOMIS2";
+  Translation "168:173=[255,255,255]:[128,255,255]", "0:0=[0,0,0]:[255,255,255]", "174:180=[121,255,255]:[0,128,255]", "181:191=[0,115,230]:[0,0,64]", "224:231=[255,255,255]:[128,255,255]", "208:216=[255,255,255]:[128,255,255]", "217:223=[119,255,255]:[0,128,192]", "232:235=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[128,255,255]:[0,0,128]", "16:23=[255,255,255]:[128,255,255]", "24:31=[111,255,255]:[0,128,255]", "32:47=[0,124,249]:[0,0,64]", "192:195=[255,255,255]:[128,255,255]", "196:201=[106,255,255]:[0,128,255]", "202:207=[0,116,232]:[0,0,64]", "112:119=[0,128,255]:[0,0,128]", "120:127=[0,0,119]:[0,0,64]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+  DeathSound "UCKABEWM";
+  }
+  States
+  {
+  Spawn:
+	64MS A 1
+	{
+		A_SpawnItemEx("DCY_ArbiterFlare", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2));
+		A_SpawnItemEx("DCY_TransmuterFlame", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), zvel: 1, failchance: 100);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnParticle(0xabe9ff, SPF_FULLBRIGHT, random(20, 40) - 25, random(9, 13), frandom(0, 360), frandom(-7.0, 7.0), frandom(-7.0, 7.0), frandom(-7.0, 7.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);
+	}
+	Loop;
+  Death:
+	TNT1 A 0
+	{
+		for (int i = 5; i > 0; i--)
+			A_SpawnItemEx("DCY_AndroidExplosion", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), 0, 0, 0, random(0, 360), SXF_NOCHECKPOSITION);
+	}
+    TNT1 A 1 Bright A_Explode(140, 145, XF_NOTMISSILE, 1);
+	TNT1 A 0
+	{
+		A_FadeOut(0.085, 0);
+		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
+	}
+	TNT1 A 40 Bright;
+    Stop;
+  }
+}
+
+Class DCY_ArbiterFlare : DCY_TransmuterFlare
+{
+  Default { Scale 1.4; }
+}

@@ -1,0 +1,20 @@
+Class DCY_EnvoyEx : DCY_ShotgunZombe
+{
+  Default
+  {
+  Health 120;
+  Speed 12;
+  FastSpeed 14;
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o opposed the extraterestral cult.",
+		"%o got the swift gift of death from the Envoy-Ex."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+}

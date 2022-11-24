@@ -1,0 +1,69 @@
+Class DCY_BigLaserTrail : Actor
+{
+  Default
+  {
+  Scale 2.9;
+  RenderStyle "Add";
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOINTERACTION
+  +BRIGHT
+  +ROLLSPRITE
+  Alpha 0.1;
+  }
+  
+  States
+  {
+  Spawn:
+	LAZ_ A 0 NoDelay
+	{
+		A_SetRoll(frandom(0, 360));
+	}
+	LAZ_ AAAA 1
+	{
+		A_SetRoll(random(0,360));
+		A_FadeIn(0.2);
+	}
+	LAZ_ AAAA 1
+	{
+		A_SetRoll(random(0,360));
+		A_FadeOut(0.2);
+	}
+	Stop;
+  }
+}
+
+Class DCY_BigLaser : FastProjectile
+{
+  Default
+  {
+  Speed 350;
+  +RIPPER
+  Radius 15;
+  Height 30;
+  Damage (3);
+  DamageType "Plasma";
+  MissileHeight 6;
+  MissileType "DCY_BigLaserTrail";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_QuakeEx(4, 4, 4, 20, 0, 1280, "", QF_SCALEDOWN|QF_3D);
+		A_Explode(3, 70);
+	}
+	Loop;
+  Death:
+	TNT1 A 132 A_QuakeEx(4, 4, 4, 20, 0, 1280, "", QF_SCALEDOWN|QF_3D);
+	Stop;
+  }
+}
+
+Class DCY_MindmasterLaserTrail : DCY_BigLaserTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.81,0.61,1.09]"; } }
+Class DCY_MindmasterLaser : DCY_BigLaser { Default { MissileType "DCY_MindmasterLaserTrail"; } }
+
+Class DCY_MotherLaserTrail : DCY_BigLaserTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.31,1.66,0.91]"; } }
+Class DCY_MotherLaser : DCY_BigLaser { Default { MissileType "DCY_MotherLaserTrail"; Damage (2); } }

@@ -1,0 +1,70 @@
+Class DCY_MastermindJetFlare : DCY_GunmetalInfiltratorBallTrail
+{
+  Default
+  {
+  +BRIGHT;
+  +ROLLSPRITE;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.35,0.54,0.19]";
+  }
+  States
+  {
+  Spawn:
+	FRTG A 0 NoDelay A_SetRoll(frandom(0, 360));
+	FRTG ABCDEFGHI 1 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}
+
+Class DCY_ArchvileFlame : DCY_MastermindJetFlare
+{
+  Default
+  {
+  Alpha 0.275;
+  Scale 0.55;
+  }
+  
+  int rolls;
+  
+  States
+  {
+  Spawn:
+	_9R1 A 0;
+	Goto SpawnII;
+  SpawnII:
+	"####" "#" 0 A_SetRoll(frandom(0.00, 360.00));
+    "####" "#" 0
+	{
+		rolls = 1;
+		
+		if (random(0, 1) == 1)
+			rolls = -1;
+	}
+    "####" "#" 1
+	{
+		A_FadeOut(0.025, 1);
+		A_SetRoll(Roll + (20 * rolls));
+		A_SetScale(Scale.X-0.035, Scale.Y-0.035);
+		
+		if (Scale.X < 0)
+			Destroy();
+	}
+	Goto SpawnII+2;
+  }
+}
+
+Class DCY_ArchvileFlame3 : DCY_ArchvileFlame { Default { Alpha 0.5; } }
+Class DCY_ApollyonTracerFireFlame : DCY_ArchvileFlame { Default { Scale 0.35; Alpha 0.85; } }
+
+Class DCY_BlueVoidJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.54,0.59,1.46]"; } }
+Class DCY_HyperclusterCommanderJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.77,0.12]"; } }
+Class DCY_LividJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.69,1.37,0.00]"; } }
+Class DCY_LunisJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.32,0.65,1.03]"; } }
+Class DCY_FluorescentJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.32,0.65,1.03]"; } }
+Class DCY_NimbusJetFlare : DCY_MastermindJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.54,0.38,0.83]"; } }
+Class DCY_LunisJetFlareSmall : DCY_LunisJetFlare  { Default { Scale 0.65; } }
+Class DCY_FluorescentJetFlareSmall : DCY_FluorescentJetFlare  { Default { Scale 0.65; } }
+Class DCY_NimbusJetFlareSmall : DCY_NimbusJetFlare  { Default { Scale 0.65; } }
+Class DCY_NebulaJetFlareSmall : DCY_NimbusJetFlareSmall  { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.47,0.56,0.83]"; } }
+Class DCY_MastermindJetFlareSmall : DCY_MastermindJetFlare { Default { Scale 0.65; } }
+Class DCY_AurumJetFlare : DCY_LunisJetFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.76,0.64,0.13]"; } }
+Class DCY_HyperclusterCommanderJetFlareSmall : DCY_HyperclusterCommanderJetFlare { Default { Scale 0.65; } }

@@ -1,0 +1,51 @@
+Class DCY_Variables : Thinker
+{
+  bool gameannounce;
+  
+  int SpawnerLevel;
+  
+  int AllMonsters;
+  int AllItems;
+  int AllSecrets;
+  int CompletionistReward;
+  
+  int numberofminibosses;
+  int numberofsuperbosses;
+  
+  int minibossbeaten;
+  int superbossbeaten;
+  
+  int temperature;
+  bool temperaturehotannounce;
+  bool temperaturecoldannounce;
+  bool temperaturehotxannounce;
+  bool temperaturecoldxannounce;
+  
+  bool EffectChoker;
+  
+  bool alternateturretsound;
+  
+  DCY_Variables init()
+  {
+	ChangeStatNum(STAT_STATIC);
+	return self;
+  }
+  
+  static DCY_Variables Get()
+  {
+	let ti = ThinkerIterator.Create("DCY_Variables", STAT_STATIC);
+	DCY_Variables cur, prev = null;
+	
+	while((cur = DCY_Variables(ti.Next())) != null)
+	{
+		if (prev != null)
+			prev.Destroy();
+		prev = cur;
+	}
+	
+	if (prev == null)
+		prev = new("DCY_Variables").init();
+	
+	return prev;
+  }
+}

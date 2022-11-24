@@ -1,0 +1,311 @@
+Class DCY_Vague : DCY_SOULKING
+{
+  Default
+  {
+  Health 1222;
+  Tag "\c[u9]Vague\c-";
+  SeeSound "EternalPainElemental/Sight";
+  ActiveSound "EternalPainElemental/Active";
+  PainSound "EternalPainElemental/Pain";
+  DeathSound "EternalPainElemental/Death";
+  Scale 0.85;
+  Speed 10.55555;
+  FastSpeed 12.5;
+  DamageType "Vague";
+  DamageFactor "Vague", 0.00;
+  +MISSILEEVENMORE
+  +NOICEDEATH
+  +FIRERESIST
+  +DONTHARMCLASS
+  +QUICKTORETALIATE
+  BloodColor "Purple";
+  }
+  
+  States
+  {
+  Spawn:
+	V_GI CABA 10 A_Look();
+	Loop;
+  See:
+	V_GI C 0 A_Jump(67, "Teleporte");
+	V_GI CCCAAABBBAAA 3 A_Chase();
+	Loop;
+  Teleporte:
+	V_GI D 10 A_Stop();
+	TNT1 A 1
+	{
+		A_StartSound("Enemy/Teleport3", CHAN_BODY, 0, 1.0, 0.75);
+		A_SpawnItemEx("DCY_VagueTeleport", zofs: 28);
+		A_HideThing();
+		A_Stop();
+		bInvulnerable = true;
+		bGhost = true;
+		bNoPain = true;
+	}
+	TNT1 AAA 10;
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+	{
+		A_Wander();
+		A_Chase(null, null, CHF_NOPLAYACTIVE);
+		A_Wander();
+		A_Chase(null, null, CHF_NOPLAYACTIVE);
+	}
+	TNT1 A 1
+	{
+		A_StartSound("Enemy/Teleport3", CHAN_BODY, 0, 1.0, 0.75);
+		A_SpawnItemEx("DCY_VagueTeleport", zofs: 28);
+		A_UnHideThing();
+		bInvulnerable = false;
+		bGhost = false;
+		bNoPain = false;
+	}
+	V_GI D 10;
+	Goto See;
+  Missile:
+	V_GI D 0
+	{
+		if (target && distance3D(target) < 300)
+			Return A_Jump(80, "ScreamAtPlayer");
+		else
+			Return A_Jump(60, "ScreamAtPlayer");
+	}
+	V_GI D 10 { A_FaceTarget(); A_StartSound("EternalPainElemental/Barf", CHAN_VOICE); }
+	V_GI E 10 A_FaceTarget();
+	V_GI EEE 4
+	{
+		A_SpawnProjectile("DCY_VagueBall", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_SpawnProjectile("DCY_VagueBall", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("ROBOSPIT");
+		A_FaceTarget();
+	}
+	V_GI D 10;
+	Goto See;
+  ScreamAtPlayer:
+	V_GI D 3
+	{
+		A_StartSound("EternalPainElemental/WarCry", CHAN_VOICE, attenuation: 0.85);
+		A_FaceTarget();
+	}
+	V_GI EF 4 A_FaceTarget();
+	V_GI FFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+	{
+		A_FaceTarget();
+		A_Explode(2, 100, XF_NOTMISSILE, 0);
+		A_QuakeEx(1, 1, 1, 30, 0, 1200, "", QF_SCALEDOWN|QF_3D, rollintensity: 0.5, rollwave: 0.5);
+	}
+	V_GI ED 5;
+	Goto See;
+  Pain:
+	V_GI L 4;
+	V_GI L 4 A_Pain();
+	V_GI L 0 A_Jump(60, "Teleporte");
+	Goto See;
+  Death:
+	V_GI L 1;
+	V_GI L 10 A_Scream();
+	V_GI MNO 4;
+	V_GI P 3 A_NoBlocking();
+	V_GI QRSTUV 2;
+	Stop;
+  }
+}
+
+Class DCY_VagueBall : FastProjectile
+{
+  Default
+  {
+  Speed 16.5;
+  +NEVERFAST
+  +BRIGHT
+  +EXTREMEDEATH
+  DamageType "Vague";
+  SeeSound "ROBOSPIT";
+  DeathSound "";
+  DamageFunction 20;
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 1.5;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.72,1.25,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	BL48 AB 1
+	{
+		A_Weave(2, 2, frandom(2.0, 3.0), frandom(0.45, 1.0));
+		A_SpawnItemEx("DCY_VagueBallAura");
+	}
+	Loop;
+  Death:
+	TNT1 A 1 A_SetScale(0.65, 0.65);
+	BL48 A 1
+	{
+		A_SpawnItemEx("DCY_VagueBallRing");
+		A_SetScale(Scale.X+0.1, Scale.Y+0.1);
+	}
+	BL48 BABABABABABABAB 1 A_SetScale(Scale.X+0.1, Scale.Y+0.1);
+	ETV4 C 0
+	{
+		A_Explode(100, 80, XF_NOTMISSILE, 1);
+		A_SpawnItemEx("DCY_VaguePillar", 0, 0, 3, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		A_QuakeEx(2, 2, 2, 43, 0, 300, "none", QF_SCALEDOWN, 0, 0, 0, 600);
+		A_StartSound("SMEXPL2", CHAN_BODY, 0, 1.0, 0.5);
+	}
+	TNT1 A 44;
+	Stop;
+  }
+}
+
+Class DCY_VagueBallRing : DCY_BionicRing
+{
+  Default
+  {
+  Scale 0.85;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.72,1.25,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	C28Y QPONMLKJIHGFEDCBA 1 A_SetScale(Scale.X-0.2, Scale.Y-0.2);
+	Stop;
+  }
+}
+
+Class DCY_VagueBallAura : DCY_RZBallAura { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.32,0.64,2.00]"; Scale 0.65; } }
+
+Class DCY_VaguePillar : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  DamageType "Vague";
+  +OLDRADIUSDMG
+  +BRIGHT
+  +NOCLIP
+  +RIPPER
+  +THRUACTORS
+  +FORCERADIUSDMG
+  +FORCEYBILLBOARD
+  Translation "0:255=%[0.00,0.00,0.00]:[1.72,1.25,2.00]";
+  YScale 50.0;
+  XScale 0.6;
+  Radius 20;
+  DamageFunction (5);
+  }
+  States
+  {
+  Spawn:
+	ETV4 LKJIHGFEDEFGHIJKL 1;
+	Stop;
+  }
+}
+
+Class DCY_VagueTeleport : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Alpha 0;
+  Scale 0;
+  +BRIGHT
+  +NOCLIP
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 1
+	{
+		for (int i = 5; i > 0; i--)
+			A_SpawnItemEx("DCY_VagueRing", frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0), angle: frandom(0.00, 360.00), flags: SXF_NOCHECKPOSITION);
+		
+		A_SpawnItemEx("DCY_VagueFlare", flags: SXF_NOCHECKPOSITION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VagueRing : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 0.25;
+  Scale 0.00001;
+  +NOCLIP
+  +THRUACTORS
+  +ROLLSPRITE
+  +NOGRAVITY
+  +FLATSPRITE
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	EF3_ E 0;
+	EF3_ E 1;
+	EF3_ E 1
+	{
+		A_SetAngle(frandom(-360.00, 360.00));
+		A_SetPitch(frandom(-360.00, 360.00));
+		A_SetRoll(frandom(-360.00, 360.00));
+		A_SetScale(frandom(0.35, 0.45), frandom(0.35, 0.45));
+	}
+	EF3_ E 1
+	{
+		A_SetScale(Scale.X+0.075, Scale.Y+0.075);
+		A_FadeOut(0.025, 0);
+	}
+	EF3_ E 0 A_JumpIf(Alpha <= 0.00000000000000001, "Stahp");
+	Goto Spawn+3;
+  Stahp:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_VagueFlare : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 0.02;
+  +BRIGHT
+  +NOCLIP
+  +NOINTERACTION
+  }
+  States
+  {
+  Spawn:
+	FLR_ AAAAA 1
+	{
+		A_FadeOut(0.045, 0);
+		A_SetScale(Scale.X+0.4, Scale.Y+0.4);
+	}
+	FLR_ AAA 1
+	{
+		A_FadeOut(0.045, 0);
+		A_SetScale(Scale.X+0.10, Scale.Y+0.10);
+	}
+	FLR_ AAAAAAAAA 1
+	{
+		A_FadeOut(0.085, 0);
+		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VagueFire : DoomImpBall
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.72,1.25,2.00]";
+  }
+}

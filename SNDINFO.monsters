@@ -1,0 +1,2465 @@
+//Gibbing
+Android/Gib "Sounds/Gore/dcy_android_gib.wav"
+
+$random misc/gibbed { D4GORE1 D4GORE2 D4GORE3 D4GORE4 D4GORE5 D4GORE6 D4GORE7 }
+D4GORE1 "Sounds/Gore/dcy_d4_gore_1.ogg"
+D4GORE2 "Sounds/Gore/dcy_d4_gore_2.ogg"
+D4GORE3 "Sounds/Gore/dcy_d4_gore_3.ogg"
+D4GORE4 "Sounds/Gore/dcy_d4_gore_4.ogg"
+D4GORE5 "Sounds/Gore/dcy_d4_gore_5.ogg"
+D4GORE6 "Sounds/Gore/dcy_d4_gore_6.ogg"
+D4GORE7 "Sounds/Gore/dcy_d4_gore_7.ogg"
+$random misc/mediumgibbed { D4MGORE1 D4MGORE2 D4MGORE3 D4MGORE4 D4MGORE5 D4MGORE6 D4MGORE7 }
+D4MGORE1 "Sounds/Gore/dcy_d4_medium_gore_1.ogg"
+D4MGORE2 "Sounds/Gore/dcy_d4_medium_gore_2.ogg"
+D4MGORE3 "Sounds/Gore/dcy_d4_medium_gore_3.ogg"
+D4MGORE4 "Sounds/Gore/dcy_d4_medium_gore_4.ogg"
+D4MGORE5 "Sounds/Gore/dcy_d4_medium_gore_5.ogg"
+D4MGORE6 "Sounds/Gore/dcy_d4_medium_gore_6.ogg"
+D4MGORE7 "Sounds/Gore/dcy_d4_medium_gore_7.ogg"
+$random misc/smallgibbed { D4SGORE1 D4SGORE2 D4SGORE3 }
+D4SGORE1 "Sounds/Gore/dcy_d4_small_gore_1.ogg"
+D4SGORE2 "Sounds/Gore/dcy_d4_small_gore_2.ogg"
+D4SGORE3 "Sounds/Gore/dcy_d4_small_gore_3.ogg"
+
+//Voices
+grunt/burn "Sounds/DCY Monsters/Hell Soldier/burn.ogg"
+$random grunt2/sight { XSPOSIT1 XSPOSIT2 XSPOSIT3 }
+XSPOSIT1 "Sounds/DCY Monsters/Hell Soldier/sight1.ogg"
+XSPOSIT2 "Sounds/DCY Monsters/Hell Soldier/sight2.ogg"
+XSPOSIT3 "Sounds/DCY Monsters/Hell Soldier/sight3.ogg"
+grunt2/pain "Sounds/DCY Monsters/Hell Soldier/pain.ogg"
+$random grunt2/Death { XSPODTH1 XSPODTH2 XSPODTH3 }
+XSPODTH1 "Sounds/DCY Monsters/Hell Soldier/death1.ogg"
+XSPODTH2 "Sounds/DCY Monsters/Hell Soldier/death2.ogg"
+XSPODTH3 "Sounds/DCY Monsters/Hell Soldier/death3.ogg"
+
+$random shotguy/sight		{ shotguy/sight1 shotguy/sight2 shotguy/sight3 shotguy/sight4 shotguy/sight5 shotguy/sight6 }
+$random shotguy/pain		{ shotguy/pain1 shotguy/pain2 shotguy/pain2 shotguy/pain2 shotguy/pain2 }
+$random shotguy/death		{ shotguy/death1 shotguy/death2 shotguy/death3 }
+shotguy/sight1 "Sounds/DCY Monsters/Hell Sergeant/sight1.ogg"
+shotguy/sight2 "Sounds/DCY Monsters/Hell Sergeant/sight2.ogg"
+shotguy/sight3 "Sounds/DCY Monsters/Hell Sergeant/sight3.ogg"
+shotguy/sight4 "Sounds/DCY Monsters/Hell Sergeant/sight4.ogg"
+shotguy/sight5 "Sounds/DCY Monsters/Hell Sergeant/sight5.ogg"
+shotguy/sight6 "Sounds/DCY Monsters/Hell Sergeant/sight6.ogg"
+shotguy/active "Sounds/DCY Monsters/Hell Sergeant/idle.ogg"
+shotguy/pain "Sounds/DCY Monsters/Hell Sergeant/pain.ogg"
+shotguy/death1 "Sounds/DCY Monsters/Hell Sergeant/death1.ogg"
+shotguy/death2 "Sounds/DCY Monsters/Hell Sergeant/death2.ogg"
+shotguy/death3 "Sounds/DCY Monsters/Hell Sergeant/death3.ogg"
+$random shotguy/burn { shotguy/burn1 shotguy/burn2 shotguy/burn3 }
+shotguy/burn1 "Sounds/DCY Monsters/Hell Sergeant/burn1.ogg"
+shotguy/burn2 "Sounds/DCY Monsters/Hell Sergeant/burn2.ogg"
+shotguy/burn3 "Sounds/DCY Monsters/Hell Sergeant/burn3.ogg"
+
+$random chainguy/sight { CGSIGHT CGSIGHT2 CGSIGHT3 CGSIGHT4 CGSIGHT5 }
+CGSIGHT "Sounds/DCY Monsters/Hell Commando/sight1.ogg"
+CGSIGHT2 "Sounds/DCY Monsters/Hell Commando/sight2.ogg"
+CGSIGHT3 "Sounds/DCY Monsters/Hell Commando/sight3.ogg"
+CGSIGHT4 "Sounds/DCY Monsters/Hell Commando/sight4.ogg"
+CGSIGHT5 "Sounds/DCY Monsters/Hell Commando/sight5.ogg"
+chainguy/active "Sounds/DCY Monsters/Hell Commando/idle.ogg"
+chainguy/pain "Sounds/DCY Monsters/Hell Commando/pain.ogg"
+$random chainguy/death { CGDTH1 CGDTH2 }
+CGDTH1 "Sounds/DCY Monsters/Hell Commando/death1.ogg"
+CGDTH2 "Sounds/DCY Monsters/Hell Commando/death2.ogg"
+chainguy/burn "Sounds/DCY Monsters/Hell Commando/burn.ogg"
+
+caco/pain "Sounds/Replacements/DSCACOPN.ogg"
+
+$random dastard/sight { dcy_dsit1 dcy_dsit2 dcy_dsit3 dcy_dsit4 dcy_dsit5 dcy_dsit6 dcy_dsit7 }
+dcy_dsit1 "Sounds/DCY Monsters/Dastard/sight1.ogg"
+dcy_dsit2 "Sounds/DCY Monsters/Dastard/sight2.ogg"
+dcy_dsit3 "Sounds/DCY Monsters/Dastard/sight3.ogg"
+dcy_dsit4 "Sounds/DCY Monsters/Dastard/sight4.ogg"
+dcy_dsit5 "Sounds/DCY Monsters/Dastard/sight5.ogg"
+dcy_dsit6 "Sounds/DCY Monsters/Dastard/sight6.ogg"
+dcy_dsit7 "Sounds/DCY Monsters/Dastard/sight7.ogg"
+dastard/active "Sounds/DCY Monsters/Dastard/idle.ogg"
+$random dastard/pain { dcy_dpain1 dcy_dpain2 dcy_dpain3 }
+dcy_dpain1 "Sounds/DCY Monsters/Dastard/pain1.ogg"
+dcy_dpain2 "Sounds/DCY Monsters/Dastard/pain2.ogg"
+dcy_dpain3 "Sounds/DCY Monsters/Dastard/pain3.ogg"
+$random dastard/death { dcy_ddth1 dcy_ddth2 dcy_ddth3 dcy_ddth4 dcy_ddth5 dcy_ddth6 dcy_ddth7 dcy_ddth8 }
+dcy_ddth1 "Sounds/DCY Monsters/Dastard/death1.ogg"
+dcy_ddth2 "Sounds/DCY Monsters/Dastard/death2.ogg"
+dcy_ddth3 "Sounds/DCY Monsters/Dastard/death3.ogg"
+dcy_ddth4 "Sounds/DCY Monsters/Dastard/death4.ogg"
+dcy_ddth5 "Sounds/DCY Monsters/Dastard/death5.ogg"
+dcy_ddth6 "Sounds/DCY Monsters/Dastard/death6.ogg"
+dcy_ddth7 "Sounds/DCY Monsters/Dastard/death7.ogg"
+dcy_ddth8 "Sounds/DCY Monsters/Dastard/death8.ogg"
+
+$random SSGZombie/Sight { SSGZSIT1 SSGZSIT2 SSGZSIT3 }
+SSGZSIT1 "Sounds/DCY Monsters/SSG Soldier/sight1.ogg"
+SSGZSIT2 "Sounds/DCY Monsters/SSG Soldier/sight2.ogg"
+SSGZSIT3 "Sounds/DCY Monsters/SSG Soldier/sight3.ogg"
+$random SSGZombie/Pain { SSGZPAI1 SSGZPAI2 SSGZPAI3 }
+SSGZPAI1 "Sounds/DCY Monsters/SSG Soldier/pain1.ogg"
+SSGZPAI2 "Sounds/DCY Monsters/SSG Soldier/pain2.ogg"
+SSGZPAI3 "Sounds/DCY Monsters/SSG Soldier/pain3.ogg"
+
+$random vile/death { VILDTH1 VILDTH2 VILDTH3 VILDTH4 VILDTH5 VILDTH6 VILDTH7 VILDTH8 VILDTH9 }
+VILDTH1 "Sounds/DCY Monsters/Vile/death1.ogg"
+VILDTH2 "Sounds/DCY Monsters/Vile/death2.ogg"
+VILDTH3 "Sounds/DCY Monsters/Vile/death3.ogg"
+VILDTH4 "Sounds/DCY Monsters/Vile/death4.ogg"
+VILDTH5 "Sounds/DCY Monsters/Vile/death5.ogg"
+VILDTH6 "Sounds/DCY Monsters/Vile/death6.ogg"
+VILDTH7 "Sounds/DCY Monsters/Vile/death7.ogg"
+VILDTH8 "Sounds/DCY Monsters/Vile/death8.ogg"
+VILDTH9 "Sounds/DCY Monsters/Vile/death9.ogg"
+$random vile/pain { VILPAI1 VILPAI2 VILPAI3 VILPAI4 VILPAI5 VILPAI6 VILPAI7 VILPAI8 VILPAI9 VILPAI10 }
+VILPAI1 "Sounds/DCY Monsters/Vile/pain1.ogg"
+VILPAI2 "Sounds/DCY Monsters/Vile/pain2.ogg"
+VILPAI3 "Sounds/DCY Monsters/Vile/pain3.ogg"
+VILPAI4 "Sounds/DCY Monsters/Vile/pain4.ogg"
+VILPAI5 "Sounds/DCY Monsters/Vile/pain5.ogg"
+VILPAI6 "Sounds/DCY Monsters/Vile/pain6.ogg"
+VILPAI7 "Sounds/DCY Monsters/Vile/pain7.ogg"
+VILPAI8 "Sounds/DCY Monsters/Vile/pain8.ogg"
+VILPAI9 "Sounds/DCY Monsters/Vile/pain9.ogg"
+VILPAI10 "Sounds/DCY Monsters/Vile/pain10.ogg"
+$random vile/sight { VILSIT1 VILSIT2 VILSIT3 VILSIT4 VILSIT5 VILSIT6 VILSIT7 VILSIT8 VILSIT9 VILSIT10 VILSIT11 VILSIT12 VILSIT13 VILSIT14 VILSIT15 VILSIT16 VILSIT17 }
+VILSIT1 "Sounds/DCY Monsters/Vile/sight1.ogg"
+VILSIT2 "Sounds/DCY Monsters/Vile/sight2.ogg"
+VILSIT3 "Sounds/DCY Monsters/Vile/sight3.ogg"
+VILSIT4 "Sounds/DCY Monsters/Vile/sight4.ogg"
+VILSIT5 "Sounds/DCY Monsters/Vile/sight5.ogg"
+VILSIT6 "Sounds/DCY Monsters/Vile/sight6.ogg"
+VILSIT7 "Sounds/DCY Monsters/Vile/sight7.ogg"
+VILSIT8 "Sounds/DCY Monsters/Vile/sight8.ogg"
+VILSIT9 "Sounds/DCY Monsters/Vile/sight9.ogg"
+VILSIT10 "Sounds/DCY Monsters/Vile/sight10.ogg"
+VILSIT11 "Sounds/DCY Monsters/Vile/sight11.ogg"
+VILSIT12 "Sounds/DCY Monsters/Vile/sight12.ogg"
+VILSIT13 "Sounds/DCY Monsters/Vile/sight13.ogg"
+VILSIT14 "Sounds/DCY Monsters/Vile/sight14.ogg"
+VILSIT15 "Sounds/DCY Monsters/Vile/sight15.ogg"
+VILSIT16 "Sounds/DCY Monsters/Vile/sight16.ogg"
+VILSIT17 "Sounds/DCY Monsters/Vile/sight17.ogg"
+$random vile/active { VILACT1 VILACT2 VILACT3 VILACT4 VILACT5 VILACT6 VILACT7 VILACT8 VILACT9 VILACT10 VILACT11 VILACT12 VILACT13 VILACT14 VILACT15 VILACT16 VILACT17 VILACT18 VILACT19 VILACT20 VILACT21 VILACT22 VILACT23 }
+VILACT1 "Sounds/DCY Monsters/Vile/idle1.ogg"
+VILACT2 "Sounds/DCY Monsters/Vile/idle2.ogg"
+VILACT3 "Sounds/DCY Monsters/Vile/idle3.ogg"
+VILACT4 "Sounds/DCY Monsters/Vile/idle4.ogg"
+VILACT5 "Sounds/DCY Monsters/Vile/idle5.ogg"
+VILACT6 "Sounds/DCY Monsters/Vile/idle6.ogg"
+VILACT7 "Sounds/DCY Monsters/Vile/idle7.ogg"
+VILACT8 "Sounds/DCY Monsters/Vile/idle8.ogg"
+VILACT9 "Sounds/DCY Monsters/Vile/idle9.ogg"
+VILACT10 "Sounds/DCY Monsters/Vile/idle10.ogg"
+VILACT11 "Sounds/DCY Monsters/Vile/idle11.ogg"
+VILACT12 "Sounds/DCY Monsters/Vile/idle12.ogg"
+VILACT13 "Sounds/DCY Monsters/Vile/idle13.ogg"
+VILACT14 "Sounds/DCY Monsters/Vile/idle14.ogg"
+VILACT15 "Sounds/DCY Monsters/Vile/idle15.ogg"
+VILACT16 "Sounds/DCY Monsters/Vile/idle16.ogg"
+VILACT17 "Sounds/DCY Monsters/Vile/idle17.ogg"
+VILACT18 "Sounds/DCY Monsters/Vile/idle18.ogg"
+VILACT19 "Sounds/DCY Monsters/Vile/idle19.ogg"
+VILACT20 "Sounds/DCY Monsters/Vile/idle20.ogg"
+VILACT21 "Sounds/DCY Monsters/Vile/idle21.ogg"
+VILACT22 "Sounds/DCY Monsters/Vile/idle22.ogg"
+VILACT23 "Sounds/DCY Monsters/Vile/idle23.ogg"
+vile/raise "Sounds/DCY Monsters/Vile/raise_enemy.ogg"
+
+HX/Sight "Sounds/DCY Monsters/Hexodenican/sight.ogg"
+HX/Active "Sounds/DCY Monsters/Hexodenican/active.ogg"
+HX/Pain "Sounds/DCY Monsters/Hexodenican/pain.ogg"
+HX/Death "Sounds/DCY Monsters/Hexodenican/death.ogg"
+
+Lemures/Sight "Sounds/DCY Monsters/Lemures/sight.ogg"
+Lemures/Pain "Sounds/DCY Monsters/Lemures/pain.ogg"
+Lemures/Death "Sounds/DCY Monsters/Lemures/death.ogg"
+
+Maltreat/Sight "Sounds/DCY Monsters/Maltreat/sight.ogg"
+$random Maltreat/Active { MALTACT MALTACT2 }
+MALTACT "Sounds/DCY Monsters/Maltreat/active1.ogg"
+MALTACT2 "Sounds/DCY Monsters/Maltreat/active2.ogg"
+Maltreat/Attack "Sounds/DCY Monsters/Maltreat/attack.ogg"
+$random Maltreat/Pain { MALTPAI MALTPAI2 }
+MALTPAI "Sounds/DCY Monsters/Maltreat/pain1.ogg"
+MALTPAI2 "Sounds/DCY Monsters/Maltreat/pain2.ogg"
+Maltreat/Death "Sounds/DCY Monsters/Maltreat/death.ogg"
+
+Raison/Sight "Sounds/DCY Monsters/Espion De L'etre/sight.ogg"
+Raison/Attack "Sounds/DCY Monsters/Espion De L'etre/attack.ogg"
+Raison/Active "Sounds/DCY Monsters/Espion De L'etre/active.ogg"
+Raison/Death "Sounds/DCY Monsters/Espion De L'etre/death.ogg"
+
+$random HoodGuy/Sight { HSSGSIT1 HSSGSIT2 HSSGSIT3 HSSGSIT4 HSSGSIT5 HSSGSIT6 HSSGSIT7 HSSGSIT8 HSSGSIT9 HSSGSIT10 HSSGSIT11 }
+HSSGSIT1 "Sounds/DCY Monsters/Hoodlum/sight1.ogg"
+HSSGSIT2 "Sounds/DCY Monsters/Hoodlum/sight2.ogg"
+HSSGSIT3 "Sounds/DCY Monsters/Hoodlum/sight3.ogg"
+HSSGSIT4 "Sounds/DCY Monsters/Hoodlum/sight4.ogg"
+HSSGSIT5 "Sounds/DCY Monsters/Hoodlum/sight5.ogg"
+HSSGSIT6 "Sounds/DCY Monsters/Hoodlum/sight6.ogg"
+HSSGSIT7 "Sounds/DCY Monsters/Hoodlum/sight7.ogg"
+HSSGSIT8 "Sounds/DCY Monsters/Hoodlum/sight8.ogg"
+HSSGSIT9 "Sounds/DCY Monsters/Hoodlum/sight9.ogg"
+HSSGSIT10 "Sounds/DCY Monsters/Hoodlum/sight10.ogg"
+HSSGSIT11 "Sounds/DCY Monsters/Hoodlum/sight11.ogg"
+$random HoodGuy/Active { HSSGACT1 HSSGACT2 HSSGACT3 HSSGACT4 HSSGACT5 HSSGACT6 }
+HSSGACT1 "Sounds/DCY Monsters/Hoodlum/chatter1.ogg"
+HSSGACT2 "Sounds/DCY Monsters/Hoodlum/chatter2.ogg"
+HSSGACT3 "Sounds/DCY Monsters/Hoodlum/chatter3.ogg"
+HSSGACT4 "Sounds/DCY Monsters/Hoodlum/chatter4.ogg"
+HSSGACT5 "Sounds/DCY Monsters/Hoodlum/chatter5.ogg"
+HSSGACT6 "Sounds/DCY Monsters/Hoodlum/chatter6.ogg"
+$random HoodGuy/Death { HSSGDTH1 HSSGDTH2 HSSGDTH3 HSSGDTH4 HSSGDTH5 }
+HSSGDTH1 "Sounds/DCY Monsters/Hoodlum/death1.ogg"
+HSSGDTH2 "Sounds/DCY Monsters/Hoodlum/death2.ogg"
+HSSGDTH3 "Sounds/DCY Monsters/Hoodlum/death3.ogg"
+HSSGDTH4 "Sounds/DCY Monsters/Hoodlum/death4.ogg"
+HSSGDTH5 "Sounds/DCY Monsters/Hoodlum/death5.ogg"
+$random HoodGuy/Pain { HSSGPAI1 HSSGPAI2 HSSGPAI3 HSSGPAI4 HSSGPAI5 HSSGPAI6 }
+HSSGPAI1 "Sounds/DCY Monsters/Hoodlum/pain1.ogg"
+HSSGPAI2 "Sounds/DCY Monsters/Hoodlum/pain2.ogg"
+HSSGPAI3 "Sounds/DCY Monsters/Hoodlum/pain3.ogg"
+HSSGPAI4 "Sounds/DCY Monsters/Hoodlum/pain4.ogg"
+HSSGPAI5 "Sounds/DCY Monsters/Hoodlum/pain5.ogg"
+HSSGPAI6 "Sounds/DCY Monsters/Hoodlum/pain6.ogg"
+
+Sacker/Sight "Sounds/DCY Monsters/Sacker/sight.wav"
+Sacker/Active "Sounds/DCY Monsters/Sacker/active.wav"
+Sacker/Pain "Sounds/DCY Monsters/Sacker/pain.wav"
+$random Sacker/Death { CYASDTH1 CYASDTH2 }
+CYASDTH1 "Sounds/DCY Monsters/Sacker/death1.wav"
+CYASDTH2 "Sounds/DCY Monsters/Sacker/death2.wav"
+
+$random L4DSmoker/Sight { SM0KSIT1 SM0KSIT2 SM0KSIT3 SM0KSIT4 SM0KSIT5 SM0KSIT6 }
+SM0KSIT1 "Sounds/DCY Monsters/Liquidator/sight1.ogg"
+SM0KSIT2 "Sounds/DCY Monsters/Liquidator/sight2.ogg"
+SM0KSIT3 "Sounds/DCY Monsters/Liquidator/sight3.ogg"
+SM0KSIT4 "Sounds/DCY Monsters/Liquidator/sight4.ogg"
+SM0KSIT5 "Sounds/DCY Monsters/Liquidator/sight5.ogg"
+SM0KSIT6 "Sounds/DCY Monsters/Liquidator/sight6.ogg"
+$random L4DSmoker/Attack { SM0KSIT1 SM0KSIT2 SM0KSIT3 SM0KSIT4 SM0KSIT5 SM0KSIT6 SM0KATK1 SM0KATK2 SM0KATK3 SM0KATK4 }
+SM0KATK1 "Sounds/DCY Monsters/Liquidator/attack1.ogg"
+SM0KATK2 "Sounds/DCY Monsters/Liquidator/attack2.ogg"
+SM0KATK3 "Sounds/DCY Monsters/Liquidator/attack3.ogg"
+SM0KATK4 "Sounds/DCY Monsters/Liquidator/attack4.ogg"
+$random L4DSmoker/Active { SM0KACT1 SM0KACT2 SM0KACT3 SM0KACT4 }
+SM0KACT1 "Sounds/DCY Monsters/Liquidator/coughing1.ogg"
+SM0KACT2 "Sounds/DCY Monsters/Liquidator/coughing2.ogg"
+SM0KACT3 "Sounds/DCY Monsters/Liquidator/coughing3.ogg"
+SM0KACT4 "Sounds/DCY Monsters/Liquidator/coughing4.ogg"
+$random L4DSmoker/Death { SM0KDTH1 SM0KDTH2 SM0KDTH3 SM0KDTH4 SM0KDTH5 }
+SM0KDTH1 "Sounds/DCY Monsters/Liquidator/death1.ogg"
+SM0KDTH2 "Sounds/DCY Monsters/Liquidator/death2.ogg"
+SM0KDTH3 "Sounds/DCY Monsters/Liquidator/death3.ogg"
+SM0KDTH4 "Sounds/DCY Monsters/Liquidator/death4.ogg"
+SM0KDTH5 "Sounds/DCY Monsters/Liquidator/death5.ogg"
+$random L4DSmoker/Pain { SM0KPAI1 SM0KPAI2 SM0KPAI3 SM0KPAI4 SM0KPAI5 SM0KPAI6 }
+SM0KPAI1 "Sounds/DCY Monsters/Liquidator/pain1.ogg"
+SM0KPAI2 "Sounds/DCY Monsters/Liquidator/pain2.ogg"
+SM0KPAI3 "Sounds/DCY Monsters/Liquidator/pain3.ogg"
+SM0KPAI4 "Sounds/DCY Monsters/Liquidator/pain4.ogg"
+SM0KPAI5 "Sounds/DCY Monsters/Liquidator/pain5.ogg"
+SM0KPAI6 "Sounds/DCY Monsters/Liquidator/pain6.ogg"
+$random L4DSmoker/Burn { SM0KBRN1 SM0KBRN2 }
+SM0KBRN1 "Sounds/DCY Monsters/Liquidator/scream1.ogg"
+SM0KBRN2 "Sounds/DCY Monsters/Liquidator/scream2.ogg"
+
+L4DBoomer/Active "Sounds/DCY Monsters/Disrelish/burp.ogg"
+$random L4DBoomer/Sight { FAT0SIT1 FAT0SIT2 FAT0SIT3 }
+FAT0SIT1 "Sounds/DCY Monsters/Disrelish/sight1.ogg"
+FAT0SIT2 "Sounds/DCY Monsters/Disrelish/sight2.ogg"
+FAT0SIT3 "Sounds/DCY Monsters/Disrelish/sight3.ogg"
+L4DBoomer/SlightVomit "Sounds/DCY Monsters/Disrelish/bleh.ogg"
+$random L4DBoomer/Vomit { FAT0VOM2 FAT0VOM3 FAT0VOM4 }
+FAT0VOM2 "Sounds/DCY Monsters/Disrelish/BLARGG1.ogg"
+FAT0VOM3 "Sounds/DCY Monsters/Disrelish/BLARGG2.ogg"
+FAT0VOM4 "Sounds/DCY Monsters/Disrelish/BLARGG3.ogg"
+$random L4DBoomer/Pain { FAT0PAI1 FAT0PAI2 }
+FAT0PAI1 "Sounds/DCY Monsters/Disrelish/pain1.ogg"
+FAT0PAI2 "Sounds/DCY Monsters/Disrelish/pain2.ogg"
+$random L4DBoomer/Death { FAT0DTH1 FAT0DTH2 FAT0DTH3 }
+FAT0DTH1 "Sounds/DCY Monsters/Disrelish/death1.ogg"
+FAT0DTH2 "Sounds/DCY Monsters/Disrelish/death2.ogg"
+FAT0DTH3 "Sounds/DCY Monsters/Disrelish/death3.ogg"
+$random L4DBoomer/Attack { FAT0ATK1 FAT0ATK2 }
+FAT0ATK1 "Sounds/DCY Monsters/Disrelish/attack1.ogg"
+FAT0ATK2 "Sounds/DCY Monsters/Disrelish/attack2.ogg"
+
+$random Possessed5/Sight { POS5SIT1 POS5SIT2 POS5SIT3 POS5SIT4 }
+POS5SIT1 "Sounds/DCY Monsters/Nullifier/sight1.ogg"
+POS5SIT2 "Sounds/DCY Monsters/Nullifier/sight2.ogg"
+POS5SIT3 "Sounds/DCY Monsters/Nullifier/sight3.ogg"
+POS5SIT4 "Sounds/DCY Monsters/Nullifier/sight4.ogg"
+$random Possessed5/Active { POS5ACT1 POS5ACT2 }
+POS5ACT1 "Sounds/DCY Monsters/Nullifier/idle1.ogg"
+POS5ACT2 "Sounds/DCY Monsters/Nullifier/idle2.ogg"
+$random Possessed5/Mad { POS5ATK1 POS5ATK2 POS5ATK3 POS5ATK4 }
+POS5ATK1 "Sounds/DCY Monsters/Nullifier/rage1.ogg"
+POS5ATK2 "Sounds/DCY Monsters/Nullifier/rage2.ogg"
+POS5ATK3 "Sounds/DCY Monsters/Nullifier/rage3.ogg"
+POS5ATK4 "Sounds/DCY Monsters/Nullifier/rage4.ogg"
+$random Possessed5/Pain { POS5PAI1 POS5PAI2 POS5PAI3 POS5PAI4 POS5PAI5 POS5PAI6 }
+POS5PAI1 "Sounds/DCY Monsters/Nullifier/pain1.ogg"
+POS5PAI2 "Sounds/DCY Monsters/Nullifier/pain2.ogg"
+POS5PAI3 "Sounds/DCY Monsters/Nullifier/pain3.ogg"
+POS5PAI4 "Sounds/DCY Monsters/Nullifier/pain4.ogg"
+POS5PAI5 "Sounds/DCY Monsters/Nullifier/pain5.ogg"
+POS5PAI6 "Sounds/DCY Monsters/Nullifier/pain6.ogg"
+$random Possessed5/Death { POS5DTH1 POS5DTH2 POS5DTH3 POS5DTH4 }
+POS5DTH1 "Sounds/DCY Monsters/Nullifier/death1.ogg"
+POS5DTH2 "Sounds/DCY Monsters/Nullifier/death2.ogg"
+POS5DTH3 "Sounds/DCY Monsters/Nullifier/death3.ogg"
+POS5DTH4 "Sounds/DCY Monsters/Nullifier/death4.ogg"
+$random Possessed5/Burn { POS5BUR1 POS5BUR2 }
+POS5BUR1 "Sounds/DCY Monsters/Nullifier/burn1.ogg"
+POS5BUR2 "Sounds/DCY Monsters/Nullifier/burn2.ogg"
+
+$random Overdemoniac/Sight { OVDMSIT1 OVDMSIT2 OVDMSIT3 }
+OVDMSIT1 "Sounds/DCY Monsters/Overdemoniac/sight1.ogg"
+OVDMSIT2 "Sounds/DCY Monsters/Overdemoniac/sight2.ogg"
+OVDMSIT3 "Sounds/DCY Monsters/Overdemoniac/sight3.ogg"
+Overdemoniac/Pain "Sounds/DCY Monsters/Overdemoniac/pain.ogg"
+$alias Overdemoniac/Active Overdemoniac/Sight
+Overdemoniac/Death "Sounds/DCY Monsters/Overdemoniac/death.ogg"
+
+virtuoso/sight "Sounds/DCY Monsters/Virtuoso/sight.ogg"
+virtuoso/active "Sounds/DCY Monsters/Virtuoso/active.ogg"
+virtuoso/pain "Sounds/DCY Monsters/Virtuoso/pain.ogg"
+virtuoso/death "Sounds/DCY Monsters/Virtuoso/death.ogg"
+
+Vamchnorm/Sight "Sounds/DCY Monsters/Vamchnorm/roar.ogg"
+Vamchnorm/Active "Sounds/DCY Monsters/Vamchnorm/idle.ogg"
+$random Vamchnorm/Pain { UCYBPAI1 UCYBPAI2 UCYBPAI3 }
+UCYBPAI1 "Sounds/DCY Monsters/Vamchnorm/pain1.ogg"
+UCYBPAI2 "Sounds/DCY Monsters/Vamchnorm/pain2.ogg"
+UCYBPAI3 "Sounds/DCY Monsters/Vamchnorm/pain3.ogg"
+$random Vamchnorm/Death { UCYBDTH1 UCYBDTH2 }
+UCYBDTH1 "Sounds/DCY Monsters/Vamchnorm/death1.ogg"
+UCYBDTH2 "Sounds/DCY Monsters/Vamchnorm/death2.ogg"
+
+Diminisher/Sight "Sounds/DCY Monsters/Diminisher/sight.ogg"
+Diminisher/Active "Sounds/DCY Monsters/Diminisher/active.ogg"
+Diminisher/Pain "Sounds/DCY Monsters/Diminisher/pain.ogg"
+Diminisher/Death "Sounds/DCY Monsters/Diminisher/death.ogg"
+
+$random Prestidigitator/Sight { PR3SSIT1 PR3SSIT2 }
+PR3SSIT1 "Sounds/DCY Monsters/Prestidigitator/sight1.ogg"
+PR3SSIT2 "Sounds/DCY Monsters/Prestidigitator/sight2.ogg"
+$random Prestidigitator/Active { PR3SACT1 PR3SACT2 PR3SACT3 }
+PR3SACT1 "Sounds/DCY Monsters/Prestidigitator/active1.ogg"
+PR3SACT2 "Sounds/DCY Monsters/Prestidigitator/active2.ogg"
+PR3SACT3 "Sounds/DCY Monsters/Prestidigitator/active3.ogg"
+Prestidigitator/Pain "Sounds/DCY Monsters/Prestidigitator/pain.ogg"
+Prestidigitator/Death "Sounds/DCY Monsters/Prestidigitator/death.ogg"
+
+Pryer/Sight "Sounds/DCY Monsters/Pryer/sight.ogg"
+Pryer/Pain "Sounds/DCY Monsters/Pryer/pain.ogg"
+Pryer/Death "Sounds/DCY Monsters/Pryer/death.ogg"
+
+Manes/Chatter "Sounds/DCY Monsters/Manes/chatter.ogg"
+Manes/Pain "Sounds/DCY Monsters/Manes/pain.ogg"
+Manes/Death "Sounds/DCY Monsters/Manes/death.ogg"
+
+Exhauster/Sight "Sounds/DCY Monsters/Exhauster/roar.ogg"
+Exhauster/Active "Sounds/DCY Monsters/Exhauster/growl.ogg"
+Exhauster/Pain "Sounds/DCY Monsters/Exhauster/pain.ogg"
+Exhauster/Death "Sounds/DCY Monsters/Exhauster/death.ogg"
+
+Tsar/Sight "Sounds/DCY Monsters/Calamity Tzar/sight.ogg"
+Tsar/Active "Sounds/DCY Monsters/Calamity Tzar/idle.ogg"
+Tsar/Pain "Sounds/DCY Monsters/Calamity Tzar/pain.ogg"
+Tsar/Death "Sounds/DCY Monsters/Calamity Tzar/death.ogg"
+
+ARWLSIT "Sounds/DCY Monsters/Armageddon Predominator/sight.ogg"
+ARWLACT "Sounds/DCY Monsters/Armageddon Predominator/idle.ogg"
+ARWLPAI "Sounds/DCY Monsters/Armageddon Predominator/pain.ogg"
+ARWLDTH "Sounds/DCY Monsters/Armageddon Predominator/death.ogg"
+
+$random Misc/DemonicGibberish { DSMADNES DSMADNE2 }
+DSMADNES "Sounds/DCY SFX/dcy_madness1.ogg"
+DSMADNE2 "Sounds/DCY SFX/dcy_madness2.ogg"
+
+SPI2SIT "Sounds/DCY Monsters/Ion/sight.wav"
+SPI2ACT "Sounds/DCY Monsters/Ion/idle.wav"
+SPI2PAIN "Sounds/DCY Monsters/Ion/pain.wav"
+
+DEM2SIT "Sounds/DCY Monsters/Bloodshed/sight.ogg"
+DEM2PAI "Sounds/DCY Monsters/Bloodshed/pain.ogg"
+
+SuperShadow/Sight "Sounds/DCY Monsters/Umbrage/sight.lmp"
+SuperShadow/Active "Sounds/DCY Monsters/Umbrage/idle.lmp"
+SuperShadow/Pain "Sounds/DCY Monsters/Umbrage/pain.lmp"
+SuperShadow/Attack "Sounds/DCY Monsters/Umbrage/swing.lmp"
+SuperShadow/Death "Sounds/DCY Monsters/Umbrage/death.lmp"
+
+Trepidation/Sight "Sounds/DCY Monsters/Trepidation/sight.ogg"
+Trepidation/Active "Sounds/DCY Monsters/Trepidation/active.ogg"
+Trepidation/Attack "Sounds/DCY Monsters/Trepidation/attack.ogg"
+Trepidation/Pain "Sounds/DCY Monsters/Trepidation/pain.ogg"
+Trepidation/Death "Sounds/DCY Monsters/Trepidation/death.ogg"
+Trepidation/Teleport "Sounds/DCY Monsters/Trepidation/teleport.ogg"
+
+Razortherion/Laugh "Sounds/DCY Monsters/Razortherion/HAHAHAHAHAHA.wav"
+Razortherion/Death "Sounds/DCY Monsters/Razortherion/faint.wav"
+
+$random DarkDroid/Sight { RBRSIT1 RBRSIT2 }
+RBRSIT1 "Sounds/DCY Monsters/Xhoughinad/sight1.lmp"
+RBRSIT2 "Sounds/DCY Monsters/Xhoughinad/sight2.lmp"
+$random DarkDroid/Active { RBRACT1 RBRACT2 RBRACT3 RBRACT4 }
+RBRACT1 "Sounds/DCY Monsters/Xhoughinad/idle1.ogg"
+RBRACT2 "Sounds/DCY Monsters/Xhoughinad/idle2.ogg"
+RBRACT3 "Sounds/DCY Monsters/Xhoughinad/idle3.ogg"
+RBRACT4 "Sounds/DCY Monsters/Xhoughinad/idle4.ogg"
+$random DarkDroid/Death { RBRDTH1 RBRDTH2 }
+RBRDTH1 "Sounds/DCY Monsters/Xhoughinad/dissipate1.ogg"
+RBRDTH2 "Sounds/DCY Monsters/Xhoughinad/dissipate2.ogg"
+
+VPartisan/Sight "Sounds/DCY Monsters/Verdict Partisan/drone.ogg"
+VPartisan/Active "Sounds/DCY Monsters/Verdict Partisan/hum.ogg"
+VPartisan/Pain "Sounds/DCY Monsters/Verdict Partisan/pain.ogg"
+VPartisan/Death "Sounds/DCY Monsters/Verdict Partisan/death.ogg"
+
+$random Exarch/Sound { EXARSND1 EXARSND2 EXARSND3 }
+EXARSND1 "Sounds/DCY Monsters/Abyssal Exarch/chant1.ogg"
+EXARSND2 "Sounds/DCY Monsters/Abyssal Exarch/chant2.ogg"
+EXARSND3 "Sounds/DCY Monsters/Abyssal Exarch/chant3.ogg"
+Exarch/Attack "Sounds/DCY Monsters/Abyssal Exarch/attack.ogg"
+Exarch/Pain "Sounds/DCY Monsters/Abyssal Exarch/pain.ogg"
+Exarch/Death "Sounds/DCY Monsters/Abyssal Exarch/death.ogg"
+
+$random TerminalImp/Sight { tis1 tis2 tis3 tis4 tis5 tis6 tis7 }
+tis1 "Sounds/DCY Monsters/Terminalist/sight1.ogg"
+tis2 "Sounds/DCY Monsters/Terminalist/sight2.ogg"
+tis3 "Sounds/DCY Monsters/Terminalist/sight3.ogg"
+tis4 "Sounds/DCY Monsters/Terminalist/sight4.ogg"
+tis5 "Sounds/DCY Monsters/Terminalist/sight5.ogg"
+tis6 "Sounds/DCY Monsters/Terminalist/sight6.ogg"
+tis7 "Sounds/DCY Monsters/Terminalist/sight7.ogg"
+$random TerminalImp/Active { tia1 tia2 tia3 tia4 tia5 tia6 tia7 tia8 }
+tia1 "Sounds/DCY Monsters/Terminalist/idle1.ogg"
+tia2 "Sounds/DCY Monsters/Terminalist/idle2.ogg"
+tia3 "Sounds/DCY Monsters/Terminalist/idle3.ogg"
+tia4 "Sounds/DCY Monsters/Terminalist/idle4.ogg"
+tia5 "Sounds/DCY Monsters/Terminalist/idle5.ogg"
+tia6 "Sounds/DCY Monsters/Terminalist/idle6.ogg"
+tia7 "Sounds/DCY Monsters/Terminalist/idle7.ogg"
+tia8 "Sounds/DCY Monsters/Terminalist/idle8.ogg"
+$random TerminalImp/Pain { teip1 teip2 teip3 }
+teip1 "Sounds/DCY Monsters/Terminalist/pain1.ogg"
+teip2 "Sounds/DCY Monsters/Terminalist/pain2.ogg"
+teip3 "Sounds/DCY Monsters/Terminalist/pain3.ogg"
+$random TerminalImp/Death { teid1 teid2 }
+teid1 "Sounds/DCY Monsters/Terminalist/death1.ogg"
+teid2 "Sounds/DCY Monsters/Terminalist/death2.ogg"
+
+CI/Sight "Sounds/DCY Monsters/Corrupt Infiltrator/scream.ogg"
+CI/Active "Sounds/DCY Monsters/Corrupt Infiltrator/growl.ogg"
+CI/Pain "Sounds/DCY Monsters/Corrupt Infiltrator/pain.ogg"
+CI/Death "Sounds/DCY Monsters/Corrupt Infiltrator/death.ogg"
+CI/Ball "Sounds/DCY Monsters/Corrupt Infiltrator/corrupt_fireball1.ogg"
+CI/Ball2 "Sounds/DCY Monsters/Corrupt Infiltrator/corrupt_fireball2.ogg"
+
+sentinel/sight "Sounds/DCY Monsters/Sentinel/sight.wav"
+sentinel/death "Sounds/DCY Monsters/Sentinel/death.wav"
+$random sentinel/active { DSSNTACT DSSNTAC2 }
+DSSNTACT "Sounds/DCY Monsters/Sentinel/chatter1.wav"
+DSSNTAC2 "Sounds/DCY Monsters/Sentinel/chatter1.wav"
+scout/death "Sounds/DCY Monsters/Sentinel/death.wav"
+reaver/death "Sounds/DCY Monsters/Sentinel/explode.wav"
+scout/laser IALAZOR1
+
+$random LightningPhase/Sight {LTPHSIT1 LTPHSIT2 LTPHSIT3}
+LTPHSIT1 "Sounds/DCY Monsters/Lightning Phase/roar1.ogg"
+LTPHSIT2 "Sounds/DCY Monsters/Lightning Phase/roar2.ogg"
+LTPHSIT3 "Sounds/DCY Monsters/Lightning Phase/roar3.ogg"
+LightningPhase/Active "Sounds/DCY Monsters/Monsters/breath.ogg"
+$random LightningPhase/Pain {LTPHPAI1 LTPHPAI2 LTPHPAI3}
+LTPHPAI1 "Sounds/DCY Monsters/Lightning Phase/pain1.ogg"
+LTPHPAI2 "Sounds/DCY Monsters/Lightning Phase/pain2.ogg"
+LTPHPAI3 "Sounds/DCY Monsters/Lightning Phase/pain3.ogg"
+$random LightningPhase/Death {LTPHDTH LTPHDTH2 LTPHDTH3}
+LTPHDTH "Sounds/DCY Monsters/Lightning Phase/death1.ogg"
+LTPHDTH2 "Sounds/DCY Monsters/Lightning Phase/death2.ogg"
+LTPHDTH3 "Sounds/DCY Monsters/Lightning Phase/death3.ogg"
+
+$random imp/melee {D4SLASH1 D4SLASH2}
+D4SLASH1 "Sounds/DCY SFX/dcy_imp_slash1.ogg"
+D4SLASH2 "Sounds/DCY SFX/dcy_imp_slash2.ogg"
+
+$alias Doom4Imp/Slash imp/melee
+
+blob/sight "Sounds/DCY Monsters/Pathogen/sight.ogg"
+blob/pain "Sounds/DCY Monsters/Pathogen/pain.ogg"
+blob/faint "Sounds/DCY Monsters/Pathogen/death.ogg"
+DRKXDTH "Sounds/DCY Monsters/Pathogen/splash.ogg"
+DRKDRIP "Sounds/DCY Monsters/Pathogen/drip.ogg"
+
+Anathema/Sight "Sounds/DCY Monsters/Anathema/sight.ogg"
+$alias Anathema/Active Anathema/Sight
+Anathema/Pain "Sounds/DCY Monsters/Anathema/pain.ogg"
+Anathema/Death "Sounds/DCY Monsters/Anathema/death.ogg"
+
+$random Emir/Sight { EmirSit1 EmirSit2 EmirSit3 }
+EmirSit1 "Sounds/DCY Monsters/Emir/sight1.ogg"
+EmirSit2 "Sounds/DCY Monsters/Emir/sight2.ogg"
+EmirSit3 "Sounds/DCY Monsters/Emir/sight3.ogg"
+$random Emir/Active { EmirIdl1 EmirIdl2 EmirIdl3 }
+EmirIdl1 "Sounds/DCY Monsters/Emir/idle1.ogg"
+EmirIdl2 "Sounds/DCY Monsters/Emir/idle2.ogg"
+EmirIdl3 "Sounds/DCY Monsters/Emir/idle3.ogg"
+$random Emir/Pain { EmirPai1 EmirPai2 EmirPai3 }
+EmirPai1 "Sounds/DCY Monsters/Emir/pain1.ogg"
+EmirPai2 "Sounds/DCY Monsters/Emir/pain2.ogg"
+EmirPai3 "Sounds/DCY Monsters/Emir/pain3.ogg"
+$random Emir/Death { EmirDth1 EmirDth2 EmirDth3 }
+EmirDth1 "Sounds/DCY Monsters/Emir/death1.ogg"
+EmirDth2 "Sounds/DCY Monsters/Emir/death2.ogg"
+EmirDth3 "Sounds/DCY Monsters/Emir/death3.ogg"
+
+$random atramentousimp/sight { atramentousimp/sight1 atramentousimp/sight2 }
+atramentousimp/sight1 "Sounds/DCY Monsters/Atramentous/sight1.ogg"
+atramentousimp/sight2 "Sounds/DCY Monsters/Atramentous/sight2.ogg"
+atramentousimp/pain "Sounds/DCY Monsters/Atramentous/pain.ogg"
+atramentousimp/death "Sounds/DCY Monsters/Atramentous/death.ogg"
+atramentousimp/ball "Sounds/Projectiles/Imp/dcy_atramentous_ball.ogg"
+atramentousimp/explode "Sounds/Projectiles/Imp/dcy_atramentous_ballimpact.ogg"
+atramentousimp/teleport "Sounds/DCY Monsters/Atramentous/teleport.ogg"
+
+Zorg/Sight "Sounds/DCY Monsters/Perserver/sight.ogg"
+Zorg/Pain "Sounds/DCY Monsters/Perserver/pain.ogg"
+Zorg/Active "Sounds/DCY Monsters/Perserver/idle.ogg"
+Zorg/Death "Sounds/DCY Monsters/Perserver/death.ogg"
+
+drone/see "Sounds/DCY Monsters/Automaton Supervisor/drone_sight.wav"
+drone/idle "Sounds/DCY Monsters/Automaton Supervisor/drone_idle.wav"
+drone/fire "Sounds/DCY Monsters/Automaton Supervisor/drone_laser.wav"
+$limit drone/fire 0
+drone/painI "Sounds/DCY Monsters/Automaton Supervisor/drone_pain.wav"
+drone/die "Sounds/DCY Monsters/Automaton Supervisor/drone_death.wav"
+
+ATurret/Sight "Sounds/DCY Monsters/Decedent Bigwig/turret_alert.wav"
+ATurret/Pain "Sounds/DCY Monsters/Decedent Bigwig/turret_pain.wav"
+ATurret/Death "Sounds/DCY Monsters/Decedent Bigwig/turret_death.wav"
+ATurret2/Sight "Sounds/DCY Monsters/Chrysalis/alert.wav"
+ATurret2/Death "Sounds/DCY Monsters/Chrysalis/death.wav"
+
+Calignosity/LightLaser "Sounds/Projectiles/dcy_chrysalis_laser2.ogg"
+Chrysalis/Laser "Sounds/Projectiles/dcy_chrysalis_laser.ogg"
+Chrysalis/LaserXplode "Sounds/Projectiles/dcy_chrysalis_impact.ogg"
+
+$random Trac/Sight { TRACSIT1 TRACSIT2 }
+TRACSIT1 "Sounds/DCY Monsters/Trac/sight1.ogg"
+TRACSIT2 "Sounds/DCY Monsters/Trac/sight2.ogg"
+$alias Trac/Active Trac/Sight
+$random Trac/Pain { Trac/Pain1 Trac/Pain2 }
+Trac/Pain1 "Sounds/DCY Monsters/Trac/pain1.ogg"
+Trac/Pain2 "Sounds/DCY Monsters/Trac/pain2.ogg"
+Trac/Death "Sounds/DCY Monsters/Trac/death.ogg"
+
+DemonicSpider/Sight "Sounds/DCY Monsters/Receptacle/sight.wav"
+DemonicSpider/Active "Sounds/DCY Monsters/Receptacle/idle.wav"
+DemonicSpider/Pain "Sounds/DCY Monsters/Receptacle/pain.wav"
+DemonicSpider/Jump "Sounds/DCY Monsters/Receptacle/jump.wav"
+DemonicSpider/Death "Sounds/DCY Monsters/Receptacle/death.wav"
+$random DemonicSpider/Step { HOPPSTP1 HOPPSTP2 HOPPSTP3 HOPPSTP4 HOPPSTP5 }
+HOPPSTP1 "Sounds/DCY Monsters/Receptacle/step1.ogg"
+HOPPSTP2 "Sounds/DCY Monsters/Receptacle/step2.ogg"
+HOPPSTP3 "Sounds/DCY Monsters/Receptacle/step3.ogg"
+HOPPSTP4 "Sounds/DCY Monsters/Receptacle/step4.ogg"
+HOPPSTP5 "Sounds/DCY Monsters/Receptacle/step5.ogg"
+HOPPEXPL "Sounds/DCY SFX/heavy_unit_explode.ogg"
+HOPPLAND "Sounds/DCY Monsters/Receptacle/land.ogg"
+CONVEXPL "Sounds/Projectiles/dcy_convector_explode.ogg"
+
+AlacritousGuy/Sight "Sounds/DCY Monsters/Alacritous Hell Soldier/sight.wav"
+AlacritousGuy/Pain "Sounds/DCY Monsters/Alacritous Hell Soldier/pain.wav"
+AlacritousGuy/Death "Sounds/DCY Monsters/Alacritous Hell Soldier/death.wav"
+
+DarkConsul/Sight "Sounds/DCY Monsters/Consul/sight.ogg"
+DarkConsul/Active "Sounds/DCY Monsters/Consul/idle.ogg"
+DarkConsul/Pain "Sounds/DCY Monsters/Consul/pain.ogg"
+DarkConsul/Death "Sounds/DCY Monsters/Consul/death.ogg"
+
+FSentinel/Sight "Sounds/DCY Monsters/Fluorescent Sentinel/sight.ogg"
+FSentinel/Active "Sounds/DCY Monsters/Fluorescent Sentinel/idle.ogg"
+FSentinel/Pain "Sounds/DCY Monsters/Fluorescent Sentinel/pain.ogg"
+FSentinel/Death "Sounds/DCY Monsters/Fluorescent Sentinel/death.ogg"
+
+$random BGSpider/Sight { SPI3SIT1 SPI3SIT2 SPI3SIT3 }
+SPI3SIT1 "Sounds/DCY Monsters/Tripartite/sight1.ogg"
+SPI3SIT2 "Sounds/DCY Monsters/Tripartite/sight2.ogg"
+SPI3SIT3 "Sounds/DCY Monsters/Tripartite/sight3.ogg"
+$random BGSpider/Active { SPI3ACT1 SPI3ACT2 SPI3ACT3 }
+SPI3ACT1 "Sounds/DCY Monsters/Tripartite/idle1.ogg"
+SPI3ACT2 "Sounds/DCY Monsters/Tripartite/idle2.ogg"
+SPI3ACT3 "Sounds/DCY Monsters/Tripartite/idle3.ogg"
+$random BGSpider/Pain { SPI3PAI1 SPI3PAI2 SPI3PAI3 SPI3PAI4 SPI3PAI5 SPI3PAI6 SPI3PAI7 }
+SPI3PAI1 "Sounds/DCY Monsters/Tripartite/pain1.ogg"
+SPI3PAI2 "Sounds/DCY Monsters/Tripartite/pain2.ogg"
+SPI3PAI3 "Sounds/DCY Monsters/Tripartite/pain3.ogg"
+SPI3PAI4 "Sounds/DCY Monsters/Tripartite/pain4.ogg"
+SPI3PAI5 "Sounds/DCY Monsters/Tripartite/pain5.ogg"
+SPI3PAI6 "Sounds/DCY Monsters/Tripartite/pain6.ogg"
+SPI3PAI7 "Sounds/DCY Monsters/Tripartite/pain7.ogg"
+$random BGSpider/Death { SPI3DTH1 SPI3DTH2 SPI3DTH3 }
+SPI3DTH1 "Sounds/DCY Monsters/Tripartite/explode1.ogg"
+SPI3DTH2 "Sounds/DCY Monsters/Tripartite/explode2.ogg"
+SPI3DTH3 "Sounds/DCY Monsters/Tripartite/explode3.ogg"
+$random BGSpider/AltDeath { SPI3DT21 SPI3DT22 SPI3DT23 SPI3DT24 SPI3DT25 SPI3DT26 SPI3DT27 }
+SPI3DT21 "Sounds/DCY Monsters/Tripartite/death1.ogg"
+SPI3DT22 "Sounds/DCY Monsters/Tripartite/death2.ogg"
+SPI3DT23 "Sounds/DCY Monsters/Tripartite/death3.ogg"
+SPI3DT24 "Sounds/DCY Monsters/Tripartite/death4.ogg"
+SPI3DT25 "Sounds/DCY Monsters/Tripartite/death5.ogg"
+SPI3DT26 "Sounds/DCY Monsters/Tripartite/death6.ogg"
+SPI3DT27 "Sounds/DCY Monsters/Tripartite/death7.ogg"
+$random BGSpider/Scream { SPI3SCR1 SPI3SCR2 SPI3SCR3 SPI3SCR4 SPI3SCR5 }
+SPI3SCR1 "Sounds/DCY Monsters/Tripartite/scream1.ogg"
+SPI3SCR2 "Sounds/DCY Monsters/Tripartite/scream2.ogg"
+SPI3SCR3 "Sounds/DCY Monsters/Tripartite/scream3.ogg"
+SPI3SCR4 "Sounds/DCY Monsters/Tripartite/scream4.ogg"
+SPI3SCR5 "Sounds/DCY Monsters/Tripartite/scream5.ogg"
+
+$random Prowler/Active { PROWACT1 PROWACT2 PROWACT3 PROWACT4 PROWACT5 PROWACT6 PROWACT7 PROWACT8 PROWACT9 }
+PROWACT1 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT2 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT3 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT4 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT5 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT6 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT7 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT8 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+PROWACT9 "Sounds/DCY Monsters/Prowler/gurgle1.ogg"
+$random Prowler/Pain { PROWPAI1 PROWPAI2 PROWPAI3 PROWPAI4 PROWPAI5 PROWPAI6 }
+PROWPAI1 "Sounds/DCY Monsters/Prowler/pain1.ogg"
+PROWPAI2 "Sounds/DCY Monsters/Prowler/pain2.ogg"
+PROWPAI3 "Sounds/DCY Monsters/Prowler/pain3.ogg"
+PROWPAI4 "Sounds/DCY Monsters/Prowler/pain4.ogg"
+PROWPAI5 "Sounds/DCY Monsters/Prowler/pain5.ogg"
+PROWPAI6 "Sounds/DCY Monsters/Prowler/pain6.ogg"
+$random Prowler/BurningScream { PROWBRN1 PROWBRN2 PROWBRN3 }
+PROWBRN1 "Sounds/DCY Monsters/Prowler/scream1.ogg"
+PROWBRN2 "Sounds/DCY Monsters/Prowler/scream2.ogg"
+PROWBRN3 "Sounds/DCY Monsters/Prowler/scream3.ogg"
+
+$random EternalGargoyle/Sight { G1RGSIT1 G1RGSIT2 G1RGSIT3 G1RGSIT4 G1RGSIT5 G1RGSIT6 }
+G1RGSIT1 "Sounds/DCY Monsters/Gargoyle/sight1.ogg"
+G1RGSIT2 "Sounds/DCY Monsters/Gargoyle/sight2.ogg"
+G1RGSIT3 "Sounds/DCY Monsters/Gargoyle/sight3.ogg"
+G1RGSIT4 "Sounds/DCY Monsters/Gargoyle/sight4.ogg"
+G1RGSIT5 "Sounds/DCY Monsters/Gargoyle/sight5.ogg"
+G1RGSIT6 "Sounds/DCY Monsters/Gargoyle/sight6.ogg"
+$random EternalGargoyle/Pain { G1RGPAI1 G1RGPAI2 G1RGPAI3 G1RGPAI4 G1RGPAI5 G1RGPAI6 G1RGPAI7 }
+G1RGPAI1 "Sounds/DCY Monsters/Gargoyle/pain1.ogg"
+G1RGPAI2 "Sounds/DCY Monsters/Gargoyle/pain2.ogg"
+G1RGPAI3 "Sounds/DCY Monsters/Gargoyle/pain3.ogg"
+G1RGPAI4 "Sounds/DCY Monsters/Gargoyle/pain4.ogg"
+G1RGPAI5 "Sounds/DCY Monsters/Gargoyle/pain5.ogg"
+G1RGPAI6 "Sounds/DCY Monsters/Gargoyle/pain6.ogg"
+G1RGPAI7 "Sounds/DCY Monsters/Gargoyle/pain7.ogg"
+$random EternalGargoyle/Death { G1RGDTH1 G1RGDTH2 G1RGDTH3 G1RGDTH4 }
+G1RGDTH1 "Sounds/DCY Monsters/Gargoyle/death1.ogg"
+G1RGDTH2 "Sounds/DCY Monsters/Gargoyle/death2.ogg"
+G1RGDTH3 "Sounds/DCY Monsters/Gargoyle/death3.ogg"
+G1RGDTH4 "Sounds/DCY Monsters/Gargoyle/death4.ogg"
+
+$random EternalPainElemental/Sight { PAE2SIT1 PAE2SIT2 PAE2SIT3 PAE2SIT4 PAE2SIT5 PAE2SIT6 PAE2SIT7 PAE2SIT8 }
+PAE2SIT1 "Sounds/DCY Monsters/Vague/sight1.ogg"
+PAE2SIT2 "Sounds/DCY Monsters/Vague/sight2.ogg"
+PAE2SIT3 "Sounds/DCY Monsters/Vague/sight3.ogg"
+PAE2SIT4 "Sounds/DCY Monsters/Vague/sight4.ogg"
+PAE2SIT5 "Sounds/DCY Monsters/Vague/sight5.ogg"
+PAE2SIT6 "Sounds/DCY Monsters/Vague/sight6.ogg"
+PAE2SIT7 "Sounds/DCY Monsters/Vague/sight7.ogg"
+PAE2SIT8 "Sounds/DCY Monsters/Vague/sight8.ogg"
+$random EternalPainElemental/Active { PAE2ACT1 PAE2ACT2 PAE2ACT3 PAE2ACT4 PAE2ACT5 PAE2ACT6 PAE2ACT7 PAE2ACT8 PAE2ACT9 }
+PAE2ACT1 "Sounds/DCY Monsters/Vague/idle1.ogg"
+PAE2ACT2 "Sounds/DCY Monsters/Vague/idle2.ogg"
+PAE2ACT3 "Sounds/DCY Monsters/Vague/idle3.ogg"
+PAE2ACT4 "Sounds/DCY Monsters/Vague/idle4.ogg"
+PAE2ACT5 "Sounds/DCY Monsters/Vague/idle5.ogg"
+PAE2ACT6 "Sounds/DCY Monsters/Vague/idle6.ogg"
+PAE2ACT7 "Sounds/DCY Monsters/Vague/idle7.ogg"
+PAE2ACT8 "Sounds/DCY Monsters/Vague/idle8.ogg"
+PAE2ACT9 "Sounds/DCY Monsters/Vague/idle9.ogg"
+$random EternalPainElemental/WarCry { PAE2SCR1 PAE2SCR2 PAE2SCR3 PAE2SCR4 PAE2SCR5 PAE2SCR6 }
+PAE2SCR1 "Sounds/DCY Monsters/Vague/scream1.ogg"
+PAE2SCR2 "Sounds/DCY Monsters/Vague/scream2.ogg"
+PAE2SCR3 "Sounds/DCY Monsters/Vague/scream3.ogg"
+PAE2SCR4 "Sounds/DCY Monsters/Vague/scream4.ogg"
+PAE2SCR5 "Sounds/DCY Monsters/Vague/scream5.ogg"
+PAE2SCR6 "Sounds/DCY Monsters/Vague/scream6.ogg"
+EternalPainElemental/Laugh "Sounds/DCY Monsters/Vague/laugh.ogg"
+$random EternalPainElemental/Pain { PAE2PN1 PAE2PN2 }
+PAE2PN1 "Sounds/DCY Monsters/Vague/pain1.ogg"
+PAE2PN2 "Sounds/DCY Monsters/Vague/pain2.ogg"
+EternalPainElemental/Death "Sounds/DCY Monsters/Vague/death.wav"
+$random EternalPainElemental/Barf { PAE2SIT3 PAE2SIT4 PAE2SIT5 null PAE2ACT6 }
+
+Kaiser/See "Sounds/DCY Monsters/Kaiser/sight.ogg"
+Kaiser/Active "Sounds/DCY Monsters/Kaiser/idle.ogg"
+Kaiser/Pain "Sounds/DCY Monsters/Kaiser/pain.ogg"
+Kaiser/Death "Sounds/DCY Monsters/Kaiser/death.ogg"
+
+Eavesdropper/Sight "Sounds/DCY Monsters/Eavesdropper/sight.ogg"
+Eavesdropper/Active "Sounds/DCY Monsters/Eavesdropper/idle.ogg"
+Eavesdropper/Pain "Sounds/DCY Monsters/Eavesdropper/hurt.ogg"
+Eavesdropper/Death "Sounds/DCY Monsters/Eavesdropper/death.ogg"
+
+$random Warwire/Sight { WWRESIT1 WWRESIT2 WWRESIT3 WWRESIT4 WWRESIT5 WWRESIT6 WWRESIT7 WWRESIT8 WWRESIT9 }
+WWRESIT1 "Sounds/DCY Monsters/Warwire/sight1.ogg"
+WWRESIT2 "Sounds/DCY Monsters/Warwire/sight2.ogg"
+WWRESIT3 "Sounds/DCY Monsters/Warwire/sight3.ogg"
+WWRESIT4 "Sounds/DCY Monsters/Warwire/sight4.ogg"
+WWRESIT5 "Sounds/DCY Monsters/Warwire/sight5.ogg"
+WWRESIT6 "Sounds/DCY Monsters/Warwire/sight6.ogg"
+$random Warwire/Active { WWREACT1 WWREACT2 WWREACT3 WWREACT4 WWREACT5 WWREACT6 }
+WWREACT1 "Sounds/DCY Monsters/Warwire/idle1.ogg"
+WWREACT2 "Sounds/DCY Monsters/Warwire/idle2.ogg"
+WWREACT3 "Sounds/DCY Monsters/Warwire/idle3.ogg"
+WWREACT4 "Sounds/DCY Monsters/Warwire/idle4.ogg"
+WWREACT5 "Sounds/DCY Monsters/Warwire/idle5.ogg"
+WWREACT6 "Sounds/DCY Monsters/Warwire/idle6.ogg"
+Warwire/Pain "Sounds/DCY Monsters/Warwire/pain.ogg"
+Warwire/Death "Sounds/DCY Monsters/Warwire/death.ogg"
+
+Umbra/Sight "Sounds/DCY Monsters/Umbra/sight.ogg"
+Umbra/Active "Sounds/DCY Monsters/Umbra/idle.ogg"
+Umbra/Pain "Sounds/DCY Monsters/Umbra/pain.ogg"
+Umbra/Death "Sounds/DCY Monsters/Umbra/death.ogg"
+
+$random doom4imp/sight { d4is1 d4is2 d4is3 d4is4 d4is5 d4is6 d4is7 d4is8 d4is9 d4is10 }
+d4is1 "Sounds/DCY Monsters/Vagabond/sight1.ogg"
+d4is2 "Sounds/DCY Monsters/Vagabond/sight2.ogg"
+d4is3 "Sounds/DCY Monsters/Vagabond/sight3.ogg"
+d4is4 "Sounds/DCY Monsters/Vagabond/sight4.ogg"
+d4is5 "Sounds/DCY Monsters/Vagabond/sight5.ogg"
+d4is6 "Sounds/DCY Monsters/Vagabond/sight6.ogg"
+d4is7 "Sounds/DCY Monsters/Vagabond/sight7.ogg"
+d4is8 "Sounds/DCY Monsters/Vagabond/sight8.ogg"
+d4is9 "Sounds/DCY Monsters/Vagabond/sight9.ogg"
+d4is10 "Sounds/DCY Monsters/Vagabond/sight10.ogg"
+$random doom4imp/pain { d4ip1 d4ip2 d4ip3 d4ip4 d4ip5 d4ip6 d4ip7 d4ip8 d4ip9 d4ip10 d4ip11 d4ip12 d4ip13 d4ip14 d4ip15 d4ip16 }
+d4ip1 "Sounds/DCY Monsters/Vagabond/pain1.ogg"
+d4ip2 "Sounds/DCY Monsters/Vagabond/pain2.ogg"
+d4ip3 "Sounds/DCY Monsters/Vagabond/pain3.ogg"
+d4ip4 "Sounds/DCY Monsters/Vagabond/pain4.ogg"
+d4ip5 "Sounds/DCY Monsters/Vagabond/pain5.ogg"
+d4ip6 "Sounds/DCY Monsters/Vagabond/pain6.ogg"
+d4ip7 "Sounds/DCY Monsters/Vagabond/pain7.ogg"
+d4ip8 "Sounds/DCY Monsters/Vagabond/pain8.ogg"
+d4ip9 "Sounds/DCY Monsters/Vagabond/pain9.ogg"
+d4ip10 "Sounds/DCY Monsters/Vagabond/pain10.ogg"
+d4ip11 "Sounds/DCY Monsters/Vagabond/pain11.ogg"
+d4ip12 "Sounds/DCY Monsters/Vagabond/pain12.ogg"
+d4ip13 "Sounds/DCY Monsters/Vagabond/pain13.ogg"
+d4ip14 "Sounds/DCY Monsters/Vagabond/pain14.ogg"
+d4ip15 "Sounds/DCY Monsters/Vagabond/pain15.ogg"
+d4ip16 "Sounds/DCY Monsters/Vagabond/pain16.ogg"
+$random doom4imp/active { d4ii1 d4ii2 d4ii3 d4ii4 d4ii5 d4ii6 d4ii7 d4ii8 d4ii9 d4ii10 d4ii11 d4ii12 d4ii13 d4ii14 d4ii15 }
+d4ii1 "Sounds/DCY Monsters/Vagabond/idle1.ogg"
+d4ii2 "Sounds/DCY Monsters/Vagabond/idle2.ogg"
+d4ii3 "Sounds/DCY Monsters/Vagabond/idle3.ogg"
+d4ii4 "Sounds/DCY Monsters/Vagabond/idle4.ogg"
+d4ii5 "Sounds/DCY Monsters/Vagabond/idle5.ogg"
+d4ii6 "Sounds/DCY Monsters/Vagabond/idle6.ogg"
+d4ii7 "Sounds/DCY Monsters/Vagabond/idle7.ogg"
+d4ii8 "Sounds/DCY Monsters/Vagabond/idle8.ogg"
+d4ii9 "Sounds/DCY Monsters/Vagabond/idle9.ogg"
+d4ii10 "Sounds/DCY Monsters/Vagabond/idle10.ogg"
+d4ii11 "Sounds/DCY Monsters/Vagabond/idle11.ogg"
+d4ii12 "Sounds/DCY Monsters/Vagabond/idle12.ogg"
+d4ii13 "Sounds/DCY Monsters/Vagabond/idle13.ogg"
+d4ii14 "Sounds/DCY Monsters/Vagabond/idle14.ogg"
+d4ii15 "Sounds/DCY Monsters/Vagabond/idle15.ogg"
+$random doom4imp/death { d4id1 d4id2 d4id3 d4id4 d4id5 d4id6 d4id7 d4id8 }
+d4id1 "Sounds/DCY Monsters/Vagabond/death1.ogg"
+d4id2 "Sounds/DCY Monsters/Vagabond/death2.ogg"
+d4id3 "Sounds/DCY Monsters/Vagabond/death3.ogg"
+d4id4 "Sounds/DCY Monsters/Vagabond/death4.ogg"
+d4id5 "Sounds/DCY Monsters/Vagabond/death5.ogg"
+d4id6 "Sounds/DCY Monsters/Vagabond/death6.ogg"
+d4id7 "Sounds/DCY Monsters/Vagabond/death7.ogg"
+d4id8 "Sounds/DCY Monsters/Vagabond/death8.ogg"
+
+dcy/dissit "Sounds/DCY Monsters/Inscrutable/sight.wav"
+$random dcy/disact {D1SCACT1 D1SCACT2}
+D1SCACT1 "Sounds/DCY Monsters/Inscrutable/chatter1.wav"
+D1SCACT2 "Sounds/DCY Monsters/Inscrutable/chatter2.wav"
+dcy/dispai "Sounds/DCY Monsters/Inscrutable/pain.ogg"
+dcy/disdth "Sounds/DCY Monsters/Inscrutable/death.ogg"
+
+$random Spirit/Grunt {SPIRPAI1 SPIRPAI2 SPIRPAI3}
+SPIRPAI1 "Sounds/DCY Monsters/Spirit/pain1.ogg"
+SPIRPAI2 "Sounds/DCY Monsters/Spirit/pain2.ogg"
+SPIRPAI3 "Sounds/DCY Monsters/Spirit/pain3.ogg"
+$random Spirit/Death {SPIRDTH1 SPIRDTH2 SPIRDTH3}
+SPIRDTH1 "Sounds/DCY Monsters/Spirit/death1.ogg"
+SPIRDTH2 "Sounds/DCY Monsters/Spirit/death2.ogg"
+SPIRDTH3 "Sounds/DCY Monsters/Spirit/death3.ogg"
+
+spectre/sight "Sounds/Replacements/DSSPCSIT.ogg"
+spectre/death "Sounds/Replacements/DSSPCDTH.ogg"
+
+hellcaco/sight "Sounds/DCY Monsters/Custodian/sight.ogg"
+$random hellcaco/active { HELCACT1 HELCACT2 }
+HELCACT1 "Sounds/DCY Monsters/Custodian/idle1.ogg"
+HELCACT2 "Sounds/DCY Monsters/Custodian/idle2.ogg"
+$random hellcaco/pain { HELCPAI1 HELCPAI2 }
+HELCPAI1 "Sounds/DCY Monsters/Custodian/pain1.ogg"
+HELCPAI2 "Sounds/DCY Monsters/Custodian/pain2.ogg"
+hellcaco/death "Sounds/DCY Monsters/Custodian/death.ogg"
+
+Monsters/NBWalk "Sounds/DCY Monsters/Mechanoid/step.ogg"
+
+$random ZEnsign/Sight { SUP2SIT1 SUP2SIT2 SUP2SIT3 SUP2SIT4 SUP2SIT5 SUP2SIT6 SUP2SIT7 SUP2SIT8 SUP2SIT9 SUP2SIT10 }
+SUP2SIT1 "Sounds/DCY Monsters/Z-Ensign/sight1.ogg"
+SUP2SIT2 "Sounds/DCY Monsters/Z-Ensign/sight2.ogg"
+SUP2SIT3 "Sounds/DCY Monsters/Z-Ensign/sight3.ogg"
+SUP2SIT4 "Sounds/DCY Monsters/Z-Ensign/sight4.ogg"
+SUP2SIT5 "Sounds/DCY Monsters/Z-Ensign/sight5.ogg"
+SUP2SIT6 "Sounds/DCY Monsters/Z-Ensign/sight6.ogg"
+SUP2SIT7 "Sounds/DCY Monsters/Z-Ensign/sight7.ogg"
+SUP2SIT8 "Sounds/DCY Monsters/Z-Ensign/sight8.ogg"
+SUP2SIT9 "Sounds/DCY Monsters/Z-Ensign/sight9.ogg"
+SUP2SIT10 "Sounds/DCY Monsters/Z-Ensign/sight10.ogg"
+$random ZEnsign/Active { SUP2ACT1 SUP2ACT2 SUP2ACT3 SUP2ACT4 SUP2ACT5 SUP2ACT6 SUP2ACT7 SUP2ACT8 SUP2ACT9 SUP2ACT10 SUP2ACT11 SUP2ACT12 SUP2ACT13 }
+SUP2ACT1 "Sounds/DCY Monsters/Z-Ensign/idle1.ogg"
+SUP2ACT2 "Sounds/DCY Monsters/Z-Ensign/idle2.ogg"
+SUP2ACT3 "Sounds/DCY Monsters/Z-Ensign/idle3.ogg"
+SUP2ACT4 "Sounds/DCY Monsters/Z-Ensign/idle4.ogg"
+SUP2ACT5 "Sounds/DCY Monsters/Z-Ensign/idle5.ogg"
+SUP2ACT6 "Sounds/DCY Monsters/Z-Ensign/idle6.ogg"
+SUP2ACT7 "Sounds/DCY Monsters/Z-Ensign/idle7.ogg"
+SUP2ACT8 "Sounds/DCY Monsters/Z-Ensign/idle8.ogg"
+SUP2ACT9 "Sounds/DCY Monsters/Z-Ensign/idle9.ogg"
+SUP2ACT10 "Sounds/DCY Monsters/Z-Ensign/idle10.ogg"
+SUP2ACT11 "Sounds/DCY Monsters/Z-Ensign/idle11.ogg"
+SUP2ACT12 "Sounds/DCY Monsters/Z-Ensign/idle12.ogg"
+SUP2ACT13 "Sounds/DCY Monsters/Z-Ensign/idle13.ogg"
+$random ZEnsign/Pain { SUP2PAIN SUP2PAI2 }
+SUP2PAIN "Sounds/DCY Monsters/Z-Ensign/pain1.ogg"
+SUP2PAI2 "Sounds/DCY Monsters/Z-Ensign/pain2.ogg"
+$random ZEnsign/Death { SUP2DTH1 SUP2DTH2 SUP2DTH3 SUP2DTH4 SUP2DTH5 SUP2DTH6 SUP2DTH7 }
+SUP2DTH1 "Sounds/DCY Monsters/Z-Ensign/death1.ogg"
+SUP2DTH2 "Sounds/DCY Monsters/Z-Ensign/death2.ogg"
+SUP2DTH3 "Sounds/DCY Monsters/Z-Ensign/death3.ogg"
+SUP2DTH4 "Sounds/DCY Monsters/Z-Ensign/death4.ogg"
+SUP2DTH5 "Sounds/DCY Monsters/Z-Ensign/death5.ogg"
+SUP2DTH6 "Sounds/DCY Monsters/Z-Ensign/death6.ogg"
+SUP2DTH7 "Sounds/DCY Monsters/Z-Ensign/death7.ogg"
+
+ZombieEliteSoldier/Sight "Sounds/DCY Monsters/Automaton Supervisor/sight.ogg"
+ZombieEliteSoldier/Active "Sounds/DCY Monsters/Automaton Supervisor/idle.ogg"
+$random ZombieEliteSoldier/Pain { ZENGPAI1 ZENGPAI2 }
+ZENGPAI1 "Sounds/DCY Monsters/Automaton Supervisor/pain1ogg"
+ZENGPAI2 "Sounds/DCY Monsters/Automaton Supervisor/pain2.ogg"
+ZombieEliteSoldier/Death "Sounds/DCY Monsters/Automaton Supervisor/death.ogg"
+
+$random Exec/Sight { ZADMSIT1 ZADMSIT2 ZADMSIT3 }
+ZADMSIT1 "Sounds/DCY Monsters/Z-Exec/alert1.ogg"
+ZADMSIT2 "Sounds/DCY Monsters/Z-Exec/alert2.ogg"
+ZADMSIT3 "Sounds/DCY Monsters/Z-Exec/alert3.ogg"
+$rolloff Exec/Sight 400 1000
+$random Exec/Active { ZADMACT1 ZADMACT2 ZADMACT3 ZADMACT4 }
+ZADMACT1 "Sounds/DCY Monsters/Z-Exec/threaten1.ogg"
+ZADMACT2 "Sounds/DCY Monsters/Z-Exec/threaten2.ogg"
+ZADMACT3 "Sounds/DCY Monsters/Z-Exec/threaten3.ogg"
+ZADMACT4 "Sounds/DCY Monsters/Z-Exec/threaten4.ogg"
+Exec/Pain "Sounds/DCY Monsters/Z-Exec/pain.ogg"
+Exec/Spot "Sounds/DCY Monsters/Z-Exec/THERE_YOU_ARE.ogg"
+
+$random Vandal/Sight { ZADSIG1 ZADSIG2 ZADSIG3 }
+ZADSIG1 "Sounds/DCY Monsters/Vandal/alert1.ogg"
+ZADSIG2 "Sounds/DCY Monsters/Vandal/alert2.ogg"
+ZADSIG3 "Sounds/DCY Monsters/Vandal/alert3.ogg"
+$random Vandal/Pain { ZADPAI1 ZADPAI2 ZADPAI3 ZADPAI4 }
+ZADPAI1 "Sounds/DCY Monsters/Vandal/pain1.ogg"
+ZADPAI2 "Sounds/DCY Monsters/Vandal/pain2.ogg"
+ZADPAI3 "Sounds/DCY Monsters/Vandal/pain3.ogg"
+ZADPAI4 "Sounds/DCY Monsters/Vandal/pain4.ogg"
+$random Vandal/Active { ZADACT1 ZADACT2 ZADACT3 ZADACT4 ZADACT5 }
+ZADACT1 "Sounds/DCY Monsters/Vandal/idle1.ogg"
+ZADACT2 "Sounds/DCY Monsters/Vandal/idle2.ogg"
+ZADACT3 "Sounds/DCY Monsters/Vandal/idle3.ogg"
+ZADACT4 "Sounds/DCY Monsters/Vandal/idle4.ogg"
+ZADACT5 "Sounds/DCY Monsters/Vandal/idle5.ogg"
+$random Vandal/Death { ZADDTH1 ZADDTH2 ZADDTH3 ZADDTH4 }
+ZADDTH1 "Sounds/DCY Monsters/Vandal/death1.ogg"
+ZADDTH2 "Sounds/DCY Monsters/Vandal/death2.ogg"
+ZADDTH3 "Sounds/DCY Monsters/Vandal/death3.ogg"
+ZADDTH4 "Sounds/DCY Monsters/Vandal/death4.ogg"
+
+$random Rattail/Sight { HCHGSIT1 HCHGSIT2 HCHGSIT3 HCHGSIT4 HCHGSIT5 HCHGSIT6 HCHGSIT7 HCHGSIT8 HCHGSIT9 HCHGSIT10 HCHGSIT11 HCHGSIT12 }
+HCHGSIT1 "Sounds/DCY Monsters/Rattail/sight1.ogg"
+HCHGSIT2 "Sounds/DCY Monsters/Rattail/sight2.ogg"
+HCHGSIT3 "Sounds/DCY Monsters/Rattail/sight3.ogg"
+HCHGSIT4 "Sounds/DCY Monsters/Rattail/sight4.ogg"
+HCHGSIT5 "Sounds/DCY Monsters/Rattail/sight5.ogg"
+HCHGSIT6 "Sounds/DCY Monsters/Rattail/sight6.ogg"
+HCHGSIT7 "Sounds/DCY Monsters/Rattail/sight7.ogg"
+HCHGSIT8 "Sounds/DCY Monsters/Rattail/sight8.ogg"
+HCHGSIT9 "Sounds/DCY Monsters/Rattail/sight9.ogg"
+HCHGSIT10 "Sounds/DCY Monsters/Rattail/sight10.ogg"
+HCHGSIT11 "Sounds/DCY Monsters/Rattail/sight11.ogg"
+HCHGSIT12 "Sounds/DCY Monsters/Rattail/sight12.ogg"
+$random Rattail/Active { HCHGACT1 HCHGACT2 HCHGACT3 HCHGACT4 }
+HCHGACT1 "Sounds/DCY Monsters/Rattail/idle1.ogg"
+HCHGACT2 "Sounds/DCY Monsters/Rattail/idle2.ogg"
+HCHGACT3 "Sounds/DCY Monsters/Rattail/idle3.ogg"
+HCHGACT4 "Sounds/DCY Monsters/Rattail/idle4.ogg"
+$random Rattail/Pain { HCHGPAI1 HCHGPAI2 HCHGPAI3 HCHGPAI4 HCHGPAI5 HCHGPAI6 }
+HCHGPAI1 "Sounds/DCY Monsters/Rattail/pain1.ogg"
+HCHGPAI2 "Sounds/DCY Monsters/Rattail/pain2.ogg"
+HCHGPAI3 "Sounds/DCY Monsters/Rattail/pain3.ogg"
+HCHGPAI4 "Sounds/DCY Monsters/Rattail/pain4.ogg"
+HCHGPAI5 "Sounds/DCY Monsters/Rattail/pain5.ogg"
+HCHGPAI6 "Sounds/DCY Monsters/Rattail/pain6.ogg"
+$random Rattail/Death { HCHGDTH1 HCHGDTH2 HCHGDTH3 HCHGDTH4 HCHGDTH5 }
+HCHGDTH1 "Sounds/DCY Monsters/Rattail/banished1.ogg"
+HCHGDTH2 "Sounds/DCY Monsters/Rattail/banished2.ogg"
+HCHGDTH3 "Sounds/DCY Monsters/Rattail/banished3.ogg"
+HCHGDTH4 "Sounds/DCY Monsters/Rattail/banished4.ogg"
+HCHGDTH5 "Sounds/DCY Monsters/Rattail/banished5.ogg"
+$random Rattail/Attack { HCHGATK1 HCHGATK2 HCHGATK3 HCHGATK4 HCHGATK5 }
+HCHGATK1 "Sounds/DCY Monsters/Rattail/attack1.ogg"
+HCHGATK2 "Sounds/DCY Monsters/Rattail/attack2.ogg"
+HCHGATK3 "Sounds/DCY Monsters/Rattail/attack3.ogg"
+HCHGATK4 "Sounds/DCY Monsters/Rattail/attack4.ogg"
+HCHGATK5 "Sounds/DCY Monsters/Rattail/attack5.ogg"
+
+TURRDTH "Sounds/DCY Monsters/Decedent Bigwig/turret_explode1.ogg"
+TURRDTH2 "Sounds/DCY Monsters/Decedent Bigwig/turret_explode2.ogg"
+
+ZDrone/Sight "Sounds/DCY Monsters/Z-Exec/drone_sight.ogg"
+ZDrone/Active "Sounds/DCY Monsters/Z-Exec/drone_idle.ogg"
+ZDrone/Pain "Sounds/DCY Monsters/Z-Exec/drone_pain.ogg"
+ZDrone/Death "Sounds/DCY Monsters/Z-Exec/drone_death.ogg"
+
+Trounce/Sight "Sounds/DCY Monsters/Trounce/sight.wav"
+$random Trounce/Active { TR0UACT1 TR0UACT2 TR0UACT3 }
+TR0UACT1 "Sounds/DCY Monsters/Trounce/idle1.wav"
+TR0UACT2 "Sounds/DCY Monsters/Trounce/idle2.wav"
+TR0UACT3 "Sounds/DCY Monsters/Trounce/idle3.wav"
+Trounce/Pain "Sounds/DCY Monsters/Trounce/pain.wav"
+Trounce/Death "Sounds/DCY Monsters/Trounce/death.wav"
+Trounce/BodyPound "Sounds/DCY Monsters/Trounce/bodyslam.ogg"
+
+PSSpider/Sight "Sounds/DCY Monsters/Executioner/sight.wav"
+PSSpider/Death "Sounds/DCY Monsters/Executioner/death.wav"
+
+PSRevenant/Sight "Sounds/DCY Monsters/Frostbite/sight.wav"
+PSRevenant/Active "Sounds/DCY Monsters/Frostbite/idle.wav"
+PSRevenant/Death "Sounds/DCY Monsters/Frostbite/death.wav"
+
+psxelemental/sight "Sounds/DCY Monsters/Rahovart/sight.ogg"
+psxelemental/active "Sounds/DCY Monsters/Rahovart/idle.ogg"
+psxelemental/pain "Sounds/DCY Monsters/Rahovart/pain.ogg"
+psxelemental/death "Sounds/DCY Monsters/Rahovart/death.ogg"
+
+skull/death "Sounds/Replacements/DSLSOD.ogg"
+
+Gatecrasher/Sight "Sounds/DCY Monsters/Gatecrasher/sight.ogg"
+$random Gatecrasher/Active { XYKNTACT XYKNTAC1 XYKNTAC2 }
+XYKNTACT "Sounds/DCY Monsters/Gatecrasher/idle1.ogg"
+XYKNTAC1 "Sounds/DCY Monsters/Gatecrasher/idle2.ogg"
+XYKNTAC2 "Sounds/DCY Monsters/Gatecrasher/idle3.ogg"
+$random Gatecrasher/Pain { XYKNTPAI XYKNTPA1 XYKNTPA2 }
+XYKNTPAI "Sounds/DCY Monsters/Gatecrasher/pain1.ogg"
+XYKNTPA1 "Sounds/DCY Monsters/Gatecrasher/pain2.ogg"
+XYKNTPA2 "Sounds/DCY Monsters/Gatecrasher/pain3.ogg"
+$random Gatecrasher/Death { XYKNTDTH XYKNTDT1 XYKNTDT2 }
+XYKNTDTH "Sounds/DCY Monsters/Gatecrasher/death1.ogg"
+XYKNTDT1 "Sounds/DCY Monsters/Gatecrasher/death2.ogg"
+XYKNTDT2 "Sounds/DCY Monsters/Gatecrasher/death3.ogg"
+
+SKnight/Sight "Sounds/DCY Monsters/Soul Chevalier/sight.ogg"
+$random SKnight/Active { FLKIDLE FLKIDLE2 }
+FLKIDLE "Sounds/DCY Monsters/Soul Chevalier/idle1.ogg"
+FLKIDLE2 "Sounds/DCY Monsters/Soul Chevalier/idle2.ogg"
+SKnight/Pain "Sounds/DCY Monsters/Soul Chevalier/pain.ogg"
+SKnight/Death "Sounds/DCY Monsters/Soul Chevalier/death.ogg"
+
+Monsoon/Sight "Sounds/DCY Monsters/Monsoon/sight.wav"
+Monsoon/Active "Sounds/DCY Monsters/Monsoon/idle.wav"
+Monsoon/Pain "Sounds/DCY Monsters/Monsoon/pain.wav"
+Monsoon/Death "Sounds/DCY Monsters/Monsoon/death.wav"
+Monsoon/ThunderLoop "Sounds/Projectiles/dcy_monsoon_thunderloop.ogg"
+
+$random Repealler/Sight { REPLSIT1 REPLSIT2 }
+REPLSIT1 "Sounds/DCY Monsters/Repealler/sight1.ogg"
+REPLSIT2 "Sounds/DCY Monsters/Repealler/sight2.ogg"
+Repealler/Active "Sounds/DCY Monsters/Repealler/idle.ogg"
+Repealler/Pain "Sounds/DCY Monsters/Repealler/pain.ogg"
+Repealler/Death "Sounds/DCY Monsters/Repealler/death.ogg"
+
+Espouser/Sight "Sounds/DCY Monsters/Espouser/sight.ogg"
+Espouser/Active "Sounds/DCY Monsters/Espouser/idle.ogg"
+Espouser/Melee "Sounds/DCY Monsters/Espouser/melee.ogg"
+Espouser/Missile "Sounds/DCY Monsters/Espouser/missile.ogg"
+Espouser/Pain "Sounds/DCY Monsters/Espouser/pain.ogg"
+Espouser/Death "Sounds/DCY Monsters/Espouser/death.ogg"
+
+Excoriator/Sight "Sounds/DCY Monsters/Excoriator/sight.ogg"
+Excoriator/Death "Sounds/DCY Monsters/Excoriator/death.ogg"
+
+Arbiter/Sight "Sounds/DCY Monsters/Arbiter/sight.ogg"
+$random Arbiter/Active { Arbiter/Active1 Arbiter/Active2 }
+Arbiter/Active1 "Sounds/DCY Monsters/Arbiter/idle1.ogg"
+Arbiter/Active2 "Sounds/DCY Monsters/Arbiter/idle2.ogg"
+Arbiter/Pain "Sounds/DCY Monsters/Arbiter/pain.ogg"
+Arbiter/Attack1 "Sounds/DCY Monsters/Arbiter/attack1.ogg"
+Arbiter/Attack2 "Sounds/DCY Monsters/Arbiter/attack2.ogg"
+Arbiter/Attack3 "Sounds/DCY Monsters/Arbiter/attack3.ogg"
+
+D4SPISIT "Sounds/DCY Monsters/Maneuverer/sight.ogg"
+$random D4SPIPAI { D4SPIPN1 D4SPIPN2 D4SPIPN3 }
+D4SPIPN1 "Sounds/DCY Monsters/Maneuverer/pain1.ogg"
+D4SPIPN2 "Sounds/DCY Monsters/Maneuverer/pain2.ogg"
+D4SPIPN3 "Sounds/DCY Monsters/Maneuverer/pain3.ogg"
+D4SPIDTH "Sounds/DCY Monsters/Maneuverer/deathscream.ogg"
+
+D4SPITK1 "Sounds/DCY Monsters/Maneuverer/groundgas_lightning.ogg"
+D4SPITK2 "Sounds/DCY Monsters/Maneuverer/groundgas.ogg"
+D4SPITK3 "Sounds/DCY Monsters/Maneuverer/groundgas_undeploy.ogg"
+D4SPITK4 "Sounds/DCY Monsters/Maneuverer/groundgas_deploy.ogg"
+
+MM/Sight "Sounds/DCY Monsters/Mindmonarch/sight.ogg"
+$random MM/Active { MINDACT MINDACT2 }
+MINDACT "Sounds/DCY Monsters/Mindmonarch/idle1.ogg"
+MINDACT2 "Sounds/DCY Monsters/Mindmonarch/idle2.ogg"
+$random MM/Pain { MINDPAI1 MINDPAI2 MINDPAI3 }
+MINDPAI1 "Sounds/DCY Monsters/Mindmonarch/pain1.ogg"
+MINDPAI2 "Sounds/DCY Monsters/Mindmonarch/pain2.ogg"
+MINDPAI3 "Sounds/DCY Monsters/Mindmonarch/pain3.ogg"
+MM/Death "Sounds/DCY Monsters/Mindmonarch/death.ogg"
+
+$random Transfixer/Sight { SPROSIT1 SPROSIT2 }
+SPROSIT1 "Sounds/DCY Monsters/Transfixer/sight1.ogg"
+SPROSIT2 "Sounds/DCY Monsters/Transfixer/sight2.ogg"
+$random Transfixer/Pain { SPROPAI1 SPROPAI2 }
+SPROPAI1 "Sounds/DCY Monsters/Transfixer/pain1.ogg"
+SPROPAI2 "Sounds/DCY Monsters/Transfixer/pain2.ogg"
+Transfixer/Active "Sounds/DCY Monsters/Transfixer/idle.ogg"
+Transfixer/Death "Sounds/DCY Monsters/Transfixer/death.ogg"
+
+LightningEttinSight "Sounds/DCY Monsters/Corpulence/sight.wav"
+LightningEttinActive "Sounds/DCY Monsters/Corpulence/idle.wav"
+LightningEttinPain "Sounds/DCY Monsters/Corpulence/pain.wav"
+LightningEttinDeath "Sounds/DCY Monsters/Corpulence/death.wav"
+
+PWizard/Sight "Sounds/DCY Monsters/Trickster/gibberish.ogg"
+PWizard/Active "Sounds/DCY Monsters/Trickster/gibberish.ogg"
+PWizard/Pain "Sounds/DCY Monsters/Trickster/pain.ogg"
+PWizard/Death "Sounds/DCY Monsters/Trickster/death.ogg"
+
+GKnight/Sight "Sounds/DCY Monsters/Glint Knight/sight.ogg"
+GKnight/Active "Sounds/DCY Monsters/Glint Knight/hum.lmp"
+GKnight/Pain "Sounds/DCY Monsters/Glint Knight/pain.ogg"
+GKnight/Death "Sounds/DCY Monsters/Glint Knight/death.ogg"
+
+$random pacerdcy/sight {H2RHSIT1 H2RHSIT2}
+H2RHSIT1 "Sounds/DCY Monsters/Pacer/sight.wav"
+H2RHSIT2 "Sounds/DCY Monsters/Pacer/laugh.wav"
+$random pacerdcy/pain { pacerdcy/pain1 pacerdcy/pain2 }
+pacerdcy/pain1 "Sounds/DCY Monsters/Pacer/pain1.wav"
+pacerdcy/pain2 "Sounds/DCY Monsters/Pacer/pain2.wav"
+pacerdcy/death "Sounds/DCY Monsters/Pacer/death.wav"
+pacerdcy/burn "Sounds/DCY Monsters/Pacer/scream.wav"
+$random pacerdcy/idle {H2RHIDLE H2RHIDL1 H2RHIDL2 H2RHIDL3}
+H2RHIDLE "Sounds/DCY Monsters/Pacer/growl.wav"
+H2RHIDL1 "Sounds/DCY Monsters/Pacer/chatter1.wav"
+H2RHIDL2 "Sounds/DCY Monsters/Pacer/chatter2.wav"
+H2RHIDL3 "Sounds/DCY Monsters/Pacer/chatter3.wav"
+
+TerminatorBase/Sight "Sounds/DCY Monsters/Terminator/sight.ogg"
+$random TerminatorBase/Active { TERMACT1 TERMACT2 TERMACT3 }
+TERMACT1 "Sounds/DCY Monsters/Terminator/idle1.ogg"
+TERMACT2 "Sounds/DCY Monsters/Terminator/idle2.ogg"
+TERMACT3 "Sounds/DCY Monsters/Terminator/idle3.ogg"
+$random TerminatorBase/Footstep { TERMSTP1 TERMSTP2 }
+TERMSTP1 "Sounds/DCY Monsters/Terminator/step1.ogg"
+TERMSTP2 "Sounds/DCY Monsters/Terminator/step2.ogg"
+TerminatorBase/Attack1 "Sounds/DCY Monsters/Terminator/battle_cry.ogg"
+TerminatorBase/Attack2 "Sounds/DCY Monsters/Terminator/attack.ogg"
+TerminatorBase/Pain "Sounds/DCY Monsters/Terminator/pain.ogg"
+TerminatorBase/Explode "Sounds/DCY Monsters/Terminator/death.ogg"
+
+$random Yanorit/Sight { CTLSTSIT CTLSTSI2 }
+CTLSTSIT "Sounds/DCY Monsters/Paladin/sight1.ogg"
+CTLSTSI2 "Sounds/DCY Monsters/Paladin/sight2.ogg"
+Yanorit/Active "Sounds/DCY Monsters/Paladin/idle.ogg"
+Yanorit/Pain "Sounds/DCY Monsters/Paladin/pain.ogg"
+$random Yanorit/Death { CTLSTDTH CTLSTDT2 CTLSTDT3 }
+CTLSTDTH "Sounds/DCY Monsters/Paladin/death1.ogg"
+CTLSTDT2 "Sounds/DCY Monsters/Paladin/death2.ogg"
+CTLSTDT3 "Sounds/DCY Monsters/Paladin/death3.ogg"
+
+$random Abater/Sight { ULBRSIT1 ULBRSIT2 ULBRSIT3 ULBRSIT4 ULBRSIT5 ULBRSIT6 }
+ULBRSIT1 "Sounds/DCY Monsters/Abater/sight1.ogg"
+ULBRSIT2 "Sounds/DCY Monsters/Abater/sight2.ogg"
+ULBRSIT3 "Sounds/DCY Monsters/Abater/sight3.ogg"
+ULBRSIT4 "Sounds/DCY Monsters/Abater/sight4.ogg"
+ULBRSIT5 "Sounds/DCY Monsters/Abater/sight5.ogg"
+ULBRSIT6 "Sounds/DCY Monsters/Abater/sight6.ogg"
+$random Abater/Active { ULBRACT1 ULBRACT2 ULBRACT3 ULBRACT4 ULBRACT5 }
+ULBRACT1 "Sounds/DCY Monsters/Abater/idle1.ogg"
+ULBRACT2 "Sounds/DCY Monsters/Abater/idle2.ogg"
+ULBRACT3 "Sounds/DCY Monsters/Abater/idle3.ogg"
+ULBRACT4 "Sounds/DCY Monsters/Abater/idle4.ogg"
+ULBRACT5 "Sounds/DCY Monsters/Abater/idle5.ogg"
+$random Abater/Attack { ULBRATK ULBRATK2 }
+ULBRATK "Sounds/DCY Monsters/Abater/spot1.ogg"
+ULBRATK2 "Sounds/DCY Monsters/Abater/spot2.ogg"
+$random Abater/Death { ULBRDTH1 ULBRDTH2 ULBRDTH3 ULBRDTH4 ULBRDTH5 ULBRDTH6 }
+ULBRDTH1 "Sounds/DCY Monsters/Abater/death1.ogg"
+ULBRDTH2 "Sounds/DCY Monsters/Abater/death2.ogg"
+ULBRDTH3 "Sounds/DCY Monsters/Abater/death3.ogg"
+ULBRDTH4 "Sounds/DCY Monsters/Abater/death4.ogg"
+ULBRDTH5 "Sounds/DCY Monsters/Abater/death5.ogg"
+ULBRDTH6 "Sounds/DCY Monsters/Abater/death6.ogg"
+$random Abater/Pain { ULBRPAI1 ULBRPAI2 ULBRPAI3 ULBRPAI4 ULBRPAI5 ULBRPAI6 ULBRPAI7 }
+ULBRPAI1 "Sounds/DCY Monsters/Abater/pain1.ogg"
+ULBRPAI2 "Sounds/DCY Monsters/Abater/pain2.ogg"
+ULBRPAI3 "Sounds/DCY Monsters/Abater/pain3.ogg"
+ULBRPAI4 "Sounds/DCY Monsters/Abater/pain4.ogg"
+ULBRPAI5 "Sounds/DCY Monsters/Abater/pain5.ogg"
+ULBRPAI6 "Sounds/DCY Monsters/Abater/pain6.ogg"
+ULBRPAI7 "Sounds/DCY Monsters/Abater/pain7.ogg"
+
+$random Destructor/Sight { HELSSIT1 HELSSIT2 HELSSIT3 }
+HELSSIT1 "Sounds/DCY Monsters/Unholy Destructor/blather1.ogg"
+HELSSIT2 "Sounds/DCY Monsters/Unholy Destructor/blather2.ogg"
+HELSSIT3 "Sounds/DCY Monsters/Unholy Destructor/blather3.ogg"
+$rolloff Destructor/Sight 300 2000
+
+$random PhasicRazer/Sight { B10WSIT1 B10WSIT2 B10WSIT3 }
+B10WSIT1 "Sounds/DCY Monsters/Phasic Razer/sight1.ogg"
+B10WSIT2 "Sounds/DCY Monsters/Phasic Razer/sight2.ogg"
+B10WSIT3 "Sounds/DCY Monsters/Phasic Razer/sight3.ogg"
+$rolloff PhasicRazer/Sight 300 2000
+$random PhasicRazer/Active { B10WACT1 B10WACT2 B10WACT3 }
+B10WACT1 "Sounds/DCY Monsters/Phasic Razer/idle1.ogg"
+B10WACT2 "Sounds/DCY Monsters/Phasic Razer/idle2.ogg"
+B10WACT3 "Sounds/DCY Monsters/Phasic Razer/idle3.ogg"
+$rolloff PhasicRazer/Active 300 2000
+PhasicRazer/Pain "Sounds/DCY Monsters/Phasic Razer/pain.ogg"
+$random PhasicRazer/Death { B10WDTH1 B10WDTH2 B10WDTH3 }
+B10WDTH1 "Sounds/DCY Monsters/Phasic Razer/death1.ogg"
+B10WDTH2 "Sounds/DCY Monsters/Phasic Razer/death2.ogg"
+B10WDTH3 "Sounds/DCY Monsters/Phasic Razer/death3.ogg"
+
+LunarChiller/Sight "Sounds/DCY Monsters/Anesthesized/sight.wav"
+LunarChiller/Pain "Sounds/DCY Monsters/Anesthesized/pain.wav"
+LunarChiller/Death "Sounds/DCY Monsters/Anesthesized/death.wav"
+
+ZSPIJETS "Sounds/DCY SFX/dcy_spider_jets.ogg"
+ZSPIATKS "Sounds/DCY SFX/dcy_overblaster_start.ogg" //AKA. Overblaster Start
+$rolloff ZSPIATKS 400 2350
+ZSPIATKL "Sounds/DCY SFX/dcy_overblaster_loop.ogg" //AKA. Overblaster Fire Loop
+$rolloff ZSPIATKL 400 2350
+ZSPIATKT "Sounds/DCY SFX/dcy_overblaster_stop.ogg" //AKA. Overblaster Stop
+$rolloff ZSPIATKT 400 2350
+ZSPIATK2 "Sounds/DCY SFX/dcy_overblaster_alt.ogg" //AKA. Overblaster Alt. Fire Loop
+$rolloff ZSPIATK2 400 2350
+
+DSPING01 "Sounds/DCY SFX/dcy_ping1.ogg"
+$rolloff DSPING01 500 3000
+DSPING02 "Sounds/DCY SFX/dcy_ping2.ogg"
+$rolloff DSPING02 500 3000
+
+Malloc/Sight "Sounds/DCY Monsters/Malloc/sight.ogg"
+Malloc/Active "Sounds/DCY Monsters/Malloc/idle.ogg"
+Malloc/Pain "Sounds/DCY Monsters/Malloc/pain.ogg"
+$random Malloc/Death { MALDC1 MALDC2 }
+MALDC1 "Sounds/DCY Monsters/Malloc/death1.ogg"
+MALDC2 "Sounds/DCY Monsters/Malloc/death2.ogg"
+Malloc/Laser "Sounds/Projectiles/dcy_hellrazer_charged_shot.ogg"
+
+InfernoGallant/Ball "Sounds/Projectiles/dcy_gallant_ball.wav"
+$alias InfernoGallant/BallExplode baron/shotx
+
+Aracgunner/Sight "Sounds/DCY Monsters/Aracgunner/sight.wav"
+Aracgunner/Active "Sounds/DCY Monsters/Aracgunner/idle.wav"
+Aracgunner/Death "Sounds/DCY Monsters/Aracgunner/death.wav"
+$alias Aracgunner/Walk baby/walk
+
+$alias Painsend/Melee imp/melee
+Painsend/Swing "Sounds/DCY Monsters/Painsend/swing.ogg"
+Painsend/Fireball "Sounds/Projectiles/dcy_psx_fire.wav"
+Painsend/FireExplode "Sounds/Projectiles/dcy_psx_impact.wav"
+
+Infernis/Sight "Sounds/DCY Monsters/Infernis/sight.wav"
+Infernis/Active "Sounds/DCY Monsters/Infernis/idle.wav"
+Infernis/Pain "Sounds/DCY Monsters/Infernis/pain.wav"
+Infernis/Death "Sounds/DCY Monsters/Infernis/death.wav"
+
+$random Apollyon/Sight { AP0LSIT1 AP0LSIT2 AP0LSIT3 AP0LSIT4 AP0LSIT5 }
+AP0LSIT1 "Sounds/DCY Monsters/Apollyon/sight1.ogg"
+AP0LSIT2 "Sounds/DCY Monsters/Apollyon/sight2.ogg"
+AP0LSIT3 "Sounds/DCY Monsters/Apollyon/sight3.ogg"
+AP0LSIT4 "Sounds/DCY Monsters/Apollyon/sight4.ogg"
+AP0LSIT5 "Sounds/DCY Monsters/Apollyon/sight5.ogg"
+$random Apollyon/Active { AP0LACT1 AP0LACT2 AP0LACT3 AP0LACT4 }
+AP0LACT1 "Sounds/DCY Monsters/Apollyon/idle1.ogg"
+AP0LACT2 "Sounds/DCY Monsters/Apollyon/idle2.ogg"
+AP0LACT3 "Sounds/DCY Monsters/Apollyon/idle3.ogg"
+AP0LACT4 "Sounds/DCY Monsters/Apollyon/idle4.ogg"
+$random Apollyon/Spell { AP0LSPL1 AP0LSPL2 AP0LSPL3 }
+AP0LSPL1 "Sounds/DCY Monsters/Apollyon/spell1.ogg"
+AP0LSPL2 "Sounds/DCY Monsters/Apollyon/spell2.ogg"
+AP0LSPL3 "Sounds/DCY Monsters/Apollyon/spell3.ogg"
+$random Apollyon/Pain { AP0LPAI1 AP0LPAI2 AP0LPAI3 AP0LPAI4 AP0LPAI5 AP0LPAI6 AP0LPAI7 AP0LPAI8 AP0LPAI9 AP0LPN10 AP0LPN11 AP0LPN12 }
+AP0LPAI1 "Sounds/DCY Monsters/Apollyon/grunt1.ogg"
+AP0LPAI2 "Sounds/DCY Monsters/Apollyon/grunt2.ogg"
+AP0LPAI3 "Sounds/DCY Monsters/Apollyon/grunt3.ogg"
+AP0LPAI4 "Sounds/DCY Monsters/Apollyon/grunt4.ogg"
+AP0LPAI5 "Sounds/DCY Monsters/Apollyon/wail1.ogg"
+AP0LPAI6 "Sounds/DCY Monsters/Apollyon/wail2.ogg"
+AP0LPAI7 "Sounds/DCY Monsters/Apollyon/wail3.ogg"
+AP0LPAI8 "Sounds/DCY Monsters/Apollyon/wail4.ogg"
+AP0LPAI9 "Sounds/DCY Monsters/Apollyon/pain1.ogg"
+AP0LPN10 "Sounds/DCY Monsters/Apollyon/pain2.ogg"
+AP0LPN11 "Sounds/DCY Monsters/Apollyon/pain3.ogg"
+AP0LPN12 "Sounds/DCY Monsters/Apollyon/pain4.ogg"
+$alias Apollyon/Death Apollyon/Pain
+Apollyon/Comet "Sounds/Projectiles/dcy_apollyon_fire.ogg"
+Apollyon/CometExplode "Sounds/Projectiles/dcy_apollyon_collision.ogg"
+Apollyon/Pillar "Sounds/Projectiles/dcy_apollyon_fire.ogg"
+$alias Apollyon/Tracer Apollyon/Pillar
+Apollyon/TracerExplode "Sounds/Projectiles/dcy_apollyon_collision.ogg"
+
+vile/flamewall "Sounds/Projectiles/dcy_flamewall.ogg"
+
+Wretched/Sight "Sounds/DCY Monsters/Wretched/sight.ogg"
+Wretched/Active "Sounds/DCY Monsters/Wretched/idle.ogg"
+$random Wretched/Pain { WRETPAI WRETPAI2 }
+WRETPAI "Sounds/DCY Monsters/Wretched/pain1.ogg"
+WRETPAI2 "Sounds/DCY Monsters/Wretched/pain2.ogg"
+Wretched/Death "Sounds/DCY Monsters/Wretched/death.ogg"
+Wretched/DeathExplosion "Sounds/DCY Monsters/Wretched/explode.ogg"
+
+Serpent/Sight "Sounds/DCY Monsters/Serpent/sight.ogg"
+Serpent/Active "Sounds/DCY Monsters/Serpent/idle.ogg"
+Serpent/Pain "Sounds/DCY Monsters/Serpent/pain.ogg"
+Serpent/Death "Sounds/DCY Monsters/Serpent/death.ogg"
+
+AcidBall/Shoot "Sounds/Projectiles/dcy_acidball.ogg"
+AcidBall/Death "Sounds/Projectiles/dcy_acid_impact.ogg"
+$random AcidBall/Death2 { AC1DIMP1 AC1DIMP2 }
+AC1DIMP1 "Sounds/Projectiles/dcy_acid_explode1.ogg"
+AC1DIMP2 "Sounds/Projectiles/dcy_acid_explode2.ogg"
+
+CasterDecay/Sight "Sounds/DCY Monsters/Decay/moan.ogg"
+CasterDecay/Pain "Sounds/DCY Monsters/Decay/pain.ogg"
+CasterDecay/Death "Sounds/DCY Monsters/Decay/death.ogg"
+
+Malwrath/Sight "Sounds/DCY Monsters/Malwrath/sight.wav"
+Malwrath/Active "Sounds/DCY Monsters/Malwrath/idle.wav"
+Malwrath/Pain  "Sounds/DCY Monsters/Malwrath/pain.wav"
+Malwrath/Death "Sounds/DCY Monsters/Malwrath/death.wav"
+
+$random DCYBelphegor/Sight { B3LPSIT1 B3LPSIT2 }
+B3LPSIT1 "Sounds/DCY Monsters/Belphegor/sight1.wav"
+B3LPSIT2 "Sounds/DCY Monsters/Belphegor/sight2.wav"
+DCYBelphegor/Active "Sounds/DCY Monsters/Belphegor/idle.wav"
+$random DCYBelphegor/Pain { B3LPPAI1 B3LPPAI2 }
+B3LPPAI1 "Sounds/DCY Monsters/Belphegor/pain1.wav"
+B3LPPAI2 "Sounds/DCY Monsters/Belphegor/pain2.wav"
+$random DCYBelphegor/Death { B3LPDTH1 B3LPDTH2 }
+B3LPDTH1 "Sounds/DCY Monsters/Belphegor/death1.wav"
+B3LPDTH2 "Sounds/DCY Monsters/Belphegor/death2.wav"
+
+$random Larrikin/Sight { B3LPSIT1 B3LPSIT2 }
+B3LPSIT1 "Sounds/DCY Monsters/Larrikin/sight.ogg"
+B3LPSIT2 "Sounds/DCY Monsters/Larrikin/laugh.ogg"
+$random Larrikin/Active { B3LPACT1 B3LPACT2 }
+B3LPACT1 "Sounds/DCY Monsters/Larrikin/idle1.ogg"
+B3LPACT2 "Sounds/DCY Monsters/Larrikin/idle2.ogg"
+$random Larrikin/Pain { B3LPPAI1 B3LPPAI2 }
+B3LPPAI1 "Sounds/DCY Monsters/Larrikin/pain1.ogg"
+B3LPPAI2 "Sounds/DCY Monsters/Larrikin/pain2.ogg"
+Larrikin/Death "Sounds/DCY Monsters/Larrikin/death.ogg"
+
+DEATHEXP "Sounds/DCY SFX/dcy_bloodcurling.ogg"
+
+PhantomRev/Scream "Sounds/DCY Monsters/Chimera/SCREAMSOFTHEDAMNED.wav"
+$random PhantomRev/Active { pri1 pri2 pri3 }
+pri1 "Sounds/DCY Monsters/Chimera/idle1.ogg"
+pri2 "Sounds/DCY Monsters/Chimera/idle2.ogg"
+pri3 "Sounds/DCY Monsters/Chimera/idle3.ogg"
+PhantomRev/Pain "Sounds/DCY Monsters/Chimera/pain.ogg"
+PhantomRev/Death "Sounds/DCY Monsters/Chimera/death.ogg"
+SCREAMSOFTHEDAMNED "Sounds/DCY Monsters/Chimera/SCREAMSOFTHEDAMNED.wav"
+
+$random Unwilling/Attack { UNWLATK1 UNWLATK2 UNWLATK3 }
+UNWLATK1 "Sounds/DCY Monsters/Castrator/attack1.ogg"
+UNWLATK2 "Sounds/DCY Monsters/Castrator/attack2.ogg"
+UNWLATK3 "Sounds/DCY Monsters/Castrator/attack3.ogg"
+$random Unwilling/Death { UNWLDIE1 UNWLDIE2 UNWLDIE3 }
+UNWLDIE1 "Sounds/DCY Monsters/Castrator/death1.ogg"
+UNWLDIE2 "Sounds/DCY Monsters/Castrator/death2.ogg"
+UNWLDIE3 "Sounds/DCY Monsters/Castrator/death3.ogg"
+$random Unwilling/Active { UNWLACT1 UNWLACT2 UNWLACT3 }
+UNWLACT1 "Sounds/DCY Monsters/Castrator/idle1.ogg"
+UNWLACT2 "Sounds/DCY Monsters/Castrator/idle2.ogg"
+UNWLACT3 "Sounds/DCY Monsters/Castrator/idle3.ogg"
+$random Unwilling/Pain { UNWLPAI1 UNWLPAI2 UNWLPAI3 }
+UNWLPAI1 "Sounds/DCY Monsters/Castrator/pain1.ogg"
+UNWLPAI2 "Sounds/DCY Monsters/Castrator/pain2.ogg"
+UNWLPAI3 "Sounds/DCY Monsters/Castrator/pain3.ogg"
+$random Unwilling/Sight { UNWLSIT1 UNWLSIT2 UNWLSIT3 }
+UNWLSIT1 "Sounds/DCY Monsters/Castrator/sight1.ogg"
+UNWLSIT2 "Sounds/DCY Monsters/Castrator/sight2.ogg"
+UNWLSIT3 "Sounds/DCY Monsters/Castrator/sight3.ogg"
+
+$alias Archon/Explode BigExplod
+
+BigHit "Sounds/DCY SFX/dcy_big_slap.ogg"
+
+roughimp/sight "Sounds/DCY Monsters/Nimbus/roar.wav"
+roughimp/active "Sounds/DCY Monsters/Nimbus/idle.wav"
+roughimp/pain "Sounds/DCY Monsters/Nimbus/pain.wav"
+roughimp/death "Sounds/DCY Monsters/Nimbus/death.wav"
+
+angydoot/sight "Sounds/DCY Monsters/Tresher/scream.ogg"
+angydoot/grunt "Sounds/DCY Monsters/Tresher/grunt.ogg"
+angydoot/pain "Sounds/DCY Monsters/Tresher/pain.ogg"
+angydoot/death "Sounds/DCY Monsters/Tresher/death.ogg"
+
+manicdoot/sight "Sounds/DCY Monsters/Screamer/RAAAAAAAAAAGH.wav"
+manicdoot/death "Sounds/DCY Monsters/Screamer/death.wav"
+
+$random D4Revenant/Sight { RE4SEE1 RE4SEE2 RE4SEE3 RE4SEE4 RE4SEE5 RE4SEE6 }
+RE4SEE1 "Sounds/DCY Monsters/Kranio Thanatou/sight1.ogg"
+RE4SEE2 "Sounds/DCY Monsters/Kranio Thanatou/sight2.ogg"
+RE4SEE3 "Sounds/DCY Monsters/Kranio Thanatou/sight3.ogg"
+RE4SEE4 "Sounds/DCY Monsters/Kranio Thanatou/sight4.ogg"
+RE4SEE5 "Sounds/DCY Monsters/Kranio Thanatou/sight5.ogg"
+RE4SEE6 "Sounds/DCY Monsters/Kranio Thanatou/sight6.ogg"
+$random D4Revenant/Idle { RE4IDLE1 RE4IDLE2 RE4IDLE3 RE4IDLE4 RE4IDLE5 RE4IDLE6 RE4IDLE7 }
+RE4IDLE1 "Sounds/DCY Monsters/Kranio Thanatou/idle1.ogg"
+RE4IDLE2 "Sounds/DCY Monsters/Kranio Thanatou/idle2.ogg"
+RE4IDLE3 "Sounds/DCY Monsters/Kranio Thanatou/idle3.ogg"
+RE4IDLE4 "Sounds/DCY Monsters/Kranio Thanatou/idle4.ogg"
+RE4IDLE5 "Sounds/DCY Monsters/Kranio Thanatou/idle5.ogg"
+RE4IDLE6 "Sounds/DCY Monsters/Kranio Thanatou/idle6.ogg"
+RE4IDLE7 "Sounds/DCY Monsters/Kranio Thanatou/idle7.ogg"
+$random D4Revenant/Pain { RE4PAI1 RE4PAI2 RE4PAI3 }
+RE4PAI1 "Sounds/DCY Monsters/Kranio Thanatou/pain1.ogg"
+RE4PAI2 "Sounds/DCY Monsters/Kranio Thanatou/pain2.ogg"
+RE4PAI3 "Sounds/DCY Monsters/Kranio Thanatou/pain3.ogg"
+$random D4Revenant/Death { RE4DTH1 RE4DTH2 RE4DTH3 RE4DTH4 RE4DTH5 }
+RE4DTH1 "Sounds/DCY Monsters/Kranio Thanatou/death1.ogg"
+RE4DTH2 "Sounds/DCY Monsters/Kranio Thanatou/death2.ogg"
+RE4DTH3 "Sounds/DCY Monsters/Kranio Thanatou/death3.ogg"
+RE4DTH4 "Sounds/DCY Monsters/Kranio Thanatou/death4.ogg"
+RE4DTH5 "Sounds/DCY Monsters/Kranio Thanatou/death5.ogg"
+Kranio/RocketCharge "Sounds/DCY Monsters/Kranio Thanatou/charge.ogg"
+
+$random D4Caco/Sight { SOLCSIT1 SOLCSIT2 SOLCSIT3 SOLCSIT4 SOLCSIT5 }
+SOLCSIT1 "Sounds/DCY Monsters/Soldemon/sight1.ogg"
+SOLCSIT2 "Sounds/DCY Monsters/Soldemon/sight2.ogg"
+SOLCSIT3 "Sounds/DCY Monsters/Soldemon/sight3.ogg"
+SOLCSIT4 "Sounds/DCY Monsters/Soldemon/sight4.ogg"
+SOLCSIT5 "Sounds/DCY Monsters/Soldemon/sight5.ogg"
+$random D4Caco/Active { SOLCACT1 SOLCACT2 SOLCACT3 SOLCACT4 SOLCACT5 SOLCACT6 SOLCACT7 SOLCACT8 }
+SOLCACT1 "Sounds/DCY Monsters/Soldemon/idle1.ogg"
+SOLCACT2 "Sounds/DCY Monsters/Soldemon/idle2.ogg"
+SOLCACT3 "Sounds/DCY Monsters/Soldemon/idle3.ogg"
+SOLCACT4 "Sounds/DCY Monsters/Soldemon/idle4.ogg"
+SOLCACT5 "Sounds/DCY Monsters/Soldemon/idle5.ogg"
+SOLCACT6 "Sounds/DCY Monsters/Soldemon/idle6.ogg"
+SOLCACT7 "Sounds/DCY Monsters/Soldemon/idle7.ogg"
+SOLCACT8 "Sounds/DCY Monsters/Soldemon/idle8.ogg"
+$random D4Caco/Pain { SOLCPAI1 SOLCPAI2 SOLCPAI3 SOLCPAI4 SOLCPAI5 }
+SOLCPAI1 "Sounds/DCY Monsters/Soldemon/pain1.ogg"
+SOLCPAI2 "Sounds/DCY Monsters/Soldemon/pain2.ogg"
+SOLCPAI3 "Sounds/DCY Monsters/Soldemon/pain3.ogg"
+SOLCPAI4 "Sounds/DCY Monsters/Soldemon/pain4.ogg"
+SOLCPAI5 "Sounds/DCY Monsters/Soldemon/pain5.ogg"
+$random D4Caco/Death { SOLCDTH1 SOLCDTH2 SOLCDTH3 SOLCDTH4 SOLCDTH5 }
+SOLCDTH1 "Sounds/DCY Monsters/Soldemon/death1.ogg"
+SOLCDTH2 "Sounds/DCY Monsters/Soldemon/death2.ogg"
+SOLCDTH3 "Sounds/DCY Monsters/Soldemon/death3.ogg"
+SOLCDTH4 "Sounds/DCY Monsters/Soldemon/death4.ogg"
+SOLCDTH5 "Sounds/DCY Monsters/Soldemon/death5.ogg"
+$random D4Caco/Howl { SOLCHWL1 SOLCHWL2 SOLCHWL3 }
+SOLCHWL1 "Sounds/DCY Monsters/Soldemon/howl1.ogg"
+SOLCHWL2 "Sounds/DCY Monsters/Soldemon/howl2.ogg"
+SOLCHWL3 "Sounds/DCY Monsters/Soldemon/howl3.ogg"
+$random D4Caco/Charge { SOLCCHR1 SOLCCHR2 SOLCCHR3 SOLCCHR4 SOLCCHR5 }
+SOLCCHR1 "Sounds/DCY Monsters/Soldemon/charge1.ogg"
+SOLCCHR2 "Sounds/DCY Monsters/Soldemon/charge2.ogg"
+SOLCCHR3 "Sounds/DCY Monsters/Soldemon/charge3.ogg"
+SOLCCHR4 "Sounds/DCY Monsters/Soldemon/charge4.ogg"
+SOLCCHR5 "Sounds/DCY Monsters/Soldemon/charge5.ogg"
+$random D4Caco/Attack { D4CACO1 D4CACO2 }
+D4CACO1 "Sounds/DCY Monsters/Soldemon/attack1.ogg"
+D4CACO2 "Sounds/DCY Monsters/Soldemon/attack2.ogg"
+$random D4Caco/Melee { SOLCMEL1 SOLCMEL2 SOLCMEL3 SOLCMEL4 }
+SOLCMEL1 "Sounds/DCY Monsters/Soldemon/bite1.ogg"
+SOLCMEL2 "Sounds/DCY Monsters/Soldemon/bite2.ogg"
+SOLCMEL3 "Sounds/DCY Monsters/Soldemon/bite3.ogg"
+SOLCMEL4 "Sounds/DCY Monsters/Soldemon/bite4.ogg"
+
+D4Caco/Tongue "Sounds/DCY Monsters/Soldemon/tongue.ogg"
+D4Caco/TongueLoop "Sounds/DCY Monsters/Soldemon/tongue_loop.ogg"
+D4Caco/TongueEnd "Sounds/DCY Monsters/Soldemon/tongue_end.ogg"
+
+$random D4Summoner/sight { D4SumS1 D4SumS2 D4SumS3 D4SumS4 D4SumS5 D4SumS6 }
+D4SumS1 "Sounds/DCY Monsters/Summoner/sight1.ogg"
+D4SumS2 "Sounds/DCY Monsters/Summoner/sight2.ogg"
+D4SumS3 "Sounds/DCY Monsters/Summoner/sight3.ogg"
+D4SumS4 "Sounds/DCY Monsters/Summoner/sight4.ogg"
+D4SumS5 "Sounds/DCY Monsters/Summoner/sight5.ogg"
+D4SumS6 "Sounds/DCY Monsters/Summoner/sight6.ogg"
+$random D4Summoner/pain { D4SumP1 D4SumP2 D4SumP3 D4SumP4 D4SumP5 D4SumP6 D4SumP7 D4SumP8 }
+D4SumP1 "Sounds/DCY Monsters/Summoner/pain1.ogg"
+D4SumP2 "Sounds/DCY Monsters/Summoner/pain2.ogg"
+D4SumP3 "Sounds/DCY Monsters/Summoner/pain3.ogg"
+D4SumP4 "Sounds/DCY Monsters/Summoner/pain4.ogg"
+D4SumP5 "Sounds/DCY Monsters/Summoner/pain5.ogg"
+D4SumP6 "Sounds/DCY Monsters/Summoner/pain6.ogg"
+D4SumP7 "Sounds/DCY Monsters/Summoner/pain7.ogg"
+D4SumP8 "Sounds/DCY Monsters/Summoner/pain8.ogg"
+$random D4Summoner/active { D4SumI1 D4SumI2 D4SumI3 D4SumI4 }
+D4SumI1 "Sounds/DCY Monsters/Summoner/active1.ogg"
+D4SumI2 "Sounds/DCY Monsters/Summoner/active2.ogg"
+D4SumI3 "Sounds/DCY Monsters/Summoner/active3.ogg"
+D4SumI4 "Sounds/DCY Monsters/Summoner/active4.ogg"
+$random D4Summoner/Death { D4SumD1 D4SumD2 D4SumD3 D4SumD4 D4SumD5 D4SumD6 }
+D4SumD1 "Sounds/DCY Monsters/Summoner/deathscream1.ogg"
+D4SumD2 "Sounds/DCY Monsters/Summoner/deathscream2.ogg"
+D4SumD3 "Sounds/DCY Monsters/Summoner/deathscream3.ogg"
+D4SumD4 "Sounds/DCY Monsters/Summoner/deathscream4.ogg"
+D4SumD5 "Sounds/DCY Monsters/Summoner/deathscream5.ogg"
+D4SumD6 "Sounds/DCY Monsters/Summoner/deathscream6.ogg"
+$random D4Summoner/Summon { D4SumC1 D4SumC2 D4SumC3 D4SumC4 D4SumC5 D4SumC6 D4SumC7 D4SumC8 }
+D4SumC1 "Sounds/DCY Monsters/Summoner/summon1.ogg"
+D4SumC2 "Sounds/DCY Monsters/Summoner/summon2.ogg"
+D4SumC3 "Sounds/DCY Monsters/Summoner/summon3.ogg"
+D4SumC4 "Sounds/DCY Monsters/Summoner/summon4.ogg"
+D4SumC5 "Sounds/DCY Monsters/Summoner/summon5.ogg"
+D4SumC6 "Sounds/DCY Monsters/Summoner/summon6.ogg"
+D4SumC7 "Sounds/DCY Monsters/Summoner/summon7.ogg"
+D4SumC8 "Sounds/DCY Monsters/Summoner/summon8.ogg"
+
+D4RazerBeam/Start "Sounds/DCY SFX/dcy_razer_start.ogg"
+D4RazerBeam/WeakLaser "Sounds/DCY SFX/dcy_razer_small_laser.ogg"
+D4RazerBeam/Laser "Sounds/DCY SFX/dcy_razer_laser.ogg"
+D4RazerBeam/Stop "Sounds/DCY SFX/dcy_razer_stop.ogg"
+
+$random Congress/Sight { CONGSIT1 CONGSIT2 CONGSIT3 CONGSIT4 }
+CONGSIT1 "Sounds/DCY Monsters/Sycophant/sight1.ogg"
+CONGSIT2 "Sounds/DCY Monsters/Sycophant/sight2.ogg"
+CONGSIT3 "Sounds/DCY Monsters/Sycophant/sight3.ogg"
+CONGSIT4 "Sounds/DCY Monsters/Sycophant/sight4.ogg"
+$random Congress/Active { CONGACT1 CONGACT2 CONGACT3 CONGACT4 CONGACT5 }
+CONGACT1 "Sounds/DCY Monsters/Sycophant/noise1.ogg"
+CONGACT2 "Sounds/DCY Monsters/Sycophant/noise2.ogg"
+CONGACT3 "Sounds/DCY Monsters/Sycophant/noise3.ogg"
+CONGACT4 "Sounds/DCY Monsters/Sycophant/noise4.ogg"
+CONGACT5 "Sounds/DCY Monsters/Sycophant/noise5.ogg"
+Congress/Pain "Sounds/DCY Monsters/Sycophant/pain.ogg"
+Congress/Howl "Sounds/DCY Monsters/Sycophant/howl.ogg"
+Congress/Death "Sounds/DCY Monsters/Sycophant/death.ogg"
+Congress/Attack "Sounds/DCY Monsters/Sycophant/attack.ogg"
+
+dune/active "Sounds/DCY SFX/dcy_enemy_phase.ogg"
+dune/bounce "Sounds/Projectiles/dcy_grenade_bounce.wav"
+
+GoreNest/Scream "Sounds/DCY SFX/dcy_gorenest_scream.ogg"
+GoreNest/Scream2 "Sounds/DCY SFX/dcy_gorenest_short_scream.ogg"
+
+SCRE1M "Sounds/DCY SFX/dcy_hellscream1.ogg"
+SCRE1M2 "Sounds/DCY SFX/dcy_hellscream2.ogg"
+
+$random Desperado/Sight { DESPSIT1 DESPSIT2 }
+DESPSIT1 "Sounds/DCY Monsters/Gehenna/sight1.ogg"
+DESPSIT2 "Sounds/DCY Monsters/Gehenna/sight2.ogg"
+$random Desperado/Active { DESPACT1 DESPACT2 DESPACT3 DESPACT4 }
+DESPACT1 "Sounds/DCY Monsters/Gehenna/active1.ogg"
+DESPACT2 "Sounds/DCY Monsters/Gehenna/active2.ogg"
+DESPACT3 "Sounds/DCY Monsters/Gehenna/active3.ogg"
+DESPACT4 "Sounds/DCY Monsters/Gehenna/active4.ogg"
+Desperado/Pain "Sounds/DCY Monsters/Gehenna/pain.ogg"
+Desperado/Death "Sounds/DCY Monsters/Gehenna/death.ogg"
+
+wastelandinfiltrator/sight "Sounds/DCY Monsters/Wasteland/roar.ogg"
+wastelandinfiltrator/active "Sounds/DCY Monsters/Wasteland/idle.ogg"
+wastelandinfiltrator/pain "Sounds/DCY Monsters/Wasteland/pain.ogg"
+wastelandinfiltrator/death "Sounds/DCY Monsters/Wasteland/death.ogg"
+
+DCYEOD/Sight "Sounds/DCY Monsters/EOD/roar.ogg"
+$random DCYEOD/Active { 0EODACT 0EODACT2 0EODACT3 }
+0EODACT "Sounds/DCY Monsters/EOD/growl1.ogg"
+0EODACT2 "Sounds/DCY Monsters/EOD/growl2.ogg"
+0EODACT3 "Sounds/DCY Monsters/EOD/growl3.ogg"
+DCYEOD/Pain "Sounds/DCY Monsters/EOD/pain.ogg"
+DCYEOD/Death "Sounds/DCY Monsters/EOD/dissipate.ogg"
+DCYEOD/Tracer "Sounds/DCY Monsters/EOD/growl_floorflame.ogg"
+DCYEOD/DarkMatter "Sounds/DCY Monsters/EOD/growl_darkmatter.ogg"
+DCYEOD/Floor "Sounds/DCY Monsters/EOD/growl_comets.ogg"
+
+DCYAamon/Sight "Sounds/DCY Monsters/Aamon/yell.ogg"
+DCYAamon/Active "Sounds/DCY Monsters/Aamon/idle.ogg"
+DCYAamon/Pain "Sounds/DCY Monsters/Aamon/pain.ogg"
+DCYAamon/Death "Sounds/DCY Monsters/Aamon/death.ogg"
+
+Xusqoox/Sight "Sounds/DCY Monsters/Xusqoox/initiate.ogg"
+Xusqoox/Active "Sounds/DCY Monsters/Xusqoox/idle.ogg"
+Xusqoox/Pain "Sounds/DCY Monsters/Xusqoox/pain.ogg"
+Xusqoox/Death "Sounds/DCY Monsters/Xusqoox/die.ogg"
+Xusqoox/Attack "Sounds/DCY Monsters/Xusqoox/attack.ogg"
+Xusqoox/Command "Sounds/DCY Monsters/Xusqoox/command.ogg"
+
+$random Violator/See { CYNSEE1 CYNSEE2 CYNSEE3 CYNSEE4 CYNSEE5 }
+CYNSEE1 "Sounds/DCY Monsters/Caviler/sight1.ogg"
+CYNSEE2 "Sounds/DCY Monsters/Caviler/sight2.ogg"
+CYNSEE3 "Sounds/DCY Monsters/Caviler/sight3.ogg"
+CYNSEE4 "Sounds/DCY Monsters/Caviler/sight4.ogg"
+CYNSEE5 "Sounds/DCY Monsters/Caviler/sight5.ogg"
+$random Violator/Sound { CYNACT1 CYNACT2 CYNACT3 CYNACT4 }
+CYNACT1 "Sounds/DCY Monsters/Caviler/idle1.ogg"
+CYNACT2 "Sounds/DCY Monsters/Caviler/idle2.ogg"
+CYNACT3 "Sounds/DCY Monsters/Caviler/idle3.ogg"
+CYNACT4 "Sounds/DCY Monsters/Caviler/idle4.ogg"
+$random Violator/Pain { CYNPAIN1 CYNPAIN2 CYNPAIN3 }
+CYNPAIN1 "Sounds/DCY Monsters/Caviler/pain1.ogg"
+CYNPAIN2 "Sounds/DCY Monsters/Caviler/pain2.ogg"
+CYNPAIN3 "Sounds/DCY Monsters/Caviler/pain3.ogg"
+$random Violator/Death { CYNDTH1 CYNDTH2 CYNDTH3 }
+CYNDTH1 "Sounds/DCY Monsters/Caviler/death1.ogg"
+CYNDTH2 "Sounds/DCY Monsters/Caviler/death2.ogg"
+CYNDTH3 "Sounds/DCY Monsters/Caviler/death3.ogg"
+
+$random GunmetalInfiltrator/Sight { GMBSIG GMBSIG2 }
+GMBSIG "Sounds/DCY Monsters/Bruiser/sight1.ogg"
+GMBSIG2 "Sounds/DCY Monsters/Bruiser/sight2.ogg"
+$random GunmetalInfiltrator/Death { GMBDTH GMBDTH2 }
+GMBDTH "Sounds/DCY Monsters/Bruiser/death1.ogg"
+GMBDTH2 "Sounds/DCY Monsters/Bruiser/death2.ogg"
+$random GunmetalInfiltrator/Active { gbactive1 gbactive2 gbactive3 gbactive4 gbactive5 gbactive6 gbactive7 gbactive8 }
+gbActive1 "Sounds/DCY Monsters/Bruiser/idle1.ogg"
+gbActive2 "Sounds/DCY Monsters/Bruiser/idle2.ogg"
+gbActive3 "Sounds/DCY Monsters/Bruiser/idle3.ogg"
+gbActive4 "Sounds/DCY Monsters/Bruiser/idle4.ogg"
+gbActive5 "Sounds/DCY Monsters/Bruiser/idle5.ogg"
+gbActive6 "Sounds/DCY Monsters/Bruiser/idle6.ogg"
+gbActive7 "Sounds/DCY Monsters/Bruiser/idle7.ogg"
+gbActive8 "Sounds/DCY Monsters/Bruiser/idle8.ogg"
+$random GunmetalInfiltrator/Pain { gbpain1 gbpain2 }
+gbpain1 "Sounds/DCY Monsters/Bruiser/pain1.ogg"
+gbpain2 "Sounds/DCY Monsters/Bruiser/pain2.ogg"
+
+Utrotrion/Sight "Sounds/DCY Monsters/Utrotrion/roar.ogg"
+$random Utrotrion/Active { GZDACT GZDACT2 }
+GZDACT "Sounds/DCY Monsters/Utrotrion/idle1.ogg"
+GZDACT2 "Sounds/DCY Monsters/Utrotrion/idle2.ogg"
+$random Utrotrion/Pain { GZDPAI GZDPAI2 GZDPAI3 }
+GZDPAI "Sounds/DCY Monsters/Utrotrion/pain1.ogg"
+GZDPAI2 "Sounds/DCY Monsters/Utrotrion/pain2.ogg"
+GZDPAI3 "Sounds/DCY Monsters/Utrotrion/pain3.ogg"
+Utrotrion/Death "Sounds/DCY Monsters/Utrotrion/death.ogg"
+
+DCYCrusader/Sight "Sounds/DCY Monsters/Crusader/wolf_howl.ogg"
+DCYCrusader/Active "Sounds/DCY Monsters/Crusader/idle.ogg"
+DCYCrusader/Pain "Sounds/DCY Monsters/Crusader/pain.ogg"
+DCYCrusader/Death "Sounds/DCY Monsters/Crusader/death.ogg"
+DCYCrusader/Melee "Sounds/DCY Monsters/Crusader/melee.ogg"
+DCYCrusader/Buff "Sounds/DCY Monsters/Crusader/speed_buff.ogg"
+DCYCrusader/BuffX "Sounds/DCY Monsters/Crusader/resistance_buff.ogg"
+DCYCrusader/Heal "Sounds/DCY Monsters/Crusader/heal.ogg"
+DCYCrusader/Bones "Sounds/DCY Monsters/Crusader/shield.ogg"
+DCYCrusader/Missile "Sounds/DCY Monsters/Crusader/sword.ogg"
+DCYCrusader/MissileImpact "Sounds/DCY Monsters/Crusader/sword_impact.ogg"
+
+misc/massacre "Sounds/DCY SFX/dcy_soul_chaos.ogg"
+DSWTF1 "Sounds/DCY Monsters/Phantom/scream.wav"
+
+$random Wastrel/Sight { MFKSEE1 MFKSEE2 MFKSEE3 }
+MFKSEE1 "Sounds/DCY Monsters/Wastrel/sight1.ogg"
+MFKSEE2 "Sounds/DCY Monsters/Wastrel/sight2.ogg"
+MFKSEE3 "Sounds/DCY Monsters/Wastrel/sight3.ogg"
+$random Wastrel/Active { MFKACT1 MFKACT2 MFKACT3 }
+MFKACT1 "Sounds/DCY Monsters/Wastrel/idle1.ogg"
+MFKACT2 "Sounds/DCY Monsters/Wastrel/idle2.ogg"
+MFKACT3 "Sounds/DCY Monsters/Wastrel/idle3.ogg"
+$random Wastrel/Pain { MFKPAI1 MFKPAI2 MFKPAI3 }
+MFKPAI1 "Sounds/DCY Monsters/Wastrel/pain1.ogg"
+MFKPAI2 "Sounds/DCY Monsters/Wastrel/pain2.ogg"
+MFKPAI3 "Sounds/DCY Monsters/Wastrel/pain3.ogg"
+$random Wastrel/Death { MFKDTH1 MFKDTH2 }
+MFKDTH1 "Sounds/DCY Monsters/Wastrel/death1.ogg"
+MFKDTH2 "Sounds/DCY Monsters/Wastrel/death2.ogg"
+
+$random ShadowCrusader/Sight { SCRUSIT1 SCRUSIT2 }
+SCRUSIT1 "Sounds/DCY Monsters/Shadow Crusader/sight1.ogg"
+SCRUSIT2 "Sounds/DCY Monsters/Shadow Crusader/sight2.ogg"
+$random ShadowCrusader/Active { SCRUACT1 SCRUACT2 SCRUACT3 SCRUACT4 SCRUACT5 SCRUACT6 }
+SCRUACT1 "Sounds/DCY Monsters/Shadow Crusader/chatter1.ogg"
+SCRUACT2 "Sounds/DCY Monsters/Shadow Crusader/chatter2.ogg"
+SCRUACT3 "Sounds/DCY Monsters/Shadow Crusader/chatter3.ogg"
+SCRUACT4 "Sounds/DCY Monsters/Shadow Crusader/chatter4.ogg"
+SCRUACT5 "Sounds/DCY Monsters/Shadow Crusader/chatter5.ogg"
+SCRUACT6 "Sounds/DCY Monsters/Shadow Crusader/evil_laugh.ogg"
+$random ShadowCrusader/Attack { SCRUATK1 SCRUATK2 }
+SCRUATK1 "Sounds/DCY Monsters/Shadow Crusader/attack1.ogg"
+SCRUATK2 "Sounds/DCY Monsters/Shadow Crusader/attack2.ogg"
+$random ShadowCrusader/Pain { SCRUPAI1 SCRUPAI2 }
+SCRUPAI1 "Sounds/DCY Monsters/Shadow Crusader/pain1.ogg"
+SCRUPAI2 "Sounds/DCY Monsters/Shadow Crusader/pain2.ogg"
+$random ShadowCrusader/Death { SCRUDTH1 SCRUDTH2 }
+SCRUDTH1 "Sounds/DCY Monsters/Shadow Crusader/death1.ogg"
+SCRUDTH2 "Sounds/DCY Monsters/Shadow Crusader/death2.ogg"
+ST3ALTH "Sounds/DCY Monsters/Shadow Crusader/become_invisible.ogg"
+
+$random MechaZombie/Attack {POS4ATK1 POS4ATK2 POS4ATK3 POS4ATK4 POS4ATK5}
+POS4ATK1 "Sounds/DCY Monsters/Mechanoid/attack1.ogg"
+POS4ATK2 "Sounds/DCY Monsters/Mechanoid/attack2.ogg"
+POS4ATK3 "Sounds/DCY Monsters/Mechanoid/attack3.ogg"
+POS4ATK4 "Sounds/DCY Monsters/Mechanoid/attack4.ogg"
+POS4ATK5 "Sounds/DCY Monsters/Mechanoid/attack5.ogg"
+$random MechaZombie/Death {POS4DTH1 POS4DTH2 POS4DTH3 POS4DTH4 POS4DTH5 POS4DTH6 POS4DTH7 POS4DTH8}
+POS4DTH1 "Sounds/DCY Monsters/Mechanoid/death1.ogg"
+POS4DTH2 "Sounds/DCY Monsters/Mechanoid/death2.ogg"
+POS4DTH3 "Sounds/DCY Monsters/Mechanoid/death3.ogg"
+POS4DTH4 "Sounds/DCY Monsters/Mechanoid/death4.ogg"
+POS4DTH5 "Sounds/DCY Monsters/Mechanoid/death5.ogg"
+POS4DTH6 "Sounds/DCY Monsters/Mechanoid/death6.ogg"
+POS4DTH7 "Sounds/DCY Monsters/Mechanoid/death7.ogg"
+POS4DTH8 "Sounds/DCY Monsters/Mechanoid/death8.ogg"
+$random MechaZombie/Active {POS4IDL1 POS4IDL2 POS4IDL3 POS4IDL4 POS4IDL5 POS4IDL6}
+POS4IDL1 "Sounds/DCY Monsters/Mechanoid/idle1.ogg"
+POS4IDL2 "Sounds/DCY Monsters/Mechanoid/idle2.ogg"
+POS4IDL3 "Sounds/DCY Monsters/Mechanoid/idle3.ogg"
+POS4IDL4 "Sounds/DCY Monsters/Mechanoid/idle4.ogg"
+POS4IDL5 "Sounds/DCY Monsters/Mechanoid/idle5.ogg"
+POS4IDL6 "Sounds/DCY Monsters/Mechanoid/idle6.ogg"
+$random MechaZombie/Pain {p4p1 p4p2 p4p3 p4p4 p4p5 p4p6 p4p7 p4p8 p4p9 p4p10 p4p11 p4p12 p4p13 p4p14 p4p15 p4p16 p4p17 p4p18 p4p19 p4p20 p4p21 p4p22}
+p4p1 "Sounds/DCY Monsters/Mechanoid/pain1.ogg"
+p4p2 "Sounds/DCY Monsters/Mechanoid/pain2.ogg"
+p4p3 "Sounds/DCY Monsters/Mechanoid/pain3.ogg"
+p4p4 "Sounds/DCY Monsters/Mechanoid/pain4.ogg"
+p4p5 "Sounds/DCY Monsters/Mechanoid/pain5.ogg"
+p4p6 "Sounds/DCY Monsters/Mechanoid/pain6.ogg"
+p4p7 "Sounds/DCY Monsters/Mechanoid/pain7.ogg"
+p4p8 "Sounds/DCY Monsters/Mechanoid/pain8.ogg"
+p4p9 "Sounds/DCY Monsters/Mechanoid/pain9.ogg"
+p4p10 "Sounds/DCY Monsters/Mechanoid/pain10.ogg"
+p4p11 "Sounds/DCY Monsters/Mechanoid/pain11.ogg"
+p4p12 "Sounds/DCY Monsters/Mechanoid/pain12.ogg"
+p4p13 "Sounds/DCY Monsters/Mechanoid/pain13.ogg"
+p4p14 "Sounds/DCY Monsters/Mechanoid/pain14.ogg"
+p4p15 "Sounds/DCY Monsters/Mechanoid/pain15.ogg"
+p4p16 "Sounds/DCY Monsters/Mechanoid/pain16.ogg"
+p4p17 "Sounds/DCY Monsters/Mechanoid/pain17.ogg"
+p4p18 "Sounds/DCY Monsters/Mechanoid/pain18.ogg"
+p4p19 "Sounds/DCY Monsters/Mechanoid/pain19.ogg"
+p4p20 "Sounds/DCY Monsters/Mechanoid/pain20.ogg"
+p4p21 "Sounds/DCY Monsters/Mechanoid/pain21.ogg"
+p4p22 "Sounds/DCY Monsters/Mechanoid/pain22.ogg"
+$random MechaZombie/Sight {POS4SIT1 POS4SIT2 POS4SIT3 POS4SIT4}
+POS4SIT1 "Sounds/DCY Monsters/Mechanoid/sight1.ogg"
+POS4SIT2 "Sounds/DCY Monsters/Mechanoid/sight2.ogg"
+POS4SIT3 "Sounds/DCY Monsters/Mechanoid/sight3.ogg"
+POS4SIT4 "Sounds/DCY Monsters/Mechanoid/sight4.ogg"
+
+$random UpgradedMechaZombie/Attack { ACYZATK1 ACYZATK2 ACYZATK3 ACYZATK4 ACYZATK5 ACYZATK6 ACYZATK7 }
+ACYZATK1 "Sounds/DCY Monsters/Bionic Zombie/attack1.ogg"
+ACYZATK2 "Sounds/DCY Monsters/Bionic Zombie/attack2.ogg"
+ACYZATK3 "Sounds/DCY Monsters/Bionic Zombie/attack3.ogg"
+ACYZATK4 "Sounds/DCY Monsters/Bionic Zombie/attack4.ogg"
+ACYZATK5 "Sounds/DCY Monsters/Bionic Zombie/attack5.ogg"
+ACYZATK6 "Sounds/DCY Monsters/Bionic Zombie/attack6.ogg"
+ACYZATK7 "Sounds/DCY Monsters/Bionic Zombie/attack7.ogg"
+$random UpgradedMechaZombie/Death { ACYZDTH1 ACYZDTH2 ACYZDTH3 ACYZDTH4 ACYZDTH5 ACYZDTH6 }
+ACYZDTH1 "Sounds/DCY Monsters/Bionic Zombie/death1.ogg"
+ACYZDTH2 "Sounds/DCY Monsters/Bionic Zombie/death2.ogg"
+ACYZDTH3 "Sounds/DCY Monsters/Bionic Zombie/death3.ogg"
+ACYZDTH4 "Sounds/DCY Monsters/Bionic Zombie/death4.ogg"
+ACYZDTH5 "Sounds/DCY Monsters/Bionic Zombie/death5.ogg"
+ACYZDTH6 "Sounds/DCY Monsters/Bionic Zombie/death6.ogg"
+$random UpgradedMechaZombie/BurnDeath { ACYZBR1 ACYZBR2 ACYZBR3 ACYZBR4 }
+ACYZBR1 "Sounds/DCY Monsters/Bionic Zombie/burn1.ogg"
+ACYZBR2 "Sounds/DCY Monsters/Bionic Zombie/burn2.ogg"
+ACYZBR3 "Sounds/DCY Monsters/Bionic Zombie/burn3.ogg"
+ACYZBR4 "Sounds/DCY Monsters/Bionic Zombie/burn4.ogg"
+$random UpgradedMechaZombie/Sight { ACYZSIT1 ACYZSIT2 ACYZSIT3 ACYZSIT4 ACYZSIT5 ACYZSIT6 ACYZSIT7 ACYZSIT8 ACYZSIT9 }
+ACYZSIT1 "Sounds/DCY Monsters/Bionic Zombie/sight1.ogg"
+ACYZSIT2 "Sounds/DCY Monsters/Bionic Zombie/sight2.ogg"
+ACYZSIT3 "Sounds/DCY Monsters/Bionic Zombie/sight3.ogg"
+ACYZSIT4 "Sounds/DCY Monsters/Bionic Zombie/sight4.ogg"
+ACYZSIT5 "Sounds/DCY Monsters/Bionic Zombie/sight5.ogg"
+ACYZSIT6 "Sounds/DCY Monsters/Bionic Zombie/sight6.ogg"
+ACYZSIT7 "Sounds/DCY Monsters/Bionic Zombie/sight7.ogg"
+ACYZSIT8 "Sounds/DCY Monsters/Bionic Zombie/sight8.ogg"
+ACYZSIT9 "Sounds/DCY Monsters/Bionic Zombie/sight9.ogg"
+$random UpgradedMechaZombie/Pain { ACYZPN1 ACYZPN2 ACYZPN3 ACYZPN4 ACYZPN5 } 
+ACYZPN1 "Sounds/DCY Monsters/Bionic Zombie/pain1.ogg"
+ACYZPN2 "Sounds/DCY Monsters/Bionic Zombie/pain2.ogg"
+ACYZPN3 "Sounds/DCY Monsters/Bionic Zombie/pain3.ogg"
+ACYZPN4 "Sounds/DCY Monsters/Bionic Zombie/pain4.ogg"
+ACYZPN5 "Sounds/DCY Monsters/Bionic Zombie/pain5.ogg"
+
+$random HellRazer/Active {RAZRIDL1 RAZRIDL2 RAZRIDL3 RAZRIDL4 RAZRIDL5 RAZRIDL6 RAZRIDL7 RAZRIDL8 RAZRIDL9 RAZRIDL10
+						RAZRIDL11 RAZRIDL12 RAZRIDL13 RAZRIDL14 RAZRIDL15 RAZRIDL16 RAZRIDL17 RAZRIDL18 RAZRIDL19 RAZRIDL20
+						RAZRIDL21 RAZRIDL22 RAZRIDL23 RAZRIDL24 RAZRIDL25 RAZRIDL26 RAZRIDL27 RAZRIDL28 RAZRIDL29 RAZRIDL30
+						RAZRIDL31 RAZRIDL32 RAZRIDL33 }
+RAZRIDL1 "Sounds/DCY Monsters/Hell Razer/chatter1.ogg"
+RAZRIDL2 "Sounds/DCY Monsters/Hell Razer/chatter2.ogg"
+RAZRIDL3 "Sounds/DCY Monsters/Hell Razer/chatter3.ogg"
+RAZRIDL4 "Sounds/DCY Monsters/Hell Razer/chatter4.ogg"
+RAZRIDL5 "Sounds/DCY Monsters/Hell Razer/chatter5.ogg"
+RAZRIDL6 "Sounds/DCY Monsters/Hell Razer/chatter6.ogg"
+RAZRIDL7 "Sounds/DCY Monsters/Hell Razer/chatter7.ogg"
+RAZRIDL8 "Sounds/DCY Monsters/Hell Razer/chatter8.ogg"
+RAZRIDL9 "Sounds/DCY Monsters/Hell Razer/chatter9.ogg"
+RAZRIDL10 "Sounds/DCY Monsters/Hell Razer/chatter10.ogg"
+RAZRIDL11 "Sounds/DCY Monsters/Hell Razer/chatter11.ogg"
+RAZRIDL12 "Sounds/DCY Monsters/Hell Razer/chatter12.ogg"
+RAZRIDL13 "Sounds/DCY Monsters/Hell Razer/chatter13.ogg"
+RAZRIDL14 "Sounds/DCY Monsters/Hell Razer/chatter14.ogg"
+RAZRIDL15 "Sounds/DCY Monsters/Hell Razer/chatter15.ogg"
+RAZRIDL16 "Sounds/DCY Monsters/Hell Razer/chatter16.ogg"
+RAZRIDL17 "Sounds/DCY Monsters/Hell Razer/chatter17.ogg"
+RAZRIDL18 "Sounds/DCY Monsters/Hell Razer/chatter18.ogg"
+RAZRIDL19 "Sounds/DCY Monsters/Hell Razer/chatter19.ogg"
+RAZRIDL20 "Sounds/DCY Monsters/Hell Razer/chatter20.ogg"
+RAZRIDL21 "Sounds/DCY Monsters/Hell Razer/chatter21.ogg"
+RAZRIDL22 "Sounds/DCY Monsters/Hell Razer/chatter22.ogg"
+RAZRIDL23 "Sounds/DCY Monsters/Hell Razer/chatter23.ogg"
+RAZRIDL24 "Sounds/DCY Monsters/Hell Razer/chatter24.ogg"
+RAZRIDL25 "Sounds/DCY Monsters/Hell Razer/chatter25.ogg"
+RAZRIDL26 "Sounds/DCY Monsters/Hell Razer/chatter26.ogg"
+RAZRIDL27 "Sounds/DCY Monsters/Hell Razer/chatter27.ogg"
+RAZRIDL28 "Sounds/DCY Monsters/Hell Razer/chatter28.ogg"
+RAZRIDL29 "Sounds/DCY Monsters/Hell Razer/chatter29.ogg"
+RAZRIDL30 "Sounds/DCY Monsters/Hell Razer/chatter30.ogg"
+RAZRIDL31 "Sounds/DCY Monsters/Hell Razer/chatter31.ogg"
+RAZRIDL32 "Sounds/DCY Monsters/Hell Razer/chatter32.ogg"
+RAZRIDL33 "Sounds/DCY Monsters/Hell Razer/chatter33.ogg"
+$random HellRazer/Sight {RAZRSIT1 RAZRSIT2 RAZRSIT3 RAZRSIT4 RAZRSIT5 RAZRSIT6 RAZRSIT7 RAZRSIT8 RAZRSIT9 RAZRSIT10
+						RAZRSIT11 RAZRSIT12 RAZRSIT13 RAZRSIT14 RAZRSIT15 RAZRSIT16 RAZRSIT17 RAZRSIT18 RAZRSIT19 RAZRSIT20
+						RAZRSIT21 RAZRSIT22 RAZRSIT23 RAZRSIT24 RAZRSIT25 RAZRSIT26 RAZRSIT27 RAZRSIT28 RAZRSIT29 RAZRSIT30 RAZRSIT31 }
+RAZRSIT1 "Sounds/DCY Monsters/Hell Razer/sight1.ogg"
+RAZRSIT2 "Sounds/DCY Monsters/Hell Razer/sight2.ogg"
+RAZRSIT3 "Sounds/DCY Monsters/Hell Razer/sight3.ogg"
+RAZRSIT4 "Sounds/DCY Monsters/Hell Razer/sight4.ogg"
+RAZRSIT5 "Sounds/DCY Monsters/Hell Razer/sight5.ogg"
+RAZRSIT6 "Sounds/DCY Monsters/Hell Razer/sight6.ogg"
+RAZRSIT7 "Sounds/DCY Monsters/Hell Razer/sight7.ogg"
+RAZRSIT8 "Sounds/DCY Monsters/Hell Razer/sight8.ogg"
+RAZRSIT9 "Sounds/DCY Monsters/Hell Razer/sight9.ogg"
+RAZRSIT10 "Sounds/DCY Monsters/Hell Razer/sight10.ogg"
+RAZRSIT11 "Sounds/DCY Monsters/Hell Razer/sight11.ogg"
+RAZRSIT12 "Sounds/DCY Monsters/Hell Razer/sight12.ogg"
+RAZRSIT13 "Sounds/DCY Monsters/Hell Razer/sight13.ogg"
+RAZRSIT14 "Sounds/DCY Monsters/Hell Razer/sight14.ogg"
+RAZRSIT15 "Sounds/DCY Monsters/Hell Razer/sight15.ogg"
+RAZRSIT16 "Sounds/DCY Monsters/Hell Razer/sight16.ogg"
+RAZRSIT17 "Sounds/DCY Monsters/Hell Razer/sight17.ogg"
+RAZRSIT18 "Sounds/DCY Monsters/Hell Razer/sight18.ogg"
+RAZRSIT19 "Sounds/DCY Monsters/Hell Razer/sight19.ogg"
+RAZRSIT20 "Sounds/DCY Monsters/Hell Razer/sight20.ogg"
+RAZRSIT21 "Sounds/DCY Monsters/Hell Razer/sight21.ogg"
+RAZRSIT22 "Sounds/DCY Monsters/Hell Razer/sight22.ogg"
+RAZRSIT23 "Sounds/DCY Monsters/Hell Razer/sight23.ogg"
+RAZRSIT24 "Sounds/DCY Monsters/Hell Razer/sight24.ogg"
+RAZRSIT25 "Sounds/DCY Monsters/Hell Razer/sight25.ogg"
+RAZRSIT26 "Sounds/DCY Monsters/Hell Razer/sight26.ogg"
+RAZRSIT27 "Sounds/DCY Monsters/Hell Razer/sight27.ogg"
+RAZRSIT28 "Sounds/DCY Monsters/Hell Razer/sight28.ogg"
+RAZRSIT29 "Sounds/DCY Monsters/Hell Razer/sight29.ogg"
+RAZRSIT30 "Sounds/DCY Monsters/Hell Razer/sight30.ogg"
+RAZRSIT31 "Sounds/DCY Monsters/Hell Razer/sight31.ogg"
+
+$random EdgyPinky/Sight { DPNKSIT1 DPNKSIT2 DPNKSIT3 }
+DPNKSIT1 "Sounds/DCY Monsters/Alphomency/sight1.ogg"
+DPNKSIT2 "Sounds/DCY Monsters/Alphomency/sight2.ogg"
+DPNKSIT3 "Sounds/DCY Monsters/Alphomency/sight3.ogg"
+$random EdgyPinky/Active { DPNKACT1 DPNKACT2 DPNKACT3 DPNKACT4 DPNKACT5 DPNKACT6 DPNKACT7 DPNKACT8 }
+DPNKACT1 "Sounds/DCY Monsters/Alphomency/idle1.ogg"
+DPNKACT2 "Sounds/DCY Monsters/Alphomency/idle2.ogg"
+DPNKACT3 "Sounds/DCY Monsters/Alphomency/idle3.ogg"
+DPNKACT4 "Sounds/DCY Monsters/Alphomency/idle4.ogg"
+DPNKACT5 "Sounds/DCY Monsters/Alphomency/idle5.ogg"
+DPNKACT6 "Sounds/DCY Monsters/Alphomency/idle6.ogg"
+DPNKACT7 "Sounds/DCY Monsters/Alphomency/idle7.ogg"
+DPNKACT8 "Sounds/DCY Monsters/Alphomency/idle8.ogg"
+$random EdgyPinky/Pain { DPNKPAI1 DPNKPAI2 }
+DPNKPAI1 "Sounds/DCY Monsters/Alphomency/pain1.ogg"
+DPNKPAI2 "Sounds/DCY Monsters/Alphomency/pain2.ogg"
+$random EdgyPinky/Melee { DPNKATTK DPNKATK2 DPNKATK3 DPNKATK4 DPNKATK5 DPNKATK6 DPNKATK7 DPNKATK8 }
+DPNKATTK "Sounds/DCY Monsters/Alphomency/attack1.ogg"
+DPNKATK2 "Sounds/DCY Monsters/Alphomency/attack2.ogg"
+DPNKATK3 "Sounds/DCY Monsters/Alphomency/attack3.ogg"
+DPNKATK4 "Sounds/DCY Monsters/Alphomency/attack4.ogg"
+DPNKATK5 "Sounds/DCY Monsters/Alphomency/attack5.ogg"
+DPNKATK6 "Sounds/DCY Monsters/Alphomency/attack6.ogg"
+DPNKATK7 "Sounds/DCY Monsters/Alphomency/attack7.ogg"
+DPNKATK8 "Sounds/DCY Monsters/Alphomency/attack8.ogg"
+$random EdgyPinky/Death { DPNKDETH DPNKDTHA DPNKDTHB DPNKDTHC }
+DPNKDETH "Sounds/DCY Monsters/Alphomency/death1.ogg"
+DPNKDTHA "Sounds/DCY Monsters/Alphomency/death2.ogg"
+DPNKDTHB "Sounds/DCY Monsters/Alphomency/death3.ogg"
+DPNKDTHC "Sounds/DCY Monsters/Alphomency/death4.ogg"
+
+Tenebrosity/Sight "Sounds/DCY Monsters/Tenebrosity/sight.wav"
+Tenebrosity/Active "Sounds/DCY Monsters/Tenebrosity/idle.wav"
+Tenebrosity/Pain "Sounds/DCY Monsters/Tenebrosity/pain.wav"
+Tenebrosity/Attack "Sounds/DCY Monsters/Tenebrosity/attack.wav"
+Tenebrosity/Death "Sounds/DCY Monsters/Tenebrosity/death.wav"
+
+$random Kranion/Sight { KRNNSIT1 KRNNSIT2 }
+KRNNSIT1 "Sounds/DCY Monsters/Kranion/sight1.ogg"
+KRNNSIT2 "Sounds/DCY Monsters/Kranion/sight2.ogg"
+Kranion/Active "Sounds/DCY Monsters/Kranion/active.ogg"
+$random Kranion/Attack { KRNNATK1 KRNNATK2 KRNNATK3 KRNNATK4 KRNNATK5 }
+KRNNATK1 "Sounds/DCY Monsters/Kranion/attack1.ogg"
+KRNNATK2 "Sounds/DCY Monsters/Kranion/attack2.ogg"
+KRNNATK3 "Sounds/DCY Monsters/Kranion/attack3.ogg"
+KRNNATK4 "Sounds/DCY Monsters/Kranion/attack4.ogg"
+KRNNATK5 "Sounds/DCY Monsters/Kranion/attack5.ogg"
+$random Kranion/Pain { KRNNPAI1 KRNNPAI2 KRNNPAI3 KRNNPAI4 KRNNPAI5 }
+KRNNPAI1 "Sounds/DCY Monsters/Kranion/pain1.ogg"
+KRNNPAI2 "Sounds/DCY Monsters/Kranion/pain2.ogg"
+KRNNPAI3 "Sounds/DCY Monsters/Kranion/pain3.ogg"
+KRNNPAI4 "Sounds/DCY Monsters/Kranion/pain4.ogg"
+KRNNPAI5 "Sounds/DCY Monsters/Kranion/pain5.ogg"
+Kranion/Death "Sounds/DCY Monsters/Kranion/death.ogg"
+Kranion/Beep "Sounds/DCY Monsters/Kranion/beep.ogg"
+
+$random dasher/sight { DSHRSIT1 DSHRSIT2 DSHRSIT3 DSHRSIT4 DSHRSIT5 DSHRSIT6 DSHRSIT7 DSHRSIT8 DSHRSIT9 DSHRSIT10 DSHRSIT11 DSHRSIT12 }
+DSHRSIT1 "Sounds/DCY Monsters/Dasher/anger1.ogg"
+DSHRSIT2 "Sounds/DCY Monsters/Dasher/anger2.ogg"
+DSHRSIT3 "Sounds/DCY Monsters/Dasher/anger3.ogg"
+DSHRSIT4 "Sounds/DCY Monsters/Dasher/anger4.ogg"
+DSHRSIT5 "Sounds/DCY Monsters/Dasher/anger5.ogg"
+DSHRSIT6 "Sounds/DCY Monsters/Dasher/anger6.ogg"
+DSHRSIT7 "Sounds/DCY Monsters/Dasher/anger7.ogg"
+DSHRSIT8 "Sounds/DCY Monsters/Dasher/anger8.ogg"
+DSHRSIT9 "Sounds/DCY Monsters/Dasher/anger9.ogg"
+DSHRSIT10 "Sounds/DCY Monsters/Dasher/anger10.ogg"
+DSHRSIT11 "Sounds/DCY Monsters/Dasher/anger11.ogg"
+DSHRSIT12 "Sounds/DCY Monsters/Dasher/anger12.ogg"
+$random dasher/active { DSHRI1 DSHRI2 DSHRI3 DSHRI4 DSHRI5 DSHRI6 DSHRI7 DSHRI8 DSHRI9 }
+DSHRI1 "Sounds/DCY Monsters/Dasher/snort1.ogg"
+DSHRI2 "Sounds/DCY Monsters/Dasher/snort2.ogg"
+DSHRI3 "Sounds/DCY Monsters/Dasher/snort3.ogg"
+DSHRI4 "Sounds/DCY Monsters/Dasher/snort4.ogg"
+DSHRI5 "Sounds/DCY Monsters/Dasher/snort5.ogg"
+DSHRI6 "Sounds/DCY Monsters/Dasher/snort6.ogg"
+DSHRI7 "Sounds/DCY Monsters/Dasher/snort7.ogg"
+DSHRI8 "Sounds/DCY Monsters/Dasher/snort8.ogg"
+DSHRI9 "Sounds/DCY Monsters/Dasher/snort9.ogg"
+$random dasher/charge { DSHRC1 DSHRC2 DSHRC3 }
+DSHRC1 "Sounds/DCY Monsters/Dasher/chargescream1.ogg"
+DSHRC2 "Sounds/DCY Monsters/Dasher/chargescream2.ogg"
+DSHRC3 "Sounds/DCY Monsters/Dasher/chargescream3.ogg"
+$random dasher/melee { DSHRBIT1 DSHRBIT2 DSHRBIT3 DSHRBIT4 DSHRBIT5 }
+DSHRBIT1 "Sounds/DCY Monsters/Dasher/nom1.ogg"
+DSHRBIT2 "Sounds/DCY Monsters/Dasher/nom2.ogg"
+DSHRBIT3 "Sounds/DCY Monsters/Dasher/nom3.ogg"
+DSHRBIT4 "Sounds/DCY Monsters/Dasher/nom4.ogg"
+DSHRBIT5 "Sounds/DCY Monsters/Dasher/nom5.ogg"
+$random dasher/pain { DSHRPA1 DSHRPA2 DSHRPA3 DSHRPA4 }
+DSHRPA1 "Sounds/DCY Monsters/Dasher/pain1.ogg"
+DSHRPA2 "Sounds/DCY Monsters/Dasher/pain2.ogg"
+DSHRPA3 "Sounds/DCY Monsters/Dasher/pain3.ogg"
+DSHRPA4 "Sounds/DCY Monsters/Dasher/pain4.ogg"
+$random dasher/howl { DSHRHWL1 DSHRHWL2 DSHRHWL3 DSHRHWL4 DSHRHWL5 DSHRHWL6 DSHRHWL7 DSHRHWL8 }
+DSHRHWL1 "Sounds/DCY Monsters/Dasher/howl1.ogg"
+DSHRHWL2 "Sounds/DCY Monsters/Dasher/howl2.ogg"
+DSHRHWL3 "Sounds/DCY Monsters/Dasher/howl3.ogg"
+DSHRHWL4 "Sounds/DCY Monsters/Dasher/howl4.ogg"
+DSHRHWL5 "Sounds/DCY Monsters/Dasher/howl5.ogg"
+DSHRHWL6 "Sounds/DCY Monsters/Dasher/howl6.ogg"
+DSHRHWL7 "Sounds/DCY Monsters/Dasher/howl7.ogg"
+DSHRHWL8 "Sounds/DCY Monsters/Dasher/howl8.ogg"
+$random dasher/death { DSHRDTH1 DSHRDTH2 DSHRDTH3 }
+DSHRDTH1 "Sounds/DCY Monsters/Dasher/death1.ogg"
+DSHRDTH2 "Sounds/DCY Monsters/Dasher/death2.ogg"
+DSHRDTH3 "Sounds/DCY Monsters/Dasher/death3.ogg"
+
+$random Commandant/Sight { COMMSIT1 COMMSIT2 COMMSIT3 COMMSIT4 COMMSIT5 COMMSIT6 COMMSIT7 }
+COMMSIT1 "Sounds/DCY Monsters/Commandant/spot1.ogg"
+COMMSIT2 "Sounds/DCY Monsters/Commandant/spot2.ogg"
+COMMSIT3 "Sounds/DCY Monsters/Commandant/spot3.ogg"
+COMMSIT4 "Sounds/DCY Monsters/Commandant/spot4.ogg"
+COMMSIT5 "Sounds/DCY Monsters/Commandant/spot5.ogg"
+COMMSIT6 "Sounds/DCY Monsters/Commandant/spot6.ogg"
+COMMSIT7 "Sounds/DCY Monsters/Commandant/spot7.ogg"
+$random Commandant/Active { COMMIDL1 COMMIDL2 COMMIDL3 COMMIDL4 COMMIDL5 COMMIDL6 }
+COMMIDL1 "Sounds/DCY Monsters/Commandant/chatter1.ogg"
+COMMIDL2 "Sounds/DCY Monsters/Commandant/chatter2.ogg"
+COMMIDL3 "Sounds/DCY Monsters/Commandant/chatter3.ogg"
+COMMIDL1 "Sounds/DCY Monsters/Commandant/chatter4.ogg"
+COMMIDL2 "Sounds/DCY Monsters/Commandant/chatter5.ogg"
+COMMIDL3 "Sounds/DCY Monsters/Commandant/chatter6.ogg"
+$random Commandant/Pain { COMMPAI1 COMMPAI2 COMMPAI3 }
+COMMPAI1 "Sounds/DCY Monsters/Commandant/pain1.ogg"
+COMMPAI2 "Sounds/DCY Monsters/Commandant/pain2.ogg"
+COMMPAI3 "Sounds/DCY Monsters/Commandant/pain3.ogg"
+$random Commandant/Death { COMMDTH1 COMMDTH2 COMMDTH3 COMMDTH4 COMMDTH5 }
+COMMDTH1 "Sounds/DCY Monsters/Commandant/death1.ogg"
+COMMDTH2 "Sounds/DCY Monsters/Commandant/death2.ogg"
+COMMDTH3 "Sounds/DCY Monsters/Commandant/death3.ogg"
+COMMDTH4 "Sounds/DCY Monsters/Commandant/death4.ogg"
+COMMDTH5 "Sounds/DCY Monsters/Commandant/death5.ogg"
+
+$random roborev/sight {ULRVSIG1 ULRVSIG2 ULRVSIG3 ULRVSIG4 ULRVSIG5 ULRVSIG6} //Killing Floor
+ULRVSIG1 "Sounds/DCY Monsters/Soul Crusher/rage1.ogg"
+ULRVSIG2 "Sounds/DCY Monsters/Soul Crusher/rage2.ogg"
+ULRVSIG3 "Sounds/DCY Monsters/Soul Crusher/rage3.ogg"
+ULRVSIG4 "Sounds/DCY Monsters/Soul Crusher/rage4.ogg"
+ULRVSIG5 "Sounds/DCY Monsters/Soul Crusher/rage5.ogg"
+ULRVSIG6 "Sounds/DCY Monsters/Soul Crusher/rage6.ogg"
+$random roborev/pain {ULRVPAI1 ULRVPAI2 ULRVPAI3 ULRVPAI4 ULRVPAI5 ULRVPAI6}
+ULRVPAI1 "Sounds/DCY Monsters/Soul Crusher/pain1.ogg"
+ULRVPAI2 "Sounds/DCY Monsters/Soul Crusher/pain2.ogg"
+ULRVPAI3 "Sounds/DCY Monsters/Soul Crusher/pain3.ogg"
+ULRVPAI4 "Sounds/DCY Monsters/Soul Crusher/pain4.ogg"
+ULRVPAI5 "Sounds/DCY Monsters/Soul Crusher/pain5.ogg"
+ULRVPAI6 "Sounds/DCY Monsters/Soul Crusher/pain6.ogg"
+$random roborev/death {ULRVDTH1 ULRVDTH2 ULRVDTH3 ULRVDTH4 ULRVDTH5}
+ULRVDTH1 "Sounds/DCY Monsters/Soul Crusher/death1.ogg"
+ULRVDTH2 "Sounds/DCY Monsters/Soul Crusher/death2.ogg"
+ULRVDTH3 "Sounds/DCY Monsters/Soul Crusher/death3.ogg"
+ULRVDTH4 "Sounds/DCY Monsters/Soul Crusher/death4.ogg"
+ULRVDTH5 "Sounds/DCY Monsters/Soul Crusher/death5.ogg"
+$random roborev/active {ULRVACT1 ULRVACT2 ULRVACT3 ULRVACT4 ULRVACT5 ULRVACT6 ULRVACT7 ULRVACT8 ULRVACT9}
+ULRVACT1 "Sounds/DCY Monsters/Soul Crusher/chatter1.ogg"
+ULRVACT2 "Sounds/DCY Monsters/Soul Crusher/chatter2.ogg"
+ULRVACT3 "Sounds/DCY Monsters/Soul Crusher/chatter3.ogg"
+ULRVACT4 "Sounds/DCY Monsters/Soul Crusher/chatter4.ogg"
+ULRVACT5 "Sounds/DCY Monsters/Soul Crusher/chatter5.ogg"
+ULRVACT6 "Sounds/DCY Monsters/Soul Crusher/chatter6.ogg"
+ULRVACT7 "Sounds/DCY Monsters/Soul Crusher/chatter7.ogg"
+ULRVACT8 "Sounds/DCY Monsters/Soul Crusher/chatter8.ogg"
+ULRVACT9 "Sounds/DCY Monsters/Soul Crusher/chatter9.ogg"
+$random roborev/attack {ULRVATK1 ULRVATK2 ULRVATK3 ULRVATK4}
+ULRVATK1 "Sounds/DCY Monsters/Soul Crusher/attack1.ogg"
+ULRVATK2 "Sounds/DCY Monsters/Soul Crusher/attack2.ogg"
+ULRVATK3 "Sounds/DCY Monsters/Soul Crusher/attack3.ogg"
+ULRVATK4 "Sounds/DCY Monsters/Soul Crusher/attack4.ogg"
+
+$rolloff roborev/sight 400 2000
+$rolloff roborev/death 400 2000
+Unchaste/Sight "Sounds/DCY Monsters/Sullied/sight.wav"
+Unchaste/Active "Sounds/DCY Monsters/Sullied/idle.wav"
+Unchaste/Pain "Sounds/DCY Monsters/Sullied/pain.wav"
+Unchaste/Death "Sounds/DCY Monsters/Sullied/death.wav"
+
+$random roboarachno/sight { RSPISIT1 RSPISIT2 }
+RSPISIT1 "Sounds/DCY Monsters/Goliath/sight1.ogg"
+RSPISIT2 "Sounds/DCY Monsters/Goliath/sight2.ogg"
+$random roboarachno/active { RSPIACT1 RSPIACT2 RSPIACT3 }
+RSPIACT1 "Sounds/DCY Monsters/Goliath/idle1.ogg"
+RSPIACT2 "Sounds/DCY Monsters/Goliath/idle2.ogg"
+RSPIACT3 "Sounds/DCY Monsters/Goliath/idle3.ogg"
+$random roboarachno/pain { RSPIPAI1 RSPIPAI2 }
+RSPIPAI1 "Sounds/DCY Monsters/Goliath/pain1.ogg"
+RSPIPAI2 "Sounds/DCY Monsters/Goliath/pain2.ogg"
+$random roboarachno/death { RSPIDTH1 RSPIDTH2 }
+RSPIDTH1 "Sounds/DCY Monsters/Goliath/death1.ogg"
+RSPIDTH2 "Sounds/DCY Monsters/Goliath/death2.ogg"
+
+$rolloff roboarachno/sight 400 2000
+$rolloff roboarachno/death 400 2000
+
+SLASH "Sounds/DCY SFX/dcy_stabbed.ogg"
+GLITSCRM "Sounds/DCY SFX/AAAAAAAAAAA.ogg"
+
+$random DeathDealer/Sight { TDLRSIT1 TDLRSIT2 TDLRSIT3 TDLRSIT4 TDLRSIT5 }
+TDLRSIT1 "Sounds/DCY Monsters/Death Dealer/sight1.ogg"
+TDLRSIT2 "Sounds/DCY Monsters/Death Dealer/sight2.ogg"
+TDLRSIT3 "Sounds/DCY Monsters/Death Dealer/sight3.ogg"
+TDLRSIT4 "Sounds/DCY Monsters/Death Dealer/sight4.ogg"
+TDLRSIT5 "Sounds/DCY Monsters/Death Dealer/sight5.ogg"
+$random DeathDealer/Active { TDLRACT1 TDLRACT2 TDLRACT3 TDLRACT4 TDLRACT5 }
+TDLRACT1 "Sounds/DCY Monsters/Death Dealer/chatter1.ogg"
+TDLRACT2 "Sounds/DCY Monsters/Death Dealer/chatter2.ogg"
+TDLRACT3 "Sounds/DCY Monsters/Death Dealer/chatter3.ogg"
+TDLRACT4 "Sounds/DCY Monsters/Death Dealer/chatter4.ogg"
+TDLRACT5 "Sounds/DCY Monsters/Death Dealer/chatter5.ogg"
+$random DeathDealer/Pain { TDLRPAI1 TDLRPAI2 TDLRPAI3 TDLRPAI4 TDLRPAI5 }
+TDLRPAI1 "Sounds/DCY Monsters/Death Dealer/pain1.ogg"
+TDLRPAI2 "Sounds/DCY Monsters/Death Dealer/pain2.ogg"
+TDLRPAI3 "Sounds/DCY Monsters/Death Dealer/pain3.ogg"
+TDLRPAI4 "Sounds/DCY Monsters/Death Dealer/pain4.ogg"
+TDLRPAI5 "Sounds/DCY Monsters/Death Dealer/pain5.ogg"
+$random DeathDealer/Death { TDLRDTH1 TDLRDTH2 TDLRDTH3 TDLRDTH4 TDLRDTH5 }
+TDLRDTH1 "Sounds/DCY Monsters/Death Dealer/death1.ogg"
+TDLRDTH2 "Sounds/DCY Monsters/Death Dealer/death2.ogg"
+TDLRDTH3 "Sounds/DCY Monsters/Death Dealer/death3.ogg"
+TDLRDTH4 "Sounds/DCY Monsters/Death Dealer/death4.ogg"
+TDLRDTH5 "Sounds/DCY Monsters/Death Dealer/death5.ogg"
+
+$random Juggernaut/Sight { FATTISI1 FATTISI2 FATTISI3 FATTISI4 FATTISI5 FATTISI6 FATTISI7 FATTISI8 FATTISI9 FATTISI10 FATTISI11 }
+FATTISI1 "Sounds/DCY Monsters/Juggernaut/sight1.ogg"
+FATTISI2 "Sounds/DCY Monsters/Juggernaut/sight2.ogg"
+FATTISI3 "Sounds/DCY Monsters/Juggernaut/sight3.ogg"
+FATTISI4 "Sounds/DCY Monsters/Juggernaut/sight4.ogg"
+FATTISI5 "Sounds/DCY Monsters/Juggernaut/sight5.ogg"
+FATTISI6 "Sounds/DCY Monsters/Juggernaut/sight6.ogg"
+FATTISI7 "Sounds/DCY Monsters/Juggernaut/sight7.ogg"
+FATTISI8 "Sounds/DCY Monsters/Juggernaut/sight8.ogg"
+FATTISI9 "Sounds/DCY Monsters/Juggernaut/sight9.ogg"
+FATTISI10 "Sounds/DCY Monsters/Juggernaut/sight10.ogg"
+FATTISI11 "Sounds/DCY Monsters/Juggernaut/sight11.ogg"
+$random Juggernaut/Active { FATTIAC1 FATTIAC2 FATTIAC3 FATTIAC4 FATTIAC5 FATTIAC6 }
+FATTIAC1 "Sounds/DCY Monsters/Juggernaut/idle1.ogg"
+FATTIAC2 "Sounds/DCY Monsters/Juggernaut/idle2.ogg"
+FATTIAC3 "Sounds/DCY Monsters/Juggernaut/idle3.ogg"
+FATTIAC4 "Sounds/DCY Monsters/Juggernaut/idle4.ogg"
+FATTIAC5 "Sounds/DCY Monsters/Juggernaut/idle5.ogg"
+FATTIAC6 "Sounds/DCY Monsters/Juggernaut/idle6.ogg"
+FATTIAC7 "Sounds/DCY Monsters/Juggernaut/idle7.ogg"
+FATTIAC8 "Sounds/DCY Monsters/Juggernaut/idle8.ogg"
+FATTIAC9 "Sounds/DCY Monsters/Juggernaut/idle9.ogg"
+FATTIAC10 "Sounds/DCY Monsters/Juggernaut/idle10.ogg"
+FATTIAC11 "Sounds/DCY Monsters/Juggernaut/idle11.ogg"
+FATTIAC12 "Sounds/DCY Monsters/Juggernaut/idle12.ogg"
+FATTIAC13 "Sounds/DCY Monsters/Juggernaut/idle13.ogg"
+FATTIAC14 "Sounds/DCY Monsters/Juggernaut/idle14.ogg"
+FATTIAC15 "Sounds/DCY Monsters/Juggernaut/idle15.ogg"
+FATTIAC16 "Sounds/DCY Monsters/Juggernaut/idle16.ogg"
+FATTIAC17 "Sounds/DCY Monsters/Juggernaut/idle17.ogg"
+FATTIAC18 "Sounds/DCY Monsters/Juggernaut/idle18.ogg"
+FATTIAC19 "Sounds/DCY Monsters/Juggernaut/idle19.ogg"
+$random Juggernaut/Attack { FATTIAT1 FATTIAT2 FATTIAT3 FATTIAT4 FATTIAT5 FATTIAT6 FATTIAT7 FATTIAT8 FATTIAT9 FATTAT10 }
+FATTIAT1 "Sounds/DCY Monsters/Juggernaut/attack1.ogg"
+FATTIAT2 "Sounds/DCY Monsters/Juggernaut/attack2.ogg"
+FATTIAT3 "Sounds/DCY Monsters/Juggernaut/attack3.ogg"
+FATTIAT4 "Sounds/DCY Monsters/Juggernaut/attack4.ogg"
+FATTIAT5 "Sounds/DCY Monsters/Juggernaut/attack5.ogg"
+FATTIAT6 "Sounds/DCY Monsters/Juggernaut/attack6.ogg"
+FATTIAT7 "Sounds/DCY Monsters/Juggernaut/attack7.ogg"
+FATTIAT8 "Sounds/DCY Monsters/Juggernaut/attack8.ogg"
+FATTIAT9 "Sounds/DCY Monsters/Juggernaut/attack9.ogg"
+FATTAT10 "Sounds/DCY Monsters/Juggernaut/attack10.ogg"
+FATTAT11 "Sounds/DCY Monsters/Juggernaut/attack11.ogg"
+FATTAT12 "Sounds/DCY Monsters/Juggernaut/attack12.ogg"
+FATTAT13 "Sounds/DCY Monsters/Juggernaut/attack13.ogg"
+FATTAT14 "Sounds/DCY Monsters/Juggernaut/attack14.ogg"
+FATTAT15 "Sounds/DCY Monsters/Juggernaut/attack15.ogg"
+$random Juggernaut/Death { FATTIDT1 FATTIDT2 FATTIDT3 FATTIDT4 FATTIDT5 FATTIDT6 FATTIDT7 FATTIDT8 FATTIDT9 FATTIDT10 FATTIDT11 FATTIDT12 FATTIDT13 FATTIDT14 FATTIDT15 }
+FATTIDT1 "Sounds/DCY Monsters/Juggernaut/death1.ogg"
+FATTIDT2 "Sounds/DCY Monsters/Juggernaut/death2.ogg"
+FATTIDT3 "Sounds/DCY Monsters/Juggernaut/death3.ogg"
+FATTIDT4 "Sounds/DCY Monsters/Juggernaut/death4.ogg"
+FATTIDT5 "Sounds/DCY Monsters/Juggernaut/death5.ogg"
+FATTIDT6 "Sounds/DCY Monsters/Juggernaut/death6.ogg"
+FATTIDT7 "Sounds/DCY Monsters/Juggernaut/death7.ogg"
+FATTIDT8 "Sounds/DCY Monsters/Juggernaut/death8.ogg"
+FATTIDT9 "Sounds/DCY Monsters/Juggernaut/death9.ogg"
+FATTIDT10 "Sounds/DCY Monsters/Juggernaut/death10.ogg"
+FATTIDT11 "Sounds/DCY Monsters/Juggernaut/death11.ogg"
+FATTIDT12 "Sounds/DCY Monsters/Juggernaut/death12.ogg"
+FATTIDT13 "Sounds/DCY Monsters/Juggernaut/death13.ogg"
+FATTIDT14 "Sounds/DCY Monsters/Juggernaut/death14.ogg"
+FATTIDT15 "Sounds/DCY Monsters/Juggernaut/death15.ogg"
+$random Juggernaut/Pain { FATTIPN1 FATTIPN2 FATTIPN3 FATTIPN4 FATTIPN5 }
+FATTIPN1 "Sounds/DCY Monsters/Juggernaut/pain1.ogg"
+FATTIPN2 "Sounds/DCY Monsters/Juggernaut/pain2.ogg"
+FATTIPN3 "Sounds/DCY Monsters/Juggernaut/pain3.ogg"
+FATTIPN4 "Sounds/DCY Monsters/Juggernaut/pain4.ogg"
+FATTIPN5 "Sounds/DCY Monsters/Juggernaut/pain5.ogg"
+FATTIPN6 "Sounds/DCY Monsters/Juggernaut/pain6.ogg"
+FATTIPN7 "Sounds/DCY Monsters/Juggernaut/pain7.ogg"
+FATTIPN8 "Sounds/DCY Monsters/Juggernaut/pain8.ogg"
+FATTIPN9 "Sounds/DCY Monsters/Juggernaut/pain9.ogg"
+FATTIPN10 "Sounds/DCY Monsters/Juggernaut/pain10.ogg"
+FATTIPN11 "Sounds/DCY Monsters/Juggernaut/pain11.ogg"
+FATTIPN12 "Sounds/DCY Monsters/Juggernaut/pain12.ogg"
+
+$random Xenabus/Sight { XBS1 XBS2 XBS3 XBS4 }
+XBS1 "Sounds/DCY Monsters/Xenabus/sight1.ogg"
+XBS2 "Sounds/DCY Monsters/Xenabus/sight2.ogg"
+XBS3 "Sounds/DCY Monsters/Xenabus/sight3.ogg"
+XBS4 "Sounds/DCY Monsters/Xenabus/sight4.ogg"
+$random Xenabus/Attack { XBI1 XBI2 XBI3 }
+XBI1 "Sounds/DCY Monsters/Xenabus/attack1.ogg"
+XBI2 "Sounds/DCY Monsters/Xenabus/attack2.ogg"
+XBI3 "Sounds/DCY Monsters/Xenabus/attack3.ogg"
+$random Xenabus/Pain { XBP1 XBP2 XBP3 }
+XBP1 "Sounds/DCY Monsters/Xenabus/pain1.ogg"
+XBP2 "Sounds/DCY Monsters/Xenabus/pain2.ogg"
+XBP3 "Sounds/DCY Monsters/Xenabus/pain3.ogg"
+$random Xenabus/Death { XBD1 XBD2 XBD3 }
+XBD1 "Sounds/DCY Monsters/Xenabus/melt1.ogg"
+XBD2 "Sounds/DCY Monsters/Xenabus/melt2.ogg"
+XBD3 "Sounds/DCY Monsters/Xenabus/melt3.ogg"
+$alias Xenabus/Active Xenabus/Sight
+
+Voidcaster/Sight "Sounds/DCY Monsters/Voidcaster/sight.ogg"
+Voidcaster/Active "Sounds/DCY Monsters/Voidcaster/idle.ogg"
+Voidcaster/Pain "Sounds/DCY Monsters/Voidcaster/pain.ogg"
+Voidcaster/Death "Sounds/DCY Monsters/Voidcaster/death.ogg"
+Voidcaster/Teleport "Sounds/DCY Monsters/Voidcaster/teleport.ogg"
+PUSTF "Sounds/Projectiles/dcy_voidcaster_explode.ogg"
+BHEXP "Sounds/Projectiles/dcy_voidcaster_sigh.ogg"
+PUSLD "Sounds/Projectiles/dcy_voidcaster_death.ogg"
+SNATCH "Sounds/Projectiles/dcy_voidcaster_snatch.ogg"
+STARGUT "Sounds/Projectiles/dcy_voidcaster_gut.ogg"
+STARMISS "Sounds/Projectiles/dcy_voidcaster_miss.ogg"
+STARPRE "Sounds/Projectiles/dcy_voidcaster_voidcaster.ogg"
+PORTALO "Sounds/Projectiles/dcy_voidcaster_cast.ogg"
+PORTAC "Sounds/Projectiles/dcy_voidcaster_portal.ogg"
+ABDUCT "Sounds/Projectiles/dcy_voidcaster_push.ogg"
+CASTAB "Sounds/Projectiles/dcy_voidcaster_abduct.ogg"
+
+Convector/Sight "Sounds/DCY Monsters/Convector/sight.wav"
+Convector/Hover "Sounds/DCY Monsters/Convector/hum.wav"
+Convector/Pain "Sounds/DCY Monsters/Convector/pain.wav"
+Convector/Death "Sounds/DCY Monsters/Convector/death.wav"
+$random Convector/MinigunReady { UCMGSTA UCMGSTB UCMGSTC UCMGSTD UCMGSTE UCMGSTF UCMGSTG }
+UCMGSTA "Sounds/DCY Monsters/Convector/dcy_convector_windup1.ogg"
+UCMGSTB "Sounds/DCY Monsters/Convector/dcy_convector_windup2.ogg"
+UCMGSTC "Sounds/DCY Monsters/Convector/dcy_convector_windup3.ogg"
+UCMGSTD "Sounds/DCY Monsters/Convector/dcy_convector_windup4.ogg"
+UCMGSTE "Sounds/DCY Monsters/Convector/dcy_convector_windup5.ogg"
+UCMGSTF "Sounds/DCY Monsters/Convector/dcy_convector_windup6.ogg"
+UCMGSTG "Sounds/DCY Monsters/Convector/dcy_convector_windup7.ogg"
+CONVFIRE "Sounds/DCY Monsters/Convector/dcy_convector_ball.ogg"
+CONVFIRX "Sounds/DCY Monsters/Convector/dcy_convector_impact.ogg"
+
+$random VTrimental/Sight { VARIACT1 VARIACT2 }
+VARIACT1 "Sounds/DCY Monsters/Trimental/hover1.wav"
+VARIACT2 "Sounds/DCY Monsters/Trimental/hover2.wav"
+$alias VTrimental/Active VTrimental/Sight
+$random VTrimental/Pain { VARIPAI1 VARIPAI2 }
+VARIPAI1 "Sounds/DCY Monsters/Trimental/pain1.wav"
+VARIPAI2 "Sounds/DCY Monsters/Trimental/pain2.wav"
+$random VTrimental/Death { VARIDTH1 VARIDTH2 }
+VARIDTH1 "Sounds/DCY Monsters/Trimental/scream1.wav"
+VARIDTH2 "Sounds/DCY Monsters/Trimental/scream2.wav"
+
+Visitant/Sight "Sounds/DCY Monsters/Visitant/alert.ogg"
+Visitant/Active "Sounds/DCY Monsters/Visitant/ambient.ogg"
+Visitant/Pain "Sounds/DCY Monsters/Visitant/pain.ogg"
+Visitant/Death "Sounds/DCY Monsters/Visitant/death.ogg"
+Visitant/Summon "Sounds/DCY Monsters/Visitant/summon.ogg"
+Visitant/Attack "Sounds/DCY Monsters/Visitant/attack.ogg"
+Visitant/Attack2 "Sounds/DCY Monsters/Visitant/attack2.ogg"
+Visitant/Attack3 "Sounds/DCY Monsters/Visitant/attack3.ogg"
+Visitant/Attack4 "Sounds/DCY Monsters/Visitant/attack4.ogg"
+Visitant/Teleport "Sounds/DCY Monsters/Visitant/teleport.ogg"
+
+Sentry2/See "Sounds/DCY SFX/dcy_sentry2_alert.ogg"
+Sentry2/Active "Sounds/DCY SFX/dcy_sentry2_idle.ogg"
+
+MajorNzi/Teleport "Sounds/DCY SFX/dcy_shield_hurt.ogg"
+MajorNzi/Explode "Sounds/DCY SFX/dcy_why.ogg"
+
+ELITLAND "Sounds/DCY Monsters/Arche Spiritwalker/retro_damage1.ogg"
+ELITLAN2 "Sounds/DCY Monsters/Arche Spiritwalker/retro_damage2.ogg"
+
+$random Earl/Sight { EARLSIT1 EARLSIT2 EARLSIT3 EARLSIT4 EARLSIT5 EARLSIT6 EARLSIT7 }
+EARLSIT1 "Sounds/DCY Monsters/Earl/rage1.ogg"
+EARLSIT2 "Sounds/DCY Monsters/Earl/rage2.ogg"
+EARLSIT3 "Sounds/DCY Monsters/Earl/rage3.ogg"
+EARLSIT4 "Sounds/DCY Monsters/Earl/rage4.ogg"
+EARLSIT5 "Sounds/DCY Monsters/Earl/rage5.ogg"
+EARLSIT6 "Sounds/DCY Monsters/Earl/rage6.ogg"
+EARLSIT7 "Sounds/DCY Monsters/Earl/rage7.ogg"
+$random Earl/Active { EARLACT1 EARLACT2 EARLACT3 }
+EARLACT1 "Sounds/DCY Monsters/Earl/idle1.ogg"
+EARLACT2 "Sounds/DCY Monsters/Earl/idle2.ogg"
+EARLACT3 "Sounds/DCY Monsters/Earl/idle3.ogg"
+$random Earl/Attack { EARLATK1 EARLATK2 EARLATK3 }
+EARLATK1 "Sounds/DCY Monsters/Earl/attack1.ogg"
+EARLATK2 "Sounds/DCY Monsters/Earl/attack2.ogg"
+EARLATK3 "Sounds/DCY Monsters/Earl/attack3.ogg"
+$random Earl/Pain { EARLPAI1 EARLPAI2 }
+EARLPAI1 "Sounds/DCY Monsters/Earl/pain1.ogg"
+EARLPAI2 "Sounds/DCY Monsters/Earl/pain2.ogg"
+$random Earl/Death { EARLDTH1 EARLDTH2 EARLDTH3 }
+EARLDTH1 "Sounds/DCY Monsters/Earl/death1.ogg"
+EARLDTH2 "Sounds/DCY Monsters/Earl/death2.ogg"
+EARLDTH3 "Sounds/DCY Monsters/Earl/death3.ogg"
+
+COH/Sight "Sounds/DCY Monsters/Contraption/alert.ogg"
+$random COH/Active { T2NKACT T2NKACT2 }
+T2NKACT "Sounds/DCY Monsters/Contraption/hum1.ogg"
+T2NKACT2 "Sounds/DCY Monsters/Contraption/hum2.ogg"
+COH/Pain "Sounds/DCY Monsters/Contraption/pain.ogg"
+TANKL00P "Sounds/DCY Monsters/Contraption/tank_movement.ogg"
+COH/Die "Sounds/DCY Monsters/Contraption/explode.wav"
+
+Remainder/Sight "Sounds/DCY Monsters/Remainder/blehh.lmp"
+Remainder/Active "Sounds/DCY Monsters/Remainder/idle.lmp"
+Remainder/Pain "Sounds/DCY Monsters/Remainder/grunt.lmp"
+Remainder/Death "Sounds/DCY Monsters/Remainder/death.lmp"
+
+Upheaval/Sight "Sounds/DCY Monsters/Upheavalbringer/sight.ogg"
+$random Upheaval/Active { UPHBACT1 UPHBACT2 }
+UPHBACT1 "Sounds/DCY Monsters/Upheavalbringer/breath.ogg"
+UPHBACT2 "Sounds/DCY Monsters/Upheavalbringer/breath2.ogg"
+$random Upheaval/Spell { UPHBSPL1 UPHBSPL2 }
+UPHBSPL1 "Sounds/DCY Monsters/Upheavalbringer/spell1.ogg"
+UPHBSPL2 "Sounds/DCY Monsters/Upheavalbringer/spell2.ogg"
+Upheaval/Pain "Sounds/DCY Monsters/Upheavalbringer/pain1.ogg"
+Upheaval/Death "Sounds/DCY Monsters/Upheavalbringer/death.ogg"
+Upheaval/OrbitalBoom "Sounds/DCY Monsters/Upheavalbringer/ray.wav"
+Upheaval/OrbitalLaser "Sounds/DCY Monsters/Upheavalbringer/upheaval_laser.ogg"
+Upheaval/DeathBoom "Sounds/DCY Monsters/Upheavalbringer/explode.ogg"
+
+MW/Sight "Sounds/DCY Monsters/Multidimensional Fuckface/sight.ogg" //He will have a new voice instead of some metallix dude. idk how to voice act
+MW/Active1 "Sounds/DCY Monsters/Multidimensional Fuckface/talk1.ogg" 
+MW/Active2 "Sounds/DCY Monsters/Multidimensional Fuckface/talk2.ogg" 
+$random MW/Active {MW/Active1 MW/Active2}
+MW/Pain1 "Sounds/DCY Monsters/Multidimensional Fuckface/pain1.ogg" 
+MW/Pain2 "Sounds/DCY Monsters/Multidimensional Fuckface/pain2.ogg" 
+$random MW/Pain {MW/Pain1 MW/Pain2}
+MW/Death "Sounds/DCY Monsters/Multidimensional Fuckface/impossible.ogg" 
+MW/Explode "Sounds/DCY Monsters/Multidimensional Fuckface/explode.ogg" 
+MW/Spell1 "Sounds/DCY Monsters/Multidimensional Fuckface/move1.ogg" 
+MW/Spell2 "Sounds/DCY Monsters/Multidimensional Fuckface/move2.ogg" 
+MW/Spell3 "Sounds/DCY Monsters/Multidimensional Fuckface/move3.ogg" 
+MW/Spell4 "Sounds/DCY Monsters/Multidimensional Fuckface/move4.ogg" 
+MW/Spell5 "Sounds/DCY Monsters/Multidimensional Fuckface/move5.ogg" 
+MW/Spell6 "Sounds/DCY Monsters/Multidimensional Fuckface/move6.ogg" 
+MW/Spell7 "Sounds/DCY Monsters/Multidimensional Fuckface/move7.ogg" 
+MW/SplitInHalf "Sounds/DCY Monsters/Multidimensional Fuckface/split_in_half.ogg" 
+
+MW/CrisisStart "Sounds/DCY Monsters/Multidimensional Fuckface/crisis.ogg"
+MW/Crisis "Sounds/DCY Monsters/Multidimensional Fuckface/crisis1.ogg"
+MW/Crisis2 "Sounds/DCY Monsters/Multidimensional Fuckface/crisis_explode.ogg"
+MW/Summon "Sounds/DCY SFX/dcy_celestial_summon.ogg"
+MW/Charge MWCHARGE"Sounds/DCY SFX/dcy_multidimensional_charge.ogg"
+MW/Skill "Sounds/DCY SFX/dcy_multidimensional_skill.ogg"
+MW/CloneItself "Sounds/DCY Monsters/Multidimensional Fuckface/clone.ogg"
+MW/Shockwave "Sounds/DCY SFX/dcy_multidimensional_shockwave.ogg"
+MW/Noise "Sounds/DCY Monsters/Multidimensional Fuckface/retro_noise.ogg"
+MW/LaserBeam "Sounds/DCY SFX/dcy_multidimensional_beam_start.ogg"
+MW/LaserBeamStop "Sounds/DCY SFX/dcy_multidimensional_beam_end.ogg"
+MW/OrbitalBeamAppear "Sounds/DCY Monsters/Multidimensional Fuckface/orbital_beam_charge.ogg"
+MW/OrbitalBeam "Sounds/DCY Monsters/Multidimensional Fuckface/orbital_beam_explode.ogg"
+$limit MW/OrbitalBeamAppear 0
+$limit MW/OrbitalBeam 0
+
+MindLift "Sounds/DCY SFX/dcy_mindlift.ogg"
+
+OmegaSp00der/Sight "Sounds/DCY Monsters/Enigma/awaken.ogg"
+OmegaSp00der/Awakened "Sounds/DCY Monsters/Enigma/ready.ogg"
+$random OmegaSp00der/Act {OSPDACT1 OSPDACT2 OSPDACT3 OSPDACT4 OSPDACT5 OSPDACT6 OSPDACT7 OSPDACT8 OSPDACT9 OSPDACT0 OSPDACTA OSPDACTB }
+OSPDACT1 "Sounds/DCY Monsters/Enigma/talk1.ogg"
+OSPDACT2 "Sounds/DCY Monsters/Enigma/talk2.ogg"
+OSPDACT3 "Sounds/DCY Monsters/Enigma/talk3.ogg"
+OSPDACT4 "Sounds/DCY Monsters/Enigma/talk4.ogg"
+OSPDACT5 "Sounds/DCY Monsters/Enigma/talk5.ogg"
+OSPDACT6 "Sounds/DCY Monsters/Enigma/talk6.ogg"
+OSPDACT7 "Sounds/DCY Monsters/Enigma/talk7.ogg"
+OSPDACT8 "Sounds/DCY Monsters/Enigma/talk8.ogg"
+OSPDACT9 "Sounds/DCY Monsters/Enigma/talk9.ogg"
+OSPDACT0 "Sounds/DCY Monsters/Enigma/talk10.ogg"
+OSPDACTA "Sounds/DCY Monsters/Enigma/talk11.ogg"
+OSPDACTB "Sounds/DCY Monsters/Enigma/talk12.ogg"
+OmegaSp00der/Atac1 "Sounds/DCY Monsters/Enigma/attack1.ogg"
+OmegaSp00der/Atac2 "Sounds/DCY Monsters/Enigma/attack2.ogg"
+OmegaSp00der/Atac3 "Sounds/DCY Monsters/Enigma/attack3.ogg"
+OmegaSp00der/Atac4 "Sounds/DCY Monsters/Enigma/attack4.ogg"
+OmegaSp00der/Atac5 "Sounds/DCY Monsters/Enigma/attack5.ogg"
+OmegaSp00der/Atac6 "Sounds/DCY Monsters/Enigma/attack6.ogg"
+OmegaSp00der/Atac7 "Sounds/DCY Monsters/Enigma/attack7.ogg"
+OmegaSp00der/Atac8 "Sounds/DCY Monsters/Enigma/attack8.ogg"
+OmegaSp00der/Atac9 "Sounds/DCY Monsters/Enigma/attack9.ogg"
+OmegaSp00der/Atac10 "Sounds/DCY Monsters/Enigma/attack10.ogg"
+OmegaSp00der/Atac11 "Sounds/DCY Monsters/Enigma/attack11.ogg"
+OmegaSp00der/Atac12 "Sounds/DCY Monsters/Enigma/attack12.ogg"
+$random OmegaSp00der/Grunt { OSPDGRT1 OSPDGRT2 OSPDGRT3 OSPDGRT4 OSPDGRT5 }
+OSPDGRT1 "Sounds/DCY Monsters/Enigma/grunt1.ogg"
+OSPDGRT2 "Sounds/DCY Monsters/Enigma/grunt2.ogg"
+OSPDGRT3 "Sounds/DCY Monsters/Enigma/grunt3.ogg"
+OSPDGRT4 "Sounds/DCY Monsters/Enigma/grunt4.ogg"
+OSPDGRT5 "Sounds/DCY Monsters/Enigma/grunt5.ogg"
+$random OmegaSp00der/Grunt { OSPDPAI1 OSPDPAI2 OSPDPAI3 OSPDPAI4 }
+OSPDPAI1 "Sounds/DCY Monsters/Enigma/pain1.ogg"
+OSPDPAI2 "Sounds/DCY Monsters/Enigma/pain2.ogg"
+OSPDPAI3 "Sounds/DCY Monsters/Enigma/pain3.ogg"
+OSPDPAI4 "Sounds/DCY Monsters/Enigma/pain4.ogg"
+OmegaSp00der/SecondSee "Sounds/DCY Monsters/Enigma/sight.ogg"
+
+OmegaLaser/Fire "Sounds/DCY Monsters/Enigma/prepare_laser.ogg"
+Power/Void "Sounds/DCY Monsters/Abyss/abyss_fadeout.ogg"
+
+Atrophy/Sight "Sounds/DCY Monsters/Atrophy/laughter1.ogg"
+Atrophy/Attack "Sounds/DCY Monsters/Atrophy/laughter2.ogg"
+Atrophy/Rise "Sounds/DCY Monsters/Atrophy/laughter3.ogg"
+Atrophy/CloneBall "Sounds/DCY Monsters/Atrophy/ball_laughter.ogg"
+Atrophy/Death "Sounds/DCY Monsters/Atrophy/screech.ogg"
+
+$random ExoImp/Sight { EXOISIT EXOISIT2 }
+EXOISIT "Sounds/DCY Monsters/Fallen Angel/sight1.ogg"
+EXOISIT2 "Sounds/DCY Monsters/Fallen Angel/sight2.ogg"
+ExoImp/Active "Sounds/DCY Monsters/Fallen Angel/idle.ogg"
+$random ExoImp/Pain { EXOIPAI EXOIPAI2 }
+EXOIPAI "Sounds/DCY Monsters/Fallen Angel/pain1.ogg"
+EXOIPAI2 "Sounds/DCY Monsters/Fallen Angel/pain2.ogg"
+$random ExoImp/Death { EXOIDTH EXOIDTH2 }
+EXOIDTH "Sounds/DCY Monsters/Fallen Angel/death1.ogg"
+EXOIDTH2 "Sounds/DCY Monsters/Fallen Angel/death2.ogg"
+
+EXOLUNGE "Sounds/DCY Monsters/Fallen Angel/lunge.ogg"
+EXOWATK "Sounds/DCY Monsters/Fallen Angel/fireball.ogg"
+
+IMPFLY2 "Sounds/DCY Monsters/Fallen Angel/wing_flap.lmp"
+
+Urozon/Sight "Sounds/DCY Monsters/Urozon/roar.ogg"
+Urozon/Scream "Sounds/DCY Monsters/Urozon/scream.ogg"
+Urozon/Death "Sounds/DCY Monsters/Urozon/death.ogg"
+
+MonsterSpit "Sounds/DCY SFX/dcy_monster_spit.ogg"
+TwirlingLaser "Sounds/DCY SFX/dcy_twirling_laser.ogg"
+URZXPL "Sounds/Projectiles/dcy_urozon_explode.ogg"
+
+Transcendent/Lunacy/Spell "Sounds/DCY SFX/dcy_boss_spell.wav"
+
+Emptiness/Sight "Sounds/DCY Monsters/Emptiness/line.ogg"
+$random Emptiness/Active {EMPTACT1 EMPTACT2 EMPTACT3 EMPTACT4}
+EMPTACT1 "Sounds/DCY Monsters/Emptiness/chat1.ogg"
+EMPTACT2 "Sounds/DCY Monsters/Emptiness/chat2.ogg"
+EMPTACT3 "Sounds/DCY Monsters/Emptiness/chat3.ogg"
+EMPTACT4 "Sounds/DCY Monsters/Emptiness/chat4.ogg"
+Emptiness/Pain "Sounds/DCY Monsters/Emptiness/pain.lmp"
+$random Emptiness/Death {EMPTDTH1 EMPTDTH2}
+EMPTDTH1 "Sounds/DCY Monsters/Emptiness/expunged1.ogg"
+EMPTDTH2 "Sounds/DCY Monsters/Emptiness/expunged2.ogg"
+Emptiness/Attack1 "Sounds/DCY Monsters/Emptiness/attack1.ogg"
+Emptiness/Attack2 "Sounds/DCY Monsters/Emptiness/attack2.ogg"
+$random Emptiness/DeathGlitch {EMPGLTH1 EMPGLTH2 EMPGLTH3}
+EMPGLTH1 "Sounds/DCY Monsters/Emptiness/crisis1.ogg"
+EMPGLTH2 "Sounds/DCY Monsters/Emptiness/crisis2.ogg"
+EMPGLTH3 "Sounds/DCY Monsters/Emptiness/crisis3.ogg"
+
+Emptiness/Wings "Sounds/DCY Monsters/Emptiness/wing_start.ogg"
+Emptiness/Wings2 "Sounds/DCY Monsters/Emptiness/wing_end.ogg"
+Emptiness/Fading "Sounds/DCY Monsters/Emptiness/teleport.ogg"
+Emptiness/Pillar/Rise "Sounds/Projectiles/dcy_empty_pillar_rise.ogg"
+Emptiness/Pillar/Explode "Sounds/Projectiles/dcy_empty_pillar_beam.ogg"
+EmptinessBlockbuster/Appear "Sounds/DCY Monsters/Emptiness/appear.ogg"
+EmptinessBlockbuster/Explode "Sounds/DCY Monsters/Emptiness/explode.ogg"
+EmptinessBlockbuster/Explosion "Sounds/DCY Monsters/Emptiness/explode_2.ogg"
+Emptiness/VileLoop1 "Sounds/DCY Monsters/Emptiness/vile_sound.ogg"
+$limit Emptiness/VileLoop1 0
+Emptiness/VileLoop2 "Sounds/DCY Monsters/Emptiness/vile_attack.ogg"
+Emptiness/Vile "Sounds/DCY Monsters/Emptiness/vile.ogg"
+Emptiness/VileStop "Sounds/DCY Monsters/Emptiness/vile_stop.ogg"
+Emptiness/Laser "Sounds/DCY Monsters/Emptiness/laser.ogg"
+Emptiness/LaserExlpode "Sounds/DCY Monsters/Emptiness/laser_explode.ogg"
+
+ChoricoNepheloma/Sight "Sounds/DCY Monsters/Chorico/awaken.ogg"
+$random ChoricoNepheloma/Active { PTRMSND1 PTRMSND2 PTRMSND3 PTRMSND4 PTRMSND5 }
+PTRMSND1 "Sounds/DCY Monsters/Chorico/active1.ogg"
+PTRMSND2 "Sounds/DCY Monsters/Chorico/active2.ogg"
+PTRMSND3 "Sounds/DCY Monsters/Chorico/active3.ogg"
+PTRMSND4 "Sounds/DCY Monsters/Chorico/active4.ogg"
+PTRMSND5 "Sounds/DCY Monsters/Chorico/active5.ogg"
+ChoricoNepheloma/Pain "Sounds/DCY Monsters/Chorico/hurt.ogg"
+CH0RPENF "Sounds/DCY SFX/dcy_ios_pentagram_fire.ogg"
+$random ChoricoNepheloma/PentagramLoop { CH0RPENT CH0RPENT CH0RPEN2 CH0RPEN3 }
+CH0RPENT "Sounds/DCY SFX/dcy_ios_pentagram_loop1.ogg"
+CH0RPEN2 "Sounds/DCY SFX/dcy_ios_pentagram_loop2.ogg"
+CH0RPEN3 "Sounds/DCY SFX/dcy_ios_pentagram_loop3.ogg"
+
+Sovran/Sight "Sounds/DCY Monsters/Sovran/sight.ogg"
+Sovran/Active "Sounds/DCY Monsters/Sovran/growl.ogg"
+Sovran/Pain "Sounds/DCY Monsters/Sovran/pain.ogg"
+Sovran/Death "Sounds/DCY Monsters/Sovran/death.ogg"
+Sovran/Attack1 "Sounds/DCY Monsters/Sovran/attack.ogg"
+Sovran/Attack2 "Sounds/DCY Monsters/Sovran/attack2.ogg"
+Sovran/Roar "Sounds/DCY Monsters/Sovran/roar.ogg"
+Sovran/Power "Sounds/DCY Monsters/Sovran/roar_power.ogg"
+Sovran/Power2 "Sounds/DCY Monsters/Sovran/power.ogg"
+Sovran/Power3 "Sounds/DCY Monsters/Sovran/resurrect.ogg"
+
+$random TarragonQuintessence/Sight { SAINSIT1 SAINSIT2 }
+SAINSIT1 "Sounds/DCY Monsters/Tarragon/roar.ogg"
+SAINSIT2 "Sounds/DCY Monsters/Tarragon/roar2.ogg"
+TarragonQuintessence/Death "Sounds/DCY Monsters/Tarragon/death.ogg"
+$random TarragonQuintessence/Active { SAINACT1 SAINACT2 SAINACT3 SAINACT4 SAINACT5 }
+SAINACT1 "Sounds/DCY Monsters/Tarragon/idle1.ogg"
+SAINACT2 "Sounds/DCY Monsters/Tarragon/idle2.ogg"
+SAINACT3 "Sounds/DCY Monsters/Tarragon/idle3.ogg"
+SAINACT4 "Sounds/DCY Monsters/Tarragon/idle4.ogg"
+SAINACT5 "Sounds/DCY Monsters/Tarragon/idle5.ogg"
+$random TarragonQuintessence/Pain { SAINPAI1 SAINPAI2 SAINPAI3 SAINPAI4 }
+SAINPAI1 "Sounds/DCY Monsters/Tarragon/pain1.ogg"
+SAINPAI2 "Sounds/DCY Monsters/Tarragon/pain2.ogg"
+SAINPAI3 "Sounds/DCY Monsters/Tarragon/pain3.ogg"
+SAINPAI4 "Sounds/DCY Monsters/Tarragon/pain4.ogg"
+
+Calignosity/Sight "Sounds/DCY Monsters/Calignosity/sight.ogg"
+Calignosity/Active "Sounds/DCY Monsters/Calignosity/idle.ogg"
+Calignosity/Pain "Sounds/DCY Monsters/Calignosity/pain.ogg"
+Calignosity/Death "Sounds/DCY Monsters/Calignosity/death.ogg"
+
+ARPHSIT "Sounds/DCY Monsters/Arachnoaversion/it_hungers.ogg"
+ARPHPAIN "Sounds/DCY Monsters/Arachnoaversion/pain.ogg"
+ARPHDTH "Sounds/DCY Monsters/Arachnoaversion/explode.ogg"
+
+Arche/Sight "Sounds/DCY Monsters/Arche Spiritwalker/spot.ogg"
+Arche/Active "Sounds/DCY Monsters/Arche Spiritwalker/chatter.ogg"
+Arche/Death "Sounds/DCY Monsters/Arche Spiritwalker/death.ogg"
+
+$random Ultracerest/Sight { OBIFSIT1 OBIFSIT2 OBIFSIT3 OBIFSIT4 OBIFSIT5 OBIFSIT6 OBIFSIT7 OBIFSIT8 OBIFSIT9 OBIFSI10 }
+OBIFSIT1 "Sounds/DCY Monsters/Ultracerest/sight1.ogg"
+OBIFSIT2 "Sounds/DCY Monsters/Ultracerest/sight2.ogg"
+OBIFSIT3 "Sounds/DCY Monsters/Ultracerest/sight3.ogg"
+OBIFSIT4 "Sounds/DCY Monsters/Ultracerest/sight4.ogg"
+OBIFSIT5 "Sounds/DCY Monsters/Ultracerest/sight5.ogg"
+OBIFSIT6 "Sounds/DCY Monsters/Ultracerest/sight6.ogg"
+OBIFSIT7 "Sounds/DCY Monsters/Ultracerest/sight7.ogg"
+OBIFSIT8 "Sounds/DCY Monsters/Ultracerest/sight8.ogg"
+OBIFSIT9 "Sounds/DCY Monsters/Ultracerest/sight9.ogg"
+OBIFSI10 "Sounds/DCY Monsters/Ultracerest/sight10.ogg"
+$random Ultracerest/Active { OBIFACT1 OBIFACT2 OBIFACT3 OBIFACT4 OBIFACT5 }
+OBIFACT1 "Sounds/DCY Monsters/Ultracerest/chatter1.ogg"
+OBIFACT2 "Sounds/DCY Monsters/Ultracerest/chatter2.ogg"
+OBIFACT3 "Sounds/DCY Monsters/Ultracerest/chatter3.ogg"
+OBIFACT4 "Sounds/DCY Monsters/Ultracerest/chatter4.ogg"
+OBIFACT5 "Sounds/DCY Monsters/Ultracerest/chatter5.ogg"
+$rolloff Ultracerest/Active 400 2500
+Ultracerest/SecondPhase "Sounds/DCY Monsters/Ultracerest/enraged.ogg"
+Ultracerest/Dash "Sounds/DCY Monsters/Ultracerest/dash.wav"
+$random Ultracerest/Pain { OBIFPAI1 OBIFPAI2 OBIFPAI3 }
+OBIFPAI1 "Sounds/DCY Monsters/Ultracerest/pain1.ogg"
+OBIFPAI2 "Sounds/DCY Monsters/Ultracerest/pain2.ogg"
+OBIFPAI3 "Sounds/DCY Monsters/Ultracerest/pain3.ogg"
+
+$random Dash/EXPLODE { DASHBOOM DASHBO2M }
+DASHBOOM "Sounds/DCY Monsters/Ultracerest/dash_explode1.ogg"
+DASHBO2M "Sounds/DCY Monsters/Ultracerest/dash_explode2.ogg"
+
+DeadlyDelta "Sounds/DCY SFX/dcy_death_laser.wav"
+AssemblyoftheUndead/Laser "Sounds/DCY SFX/dcy_deadly_delta.wav"
+
+DCYMother/Sight "Sounds/DCY Monsters/Reverend Mother/anger.ogg"
+$random DCYMother/Active { M0THACT1 M0THACT2 }
+M0THACT1 "Sounds/DCY Monsters/Reverend Mother/idle1.ogg"
+M0THACT2 "Sounds/DCY Monsters/Reverend Mother/idle2.ogg"
+$random DCYMother/Pain { M0THPAI1 M0THPAI2 }
+M0THPAI1 "Sounds/DCY Monsters/Reverend Mother/pain1.ogg"
+M0THPAI2 "Sounds/DCY Monsters/Reverend Mother/pain2.ogg"
+$random DCYMother/Attack { M0THATK1 M0THATK2 }
+M0THATK1 "Sounds/DCY Monsters/Reverend Mother/attack1.ogg"
+M0THATK2 "Sounds/DCY Monsters/Reverend Mother/attack2.ogg"
+$random DCYMother/Death { M0THDTH1 M0THDTH2 }
+M0THDTH1 "Sounds/DCY Monsters/Reverend Mother/death1.ogg"
+M0THDTH2 "Sounds/DCY Monsters/Reverend Mother/death2.ogg"
+M0THEXP "Sounds/DCY Monsters/Reverend Mother/explosion.ogg"
+
+$random Fusillade/Roar { Fusillade/Roar1 Fusillade/Roar2 }
+Fusillade/Roar1 "Sounds/DCY Monsters/Fusillade/sight1.ogg"
+Fusillade/Roar2 "Sounds/DCY Monsters/Fusillade/sight2.ogg"
+$random Fusillade/Idle { Fusillade/Idle1 Fusillade/Idle2 }
+Fusillade/Idle1 "Sounds/DCY Monsters/Fusillade/idle1.ogg"
+Fusillade/Idle2 "Sounds/DCY Monsters/Fusillade/idle2.ogg"
+$random Fusillade/Melee { Fusillade/Melee1 Fusillade/Melee2 }
+Fusillade/Melee1 "Sounds/DCY Monsters/Fusillade/melee1.ogg"
+Fusillade/Melee2 "Sounds/DCY Monsters/Fusillade/melee2.ogg"
+$random Fusillade/Death { Fusillade/Death1 Fusillade/Death2 }
+Fusillade/Death1 "Sounds/DCY Monsters/Fusillade/death1.ogg"
+Fusillade/Death2 "Sounds/DCY Monsters/Fusillade/death2.ogg"

@@ -1,0 +1,154 @@
+Class DCY_Cybie : DCYMonster
+{
+  Default
+  {
+	Health 4000;
+	Radius 40;
+	Height 110;
+	Mass 1000;
+	Speed 16;
+	PainChance 20;
+	MinMissileChance 160;
+	+BOSS 
+	+MISSILEMORE
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	SeeSound "cyber/sight";
+	PainSound "cyber/pain";
+	DeathSound "cyber/death";
+	ActiveSound "cyber/active";
+	Obituary "$OB_CYBORG";
+	Tag "$FN_CYBER";
+	TeleFogSourceType "DCY_CyberTeleport";
+	TeleFogDestType "DCY_CyberTeleport";
+	Species "Cyberdemons";
+  }
+  
+  void A_Cyberstep(bool step)
+  {
+	A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+	A_StartSound((step) ? "cyber/hoof" : "spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+  }
+	
+  int missile;
+  States
+  {
+  Spawn:
+	CYBR A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 2;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	CYBR AAABBB 3 A_Chase();
+	CYBR C 3 A_CyberStep(0);
+	CYBR CCCDDD 3 A_Chase();
+	CYBR A 3 A_CyberStep(1);
+	Loop;
+  Missile:
+	CYBR E 30
+	{
+		missile = 0;
+		A_FaceTarget();
+	}
+	CYBR F 10 Bright
+	{
+		If(missile >= 2)
+			SetStateLabel("See");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CyberdemonRocket", 53, -16, frandom(-1.0, 1.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.0, 1.0));
+		A_StartSound("DNRPGFIR", CHAN_WEAPON, CHANF_OVERLAP);
+	}
+	CYBR E 10
+	{
+		If(missile >= 2)
+			SetStateLabel("See");
+		
+		missile += 1;
+		A_FaceTarget();
+	}
+	Goto Missile+1;
+  Pain:
+	CYBR G 3;
+	CYBR G 5 A_Pain();
+	Goto See;
+  Death:
+	CYBR G 1;
+	CYBR G 30 A_Pain();
+	CYBR H 10;
+	CYBR H 6 A_Scream();
+	CYBR IJ 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+	}
+	CYBR K 6
+	{
+		A_NoBlocking();
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	CYBR LMNOPPPPPPPPPPPPPPP 6;
+	CYBR P -1 A_BossDeath2;
+	Stop;
+  Death.Massacre:
+	CYBR H 10;
+	CYBR H 6 A_Scream();
+	CYBR IJ 5;
+	CYBR K 5 A_NoBlocking();
+	CYBR LMNOPPPPPPPPPPPPPPPP 6;
+	CYBR P -1 A_BossDeath2;
+	Stop;
+  }
+}
+
+Class DCY_CyberMicromissile : DCY_OverhauledRocket
+{
+  Default
+  {
+  Damage 15;
+  Radius 9;
+  Height 5;
+  DamageType "Explosive";
+  Speed 18;
+  Scale 1.25;
+  SeeSound "DNRPGFIR";
+  +NEVERFAST
+  +NOEXTREMEDEATH
+  +SEEKERMISSILE
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+	SMOL A 1
+	{
+		let flare = Spawn("DCY_RocketFlare", (pos.x + frandom(-2, 2), pos.y + frandom(-2, 2), pos.z + frandom(-2, 2)));
+		
+		if (flare)
+		{
+			flare.scale *= 0.675;
+		}
+		
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), failchance: 180);
+	}
+	Loop;
+  Death:
+	SMOL B 1
+	{
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small");
+		A_QuakeEx(1, 1, 1, 20, 0, 100, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 200);
+	}
+	SMOL CDEFGHIJKL 1;
+	TNT1 A 8;
+	Stop;
+  }
+}

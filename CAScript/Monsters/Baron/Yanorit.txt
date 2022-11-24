@@ -1,0 +1,124 @@
+Class DCY_PrimeYanorit : DCY_BaronParent
+{
+  Default
+  {
+  Translation "16:27=[129,255,255]:[79,169,255]", "128:159=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "9:15=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "236:239=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "28:47=[74,165,255]:[0,0,64]", "168:175=[130,255,255]:[79,170,255]", "176:191=[74,166,255]:[0,0,64]", "160:167=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "192:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "48:79=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "112:126=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+  Tag "\c[l5]Prime Yanorit\c-";
+  Health 1125;
+  SeeSound "Yanorit/Sight";
+  ActiveSound "Yanorit/Active";
+  PainSound "Yanorit/Pain";
+  DeathSound "Yanorit/Death";
+  Obituary "%o meddled with the Prime Yanorit.";
+  HitObituary "%o got scratched by the Prime Yanorit.";
+  +FLOAT
+  +NOGRAVITY
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  +NOBLOODDECALS
+  +NODROPOFF
+  +BRIGHT
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  Speed 10;
+  FastSpeed 13;
+  }
+  
+  override void Tick()
+  {
+    super.Tick();
+	
+	If (Health > 0 && !IsFrozen() && !sv_effectchoker)
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_InfernisFlame2", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(53.0, 65.0), 0, 0, frandom(-2.0, -5.0), flags: SXF_NOCHECKPOSITION, 150);
+	  
+		A_SpawnItemEx("DCY_YanoritExplosion", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(53.0, 65.0), 0, 0, frandom(-1.0, -2.5), flags: SXF_NOCHECKPOSITION, 200);
+	}
+	
+  }
+  
+  States
+  {
+  Spawn:
+	EFER ABCD 5 A_Look();
+	Loop;
+  See:
+	EFER AAABBB 2 A_Chase();
+	EFER CCCDDD 2 A_Chase();
+	Loop;
+  Melee:
+	EFER EF 7 A_FaceTarget();
+	EFER G 0 A_CustomMeleeAttack(random(5, 8)*10, "baron/melee");
+	EFER GF 5;
+	Goto See;
+  Missile:
+	EFER EF 4 A_FaceTarget();
+	EFER G 4 A_SpawnProjectile("DCY_PrimeYanoritBall", 52, 0, frandom(-1.0, 1.0));
+	EFER FEF 4 A_FaceTarget();
+	EFER G 4
+	{
+		A_SpawnProjectile("DCY_PrimeYanoritBall", 52, 0, frandom(-10.0, -9.0));
+		A_SpawnProjectile("DCY_PrimeYanoritBall", 52, 0, frandom(10.0, 9.0));
+	}
+	EFER F 5;
+	Goto See;
+  Pain:
+	EFER H 4;
+	EFER H 3 A_Pain();
+	Goto See;
+  Death:
+	EFER I 3;
+	EFER J 3 A_Scream();
+	EFER K 3 A_NoBlocking();
+	EFER LMNOP 4;
+	EFER Q 4 { bBright = false; }
+	EFER QR 4;
+	EFER S 4 A_BossDeath2();
+	Goto Falling;
+  Falling:
+	EFER S 1 CanRaise A_CheckFloor("Landing");
+	Loop;
+  Landing:
+	EFER TU 4;
+	EFER U -1;
+	Stop;
+  Raise:
+	EFER TS 5;
+	EFER RQ 4;
+	EFER Q 0 { bBright = true; }
+	EFER PONMLKJIH 4;
+	Goto See;
+  }
+}
+
+Class DCY_PrimeYanoritBall : BaronBall
+{
+  Default
+  {
+  Alpha 0.75;
+  Speed 14;
+  FastSpeed 22;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.80,1.20,1.79]";
+  DamageType "SiriusEnergy";
+  SeeSound "FIR4FIRE";
+  DeathSound "FIR4IMPC";
+  }
+  
+  States
+  {
+  Spawn:
+    BAL7 A 0;
+	BAL7 A 0 A_Weave(3, 3, 1, 1);
+    BAL7 AAABBB 1 A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+	Loop;
+  Death:
+    TNT1 A 0
+    {
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticle(0xd9f1ff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	BAL7 CCDDDEEE 1 A_FadeOut(0.125, 0);
+	Stop;
+  }
+}

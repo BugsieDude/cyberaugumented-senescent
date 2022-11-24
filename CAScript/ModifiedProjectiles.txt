@@ -1,0 +1,1300 @@
+Class DCY_ImpFlame1 : DCY_Effect
+{
+  Default
+  {
+  Height 0;
+  Radius 0;
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 1.0;
+  +NOCLIP;
+  +NOINTERACTION;
+  +BRIGHT;
+  +THRUACTORS;
+  +DONTSPLASH;
+  }
+  
+  States
+  {
+  Spawn:
+	FAR0 A 0 NoDelay A_SetScale(frandompick(Scale.X, -Scale.X), Scale.Y);
+	FAR0 ABC 3;
+	FAR0 DE 2;
+	Stop;
+  }
+}
+
+Class DCY_ImpBigFlame : DCY_ImpFlame1
+{
+  States
+  {
+  Spawn:
+	BPX0 A 0 NoDelay A_SetScale(frandompick(Scale.X, -Scale.X), Scale.Y);
+	BPX0 ABCD 2;
+	BPX0 E 2 A_ChangeVelocity(0, 0, 1);
+	BPX0 FG 2;
+	Stop;
+  }
+}
+
+Class DCY_ImpFireball : DoomImpBall Replaces DoomImpBall
+{
+  Default
+  {
+  Alpha 1.0;
+  +BRIGHT;
+  Translation "0:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  }
+  
+  TextureID tex;
+  
+  States
+  {
+  Spawn:
+    FBS1 AABBCC 1
+	{
+		//A_SpawnParticleEx(0xffdc9c, Texman.SetNull(), STYLE_ADD, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), fadestepf: 0, sizestep: -0.125);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
+	}
+	Loop;
+  Death:
+	TNT1 A 0
+	{
+		for (int i = 7; i > 0; i--)
+			A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(3.5, 6.4), accelz: -0.85, fadestepf: 0, sizestep: -0.125);
+	}
+	BAL1 CCDDEE 2 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_LeFatFireball : FatShot Replaces FatShot
+{
+  Default
+  {
+  Alpha 1.0;
+  Translation "0:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  +BRIGHT;
+  }
+  States
+  {
+  Spawn:
+    MANF AABB 1
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: frandom(1, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 210);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
+	}
+	Loop;
+  Death:
+    TNT1 A 0
+    {
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	MISL CCDDEE 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_MeatballElecball : CacodemonBall Replaces CacodemonBall
+{
+  Default
+  {
+  Alpha 1.0;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.95,0.65,2.00]";
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	BAL2 AAABBB 1 A_SpawnItemEx("DCY_MeatballElecballTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+	Loop;
+  Death:
+	BAL2 C 1;
+	BAL2 CCCDDDDEEEE 1 A_FadeOut(0.05);
+	Stop;
+  }
+}
+
+Class DCY_MeatballElecballTrail : DCY_Effect
+{
+  Default
+  {
+  Alpha 0.95;
+  Scale 1.0;
+  RenderStyle "Add";
+  +NOCLIP
+  +NOINTERACTION
+  +DONTSPLASH
+  +ROLLSPRITE
+  -SOLID
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 1;
+	BAL2 AAABBBAAABB 1 Bright 
+	{
+		A_SetScale(Scale.X-0.1, Scale.Y-0.1);
+		A_FadeOut(0.1);
+	}
+	Stop;
+  }
+}
+
+Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
+{
+  Default
+  {
+  +BRIGHT
+  +SEEKERMISSILE
+  Scale 0.75;
+  Alpha 1.0;
+  Damage 5;
+  FastSpeed 15;
+  RenderStyle "Normal";
+  Translation "168:173=[255,255,255]:[255,255,128]", "174:180=[255,255,128]:[255,121,0]", "181:191=[255,121,0]:[64,9,0]", "224:231=[255,255,255]:[255,255,128]", "208:216=[255,255,255]:[255,255,128]", "217:223=[255,255,128]:[255,121,0]", "232:235=%[0.00,0.00,0.00]:[2.00,0.95,0.00]", "236:239=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[255,255,128]:[64,9,0]", "16:23=[255,255,255]:[255,255,128]", "24:31=[255,255,128]:[255,121,0]", "32:47=[255,121,0]:[64,9,0]", "192:195=[255,255,255]:[255,255,128]", "196:201=[255,255,128]:[255,121,0]", "202:207=[255,121,0]:[64,9,0]", "112:119=[255,255,128]:[255,121,0]", "120:127=[255,121,0]:[64,9,0]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.50,0.07,0.00]:[2.00,2.00,1.01]", "80:111=%[0.00,0.00,0.00]:[0.49,0.49,0.49]";
+  }
+  
+  static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
+  int timer;
+  
+  States
+  {
+  Spawn:
+	HMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING);
+	HMIS A 2 Bright
+	{
+		if (timer < 110)
+		{
+			A_Tracer2(5.625);
+			timer++;
+		}
+
+		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
+	}
+	Goto Spawn+1;
+  Death:
+	MISL B 0 Bright;
+  	TNT1 A 1 Bright
+	{
+		A_Scream();
+		A_StopSound(CHAN_6);
+		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 17;
+	Stop;
+  }
+}
+
+Class DCY_BaronKnightFlame : DCY_ImpFlame1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.55,1.38,0.46]"; } }
+
+Class DCY_BaronFireball : BaronBall Replaces BaronBall
+{
+  Default
+  {
+  Alpha 0.7;
+  +BRIGHT;
+  }
+  States
+  {
+  Spawn:
+    BAL7 A 0;
+    BAL7 AAABBB 1 A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
+	Loop;
+  Death:
+    TNT1 A 0
+    {
+		for (int i = 7; i > 0; i--)
+			A_SpawnParticle(0x93ff91, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	BAL7 CCDDDEEE 1 A_FadeOut(0.125, 0);
+	Stop;
+  }
+}
+
+Class DCY_OverhauledRocket : Rocket Replaces Rocket
+{
+  Default
+  {
+  DamageType "Explosive";
+  Speed 31.7755;
+  RenderStyle "Normal";
+  Scale 1.2;
+  Alpha 1.0;
+  -ROCKETTRAIL
+  }
+  
+  static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
+  
+  States
+  {
+  Spawn:
+	NMSL A 0;
+	NMSL A 1
+	{
+		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
+		A_SpawnItemEx("DCY_RocketFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_RocketSmonk", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 210);
+	}
+	Loop;
+  Death:
+	TNT1 A 0;
+	TNT1 A 5
+	{
+		A_SetTranslucent(1.0);
+		A_Explode();
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(0.00, 360.0), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(0.00, 360.0), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(-0.85, 0.85), frandom(0.00, 360.0), SXF_NOCHECKPOSITION);
+		A_QuakeEx(2, 2, 2, 20, 0, 200, "none", QF_SCALEDOWN, 0, 0, 0, 700);
+	}
+	TNT1 A 20;
+	Stop;
+  }
+}
+
+Class DCY_CyberdemonRocket : DCY_OverhauledRocket { Default { Speed 20; } }
+
+Class DCY_RocketFlare : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  +NOCLIP;
+  +NOINTERACTION;
+  +BRIGHT;
+  +CLIENTSIDEONLY;
+  +ROLLSPRITE;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 3 NoDelay A_SetScale(frandompick(Scale.X, -Scale.X), Scale.Y);
+	3XP0 ABCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
+{
+  Default
+  {
+  +ROLLSPRITE;
+  +BRIGHT;
+  +BLOODLESSIMPACT;
+  +RANDOMIZE;
+  +FORCEXYBILLBOARD;
+  Radius 13;
+  Height 8;
+  Damage 5;
+  RenderStyle "Add";
+  SeeSound "UpgradedPlasmaBall";
+  DeathSound "weapons/plasmax";
+  Obituary "$OB_MPPLASMARIFLE";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.47,0.66,2.00]";
+  Scale 0.2;
+  Alpha 1.0;
+  Speed 50;
+  DamageType "Plasma";
+  }
+  States
+  {
+  Spawn:
+	PLS1 ABCDEFGHIJKL 1
+	{
+		A_SetRoll(frandom(0.00, 360.00));
+		
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 240);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 4; i > 0; i--)
+			A_SpawnParticle(0x96c2ff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_FluorescentOrbTS : DCY_FluorescentOrbT { Default { Scale 0.65; } }
+
+Class DCY_PlasmaTrail : Actor
+{
+  Default
+  {
+  +NOCLIP;
+  +NOBLOCKMAP;
+  +NOINTERACTION;
+  +ROLLSPRITE;
+  +FORCEXYBILLBOARD;
+  +BRIGHT;
+  +NOGRAVITY;
+  Alpha 1.0;
+  Scale 0.35;
+  RenderStyle "Add";
+  }
+  States
+  {
+  Spawn:
+	P3SE ABCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_ArachPlasma : DCY_RehauledPlasma Replaces ArachnotronPlasma
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.65,0.65]";
+  Speed 18;
+  FastSpeed 20.5;
+  DamageType "RedPlasma";
+  }
+  States
+  {
+  Spawn:
+	PLS1 ABCDEFGHIJKL 1
+	{
+		A_SetRoll(frandom(0.00, 360.00));
+		
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 240);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetTranslucent(1.0, 1);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 4; i > 0; i--)
+			A_SpawnParticle(0xfc6d5d, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_CleavingLaser : DCY_RehauledPlasma
+{
+  Default
+  {
+  DamageFunction 3;
+  +RIPPER;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.49,2.00,0.97]";
+  SeeSound "";
+  -RANDOMIZE
+  Speed 42;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_FluorescentOrbTS", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticle(0xffffff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5));
+		A_SpawnParticle(0xc9ffa3, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5));
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 4; i > 0; i--)
+			A_SpawnParticle(0xc9ffa3, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_LarrikinLaser : DCY_CleavingLaser
+{
+  Default
+  {
+  DamageType "Normal";
+  Translation "0:255=%[0.42,0.00,0.00]:[2.00,1.21,0.34]";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_FluorescentOrbTS", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticle(0xffffff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5));
+		A_SpawnParticle(0xffc68a, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5));
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 4; i > 0; i--)
+			A_SpawnParticle(0xffc68a, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_TrigLaser : DCY_RehauledPlasma
+{
+  int weave;
+  property WeavingNum: weave;
+  
+  Default
+  {
+  DamageFunction 10;
+  SeeSound "";
+  -RANDOMIZE
+  Speed 35;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.62,0.94,1.89]";
+  DCY_TrigLaser.WeavingNum 4;
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+	THZ4 A 1
+	{
+		if (timer == 20)
+		{
+			A_Explode(60, 200, 0);
+			
+			A_StartSound("LASRGREN");
+			
+			for (int i = 3; i > 0; i--)
+				A_SpawnItemEx("DCY_AndroidExplosionSmall", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERTRANSLATION);
+			
+			Destroy();
+		}
+		
+		A_Weave(3, 0, weave, 0);
+		
+		timer++;
+		A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+	THZ4 D 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(0);
+		for (int i = 4; i > 0; i--)
+			A_SpawnParticle(0x7ccdfc, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	THZ4 EFGHIJKLM 1;
+	Stop;
+  }
+}
+
+Class DCY_TrigLaser2 : DCY_TrigLaser { Default { DCY_TrigLaser.WeavingNum -4; } }
+Class DCY_TrigLaser3 : DCY_TrigLaser { Default { DCY_TrigLaser.WeavingNum 0; } }
+
+Class DCY_BFGSpheroid : BFGBall Replaces BFGBall
+{
+  Default
+  {
+	DamageType "BFG";
+	Translation "0:255=%[0.00,0.00,0.00]:[1.03,2.00,0.70]";
+	DeathSound "BFGD1E";
+	+BRIGHT
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay
+	{
+		A_StartSound("Platinum9kBFGBallFly", CHAN_6, CHANF_LOOPING, 1, 0.75);
+		A_StartSound("BFG/Loop", CHAN_BODY, CHANF_LOOPING, 1, 0.95);
+	}
+	TNT1 A 1
+	{
+		A_SpawnParticle(0xffffff, SPF_FULLBRIGHT, random(10, 30), random(8, 12), frandom(0, 360), frandom(-16.5, 16.5), frandom(-16.5, 16.5), frandom(-16.5, 16.5));
+		A_SpawnParticle(0xc9ffa3, SPF_FULLBRIGHT, random(10, 30), random(8, 12), frandom(0, 360), frandom(-16.5, 16.5), frandom(-16.5, 16.5), frandom(-16.5, 16.5));
+		
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BFGElec", frandom(-22.5, 22.5), frandom(-22.5, 22.5), frandom(-22.5, 22.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+			A_SpawnItemEx("DCY_BFGSparkle", frandom(-22.5, 22.5), frandom(-22.5, 22.5), frandom(-22.5, 22.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 80);
+		}
+		
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, 160);
+		A_SpawnItemEx("DCY_BFGSpheroidElectricBall", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	Goto Spawn+1;
+  Death:
+	BF4X A 1
+	{
+		A_StopSound(CHAN_6);
+		A_StopSound(CHAN_BODY);
+		A_QuakeEx(4, 4, 4, 60, 0, 1200, "", flags: QF_3D|QF_SCALEDOWN|QF_RELATIVE);
+		
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_BFGRing", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+			A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-5, 15), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		}
+	}
+	BF4X AA 2
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, 60);
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-5, 15), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 20);
+	}
+	BF4X BBCCD 2
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, 60);
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 20);
+	}
+	BF4X D 2
+	{
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 20);
+		A_BFGSpray("DCY_BFGExtra");
+	}
+	BF4X EEFFGG 2
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, 100);
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 20);
+	}
+	BF4X HI 3;
+	TNT1 A 40;
+	Stop;
+  }
+}
+
+Class DCY_BFGRing : DCY_NeonicRing { Default { Scale 1.25; } }
+
+Class DCY_BFGExtra : BFGExtra
+{
+  Default
+  {
+  Alpha 1.0;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.03,2.00,0.70]";
+  }
+  States
+  {
+  Spawn:
+  	BF3X Z 3 Bright
+	{
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 20);
+		A_SpawnItemEx("DCY_AndroidExplosionSmall", flags: SXF_TRANSFERTRANSLATION);
+	}
+	BF3X ABCDEFGH 3 Bright
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, 200);
+		A_SpawnItemEx("DCY_BFGThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+  	}
+	Stop;
+  }
+}
+
+Class DCY_BFGSpheroidElectricBall : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Alpha 1.0;
+  Scale 0.85;
+  +ROLLSPRITE;
+  +NOGRAVITY;
+  +NOCLIP;
+  +BRIGHT;
+  }
+  
+  States
+  {
+  Spawn:
+	BF3X A 0 NoDelay A_SetRoll(frandom(0, 360));
+	BF3X ABCD 2;
+	Stop;
+  }
+}
+
+Class DCY_BFGElec : DCY_BFGSpheroidElectricBall
+{
+  Default
+  {
+	Scale 1.0;
+  }
+  
+  States
+  {
+  Spawn:
+	3L3C A 0 NoDelay A_SetRoll(frandom(0, 360));
+	3L3C ABCDE 2 { tics = random(1, 3); }
+	Stop;
+  }
+}
+
+Class DCY_BFGSparkle : DCY_BFGSpheroidElectricBall
+{
+  Default
+  {
+	Scale 1.0;
+	-ROLLSPRITE;
+  }
+  
+  States
+  {
+  Spawn:
+	SP4K ABCDEFG 2;
+	Stop;
+  }
+}
+
+Class DCY_BFGThunder : CacodemonBall
+{
+  Default
+  {
+	SeeSound "";
+	DeathSound "";
+	DamageFunction 0;
+	+MTHRUSPECIES
+	+THRUSPECIES
+	+THRUACTORS
+	+NOINTERACTION
+	-SOLID
+	Speed 16;
+	+NEVERFAST
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+		tics = random(0, 1);
+		A_ChangeVelocity(frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5));
+		A_SpawnParticle(0xc9ffa3, SPF_FULLBRIGHT, random(10, 20), random(12, 18), frandom(0, 360), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5));
+	}
+	Goto Death;
+  Death:
+	C3AL ABCDE 2 A_Stop();
+	Stop;
+  }
+}
+
+Class DCY_Blastawave : DCY_RehauledPlasma
+{
+  Default
+  {
+  DamageFunction 10;
+  SeeSound "";
+  DeathSound "CARCATKX";
+  -RANDOMIZE
+  Speed 65;
+  Scale 0.8;
+  Height 20;
+  Radius 10;
+  DamageFunction 30;
+  Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]";
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+	WV00 AB 1 A_SpawnItemEx("DCY_BlastawaveTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION);
+	Loop;
+  Death:
+	MPB_ H 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0, 360));
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0x7ccdfc, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_BlastaThunder", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(5, 10), zvel: frandom(-7, 7), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		}
+	}
+	MPB_ IJKL 2;
+	Stop;
+  }
+}
+
+Class DCY_BlastawaveTrail : DCY_BFGSpheroidElectricBall
+{
+  Default
+  {
+	Scale 0.8;
+	-ROLLSPRITE;
+  }
+  
+  States
+  {
+  Spawn:
+	WV00 ABCDE 1
+	{
+		A_SetScale(Scale.X - 0.01);
+		A_FadeOut(0.2, 0);
+	}
+	Stop;
+  }
+}
+
+Class DCY_BlastaThunder : DCY_BFGThunder
+{
+  Default { Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]"; }
+  
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAA 1
+	{
+		tics = random(0, 1);
+		A_ChangeVelocity(frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5));
+		A_SpawnParticle(0xacfdfc, SPF_FULLBRIGHT, random(10, 20), random(12, 18), frandom(0, 360), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5));
+	}
+	Goto Death;
+  Death:
+	C3AL ABCDE 2 A_Stop();
+	Stop;
+  }
+}
+
+Class DCY_InfernisFlame : Actor
+{
+  Default
+  {
+  Scale 1.3;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.92,1.46,1.83]";
+  +NOINTERACTION
+  -SOLID
+  +NOCLIP
+  +BRIGHT
+  +DONTSPLASH
+  }
+  
+  States
+  {
+  Spawn:
+	FAR0 AB 3;
+	FAR0 CDE 2;
+	Stop;
+  }
+}
+
+Class DCY_InfernisFlame2 : DCY_InfernisFlame
+{
+  Default
+  {
+  Scale 1.25;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.46,0.92,1.30]";
+  }
+}
+
+Class DCY_InfernisFlame3 : DCY_InfernisFlame { Default { Alpha 0.5; } }
+
+Class DCY_InfernisFlame4 : DCY_InfernisFlame
+{
+  States
+  {
+  Spawn:
+	BPX0 ABCD 2;
+	BPX0 E 2 A_ChangeVelocity(0, 0, 1);
+	BPX0 FG 2;
+	Stop;
+  }
+}
+
+Class DCY_InfernisFlame5 : DCY_InfernisFlame2 { Default { Scale 2.25; } }
+
+Class DCY_InfernisFlame4Spawner : DCY_InfernisFlame4
+{
+  int reactiontime;
+  
+  Default
+  {
+  -NOINTERACTION
+  -SOLID
+  -RANDOMIZE
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 A 1
+	{
+		if (reactiontime >= 120)
+		{
+			Return ResolveState("Null");
+		}
+		
+		A_SpawnItemEx("DCY_InfernisFlame4", random(-22, 22), random(-11, 11), random(1, 4), 0, 0, random(2, 10), 0, SXF_NOCHECKPOSITION, 100);
+		A_SpawnItemEx("DCY_InfernisFlame", random(-22, 22), random(-11, 11), random(1, 11), 0, 0, random(5, 10), 0, SXF_NOCHECKPOSITION, 170);
+		A_Explode(1, 70, 0, 1);
+		
+		reactiontime += 1;
+		
+		Return ResolveState(null);
+	}
+	Loop;
+  }
+}
+
+Class DCY_LaserBombBase : DoomImpBall
+{
+  int explosion1;
+  int explosion2;
+  property Damage1 : explosion1;
+  property Damage2 : explosion2;
+  
+  Default
+  {
+  -NOGRAVITY
+  Gravity 0.25;
+  Speed 30;
+  FastSpeed 35;
+  SeeSound "RETFIRE";
+  DeathSound "RETEXPL0";
+  Scale 1.2;
+  DCY_LaserBombBase.Damage1 80;
+  DCY_LaserBombBase.Damage2 15;
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	XB0Z E 1 A_SpawnItemEx("DCY_LaserBombTrail", flags: SXF_TRANSFERTRANSLATION);
+	Loop;
+  Death:
+	XB0Z A 2 { A_NoGravity(); bNoGravity = true; A_Explode(explosion1, 128, XF_NOTMISSILE); }
+	XB0Z B 1;
+	XB0Z CDCDCDCDCDCDCDCD 1 A_Explode(explosion2, 70);
+	Stop;
+  }
+}
+
+Class DCY_LaserBombTrail : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 1.2;
+  +NOINTERACTION
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	XB0Z FGHI 3;
+	Stop;
+  }
+}
+
+Class DCY_GehennaBomb : DCY_LaserBombBase { Default { Damage 1; Speed 24; FastSpeed 29; Gravity 0.15; DCY_LaserBombBase.Damage1 40; DCY_LaserBombBase.Damage2 10; } }
+
+Class DCY_HellRazerPlasma : PlasmaBall
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,1.01]";
+  SeeSound "Weapons/ZombieLaser";
+  DeathSound "LASRX";
+  +BRIGHT
+  +ROLLSPRITE
+  Damage 5;
+  Alpha 1.0;
+  Scale 1.1;
+  Speed 25;
+  FastSpeed 32;
+  }
+  
+  States
+  {
+  Spawn:
+	BLPL A 1
+	{
+		A_SetRoll(Roll + 10);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_RazerTrail", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERROLL);
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticle(0xffb5b0, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_RazerTrail : DCY_ProjectileBaseTrail
+{
+  Default
+  {
+  Alpha 1.0;
+  Scale 1.0;
+  +ROLLSPRITE
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	BLPL AAABBBCCCDDD 1
+	{
+		A_FadeOut(0.1);
+		A_SetScale(Scale.X - 0.1);
+		
+		if (Scale.X < 0)
+			Destroy();
+	}
+	Wait;
+  }
+}
+
+Class DCY_RazerTrail2 : DCY_RazerTrail
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.16,0.30,0.30]";
+  }
+  
+  States
+  {
+  Spawn:
+	BLPL AABBCCDD 1
+	{
+		A_FadeOut(0.2);
+		A_SetScale(Scale.X - 0.2);
+		
+		if (Scale.X < 0)
+			Destroy();
+	}
+	Wait;
+  }
+}
+Class DCY_PhasicTrail : DCY_RazerTrail2 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.86,0.74,1.57]"; } }
+
+Class DCY_UmbraPlasma : DCY_HellRazerPlasma
+{
+  Default
+  {
+  +SEEKERMISSILE
+  Translation "0:255=%[0.00,0.00,0.00]:[0.86,0.74,1.57]";
+  Speed 15;
+  FastSpeed 23;
+  }
+  
+  States
+  {
+  Spawn:
+	BLPL A 1
+	{
+		A_SetRoll(Roll + 10);
+		
+		A_Tracer2(1);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_UmbraTrail", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERROLL);
+	}
+	Loop;
+  Death:
+	PLSE A 3
+	{
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticle(0xe0c2ff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	PLSE BCDE 2;
+	Stop;
+  }
+}
+
+Class DCY_UmbraTrail : DCY_RazerTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.55,0.49,0.92]"; } }
+
+Class DCY_Grenade : Rocket
+{
+  Default
+  {
+  BounceFactor 0.3;
+  WallBounceFactor 0.3;
+  Gravity 0.45;
+  SeeSound "";
+  BounceSound "dune/bounce";
+  BounceType "Doom";
+  Speed 25;
+  Damage 20;
+  -NOGRAVITY
+  +CANBOUNCEWATER;
+  }
+  
+  static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
+  
+  States
+  {
+  Spawn:
+	MNAD A 1 Bright
+	{
+		A_SpawnItemEx("DCY_RocketSmonk", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
+		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
+	}
+	Loop;
+  Death:
+	MNAD A 1 Bright;
+	NBKL D 2 Bright
+	{
+		A_Explode();
+		bNoGravity = true;
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_QuakeEx(2, 2, 2, 20, 0, 450, "", QF_SCALEDOWN|QF_3D);
+		A_Explode(128, 128, 1, 0, 25);
+	}
+	NBKL E 2 Bright
+	{
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-2.0, 2.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	NBKL FGHIJKLM 2 Bright;
+	Stop;
+  }
+}
+
+Class DCY_Napalm : DCY_Grenade
+{
+  static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d" };
+  Default { DeathSound "DCYExplode2"; }
+  
+  States
+  {
+  Spawn:
+	MNAD A 1 Bright
+	{
+		A_SpawnItemEx("DCY_RocketSmonk", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), flags: SXF_NOCHECKPOSITION);
+		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
+	}
+	Loop;
+  Death:
+	MNAD A 1 Bright;
+	NBKL D 2 Bright
+	{
+		A_Explode();
+		bNoGravity = true;
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_QuakeEx(2, 2, 2, 20, 0, 450, "", QF_SCALEDOWN|QF_3D);
+		A_Explode(128, 128, 1, 0, 25);
+		Spawn("DCY_NapalmBigFire", pos);
+		
+		for (int i = 5; i > 0; i--)
+		{
+			let ember = Spawn("DCY_NapalmEmber", (pos.x, pos.y, pos.z));
+			
+			if (ember)
+			{
+				ember.vel.x = frandom(-7, 7);
+				ember.vel.y = frandom(-7, 7);
+				ember.vel.z = frandom(1, 10);
+			}
+		}
+	}
+	NBKL E 2 Bright
+	{
+		for (int i = 4; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-2.0, 2.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	NBKL FGHIJKLM 2 Bright;
+	Stop;
+  }
+}
+
+Class DCY_WeakNapalm : DCY_Napalm
+{
+  Default { Speed 20; Damage 5; }
+}
+
+//Napalm
+Class DCY_NapalmEmber : Actor
+{
+  Default
+  {
+  Projectile;
+  DamageType "Fire";
+  +RIPPER;
+  +BLOODLESSIMPACT;
+  DamageFactor (1);
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.98,1.18,0.53]";
+  Speed 18;
+  Gravity 0.7;
+  Scale 1.0;
+  +NEVERFAST;
+  -NOGRAVITY;
+  +BRIGHT
+  }
+  
+  static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d" };
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1 Bright
+	{
+		if (waterlevel > 0)
+			Destroy();
+		
+		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, 35, random(9, 13), frandom(0, 360), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.325);
+	}
+	Loop;
+  Death:
+	TNT1 A 1
+	{
+		let fire = Spawn("DCY_NapalmFire", (pos.x, pos.y, pos.z));
+		
+		if (fire)
+			fire.scale *= 0.95;
+	}
+	Stop;
+  }
+}
+
+Class DCY_NapalmFire : Actor
+{
+  int ftime;
+  property FireDuration : ftime;
+  
+  Default
+  {
+  RenderStyle "Add";
+  DamageType "Fire";
+  +FORCERADIUSDMG
+  Radius 10;
+  Height 10;
+  Alpha 0.0;
+  +THRUACTORS
+  +DONTSPLASH
+  +BRIGHT
+  DCY_NapalmFire.FireDuration 85;
+  Translation "0:255=%[0.09,0.00,0.00]:[1.72,0.79,0.28]";
+  }
+  
+  override void Tick()
+  {
+	super.tick();
+	
+	if (!level.isfrozen())
+	{
+		if (zframe >= 13.5)
+			zframe = 0;
+		
+		zframe += 0.465;
+		frame = int(zframe);
+	}
+	
+	if (waterlevel > 0)
+		Destroy();
+  }
+  
+  int fireloop;
+  float zframe;
+  
+  static const string ParticleColors[] = { "b5441b", "4a1d15", "995522" };
+  
+  States
+  {
+  Spawn:
+	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(0.5, 0.8) * randompick(-1, 1), frandom(0.5, 0.8)); }
+	123E "##########" 1 A_FadeIn(0.1);
+	123E "#" 1
+	{
+		if (fireloop > ftime)
+			SetStateLabel("Gone");
+		
+		if ((level.time % 3) == 0)
+		{
+			fireloop++;
+			A_Explode(3, 50);
+		}
+		
+		if ((level.time % random(2, 5)) == 0)
+			A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(9, 12), frandom(0, 360), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(4.0, 13.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.2, fadestepf: 0, sizestep: -0.45);
+	}
+	Goto Spawn+11;
+  Gone:
+	123E "##########" 1 A_FadeOut(0.1);
+	Stop;
+  }
+}
+
+Class DCY_ApollyonFire : DCY_NapalmFire { Default { DCY_NapalmFire.FireDuration 45; } }
+
+Class DCY_NapalmBigFire : DCY_NapalmFire
+{
+  override void Tick()
+  {
+	super.tick();
+	
+	if (!level.isfrozen())
+	{
+		if (zframe >= 6.85)
+			zframe = 0;
+		
+		zframe -= 0.15;
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	E123 "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(1.2, 1) * randompick(-1, 1), frandom(1, 1.2)); }
+	E123 "##########" 1 { alpha += 0.1; }
+	E123 "#" 1
+	{
+		if (fireloop > 85)
+			SetStateLabel("Gone");
+		
+		if ((level.time % 3) == 0)
+		{
+			fireloop++;
+			A_Explode(6, 67);
+		}
+		
+		A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(8, 14), frandom(0, 360), frandom(-23.0, 23.0), frandom(-23.0, 23.0), frandom(12.0, 32.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.2, fadestepf: 0, sizestep: -0.45);
+	}
+	Goto Spawn+11;
+  Gone:
+	E123 "##########" 1 { alpha -= 0.1; }
+	Stop;
+  }
+}

@@ -1,0 +1,4 @@
+ACTOR DCY_BarrelTheFoolish : RandomSpawner Replaces ExplosiveBarrel
+{
+  DropItem "DCY_ABarrelofExplosives", 256, 256
+}

@@ -1,0 +1,202 @@
+Class DCY_Sullied : DCY_SkullParent
+{
+  Default
+  {
+  Alpha 1.0;
+  RenderStyle "Normal";
+  DamageType "Fire";
+  Health 128;
+  DamageFactor "Fire", 0.000;
+  Tag "Sullied";
+  SeeSound "Unchaste/Sight";
+  AttackSound "Unchaste/Sight";
+  ActiveSound "Unchaste/Active";
+  PainSound "Unchaste/Pain";
+  DeathSound "Unchaste/Death";
+  Translation "16:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  Obituary "%o got deep-fried by a flaming skeleton ghost.";
+  Speed 10;
+  FastSpeed 12;
+  Scale 0.65;
+  -ZDOOMTRANS
+  +NOGRAVITY
+  -DONTFALL
+  +FIRERESIST
+  -MISSILEMORE
+  +NOBLOOD
+  }
+  
+  void A_Sullied()
+  {
+	A_FaceTarget();
+	A_SpawnProjectile("DCY_SulliedFireball", 26, 0, frandom(-2.0, 2.0));
+  }
+	
+  States
+  {
+  Spawn:
+	FALN AABBCCDD 10 Bright DCY_Look();
+	Loop;
+  Look:
+	FALN AAABBBCCCDDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	FALN AAABBBCCCDDD 3 Bright
+	{
+		A_Chase();
+		Return A_Jump(20, "Dodge", "Speeed");
+	}
+	Loop;
+  Speeed:
+	FALN AABBCCDDAABBCCDDAABBCCDD 2 Bright
+	{
+		A_Chase("Melee", "Missile");
+		A_Chase("Melee", "Missile");
+		A_Chase("Melee", "Missile");
+	}
+	Goto See;
+  Melee:
+  Missile:
+	FALN E 1 Bright A_JumpIf(Distance3D(target) < 256, "FireThrower");
+	FALN E 7 Bright A_FaceTarget();
+	FALN F 7 Bright A_Sullied();
+	FALN E 7 Bright A_FaceTarget();
+	FALN F 7 Bright A_Sullied();
+	FALN E 7 Bright A_FaceTarget();
+	Goto See;
+  Firethrower:
+	FALN E 5 Bright A_FaceTarget();
+	FALN FEFEFEFEFEFEFEF 3 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_SulliedFirethrower", 26, 0, frandom(-1.0, 1.0));
+	}
+	FALN A 10 Bright A_FaceTarget();
+	Goto See;
+  Dodge:
+	FALN A 10 Bright A_Dodging(10);
+	FALN A 1 Bright A_Stop();
+	Goto See;
+  Pain:
+	FALN G 4 Bright;
+	FALN G 4 Bright A_Pain();
+	Goto See;
+  Death:
+	FALN H 3 Bright;
+	FALN H 3 Bright A_ScreamAndUnblock();
+	FALN IJK 5 Bright;
+	FALN LM 4;
+	FALN M -1;
+	Stop;
+  Raise:
+	FALN MLK 6;
+	FALN JIHG 6 Bright;
+	Goto See;
+  }
+}
+
+Class DCY_SulliedFire : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Alpha 1;
+  Scale 0.85;
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  +THRUACTORS
+  +ROLLSPRITE
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0
+	{
+		A_SetPitch(frandom(-0.65, 0.85));
+		A_SetScale(Pitch, Pitch);
+		A_SetRoll(frandom(0.00, 360.00));
+	}
+	MMIS BCDEF 1
+	{
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01);
+		A_FadeOut(0.1, 0);
+		A_ChangeVelocity(frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
+	}
+	Stop;
+  }
+}
+
+Class DCY_SulliedFirethrower : DCY_SulliedFire
+{
+  Default
+  {
+  Projectile;
+  Radius 10;
+  Height 10;
+  +RIPPER
+  +MTHRUSPECIES
+  +NOCLIP
+  DamageFunction (0);
+  DamageType "Fire";
+  Speed 10.5;
+  +NEVERFAST;
+  Translation "0:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SetPitch(frandom(-0.85, 1.25));
+		A_SetScale(Pitch, Pitch);
+		A_SetRoll(frandom(0.00, 360.00));
+		A_SetSpeed(frandom(8.5, 12.5));
+	}
+	TNT1 AAAAAAAAAAAAAAAAAA 1
+	{
+		A_SpawnItemEx("DCY_SulliedFire", frandom(0.4, -0.4), frandom(0.4, -0.4), frandom(0.4, -0.4), 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		bNoClip = false;
+		A_Explode((1), 20);
+		A_ChangeVelocity(frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
+	}
+	Stop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+Class DCY_SulliedFireball : DoomImpBall
+{
+  Default
+  {
+  Damage 4;
+  RenderStyle "Add";
+  DamageType "Fire";
+  +BRIGHT;
+  Speed 15;
+  FastSpeed 18;
+  Translation "0:255=%[0.50,0.25,0.00]:[2.00,2.00,1.28]";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_SulliedFire", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_SulliedFire", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, 0, 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_Weave(5, 0, 1, 0);
+	}
+	Loop;
+  Death:
+	TNT1 A 1 A_SpawnItemEx("DCY_Explosion_1_Small");
+	Stop;
+  }
+}

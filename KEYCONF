@@ -1,0 +1,11 @@
+CLEARPLAYERCLASSES
+ADDPLAYERCLASS "CyberaugumentedProtagonist"
+WeaponSection "Cyberaugumented"
+
+addkeysection "Cyberaugumented" DashKeysection
+addmenukey "Dash" DCY_Dash
+alias DCY_Dash "NetEvent DCY_Dash"
+defaultbind Alt DCY_Dash
+
+//other
+alias divine "give all; take keys; buddha"

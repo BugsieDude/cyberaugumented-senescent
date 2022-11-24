@@ -1,0 +1,95 @@
+Class DCY_AlacritousGuy : DCY_Plutonia
+{
+  Default
+  {
+  Health 90;
+  Tag "Alacritous Hellgunner";
+  Obituary "%o couldn't handle it up with the Alacritous Hellgunner.";
+  Translation "16:47=%[0.00,0.00,0.00]:[1.01,0.50,0.00]";
+  Speed 5;
+  FastSpeed 8;
+  Mass 380;
+  PainChance 90;
+  SeeSound "AlacritousGuy/Sight";
+  ActiveSound "AlacritousGuy/Active";
+  PainSound "AlacritousGuy/Pain";
+  DeathSound "AlacritousGuy/Death";
+  DropItem "Chaingun";
+  DropItem "DCY_Photocoagulator", 45;
+  DropItem "DCY_BlueArmorThing", 100;
+  }
+  
+  States
+  {
+  Spawn:
+    UCHW A 10 DCY_Look();
+	Loop;
+  Look:
+	UCHW AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    UCHW AAABBBCCCDDD 3 A_Chase();
+	Loop;
+  Missile:
+    UCHF A 0;
+	UCHF A 40 A_FaceTarget();
+	Goto MissileLoop1;
+  MissileLoop1:
+    UCHF B 2
+	{
+		A_StartSound("SHMPBOOM", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_AlacritousGuyBullet", 33, 5, random(-1, 1), CMF_OFFSETPITCH|CMF_TRACKOWNER, random(1, 1));
+		A_FaceTarget();
+	}
+	UCHF A 2 A_FaceTarget();
+	UCHF B 0 A_MonsterRefire(40, "Cooldown");
+	Goto MissileLoop1;
+  Cooldown:
+	UCHW A 15;
+	Goto See;
+  Pain:
+    UCHH A 3;
+	UCHH A 3 A_Pain();
+	Goto See;
+  Death:
+	TNT1 A 0 A_Jump(130, "OtherDeath");
+	TNT1 A 0 A_Scream();
+	UCD1 A 6 A_NoBlocking();
+	UCD1 BCDEF 6;
+	UCD1 F -1;
+	Stop;
+  OtherDeath:
+	TNT1 A 0 A_Scream();
+	UCD3 A 6 A_NoBlocking();
+	UCD3 BCDEFG 6;
+	UCD3 G -1;
+	Stop;
+  XDeath:
+	TNT1 A 0 A_XScream();
+	UCD2 A 6 A_NoBlocking();
+	UCD2 BCDEF 6;
+	UCD2 F -1;
+	Stop;
+  Death.Massacre:
+    TNT1 A 0 A_XScream();
+	UCD2 A 6 A_NoBlocking();
+	UCD2 BCDEF 6;
+	UCD2 F -1;
+	Stop;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_Scream();
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright;
+	FUUU V -1;
+	Stop;
+  Raise:
+	UCD1 F 5;
+	UCD1 FEDCBA 6;
+	Goto See;
+  }
+}

@@ -1,0 +1,69 @@
+Class DCY_Avernus : DCY_SkullParent
+{
+  Default
+  {
+  Health 256;
+  Tag "\c[x1]Avernus\cL";
+  PainSound "ROBOHURT";
+  Speed 12;
+  FastSpeed 14;
+  +BRIGHT
+  +MISSILEMORE
+  Scale 1.5;
+  }
+  
+  float zvolume;
+  
+  States
+  {
+  Spawn:
+	HFD_ ABCB 4 DCY_Look();
+	Loop;
+  Look:
+	HFD_ AABBCCBB 2 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	HFD_ AABBCCBB 2 A_Chase();
+	Loop;
+  Missile:
+	Stop;
+  Pain:
+	HFD_ "#" 4;
+	HFD_ "#" 3 A_Pain();
+	Goto See;
+  Death:
+	HFD_ A 3;
+	HFD_ B 2
+	{
+		zvolume = 1;
+		bNoGravity = false;
+		A_Scream();
+		A_Hop(10);
+		A_Dodging(random(3, 6));
+		A_SetAngle(frandom(0, 360));
+		A_StartSound("B0SSDIEL", CHAN_5, CHANF_LOOPING, zvolume);
+	}
+	HFD_ CBABCB 2
+	{
+		if (pos.z == floorz)
+		{			
+			zvolume = 0;
+			A_StopSound(CHAN_5);
+			A_StartSound("B0SSDIE", CHAN_BODY);
+			
+			for (int i = 3; i > 0; i--)
+				A_SpawnItemEx("DCY_Explosion_1_Small", frandom(-20, 20), frandom(-20, 20), frandom(0, 30), flags: SXF_NOCHECKPOSITION);
+			
+			Destroy();
+		}
+		
+		A_SpawnItemEx("DCY_Explosion_1_Smaller", frandom(-20, 20), frandom(-20, 20), frandom(0, 30), flags: SXF_NOCHECKPOSITION);
+	}
+	Goto Death+4;
+  Raise:
+	Stop;
+  }
+}

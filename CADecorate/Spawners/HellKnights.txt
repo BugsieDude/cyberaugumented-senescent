@@ -1,0 +1,11 @@
+ACTOR DCY_BruhMomentoNumeroTres : RandomSpawner Replaces HellKnight
+{
+  DropItem "DCY_KnightHell", 256, 800
+  DropItem "DCY_Malloc", 256, 200
+  DropItem "DCY_Gatecrasher", 256, 108
+  DropItem "DCY_FluorescentChevalier", 256, 108
+  DropItem "DCY_CalamityTsar", 256, 90
+  DropItem "DCY_Wastrel", 256, 40
+  DropItem "DCY_Abater", 256, 20
+  DropItem "DCY_Larrikin", 256, 20
+}

@@ -1,0 +1,62 @@
+Class DCY_SOULKING : DCYMonster
+{
+  Default
+  {
+	Health 400;
+	Radius 31;
+	Height 56;
+	Mass 400;
+	Speed 8;
+	PainChance 128;
+	-FLOORCLIP
+	+FLOAT 
+	+NOGRAVITY
+	+DONTFALL;
+	SeeSound "pain/sight";
+	PainSound "pain/pain";
+	DeathSound "pain/death";
+	ActiveSound "pain/active";
+	Tag "$FN_PAIN";
+	Species "Pain Elementals";
+  }
+  States
+  {
+  Spawn:
+	PAIN A 10 DCY_Look();
+	Loop;
+  Look:
+	PAIN AABBCC 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	PAIN AABBCC 3 A_Chase();
+	Loop;
+  Missile:
+	PAIN DE 5 A_FaceTarget();
+	PAIN F 4 BRIGHT A_FaceTarget();
+	PAIN F 1 BRIGHT A_PainAttack("DCY_FlyingSkullWithFIRE");
+	Goto See;
+  Pain:
+	PAIN G 6;
+	PAIN G 6 A_Pain();
+	Goto See;
+  Death:
+	PAIN H 6 BRIGHT;
+	PAIN I 6 BRIGHT A_Scream();
+	PAIN JJKK 3 BRIGHT A_SpawnItemEx("DCY_Explosion_1", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
+	PAIN L 6 BRIGHT A_PainDie("DCY_FlyingSkullWithFIRE");
+	PAIN M 6 BRIGHT;
+	Stop;
+  Death.Massacre:
+	PAIN H 6 BRIGHT;
+	PAIN I 6 BRIGHT A_Scream();
+	PAIN JKLM 6 BRIGHT;
+	Stop;
+  Raise:
+	PAIN MLKJIH 8;
+	Goto See;
+  }
+}

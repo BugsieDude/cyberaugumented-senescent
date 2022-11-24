@@ -1,0 +1,230 @@
+Class DCY_NavyTerminator : DCY_Cybie
+{
+  Default
+  {
+  Scale 1.25;
+  Health 5600;
+  Tag "\c[v6]Terminator ''Codeword - Navy''\c-";
+  Obituary "%o is now in sapphire ashes by the Terminator.";
+  SeeSound "TerminatorBase/Sight";
+  ActiveSound "TerminatorBase/Active";
+  PainSound "TerminatorBase/Pain";
+  DeathSound "TerminatorBase/Explode";
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  DamageFactor "SiriusPower", 0.5;
+  DamageType "SiriusPower";
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  DropItem "DCY_UltramodernEnergy", 128;
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  +NEVERFAST
+  +NOBLOODDECALS
+  Speed 12;
+  }
+  
+  int nmissile;
+  int voiceline;
+  
+  States
+  {
+  Spawn:
+	NVRM A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 1;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	NVRM AAAABBBB 2 A_Chase();
+	NVRM A 0 A_StartSound("TerminatorBase/Footstep", CHAN_BODY);
+	NVRM CCCCDDDD 2 A_Chase();
+	NVRM A 0 A_StartSound("TerminatorBase/Footstep", CHAN_BODY);
+	Loop;
+  Missile:
+	NVRM G 0 A_Jump(128, "Rawkets", "Rawkets2");
+	NVRM G 0 A_Jump(55, "BallofStar");
+	NVRM G 30
+	{
+		if (voiceline == 0)
+			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
+		if (voiceline == 3)
+			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
+			
+		voiceline = random(0, 7);
+		A_FaceTarget();
+	}
+	NVRM HI 4
+	{
+		A_FaceTarget();
+		A_StartSound("Android/Laser", CHAN_WEAPON, 0, 1.0, 0.75);
+		A_SpawnProjectile("DCY_MechaZombiePlasma", 47, -20, frandom(-2.5, 2.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.25, 1.25));
+		Return A_MonsterRefire(10, "See");
+	}
+	Goto Missile+3;
+  Rawkets:
+	NVRM E 30 A_FaceTarget();
+	NVRM F 5
+	{
+		for (int i = 10; i > -11; i -= 5)
+			A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, i);
+	}
+	NVRM EEE 5 A_FaceTarget();
+	NVRM F 5
+	{
+		for (int i = 10; i > -11; i -= 5)
+			A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, i);
+	}
+	NVRM EEEAAAA 5;
+	Goto See;
+  Rawkets2:
+	NVRM E 30
+	{
+		nmissile = 0;
+		A_FaceTarget();
+		
+		if (voiceline == 0)
+			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
+		if (voiceline == 3)
+			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
+			
+		voiceline = random(0, 18);
+	}
+	NVRM F 2
+	{
+		if (nmissile > 9)
+			Return ResolveState("Cooldown");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, frandom(-1.2, 1.2), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.2, 1.2));
+		nmissile++;
+		Return ResolveState(null);
+	}
+	NVRM E 2 A_FaceTarget();
+	Goto Rawkets2+1;
+  Cooldown:
+	NVRM EEEAAAA 5;
+	Goto See;
+  BallofStar:
+	NVRM J 30
+	{
+		if (voiceline == 0)
+			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
+		if (voiceline == 3)
+			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
+			
+		voiceline = random(0, 10);
+		
+		A_FaceTarget();
+	}
+	NVRM K 3
+	{
+		A_StartSound("StarProjectile/See", attenuation: 0.45);
+		A_SpawnProjectile("DCY_NavyBallofStar", 47, -20);
+		A_FaceTarget();
+	}
+	NVRM JJJJJJJJJJJJ 3;
+	Goto See;
+  Pain:
+	NVRM L 4;
+	NVRM L 3 A_Pain();
+	Goto See;
+  Death:
+	NVRM M 1;
+	NVRM M 6 A_Scream();
+	NVRM MMMMMMMMM 3 A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	NVRM M 3
+	{
+		A_Fall();
+		
+		for (int i = 4; i > 0; i--)
+			A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+		
+		A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	NVRM "[" 45;
+	NVRM "[" -1 A_BossDeath2();
+	Stop;
+  Death.Massacre:
+	NVRM M 1;
+	NVRM M 6 A_Scream();
+	NVRM MMMMMMMMM 3;
+	NVRM M 3 A_Fall();
+	NVRM "[" 45;
+	NVRM "[" -1 A_BossDeath2();
+	Stop;
+  }
+}
+
+Class DCY_NavyBallofStar : CacodemonBall
+{
+  Default
+  {
+  DamageFunction (1);
+  Alpha 1.0;
+  Scale 1.5;
+  Radius 33;
+  Height 33;
+  SeeSound "StarProjectile/See";
+  DeathSound "StarProjectile/Explode";
+  Translation "16:22=[255,255,255]:[128,255,255]", "23:31=[102,255,255]:[0,128,255]", "32:38=[0,121,242]:[0,64,128]", "39:47=[0,55,111]:[0,0,64]", "168:175=[255,255,255]:[128,255,255]", "176:182=[102,255,255]:[0,128,255]", "183:188=[0,121,242]:[0,64,128]", "189:191=[0,55,111]:[0,0,64]";
+  Speed 10;
+  FastSpeed 13;
+  +SEEKERMISSILE
+  +RIPPER
+  +BLOODLESSIMPACT
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	TSAR AABBCCDD 1
+	{
+		A_SeekerMissile(random(5, 10), random(10, 16));
+		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20.5, 20.5), frandom(-20.5, 20.5), frandom(-20.5, 20.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_NavyBallTrail", flags: SXF_NOCHECKPOSITION);
+	}
+	Loop;
+  Death:
+	TSAR E 0 A_Explode(450, 250, XF_NOTMISSILE, True);
+	TSAR EEE 0 A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-35, 35), random(-35, 35), random(-35, 35), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	TSAR EFGHIJKLMNO 2;
+	Stop;
+  }
+}
+
+Class DCY_NavyBallTrail : DCY_Effect
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  RenderStyle "Add";
+  Scale 1.5;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.48,0.48,1.58]";
+  Alpha 0.25;
+  +NOCLIP
+  -SOLID
+  +BRIGHT
+  +NOGRAVITY
+  +ROLLSPRITE
+  +NOINTERACTION
+  }
+  States
+  {
+  Spawn:
+    TSAR "#################" 1
+	{
+		A_FadeOut(0.005, 0);
+		A_SetRoll(Roll+10, SPF_INTERPOLATE);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01);
+	}
+	Stop;
+  }
+}

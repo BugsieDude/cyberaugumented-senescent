@@ -1,0 +1,18 @@
+Class DCY_Doppelganger : DCY_Plutonia
+{
+  Default
+  {
+  Health 2000;
+  RenderStyle "Add";
+  Speed 20;
+  +NEVERFAST;
+  Tag "Another Self";
+  +BOSS
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +NOICEDEATH
+  BloodColor "FF FF FF";
+  BloodType "DCY_SpiritBlood";
+  }
+}

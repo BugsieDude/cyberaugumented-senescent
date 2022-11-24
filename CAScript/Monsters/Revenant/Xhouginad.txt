@@ -1,0 +1,182 @@
+Class DCY_Xhouginad : DCY_Rev
+{
+  Default
+  {
+  Translation "168:173=[255,255,255]:[128,255,255]", "174:180=[121,255,255]:[0,128,255]", "181:191=[0,115,230]:[0,0,64]", "224:231=[255,255,255]:[128,255,255]", "208:216=[255,255,255]:[128,255,255]", "217:223=[119,255,255]:[0,128,192]", "232:235=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "236:239=%[0.00,0.00,0.00]:[0.85,0.91,1.16]", "48:79=%[0.00,0.00,0.00]:[0.85,0.91,1.16]", "128:159=%[0.00,0.00,0.00]:[0.85,0.91,1.16]", "13:15=%[0.00,0.00,0.00]:[0.85,0.91,1.16]", "160:167=[128,255,255]:[0,0,128]", "16:23=[255,255,255]:[128,255,255]", "24:31=[111,255,255]:[0,128,255]", "32:47=[0,124,249]:[0,0,64]", "192:195=[255,255,255]:[128,255,255]", "196:201=[106,255,255]:[0,128,255]", "202:207=[0,116,232]:[0,0,64]", "112:117=[255,255,255]:[128,255,255]", "118:123=[106,255,255]:[0,128,255]", "124:127=[0,116,232]:[0,0,64]", "9:12=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "248:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.88,0.95,1.13]", "0:15=%[0.00,0.00,0.00]:[0.88,0.95,1.13]";
+  Health 777;
+  DamageType "Fluorescent";
+  DamageFactor "Fluorescent", 0.000;
+  Speed 5;
+  FastSpeed 7;
+  Obituary "That one fluorescent demon, Xhouginad swiped %o out of this battlefield.";
+  +FLOAT
+  +NOGRAVITY
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +NOTARGET
+  +BRIGHT
+  +DONTHARMSPECIES
+  +NOINFIGHTING
+  +DONTHARMCLASS
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  Tag "\c[Sapphire]Revenant Mechaprototype - Xhouginad\c-";
+  SeeSound "DarkDroid/Sight";
+  ActiveSound "DarkDroid/Active";
+  PainSound "";
+  DeathSound "DarkDroid/Death";
+  }
+  
+  States
+  {
+  Spawn:
+	PSEV AABB 10 DCY_Look();
+	Loop;
+  Look:
+	#### AAAAABBBBB 2 DCY_LookingForPlayer();
+	#### # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	#### # 0 DCY_AlertSound();
+	Goto See;
+  See:
+	PSEV AAAAABBBBB 2
+	{
+		A_Chase();
+		Return A_Jump(10, "Avoid");
+	}
+	Loop;
+  Avoid:
+    PSEV A 0
+	{
+		A_Dodging(random(12, 16));
+		
+		if (random(0, 5) == 0)
+			A_Hop(random(-5, 5));
+	}
+	Goto AvoidStart;
+  AvoidStart:
+	PSEV AB 5 A_Chase(null, "Missile", CHF_DONTMOVE);
+	Goto See;
+  Melee:
+  Missile:
+	PSEV C 0 A_Jump(80, "BigAssFluorescentBall");
+	PSEV C 10 A_FaceTarget;
+	PSEV CCCCCCCCC 7
+	{
+		A_SetTics(random(4, 7));
+		
+		for (int i = -15; i < 16; i += 30)
+			A_SpawnProjectile("DCY_XEclipse", 47, i, 0);
+		
+		A_StartSound("PsiPistol/SmallLaser", CHAN_WEAPON, 0, 1.0, ATTN_NORM, 1.0);
+		A_FaceTarget();
+	}
+	PSEV D 30 A_Stop();
+	Goto See;
+  BigAssFluorescentBall:
+	PSEV AC 10 A_FaceTarget();
+	PSEV C 10
+	{
+		A_SpawnProjectile("DCY_BigAssFluorescentOrb");
+		A_StartSound("PsiPistol/LargeLaser", CHAN_WEAPON, 0, 1.0, 0.75);
+		A_QuakeEx(1, 1, 1, 20, 300, 0, "none", QF_SCALEDOWN);
+	}
+	PSEV D 40;
+	Goto See;
+  Pain:
+	PSEV E 5;
+	PSEV E 5 A_Pain();
+	Goto See;
+  Death:
+	PSEV F 1;
+	PSEV F 1 A_Stop();
+	PSEV F 1
+	{
+		A_ChangeVelocity(0, 0, 3);
+		bNoGravity = true;
+		A_Scream();
+	}
+	PSEV FFFFFFFFFFGGGGGGGGGGGGGG 1;
+	PSEV G 5
+	{
+		A_Stop();
+		A_StopSound(CHAN_VOICE);
+		A_StartSound("UCKABEWM", CHAN_WEAPON, 0, 1.0, 0.45);
+		A_StartSound("UCKABEWM", CHAN_6, 0, 1.0, 0.45);
+		
+		if (damagetype != "Massacre")
+		{
+			for (int i = 4; i > 0; i--)
+				A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(20, 50), 0, 0, 0, random(0, 359), SXF_NOCHECKPOSITION);
+		}
+	}
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_BigAssFluorescentOrb : DCY_FluorescentOrb
+{
+  Default
+  {
+  Speed 20;
+  FastSpeed 25;
+  Damage (1);
+  +RIPPER;
+  SeeSound "PsiPistol/LargeLaser";
+  BounceSound "PsiPistol/LargeLaser";
+  DeathSound "BigLightningExplode";
+  Scale 1.55555555555;
+  BounceFactor 16.0;
+  BounceCount 2;
+  Translation "0:255=%[0.00,0.00,0.50]:[1.31,2.00,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	EB10 ABC 1 A_SpawnItemEx("DCY_FluorescentAuraBig");
+	Loop;
+  Death:
+	2APL A 1;
+	2APL A 1
+	{
+		for (int i = 5; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_AndroidExplosion", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_FluorescentOrb", 0, 0, 0, frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+		}
+		
+		A_Explode(75, 100, XF_NOTMISSILE);
+	}
+	Stop;
+  }
+}
+
+Class DCY_FluorescentAuraBig : DCY_FluorescentOrbT { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.28,0.63,1.85]"; Scale 2.5; } }
+
+Class DCY_XEclipse : PlasmaBall
+{
+  Default
+  {
+  Damage 4;
+  Speed 23;
+  FastSpeed 27;
+  Alpha 1.0;
+  +BRIGHT;
+  DamageType "Fluorescent";
+  SeeSound "PsiPistol/SmallLaser";
+  Translation "0:255=%[0.00,0.00,0.50]:[1.31,2.00,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	P38J AABBCCDD 1 A_Weave(5, 5, 0.45, 0.45);
+	Loop;
+  Death:
+	DK9T DEFGHIJKLM 2;
+	Stop;
+  }
+}

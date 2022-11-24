@@ -1,0 +1,281 @@
+Class DCY_BionicZombie : DCY_MechaZombie
+{
+  Default
+  {
+  Tag "\c[Red]Bionic\c- Zombie";
+  Health 100;
+  Speed 8;
+  FastSpeed 9;
+  SeeSound "UpgradedMechaZombie/Sight";
+  ActiveSound "UpgradedMechaZombie/Sight";
+  PainSound "UpgradedMechaZombie/Pain";
+  DeathSound "UpgradedMechaZombie/Death";
+  Species "BIONIC";
+  DropItem "PlasmaRifle", 80;
+  DropItem "Cell", 180;
+  DropItem "Clip";
+  DropItem "BlurSphere", 20;
+  BloodType "AndroidNeonFluid";
+  BloodColor "2ba0ff";
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"That must've hurted more.",
+		"%o has gotten %p stomach removed all by those bionic lasers."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  int shield;
+  States
+  {
+  Spawn:
+	UCYQ A 10 DCY_Look();
+	Loop;
+  Look:
+	UCYQ AA 5
+	{
+		DCY_LookingForPlayer();
+		Return A_Jump(20, "Stand");
+	}
+	UCYQ A 0 A_StartSound("Monsters/NBWalk");
+	UCYQ BBCC 5
+	{
+		DCY_LookingForPlayer();
+		Return A_Jump(20, "Stand");
+	}
+	UCYQ A 0 A_StartSound("Monsters/NBWalk");
+	UCYQ DD 5
+	{
+		DCY_LookingForPlayer();
+		Return A_Jump(20, "Stand");
+	}
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Stand:
+	UCYQ AAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	Goto Look;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	UCYQ A 0 A_JumpIfInventory("DCY_BionicShieldInventory", 10, "EnableShield");
+	UCYQ A 0 A_JumpIf(shield <= 0, "EnableShield");
+	UCYQ AA 4 A_Chase();
+	UCYQ A 0 A_StartSound("Monsters/NBWalk");
+	UCYQ BBCC 4 A_Chase();
+	UCYQ A 0 A_StartSound("Monsters/NBWalk");
+	UCYQ DD 4 A_Chase();
+	Loop;
+  EnableShield:
+	UCYQ E 10 A_StartSound("UpgradedMechaZombie/Attack", CHAN_VOICE);
+	UCYQ E 5
+	{
+		shield = 1;
+		A_StartSound("RTROBOM1", CHAN_BODY, CHANF_DEFAULT, 1.0, 0.8);
+		A_SpawnItemEx("DCY_BionicShield", flags: SXF_SETMASTER);
+		A_TakeInventory("DCY_BionicShieldInventory", 10);
+	}
+	Goto See;
+  Missile:
+	UCYQ E 20
+	{
+		A_FaceTarget();
+		A_StartSound("UpgradedMechaZombie/Attack", CHAN_VOICE);
+	}
+    UCYQ E 6 A_FaceTarget();
+	UCYQ F 6
+	{
+		A_StartSound("Android/LaserX", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_AbyssalAndroidPlasma2", 33, 1, random(-1, 1));
+		A_MonsterRefire(128, "See");
+	}
+	TNT1 A 0 A_Jump(50, "See");
+	Goto Missile+1;
+  Pain:
+    UCYQ G 3;
+	UCYQ G 3 A_Pain();
+	Goto See;
+  Death:
+	UCYQ O 1;
+    UCYQ O 3
+	{
+		shield = 0;
+		A_KillChildren("DED");
+		A_Scream();
+		A_NoBlocking();
+	}
+    UCYQ HIJKLM 6;
+	UCYQ N -1;
+	Stop;
+  XDeath:
+	UCYQ O 1;
+    UCYQ O 3
+	{
+		shield = 0;
+		A_KillChildren("DED");
+	}
+	UCYQ P 3 A_StartSound("Android/Gib", CHAN_VOICE);
+	UCYQ P 1 A_NoBlocking();
+	UCYQ QRSTUV 6;
+	UCYQ W -1;
+	Stop;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("UpgradedMechaZombie/BurnDeath", CHAN_VOICE);
+	TNT1 A 0
+	{
+		A_NoBlocking();
+		A_KillChildren("DED");
+		shield = 0;
+	}
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright;
+	FUUU V -1;
+	Stop;
+  Ice:
+	UCYQ "#" 5
+	{
+		A_KillChildren("DED");
+		shield = 0;
+		A_GenericFreezeDeath();
+	}
+	UCYQ "#" 1 A_FreezeDeathChunks();
+	Wait;
+  Raise:
+    UCYQ MLKJIH 5;
+	Goto See;
+  }
+}
+
+Class DCY_BionicShield : LostSoul
+{
+  Default
+  {
+  DamageFactor "Plasma", 5;
+  DamageFactor "Cosmical", 4.5;
+  DamageFactor "Lunacy", 4.5;
+  DamageFactor "BFG", 4.5;
+  DamageFactor "Sirius", 5.6;
+  DamageFactor "Neonic", 7.45;
+  DamageFactor "Neon", 7.45;
+  DamageFactor "Explosive", 0.4;
+  DamageFactor "Explosion", 0.4;
+  DamageFactor 1.0;
+  DamageFactor "CinerealOrdnanceDMG", 1.5;
+  DamageFactor "DED", 999.999;
+  Species "BIONIC";
+  SeeSound "";
+  AttackSound "";
+  ActiveSound "";
+  HowlSound "";
+  PainSound "MajorNzi/Teleport";
+  DeathSound "RTROBOM1";
+  Tag "Bionic Aegis";
+  Health 200;
+  Scale 0.95;
+  Painchance 255;
+  Radius 18;
+  Height 55;
+  Damage 0;
+  Alpha 1.0;
+  RenderStyle "Add";
+  Mass 300;
+  Monster;
+  -COUNTKILL
+  +NOGRAVITY
+  +DROPOFF
+  +PAINLESS
+  -SOLID
+  +THRUSPECIES
+  +NOICEDEATH
+  +NOBLOODDECALS
+  +DONTHARMCLASS
+  +NEVERRESPAWN
+  +NOBLOOD
+  +NOCLIP
+  +BRIGHT
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.65,0.62]";
+  }
+  
+  override bool CanCollideWith(Actor other, bool passive)
+  {
+	if(!other || !master || !other.target || other == master)
+		return false;
+	if(other.bNOBLOCKMAP == true && other.target.GetSpecies() == master.GetSpecies())
+		return false;
+    return true;
+  }
+	
+  void A_BionicShieldDeath(string sound, double pitch)
+  {
+	A_StartSound(sound, CHAN_VOICE, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
+	A_StartSound(sound, CHAN_5, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
+	A_StartSound(sound, CHAN_6, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
+  }
+  
+  static const string ssound[] = {"ShieldBroke1", "ShieldBroke2", "ShieldBroke3", "ShieldBroke4"};
+  
+  override void Tick()
+  {
+	Super.Tick();
+	A_Warp(AAPTR_MASTER, 10, 0, 2, 0, WARPF_INTERPOLATE);
+	
+	if (Health > 0)
+		A_SetRenderStyle(frandom(0.7, 0.95), STYLE_ADD);
+  }
+  
+  States
+  {
+  Spawn:
+  Idle:
+  Missile:
+  Melee:
+  See:
+	Q05S A 1 Bright;
+	Loop;
+  Pain:
+	Q05S A 1 Bright
+	{
+		A_StartSound("MajorNzi/Teleport", CHAN_WEAPON);
+		A_StartSound("MajorNzi/Teleport", CHAN_BODY);
+		A_Pain();
+		A_SetRenderStyle(frandom(0.4, 1.0), STYLE_ADD);
+	}
+	Q05S AAAAAAA 1 A_SetRenderStyle(frandom(0.4, 1.0), STYLE_ADD);
+	Goto See;
+  Death:
+  Death.DED:
+	Q05S A 1 Bright;
+	Q05S A 1 Bright A_Scream();
+	Q05S AAAAAAAAAA 1 Bright A_FadeOut(0.1, 0);
+	Q05S AAAAAAAAAA 20 Bright A_GiveInventory("DCY_BionicShieldInventory", 1, AAPTR_MASTER);
+	Stop;
+  Death.Plasma:
+  Death.Cosmical:
+  Death.Lunacy:
+  Death.BFG:
+  Death.BFG10k:
+  Death.Sirius:
+  Death.Neonic:
+  Death.Neon:
+  Death.Crucible:
+  Death.CinerealOrdnanceDMG:
+	Q05S A 1 Bright A_BionicShieldDeath(ssound[random(0, 3)], frandom(0.96125, 1.095));
+	TNT1 A 1
+	{
+		A_QuakeEx(3, 3, 3, 20, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1100);
+		A_SetDamageType("Player");
+		A_SpawnItemEx("DCY_BionicRing", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		A_Explode(300, 130, XF_NOTMISSILE);
+	}
+	Q05S AAAAAAAA 0 Bright A_SpawnItemEx("DCY_AndroidExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Stop;
+  }
+}
+
+Class DCY_BionicShieldInventory : Inventory { Default { Inventory.Amount 1; Inventory.MaxAmount 10; } }

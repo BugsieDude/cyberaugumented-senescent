@@ -1,0 +1,260 @@
+Class DCY_ExoImp : DCY_Impe
+{
+  Default
+  {
+  PainChance 20;
+  Health 1100;
+  SeeSound "ExoImp/Sight";
+  ActiveSound "ExoImp/Active";
+  PainSound "ExoImp/Pain";
+  DeathSound "ExoImp/Death";
+  BloodColor "Purple";
+  Translation "160:231=%[0.00,0.00,0.00]:[1.39,0.77,2.00]", "16:47=%[0.00,0.00,0.00]:[1.50,0.98,2.00]", "48:111=%[0.00,0.00,0.00]:[1.57,1.57,1.57]", "128:159=%[0.00,0.00,0.00]:[1.57,1.57,1.57]", "112:127=%[0.00,0.00,0.00]:[1.52,1.04,2.00]", "5:15=%[0.00,0.00,0.00]:[1.57,1.57,1.57]", "236:239=%[0.00,0.00,0.00]:[1.57,1.57,1.57]";
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +BOSS
+  +NEVERFAST
+  +NOGRAVITY
+  +FLOAT
+  DamageFactor 0.85;
+  FloatSpeed 14;
+  Speed 7;
+  DamageType "Exo";
+  Tag "\c[z7]Fallen Angel \c[m8]Dastard \c[q0]Exo\c-";
+  Obituary "%o got sodomized by an fallen angel.";
+  HitObituary "%o no longer has a functioning heart.";
+  TeleFogSourceType "DCY_BossTeleport";
+  TeleFogDestType "DCY_BossTeleport";
+  }
+  
+  int emissile;
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got sodomized by an fallen angel.",
+		"Rest in peace, %o"
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	FAEM A 10 A_Look();
+	Loop;
+  See:
+	FAEM AA 3 A_Chase();
+	FAEM B 3
+	{
+		A_Chase();
+		A_StartSound("IMPFLY2", CHAN_BODY, CHANF_OVERLAP);
+		Return A_Jump(80, "Dashe");
+	}
+	FAEM BCCDD 3 A_Chase();
+	Loop;
+  Dashe:
+	FAEM A 10;
+	FAEM A 1
+	{
+		A_Dodging(frandom(25, 32));
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	FAEM AAAAAAAAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	FAEM A 1
+	{
+		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+	}
+	FAEM AAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	FAEM A 1
+	{
+		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+	}
+	FAEM AAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	FAEM A 5
+	{
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+		A_Stop();
+	}
+	Goto See;
+  Melee:
+  Missile:
+	FAEM E 1 A_JumpIf(target && Distance3D(target) < 350, "Charge");
+	FAEM EF 10 A_FaceTarget();
+	FAEM O 6
+	{
+		A_SpawnProjectile("DCY_ExoBall", 35, 0, frandom(-10.0, 10.0));
+		A_SpawnProjectile("DCY_ExoBall", 35, 0, frandom(-10.0, 10.0));
+		A_SpawnProjectile("DCY_ExoBall", 35, 0, frandom(-10.0, 10.0));
+		A_SpawnProjectile("DCY_ExoBall", 35, 0, 0);
+	}
+	FAEM F 6 A_Jump(100, "BishopBalls");
+	Goto See;
+  BishopBalls:
+    FAEM F 8
+	{
+		emissile = 0;
+		A_FaceTarget();
+	}
+	FAEM E 8 A_FaceTarget();
+	FAEM E 6
+	{
+		if (emissile >= 14)
+			Return ResolveState("See");
+		
+		A_SpawnProjectile("DCY_ExoWeaver2", 32, 9);
+		A_SpawnProjectile("DCY_ExoWeaver", 32, 9);
+		A_StartSound("STRKBALL", CHAN_WEAPON);
+		A_FaceTarget();
+		emissile++;
+		Return ResolveState(null);
+	}
+	Goto BishopBalls+2;
+  Charge:
+	FAEM EF 10 A_FaceTarget();
+	FAEM O 1
+	{
+		A_Recoil(frandom(-15, -25));
+		A_FaceTarget();
+		A_ChangeVelocity(0, 0, -20);
+		A_StartSound("EXOLUNGE", CHAN_BODY, attenuation: 0.45);
+	}
+	FAEM OOOOOOOOOOOOOOOOOOOOO 1
+	{
+		If(target && Distance3D(target) < 70)
+			A_CustomMeleeAttack(random(2, 13), "ExoImp/ChargeHit", "", "Exo", True);
+		
+		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_ChangeVelocity(0, 0, 2);
+	}
+	FAEM O 10
+	{
+		A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+		A_FaceTarget();
+		A_Stop();
+	}
+	Goto Missile+1;
+  Pain:
+	FAEM H 3 A_Stop();
+	FAEM H 5
+	{
+		A_Stop();
+		A_Pain();
+		Return A_Jump(50, "Dashe");
+	}
+	Goto See;
+  Death:
+  XDeath:
+  Death.Fire:
+	FAEM H 1;
+	FAEM H 6 A_ScreamAndUnblock();
+	FAEM IJKLM 5;
+	FAEM N -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_ExoBall : DoomImpBall
+{
+  Default
+  {
+  Damage 7;
+  DamageType "Exo";
+  SeeSound "EXOWATK";
+  DeathSound "EXOWATK";
+  Speed 17;
+  FastSpeed 24;
+  +BRIGHT
+  +NOEXTREMEDEATH
+  Translation "0:255=%[0.00,0.00,0.00]:[1.50,0.98,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	BAL1 A 0 NoDelay A_SetRoll(frandom(-360.0, 360.0));
+	BAL1 AB 1
+	{
+		A_SetRoll(Roll+8, SPF_INTERPOLATE);
+		A_Weave(frandom(1.0, 3.0), frandom(1.0, 3.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0));
+		A_SpawnItemEx("DCY_GeneralImpBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERROLL|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	}
+	Goto Spawn+2;
+  Death:
+	BAL1 CCCCDDDDEEE 1 A_SetScale(Scale.X+0.024, Scale.Y+0.024);
+	Stop;
+  }
+}
+
+Class DCY_ExoWeaver : BishopFX
+{
+  Default
+  {
+  Speed 21.5;
+  Damage 3;
+  +NEVERFAST
+  SeeSound "STRKBALL";
+  DeathSound "STRKBALL";
+  }
+  
+  States
+  {
+  Spawn:
+    EBO_ ABAB 1 Bright
+	{
+		A_Weave(2, 3, 1, 1);
+		A_SpawnItemEx("DCY_ExoWeaverTrail", 0, 0, 0, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    EBO_ B 0 Bright A_SeekerMissile(3, 5);
+    Loop;
+  Death:
+	TNT1 A 0 A_SpawnItemEx("DCY_SorcererAura", flags: SXF_NOCHECKPOSITION);
+    EBO_ CDEF 3 Bright;
+    EBO_ GH 2 Bright;
+    Stop;
+  }
+}
+
+Class DCY_ExoWeaver2 : DCY_ExoWeaver
+{
+  States
+  {
+  Spawn:
+	EBO_ ABAB 1 Bright
+	{
+		A_Weave(2, 3, -1, -1);
+		A_SpawnItemEx("DCY_ExoWeaverTrail", 0, 0, 0, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    EBO_ B 0 Bright A_SeekerMissile(3, 5);
+    Loop;
+  }
+}
+
+Class DCY_ExoWeaverTrail : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  RenderStyle "Add";
+  +NOINTERACTION
+  -SOLID
+  +CLIENTSIDEONLY
+  }
+  
+  States
+  {
+  Spawn:
+    EBO_ ABABA 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_ExoImpLaser : DCY_LaserImpLazor { Default { Damage 3; SeeSound ""; } }

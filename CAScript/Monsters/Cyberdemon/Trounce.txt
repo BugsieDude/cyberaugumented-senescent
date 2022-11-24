@@ -1,0 +1,122 @@
+Class DCY_Trounce : DCY_Cybie
+{
+  Default
+  {
+  Tag "Trounce";
+  SeeSound "Trounce/Sight";
+  ActiveSound "Trounce/Active";
+  PainSound "Trounce/Pain";
+  }
+  
+  States
+  {
+  Spawn:
+	F_2M A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 1;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	F_2M AAABBB 3 A_Chase();
+	F_2M C 3
+	{
+		A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+		A_StartSound("spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+	}
+	F_2M CCCDDD 3 A_Chase();
+	F_2M A 3
+	{
+		A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+		A_StartSound("cyber/hoof", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+	}
+	Loop;
+  Missile:
+	F_2M E 0 A_Jump(192, "Rocket", "Chaingun");
+  Rocket:
+	F_2M E 30
+	{
+		missile = 0;
+		A_FaceTarget();
+	}
+	F_2M F 7 Bright
+	{
+		If(missile >= 2)
+			SetStateLabel("See");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CyberdemonRocket", 53, -16, frandom(-1.0, 1.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.0, 1.0));
+		A_StartSound("DNRPGFIR", CHAN_WEAPON, CHANF_OVERLAP);
+	}
+	F_2M E 9
+	{
+		If(missile >= 2)
+			SetStateLabel("See");
+		
+		missile += 1;
+		A_FaceTarget();
+		
+		Return A_Jump(20, "Chaingun");
+	}
+	Goto Rocket+1;
+  Chaingun:
+	F_2M G 30
+	{
+		missile = 0;
+		A_FaceTarget();
+	}
+	F_2M HI 3 Bright
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_ZombieTracer", 53, 16, frandom(-2.0, 2.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("PISFIR4", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.75);
+		Return A_MonsterRefire(96, "See");
+	}
+	Goto Chaingun+1;
+  Pain:
+	F_2M J 3;
+	F_2M J 5 A_Pain();
+	Goto See;
+  Death:
+	F_2M J 1;
+	F_2M J 20 A_StartSound("Trounce/Death", CHAN_VOICE, CHANF_OVERLAP);
+	F_2D A 10;
+	F_2D B 6 A_Scream();
+	F_2D CD 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+	}
+	F_2D E 6
+	{
+		A_NoBlocking();
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	F_2D FGHIIIIJK 5;
+	F_2D L 40
+	{
+		A_QuakeEx(0, 0, 3, 900, 0, 40, "", QF_SCALEDOWN|QF_3D);
+		A_StartSound("Trounce/BodyPound", CHAN_BODY, attenuation: 0.5);
+	}
+	F_2D L -1 A_BossDeath2;
+	Stop;
+  Death.Massacre:
+	F_2M J 10;
+	F_2D A 6 A_StartSound("Trounce/Death", CHAN_VOICE, CHANF_OVERLAP);
+	F_2D BCD 5;
+	F_2D E 5 A_NoBlocking();
+	F_2D FGHIIIIJK 5;
+	F_2D L 40
+	{
+		A_QuakeEx(0, 0, 3, 900, 0, 40, "", QF_SCALEDOWN|QF_3D);
+		A_StartSound("Trounce/BodyPound", CHAN_BODY, attenuation: 0.5);
+	}
+	F_2D L -1 A_BossDeath2;
+	Stop;
+  }
+}

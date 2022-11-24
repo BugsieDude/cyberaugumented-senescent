@@ -1,0 +1,797 @@
+Class DCY_Crusader : DCY_Rev
+{
+  Default
+  {
+  Health 1900;
+  Tag "\c[b1]Demonic Crusader\c-";
+  Translation "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "160:167=%[0.00,0.00,0.00]:[2.00,0.20,0.20]", "208:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "128:159=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "48:79=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "5:15=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "192:207=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "112:127=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  +NOBLOOD
+  +MISSILEMORE
+  +NOTARGET
+  +NOINFIGHTING
+  +BOSS
+  +QUICKTORETALIATE
+  SeeSound "DCYCrusader/Sight";
+  PainSound "DCYCrusader/Pain";
+  DeathSound "DCYCrusader/Death";
+  ActiveSound "DCYCrusader/Idle";
+  Speed 8;
+  FastSpeed 11;
+  DamageFactor 0.9;
+  HitObituary "%o got sliced and diced by a demonic Crusader.";
+  Obituary "%o beholded the demonic Crusader's bloodthirst.";
+  PainChance 46;
+  }
+  
+  bool hasbuffed;
+  bool firstbuff;
+  int speedbuff;
+  int missile;
+  int shielded;
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (speedbuff > 0 && !level.isfrozen() && health > 0)
+	{
+		speedbuff--;
+		
+		if ((level.time % 2) == 0)
+			A_SpawnItemEx("DCY_CLine", frandom(-40, 40), frandom(-40, 40), frandom(0, 30), zvel: 4, flags: SXF_NOCHECKPOSITION);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	YYYY A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AAABBBCCCDDD 2 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	YYYY AAABBBCCCDDD 2
+	{
+		A_Chase();
+		Return A_Jump(10, "Dashing");
+	}
+	Loop;
+  Shielded:
+	YYYY P 0
+	{
+		A_SpawnItemEx("DCY_CrusaderShieldHitbox", flags: SXF_SETMASTER);
+		shielded = 0;
+	}
+	YYYY T 5
+	{
+		shielded += 1;
+		if (shielded > 6)
+		{
+			A_RemoveChildren(1, RMVF_EVERYTHING);
+			bNoPain = false;
+			SetStateLabel("See");
+		}
+	}
+	Goto Shielded+1;
+  ShieldedWalk:
+	YYYY P 0
+	{
+		A_SpawnItemEx("DCY_CrusaderShieldHitbox", flags: SXF_SETMASTER);
+		shielded = 0;
+	}
+	YYYY PPPQQQRRRSSS 2
+	{
+		A_Chase(null, null);
+		
+		if (shielded > 4)
+		{
+			A_RemoveChildren(1, RMVF_EVERYTHING);
+			bNoPain = false;
+			SetStateLabel("See");
+		}
+	}
+	YYYY P 0 { shielded += 1; }
+	Goto ShieldedWalk+1;
+  Dashing:
+	YYYY PPPQQQRRRSSS 1
+	{
+		for (int i = 3; i > 0; i--)
+			A_Chase("Melee", null);
+		
+		if (!sv_effectchoker)
+			A_SpawnItemEx("DCY_CrusaderRush", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		
+		Return A_Jump(14, "Stahp");
+	}
+	Loop;
+  Stahp:
+	YYYY P 0
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+	}
+	Goto See;
+  Melee:
+	YYYY E 2 A_StartSound("DemonicSword/Slash", CHAN_WEAPON);
+	YYYY EF 6
+	{
+		if (speedbuff > 0)
+			tics = 4;
+		
+		A_FaceTarget();
+	}
+	YYYY G 7 A_CustomMeleeAttack(100, "BigHit", "", "Crusader", True);
+	YYYY FCC 6
+	{
+		if (speedbuff > 0)
+			tics = 3;
+	}
+	Goto See;
+  Missile:
+	YYYY E 0
+	{
+		A_FaceTarget();
+		missile = 0;
+		
+		If(Health < 600)
+			Return A_Jump(120, "BuffingTime");
+		
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+		
+		Return A_Jump(100, "ShieldedAtk", "Slash");
+	}
+	YYYY EF 5 A_FaceTarget();
+	YYYY GGGG 4
+	{
+		if (speedbuff > 0)
+			SetStateLabel("LongSword");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CrusaderSword", 30);
+	}
+	YYYY FA 4 A_FaceTarget();
+	Goto See;
+  LongSword:
+	YYYY GGGGGGGG 3
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CrusaderSword", 30);
+	}
+	YYYY FA 4 A_FaceTarget();
+	Goto See;
+  Slash:
+	YYYY F 5 A_StartSound("DemonicSword/Out", CHAN_6, attenuation: 0.5);
+	YYYY EEE 10
+	{
+		if (speedbuff > 0)
+			tics = 3;
+		
+		A_FaceTarget();
+	}
+	YYYY E 1 A_StartSound("DemonicSword/Slash", CHAN_WEAPON, attenuation: 0.5);
+	YYYY EF 4 A_FaceTarget();
+	YYYY G 7
+	{
+		if (speedbuff > 0)
+			tics = 4;
+		
+		A_SpawnProjectile("DCY_CrusaderSlash", 42);
+	}
+	YYYY F 6;
+	YYYY C 1 A_Dodging(20);
+	YYYY CCCCCCCCCCCCCCCCCCCCC 1
+	{
+		if (missile > 2)
+			SetStateLabel("See");
+		
+		if (speedbuff > 0)
+			tics = random(0, 1);
+		
+		for (int i = -25; i < 26; i += 50)
+		{
+			let sparks = spawn("DCY_BulletPuffSpark", (pos.x, pos.y + i, pos.z));
+			
+			if (sparks)
+			{
+				sparks.vel.xy = -vel.xy;
+				sparks.vel.z = frandom(3.0, 5.0);
+			}
+		}
+	}
+	YYYY E 0
+	{
+		missile++;
+		
+		if (missile > 2)
+			SetStateLabel("See");
+	}
+	Goto Slash+4;
+  ShieldedAtk:
+	YYYY P 0
+	{
+		A_SpawnItemEx("DCY_CrusaderShieldHitbox", flags: SXF_SETMASTER);
+		shielded = 0;
+	}
+	YYYY T 15 A_FaceTarget();
+	YYYY UUUUUUUUUU 4
+	{
+		if (speedbuff > 0)
+			SetStateLabel("LongAtk");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CrusaderBall", 46, 0, frandom(-4, 4), CMF_OFFSETPITCH, pitch + frandom(-4, 4));
+	}
+	YYYY T 15 A_FaceTarget();
+	YYYY U 0
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+	}
+	Goto See;
+  LongAtk:
+	YYYY UUUUUUUUUUUUUUUUUUU 5
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CrusaderBall", 46, 0, frandom(-4, 4), CMF_OFFSETPITCH, pitch + frandom(-4, 4));
+	}
+	YYYY T 15 A_FaceTarget();
+	YYYY U 0
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+	}
+	Goto See;
+  SpeedyGonzales:
+	YYYY E 30
+	{
+		bNoPain = true;
+		A_StartSound("DCYCrusader/Pain", CHAN_VOICE, attenuation: 0.5, pitch: 0.6);
+		A_FaceTarget();
+		
+		if (!firstbuff)
+			firstbuff = true;
+	}
+	YYYY E 40
+	{
+		A_StartSound("DCYCrusader/Buff", CHAN_7, attenuation: 0.5);
+		A_StartSound("DCYCrusader/Buff", CHAN_BODY, attenuation: 0.5);
+		A_SpawnItemEx("DCY_CrusaderBuffTrail", zofs: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		speedbuff += 500;
+	}
+	Goto See;
+  BuffingTime:
+	YYYY E 4
+	{
+		if (hasbuffed == true)
+			SetStateLabel("See");
+	}
+	YYYY E 5
+	{
+		bNoPain = true;
+		A_StartSound("DCYCrusader/Active", CHAN_VOICE, attenuation: 0.5, pitch: 1.3);
+		
+		let flash = Spawn("DCY_CrusaderFlash", (pos.x, pos.y, pos.z + 5));
+		if (flash)
+		{
+			flash.angle = angle;
+			flash.frame = frame;
+			flash.sprite = sprite;
+			flash.master = self;
+		}
+	}
+	YYYY EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+	{
+		if ((level.time % 5) == 0)
+			A_SpawnItemEx("DCY_CrusaderRing0", yofs: -10, zofs: 70, flags: SXF_NOCHECKPOSITION);
+		
+		A_SpawnItemEx("DCY_CLine", frandom(-60, 60), frandom(-60, 60), frandom(0, 30), zvel: 6, flags: SXF_NOCHECKPOSITION);
+	}
+	YYYY F 5;
+	YYYY G 1
+	{
+		A_RadiusGive("DCY_CrusaderBuff", 600, RGF_MONSTERS);
+		A_StartSound("DCYCrusader/BuffX", CHAN_BODY, attenuation: 0.25);
+		A_StartSound("DCYCrusader/BuffX", CHAN_WEAPON, attenuation: 0.25);
+		A_SpawnItemEx("DCY_CrusaderRing", zofs: 1, flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_CrusaderBuffTrail", zofs: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	YYYY GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
+	{
+		if ((level.time % 7) == 0)
+			A_SpawnItemEx("DCY_CrusaderRing", zofs: 1, flags: SXF_NOCHECKPOSITION);
+		
+		for (int i = 8; i > 0; i--)
+			A_SpawnParticleEx(0xaa1111, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), frandom(160, 195), 0, frandom(-600.0, 600.0), frandom(-600.0, 600.0), frandom(10, 20), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(1.0, 3.0), fadestepf: 0.045, sizestep: 0.825);
+			
+		A_SpawnItemEx("DCY_CLine", frandom(-600, 600), frandom(-600, 600), frandom(0, 30), zvel: 8, flags: SXF_NOCHECKPOSITION);
+	}
+	YYYY A 1
+	{
+		hasbuffed = true;
+		bNoPain = false;
+	}
+	Goto See;
+  Pain:
+	YYYY H 4;
+	YYYY H 4
+	{
+		A_Pain();
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+		
+		if (speedbuff <= 0)
+		{
+			if (!firstbuff && health < 900)
+				Return A_Jump(50, "SpeedyGonzales");
+			else if (firstbuff && health < 900)
+				Return A_Jump(2, "SpeedyGonzales");
+		}
+		
+		Return A_Jump(100, "Shielded", "ShieldedWalk");
+	}
+	Goto See;
+  Death:
+	YYYY H 1;
+	YYYY H 3
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		bNoPain = false;
+	}
+	YYYY I 4 A_ScreamAndUnblock();
+	YYYY J 4
+	{
+		A_FaceTarget();
+		
+		if (damagetype != "Massacre")
+		{
+			let sword = spawn("DCY_CrusaderBlade", (pos.x, pos.y - 30, pos.z + 44));
+			
+			if (sword)
+			{
+				sword.vel = vel;
+				sword.speed = 8;
+				sword.angle = -90 + angle;
+			}
+			
+			let shield = spawn("DCY_CrusaderShield", (pos.x, pos.y + 30, pos.z + 44));
+			
+			if (shield)
+			{
+				shield.vel = vel;
+				shield.speed = 8;
+				shield.angle = 90 + angle;
+			}
+		}
+	}
+	YYYY KLMN 4;
+	YYYY O -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_CrusaderBuff : PowerProtection
+{
+  Default
+  {
+  +INVENTORY.AUTOACTIVATE;
+  +INVENTORY.ALWAYSPICKUP;
+  +NOINFIGHTING;
+  Powerup.Duration 0x7FFFFFFD;
+  DamageFactor 0.75;
+  }
+  
+  bool spawncircle;
+
+  override void DoEffect()
+  {
+	Super.DoEffect();
+	if(owner && !owner.bBOSS && !owner.Health < 2888)
+	{
+		if (spawncircle == false)
+		{
+			spawncircle = true;
+			owner.tics = owner.tics * 2;
+			owner.A_SpawnItemEx("DCY_CrusaderSpellCircle", zofs: 0, angle: random(0, 360), flags: SXF_SETMASTER);
+		}
+	}
+	else
+	{
+		Destroy();
+	}
+  }
+  
+  override void OwnerDied()
+  {
+	Destroy();
+  }
+}
+
+Class DCY_CrusaderBuffTrail : DCY_CrusaderRush
+{
+  Default
+  {
+  Alpha 1.0;
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	A_SetScale(Scale.X + 0.25);
+  }
+}
+
+Class DCY_CrusaderFlash : DCY_CrusaderRush
+{
+  Default
+  {
+  Scale 1;
+  Alpha 0;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 1
+	{
+		if (alpha > 1)
+			Destroy();
+		
+		if (master)
+		{
+			frame = master.frame;
+			angle = master.angle;
+			Warp(master, 0, 0, 5, flags: WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		}
+		
+		alpha += 0.015;
+	}
+	Loop;
+  }
+}
+
+Class DCY_CrusaderSpellCircle : Actor
+{
+  Default
+  {
+    Scale 0.5;
+	RenderStyle "Add";
+	Alpha 0.5;
+	+FLATSPRITE
+  }
+  
+  override void Tick()
+  {
+	Super.Tick();
+	
+	if (master)
+	{
+		A_SetScale(master.radius / 40);
+		
+		if (!level.isfrozen() && !sv_effectchoker)
+			A_SpawnParticle(0xffc7c7, SPF_FULLBRIGHT, random(5, 20), random(9, 13), xoff: frandom(-master.radius, master.radius), yoff: frandom(-master.radius, master.radius), zoff: frandom(0, master.height), velz: frandom(0.5, 1.0), accelz: 1);
+	}
+	else
+		Destroy();
+	
+	Warp(master, flags: WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+  }
+  
+  States
+  {
+  Spawn:
+	SPL4 ABC 2;
+	Goto Sight;
+  Sight:
+	SPL4 DEFGHIJKLM 2
+	{
+		if(!master || master.Health <= 0)
+			Return ResolveState("Stahp");
+		
+		A_SetAngle(angle + 2, SPF_INTERPOLATE);
+		Return ResolveState(null);
+	}
+	Loop;
+  Stahp:
+	SPL4 NO 2;
+	Stop;
+  }
+}
+  
+Class DCY_CrusaderShieldHitbox : DCY_AbaterShieldHitbox 
+{
+  Default
+  {
+  Tag "\c[b1]Demonic Crusader\cL [Shield]";
+  Height 42;
+  Species "Crusader";
+  DCY_AbaterShieldHitbox.ShieldPosition 18;
+  }
+}
+
+Class DCY_CrusaderRing : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 0.0001;
+  Alpha 0.1;
+  +NOINTERACTION
+  -SOLID
+  +BRIGHT
+  +THRUACTORS
+  +FLATSPRITE
+  +ROLLSPRITE
+  }
+  
+  States
+  {
+  Spawn:
+	EF3_ LLL 1
+	{
+		A_SetScale(Scale.X + 0.35);
+		A_FadeIn(0.4);
+	}
+	EF3_ L 1
+	{
+		A_FadeOut(0.15);
+		A_SetScale(Scale.X + 0.35);
+		
+		if (alpha < 0)
+			Destroy();
+	}
+	Goto Spawn+3;
+  }
+}
+
+Class DCY_CrusaderRing0 : DCY_CrusaderRing
+{
+  Default
+  {
+	Scale 5.0;
+	Alpha 0.00;
+  }
+  
+  States
+  {
+  Spawn:
+	EF4_ X 0 NoDelay
+	{
+		A_SetPitch(frandom(0, 360));
+		A_SetRoll(frandom(0, 360));
+		A_SetAngle(frandom(0, 360));
+	}
+	EF4_ X 1
+	{
+		Scale.X -= 0.35;
+		Scale.Y -= 0.35;
+		A_FadeIn(0.01);
+		
+		if (Scale.X < 0)
+			Destroy();
+	}
+	Goto Spawn+1;
+  }
+}
+
+Class DCY_CLine : DCY_VLine { Default { Scale 4.0; Translation "0:255=%[0.31,0.00,0.00]:[2.00,0.54,0.54]"; } }
+
+Class DCY_CrusaderSword : CacodemonBall
+{
+  Default
+  {
+  Speed 25;
+  FastSpeed 35;
+  Scale 1.15;
+  Translation "0:255=%[0.31,0.00,0.00]:[2.00,0.54,0.54]";
+  SeeSound "DCYCrusader/Missile";
+  DeathSound "DCYCrusader/MissileImpact";
+  }
+  
+  States
+  {
+  Spawn:
+	DK9T AABBCC 1 A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+	Loop;
+  Death:
+	MPB_ H 3
+	{
+		for (int i = 12; i > 0; i--)
+			A_SpawnParticle(0xfa6e6e, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1));
+	}
+	MPB_ IJKL 3;
+	Stop;
+  }
+}
+
+Class DCY_CrusaderBall : DCY_XBall2
+{
+  Default
+  {
+  Speed 12;
+  Speed 15;
+  Damage 1;
+  SeeSound "DCYCrusader/Bones";
+  Translation "0:255=%[0.31,0.00,0.00]:[2.00,0.54,0.54]";
+  Species "Crusader";
+  +THRUSPECIES
+  +RIPPER
+  +MTHRUSPECIES
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnParticleEx(0xdd3333, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 30, 0, velx: frandom(-1.0, 1.0), vely: frandom(-1.0, 1.0), velz: frandom(-1.0, 1.0), fadestepf: 0.05, sizestep: 0.725);
+		
+		A_Weave(1, 1, 2, 1);
+	}
+	Loop;
+  Death:
+	TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_CrusaderSlash : FastProjectile
+{
+  Default
+  {
+  Speed 25;
+  Damage 18;
+  Radius 30;
+  Height 15;
+  XScale .5;
+  YScale 6.4;
+  +ROLLSPRITE
+  SeeSound "";
+  RenderStyle "Add";
+  Species "Crusader";
+  Alpha 1.0;
+  DeathSound "";
+  MissileType "DCY_CrusaderSlashTrail";
+  MissileHeight 6;
+  }
+  
+  int timer;
+  
+  override void Effect()
+  {
+	class<Actor> trail = MissileName;
+	if (trail != null)
+	{
+		double hitz = pos.z - 8;
+		
+		if (hitz < floorz)
+			hitz = floorz;
+			
+		// Do not clip this offset to the floor.
+		hitz += MissileHeight;
+		
+		Actor act = Spawn (trail, (pos.xy, hitz), ALLOW_REPLACE);
+		if (act != null)
+		{
+			if (bGetOwner && target != null)
+				act.target = target;
+			else
+				act.target = self;
+				
+			act.angle = angle;
+			act.pitch = pitch;
+			act.vel = vel;
+		}
+	}
+  }
+	
+  States
+  {
+  Spawn:
+	TRAC A 0 NoDelay A_SetRoll(70);
+	TRAC A 1
+	{
+		if (timer < 20)
+			A_ScaleVelocity(1.1);
+		
+		timer++;
+	}
+	Goto Spawn+1;
+  }
+}
+
+Class DCY_CrusaderSlashTrail : DCY_ProjectileBaseTrail
+{
+  Default
+  {
+  XScale .5;
+  YScale 6.4;
+  Alpha 0.135;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,0.00,0.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	TRAC A 0 NoDelay
+	{
+		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
+		A_FaceMovementDirection();
+		A_SetRoll(70);
+	}
+	Goto Looping;
+  Looping:
+	TRAC A 1 A_FadeOut(0.01);
+	Wait;
+  }
+}
+
+Class DCY_CrusaderShield : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  Translation "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "160:167=%[0.00,0.00,0.00]:[2.00,0.20,0.20]", "208:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "128:159=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "48:79=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "5:15=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "192:207=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "112:127=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  BounceType "Doom";
+  Speed 8;
+  BounceFactor 0.5;
+  Radius 8;
+  Height 8;
+  Gravity 0.65;
+  Projectile;
+  -NOGRAVITY
+  +THRUACTORS
+  +BOUNCEONFLOORS
+  +BOUNCEONWALLS
+  }
+  
+  States
+  {
+  Spawn:
+	X_2X ABCDEFGHI 3 Bright;
+	Loop;
+  Death:
+	X_2X I 4;
+	X_2X H -1;
+	Stop;
+  }
+}
+
+Class DCY_CrusaderBlade : DCY_CrusaderShield
+{
+  bool active;
+
+  override void Tick()
+  {
+	super.tick();
+
+	if (!active)
+		A_SpawnItemEx("DCY_CrusaderRush", -0.5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+  }
+  
+  States
+  {
+  Spawn:
+	X_1X KLMNOPQRS 5 Bright;
+	Loop;
+  Death:
+	X_1X S 5 Bright;
+	X_1X T 30 Bright;
+	X_1X U 4;
+	X_1X T 4 Bright;
+	X_1X U 4;
+	X_1X T 4 Bright;
+	X_1X U 4;
+	X_1X T 4 Bright;
+	X_1X U -1 { active = true; }
+	Stop;
+  }
+}

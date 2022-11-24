@@ -1,0 +1,94 @@
+Class DCY_Ruination : DCY_Cybie
+{
+  Default
+  {
+  Translation "48:79=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "5:15=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "128:159=%[0.00,0.00,0.00]:[1.01,1.01,1.01]";
+  Health 4200;
+  +NOBLOOD
+  Tag "Cyberdemon [\cgRuination\cL]";
+  }
+  
+  States
+  {
+  Spawn:
+	ZYZ0 A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 1;
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	ZYZ0 AAABBB 2 A_Chase();
+	ZYZ0 C 2
+	{
+		A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+		A_StartSound("spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+	}
+	ZYZ0 CCCDDD 2 A_Chase();
+	ZYZ0 A 2
+	{
+		A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
+		A_StartSound("cyber/hoof", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+	}
+	Loop;
+  Missile:
+	ZYZ0 E 30
+	{
+		missile = 0;
+		A_FaceTarget();
+	}
+	ZYZ0 F 2 Bright
+	{
+		If(missile >= 9)
+			SetStateLabel("See");
+		
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_CyberMicromissile", 57, -17, frandom(-2.0, 2.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("DNRPGFIR", CHAN_WEAPON, CHANF_OVERLAP);
+	}
+	ZYZ0 E 4
+	{
+		If(missile >= 9)
+			SetStateLabel("See");
+		
+		missile += 1;
+		A_FaceTarget();
+	}
+	Goto Missile+1;
+  Pain:
+	ZYZ0 G 3;
+	ZYZ0 G 5 A_Pain();
+	Goto See;
+  Death:
+	ZYZ0 G 1;
+	ZYZ0 G 30 A_Pain();
+	ZYZ0 H 10;
+	ZYZ0 H 6 A_Scream();
+	ZYZ0 IJ 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+	}
+	ZYZ0 K 6
+	{
+		A_NoBlocking();
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	ZYZ0 LMNOPPPPPPPPPPPPPPP 6;
+	ZYZ0 P -1 A_BossDeath2;
+	Stop;
+  Death.Massacre:
+	ZYZ0 H 10;
+	ZYZ0 H 6 A_Scream();
+	ZYZ0 IJ 5;
+	ZYZ0 K 5 A_NoBlocking();
+	ZYZ0 LMNOPPPPPPPPPPPPPPPP 6;
+	ZYZ0 P -1 A_BossDeath2;
+	Stop;
+  }
+}

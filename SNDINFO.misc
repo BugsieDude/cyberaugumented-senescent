@@ -1,0 +1,229 @@
+misc/startupdone STARTUP
+misc/kaboom KABOOM
+CYBECREP CYBECREP
+WHATDONE WHATDONE
+PIANPIAN PIANPIAN
+misc/hellotherer H1
+misc/pausegame DCYPAUSE
+
+misc/gamefreeze1 DSFREZE1
+misc/gamefreeze2 DSFREZE2
+
+TemperatureDCY T3MPWARN
+
+//Announcements
+Warp/Choir WARP01
+Warp/Spacial WARP02
+
+//yay you did something
+Announce/Complete DSC0MPLA
+
+//Enemy Announcements
+CMYSTERY "Sounds/Projectiles/MYSTERY.ogg"
+DANGERT DANGERT
+DANGERU DANGERU
+DANGERN DANGERN
+DANGERMW DANGERMW
+SDANGER0 SDANGER0
+SECOIN SECOIN
+ORBWARN0 ORBWARN0
+0RCHWARN 0RCHWARN
+$random Z0MBWARX { Z0MBWARN Z0MBWAR1 Z0MBWAR2 }
+Z0MBWARN Z0MBWARN
+Z0MBWAR1 Z0MBWAR1
+Z0MBWAR2 Z0MBWAR2
+DOP3WARN DOP3WARN
+UNKNWARN UNKNWARN
+WARNINGM WARNINGM
+THEFRAID THEFRAID
+THEWARN THEWARN
+
+//Switches
+SW1TCHA SW1TCHA
+SW1TCHB SW1TCHB
+SW1TCHC SW1TCHC
+SW1TCHD SW1TCHD
+SW1TCHE SW1TCHE
+SW1TCHF SW1TCHF
+SW1TCHG SW1TCHG
+SW1TCHH SW1TCHH
+SW1TCHI SW1TCHI
+SW1TCHJ SW1TCHJ
+SW1TCHK SW1TCHK
+$random SW1TCHL { SW1TCHL1 SW1TCHL2 }
+SW1TCHL1 SW1TCHL1
+SW1TCHL2 SW1TCHL2
+SW1TCHM SW1TCHM
+SW1TCHN SW1TCHN
+
+//Player
+slayer/paintiny PLYPAIN1
+slayer/painsmall PLYPAIN2
+slayer/pain PLYPAIN
+slayer/painbig PLYPAIN3
+slayer/painhuge PLYPAIN5
+slayer/painmassive PLYPAIN4
+
+slayer/jump PLYJUMP
+$random slayer/land { PLYLAND1 PLYLAND2 PLYLAND3 }
+PLYLAND1 PLYLAND1
+PLYLAND2 PLYLAND2
+PLYLAND3 PLYLAND3
+$random slayer/crash { PLYSMSH1 PLYSMSH2 PLYSMSH3 PLYSMSH4 }
+PLYSMSH1 PLYSMSH1
+PLYSMSH2 PLYSMSH2
+PLYSMSH3 PLYSMSH3
+PLYSMSH4 PLYSMSH4
+
+$random Water/Surface { WATERSR1 WATERSR2 WATERSR3 WATERSR4 WATERSR5 }
+WATERSR1 WATERSR1
+WATERSR2 WATERSR2
+WATERSR3 WATERSR3
+WATERSR4 WATERSR4
+WATERSR5 WATERSR5
+
+$random Water/Dive { UNDRWATR UNDRWAT1 UNDRWAT2 UNDRWAT3 UNDRWAT4 UNDRWAT5 UNDRWAT6 }
+UNDRWATR UNDRWATR
+UNDRWAT1 UNDRWAT1
+UNDRWAT2 UNDRWAT2
+UNDRWAT3 UNDRWAT3
+UNDRWAT4 UNDRWAT4
+UNDRWAT5 UNDRWAT5
+UNDRWAT6 UNDRWAT6
+
+$playeralias	player	male	*death		none
+$playeralias	player	male	*xdeath		none
+$playeralias	player	male	*land		slayer/land
+$playeralias	player	male	*grunt		slayer/land
+$playeralias	player	male	*jump		slayer/jump
+$playeralias	player	male	*pain100	slayer/painsmall
+$playeralias	player	male	*pain75		slayer/pain
+$playeralias	player	male	*pain50		slayer/painbig
+$playeralias	player	male	*pain25		slayer/painhuge
+$playeralias 	player  male 	*gibbed		misc/gibbed
+$playeralias	player	male	*dive		""
+$playeralias	player	male	*surface	""
+$playeralias	player	male	*gasp	""
+
+//Enviroment
+//Switchez
+switches/electri2		dselec2
+switches/electri3		dselec3
+switches/eclunk			dseclunk
+switches/clunk			dsclunk
+switches/china			dschina1
+switches/eye			dseye
+switches/bige			dsbige
+switches/keycard		dskeyc
+switches/gargoyle		dsgrgyle
+switches/skin			dsskinny
+switches/lever			dslever
+switches/lever2			dslever2
+switches/valve			dsvalve
+
+//Custom Sounds
+$random doors/dr2_open	{BDROPN2 BDROPN3}
+$random doors/dr2_clos	{BDRCLS2 BDRCLS3}
+BDROPN2 BDROPN2
+BDROPN3 BDROPN3
+BDRCLS2 BDRCLS2
+BDRCLS3 BDRCLS3
+
+torch/blaze T0ORCH
+misc/keytry KEYDOOR
+
+dcycyber/teleport DSTELEP2
+dcybosstier/teleport DCYBSSTP
+dcybosstier/teleportend DCYBSST2
+dcysuperboss/teleport DCYBSST3
+
+dash1 DASH1
+dash2 DASH2
+djump1 DJUMP1
+djump2a djump2a
+djump2b djump2b
+
+$volume dash1 0.8
+$volume djump1 0.8
+$volume dash2 0.8
+
+STUNNED STUNNED
+STUNNED2 STUNNED2
+STUNNED3 STUNNED3
+STUNNED4 STUNNED4
+
+//Intermission
+intermission/tick DSINTER1
+intermission/cooptotal DSINTER2
+intermission/nextstage DSINTER2
+$random intermission/paststats {TTSULTR2 TTSLOL TTSHELP TTSINTE2 TTSINTE3 TTSINTE4 TTSINTE5 TTSINTER}
+TTSINTER TTSINTER
+TTSINTE2 TTSINTE2
+TTSINTE3 TTSINTE3
+TTSINTE4 TTSINTE4
+TTSINTE5 TTSINTE5
+TTSHELP TTSHELP
+TTSLOL TTSLOL
+TTSULTR2 TTSULTR2
+intermission/pastcoopstats TTSINTER
+intermission/pastdmstats TTSINTER
+
+//Terrain
+slime				dsmuck
+slimesmall			dsmucksm
+water				dssplash
+watersmall			dsfloush
+burn				dsburn
+burnsmall			dsburnsm
+blood1				dssplat1
+blood2				dssplat2
+blood dsgloop
+bloodsmall dsgloop
+
+world/drip			dsempty
+$random "world/watersplash" {dssplas2 splas1 splas2 splas3 splas4 splas5 splas6 splas7 splas8 splas9 splas10}
+dssplash	dssplash
+dssplas2	dssplas2
+splas1 splas1
+splas2 splas2
+splas3 splas3
+splas4 splas4
+splas5 splas5
+splas6 splas6
+splas7 splas7
+splas8 splas8
+splas9 splas9
+splas10 splas10
+$random "world/watersplashsmall" {dssplsml ssplas1 ssplas2 ssplas3 ssplas4 ssplas5 ssplas6 }
+ssplas1 ssplas1
+ssplas2 ssplas2
+ssplas3 ssplas3
+ssplas4 ssplas4
+ssplas5 ssplas5
+ssplas6 ssplas6
+dssplsml dssplsml
+world/sludgegloop		dsploosh
+world/sludgegloopsmall		dsplosml
+world/lavasizzle		dslvsiz
+world/lavsiz2			dslvsiz2
+world/lavasizzlesmall		dslavsml
+world/thunder			dsthun
+
+
+$volume world/watersplash 0.6 
+$volume dssplash 0.6 
+$volume dssplas2 0.6 
+
+$limit dssplash 4
+$limit world/drip 4
+$limit world/watersplash 4
+$limit world/watersplashsmall 4
+$limit world/sludgegloop 4
+$limit world/sludgegloopsmall 4
+$limit world/lavasizzle 4
+$limit world/lavsiz2 4
+$limit world/lavasizzlesmall 4
+
+//Kamikazi
+Kamikazi/Idle DSKAMIDL
+Kamikazi/Scream DSKAMAAH

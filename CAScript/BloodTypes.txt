@@ -1,0 +1,137 @@
+Class De_Blood : Actor Replaces Blood
+{
+  string bloodtype;
+  property Type : bloodtype;
+  
+  Default
+  {
+	Alpha 0.8;
+	RenderStyle "Translucent";
+	Scale 0.5;
+	Mass 5;
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+ALLOWPARTICLES
+	Gravity 0.5;
+	De_Blood.Type "De_Blood_Trail";
+  }
+  
+  void A_SpawnBlood(string blood, bool brightness)
+  {
+	let trail = Spawn(blood, pos);
+	
+	if (trail)
+	{
+		trail.vel = vel / 4;
+		trail.gravity = gravity / 4;
+		trail.scale = scale;
+		trail.translation = translation;
+		
+		if (brightness)
+		{
+			trail.bBRIGHT = true;
+		}
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	BL0D A 0 NoDelay
+	{
+		A_ChangeVelocity(frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(1.5, 2.5), CVF_REPLACE);
+		A_SetScale(frandom(0.7, 0.8));
+		bSPRITEFLIP = randompick(false, true);
+	}
+	BL0D AABBCC 2 A_SpawnBlood(bloodtype, false);
+	Stop;
+  Crush:
+	"####" A 1;
+	Stop;
+  Spray:
+    SPRY ABCDEF 2;
+    SPRY G 2;
+    Stop;
+  }
+}
+
+Class De_Blood_Trail : Actor
+{
+  Default
+  {
+  +NOINTERACTION
+  }
+  
+  States
+  {
+  Spawn:
+	BL0D ABC 4;
+	Stop;
+  }
+}
+
+Class Add_Blood_Trail : De_Blood_Trail { Default { RenderStyle "Add"; } }
+Class Sub_Blood_Trail : De_Blood_Trail { Default { RenderStyle "Subtract"; } }
+
+Class De_Plat_Blood : De_Blood Replaces BloodSplatter {}
+
+Class AndroidNeonFluid : De_Blood
+{
+  Default
+  {
+  +BRIGHT
+  +NODECAL
+  RenderStyle "Add";
+  De_Blood.Type "Add_Blood_Trail";
+  }
+}
+
+Class DCY_SpectreFluid : De_Blood
+{
+  Default
+  {
+  +BRIGHT
+  +NODECAL
+  RenderStyle "Subtract";
+  De_Blood.Type "Sub_Blood_Trail";
+  }
+}
+
+Class DCY_SpiritBlood : DE_BLOOD
+{
+  Default
+  {
+  RenderStyle "Add";
+  +BRIGHT
+  +NODECAL
+  +NOGRAVITY
+  Scale 0.425;
+  Alpha 0.5;
+  }
+  
+  int loop;
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay
+	{
+		loop = 6;
+		A_SetAngle(frandom(-40, 40));
+		A_ChangeVelocity(frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(2.5, 4.5), CVF_REPLACE);
+	}
+	TNT1 A 1
+	{
+		loop--;
+		A_ChangeVelocity(frandom(-2, 2), frandom(-2, 2), frandom(-2, 2));
+		A_SpawnItemEx("DCY_Smonk", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERALPHA|SXF_TRANSFERTRANSLATION);
+		A_FadeOut(0.075, 0);
+		
+		if (loop <= 0)
+			destroy();
+	}
+	Goto Spawn+1;
+  }
+}
+
+//Gore

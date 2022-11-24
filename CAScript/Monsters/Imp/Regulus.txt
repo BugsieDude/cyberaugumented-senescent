@@ -1,0 +1,220 @@
+Class DCY_RegulusImp : DCY_Impe
+{
+  Default
+  {
+  Translation "48:79=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "128:159=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "5:15=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "224:255=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "168:191=%[0.00,0.00,0.00]:[0.00,0.00,2.00]", "16:47=%[0.00,0.00,0.00]:[0.00,0.00,2.00]", "160:167=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "112:127=%[0.00,0.00,0.00]:[0.00,1.01,2.00]";
+  Health 128;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  Speed 10;
+  PainChance 50;
+  Damage 40;
+  SeeSound "EternalGargoyle/Sight";
+  ActiveSound "EternalGargoyle/Sight";
+  PainSound "EternalGargoyle/Pain";
+  DeathSound "EternalGargoyle/Death";
+  MeleeSound "imp/melee";
+  Obituary "%o got TOASTED.";
+  HitObituary "%o was slashed into pieces by a Varmint.";
+  BloodColor "00 33 99";
+  Tag "\c[y9]Varmint\c-";
+  +FLOAT
+  +NOGRAVITY
+  +NOTELEFRAG
+  +QUICKTORETALIATE
+  +DONTHARMCLASS
+  }
+  States
+  {
+  Spawn:
+    FAEM A 10 DCY_Look();
+	Loop;
+  Look:
+	FAEM AABBCCDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    FAEM AABBCCDD 3 A_Chase();
+    Loop;
+  Melee:
+    FAEM EF 4 A_FaceTarget();
+	FAEM O 4 A_CustomMeleeAttack(5 * random(1, 5), "imp/melee");
+	Goto See;
+  Missile:
+    FAEM E 8
+	{
+		A_FaceTarget();
+		Return A_Jump(128, "MissileMK2", "MissileMK2Type2", "MissileType2", "MissileType3");
+	}
+	FAEM F 8 A_FaceTarget();
+    FAEM O 8
+	{
+		for (int i = -8; i < 9; i += 8)
+			A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, i);
+	}
+    Goto See;
+  MissileType2:
+    FAEM EF 8 A_FaceTarget;
+    FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
+	FAEM F 7 A_FaceTarget;
+	FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
+	FAEM F 7 A_FaceTarget;
+	FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
+	TNT1 A 0 A_Jump(128, "MissileMK2Type2");
+    Goto See;
+  MissileType3:
+    FAEM EF 6 A_FaceTarget();
+	FAEM OO 4
+	{
+		A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, -6);
+		A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 6);
+	}
+	TNT1 A 0 A_Jump(128, "MissileMK2");
+    Goto See;
+  MissileMK2:
+    TNT1 A 0 A_Jump(128, "MissileMK2Type2");
+    FAEM EF 6 A_FaceTarget();
+	FAEM O 6
+	{
+		A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-10, -8));
+		A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(10, 8));
+	}
+    Goto See;
+  MissileMK2Type2:
+    FAEM EF 7 A_FaceTarget();
+    FAEM O 8 A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-3, 3));
+	FAEM FEF 4 A_FaceTarget();
+	FAEM O 8 A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-3, 3));
+    Goto See;
+  Pain:
+    FAEM G 2;
+    FAEM G 2 A_Pain();
+    Goto See;
+  Death:
+  XDeath:
+    FAEM H 8;
+    FAEM I 8 A_Scream();
+    FAEM J 6;
+    FAEM K 6 A_NoBlocking();
+    FAEM L 6;
+    FAEM M 6;
+    FAEM N -1;
+    Stop;
+  Raise:
+    FAEM NMLKJIH 6;
+	Goto See;
+  }
+}
+
+Class DCY_RegulusImpBall : DoomImpBall
+{
+  Default
+  {
+  Radius 6;
+  Height 8;
+  Speed 15;
+  FastSpeed 30;
+  Damage 3;
+  Renderstyle "Add";
+  Projectile;
+  +RANDOMIZE
+  SeeSound "Freedoom/Imp/Attack";
+  DeathSound "Freedoom/Imp/ShotX";
+  Decal "DoomImpScorch";
+  }
+  States
+  {
+  Spawn:
+    RGBL AAAABBBB 1 Bright A_SpawnItemEx("DCY_RegulusImpBallTrail", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
+    Loop;
+  Death:
+    RGBL CDEFG 3 Bright;
+    Stop;
+  }
+}
+
+Class DCY_RegulusImpBallTrail : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.50,1.01]";
+  +NOINTERACTION;
+  -SOLID;
+  }
+  States
+  {
+  Spawn:
+    RGBL AAAABBBBAA 1 A_FadeOut(0.1);
+	Stop;
+  }
+}
+
+Class DCY_RegulusImpBallMK2 : Actor
+{
+  Default
+  {
+  Radius 6;
+  Height 8;
+  Speed 10;
+  FastSpeed 15;
+  Damage 5;
+  Renderstyle "Add";
+  Projectile;
+  +RANDOMIZE
+  +FORCERADIUSDMG
+  +SEEKERMISSILE
+  SeeSound "RegulusSeeker/Charge";
+  DeathSound "RegulusSeeker/Death";
+  Decal "DoomImpScorch";
+  }
+  
+  int time;
+  
+  States
+  {
+  Spawn:
+    TNT1 A 0 NoDelay A_StartSound("RegulusSeeker/Loop", CHAN_AUTO);
+    RBL2 AAABBBCCCDDD 1 Bright
+	{
+		A_SpawnItemEx("DCY_RegulusImpBallMK2Trail", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
+		
+		if (time == 4)
+		{
+			time = 0;
+			A_SeekerMissile(2, 4);
+		}
+		
+		time++;
+	}
+    Loop;
+  Death:
+    RBL2 E 3 A_StartSound("RegulusSeeker/Death");
+    RBL2 FGHIJ 3 Bright;
+    Stop;
+  }
+}
+
+Class DCY_RegulusImpBallMK2Trail : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 0.75;
+  +NOINTERACTION
+  -SOLID
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.50,1.01]";
+  }
+  States
+  {
+  Spawn:
+    RBL2 AABBCCDDAA 1 A_FadeOut(0.1);
+	Stop;
+  }
+}

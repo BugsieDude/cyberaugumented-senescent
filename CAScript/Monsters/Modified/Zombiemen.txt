@@ -1,0 +1,335 @@
+Class DCY_ZombeParent : DCYMonster
+{
+  Default
+  {
+  Health 20;
+  Radius 20;
+  Height 56;
+  Speed 8;
+  PainChance 200;
+  SeeSound "grunt2/sight";
+  AttackSound "grunt/attack";
+  PainSound "grunt2/pain";
+  DeathSound "grunt2/death";
+  ActiveSound "grunt/active";
+  Obituary "$OB_ZOMBIE";
+  Tag "$FN_ZOMBIE";
+  DropItem "Clip";
+  Tag "Hell Soldier";
+  Species "Former Humans";
+  DCYMonster.TagColor "l5";
+  +DOHARMSPECIES;
+  }
+  
+  States
+  {
+  Spawn:
+	POSP A 10 DCY_Look();
+	Loop;
+  Look:
+	POSP AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		
+		if (random(0, 50) == 1)
+			SetStateLabel("Stand");
+	}
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Stand:
+	POSP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	POSP AABBCCDD 3 A_Chase();
+	Loop;
+  Missile:
+	POSP E 0 A_Jump(50, "Run");
+	POSP E 0 A_JumpIfCloser(256, "BackUp");
+	POSP E 10 A_FaceTarget();
+	POSP F 4 Bright
+	{
+		A_StartSound("BurstPistol/Fire", CHAN_WEAPON, 0, 1.0);
+		A_SpawnProjectile("DCY_ZombieTracer", 32, -2, frandom(-1.0, 1.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.0, 1.0));
+		A_FaceTarget();
+	}
+	POSP E 12;
+	Goto See;
+  Run:
+	POSP AABBCCDD 2
+	{
+		A_Chase(null, null);
+		A_Chase(null, null);
+	}
+	Goto Missile+2;
+  BackUp:
+	POSP E 12
+	{
+		A_FaceTarget();
+		A_Recoil(4);
+		A_Hop(5);
+	}
+	POSP F 4 Bright
+	{
+		A_StartSound("BurstPistol/Fire", CHAN_WEAPON, 0, 1.0);
+		A_SpawnProjectile("DCY_ZombieTracer", 32, -2, frandom(-1.0, 1.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.0, 1.0));
+		A_FaceTarget();
+	}
+	POSP E 12;
+	Goto See;
+  Pain:
+	POSP G 4;
+	POSP G 4 A_Pain();
+	Goto See;
+  Death:
+	POSP H 0 A_SetScale(randompick(1, -1), 1);
+	POSP H 3;
+	POSP H 3 A_Scream();
+	POSS I 5 A_Fall();
+	POSS JK 4;
+	POSS L -1;
+	Stop;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("grunt/burn", CHAN_VOICE);
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  XDeath:
+	POSP M 6;
+    POSS N 4 A_XScream();
+    POSS O 4 A_NoBlocking();
+    POSS PQRST 4;
+    POSS U -1;
+    Stop;
+  Raise:
+	POSS K 5 A_SetScale(1, 1);
+    POSS JIH 5;
+    Goto See;
+  }
+}
+
+Class DCY_Zombe : DCY_ZombeParent { Default { Obituary "%o was scared to stand against a hell soldier."; Translation "112:159=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "236:239=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "13:15=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "77:79=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "48:76=%[0.00,0.00,0.00]:[1.13,0.78,0.54]", "208:223=%[0.00,0.00,0.00]:[1.46,0.98,0.55]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "16:47=%[0.00,0.00,0.00]:[1.24,0.00,0.00]"; } }
+
+Class DCY_ShotgunZombe : DCYMonster
+{
+  Default
+  {
+  Health 30;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  Speed 8;
+  PainChance 170;
+  SeeSound "shotguy/sight";
+  AttackSound "shotguy/attack";
+  PainSound "shotguy/pain";
+  DeathSound "shotguy/death";
+  ActiveSound "shotguy/active";
+  Obituary "%o has annoyed a hell sergeant.";
+  DropItem "DCY_CombatShotgun";
+  Tag "Hell Sergeant";
+  Species "Sergeants";
+  }
+  
+  States
+  {
+  Spawn:
+    SRG_ A 10 DCY_Look();
+	Loop;
+  Look:
+	SRG_ AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		
+		if (random(0, 50) == 1)
+			SetStateLabel("Stand");
+	}
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Stand:
+	SRG_ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	SRG_ AABBCCDD 3 A_Chase();
+	Loop;
+  Missile:
+	SRG_ E 0 A_JumpIfCloser(280, "BackUp");
+	SRG_ E 10 A_FaceTarget();
+	SRG_ F 4 Bright
+	{
+		A_StartSound("Shotgun/Fire", CHAN_WEAPON, 0, 1.0);
+		
+		for (int i = 7; i > 0; i--)
+			A_SpawnProjectile("DCY_Zombie2Tracer", 32, -2, frandom(-4.0, 4.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-2.5, 2.5));
+		
+		A_FaceTarget();
+	}
+	SRG_ E 20;
+	Goto See;
+  BackUp:
+	SRG_ AABBCCDDAABBCCDD 2
+	{
+		A_FaceTarget();
+		A_Recoil(-1);
+	}
+	Goto Missile+1;
+  Pain:
+	SRG_ G 4;
+	SRG_ G 4 A_Pain();
+	Goto See;
+  Death:
+	SRG_ H 3 A_SetScale(randompick(1, -1), 1);
+	SRG_ H 3 A_Scream();
+	SRG_ I 5 A_Fall();
+	SRG_ JK 4;
+	SRG_ L -1;
+	Stop;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("shotguy/burn", CHAN_VOICE);
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  XDeath:
+	SRG_ M 6;
+    SRG_ N 4 A_XScream();
+    SRG_ O 4 A_NoBlocking();
+    SRG_ PQRST 4;
+    SRG_ U -1;
+    Stop;
+  Raise:
+	SRG_ K 5 A_SetScale(1, 1);
+    SRG_ JIH 5;
+    Goto See;
+  }
+}
+
+Class DCY_Plutonia : DCYMonster
+{
+  Default
+  {
+  Health 70;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  Speed 8;
+  PainChance 170;
+  SeeSound "chainguy/sight";
+  PainSound "chainguy/pain";
+  DeathSound "chainguy/death";
+  ActiveSound "chainguy/active";
+  AttackSound "chainguy/attack";
+  Obituary "%o has been ripped off by the Hell Corps Rifleman.";
+  Tag "Hell Corps Rifleman";
+  Dropitem "DCY_CyberRifle";
+  Species "Chaingunners";
+  }
+  States
+  {
+  Spawn:
+	RE1_ A 10 DCY_Look();
+	Loop;
+  Look:
+	RE1_ AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		Return A_Jump(20, "Stand");
+	}
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Stand:
+	RE1_ AAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	RE1_ AABBCCDD 3 A_Chase();
+	Loop;
+  Missile:
+	RE1_ E 14 A_FaceTarget();
+	RE1_ F 2 Bright
+	{
+		A_StartSound("PIS3FIR", CHAN_WEAPON, 0, 1.0);
+		A_SpawnProjectile("DCY_ZombieTracer", 35, 5, frandom(-1.75, 1.75), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.75, 1.75));
+		A_FaceTarget();
+	}
+	RE1_ E 2 A_FaceTarget();
+	RE1_ E 0 A_MonsterRefire(64, "See");
+	Goto Missile+1;
+  Pain:
+	RE1_ G 4;
+	RE1_ G 4
+	{
+		{ bNoDropOff = false; }
+		A_Pain();
+	}
+	Goto See;
+  Death:
+	RE1_ H 0
+	{
+		A_SetScale(randompick(1, -1), 1);
+		
+		if (random(0, 1) == 1)
+			SetStateLabel("Death2");
+	}
+	RE1_ H 4 { bNoDropOff = false; }
+	RE1_ H 4 A_Scream();
+	RE1_ I 4 A_Fall;
+	RE1_ JKLM 4;
+	RE1_ N -1;
+	Stop;
+  Death2:
+	RE1_ U 5 { bNoDropOff = false; }
+	RE1_ V 5 A_Scream();
+	RE1_ W 5 A_Fall;
+	RE1_ XY 4;
+	RE1_ Z -1;
+	Stop;
+  XDeath:
+	RE1_ O 6;
+    RE1_ P 4 A_XScream();
+    RE1_ Q 4 A_NoBlocking();
+    RE1_ RS 4;
+    RE1_ T -1;
+    Stop;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("chainguy/burn", CHAN_VOICE);
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  Raise:
+	RE1_ N 3;
+    RE1_ NMLKHJI 4;
+	RE1_ H 4 A_SetScale(1, 1);
+    Goto See;
+  }
+}

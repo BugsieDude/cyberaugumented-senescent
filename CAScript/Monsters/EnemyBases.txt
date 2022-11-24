@@ -1,0 +1,94 @@
+CLASS DCYMonster : Actor
+{
+  Default
+  {
+    Monster;
+    +FLOORCLIP;
+	DCYMonster.TagColor "j";
+	Tag "Monster";
+	TeleFogSourceType "DCY_EnemyTeleport";
+	TeleFogDestType "DCY_EnemyTeleport";
+	DamageFactor "SpawnerDeath", 0;
+	PainChance "PlayerStun", 256;
+  }
+  
+  int warningdistance;
+  bool boss;
+  Sound BurnSound;
+  string tcol;
+  TextureID particlefire;
+  
+  property BurnSound: BurnSound;
+  property TagColor: tcol;
+  
+  override void tick()
+  {
+	super.tick();
+	
+	if (!particlefire)
+		particlefire = TexMan.CheckForTexture("graphics/Particles/dcyfirep.png");
+  }
+  
+  void A_SetPainChance(int num)
+  {
+	painchance = num;
+  }
+  
+  void A_BossDeath2()
+  {
+	A_BossDeath();
+	//A_KillMaster("SpawnerDeath");
+  }
+  
+  void DCY_Look()
+  {
+	A_LookEx(LOF_NOSEESOUND, label: "Look");
+  }
+  
+  void DCY_LookingForPlayer()
+  {
+	A_Chase(null, "Alert", CHF_NOPLAYACTIVE);
+  }
+  
+  void A_Dodging(double speed)
+  {
+    ThrustThing(Angle*128/256+random(64, 192), speed, 0, 0);
+  }
+  
+  void A_Hop(double height)
+  {
+    A_ChangeVelocity(z: height);
+  }
+
+  void DCY_AlertSound()
+  {
+	A_StartSound(SeeSound, CHAN_VOICE, attenuation: (!bBOSS) ? 1 : 0);
+  }
+  
+  static void ThingAnnounce(String message, String sound, String mColor)
+  {
+	if (cyberaugumented_noenemyannouncements || level.mapname == "TITLEMAP")
+		return;
+		
+	console.printf("\c".."["..mColor.."]"..message.."\c-");
+	if(sound)
+	{
+		S_StartSound(sound, CHAN_5, CHANF_DEFAULT);
+	}
+  }
+}
+
+Class DCY_MassResurrection : CustomInventory
+{
+  Default
+  {
+  +INVENTORY.ALWAYSPICKUP;
+  }
+  
+  States
+  {
+  Pickup:
+	TNT1 A 0 Thing_Raise(0);
+	Stop;
+  }
+}

@@ -1,0 +1,352 @@
+Class DCY_ChoricoNepheloma : DCY_NavyTerminator
+{
+  bool teleporting;
+  int teleloop;
+  int exploding;
+  int explodesound;
+  
+  void A_NephelomaTeleportSetup(bool tof)
+  {	
+	if (tof == false)
+	{
+		bThruSpecies = true;
+		bShootable = false;
+		bInvulnerable = true;
+		teleporting = true;
+	}
+	else
+	{
+		bThruSpecies = false;
+		bShootable = true;
+		bInvulnerable = false;
+		teleporting = false;
+	}
+	
+	A_StartSound("GALCTELE", CHAN_BODY);
+	Spawn("DCY_VagueFlare", (pos.x, pos.y, pos.z + 40));
+	Spawn("DCY_NephelomaTele", (pos.x, pos.y, pos.z + 40));
+  }
+  
+  void A_NephelomaLaser()
+  {
+	if(target)
+	{
+	  A_CustomRailgun(27, -15, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_NephelomaLaserPuff", sparsity: 90, spawnclass: "DCY_PhasicRailLaser", spawnofs_z: 25);
+	  A_QuakeEx(2, 2, 2, 50, 0, 2000, "", QF_SCALEDOWN);
+	  A_FaceTarget();
+	}
+  }
+  
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("Wormhole.", "DANGERN", "k5");
+  }
+  
+  Default
+  {
+  Health 8000;
+  BloodColor "Purple";
+  BloodType "DCY_SpiritBlood";
+  Translation "80:111=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "1:3=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "5:12=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "13:79=%[0.00,0.00,0.00]:[1.54,0.76,2.00]", "160:255=%[0.00,0.00,0.00]:[1.54,0.76,2.00]", "128:159=%[0.00,0.00,0.00]:[1.54,0.76,2.00]";
+  Tag "\c[k5]Cho\c[c6]rico\c- \c[j8]Nech\c[q0]elo\c[z7]ma\c-";
+  SeeSound "ChoricoNepheloma/Sight";
+  ActiveSound "ChoricoNepheloma/Active";
+  PainSound "ChoricoNepheloma/Pain";
+  TeleFogSourceType "DCY_BossTeleport";
+  TeleFogDestType "DCY_BossTeleport";
+  Monster;
+  +NOTARGET
+  +BOSS
+  +BOSSDEATH
+  +FLOORCLIP
+  +QUICKTORETALIATE
+  +MISSILEMORE 
+  +NOICEDEATH
+  +NOEXTREMEDEATH
+  +DONTGIB
+  +DONTRIP
+  +NOTELEFRAG
+  +NOTELESTOMP
+  +DONTFALL
+  +DONTMORPH
+  +DONTSQUASH
+  +FRIGHTENING
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +NOTIMEFREEZE
+  +NEVERRESPAWN
+  +NOGRAVITY
+  +FLOAT
+  +NOFEAR
+  -NOPAIN
+  +BRIGHT
+  Speed 17;
+  FloatSpeed 17;
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o is fading away...",
+		"%o got plunged into darkness.",
+		"You will now succumb to darkness.",
+		"You shouldn't have gone here, %o."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  override void Tick()
+  {
+    super.Tick();
+	
+	If (Health > 0 && !IsFrozen() && !teleporting && !sv_effectchoker)
+	{
+		for (int i = 4; i > 0; i--)
+			A_SpawnItemEx("DCY_NimbusJetFlare", frandom(-17.0, 17.0), frandom(-17.0, 17.0), frandom(48.0, 51.0), 0, 0, frandom(-3.5, -6.5), flags: SXF_NOCHECKPOSITION, 50);
+	  
+		A_SpawnItemEx("DCY_ChoricoJet", frandom(-17.0, 17.0), frandom(-17.0, 17.0), frandom(48.0, 51.0), 0, 0, frandom(-1.0, -2.5), flags: SXF_NOCHECKPOSITION, 80);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	CH0R AB 2 A_Look();
+	Loop;
+  See:
+	CH0R AB 2
+	{
+		A_Chase();
+		Return A_Jump(9, "Teleporting", "Teleport2");
+	}
+	Loop;
+  Teleporting:
+    CH0R AB 1 Bright;
+	CH0R A 2 A_NephelomaTeleportSetup(false);
+	TNT1 A 1;
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander();
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander();
+	TNT1 A 1;
+	CH0R A 2 A_NephelomaTeleportSetup(true);
+	Goto See;
+  Teleport2Backup:
+	TNT1 A 0 { bNoFear = false; bFrightened = true; }
+	Goto Teleport2;
+  Teleport2:
+	CH0R AB 1;
+	CH0R A 2 Bright
+	{
+		A_NephelomaTeleportSetup(false);
+		bNoTarget = true;
+		teleloop = random(0, 100);
+	}
+	TNT1 A 1;
+	Goto Teleport2Loop;
+  Teleport2Loop:
+	TNT1 A 1
+	{
+		if (teleloop >= 300 || (target && distance3D(target) < 200))
+			Return ResolveState("Teleport2End");
+		
+		teleloop++;
+		
+		for (int i = 4; i > 0; i--)
+			A_Chase("Teleport2End", null, CHF_NOPLAYACTIVE);
+		
+		Return ResolveState(null);
+	}
+	Loop;
+  Teleport2End:
+	CH0R A 1 Bright
+	{
+		bNoFear = true;
+		bFrightened = false;
+		A_NephelomaTeleportSetup(true);
+	}
+	Goto See;
+  Missile:
+	CH0R G 0 A_Jump(80, "Laser", "Pentagram");
+	CH0R G 1 A_FaceTarget();
+	CH0R G 30
+	{
+		A_FaceTarget();
+		A_StartSound("ChoricoNepheloma/Active", CHAN_VOICE, attenuation: 0.5);
+	}
+	CH0R HI 2
+	{
+		A_SpawnProjectile("DCY_NephelomaTracer", 60, -10, frandom(-4.0, 4.0));
+		A_FaceTarget();
+		A_StartSound("PIS2FIRE", CHAN_WEAPON, attenuation: 0.45);
+		Return A_MonsterRefire(80, "See");
+	}
+	Goto Missile+3;
+  Laser:
+	CH0R G 1 A_FaceTarget();
+	CH0R G 40
+	{
+		A_FaceTarget();
+		A_StartSound("ChoricoNepheloma/Active", CHAN_VOICE, attenuation: 0);
+	}
+	CH0R H 1
+	{
+		A_Dodging(randompick(-35, 0, 35));
+		A_StartSound("DREADLSR", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0);
+		A_NephelomaLaser();
+	}
+	CH0R HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_NephelomaLaser();
+	CH0R G 35;
+	CH0R G 1 A_Stop();
+	Goto See;
+  Pentagram:
+	CH0R A 1 A_FaceTarget();
+	CH0R A 10
+	{
+		A_FaceTarget();
+		A_StartSound("ChoricoNepheloma/Active", CHAN_VOICE, attenuation: 0.14);
+	}
+	CH1R AAAAAAAAAAAAAAAAAAAAAAABBBBBBBB 1
+	{
+		A_SpawnItemEx("DCY_ChoricoChargeTrail", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		A_FaceTarget();
+		A_SpawnItemEx("DCY_ChoricoArc", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20) + 30, flags: SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	CH1R C 10
+	{
+		A_SpawnItemEx("DCY_ChoricoChargeTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		A_StartSound("CH0RPENF", CHAN_WEAPON, attenuation: 0.15, pitch: 1.3);
+		A_SpawnProjectile("DCY_ChoricoPentagram", 30);
+		A_FaceTarget();
+	}
+	CH1R B 30;
+	CH0R G 1 A_Stop();
+	Goto See;
+  Pain:
+	CH0R L 3;
+	CH0R L 3
+	{
+		A_Pain();
+		Return A_Jump(50, "Teleport", "Teleport2Backup");
+	}
+	Goto See;
+  Death:
+	CH0R L 1
+	{
+		if (exploding >= 80)
+		{
+			A_StopSound(CHAN_BODY);
+			A_StartSound("GL1SSBRK", CHAN_5, attenuation: 0, pitch: 0.85);
+			Spawn("DCY_VagueFlare", (pos.x, pos.y, pos.z + 40));
+			A_NoBlocking();
+			Destroy();
+		}
+		
+		A_SpawnItemEx("DCY_ChoricoJet", frandom(-30, 30), frandom(-30, 30), frandom(15, 100), flags: SXF_NOCHECKPOSITION);
+		A_SetAngle(Angle+30, SPF_INTERPOLATE);
+		
+		if (explodesound >= 2)
+		{
+			explodesound = 0;
+			A_StartSound("Eradicator/Laser", CHAN_BODY, attenuation: 0.5);
+		}
+		
+		exploding++;
+		explodesound++;
+	}
+	Loop;
+  }
+}
+
+Class DCY_Choricotest : DCY_ChoricoNepheloma
+{
+  States
+  {
+  Missile:
+	Goto Pentagram;
+  }
+}
+
+Class DCY_ChoricoChargeTrail : DCY_ProjectileBaseTrail
+{
+  Default
+  {
+  RenderStyle "AddStencil";
+  StencilColor "Purple";
+  Scale 1.25;
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 2;
+	Stop;
+  }
+}
+
+Class DCY_ChoricoChargeTrail2 : DCY_ChoricoChargeTrail
+{
+  States
+  {
+  Spawn:
+	"####" "##########" 1
+	{
+		A_FadeOut(0.1);
+		A_SetScale(Scale.X + 0.25);
+	}
+	Stop;
+  }
+}
+
+Class DCY_ChoricoPentagram : DoomImpBall
+{
+  Default
+  {
+  Speed 30;
+  +WALLSPRITE
+  +ROLLSPRITE
+  +NEVERFAST
+  +BRIGHT
+  +RIPPER
+  Radius 20;
+  Height 30;
+  Scale 0.275;
+  DamageFunction 10;
+  SeeSound "";
+  DeathSound "";
+  }
+  
+  States
+  {
+  Spawn:
+	EKOX A 0 NoDelay A_StartSound("ChoricoNepheloma/PentagramLoop", CHAN_5, CHANF_LOOPING, attenuation: 0.1);
+	EKOX A 1
+	{
+		A_SpawnItemEx("DCY_CNTrail", flags: SXF_TRANSFERROLL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_SetRoll(Roll+4, SPF_INTERPOLATE);
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_ChoricoArc", frandom(-10, 10), frandom(-100, 100), frandom(-100, 100), flags: SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	Loop;
+  Death:
+	TNT1 A 160
+	{
+		A_Explode(666, 200);
+		A_QuakeEx(4, 4, 4, 80, 0, 3000, "", QF_SCALEDOWN|QF_3D, rollintensity: 2, rollwave: 0.2);
+		
+		for (int i = 12; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(0, 360), SXF_NOCHECKPOSITION);
+		
+		A_StartSound("Eradicator/Explode", CHAN_BODY, attenuation: 0.35, pitch: 1.25);
+		A_StopSound(CHAN_5);
+	}
+	Stop;
+  }
+}
+
+Class DCY_CNTrail : DCY_ProjectileBaseTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.00,1.01]"; +ROLLSPRITE +WALLSPRITE } }
+Class DCY_ChoricoArc : DCY_Arc { Default { Scale 1.2; Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; } } 
+Class DCY_ChoricoJet : DCY_Explosion_1_Smaller { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; } } 
+Class DCY_NephelomaTele : DCY_RZTele { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; +NOTIMEFREEZE } } 
+Class DCY_NephelomaLaserPuff : DCY_Explosion_1_Medium { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; +NOTIMEFREEZE; +NOBLOCKMAP; +ALLOWPARTICLES; +ALWAYSPUFF; } }

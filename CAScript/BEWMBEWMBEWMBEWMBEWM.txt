@@ -1,0 +1,339 @@
+Class DCY_Explosion_1 : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 0.45;
+  RenderStyle "Add";
+  Alpha 0.8;
+  +DONTSPLASH;
+  +NOCLIP;
+  +ROLLSPRITE;
+  +NOINTERACTION;
+  +BRIGHT;
+  +THRUACTORS;
+  }
+  States
+  {
+  Spawn:
+	BEWM A 0;
+	BEWM A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0
+	{
+		If (Scale.X > 0.299)
+		{
+			A_QuakeEx(2, 2, 2, 12, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN);
+		}
+	}
+	"####" ACDEGHJKMOPRSUVXZ 1
+	{ 
+		A_FadeOut(0.005, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	B2WM ACFGGGGGGG 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_Explosion_1_Small : DCY_Explosion_1 { Default { Scale 0.35; } }
+
+Class DCY_Explosion_1_Smaller : DCY_Explosion_1 { Default { Scale 0.15; } }
+
+Class DCY_Explosion_1_Medium : DCY_Explosion_1 { Default { Scale 0.25; } }
+
+Class DCY_Explosion_1_Tiny : DCY_Explosion_1 { Default { Scale 0.1; } }
+
+Class DCY_Explosion_1_Biggie : DCY_Explosion_1
+{
+  Default
+  {
+  Scale 1.15;
+  }
+  
+  States
+  {
+  Spawn:
+	BEWM A 0;
+	BEWM A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0 A_Jump(128, "Explode");
+	Goto Explode0;
+  Explode0:
+    "####" A 0;
+	"####" A 0 A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+	"####" ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+	{ 
+		A_FadeOut(0.001, 0);
+		A_SetScale(Scale.X+0.015, Scale.Y+0.015); 
+	}
+	B2WM ABCDEFGGGGGG 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  Explode:
+    "####" A 0;
+	"####" A 0 A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+	"####" ABCDEFGHIJKLMNOPQRSUTVWXYZ 2
+	{ 
+		A_FadeOut(0.001, 0);
+		A_SetScale(Scale.X+0.015, Scale.Y+0.015); 
+	}
+	B2WM ABCDEFGGGGGGGG 2
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_MonochromaticExplosion : DCY_Explosion_1
+{
+  States
+  {
+  Spawn:
+	BE2M A 0;
+	BE2M A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0
+	{
+		If (Scale.X > 0.299)
+		{
+			A_QuakeEx(2, 2, 2, 12, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN);
+		}
+	}
+	"####" ACDEGHJKMOPRSUVXZ 1
+	{ 
+		A_FadeOut(0.005, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	B22M ACFGGGGGGG 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_MonochromaticExplosionSmall : DCY_MonochromaticExplosion { Default { Scale 0.35; } }
+
+Class DCY_MonochromaticExplosionSmaller : DCY_MonochromaticExplosion { Default { Scale 0.15; } }
+
+Class DCY_MonochromaticExplosionBiggie : DCY_Explosion_1_Biggie
+{
+  States
+  {
+  Spawn:
+	BE2M A 0;
+	BE2M A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0 A_Jump(128, "Explode");
+	Goto Explode0;
+  Explode0:
+    "####" A 0;
+	"####" A 0 A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+	"####" ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+	{ 
+		A_FadeOut(0.001, 0);
+		A_SetScale(Scale.X+0.015, Scale.Y+0.015); 
+	}
+	B22M ABCDEFGGGGGG 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  Explode:
+    "####" A 0;
+	"####" A 0 A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+	"####" ABCDEFGHIJKLMNOPQRSUTVWXYZ 2
+	{ 
+		A_FadeOut(0.001, 0);
+		A_SetScale(Scale.X+0.015, Scale.Y+0.015); 
+	}
+	B22M ABCDEFGGGGGG 2
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_SubtractedExplosion : DCY_MonochromaticExplosion { Default { RenderStyle "Subtract"; } }
+Class DCY_SubtractedExplosionSmall : DCY_MonochromaticExplosionSmall { Default { RenderStyle "Subtract"; } }
+Class DCY_SubtractedExplosionSmaller : DCY_MonochromaticExplosionSmaller { Default { RenderStyle "Subtract"; } }
+Class DCY_SubtractedExplosionBiggie : DCY_MonochromaticExplosionBiggie { Default { RenderStyle "Subtract"; } }
+
+Class DCY_AndroidExplosion : DCY_Explosion_1
+{
+  States
+  {
+  Spawn:
+	UCEX A 0;
+	UCEX A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0
+	{
+		If (Scale.X > 0.299)
+		{
+			A_QuakeEx(2, 2, 2, 12, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN);
+		}
+	}
+	"####" ACDEGHJKMOPRSUVXZ 1
+	{ 
+		A_FadeOut(0.005, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	UC2X ACFGGGGGGG 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_AndroidExplosionSmall : DCY_AndroidExplosion { Default { Scale 0.35; } }
+
+Class DCY_AndroidExplosionSmaller : DCY_AndroidExplosion { Default { Scale 0.15; } }
+
+Class DCY_AndroidExplosionBiggie : DCY_Explosion_1_Biggie
+{
+  States
+  {
+  Spawn:
+	UCEX A 0;
+	UCEX A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    UCEX A 0;
+	UCEX A 0 A_Jump(128, "Explode");
+	Goto Explode0;
+  Explode0:
+    UCEX A 0;
+	UCEX A 0 
+	{
+		A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+		
+		for (int i = 35; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_AExplosionSpark", 0, 0, 10, random(-20, 20), 0, random(5, 25), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 120);
+		}
+	}
+	UCEX ABCDEFGHIJKLMNOPQRSUVWXYZ 1 A_FadeOut(0.001, 0);
+	UC2X ABCEFGGGGGG 1 A_FadeOut(0.01, 0);
+	Stop;
+  Explode:
+    UCEX A 0;
+	UCEX A 0 
+	{
+		A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+		
+		for (int i = 35; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_AExplosionSpark", 0, 0, 10, random(-20, 20), 0, random(5, 25), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 120);
+		}
+	}
+	UCEX ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_FadeOut(0.001, 0);
+	UC2X ABCEFGGGGGG 2 A_FadeOut(0.01, 0);
+	Stop;
+  }
+}
+
+Class DCY_CorruptInfiltratorExplosion : DCY_AndroidExplosionBiggie { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; Alpha 1.0; } }
+
+Class DCY_Explosion_1_Upheaval : DCY_AndroidExplosionBiggie { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.65,1.17]"; Alpha 1.0; RenderStyle "Add"; } }
+
+Class DCY_Explosion_1_Obliteration : DCY_Explosion_1_Biggie
+{
+  Default
+  {
+  Scale 1.5;
+  Alpha 0.65;
+  +FORCEXYBILLBOARD;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.64,0.77,2.00]";
+  }
+  States
+  {
+  Spawn:
+    UCEX A 0;
+	UCEX A 0 A_Jump(128, "Explode");
+	Goto Explode0;
+  Explode0:
+    UCEX A 0;
+	UCEX A 0 
+	{
+		A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+		
+		for (int i = 35; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_AExplosionSpark", 0, 0, 10, random(-20, 20), 0, random(5, 25), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 120);
+		}
+	}
+	UCEX ABCDEFGHIJKLMNOPQRSUVWXYZ 1 A_FadeOut(0.001, 0);
+	UC2X ABCEFGGGGGG 1 A_FadeOut(0.01, 0);
+	Stop;
+  Explode:
+    UCEX A 0;
+	UCEX A 0 
+	{
+		A_QuakeEx(7, 7, 7, 40, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 1400);
+		
+		for (int i = 35; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_AExplosionSpark", 0, 0, 10, random(-20, 20), 0, random(5, 25), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 120);
+		}
+	}
+	UCEX ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 A_FadeOut(0.001, 0);
+	UC2X ABCEFGGGGGG 2 A_FadeOut(0.01, 0);
+	Stop;
+  }
+}
+
+Class DCY_BlueVoidExplosion : DCY_AndroidExplosion
+{
+  States
+  {
+  Spawn:
+	UCEX A 0;
+	UCEX A 0 A_SetRoll(random(0, 360));
+	Goto SpawnStart;
+  SpawnStart:
+    "####" A 0;
+	"####" A 0 A_QuakeEx(2, 2, 2, 12, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN);
+	"####" AEJOSXZ 1
+	{ 
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	UC2X AGGG 1
+	{ 
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.01, Scale.Y+0.01); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_YanoritExplosion : DCY_Explosion_1 { Default { Scale 0.15; Translation "0:255=%[0.00,0.00,0.00]:[0.74,1.06,2.00]"; } }
+Class DCY_PurpleAndroidExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.30,0.58,2.00]"; } }

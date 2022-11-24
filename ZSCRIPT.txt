@@ -1,0 +1,62 @@
+Version "4.9.0"
+
+//Weapon Swaying
+#include "CAScript/Others/WeaponSway.zc"
+#include "CAScript/Others/WeaponSwayMenu.zc"
+
+//The Player
+#include "CAScript/Player/NewPlayer.txt"
+
+//Misc.
+#include "CAScript/AABB.txt"
+#include "CAScript/Mindful.txt"
+#include "CAScript/Others/Misc.txt"
+#include "CAScript/Others/TeleportFX.txt"
+#include "CAScript/Splashes.txt"
+#include "CAScript/RailLazers.txt"
+#include "CAScript/ModifiedProjectiles.txt"
+#include "CAScript/NormalTracers.txt"
+#include "CAScript/BEWMBEWMBEWMBEWMBEWM.txt"
+#include "CAScript/MiscEffects.txt"
+#include "CAScript/BigLazor.txt"
+#include "CAScript/NotHudMessage.txt"
+
+//Events
+#include "CAScript/Events/BaseEvent.txt"
+#include "CAScript/Events/Anti.txt"
+#include "CAScript/Events/EffectChoker.txt"
+
+//Items and Ammo
+#include "CAScript/Items/HealthArmorThingy.txt"
+#include "CAScript/CyberaugumentedAmmo.txt"
+#include "CAScript/Items/PowerupBase.txt"
+#include "CAScript/Items/Spheres.txt"
+#include "CAScript/Items/Other.txt"
+
+//Effects
+#include "CAScript/Weapons/The-Heirloom.txt"
+#include "CAScript/Others/OtherTrails.txt"
+#include "CAScript/JetFlares.txt"
+#include "CAScript/BloodTypes.txt"
+
+//Monsters
+#include "CAScript/Monsters/EnemyBases.txt"
+#include "CAScript/EnemySFX.txt"
+#include "CAScript/Monsters/MonsterList.txt"
+
+//Weapons
+#include "CAScript/Weapons/Chainsaw-Tier.txt"
+#include "CAScript/Weapons/Pistol-Tier.txt"
+#include "CAScript/Weapons/Fists.txt"
+#include "CAScript/Weapons/Shotgun-Tier.txt"
+#include "CAScript/Weapons/SSG-Tier.txt"
+#include "CAScript/Weapons/Chaingun-Tier.txt"
+#include "CAScript/Weapons/Rawket-Tier.txt"
+#include "CAScript/Weapons/Plasma-Tier.txt"
+#include "CAScript/Weapons/Railgun-Tier.txt"
+#include "CAScript/Weapons/BFG-Tier.txt"
+#include "CAScript/Weapons/Stronk.txt"
+#include "CAScript/Weapons/TheCinerealOrdnance.txt"
+
+//The status bar
+#include "CAScript/Player/HUD.txt"

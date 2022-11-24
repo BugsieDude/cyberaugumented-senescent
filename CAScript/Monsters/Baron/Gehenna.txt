@@ -1,0 +1,158 @@
+Class DCY_GehennaChasseur : DCY_HeckBaron
+{
+  Default
+  {
+  Health 1222;
+  Tag "\c[e7]Gehenna Chasseur\c-";
+  Obituary "%o got burned by a Gehenna Chasseur.";
+  HitObituary "%o got burned by a Gehenna Chasseur.";
+  SeeSound "Desperado/Sight";
+  ActiveSound "Desperado/Active";
+  PainSound "Desperado/Pain";
+  DeathSound "Desperado/Death";
+  +NOGRAVITY
+  +FLOAT
+  +MISSILEEVENMORE
+  +FIRERESIST
+  +BRIGHT
+  FloatSpeed 9;
+  FastSpeed 13;
+  Speed 9;
+  BloodColor "Orange";
+  BloodType "AndroidNeonFluid";
+  }
+  
+  int bombloop;
+  
+  void A_GehennaMissile()
+  {
+	A_FaceTarget();
+	A_StartSound("DNRPGFIR", CHAN_WEAPON);
+	
+	for (int i = 18; i > -20; i -= 36)
+		A_SpawnProjectile("DCY_GehennaMissile", 48, i, frandom(-2.0, 2.0));
+  }
+  
+  override void Tick()
+  {
+    super.Tick();
+	
+	If (Health > 0 && !IsFrozen() && !sv_effectchoker)
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(38.0, 41.0), 0, 0, frandom(-2.0, -5.0), flags: SXF_NOCHECKPOSITION, 150);
+	  
+		A_SpawnItemEx("DCY_Explosion_1_Smaller", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(38.0, 41.0), 0, 0, frandom(-1.0, -2.5), flags: SXF_NOCHECKPOSITION, 200);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	HYCY AB 3 A_Look();
+	Loop;
+  See:
+	HYCY ABABAB 3 A_Chase();
+	Loop;
+  Melee:
+  Missile:
+	HYCY C 1 A_Jump(192, "Minigunner", "Rockets", "LaserBombs");
+	Goto Rockets;
+  Minigunner:
+	HYCY CCCCCCCCCCCCCCC 1 A_FaceTarget();
+	HYCY C 1 A_StartSound("DSUHH", CHAN_WEAPON, CHANF_OVERLAP, 1.0, 0.45);
+	HYCY CCCCCCCCCCCCCCCCCCCCCC 1
+	{
+		A_CustomRailgun(0, 0, "", "", RGF_SILENT|RGF_FULLBRIGHT, 2, sparsity: 70, spawnclass: "DCY_GehennaTrack", spawnofs_z: 40);
+		A_FaceTarget();
+	}
+	HYCY FCFCFCFCFCFCFCF 3
+	{
+		for (int i = 13; i > -14; i -= 26)
+			A_SpawnProjectile("DCY_AlacritousGuyBullet", 70, i, frandom(-1.2, 1.2), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(1.2, -1.2));
+		
+		A_StartSound("PIS3FIRE", CHAN_WEAPON, 0, 1.0, 0.5);
+		A_FaceTarget();
+	}
+	Goto See;
+  Rockets:
+	HYCY CCCCCCCCCCCCCCC 1 A_FaceTarget();
+	HYCY E 5 Bright A_GehennaMissile();
+	HYCY C 4 Bright A_FaceTarget();
+	HYCY E 5 Bright A_GehennaMissile();
+	HYCY C 4 Bright A_FaceTarget();
+	HYCY E 5 Bright A_GehennaMissile();
+	HYCY C 4 Bright A_FaceTarget();
+	HYCY E 5 Bright A_GehennaMissile();
+	HYCY C 15 Bright;
+	Goto See;
+  LaserBombs:
+	HYCY C 1 { bombloop = random(2, 4); }
+	HYCY CCCCCCCCCCCCCC 1 A_FaceTarget();
+	HYCY F 3
+	{
+		for (int i = 14; i > -15; i -= 28)
+			A_SpawnProjectile("DCY_GehennaBomb", 70, i, frandom(-1.8, 1.8), CMF_OFFSETPITCH|CMF_TRACKOWNER, -2 + frandom(1.2, -1.2));
+		
+		A_FaceTarget();
+		bombloop--;
+	}
+	HYCY C 3
+	{
+		if (bombloop <= 0)
+			SetStateLabel("See");
+	}
+	Goto LaserBombs+10;
+  Pain:
+	HYCY G 3;
+	HYCY G 3 A_Pain();
+	Goto See;
+  Death:
+	HYCD A 1;
+	HYCD A 8 A_Scream();
+	HYCD B 6;
+	HYCD CD 4;
+	HYCD E 4 A_SpawnItemEx("DCY_Explosion_1_Biggie", zofs: 30, flags: SXF_NOCHECKPOSITION);
+	HYCD FG 4;
+	HYCD H 4 A_BossDeath2();
+	Stop;
+  }
+}
+
+Class DCY_GehennaMissile : Rocket
+{
+  Default
+  {
+  Speed 20;
+  Scale 0.9;
+  Radius 8;
+  Height 5;
+  DamageFunction (0);
+  DamageType "Fire";
+  SeeSound "DNROCKET";
+  Translation "0:255=%[0.18,0.00,0.00]:[2.00,1.01,0.00]", "48:159=%[0.00,0.00,0.00]:[1.51,1.51,1.51]", "5:15=%[0.00,0.00,0.00]:[1.51,1.51,1.51]", "236:239=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
+  Obituary "%o got inferno burned by a Gehenna Chasseur.";
+  +BRIGHT;
+  }
+  
+  States
+  {
+  Spawn:
+	HMIS A 1
+	{
+		A_SpawnItemEx("DCY_RocketFlare", 0, 0, 3);
+		A_SpawnItemEx("DCY_ImpFlame1", 0, 0, 3, zvel: 1, failchance: 140);
+		A_Weave(2, 2, 1, 1);
+	}
+	Loop;
+  Death:
+	TNT1 A 1 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SetTranslucent(0.865, 2);
+		A_Explode(25, 80, XF_NOTMISSILE, 1);
+	}
+    Stop;
+  }
+}

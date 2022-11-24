@@ -1,0 +1,210 @@
+Class DCY_ContraptionOfHell : DCY_TheGiantEnemySpider
+{
+  Default
+  {
+  Monster;
+  -SHOOTABLE
+  -COUNTKILL
+  +INVULNERABLE
+  -BRIGHT
+  +NODAMAGE
+  Radius 64;
+  Height 100;
+  Tag "uhm";
+  DamageFactor 0;
+  Scale 1.6;
+  Speed 10;
+  +PAINLESS
+  +NOPAIN
+  +NOICEDEATH
+  +DONTHARMSPECIES
+  SeeSound "";
+  ActiveSound "";
+  PainSound "";
+  DeathSound "";
+  }
+  
+  actor head;
+  bool awakened;
+  
+  override void PostBeginPlay()
+  {
+	if (tics != -1)
+	{
+		head = Spawn("DCY_ContraptionUpperBody", pos);
+
+		if (head)
+		{
+			if (bFRIENDLY)
+				head.bFRIENDLY = true;
+
+			head.bAMBUSH = bAMBUSH;
+			head.master = self;
+		}
+	}
+  }
+  
+  override bool CanCollideWith(Actor other, bool passive)
+  {
+	if(other == head)
+		return false;
+		
+	if(other.bNOBLOCKMAP == true)
+		return false;
+		
+	return true;
+  }
+  
+  States
+  {
+  Spawn:
+	C0N_ A 0;
+	CAN_ D 10 A_Look();
+	Goto Spawn+1;
+  See:
+	CAN_ D 10
+	{
+		if (awakened)
+			SetStateLabel("Move");
+	}
+	CAN_ D 20 { awakened = true; }
+	Goto Move;
+  Move:
+	CAN_ D 0 A_StartSound("TANKL00P", CHAN_BODY, CHANF_LOOPING, attenuation: 0.5);
+	CAN_ DDEEFF 2 A_Chase();
+	Loop;
+  Missile:
+	CAN_ D 8 A_FaceTarget();
+	CAN_ EFD 8;
+	CAN_ DEFDEFDEF 4 A_Recoil(-6);
+	CAN_ D 8 A_FaceTarget();
+	CAN_ EFD 8;
+	CAN_ DEFDEFDEF 4 A_Recoil(-6);
+	Goto See;
+  Pain:
+	CAN_ "#" 4;
+	CAN_ "#" 1 A_Pain();
+	Goto See;
+  }
+}
+
+Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
+{
+  Default
+  {
+  Health 6789;
+  +NOBLOOD;
+  Scale 1.6;
+  Radius 64;
+  Height 100;
+  +DONTHARMSPECIES
+  +NOICEDEATH
+  Tag "Contraption";
+  SeeSound "COH/Sight";
+  ActiveSound "COH/Active";
+  PainSound "COH/Pain";
+  }
+  
+  override void Tick()
+  {
+	super.tick();
+	
+	if (health > 0)
+		Warp(Master, 0, 0, 6, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_USECALLERANGLE);
+  }
+  
+  override void PostBeginPlay()
+  {
+	Warp(Master, 0, 0, 6, 0, WARPF_INTERPOLATE);
+  }
+  
+  void A_SpawnContraptionMissile(string actor)
+  {
+	for (int i = -30; i < 31; i += 60)
+		A_SpawnProjectile(actor, 70, i);
+		
+	A_SpawnProjectile(actor, 100);
+  }
+  
+  int missilecount;
+  
+  void A_StickAngle()
+  {
+	if (master) { angle = master.angle; }
+  }
+  
+  States
+  {
+  Spawn:
+	CAN_ A 1 { DCY_Look(); }
+	Loop;
+  Look:
+	"####" A 2 A_StickAngle();
+	"####" A 1 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	CAN_ A 4 { A_StickAngle(); A_Chase("Missile", "Missile", CHF_DONTMOVE); }
+	Loop;
+  Melee:
+  Missile:
+	CAN_ A 0 A_Jump(128, "Rockets");
+	Goto ExplosiveMiniguns;
+  ExplosiveMiniguns:
+	CAN_ AAAAAAAAAAAAAAAAA 1 A_FaceTarget();
+	CAN_ A 1 A_StartSound("ZSPIATKS", CHAN_WEAPON);
+	CAN_ AAAAAAAAAAAAAAABB 1 A_FaceTarget();
+	CAN_ CBCBCBCBCBCBCBCBCBCBCBCB 3
+	{
+		A_StartSound("ZSPIATKL", CHAN_WEAPON, CHANF_LOOPING);
+		
+		A_SpawnContraptionMissile("DCY_AlacritousGuyBullet");
+		A_FaceTarget();
+	}
+	CAN_ A 1 A_StartSound("ZSPIATKT", CHAN_WEAPON);
+	Goto See;
+  Rockets:
+	CAN_ A 0 { missilecount = 0; }
+	CAN_ AAAAAAAAAAAAAAAAAAAAAAAAA 1 { angle = master.angle; }
+	CAN_ AAAAAAAAAAAAAAAAA 1 A_FaceTarget();
+	Goto RocketLoop;
+  RocketLoop:
+	CAN_ C 3
+	{
+		A_StartSound("ROBOMIS2", CHAN_WEAPON);
+		
+		A_SpawnContraptionMissile("DCY_EarlRocket");
+		A_FaceTarget();
+	}
+	CAN_ B 6
+	{
+		A_FaceTarget();
+		missilecount++;
+		if (missilecount > 10)
+			SetStateLabel("See");
+	}
+	Loop;
+  Pain:
+	CAN_ A 4 A_StopSound(CHAN_WEAPON);
+	CAN_ A 1 A_Pain();
+	Goto See;
+  Death:
+	CAN_ A 1;
+	C0N_ F 7 { A_StopSound(CHAN_WEAPON); A_RemoveMaster(RMVF_EVERYTHING); }
+	C0N_ G 6
+	{
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+		
+		A_Scream();
+	}
+	C0N_ HIJK 6 A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+	C0N_ L 6 A_NoBlocking();
+	C0N_ MNOPQRSTU 4;
+	C0N_ V 40;
+	C0N_ V -1 A_BossDeath2();
+	Stop;
+  }
+}

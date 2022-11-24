@@ -1,0 +1,400 @@
+Class DCY_WaterParticleX : DCY_Effect
+{
+  Default
+  {
+  Height 0;
+  Radius 0;
+  Mass 0;
+  +Missile
+  +NoBlockMap
+  -NoGravity
+  +DontSplash
+  +DoomBounce
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +CLIENTSIDEONLY
+  BounceFactor 0.1;
+  Gravity 0.5;
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 0.5;
+  Speed 2;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1 { bUseBounceState = false; }
+	Goto Stand;
+  Stand:
+    WSPH ABCD 4;
+    Stop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+
+Class DCY_WaterParticleXFaster: DCY_WaterParticleX { Default { Speed 4; } }
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+//********** Splashes **********
+
+Class DCY_WaterSplashBase2 : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 0.7;
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOCLIP
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_WaterParticleX", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_WaterParticleXFaster", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+	GSPL ABCDEFGHIJKLMNOPQRSTUVWXYZ 1;
+    Stop;
+  }
+}
+
+
+Class DCY_WaterSplashBaseSmall : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 0.5;
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOCLIP
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+	{
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_WaterParticleX", 12, 0, frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_WaterParticleXFaster", 12, 0, frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    GSPL ABCDEFGHIJKLMNOPQRSTUVWXYZ 1;
+    Stop;
+  }
+}
+
+
+
+
+
+////////////////////////Blood
+
+Class DCY_BloodParticleX : DCY_Effect
+{
+  Default
+  {
+  Height 0;
+  Radius 0;
+  Mass 0;
+  +Missile
+  +NoBlockMap
+  -NoGravity
+  +DontSplash
+  +DoomBounce
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +CLIENTSIDEONLY
+  BounceFactor 0.1;
+  Gravity 0.5;
+  RenderStyle "Translucent";
+  Scale 1.0;
+  Alpha 0.8;
+  Speed 2;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1 { bUseBounceState = false; }
+	Goto Stand;
+  Stand:
+    BSPH ABCD 4;
+    Stop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+
+Class DCY_BloodParticleXFaster : DCY_BloodParticleX { Default { Speed 4; } }
+
+Class DCY_BloodSplashBase1 : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 1.0;
+  +NOCLIP
+  +DONTSPLASH
+  +NOGRAVITY
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 F 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_BloodParticleX", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_BloodParticleXFaster", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}
+
+Class DCY_BloodSplashBaseSmall : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 0.7;
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOCLIP
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+    {
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_BloodParticleX", 12, 0, frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_BloodParticleXFaster", 12, 0, frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}
+
+/////////////////// Nukage
+
+Class DCY_NukageParticleX : DCY_Effect
+{
+  Default
+  {
+  Height 0;
+  Radius 0;
+  Mass 0;
+  +Missile
+  +NoBlockMap
+  -NoGravity
+  +DontSplash
+  +DoomBounce
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +CLIENTSIDEONLY
+  BounceFactor 0.1;
+  Gravity 0.5;
+  RenderStyle "Translucent";
+  Scale 1.0;
+  Alpha 0.8;
+  Speed 2;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1 { bUseBounceState = false; }
+	Goto Stand;
+  Stand:
+    SLDG ABCD 4;
+    Stop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+
+Class DCY_NukageParticleXFaster : DCY_NukageParticleX { Default { Speed 4; } }
+
+Class DCY_NukageSplashBase : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 1.0;
+  +NOCLIP
+  +DONTSPLASH
+  +NOGRAVITY
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_NukageParticleX", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_NukageParticleXFaster", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}
+
+Class DCY_NukageSplashBaseSmall : DCY_NukageSplashBase
+{
+  Default
+  {
+  Scale 0.5;
+  }
+  
+  States
+  {
+  Spawn:
+	SLDG E 6 NoDelay;
+	TNT1 F 0
+	{
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_NukageParticleX", 2, 0, frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_NukageParticleXFaster", 2, 0, frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}
+
+/////////////////// Slime
+
+Class DCY_SlimeParticleX : DCY_Effect
+{
+  Default
+  {
+  Height 0;
+  Radius 0;
+  Mass 0;
+  +Missile
+  +NoBlockMap
+  -NoGravity
+  +DontSplash
+  +DoomBounce
+  +FORCEXYBILLBOARD
+  +NOCLIP
+  +CLIENTSIDEONLY
+  BounceFactor 0.1;
+  Gravity 0.5;
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 0.8;
+  Speed 2;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1 { bUseBounceState = false; }
+	Goto Stand;
+  Stand:
+    SLIM ABCD 4;
+    Stop;
+  Death:
+	TNT1 A 1;
+	Stop;
+  }
+}
+
+
+Class DCY_SlimeParticleXFaster: DCY_SlimeParticleX { Default { Speed 4; } }
+
+Class DCY_SlimeSplashBase : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 1.0;
+  +NOCLIP
+  +DONTSPLASH
+  +NOGRAVITY
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 A 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_SlimeParticleX", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_SlimeParticleXFaster", random(-5,5), 0, frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}
+
+Class DCY_SlimeSplashBaseSmall : DCY_SlimeSplashBase
+{
+  Default
+  {
+  Scale 0.5;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay
+	{
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnProjectile("DCY_SlimeParticleX", 2, 0, frandom(0, 360), 2, frandom(-50, -140));
+			A_SpawnProjectile("DCY_SlimeParticleXFaster", 2, 0, frandom(0, 360), 2, frandom(-50, -140));
+		}
+	}
+    Stop;
+  }
+}

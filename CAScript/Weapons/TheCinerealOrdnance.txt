@@ -1,0 +1,209 @@
+Class DCY_TheCinerealOrdnance : Weapon
+{
+  Default
+  {
+  Obituary "%o got removed.";
+  Inventory.PickupMessage "\c[g3]You have access to have the Cinereal Ordnance! We're going to have a lot of fun.\cL";
+  Radius 65;
+  Height 22;
+  Weapon.AmmoType "DCY_CinerealPrestige";
+  Weapon.AmmoUse 3;
+  Weapon.AmmoGive 100;
+  Weapon.SlotNumber 9;
+  Inventory.PickupSound "CinerealOrdnance/Up";
+  Weapon.UpSound "CinerealOrdnance/Up";
+  Inventory.Icon "CINRZ0";
+  Tag "The ''Cinereal Ordnance'' (Faust-X 0)";
+  Weapon.BobStyle "Alpha";
+  Weapon.BobRangeX 0.45;
+  Weapon.BobRangeY 0.25;
+  Weapon.BobSpeed 1.45;
+  +NOTIMEFREEZE
+  +FLOORCLIP
+  +DONTGIB
+  +BRIGHT
+  +WEAPON.EXPLOSIVE
+  +WEAPON.BFG
+  }
+  States
+  {
+  Spawn:
+    CINR Z 1;
+    CINR Z 0 A_StartSound("CinerealOrdnance/Active", CHAN_ITEM, CHANF_LOOPING, 1.0, 0.35);
+	Loop;
+  Pickup:
+	TNT1 A 1
+	{
+		A_StopSound(CHAN_ITEM);
+	}
+	Stop;
+  Select:
+	CINR WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	CINR YXW 1
+	{
+		A_StopSound(CHAN_6);
+		A_WeaponOffset(0, 32);
+	}
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+    CINR A 1
+	{
+		A_WeaponReady();
+		A_StartSound("CinerealOrdnance/Idle", CHAN_6, CHANF_LOOPING, 1, 0.5);
+		Return A_Jump(4, "Zap");
+	}
+	Loop;
+  Zap:
+    TNT1 A 0 A_StartSound("LIGTBALL", CHAN_5, attenuation: 0.5);
+    TNT1 A 0 A_Jump(192, "Zap1", "Zap2");
+	Goto Zap1;
+  Zap1:
+    CINR TQSPRQ 1
+	{
+		A_WeaponOffset(frandom(-1.0, 1.0), frandom(32.0, 34.0));
+		A_WeaponReady();
+	}
+	CINR Q 0 A_WeaponOffset(0, 32);
+	Goto Ready;
+  Zap2:
+	CINR RSTQPST 1
+	{
+		A_WeaponOffset(frandom(-1.0, 1.0), frandom(32.0, 34.0));
+		A_WeaponReady();
+	}
+	CINR Q 0 A_WeaponOffset(0, 32);
+	Goto Ready;
+  Fire:
+	CINR H 0
+	{
+		A_StopSound(CHAN_WEAPON);
+		A_SetBlend("White", 0.75, 30);
+		A_StopSound(CHAN_WEAPON);
+		A_StartSound("CinerealOrdnance/Charge", CHAN_6, attenuation: 0.35);
+	}
+	CINR HHHHHHHIIIIIIIJJJJJJJKKKKKLLLL 1;
+	CINR L 1
+	{
+		A_StopSound(CHAN_WEAPON);
+		A_StartSound("CinerealOrdnance/Laser", CHAN_6, 1.0, 1, 0.5);
+	}
+	Goto FireLoop;
+  FireLoop:
+	CINR MN 1
+	{
+		A_GunFlash();
+		A_QuakeEx(3, 3, 3, 25, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(2, 2, 2, 20, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 0, 0, frandom(0.2, 0.7), frandom(-0.7, 0.7));
+		A_FireProjectile("DCY_CinerealOrdnanceLaser", 0, 0);
+		A_WeaponOffset(frandom(-2.0, 2.0), frandom(32.0, 36.0), WOF_INTERPOLATE);
+	}
+	CINR O 1
+	{
+		A_GunFlash();
+		A_QuakeEx(3, 3, 3, 25, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(2, 2, 2, 20, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 0, 0, frandom(0.2, 0.7), frandom(-0.7, 0.7));
+		A_FireProjectile("DCY_CinerealOrdnanceLaser", 0, 1);
+		A_WeaponOffset(frandom(-2.0, 2.0), frandom(32.0, 36.0), WOF_INTERPOLATE);
+	}
+	CINR M 0 A_Refire("FireLoop");
+	CINR T 5
+	{
+		A_StopSound(CHAN_6);
+		A_SetBlend("White", 0.5, 30);
+		A_QuakeEx(3, 3, 3, 25, 0, 1000, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(2, 2, 2, 20, 0, 1000, "", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 0, 0, frandom(0.2, 0.7), frandom(-0.7, 0.7));
+		A_StartSound("CinerealOrdnance/Cooldown", CHAN_6, attenuation: 0.5);
+	}
+	CINR TSRQP 5;
+	Goto Ready;
+  }
+}
+
+Class DCY_CinerealOrdnanceLaser : FastProjectile
+{
+  Default
+  {
+  Damage 40;
+  Speed 300;
+  FastSpeed 300;
+  +THRUGHOST
+  +EXTREMEDEATH
+  +NODAMAGETHRUST
+  +CAUSEPAIN
+  -NOBOSSRIP
+  +RIPPER
+  +SEEKERMISSILE
+  +NOTIMEFREEZE
+  +BRIGHT
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 0.1;
+  MissileType "DCY_CinerealOrdnanceBeam";
+  DamageType "CinerealOrdnanceDMG";
+  MissileHeight 6;
+  Radius 18;
+  Height 18;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	Loop;
+  Death:
+	TNT1 A 0
+	{
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnItemEx("DCY_MonochromaticExplosionSmall", frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(-6.0, 6.0), flags: SXF_NOCHECKPOSITION);
+		}
+	}
+    TNT1 AAAAAAAAAAAAAAAA 1 A_SpawnItemEx("DCY_CinerealOrdnanceBeam", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION);
+	Stop;
+  }
+}
+
+Class DCY_CinerealOrdnanceBeam : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.45;
+  Scale 0.75;
+  RenderStyle "Add";
+  +NOTIMEFREEZE
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_Jump(192, "Spawn1", "Spawn2");
+	Goto Spawn1;
+  Spawn1:
+	EF1_ I 1
+	{
+		If(Alpha <= 0.00)
+			Destroy();
+		
+		A_FadeOut(0.03555, 0);
+		A_SetScale(Scale.X-0.02, Scale.Y-0.02);
+	}
+	Loop;
+  Spawn2:
+    EF1_ I 1
+	{
+		If(Alpha <= 0.00)
+			Destroy();
+		
+		A_FadeOut(0.06, 0);
+		A_SetScale(Scale.X-0.02, Scale.Y-0.02);
+	}
+	Loop;
+  }
+}

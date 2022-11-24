@@ -1,0 +1,149 @@
+Class DCY_Tenebrosity : DCY_Pinke
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.00,2.00]", "16:47=%[0.00,0.00,0.00]:[0.00,0.00,0.00]", "0:12=%[0.00,0.00,0.00]:[0.00,0.00,0.00]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "168:191=%[0.00,0.00,0.00]:[0.00,0.00,0.00]";
+  Health 333;
+  Tag "\c[Blue]Tenebrosity\c-";
+  Speed 5.5;
+  FastSpeed 6.5;
+  PainChance 30;
+  +NOBLOOD
+  +DONTHARMCLASS
+  +THRUSPECIES
+  +BRIGHT
+  SeeSound "Tenebrosity/Sight";
+  ActiveSound "Tenebrosity/Active";
+  PainSound "Tenebrosity/Pain";
+  DeathSound "Tenebrosity/Death";
+  AttackSound "Tenebrosity/Attack";
+  Obituary "%o's corpse vanished in the void of the Tenebrosity.";
+  HitObituary "%o's corpse vanished in the void of the Tenebrosity.";
+  }
+  
+  States
+  {
+  Spawn:
+	SAR3 A 10 A_Look();
+	Loop;
+  See:
+	SAR3 AAABBBCCCDDD 2 Fast A_Chase();
+	Loop;
+  Missile:
+	SAR3 A 2
+	{
+		if (target && Distance3D(target) < 222)
+			Return ResolveState("Lunge");
+			
+		A_Chase("Melee", null);
+		Return A_Jump(121, "SPEEEEEEEEEEEEED");
+	}
+	SAR3 AABBBCCCDDD 2 Fast
+	{
+		if (target && Distance3D(target) < 222)
+			Return ResolveState("Lunge");
+			
+		A_Chase("Melee", null);
+		Return ResolveState(null);
+	}
+	Goto See;
+  SPEEEEEEEEEEEEED:
+	SAR3 A 0 Fast
+	{
+		if (target && Distance3D(target) < 222)
+			Return ResolveState("Lunge");
+			
+		bGhost = true;
+		Return ResolveState(null);
+	}
+	SAR3 AAA 5 A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION);
+	SAR3 A 0 A_JumpIfCloser(222, "Lunge");
+	SAR3 AAA 5 A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION);
+	SAR3 A 0
+	{
+		bNoPain = true;
+		A_SetSpeed(50);
+		A_SetTranslucent(0.00, 0);
+	}
+	SAR3 ABCDABCDABCDABCDABCDABCDABCDABCD 1
+	{
+		for (int i = 5; i > 0; i--)
+		{
+			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+			A_Wander();
+			A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+			A_Wander();
+			A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		}
+	}
+	SAR3 A 10
+	{
+		bNoPain = false;
+		A_SetSpeed(5.5);
+		A_SetTranslucent(1.00, 0);
+		bGhost = false;
+	}
+	Goto See;
+  Lunge:
+	SAR3 E 0 { bGhost = false; }
+	SAR3 EEEEEEEEE 1 A_FaceTarget();
+	SAR3 E 0 A_StartSound("Tenebrosity/Attack", CHAN_VOICE);
+	SAR3 FFFFFFFF 1 A_Recoil(-6);
+	SAR3 G 0 A_CustomMeleeAttack(8 * random(1, 10), "", "");
+	SAR3 G 8;
+	Goto See;
+  Melee:
+	SAR3 EF 6 A_FaceTarget();
+	SAR3 G 4
+	{
+		A_FaceTarget();
+		A_CustomMeleeAttack(8 * random(1, 10), "", "");
+	}
+	Goto See;
+  Pain:
+	SAR3 H 3;
+	SAR3 H 3 A_Pain();
+	Goto See;
+  Death:
+	SAR3 I 1;
+	SAR3 I 6 A_ScreamAndUnblock();
+	SAR3 JKLM 5;
+	SAR3 N -1;
+	Stop;
+  Raise:
+	SAR3 MLKJI 5;
+	Goto See;
+  }
+}
+
+Class DCY_TenebrosityAura : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.85;
+  Scale 1.025;
+  RenderStyle "AddStencil";
+  StencilColor "Blue";
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+    SAR3 "#" 0;
+	SAR3 "#" 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.04, Scale.Y+0.04);
+	}
+	SAR3 "#" 0 A_JumpIf(Alpha <= 0.00000000000000001, "Stahp");
+	Loop;
+  Stahp:
+    TNT1 A 2;
+	Stop;
+  }
+}

@@ -1,0 +1,156 @@
+Class DCY_TeleFogger : TeleportFog Replaces TeleportFog
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.33,2.00,0.65]";
+  RenderStyle "Add";
+  Scale 0.75;
+  +BRIGHT;
+  }
+  States
+  {
+  Spawn:
+	Goto Cyberaugumented;
+  Raven:
+	Goto Cyberaugumented;
+  Strife:
+	Goto Cyberaugumented;
+  Cyberaugumented:
+	TNT1 A 1;
+	TNT1 A 1 A_SpawnItemEx("DCY_TeleOrb", 0, 0, 30, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 AAAAAAAAAAA 1 { if (!sv_effectchoker) A_SpawnItemEx("DCY_TeleSparkle", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(10.0, 50.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
+	TNT1 A 10;
+	Stop;
+  }
+}
+
+Class DCY_TeleSparkle : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 0.65;
+  Alpha 0.65;
+  Radius 0;
+  Height 0;
+  +BRIGHT;
+  +NOINTERACTION;
+  +NOCLIP;
+  +DONTSPLASH;
+  }
+  States
+  {
+  Spawn:
+	TWIK ABCDEFGIJKLMNOPQRSTUVWXYZ 1;
+	TW1K ABCDEFGIJKLMNOPQRSTUVWXYZ 1;
+	TW2K ABCDEFGHI 1;
+	Stop;
+  }
+}
+
+Class DCY_TeleOrb : DCY_TeleSparkle
+{
+  Default
+  {
+  Scale 0.75;
+  Alpha 1.0;
+  }
+  States
+  {
+  Spawn:
+	KAB2 ABCDEFGHIJKL 1;
+	KAB2 LMNOPQRSTUVWXYZ 1;
+	K3B2 ABCDEFGHIJKLM 1;
+	Stop;
+  }
+}
+
+Class DCY_EnemyTeleport : DCY_Telefogger { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.01,0.50,0.50]"; } }
+
+Class DCY_CyberTeleport : DCY_EnemyTeleport
+{
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	A_StartSound("dcycyber/teleport", CHAN_BODY);
+  }
+  
+  Default
+  {
+	Scale 2;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1;
+	TNT1 A 1
+	{
+		A_QuakeEx(2, 2, 2, 70, 0, 2000, "", QF_3D|QF_SCALEDOWN);
+		A_SpawnItemEx("DCY_TeleOrb", 0, 0, 30, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	}
+	TNT1 AAAAAAAAAAAAAAAAA 1 { if (!sv_effectchoker) A_SpawnItemEx("DCY_TeleSparkle", frandom(-60.0, 60.0), frandom(-60.0, 60.0), frandom(10.0, 100.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
+	TNT1 A 50;
+	Stop;
+  }
+}
+
+Class DCY_BossTeleport : DCY_EnemyTeleport
+{
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	A_StartSound("dcybosstier/teleport", CHAN_BODY, attenuation: 0.375);
+  }
+  
+  Default
+  {
+	Scale 1.5;
+	Alpha 0.35;
+	Translation "0:255=%[0.00,0.00,0.00]:[1.91,0.10,1.14]";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 AAAA 1 A_SpawnItemEx("DCY_EmptySmoke", frandom(-10.0, 10.0), frandom(-10.0, 10.0), random(2, 30), frandom(-0.75, 0.75), frandom(-0.75, 0.75), 6, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 A 100
+	{
+		A_QuakeEx(4, 4, 4, 70, 0, 2000, "", QF_3D|QF_SCALEDOWN);
+		
+		A_SpawnItemEx("DCY_VagueFlare", zofs: 30, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERALPHA);
+		A_StartSound("dcybosstier/teleportend", CHAN_BODY, CHANF_OVERLAP, attenuation: 0.75);
+		A_SpawnItemEx("DCY_TeleCircle", zofs: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
+		for (int i = 3; i > 0; i--)
+			A_SpawnItemEx("DCY_VagueRing", zofs: 30, angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERALPHA);
+	}
+	Stop;
+  }
+}
+
+Class DCY_EmptinessTeleport : DCY_BossTeleport { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.01,1.01,1.01]"; } }
+
+Class DCY_TeleCircle : DCY_Effect
+{
+  Default
+  {
+  Scale 0.5;
+  +FLATSPRITE
+  RenderStyle "ADD";
+  +NOGRAVITY
+  }
+  
+  States
+  {
+  Spawn:
+	SPL4 ABCDEFGHIJKLMNO 1
+	{
+		A_SetAngle(Angle+5);
+		A_SetScale(Scale.X + 0.135);
+		A_FadeOut(0.075, 0);
+	}
+	Stop;
+  }
+}

@@ -1,0 +1,159 @@
+CLASS DCY_Spirit : Archvile
+{
+  Default
+  {
+	  Health 1000;
+	  Tag "\c[k1]Spirit\c-";
+	  SeeSound "Spirit/Grunt";
+	  ActiveSound "";
+	  PainSound "";
+	  DeathSound "Spirit/Death";
+	  +NOBLOOD;
+	  +THRUGHOST;
+	  +GHOST;
+	  +THRUSPECIES;
+	  +NOGRAVITY;
+	  +FLOAT;
+	  +FLOATBOB;
+	  +DONTTHRUST;
+	  DamageFactor "Normal", 0.00;
+	  DamageFactor "Plasma", 1.2;
+	  DamageFactor "Ballista", 0.65;
+	  DamageFactor "BFG", 1.0;
+	  DamageFactor "Holy", 0.5;
+	  DamageFactor "Cosmical", 1.0;
+	  DamageFactor "CinerealOrdnanceDMG", 1.2;
+	  Species "Mindfucker";
+	  FloatBobPhase 1;
+	  FloatBobStrength 1;
+	  Speed 0;
+	  FloatSpeed 0;
+	  PainChance 200;
+	  FastSpeed 0;
+	  RenderStyle "Add";
+	  Alpha 0.85;
+	  +BRIGHT;
+  }
+  
+  override bool CanResurrect (Actor other, bool passive)
+  {
+	if (!passive)
+	{
+		return (health >= SpawnHealth() / 3 || other.SpawnHealth() >= 0);
+	}
+
+	return true;
+  }
+  
+  Void A_DLCSpiritLook()
+  {
+	A_Look();
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+  }
+  
+  Void A_DLCSpiritChase()
+  {
+	A_VileChase();
+	A_SetSpeed(randompick(0, 0, 0, 4, 8, 12));
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+  }
+  
+  Void A_DLCSpiritWandering()
+  {
+	for (int i = 8; i > 0; i--)
+		A_Wander();
+  }
+  
+  Void A_Possess()
+  {
+	bInvulnerable = true;
+	bNoclip = true;
+	bShootable = false;
+	A_SpawnItemEx("DCY_SpiritRing", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+	A_SetTranslucent(0.00, 1);
+	//A_GiveToTarget("SpiritBuff", 1);
+  }
+  
+  Void A_DLCSpiritDeath()
+  {
+  	A_Scream();
+	A_SpawnItemEx("DCY_SpiritRing", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	A_StartSound("reaver/death", CHAN_BODY, CHANF_DEFAULT, 1.0, 1.0, 0.75);
+	A_StartSound("reaver/death", CHAN_6, CHANF_DEFAULT, 1.0, 1.0, 0.75);
+	A_SetTranslucent(0.00, 1);
+	A_QuakeEx(4, 4, 4, 100, 0, 555, "none", QF_SCALEDOWN, 0, 0, 0, 1111, 0, 0.5, frandom(-0.5, 0.5));
+  }
+  
+  States
+  {
+  Spawn:
+	SPER A 1 A_DLCSpiritLook();
+	Loop;
+  See:
+  Missile:
+  Melee:
+	SPER A 1
+	{
+		A_DLCSpiritChase();
+		Return A_Jump(4, "Teleport");
+	}
+	Loop;
+  Nothing:
+	Stop;
+  Teleport:
+	SPER A 0 A_StartSound("Enemy/Teleport3", CHAN_BODY, CHANF_DEFAULT, 1.0, 1.0, 0.5555);
+	SPER AABBCC 1
+	{
+		A_SetSpeed(2.5);
+		A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	SPER DDDD 1
+	{
+		A_FadeOut(0.2, 0);
+		A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_DLCSpiritWandering();
+	SPER DDDD 1
+	{
+		A_FadeIn(0.2, 0);
+	}
+	SPER CCBBAA 1
+	{
+		A_SetSpeed(0);
+		A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	Goto See;
+  Heal:
+	SPER D 0 A_StartSound("Spirit/Sight", CHAN_VOICE);
+	SPER DDDDDDDD 1 A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	SPER D 1 A_Possess();
+	Stop;
+  Missile:
+	Stop;
+  Pain:
+	SPER EEEEEE 1 A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-2.3, 2.3), frandom(-2.3, 2.3), frandom(-2.3, 2.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	Goto See;
+  Death:
+	SPER E 1;
+	SPER E 10 A_DLCSpiritDeath();
+	SPER EEEEEEE 1 A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	TNT1 A 120;
+	Stop;
+  Death.Massacre:
+	SPER EEEEE 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}

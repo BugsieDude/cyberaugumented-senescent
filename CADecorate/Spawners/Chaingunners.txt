@@ -1,0 +1,20 @@
+ACTOR DCY_PlutoniaExperiment : RandomSpawner Replaces ChaingunGuy
+{
+  DropItem "DCY_Plutonia", 256, 750
+  DropItem "DCY_HellPrototypeMech", 256, 500
+  DropItem "DCY_BionicZombie", 256, 100
+  DropItem "DCY_DecedentBigwig", 256, 70
+  DropItem "DCY_Umbra", 256, 70
+  DropItem "DCY_Transmuter", 256, 90
+  DropItem "DCY_Commandant", 256, 60
+  DropItem "DCY_Nullifier", 256, 85
+  DropItem "DCY_AlacritousGuy", 256, 80
+  DropItem "DCY_AutomatonSupervisor", 256, 60
+  DropItem "DCY_Rattail", 256, 60
+  DropItem "DCY_Vandal", 256, 55
+  DropItem "DCY_HellRazer", 256, 65
+  DropItem "DCY_EspionDeLetre", 256, 30
+  DropItem "DCY_ShadowCrusader", 256, 30
+  DropItem "DCY_Z_Exec", 256, 16
+  DropItem "DCY_DeathDealer", 256, 7
+}

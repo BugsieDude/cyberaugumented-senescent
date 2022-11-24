@@ -1,0 +1,219 @@
+Class DCY_Abater : DCY_KnightHell
+{
+  Default
+  {
+  Translation "16:22=[255,255,255]:[255,255,128]", "23:31=[255,255,111]:[255,191,0]", "32:47=[255,166,0]:[64,0,0]", "13:15=%[0.00,0.00,0.00]:[0.25,0.25,0.25]", "236:239=%[0.00,0.00,0.00]:[0.25,0.25,0.25]", "48:79=%[0.00,0.00,0.00]:[0.25,0.25,0.25]", "128:159=%[0.00,0.00,0.00]:[0.29,0.29,0.29]", "112:127=%[0.00,0.00,0.00]:[2.00,1.01,0.00]", "168:175=[255,255,255]:[255,255,128]", "176:184=[255,255,108]:[255,153,0]", "185:191=[255,128,0]:[64,0,0]", "80:111=%[0.00,0.00,0.00]:[0.64,0.64,0.64]", "160:167=%[0.00,0.00,0.00]:[0.64,0.64,0.64]", "208:223=[255,255,255]:[255,217,0]", "224:231=[255,255,255]:[255,255,185]", "232:235=%[0.00,0.00,0.00]:[2.00,1.41,0.00]";
+  BloodColor "Orange";
+  DamageType "Fire";
+  Tag "\c[x1]Abater\c-";
+  SeeSound "Abater/Sight";
+  ActiveSound "Abater/Active";
+  PainSound "Abater/Pain";
+  DeathSound "Abater/Death";
+  Health 1000;
+  +BOSSDEATH //just in case
+  Obituary "%o was burnt to a inferno crisp by a Abater.";
+  }
+  
+  int shielded;
+  
+  void A_AbaterRocket()
+  {
+	A_StartSound("DNRPGFIR", CHAN_WEAPON, CHANF_NOSTOP);
+	A_SpawnProjectile("DCY_GehennaMissile", 35, 15, frandom(-2.0, 2.0));
+	A_FaceTarget();
+  }
+  
+  States
+  {
+  Spawn:
+	CSRS A 10 DCY_Look();
+	Loop;
+  Look:
+	CSRS AABBCCDD 3 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  Pain.TakeShieldOff:
+  RemoveShield:
+	CSRS A 1 A_RemoveChildren(1, RMVF_EVERYTHING);
+	Goto See;
+  See:
+	CSRS AABBCCDD 3 A_Chase();
+	Loop;
+  Shielded:
+	CSRS E 0
+	{
+		shielded = 0;
+		A_SpawnItemEx("DCY_AbaterShieldHitbox", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER);
+	}
+	CSRS EEFFGGH 3 A_Chase(null, null);
+	CSRS H 3
+	{
+		If(shielded >= 30)
+			Return ResolveState("See");
+	
+		shielded++;
+		A_Chase(null, null);
+		Return State(null);
+	}
+	Goto Shielded+1;
+  Missile:
+	CSRS I 10
+	{
+		A_FaceTarget();
+		
+		if (random(0, 10) == 10)
+			A_StartSound("Abater/Attack", CHAN_VOICE);
+		
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+	}
+	CSRS J 4 A_AbaterRocket();
+	CSRS I 8 A_FaceTarget();
+	CSRS J 4 A_AbaterRocket();
+	CSRS I 8 A_FaceTarget();
+	CSRS J 4 A_AbaterRocket();
+	CSRS I 8 A_FaceTarget();
+	CSRS J 4 A_AbaterRocket();
+	CSRS I 15 A_FaceTarget();
+	CSRS I 1 A_Jump(90, "ShieldedAttacke");
+	Goto See;
+  ShieldedAttacke:
+  Melee:
+	CSRS M 6
+	{
+		A_FaceTarget();
+
+		if (random(0, 10) == 10)
+			A_StartSound("Abater/Attack", CHAN_VOICE);
+	}
+	CSRS NO 6 A_FaceTarget();
+	CSRS K 5
+	{
+		A_SpawnItemEx("DCY_AbaterShieldHitbox", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER);
+		A_FaceTarget();
+	}
+	CSRS KKKKK 5 A_FaceTarget();
+	CSRS L 4
+	{
+		A_FaceTarget();
+		A_StartSound("MagicProjectile/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+		A_SpawnProjectile("DCY_AbaterFire1", 34, -10);
+		A_SpawnProjectile("DCY_AbaterFire2", 34, -10);
+	}
+	CSRS KK 5 A_FaceTarget();
+	CSRS L 4
+	{
+		A_FaceTarget();
+		A_StartSound("MagicProjectile/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+		A_SpawnProjectile("DCY_AbaterFire1", 34, -10);
+		A_SpawnProjectile("DCY_AbaterFire2", 34, -10);
+	}
+	CSRS KK 5 A_FaceTarget();
+	CSRS L 4
+	{
+		A_FaceTarget();
+		A_StartSound("MagicProjectile/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+		A_SpawnProjectile("DCY_AbaterFire1", 34, -10);
+		A_SpawnProjectile("DCY_AbaterFire2", 34, -10);
+	}
+	CSRS K 5;
+	CSRS O 5 A_RemoveChildren(1, RMVF_EVERYTHING);
+	CSRS NM 5;
+	Goto See;
+  Pain:
+	CSRS P 3;
+	CSRS P 2
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		A_Pain();
+	}
+	CSRS P 1 A_Jump(80, "Shielded");
+	Goto See;
+  Death:
+	CSRS Q 1;
+	CSRS Q 9
+	{
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+		A_Scream();
+	}
+	BRUS LM 5 Bright;
+	BRUS N 5 Bright
+	{
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
+	}
+    BRUS O 5 Bright A_NoBlocking();
+    BRUS QR 4 Bright;
+    BRUS S 4;
+    BRUS T -1 A_BossDeath2();
+    Stop;
+  }
+}
+
+Class DCY_AbaterFire1 : DCY_PFire { Default { Damage 7; Species "Abater"; +MTHRUSPECIES; +THRUSPECIES; Scale 1.25; Radius 10; } }
+Class DCY_AbaterFire2 : DCY_PFire2 { Default { Damage 7; Species "Abater"; +MTHRUSPECIES; +THRUSPECIES; Scale 1.25; Height 10; } }
+
+Class DCY_AbaterShieldHitbox : Actor
+{
+  Default
+  {
+  Height 38;
+  Radius 20;
+  PainChance 256;
+  +NOPAIN
+  +NOBLOOD
+  +SHOOTABLE
+  +NOGRAVITY
+  +ISMONSTER
+  +NORADIUSDMG
+  +DONTTHRUST
+  +PUFFONACTORS
+  +DONTRIP
+  +THRUSPECIES
+  +REFLECTIVE
+  +SHIELDREFLECT
+  +INVULNERABLE
+  +MTHRUSPECIES
+  Health 100;
+  DamageFactor 0.75;
+  Mass 1500;
+  Species "Abater";
+  Tag "Abater [Shield]";
+  DCY_AbaterShieldHitbox.ShieldPosition 10;
+  }
+  
+  int sposition;
+  property ShieldPosition: sposition;
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1 NoDelay
+	{
+		if (!master)
+			Destroy();
+		
+		A_JumpIfHealthLower(0, "Death", AAPTR_MASTER);
+		A_Warp(AAPTR_MASTER, 20, 0, sposition, 0);
+	}
+	Loop;
+  Pain:
+	TNT1 A 1
+	{
+		if (!master)
+			Destroy();
+		
+		A_JumpIfHealthLower(0, "Death", AAPTR_MASTER);
+		A_Warp(AAPTR_MASTER, 20, 0, sposition, 0);
+	}
+	Loop;
+  Death:
+	TNT1 A 1 A_DamageMaster(0, "TakeShieldOff");
+	Stop;
+  }
+}

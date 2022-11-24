@@ -1,0 +1,89 @@
+[enu default] //USA English
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Startup Messages
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+STARTUP1 = "\cnLet's kick ass.\c-";
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Other
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+SWSTRING = "This is the shareware version of Doom... wait... THIS ISN'T RIGHT. THIS IS A PARADOX.";
+SECRETMESSAGE = "\c[j1]Secret found.";
+OB_MPTELEFRAG = "$o was in a telefragging catharsis."
+OB_MONTELEFRAG = "$o was in a telefragging catharsis."
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Episode finished quotes
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//N/A
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Quit Messages
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+QUITMSG = "\c[Ice]I WAS FROZEN TODAY\c-"; //Suburban Commando
+QUITMSG1 = "Ya gonna have some penalty on demon killin'."; //Quit message by Bugsie
+QUITMSG2 = "Are you sure you want to quit... whatever the hell this is?"; //Quit message by Bugsie
+QUITMSG3 = "I HATE SPIDER."; //Quit message by Bugsie
+QUITMSG4 = "\c[Fire]BEES\c-"; //Joel Vinesauce
+QUITMSG5 = "Ultrapiss? \nUltrabepis?";
+QUITMSG6 = "I'M DYING"; 
+QUITMSG7 = "Hol' up"; //Hol up
+QUITMSG8 = "Have fun on wasting your time on your social media stuff, boy."; //Quit message by Bugsie
+QUITMSG9 = "What is this? Some kind of joke retirement? Wait! COME BACK-"; //Quit message by Bugsie
+QUITMSG10 = "fucking help me";
+QUITMSG11 = "Now, don't quit this time! There is a demon trying to drink your soda can from a random vending machine!"; //Quit message by Bugsie
+QUITMSG12 = "Are you?"; //Quit message by Bugsie
+QUITMSG13 = "Click on '\c[Red]Y\c-' to get get. Click on '\c[Red]N\c-' to kar en tuk or something.";
+QUITMSG14 = "DEEEEMOOOOMAAAAAAAAAAAAAAN, SHH. \n\n\n\n\chDHGAYUHGEBVJUHQYVBEID\cgYHGBNFUCNWMEFDMNCUFNDOWNJ\crSOIEJNMOIWJNMIDOSJW-\c-"; //TF2 Smexual (ugotaphonenumber)
+QUITMSG15 = "I CLAIM THIS MEDICINE"; //TF2 Smexual (Cruzi)
+QUITMSG16 = "GRENADE SPAAAAAAAM"; //Crack-Life (Also this quote is also used for Ultra Gladiator of Ultra Team, but not the edited one.)
+QUITMSG17 = "GOD LEFT ME UNFINISHED"; //Filthy Frank
+QUITMSG18 = "SO MUCH BLOOD!"; //TF2
+QUITMSG19 = "A lot of insanity from those supreme demons, eh?"; //Quit message by Bugsie
+QUITMSG20 = "YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"; //YEEEEEEEE by Doctor Lalve
+QUITMSG21 = "Hold on! If you press 'Y'"; //Quit message by Bugsie
+QUITMSG22 = "Everybody listen up! There's a marine on the loose!"; //That Gray Cartoon Pony
+QUITMSG23 = "I am Dispentry"; //TF2 (Smexual)
+QUITMSG24 = "This is a certified hood classic";  //This is a certified hood classic
+QUITMSG25 = "I am the pootis man! \nComing from sandvich land!"; //Pootis-Man by STBlackST (anybody remember this)
+QUITMSG26 = "YOU WHAT";  //Spongebob
+QUITMSG27 = "Piss.";
+QUITMSG28 = "This is a certified bruh moment classic";
+QUITMSG29 = "LOOK I GOT MY CHIPS BACK";
+QUITMSG30 = "Don't even try it. Best of luck.";
+QUITMSG31 = "MY ASS IS HEAVY";
+QUITMSG32 = "Um, yes! Hello operator. I'd like to report a CYBERAUGUMENTED moment. \n\nGOD I AM SO GOD DAMN UNFUNNY";
+QUITMSG33 = "The giant enemy spider";
+QUITMSG34 = "Good gameplay, good sir."; //Quote by me again
+QUITMSG35 = "I will go to ROSS, do you guys want anything?";
+QUITMSG36 = "i poisoned the water supply"; //Super Ghostbusters
+QUITMSG37 = "THE GHOST NOOOTED IN THE BED"; //Super Ghostbusters
+QUITMSG38 = "Rattle me bones"; //Welcome aboard maties
+QUITMSG39 = "Doomguy once said: 'no.'";
+QUITMSG40 = "Who ya gonna call? De noot buuster."; //Super Ghostbusters
+QUITMSG41 = "Nice spAAAAARGH *boom*"; //Raxxo
+QUITMSG42 = "u r 10 pounds of shet *turns into train*"; //Soldier's Dispenser Collab
+QUITMSG43 = "Don't get too pissy, get realissy.";
+QUITMSG44 = "Painis time.";
+QUITMSG45 = "Skinny-Fat"; //Raxxo
+QUITMSG46 = "Barbecue Bacon Burger";
+QUITMSG47 = "4 da trap";
+QUITMSG48 = "Hordes of Mortally Challenged come to sign a petition to make piss legal. Will you fight, or will you perish like a dog?";
+QUITMSG49 = "Ratman.";
+QUITMSG50 = "Aesthetic!";
+QUITMSG51 = "Yeezys are clean, boi";
+QUITMSG52 = "You guys ever had gay thoughts? lol";
+QUITMSG53 = "UUUUAAAAAAAAARGH MY HAND";
+
+//Weapon Sway
+OPTMNU_WPNSWAY = "Credits to Nash for WeaponSway!";
+WPNSWAYMNU_TITLE = "Weapon Swaying";
+
+WPNSWAYMNU_ENABLED = "Enabled";
+WPNSWAYMNU_INVERT = "Invert Horizontal Shift";
+WPNSWAYMNU_VERTICAL = "Vertical Shift";
+
+WPNSWAYMNU_HELPTEXT_ENABLED = "Enable weapon sway effect.";
+WPNSWAYMNU_HELPTEXT_INVERT = "Inverts the horizontal sway direction.";
+WPNSWAYMNU_HELPTEXT_VERTICAL = "Shift weapon vertically. Requires tall sprite assets.";

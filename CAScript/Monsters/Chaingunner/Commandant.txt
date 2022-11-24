@@ -1,0 +1,108 @@
+Class DCY_Commandant : DCY_Plutonia
+{
+  Default
+  {
+  Health 125;
+  Speed 12;
+  FastSpeed 12;
+  Translation "168:175=[255,255,255]:[128,255,255]", "175:182=[128,255,255]:[0,70,255]", "182:191=[0,70,255]:[0,0,64]", "16:23=[255,255,255]:[128,255,255]", "23:31=[128,255,255]:[0,70,255]", "32:47=[0,70,255]:[0,0,64]", "192:207=[128,255,255]:[0,0,64]", "240:248=[0,0,64]:[0,0,0]", "80:111=%[0.00,0.00,0.00]:[0.69,0.69,0.69]";
+  Obituary "%o got shredded by a hell commandant.";
+  +NODROPOFF
+  Tag "Hell Commandant";
+  SeeSound "Commandant/Sight";
+  ActiveSound "Commandant/Active";
+  PainSound "Commandant/Pain";
+  HowlSound "Commandant/Pain";
+  DeathSound "Commandant/Death";
+  BloodColor "2ba0ff";
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  DropItem "Chaingun";
+  DropItem "Stimpack";
+  DropItem "Clipbox";
+  Mass 385;
+  }
+  
+  States
+  {
+  Spawn:
+    UU2_ A 10 DCY_Look();
+	Loop;
+  Look:
+	UU2_ AABBCCDD 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	"####" G 10 DCY_AlertSound();
+	Goto See;
+  GoBack:
+	UU2_ A 10
+	{
+		A_StartSound("Minigun/WindDown", CHAN_6);
+		A_StopSound(CHAN_WEAPON);
+	}
+	Goto See;
+  See:
+    TNT1 A 0 A_Jump(85, "Strafing");
+    TNT1 A 0 A_JumpIfInTargetLOS("Strafing", 150);
+    UU2_ AAABBB 3 A_Chase();
+	TNT1 A 0 A_JumpIfInTargetLOS("Strafing", 150);
+	UU2_ CCCDDD 3 A_Chase();
+	Loop;
+  Strafing:
+    UU2_ AAABBBCCCDDD 3 
+	{
+		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		A_ChangeVelocity(random(-1, 1), random(-1, 1), 0);
+		
+		if (random(0, 5) == 0)
+			A_Dodging(5);
+	}
+	TNT1 A 0 A_Jump(128, "See");
+	Loop;
+  Missile:
+	UU2_ A 10 A_FaceTarget();
+    UU2_ E 1
+	{
+		A_StartSound("Minigun/WindUp", CHAN_WEAPON);
+		A_FaceTarget();
+	}
+	UU2_ EEEEEEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget();
+	Goto MissileLoop;
+  MissileLoop:
+	UU2_ F 1
+	{
+		A_StartSound("Minigun/Loop", CHAN_WEAPON, CHANF_LOOPING, 1.0);
+		A_SpawnProjectile("DCY_Zombie2Tracer", 32, 6, frandom(-2.0, 2.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.5, 1.5));
+		A_ChangeVelocity(frandom(-1.2, 1.2), frandom(-1.2, 1.2), 0, CVF_REPLACE|CVF_RELATIVE);
+	}
+	UU2_ E 1
+	{
+		A_FaceTarget();
+		Return A_MonsterRefire(30, "GoBack");
+	}
+	Loop;
+  Pain:
+    UU2_ G 4;
+	UU2_ G 4
+	{
+		A_StopSound(CHAN_WEAPON);
+		A_Pain();
+	}
+	Goto See;
+  Death:
+  XDeath:
+  Death.Fire:
+    UU2_ H 1;
+	UU2_ H 1
+	{
+		A_StopSound(CHAN_WEAPON);
+		A_Scream();
+	}
+	UU2_ H 4 A_Fall();
+	UU2_ IJKLM 6;
+	UU2_ N -1;
+	Stop;
+  Raise:
+    UU2_ MLKJIH 6;
+	Goto See;
+  }
+}

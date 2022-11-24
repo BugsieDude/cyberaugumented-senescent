@@ -1,0 +1,104 @@
+Class DCY_DeathDealer : DCY_ShotgunZombe
+{
+  Default
+  {
+  Health 350;
+  Tag "\c[q6]The 'Death Dealer'\c-";
+  Speed 13;
+  FastSpeed 16;
+  +QUICKTORETALIATE
+  +NOTARGET
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +ALWAYSFAST
+  +NODROPOFF
+  SeeSound "DeathDealer/Sight";
+  ActiveSound "DeathDealer/Active";
+  PainSound "DeathDealer/Pain";
+  DeathSound "DeathDealer/Death";
+  Obituary "This was a very bad day for %o. He saw the 'Death Dealer'. He knew he was dumb enough to get blasted by the Proto BFG-10k lasers.";
+  DropItem "Cell", 196;
+  DropItem "Cell", 196;
+  DropItem "Cell", 196;
+  DropItem "DCY_UltramodernEnergy", 196;
+  DropItem "DCY_UltramodernEnergy", 196;
+  DropItem "DCY_TheBFG10000", 95;
+  BloodColor "Green";
+  }
+  States
+  {
+  Spawn:
+	BF_T A 10 DCY_Look();
+	Loop;
+  Look:
+	BF_T AABBCCDD 4 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	BF_T AABBCCDD 3 A_Chase();
+	Loop;
+  Missile:
+	BF_T E 0 A_JumpIf(target && Distance3D(target) < 256, "Laser");
+	Goto Dash;
+  Dash:
+	BF_T A 5 A_FaceTarget();
+	BF_T A 1
+	{
+		A_StartSound("PHASDASH", CHAN_BODY, attenuation: 0.75);
+		A_SpawnItemEx("DCY_DeathDealerTrail", 0, 0, 5, 0, 0, 0, 0, SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		A_Chase(null, null, CHF_NIGHTMAREFAST);
+		A_Chase(null, null, CHF_NIGHTMAREFAST);
+	}
+	BF_T AABBBCCCDDDAAABBBCCCDDD 1
+	{
+		A_SpawnItemEx("DCY_DeathDealerTrail", 0, 0, 5, 0, 0, 0, 0, SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		A_Chase(null, null, CHF_NIGHTMAREFAST);
+		A_Chase(null, null, CHF_NIGHTMAREFAST);
+	}
+	Goto See;
+  Laser:
+	BF_T E 10 A_FaceTarget();
+	BF_T E 1
+	{
+		A_StartSound("BFG10000Proto/Charge", CHAN_WEAPON, attenuation: 0.75, pitch: 1.2);
+		A_FaceTarget();
+		A_QuakeEx(2, 2, 2, 15, 0, 400, "none", QF_SCALEUP);
+	}
+	BF_T EEEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget();
+	BF_T EE 1 A_FaceTarget(0.4, 0.4);
+	BF_T F 1
+	{
+		bNoPain = true;
+		A_StartSound("PlasmaLaser", CHAN_WEAPON, attenuation: 0.45);
+		A_StartSound("Weapons/BFG10kFire2", CHAN_5, attenuation: 0.5, pitch: 0.36);
+		A_StartSound("PlasmaLaser", CHAN_7, attenuation: 0.45);
+	}
+	BF_T FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+	{
+		A_FaceTarget(0.4, 0.4);
+		A_CustomRailgun(1, 0, 0, 0, RGF_FULLBRIGHT|RGF_SILENT, 0, 0, "DCY_SmallBFG10kBoom", 0, 0, 0, 0, 80, 0, "DCY_SmallBFG10kLaser");
+	}
+	BF_T EA 10 { bNoPain = false; }
+	Goto See;
+  Pain:
+	BF_T G 4;
+	BF_T G 4 A_Pain();
+	Goto See;
+  Death:
+  Death.Fire:
+  XDeath:
+	BF_T H 5 A_SetScale(frandompick(Scale.x, -Scale.x), Scale.y);
+    BF_T I 4 A_Scream();
+    BF_T J 4 A_NoBlocking();
+    BF_T K 4;
+    BF_T L -1;
+    Stop;
+  Raise:
+	BF_T KJIH 5;
+	BF_T A 5 A_SetScale(1, Scale.y);
+	Goto See;
+  }
+}

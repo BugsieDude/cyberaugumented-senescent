@@ -1,0 +1,18 @@
+ACTOR DCY_DeTyrant : RandomSpawner Replaces Cyberdemon
+{
+  DropItem "DCY_Cybie", 256, 600
+  DropItem "DCY_Trounce", 256, 300
+  DropItem "DCY_Ruination", 256, 200
+  DropItem "DCY_NavyTerminator", 256, 150
+  DropItem "DCY_Vamchnorm", 256, 100
+  DropItem "DCY_Arbiter", 256, 80
+  DropItem "DCY_Ultraspeller", 256, 2
+  DropItem "DCY_ChoricoNepheloma", 256, 2
+  DropItem "DCY_MultidimensionalSpawner", 256, 1
+}
+
+ACTOR DCY_MultidimensionalSpawner : RandomSpawner
+{
+  DropItem "DCY_Arbiter", 256, 128
+  DropItem "DCY_MultidimensionalCaster", 256, 80
+}

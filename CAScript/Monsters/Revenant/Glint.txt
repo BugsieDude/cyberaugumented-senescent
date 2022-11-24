@@ -1,0 +1,93 @@
+Class DCY_GlintKnight : DCY_Rev
+{
+  Default
+  {
+  Health 350;
+  DamageFactor 0.995;
+  Speed 10;
+  SeeSound "GKnight/Sight";
+  ActiveSound "GKnight/Active";
+  PainSound "GKnight/Pain";
+  DeathSound "GKnight/Death";
+  DropItem "Cell", 192;
+  Tag "\c[Sapphire]Glint Knight\c-";
+  +NOBLOOD
+  }
+  
+  States
+  {
+  Spawn:
+    GK38 A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" AABBCCDD 2 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    GK38 AABBCCDD 2 A_Chase();
+	Loop;
+  Melee:
+    TNT1 A 0 A_Jump(256, "Melee1", "Melee2");
+  Melee1:
+    GK38 EF 7 A_Facetarget();
+	GK38 G 4 A_CustomMeleeAttack(15, "hknight/melee");
+	Goto See;
+  Melee2:
+    GK38 HI 7 A_Facetarget();
+	GK38 J 4 A_CustomMeleeAttack(15, "hknight/melee");
+	Goto See;
+  Missile:
+    GK38 EF 3 A_FaceTarget();
+	GK38 G 3
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_GAxe", 50, 0, random(-3, 3), 0);
+	}
+	GK38 F 5 A_FaceTarget();
+	Goto See;
+  Pain:
+    GK38 K 8 A_Pain();
+	Goto See;
+  Death:
+  XDeath:
+    GK38 K 6;
+	GK38 L 6 A_Scream();
+	TNT1 A 0 A_NoBlocking();
+	GK38 MNOPQ 6;
+	GK38 R -1;
+	Stop;
+  Raise:
+    GK38 QPONM 6;
+	Goto See;
+  }
+}
+
+Class DCY_GAxe : DCY_WAxe
+{
+  Default
+  {
+  Translation "112:127=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "80:111=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "128:159=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "0:79=%[0.00,0.00,0.00]:[0.43,0.43,0.43]", "224:255=%[0.00,0.00,0.00]:[0.43,0.43,0.43]";
+  Damage 6;
+  Speed 12;
+  FastSpeed 18;
+  }
+  States
+  {
+  Spawn:
+    XXP_ A 1
+	{
+		A_StartSound("hknight/axewhoosh");
+		A_SpawnItemEx("DCY_WAxeTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SeekerMissile(randompick(2, 1), 1, SMF_PRECISE);
+	}
+	XXP_ AABBBCCC 1
+	{
+		A_SpawnItemEx("DCY_WAxeTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SeekerMissile(randompick(2, 1), 1, SMF_PRECISE);
+	}
+	Loop;
+  }
+}

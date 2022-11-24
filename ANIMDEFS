@@ -1,0 +1,845 @@
+ //HUD
+ 
+TEXTURE CHUDARR1
+	Pic CHUDARR1 Tics 5
+	Pic CHUDARR2 Tics 5
+	Pic CHUDARR1 Tics 5
+	Pic CHUDARR3 Tics 5
+
+TEXTURE CHUDARL1
+	Pic CHUDARL1 Tics 5
+	Pic CHUDARL2 Tics 5
+	Pic CHUDARL1 Tics 5
+	Pic CHUDARL3 Tics 5
+ 
+//Switches (By Enjay)
+switch doom 1 SW1BRCOM on sound SW1TCHA pic SW2BRCOM tics 0
+switch doom 1 SW1BRN1 on sound SW1TCHH pic SW2BRN1 tics 0
+switch doom 1 SW1BRN2 on sound SW1TCHK pic SW2BRN2 tics 0
+switch doom 1 SW1BRNGN on sound SW1TCHK pic SW2BRNGN tics 0
+switch doom 1 SW1BROWN on sound SW1TCHI pic SW2BROWN tics 0
+switch doom 1 SW1COMM on sound SW1TCHE pic SW2COMM tics 0
+switch doom 1 SW1COMP on sound SW1TCHG pic SW2COMP tics 0
+switch doom 1 SW1DIRT on sound SW1TCHD pic SW2DIRT tics 0
+switch doom 1 SW1EXIT on sound SW1TCHD pic SW2EXIT tics 0
+switch doom 1 SW1GRAY on sound SW1TCHK pic SW2GRAY tics 0
+switch doom 1 SW1GRAY1 on sound SW1TCHH pic SW2GRAY1 tics 0
+switch doom 1 SW1METAL on sound SW1TCHL pic SW2METAL tics 0
+switch doom 1 SW1PIPE on sound SW1TCHB pic SW2PIPE tics 0
+switch doom 1 SW1SLAD on sound SW1TCHA pic SW2SLAD tics 0
+switch doom 1 SW1STARG on sound SW1TCHB pic SW2STARG tics 0
+switch doom 1 SW1STON1 on sound SW1TCHF pic SW2STON1 tics 0
+switch doom 1 SW1STON2 on sound SW1TCHE pic SW2STON2 tics 0
+switch doom 1 SW1STONE on sound SW1TCHL pic SW2STONE tics 0
+switch doom 1 SW1STRTN on sound SW1TCHL pic SW2STRTN tics 0
+
+switch doom 2 SW1BLUE on sound SW1TCHM pic SW2BLUE tics 0
+switch doom 2 SW1CMT on sound SW1TCHM pic SW2CMT tics 0
+switch doom 2 SW1GARG on sound SW1TCHJ pic SW2GARG tics 0
+switch doom 2 SW1GSTON on sound SW1TCHJ pic SW2GSTON tics 0
+switch doom 2 SW1HOT on sound SW1TCHM pic SW2HOT tics 0
+switch doom 2 SW1LION on sound SW1TCHM pic SW2LION tics 0
+switch doom 2 SW1SATYR on sound SW1TCHM pic SW2SATYR tics 0
+switch doom 2 SW1SKIN on sound SW1TCHC pic SW2SKIN tics 0
+switch doom 2 SW1VINE on sound SW1TCHM pic SW2VINE tics 0
+switch doom 2 SW1WOOD on sound SW1TCHM pic SW2WOOD tics 0
+
+switch doom 3 SW1WDMET on sound SW1TCHJ pic SW2WDMET tics 0
+switch doom 3 SW1BRIK on sound SW1TCHN pic SW2BRIK tics 0
+switch doom 3 SW1MARB on sound SW1TCHM pic SW2MARB tics 0
+switch doom 3 SW1MET2 on sound SW1TCHL pic SW2MET2 tics 0
+switch doom 3 SW1MOD1 on sound SW1TCHF pic SW2MOD1 tics 0
+switch doom 3 SW1PANEL on sound SW1TCHM pic SW2PANEL tics 0
+switch doom 3 SW1ROCK on sound SW1TCHJ pic SW2ROCK tics 0
+switch doom 3 SW1SKULL on sound SW1TCHM pic SW2SKULL tics 0
+switch doom 3 SW1STON6 on sound SW1TCHK pic SW2STON6 tics 0
+switch doom 3 SW1TEK on sound SW1TCHH pic SW2TEK tics 0
+switch doom 3 SW1ZIM on sound SW1TCHJ pic SW2ZIM tics 0
+
+ ///////////////////////////////////////////
+ //WATER///////////////////////////////////
+ //////////////////////////////////////////
+ 
+ 
+ FLAT FWATER1
+ pic SW1 tics 1
+ pic SW2 tics 1
+ pic SW3 tics 1
+ pic Sw4 tics 1
+ pic Sw5 tics 1
+ pic Sw6 tics 1
+ pic Sw7 tics 1
+ pic Sw8 tics 1
+ pic Sw9 tics 1
+ pic Sw10 tics 1
+ pic Sw11 tics 1
+ pic Sw12 tics 1
+ pic Sw13 tics 1
+ pic Sw14 tics 1
+ pic Sw15 tics 1
+ pic Sw16 tics 1
+ pic Sw17 tics 1
+ pic Sw18 tics 1
+ pic Sw19 tics 1
+ pic Sw20 tics 1
+ pic Sw21 tics 1
+ pic Sw22 tics 1
+ pic Sw23 tics 1
+ pic Sw24 tics 1
+ pic Sw25 tics 1
+ pic Sw26 tics 1
+ pic Sw27 tics 1
+ pic Sw28 tics 1
+ pic Sw29 tics 1
+ pic Sw30 tics 1
+ pic Sw31 tics 1
+ pic Sw32 tics 1
+ pic Sw33 tics 1
+ pic Sw34 tics 1
+ pic Sw35 tics 1
+ 
+ FLAT FWATER2
+ pic SW1 tics 1
+ pic SW2 tics 1
+ pic SW3 tics 1
+ pic Sw4 tics 1
+ pic Sw5 tics 1
+ pic Sw6 tics 1
+ pic Sw7 tics 1
+ pic Sw8 tics 1
+ pic Sw9 tics 1
+ pic Sw10 tics 1
+ pic Sw11 tics 1
+ pic Sw12 tics 1
+ pic Sw13 tics 1
+ pic Sw14 tics 1
+ pic Sw15 tics 1
+ pic Sw16 tics 1
+ pic Sw17 tics 1
+ pic Sw18 tics 1
+ pic Sw19 tics 1
+ pic Sw20 tics 1
+ pic Sw21 tics 1
+ pic Sw22 tics 1
+ pic Sw23 tics 1
+ pic Sw24 tics 1
+ pic Sw25 tics 1
+ pic Sw26 tics 1
+ pic Sw27 tics 1
+ pic Sw28 tics 1
+ pic Sw29 tics 1
+ pic Sw30 tics 1
+ pic Sw31 tics 1
+ pic Sw32 tics 1
+ pic Sw33 tics 1
+ pic Sw34 tics 1
+ pic Sw35 tics 1
+
+FLAT FWATER3
+ pic SW1 tics 1
+ pic SW2 tics 1
+ pic SW3 tics 1
+ pic Sw4 tics 1
+ pic Sw5 tics 1
+ pic Sw6 tics 1
+ pic Sw7 tics 1
+ pic Sw8 tics 1
+ pic Sw9 tics 1
+ pic Sw10 tics 1
+ pic Sw11 tics 1
+ pic Sw12 tics 1
+ pic Sw13 tics 1
+ pic Sw14 tics 1
+ pic Sw15 tics 1
+ pic Sw16 tics 1
+ pic Sw17 tics 1
+ pic Sw18 tics 1
+ pic Sw19 tics 1
+ pic Sw20 tics 1
+ pic Sw21 tics 1
+ pic Sw22 tics 1
+ pic Sw23 tics 1
+ pic Sw24 tics 1
+ pic Sw25 tics 1
+ pic Sw26 tics 1
+ pic Sw27 tics 1
+ pic Sw28 tics 1
+ pic Sw29 tics 1
+ pic Sw30 tics 1
+ pic Sw31 tics 1
+ pic Sw32 tics 1
+ pic Sw33 tics 1
+ pic Sw34 tics 1
+ pic Sw35 tics 1
+ 
+ FLAT FWATER4
+ pic SW1 tics 1
+ pic SW2 tics 1
+ pic SW3 tics 1
+ pic Sw4 tics 1
+ pic Sw5 tics 1
+ pic Sw6 tics 1
+ pic Sw7 tics 1
+ pic Sw8 tics 1
+ pic Sw9 tics 1
+ pic Sw10 tics 1
+ pic Sw11 tics 1
+ pic Sw12 tics 1
+ pic Sw13 tics 1
+ pic Sw14 tics 1
+ pic Sw15 tics 1
+ pic Sw16 tics 1
+ pic Sw17 tics 1
+ pic Sw18 tics 1
+ pic Sw19 tics 1
+ pic Sw20 tics 1
+ pic Sw21 tics 1
+ pic Sw22 tics 1
+ pic Sw23 tics 1
+ pic Sw24 tics 1
+ pic Sw25 tics 1
+ pic Sw26 tics 1
+ pic Sw27 tics 1
+ pic Sw28 tics 1
+ pic Sw29 tics 1
+ pic Sw30 tics 1
+ pic Sw31 tics 1
+ pic Sw32 tics 1
+ pic Sw33 tics 1
+ pic Sw34 tics 1
+ pic Sw35 tics 1
+
+//////////////////////////////////////////
+//SLIME///////////////////////////////////
+//////////////////////////////////////////
+
+FLAT SLIME01
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+FLAT SLIME02
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+ 
+ FLAT SLIME03
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+FLAT SLIME04
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+FLAT SLIME05
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+FLAT SLIME06
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+
+FLAT SLIME07
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+FLAT SLIME08
+ pic SS1 tics 1
+ pic SS2 tics 1
+ pic SS3 tics 1
+ pic SS4 tics 1
+ pic SS5 tics 1
+ pic SS6 tics 1
+ pic SS7 tics 1
+ pic SS8 tics 1
+ pic SS9 tics 1
+ pic SS10 tics 1
+ pic SS11 tics 1
+ pic SS12 tics 1
+ pic SS13 tics 1
+ pic SS14 tics 1
+ pic SS15 tics 1
+ pic SS16 tics 1
+ pic SS17 tics 1
+ pic SS18 tics 1
+ pic SS19 tics 1
+ pic SS20 tics 1
+ pic SS21 tics 1
+ pic SS22 tics 1
+ pic SS23 tics 1
+ pic SS24 tics 1
+ pic SS25 tics 1
+ pic SS26 tics 1
+ pic SS27 tics 1
+ pic SS28 tics 1
+ pic SS29 tics 1
+ pic SS30 tics 1
+ pic SS31 tics 1
+ pic SS32 tics 1
+ pic SS33 tics 1
+ pic SS34 tics 1
+ pic SS35 tics 1
+
+///////////////////////////////////////////////////////
+//NUKAGE///////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+FLAT NUKAGE1
+ pic SN1 tics 1
+ pic SN2 tics 1
+ pic SN3 tics 1
+ pic SN4 tics 1
+ pic SN5 tics 1
+ pic SN6 tics 1
+ pic SN7 tics 1
+ pic SN8 tics 1
+ pic SN9 tics 1
+ pic SN10 tics 1
+ pic SN11 tics 1
+ pic SN12 tics 1
+ pic SN13 tics 1
+ pic SN14 tics 1
+ pic SN15 tics 1
+ pic SN16 tics 1
+ pic SN17 tics 1
+ pic SN18 tics 1
+ pic SN19 tics 1
+ pic SN20 tics 1
+ pic SN21 tics 1
+ pic SN22 tics 1
+ pic SN23 tics 1
+ pic SN24 tics 1
+ pic SN25 tics 1
+ pic SN26 tics 1
+ pic SN27 tics 1
+ pic SN28 tics 1
+ pic SN29 tics 1
+ pic SN30 tics 1
+ pic SN31 tics 1
+ pic SN32 tics 1
+ pic SN33 tics 1
+ pic SN34 tics 1
+ pic SN35 tics 1
+
+FLAT NUKAGE2
+ pic SN1 tics 1
+ pic SN2 tics 1
+ pic SN3 tics 1
+ pic SN4 tics 1
+ pic SN5 tics 1
+ pic SN6 tics 1
+ pic SN7 tics 1
+ pic SN8 tics 1
+ pic SN9 tics 1
+ pic SN10 tics 1
+ pic SN11 tics 1
+ pic SN12 tics 1
+ pic SN13 tics 1
+ pic SN14 tics 1
+ pic SN15 tics 1
+ pic SN16 tics 1
+ pic SN17 tics 1
+ pic SN18 tics 1
+ pic SN19 tics 1
+ pic SN20 tics 1
+ pic SN21 tics 1
+ pic SN22 tics 1
+ pic SN23 tics 1
+ pic SN24 tics 1
+ pic SN25 tics 1
+ pic SN26 tics 1
+ pic SN27 tics 1
+ pic SN28 tics 1
+ pic SN29 tics 1
+ pic SN30 tics 1
+ pic SN31 tics 1
+ pic SN32 tics 1
+ pic SN33 tics 1
+ pic SN34 tics 1
+ pic SN35 tics 1
+ 
+
+FLAT NUKAGE3
+ pic SN1 tics 1
+ pic SN2 tics 1
+ pic SN3 tics 1
+ pic SN4 tics 1
+ pic SN5 tics 1
+ pic SN6 tics 1
+ pic SN7 tics 1
+ pic SN8 tics 1
+ pic SN9 tics 1
+ pic SN10 tics 1
+ pic SN11 tics 1
+ pic SN12 tics 1
+ pic SN13 tics 1
+ pic SN14 tics 1
+ pic SN15 tics 1
+ pic SN16 tics 1
+ pic SN17 tics 1
+ pic SN18 tics 1
+ pic SN19 tics 1
+ pic SN20 tics 1
+ pic SN21 tics 1
+ pic SN22 tics 1
+ pic SN23 tics 1
+ pic SN24 tics 1
+ pic SN25 tics 1
+ pic SN26 tics 1
+ pic SN27 tics 1
+ pic SN28 tics 1
+ pic SN29 tics 1
+ pic SN30 tics 1
+ pic SN31 tics 1
+ pic SN32 tics 1
+ pic SN33 tics 1
+ pic SN34 tics 1
+ pic SN35 tics 1
+
+/////////////////////////////////////////////////////////////
+//BLOOD//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+
+FLAT BLOOD1
+ pic SB1 tics 1
+ pic SB2 tics 1
+ pic SB3 tics 1
+ pic SB4 tics 1
+ pic SB5 tics 1
+ pic SB6 tics 1
+ pic SB7 tics 1
+ pic SB8 tics 1
+ pic SB9 tics 1
+ pic SB10 tics 1
+ pic SB11 tics 1
+ pic SB12 tics 1
+ pic SB13 tics 1
+ pic SB14 tics 1
+ pic SB15 tics 1
+ pic SB16 tics 1
+ pic SB17 tics 1
+ pic SB18 tics 1
+ pic SB19 tics 1
+ pic SB20 tics 1
+ pic SB21 tics 1
+ pic SB22 tics 1
+ pic SB23 tics 1
+ pic SB24 tics 1
+ pic SB25 tics 1
+ pic SB26 tics 1
+ pic SB27 tics 1
+ pic SB28 tics 1
+ pic SB29 tics 1
+ pic SB30 tics 1
+ pic SB31 tics 1
+ pic SB32 tics 1
+ pic SB33 tics 1
+ pic SB34 tics 1
+ pic SB35 tics 1
+ 
+FLAT BLOOD2
+ pic SB1 tics 1
+ pic SB2 tics 1
+ pic SB3 tics 1
+ pic SB4 tics 1
+ pic SB5 tics 1
+ pic SB6 tics 1
+ pic SB7 tics 1
+ pic SB8 tics 1
+ pic SB9 tics 1
+ pic SB10 tics 1
+ pic SB11 tics 1
+ pic SB12 tics 1
+ pic SB13 tics 1
+ pic SB14 tics 1
+ pic SB15 tics 1
+ pic SB16 tics 1
+ pic SB17 tics 1
+ pic SB18 tics 1
+ pic SB19 tics 1
+ pic SB20 tics 1
+ pic SB21 tics 1
+ pic SB22 tics 1
+ pic SB23 tics 1
+ pic SB24 tics 1
+ pic SB25 tics 1
+ pic SB26 tics 1
+ pic SB27 tics 1
+ pic SB28 tics 1
+ pic SB29 tics 1
+ pic SB30 tics 1
+ pic SB31 tics 1
+ pic SB32 tics 1
+ pic SB33 tics 1
+ pic SB34 tics 1
+ pic SB35 tics 1
+ 
+FLAT BLOOD3
+ pic SB1 tics 1
+ pic SB2 tics 1
+ pic SB3 tics 1
+ pic SB4 tics 1
+ pic SB5 tics 1
+ pic SB6 tics 1
+ pic SB7 tics 1
+ pic SB8 tics 1
+ pic SB9 tics 1
+ pic SB10 tics 1
+ pic SB11 tics 1
+ pic SB12 tics 1
+ pic SB13 tics 1
+ pic SB14 tics 1
+ pic SB15 tics 1
+ pic SB16 tics 1
+ pic SB17 tics 1
+ pic SB18 tics 1
+ pic SB19 tics 1
+ pic SB20 tics 1
+ pic SB21 tics 1
+ pic SB22 tics 1
+ pic SB23 tics 1
+ pic SB24 tics 1
+ pic SB25 tics 1
+ pic SB26 tics 1
+ pic SB27 tics 1
+ pic SB28 tics 1
+ pic SB29 tics 1
+ pic SB30 tics 1
+ pic SB31 tics 1
+ pic SB32 tics 1
+ pic SB33 tics 1
+ pic SB34 tics 1
+ pic SB35 tics 1
+ 
+texture SKYHELF
+pic SKYHF1 tics 1
+pic SKYHF2 tics 1
+pic SKYHF3 tics 1
+pic SKYHF4 tics 1
+pic SKYHF5 tics 1
+pic SKYHF6 tics 1
+pic SKYHF7 tics 1
+pic SKYHF8 tics 1
+pic SKYHF9 tics 1
+pic SKYHF10 tics 1
+pic SKYHF11 tics 1
+pic SKYHF12 tics 1
+pic SKYHF13 tics 1
+pic SKYHF14 tics 1
+pic SKYHF15 tics 1
+pic SKYHF16 tics 1
+pic SKYHF17 tics 1
+pic SKYHF18 tics 1
+pic SKYHF19 tics 1
+pic SKYHF20 tics 1
+pic SKYHF21 tics 1
+pic SKYHF22 tics 1
+pic SKYHF23 tics 1
+pic SKYHF24 tics 1
+pic SKYHF25 tics 1
+pic SKYHF26 tics 1
+pic SKYHF27 tics 1
+pic SKYHF28 tics 1
+pic SKYHF29 tics 1
+pic SKYHF30 tics 1
+pic SKYHF31 tics 1
+pic SKYHF32 tics 1
+pic SKYHF33 tics 1
+pic SKYHF34 tics 1
+pic SKYHF35 tics 1
+pic SKYHF36 tics 1
+pic SKYHF37 tics 1
+pic SKYHF38 tics 1
+pic SKYHF39 tics 1
+pic SKYHF40 tics 1
+pic SKYHF41 tics 1
+pic SKYHF42 tics 1
+pic SKYHF43 tics 1
+pic SKYHF44 tics 1
+pic SKYHF45 tics 1
+pic SKYHF46 tics 1
+pic SKYHF47 tics 1
+pic SKYHF48 tics 1
+pic SKYHF49 tics 1
+pic SKYHF50 tics 1
+pic SKYHF51 tics 1
+pic SKYHF52 tics 1
+pic SKYHF53 tics 1
+pic SKYHF54 tics 1
+pic SKYHF55 tics 1
+pic SKYHF56 tics 1
+pic SKYHF57 tics 1
+pic SKYHF58 tics 1
+pic SKYHF59 tics 1
+pic SKYHF60 tics 1
+pic SKYHF61 tics 1
+pic SKYHF62 tics 1
+pic SKYHF63 tics 1
+pic SKYHF64 tics 1
+pic SKYHF65 tics 1
+pic SKYHF66 tics 1
+pic SKYHF67 tics 1
+pic SKYHF68 tics 1
+pic SKYHF69 tics 1
+pic SKYHF70 tics 1
+pic SKYHF71 tics 1
+pic SKYHF72 tics 1
+pic SKYHF73 tics 1
+pic SKYHF74 tics 1
+pic SKYHF75 tics 1
+pic SKYHF76 tics 1
+pic SKYHF77 tics 1
+pic SKYHF78 tics 1
+pic SKYHF79 tics 1
+pic SKYHF80 tics 1
+pic SKYHF81 tics 1
+pic SKYHF82 tics 1
+pic SKYHF83 tics 1
+pic SKYHF84 tics 1
+pic SKYHF85 tics 1
+pic SKYHF86 tics 1
+pic SKYHF87 tics 1
+pic SKYHF88 tics 1
+pic SKYHF89 tics 1
+pic SKYHF90 tics 1
+pic SKYHF91 tics 1
+pic SKYHF92 tics 1
+pic SKYHF93 tics 1
+pic SKYHF94 tics 1
+pic SKYHF95 tics 1
+pic SKYHF96 tics 1
+pic SKYHF97 tics 1
+pic SKYHF98 tics 1
+pic SKYHF99 tics 1
+pic SKYHF100 tics 1

@@ -1,0 +1,183 @@
+Class DCY_Calignosity : DCY_HeckBaron //Fast as a projectile
+{
+  Default
+  {
+  Health 3000;
+  Translation "160:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "128:159=%[0.00,0.00,0.00]:[0.00,0.75,0.79]", "16:79=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "0:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]";
+  Tag "\c[n0]calignosity\c-";
+  Speed 10;
+  FastSpeed 20;
+  BloodColor "Cyan";
+  BloodType "AndroidNeonFluid";
+  +MISSILEMORE
+  +BOSS
+  +NOINFIGHTING
+  +FRIGHTENING
+  +NOFEAR
+  DamageFactor 0.65;
+  DamageFactor "CAL", 0.00;
+  SeeSound "Calignosity/Sight";
+  ActiveSound "Calignosity/Active";
+  PainSound "Calignosity/Pain";
+  DeathSound "Calignosity/Death";
+  TeleFogSourceType "DCY_BossTeleport";
+  TeleFogDestType "DCY_BossTeleport";
+  }
+  
+  void A_CaliStep()
+  {
+	A_StartSound("CYBRFOOT", CHAN_BODY, attenuation: 0.75);
+	A_QuakeEx(0, 0, 2, 10, 0, 500, "", flags: QF_SCALEDOWN|QF_3D);
+	A_Chase();
+  }
+  
+  void A_CaliStomp()
+  {
+	A_StartSound("B0SSSMSH", CHAN_BODY, attenuation: 0.45);
+	A_QuakeEx(0, 0, 6, 20, 0, 2000, "", flags: QF_SCALEDOWN|QF_3D);
+	A_Explode(300, 128, XF_NOTMISSILE, 0, 100);
+  }
+  
+  void A_CaliLaser()
+  {
+	if (target)
+	{
+	  A_StartSound("REFLSR", CHAN_WEAPON, attenuation: 0.5);
+	  
+	  for (int i = -15; i < 20; i += 20)
+		A_SpawnProjectile("DCY_CalignosityLaser", 40, i, flags: CMF_AIMDIRECTION);
+		
+	  A_FaceTarget();
+	}
+  }
+  
+  int amissile;
+  
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("Yehawdoo", "DANGERT", "n0");
+  }
+  
+  States
+  {
+  Spawn:
+	P1SS A 10 A_Look();
+	Loop;
+  See:
+	P1SS AABBB 3 A_Chase();
+	P1SS C 3 A_CaliStep();
+	P1SS CCDDD 3 A_Chase();
+	P1SS A 3 A_CaliStep();
+	Loop;
+  Melee:
+  Missile:
+	P1SS E 0
+	{
+		if (target && distance3D(target) < 256)
+			SetStateLabel("Lunge");
+	}
+	P1SS EEE 10 A_FaceTarget();
+	P1SS G 3 Bright A_CaliLaser();
+	P1SS E 4 A_FaceTarget();
+	P1SS G 3 Bright A_CaliLaser();
+	P1SS E 4 A_FaceTarget();
+	P1SS G 3 Bright A_CaliLaser();
+	P1SS E 4 A_FaceTarget();
+	P1SS G 3 Bright A_CaliLaser();
+	P1SS E 4 A_FaceTarget();
+	Goto See;
+  Lunge:
+	P1SS MMMMMMMMMMMMMMM 1
+	{
+		A_FaceTarget();
+		A_SpawnItemEx("DCY_CalignosityTrailX", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_Recoil(-4);
+	}
+	P1SS M 10 A_Stop();
+	P1SS N 5 A_CaliStomp();
+	P1SS ONNN 5;
+	Goto See;
+  Pain:
+	P1SS I 3;
+	P1SS I 4 A_Pain();
+	Goto See;
+  Death:
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_CalignosityTrailX : DCY_HexodenicanTrail { Default { StencilColor "Cyan"; } }
+
+Class DCY_CalignosityLaser : CacodemonBall
+{
+  Default
+  {
+  DamageFunction (0);
+  Speed 50;
+  Radius 15;
+  Height 11;
+  Alpha 0.75;
+  RenderStyle "Add";
+  DamageType "CAL";
+  SeeSound "";
+  DeathSound "";
+  Scale 0.05;
+  BounceCount 3;
+  BounceType "Hexen";
+  BounceFactor 1.0;
+  +BOUNCEONWALLS
+  +NEVERFAST
+  +RIPPER
+  +THRUACTORS
+  +NOEXTREMEDEATH
+  +DONTSPLASH
+  -RANDOMIZE
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_CalignosityTrail", frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(-15.0, 15.0), flags: SXF_TRANSFERSCALE|SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION);
+		
+		for (int i = 3; i < 42; i += 9)
+			A_SpawnItemEx("DCY_CalignosityTrail", (i*Vel.x)/-35.0, -(i*Vel.y)/-35.0, 2+(i*Vel.z)/-35.0, 0, 0, 0, 0, SXF_ABSOLUTEANGLE);
+		
+		A_Explode(10, 45, XF_NOTMISSILE, false);
+	}
+	Loop;
+  Death:
+	TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_CalignosityTrail : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 1.0;
+  Alpha 0.5;
+  RenderStyle "Add";
+  +NOCLIP
+  +NOINTERACTION
+  +THRUACTORS
+  +BRIGHT
+  +DONTSPLASH
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	C3AL ABCDE 2;
+	Stop;
+  }
+}

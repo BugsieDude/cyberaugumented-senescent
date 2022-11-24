@@ -1,0 +1,444 @@
+Class DCY_ArcheSpiritwalker : DCY_ZombeParent
+{
+  Default
+  {
+  Health 1000;
+  Tag "\c[Ultramarine]Arche Spiritwalker\c-";
+  StencilColor "Purple";
+  DamageFactor 0.65;
+  Species "Arche";
+  SeeSound "Arche/Sight";
+  ActiveSound "Arche/Active";
+  PainSound "";
+  DeathSound "Arche/Death";
+  TeleFogSourceType "DCY_BossTeleport";
+  TeleFogDestType "DCY_BossTeleport";
+  PainChance 20;
+  BloodColor "Purple";
+  DamageFactor "Arche", 0.00;
+  BloodType "DCY_AndroidNeonFluid";
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +BOSS
+  +MISSILEMORE
+  }
+  
+  int flashtimer;
+  bool rushing;
+  int attacking;
+  bool sentries;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	ThingAnnounce("Get ready.", "0RCHWARN", "Ultramarine");
+  }
+  
+  override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
+  {
+    int dmg = super.DamageMobj(inflictor, source, damage, mod, flags, angle);
+	
+	if (dmg > 0)
+	{
+		A_StartSound("ELITLAN2", attenuation: 0.5);
+		flashtimer = 2;
+	}
+	
+	return dmg;
+  }
+  
+  override void Tick()
+  {
+	super.tick();
+	
+	//Damage state
+	if (flashtimer > 1)
+	{
+		A_SetRenderStyle(1.0, STYLE_STENCIL);
+		bBright = true;
+		flashtimer--;
+	}
+	else
+	{
+		A_SetRenderStyle(1.0, STYLE_NORMAL);
+		bBright = false;
+	}
+  }
+  
+  void A_ArcheTrail(double xvel, double yvel, double zvel)
+  {
+	let trail = Spawn("DCY_TransfixerTrail", pos);
+			
+	if (trail)
+	{
+		trail.vel.x = xvel;
+		trail.vel.y = yvel;
+		trail.vel.z = zvel;
+		trail.sprite = GetSpriteIndex("EK20");
+		trail.frame = frame;
+		trail.scale = scale;
+		trail.angle = angle;
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	EK20 A 10 A_Look();
+	Loop;
+  See:
+	EK20 AABBCCDD 2
+	{
+		if (rushing == true)
+		{	
+			A_ArcheTrail(frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 2.0));
+			
+			for (int i = 3; i > 0; i--)
+				A_Chase();
+		}
+		
+		A_Chase();
+		Return A_Jump(20, "Rush", "Dodge");
+	}
+	Loop;
+  Rush:
+	EK20 A 0
+	{
+		rushing = !rushing;
+	}
+	Goto See;
+  Dodge:
+	EK20 A 1;
+	EK20 A 0
+	{
+		A_StartSound("dcybosstier/teleport", pitch: 1.4);
+		
+		for (int i = 20; i > 0; i--)
+		{
+			A_ArcheTrail(frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 2.0));
+			
+			for (int i = 3; i > 0; i--)
+				A_Wander();
+		}
+	}
+	EK20 A 1 A_Stop();
+	Goto See;
+  Pain:
+	EK23 A 3;
+	EK23 A 3
+	{
+		if (health < 600 && !sentries)
+			Return A_Jump(130, "Sentries", "Dodge");
+		
+		Return A_Jump(90, "Dodge");
+	}
+	Goto See;
+  Sentries:
+	EK20 K 10 A_FaceTarget();
+	EK20 I 5;
+	EK20 L 30
+	{
+		for (int i = 0; i < 4; i += 1)
+		{
+			let tesentry = Spawn("DCY_ArcheSentrySpawn", (pos.x, pos.y, pos.z + 40));
+			
+			if (tesentry)
+			{
+				tesentry.bThruSpecies = true;
+				
+				if (bFriendly)
+					tesentry.bFriendly = true;
+				
+				tesentry.Vel3DFromAngle(random(10, 30), angle + frandom(0, 360), random(10, 30));
+			}
+		}
+		
+		sentries = true;
+	}
+	EK20 K 10;
+	Goto See;
+  Missile:
+	EK21 A 10
+	{
+		A_FaceTarget();
+		attacking = 0;
+		Return A_Jump(60, "BallCharge");
+	}
+	EK21 B 2
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_ArcheBullet", 32, -4, frandom(-2.0, 2.0));
+		A_StartSound("BOSSMGUN", CHAN_WEAPON);
+	}
+	EK21 A 1
+	{
+		tics = random(1, 4);
+		attacking += 1;
+		
+		if (attacking >= 20)
+			SetStateLabel("See");
+	}
+	Goto Missile+1;
+  BallCharge:
+	EK24 A 1
+	{
+		A_SpawnItemEx("DCY_ArcheBall", zofs: 80, flags: SXF_SETMASTER);
+		A_StartSound("SiriusBFG/Charge", attenuation: 0.5);
+	}
+	EK24 AB 7 A_FaceTarget();
+	EK24 A 7
+	{
+		A_SpawnProjectile("DCY_ArcheBallThrust", 80);
+		A_FaceTarget();
+	}
+	EK24 BAB 7 A_FaceTarget();
+	Goto See;
+  Death:
+  XDeath:
+  Death.Fire:
+    EK22 A 0 A_Jump(128, "Death2");
+	EK22 A 6 A_ScreamAndUnblock();
+    EK22 BC 5;
+	EK22 D -1;
+	Stop;
+  Death2:
+    EK22 E 1;
+	EK22 E 5 A_ScreamAndUnblock();
+	EK22 FGHI 4;
+	EK22 J -1;
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_ArcheBullet : DCY_PhasicRazerLaser
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[0.68,0.49,1.79]";
+  Speed 90;
+  SeeSound "BOSSMGUN";
+  DamageType "Arche";
+  +NEVERFAST
+  }
+}
+
+Class DCY_ArcheSentrySpawn : DCY_DecedentTurretSpawn
+{
+  Default
+  {
+  Species "Arche";
+  DamageType "Arche";
+  Translation "16:79=%[0.00,0.00,0.00]:[0.81,0.53,1.48]", "112:255=%[0.00,0.00,0.00]:[0.81,0.53,1.49]", "80:111=%[0.00,0.00,0.00]:[0.57,0.58,0.80]";
+  Speed 12;
+  }
+  
+  bool isfriendly;
+  
+  void A_SpawnSentry()
+  {
+	let sentry = Spawn("DCY_ArcheSentry", pos);
+			
+	if (sentry)
+	{
+		if (bFriendly)
+			sentry.bFriendly = true;
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	VTCP ABCDCB 1
+	{
+		if (pos.z <= floorz)
+		{
+			A_SpawnSentry();
+			A_Stop();
+			Destroy();
+		}
+	}
+	Loop;
+  Death:
+	RTUS A 1
+	{
+		A_SpawnSentry();
+		A_Stop();
+	}
+	Stop;
+  }
+}
+
+Class DCY_ArcheSentry : DCYMonster
+{
+  Default
+  {
+  Health 200;
+  Radius 20;
+  Height 64;
+  Scale 1.0;
+  Translation "112:127=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "152:159=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "160:167=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "208:231=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "232:235=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.00,0.00,1.01]", "1:2=%[0.00,0.00,0.00]:[0.00,0.00,1.01]", "5:15=%[0.00,0.00,0.00]:[0.00,0.00,1.01]", "3:3=%[0.00,0.00,0.00]:[0.00,0.00,1.01]";
+  Tag "\c[Ultramarine]Wrathful Ravine\c-";
+  Obituary "%o's quietus.";
+  Species "Arche";
+  +NOPAIN
+  +PAINLESS
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +DONTTHRUST
+  +NOBLOOD
+  -COUNTKILL
+  }
+  
+  int idlesound;
+  int attacking;
+  
+  States
+  {
+  Spawn:
+    SENT A 1
+	{
+		A_Look();
+		
+		if (idlesound == 100)
+		{
+			A_StartSound("Sentry2/Active", pitch: 0.67895);
+			idlesound = 0;
+		}
+		
+		idlesound += 1;
+	}
+    Loop;
+  See:
+	SENT A 1
+	{
+		A_Chase(null, "Missile", CHF_DONTMOVE);
+		
+		if (idlesound == 100)
+		{
+			A_StartSound("Sentry2/Active", pitch: 0.69785);
+			idlesound = 0;
+		}
+		
+		idlesound += 1;
+	}
+    Loop;
+  Missile:
+    SENT A 8
+	{
+		A_FaceTarget();
+		attacking = 0;
+		A_StartSound("Sentry2/See", volume: 0.5, pitch: 0.67885);
+	}
+	SENT B 2
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_ArcheBullet", 49, 0, frandom(-2.0, 2.0));
+		A_StartSound("BOSSMGUN", CHAN_WEAPON);
+	}
+	SENT A 1
+	{
+		tics = random(1, 15);
+		attacking += 1;
+		
+		if (attacking >= 20)
+			SetStateLabel("See");
+	}
+    Goto Missile+1;
+  Death:
+	SENT C 1
+	{
+		A_NoBlocking();
+		A_SpawnItemEx("DCY_Explosion_1_Nebula", zofs: 50);
+		A_StartSound("ROBOMIS2", CHAN_VOICE);
+	}
+    SENT C 32;
+  FadeOut:
+    SENT C 2
+	{
+		if (Alpha < 0)
+			Destroy();
+			
+		A_FadeOut(0.1);
+	}
+    Loop;
+  }
+}
+
+Class DCY_Explosion_1_Nebula : DCY_Explosion_1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.68,0.49,1.79]"; } }
+
+Class DCY_ArcheBall : CacodemonBall
+{
+  Default
+  {
+  Speed 0;
+  FastSpeed 0;
+  Radius 20;
+  Height 20;
+  +NEVERFAST
+  +SEEKERMISSILE
+  +RIPPER
+  +BRIGHT
+  Scale 0;
+  Damage (2);
+  DamageType "Arche";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.06,0.76,1.99]";
+  }
+  
+  bool chargeatplayer;
+  
+  States
+  {
+  Spawn:
+	PR0S AB 1
+	{
+		if (Scale.X > 1.0)
+			destroy();
+		else
+		{
+			Warp(master, 0, 0, 80, master.angle, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+			A_SetScale(Scale.X + 0.05);
+		}
+	}
+	Loop;
+  Death:
+	PR0S A 1
+	{
+		A_Explode(128, 192);
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_ArcheBallThrust : DCY_ArcheBall
+{
+  Default
+  {
+  Scale 1.0;
+  Speed 20;
+  }
+  
+  States
+  {
+  Spawn:
+	PR0S AB 1
+	{
+		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_ArcheBallTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	PR0S AB 1
+	{
+		A_SeekerMissile(3, 3);
+		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_ArcheBallTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	Goto Spawn+2;
+  }
+}
+
+Class DCY_ArcheBallTrail : DCY_ProjectileBaseTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.87,0.64,1.81]"; } }

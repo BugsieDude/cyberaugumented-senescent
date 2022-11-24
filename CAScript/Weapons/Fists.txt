@@ -1,0 +1,102 @@
+Class DCY_HahahaPunchPunch : Weapon Replaces Fist
+{
+  Default
+  {
+	Tag "Bare Fists";
+	Weapon.SelectionOrder 3700;
+	Weapon.Kickback 100;
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	Obituary "$OB_MPFIST";
+	Weapon.SlotNumber 1;
+	+WEAPON.WIMPY_WEAPON;
+	+WEAPON.NOALERT;
+	+WEAPON.MELEEWEAPON;
+  }
+  
+  action state A_CheckBerserk(StateLabel State1, StateLabel State2)
+  {
+    if (CountInv("DCY_BerserkStrength"))
+        Return ResolveState(State2);
+    else
+        Return ResolveState(State1);
+	
+	Return ResolveState(null);
+  }
+  
+  States
+  {
+  Select:
+	F1ST A 1 A_Raise(24);
+	Loop;
+  Deselect:
+	F1ST A 1 A_Lower(24);
+	Loop;
+  Ready:
+	F1ST A 1 A_WeaponReady();
+	Loop;
+  Fire:
+	F1ST B 0;
+	F1ST B 0 A_CheckBerserk("Fire1", "Fire2");
+	Goto Fire1;
+  Fire1:
+	F1ST B 0;
+	F1ST B 1 A_StartSound("Fist/Woosh", CHAN_5);
+	F1ST C 1 A_CustomPunch(2 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F1ST DEF 1;
+	F1ST GHI 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH|WRF_NOBOB);
+	Goto Ready;
+  Fire2:
+	F1ST J 0;
+	F1ST J 1 A_StartSound("Fist/Woosh", CHAN_5);
+	F1ST K 1 A_CustomPunch(20 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F1ST LM 1;
+	F1ST FGHI 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH|WRF_NOBOB);
+	Goto Ready;
+  AltFire:
+	F1ST B 0;
+	F1ST B 0 A_CheckBerserk("AltFire1", "AltFire2");
+	Goto AltFire1;
+  AltFire1:
+	F2ST B 0;
+	F2ST B 1 A_StartSound("Fist/Woosh", CHAN_5);
+	F2ST C 1 A_CustomPunch(2 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F2ST DEF 1;
+	F2ST GHI 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH|WRF_NOBOB);
+	Goto Ready;
+  AltFire2:
+	F2ST J 0;
+	F2ST J 1 A_StartSound("Fist/Woosh", CHAN_5);
+	F2ST K 1 A_CustomPunch(20 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F2ST LM 1;
+	F2ST FGHI 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH|WRF_NOBOB);
+	Goto Ready;
+  }
+}
+
+Class DCY_FistPuff : BulletPuff
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 0.5;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  VSpeed 0;
+  +ROLLSPRITE
+  }
+  
+  States
+  {
+  Melee:
+	SM03 A 0
+	{
+		A_SetRoll(frandom(0, 360));
+		A_StartSound("Fist/Punch");
+		A_SetRenderStyle(frandom(0.75, 1.0), STYLE_ADD);
+	}
+	SM03 AABBCCDEF 1 A_FadeOut(0.1, 0);
+	Stop;
+  }
+}

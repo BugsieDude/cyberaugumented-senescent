@@ -1,0 +1,351 @@
+Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar fusion
+{
+  Default
+  {
+  Health 800;
+  DamageFactor 0.7;
+  +BOSS
+  +MISSILEEVENMORE
+  +NEVERFAST
+  +BRIGHT
+  PainChance 30;
+  Tag "\c[Sapphire]Eaves\c[g2]dropper\c-";
+  Speed 15;
+  Scale 1.075;
+  SeeSound "Eavesdropper/Sight";
+  ActiveSound "Eavesdropper/Active";
+  PainSound "Eavesdropper/Pain";
+  DeathSound "Eavesdropper/Death";
+  }
+  
+  int dmissile;
+  int wingangle;
+  
+  static const string balls[] =
+  {
+	"DCY_LightningVulgarShotTiny",
+	"DCY_DarkeningVulgarShotTiny"
+  };
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o got outwitted by the Eavesdropper.",
+		"Is that some kind of dbz reference or what",
+		"%o got outwitted by some kind of crazy fusion between the vulgars."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+	3V3S A 10 A_Look();
+	Loop;
+  See:
+	3V3S AABBCCDD 2
+	{
+		A_Chase();
+		Return A_Jump(25, "Dodge", "Rush");
+	}
+	Loop;
+  Dodge:
+	3V3S A 10 A_Dodging(random(15, 30));
+	Goto See;
+  Rush:
+	3V3S AABBCCDD 1
+	{
+		A_Chase(null, null);
+		A_SpawnItemEx("DCY_EavesdropperTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		Return A_Jump(15, "See", "Dodge");
+	}
+	3V3S A 0 A_Chase();
+	Loop;
+  Melee:
+	3V3S EF 4 A_FaceTarget();
+	3V3S G 4 A_CustomMeleeAttack(10 * random(5, 10), "imp/melee");
+	Goto See;
+  Missile:
+	3V3S E 0 A_JumpIf(target && Distance3D(target) < 250, "HighAttack");
+	3V3S E 0 A_Jump(128, "Darkness", "LightningA");
+	Goto LightningA;
+  LightningA:
+	3V3S EF 4 A_FaceTarget();
+	3V3S G 4
+	{
+		if (target)
+		{
+			for (int i = 30; i > -35; i -= 30)
+				A_SpawnProjectile("DCY_LightningVulgarShot", 35, 0, i);
+			
+			A_FaceTarget();
+		}
+	}
+	Goto See;
+  Darkness:
+	3V3S E 3
+	{
+		A_FaceTarget();
+		dmissile = 0;
+	}
+	3V3S F 3 A_FaceTarget();
+	3V3S G 3
+	{
+		if (target)
+		{
+			A_SpawnProjectile("DCY_DarkeningVulgarShot", 35);
+			A_FaceTarget();
+			dmissile += 1;
+		}
+	}
+	3V3S E 3 A_JumpIf(dmissile > 3, "See");
+	Goto Darkness+1;
+  HighAttack:
+	3V3S E 0 A_Jump(192, "Lunge", "Wings");
+	Goto LightningA;
+  Lunge:
+	3V3S EF 7 A_FaceTarget();
+	3V3S G 1 A_StartSound("MonsterSpit", CHAN_WEAPON, attenuation: 0.85);
+	3V3S GGGGGGGGGGG 1
+	{
+		A_Recoil(-6);
+		A_FaceTarget(1.6, 1.6);
+		A_SpawnItemEx("DCY_EavesdropperTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+	}
+	3V3S FE 7 A_FaceTarget();
+	Goto See;
+  Wings:
+	3V3S G 5 A_FaceTarget();
+	3V3S F 5
+	{
+		A_StartSound("Eavesdropper/Sight", CHAN_VOICE, attenuation: 0.65);
+		A_FaceTarget();
+		wingangle = 35;
+	}
+	3V3S E 1
+	{
+		for (int i = 1; i > -2; i -= 2)
+			A_SpawnProjectile("DCY_EavesdropperWing", 40, 10, wingangle * i, 2, 8 - (wingangle / 5));
+		
+		wingangle += 20;
+		
+		if (wingangle > 125)
+			SetStateLabel("WingLoop");
+	}
+	Goto Wings+2;
+  WingLoop:
+	3V3S E 1
+	{
+		if (target && distance3D(target) > 550)
+			SetStateLabel("See");
+		
+		A_SpawnProjectile("DCY_EavesdropperWing", 40, 10, 125, 2, -28);
+		A_FaceTarget();
+	}
+	3V3S E 1
+	{
+		if (target && distance3D(target) > 550)
+			SetStateLabel("See");
+		
+		A_SpawnProjectile("DCY_EavesdropperWing",40,10,-125,2,-28);
+		
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnProjectile(balls[Random(0, balls.Size() - 1)],frandom(48,70),frandom(45,78),angle+frandom(18,-18),CMF_ABSOLUTEPITCH|CMF_ABSOLUTEANGLE ,pitch+frandom(18,-18));
+			A_SpawnProjectile(balls[Random(0, balls.Size() - 1)],frandom(48,70),frandom(-45,-78),angle+frandom(18,-18),CMF_ABSOLUTEPITCH|CMF_ABSOLUTEANGLE ,pitch+frandom(18,-18));
+		}
+		
+		Return A_MonsterRefire(170, "See");
+	}
+	Loop;
+  Pain:
+	3V3S H 3 A_Jump(30, "Rush", "Dodge");
+	3V3S H 4 A_Pain();
+	3V3S H 1 A_Jump(10, "Rush", "Dodge");
+	Goto See;
+  Death:
+  XDeath:
+	3V3S H 1;
+	3V3S H 10 A_Scream();
+	3V3S H 1
+	{
+		A_NoBlocking();
+		A_StartSound("ROTHPOLO", CHAN_BODY, attenuation: 0.5);
+		
+		for (int i = 2; i > 0; i--)
+			A_SpawnItemEx("DCY_EavesdropperDeathTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+			
+		A_QuakeEx(4, 4, 4, 30, 0, 2000, "", QF_SCALEDOWN|QF_3D, 0.5, 0.5, 0.5, rollintensity: 1, rollwave: 0.1);
+		
+		let imp1 = Spawn("DCY_Pathogen", pos + (0, -10, 0));
+		if (imp1)
+		{
+			imp1.health = 100;
+			imp1.A_ChangeVelocity(frandom(10.0, -10.0), frandom(10.0, -10.0), frandom(1, 5), CVF_REPLACE);
+			imp1.tics *= 0.5;
+			imp1.bThruSpecies = true;
+			
+			if (bFriendly == true)
+				imp1.bFriendly = true;
+		}
+		
+		let imp2 = Spawn("DCY_Caviler", pos + (0, 10, 0));
+		if (imp2)
+		{
+			imp2.health = 100;
+			imp2.A_ChangeVelocity(frandom(10.0, -10.0), frandom(10.0, -10.0), frandom(1, 5), CVF_REPLACE);
+			imp2.tics *= 0.5;
+			imp2.bThruSpecies = true;
+			
+			if (bFriendly == true)
+				imp2.bFriendly = true;
+		}
+	}
+	TNT1 A 40;
+	Stop;
+  Death.Massacre:
+	3V3S H 1;
+	3V3S H 10 A_Scream();
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_LightningVulgarShotTiny : DCY_LightningVulgarShot
+{
+  Default
+  {
+	Damage 1;
+	Scale 0.4;
+	Radius 8;
+	Height 8;
+	SeeSound "CYBRSMS2";
+	DeathSound "CYBRSMSH";
+  }
+  
+  States
+  {
+  Spawn:
+	P_FX AAABBB 1
+	{
+		for (int i = 3; i > 0; i--)
+			A_SpawnParticle(0xa6e1ff, SPF_FULLBRIGHT, 6, 5, 0, frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
+	}
+	Loop;
+  }
+}
+
+Class DCY_DarkeningVulgarShotTiny : DCY_DarkeningVulgarShot
+{
+  Default
+  {
+	Damage 1;
+	Scale 0.4;
+	Alpha 1.0;
+	Radius 8;
+	Height 8;
+	SeeSound "CYBRSMS2";
+	DeathSound "CYBRSMSH";
+	Translation "0:255=%[0.00,0.00,0.00]:[1.20,2.00,1.20]";
+  }
+  
+  States
+  {
+  Spawn:
+	ETV6 AABB 1
+	{
+		for (int i = 3; i > 0; i--)
+			A_SpawnParticle(0x0f0a3d, SPF_FULLBRIGHT, 6, 5, 0, frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
+		
+		A_Weave(2, 2, 1, 1);
+	}
+	Loop;
+  Death:
+    P_FX CDEFGH 2;
+	Stop;
+  }
+}
+
+Class DCY_EavesdropperWing : Actor
+{
+  Default
+  {
+    BounceCount 999;
+	BounceFactor 1.0;
+	WallBounceFactor 1.0;
+	RenderStyle "Add";
+	Scale 0.2;
+	Alpha 1.0;
+	Projectile;
+	Speed 20;
+	+NOGRAVITY
+	+BRIGHT
+	+THRUACTORS
+	+BOUNCEONWALLS
+	+BOUNCEONCEILINGS
+	+DONTSPLASH
+	+BOUNCEONFLOORS
+	Translation "0:255=%[0.00,0.00,0.00]:[0.62,0.43,1.38]";
+  }
+  
+  static const string smoke[] =
+  {
+	"DCY_Smonk",
+	"DCY_RocketSmonk",
+	"DCY_EavesdropperSmonk",
+	"DCY_EavesdropperSmonk2",
+	"DCY_EavesdropperSmonk3",
+	"DCY_EavesdropperSmonk4"
+  };
+  
+  void A_SpawnWingEffects(int maxfirecount, int maxfirecount2)
+  {
+	for (int i = maxfirecount; i > 0; i--)
+		A_SpawnItemEx(smoke[random(0, 1)], frandom(-9,9), frandom(-9,9), frandom(-9,18), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_TRANSFERTRANSLATION|SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION, 78);
+	for (int i = maxfirecount2; i > 0; i--)
+		A_SpawnItemEx(smoke[random(2, 5)], frandom(-9,9), frandom(-9,9), frandom(-9,18), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_NOCHECKPOSITION, 78);
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 AA 1 A_SpawnWingEffects(2, 5);
+	TNT1 AA 1
+	{
+		A_SpawnWingEffects(2, 5);
+		A_Recoil(1);
+	}
+	TNT1 AAA 1
+	{
+		A_SpawnWingEffects(2, 3);
+		A_Recoil(1);
+	}
+	TNT1 A 1 A_SpawnWingEffects(2, 3);
+	TNT1 A 2
+	{
+		A_SpawnWingEffects(1, 1);
+		A_Recoil(1);
+		A_FadeOut(0.05);
+	}
+	TNT1 A 1
+	{
+		A_FadeOut(0.05);
+		A_SpawnItemEx(smoke[random(0, 1)], frandom(-4,4), frandom(-4,4), frandom(-3,7), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1
+	{
+		A_FadeOut(0.05);
+		A_SpawnItemEx(smoke[random(2, 3)], frandom(-4,4), frandom(-4,4), frandom(-3,7), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 1 A_FadeOut(0.05);
+	Wait;
+  }
+}
+
+Class DCY_EavesdropperSmonk : DCY_FluorescentJetFlare { Default { Alpha 0.75; Translation "0:255=%[0.00,0.00,0.00]:[0.55,0.64,0.95]"; } }
+Class DCY_EavesdropperSmonk2 : DCY_FluorescentJetFlare { Default { Alpha 0.5; RenderStyle "Subtract"; Translation "0:255=%[0.00,0.00,0.00]:[0.23,0.38,0.13]"; } }
+Class DCY_EavesdropperSmonk3 : DCY_ImpFlame1 { Default { Alpha 0.35; Scale 1.4; Translation "0:255=%[0.00,0.00,0.00]:[0.55,0.64,0.95]"; } }
+Class DCY_EavesdropperSmonk4 : DCY_ImpFlame1 { Default { Alpha 0.35; Scale 1.4; RenderStyle "Subtract"; Translation "0:255=%[0.00,0.00,0.00]:[0.23,0.38,0.13]"; } }

@@ -1,0 +1,317 @@
+Class DCY_Impe : DCYMonster
+{
+  Default
+  {
+  Tag "$FN_IMP";
+  Health 60;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  Speed 8;
+  PainChance 200;
+  SeeSound "imp/sight";
+  PainSound "imp/pain";
+  DeathSound "imp/death";
+  ActiveSound "imp/active";
+  HitObituary "$OB_IMPHIT";
+  Obituary "$OB_IMP";
+  Species "Imps";
+  }
+  
+  void A_ImpLunge()
+  {
+	A_FaceTarget();
+	A_Recoil(-10);
+	A_ChangeVelocity(0, 0, 1.0, CVF_RELATIVE);
+  }
+  
+  States
+  {
+  Spawn:
+	TROO A 10 DCY_Look();
+	Loop;
+  Look:
+	TROO AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		
+		if (random(0, 50) == 1)
+			SetStateLabel("Stand");
+	}
+	Loop;
+  Stand:
+	TROO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	Goto Look;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	TROO AABBCCDD 3 A_Chase();
+	Loop;
+  Melee:
+	TROO E 0;
+	TROO EF 5 A_FaceTarget();
+	TROO G 5
+	{
+		A_CustomMeleeAttack(3 * random(1, 8), "imp/melee", "");
+		A_FaceTarget();
+	}
+	TROO F 5;
+	Goto See;
+  SLASHER:
+	TROO E 1 A_ImpLunge();
+	TROO EFGF 4 A_FaceTarget();
+	TROO E 1 A_ImpLunge();
+	TROO F 5 A_FaceTarget();
+	TROO G 5 A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+	TROO F 3;
+	Goto See;
+  Missile:
+	TROO E 0 A_JumpIfCloser(128, "SLASHER");
+	TROO E 0 A_Jump(100, "Dodge", "Run");
+	TROO EF 8 A_FaceTarget();
+	TROO G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_FaceTarget();
+	}
+	TROO F 4;
+	Goto See;
+  Dodge:
+	TROO A 15 A_ChangeVelocity(randompick(-10, 10), 0, 1.0, CVF_RELATIVE);
+	TROO A 1 A_Stop();
+	Goto Missile+2;
+  Run:
+	TROO ABCD 3
+	{
+		for (int i = 2; i > 0; i--)
+			A_Chase(null, null);
+	}
+	TROO EF 8 A_FaceTarget();
+	TROO G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_FaceTarget();
+	}
+	TROO F 4;
+	TROO ABCD 3
+	{
+		for (int i = 2; i > 0; i--)
+			A_Chase(null, null);
+	}
+	TROO EF 8 A_FaceTarget();
+	TROO G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_ChangeVelocity(randompick(-10, 10), 0, 1.0, CVF_RELATIVE);
+		A_FaceTarget();
+	}
+	TROO F 4;
+	TROO F 1 A_Stop();
+	Goto See;
+  Pain:
+	TROO H 4;
+	TROO H 4 A_Pain();
+	Goto See;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_Scream();
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  Death:
+    TNT1 A 0 A_Jump(128, "Death2");
+	Goto NormalDeath;
+  NormalDeath:
+    TROO I 1 A_SetScale(randompick(1, -1), 1);
+	TROO I 1 A_Scream();
+	TROO I 5 A_NoBlocking();
+	TROO JKL 4;
+	TROO M -1;
+	Stop;
+  Death2:
+    1D_3 A 1;
+	1D_3 A 6 A_ScreamAndUnblock();
+	1D_3 CD 7;
+	1D_3 E -1;
+	Stop;
+  XDeath:
+    TNT1 A 0 A_Jump(128, "XDeath1");
+	Goto XDeathNormal;
+  XDeathNormal:
+    TROO N 1;
+	TROO N 1 A_XScream();
+	TROO N 5 A_NoBlocking();
+	TROO OPQRST 4;
+	TROO U -1;
+	Stop;
+  XDeath1:
+    1D_1 A 6 A_Scream();
+	1D_1 A 0 A_StopSound(CHAN_VOICE);
+	1D_1 B 6 A_XScream();
+	TNT1 A 0 A_NoBlocking();
+	1D_1 CDEFGH 5;
+	1D_1 I -1;
+	Stop;
+  Raise:
+	TROO M 3;
+    TROO LKHJI 4;
+	TROO H 4 A_SetScale(1, 1);
+    Goto See;
+  }
+}
+
+Class DCY_Dastard : DCY_Impe
+{
+  Default
+  {
+  SeeSound "dastard/sight";
+  ActiveSound "dastard/active";
+  PainSound "dastard/pain";
+  DeathSound "dastard/death";
+  Tag "Dastard";
+  }
+  
+  States
+  {
+  Spawn:
+	DAS_ A 10 DCY_Look();
+	Loop;
+  Look:
+	DAS_ AABBCCDD 4
+	{
+		DCY_LookingForPlayer();
+		Return A_Jump(20, "Stand");
+	}
+	Loop;
+  Stand:
+	DAS_ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	Goto Look;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	DAS_ AABBCCDD 3 A_Chase();
+	Loop;
+  Melee:
+	DAS_ E 0;
+	DAS_ EF 5 A_FaceTarget();
+	DAS_ G 5
+	{
+		A_CustomMeleeAttack(3 * random(1, 8), "imp/melee", "");
+		A_FaceTarget();
+	}
+	DAS_ F 5;
+	Goto See;
+  SLASHER:
+	DAS_ E 1 A_ImpLunge();
+	DAS_ EFGF 4 A_FaceTarget();
+	DAS_ E 1 A_ImpLunge();
+	DAS_ F 5 A_FaceTarget();
+	DAS_ G 5 A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+	DAS_ F 3;
+	Goto See;
+  Missile:
+	DAS_ E 0 A_JumpIfCloser(128, "SLASHER");
+	DAS_ E 0 A_Jump(100, "Dodge", "Run");
+	DAS_ FE 4 A_FaceTarget();
+	DAS_ EEEEEEEEEEEEEE 1
+	{
+		A_FaceTarget();
+		A_SpawnParticleEx(0x703912, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), 30 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 67, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+	}
+	DAS_ F 4 A_FaceTarget();
+	DAS_ G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_FaceTarget();
+	}
+	DAS_ F 4;
+	Goto See;
+  Dodge:
+	DAS_ A 15 A_ChangeVelocity(randompick(-10, 10), 0, 1.0, CVF_RELATIVE);
+	DAS_ A 1 A_Stop();
+	Goto Missile+2;
+  Run:
+	DAS_ ABCDABCDABCD 3
+	{
+		for (int i = 2; i > 0; i--)
+			A_Chase(null, null);
+	}
+	DAS_ FE 4 A_FaceTarget();
+	DAS_ EEEEEEEEEEEEEE 1
+	{
+		A_FaceTarget();
+		A_SpawnParticleEx(0x703912, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), 30 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+	}
+	DAS_ F 4 A_FaceTarget();
+	DAS_ G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_FaceTarget();
+	}
+	DAS_ F 4;
+	DAS_ ABCDABCDABCD 3
+	{
+		for (int i = 2; i > 0; i--)
+			A_Chase(null, null);
+	}
+	DAS_ FE 4 A_FaceTarget();
+	DAS_ EEEEEEEEEEEEEE 1
+	{
+		A_FaceTarget();
+		A_SpawnParticleEx(0x703912, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), 30 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+	}
+	DAS_ F 4 A_FaceTarget();
+	DAS_ G 4
+	{
+		A_SpawnProjectile("DCY_ImpFireball", 32, 0, frandom(-0.5, 0.5));
+		A_ChangeVelocity(randompick(-10, 10), 0, 1.0, CVF_RELATIVE);
+		A_FaceTarget();
+	}
+	DAS_ F 4;
+	DAS_ F 1 A_Stop();
+	Goto See;
+  Pain:
+	DAS_ H 4;
+	DAS_ H 4 A_Pain();
+	Goto See;
+  Death.Fire:
+    TNT1 A 0;
+	TNT1 A 0 A_Scream();
+	TNT1 A 0 A_NoBlocking();
+	TNT1 A 0 A_Fall();
+    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  Death:
+    DAS_ I 1 A_SetScale(randompick(1, -1), 1);
+	DAS_ I 1 A_Scream();
+	DAS_ I 5 A_NoBlocking();
+	DAS_ JKL 4;
+	DAS_ M -1;
+	Stop;
+  XDeath:
+    DAS_ N 1;
+	DAS_ N 1 A_XScream();
+	DAS_ N 5 A_NoBlocking();
+	DAS_ OPQRST 4;
+	DAS_ U -1;
+	Stop;
+  Raise:
+	DAS_ M 3;
+    DAS_ LKHJI 4;
+	DAS_ H 4 A_SetScale(1, 1);
+    Goto See;
+  }
+}

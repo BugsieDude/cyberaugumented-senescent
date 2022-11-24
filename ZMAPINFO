@@ -1,0 +1,128 @@
+gameinfo
+{
+	menufontcolor_title = "j1" 
+	menufontcolor_label = "l5"
+	menufontcolor_value = "f0"
+	menufontcolor_action = "a4"
+	menufontcolor_header = "w3" 
+	menufontcolor_highlight = "w1"
+	menufontcolor_selection = "c1"
+	infopage = "HELPSHIT", "CREDITSH"
+	dimcolor = "Black"
+	dimamount = 0.6
+	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedWeaponSwayHandler", "CyberaugumentedEventHandler", "Cyberaugumented_StartupHandler"
+	StatusBarClass = "DCyb_HUD"
+	BackpackType = "DCY_Backpack"
+	playerclasses = "CyberaugumentedProtagonist"
+	Border = 8, 8, "VANTABTR", "VANTABT", "VANTABTL", "VANTABR", "VANTABL", "VANTABBR", "VANTABB", "VANTABBL"
+	BorderFlat = "VANTAHUD"
+	quitmessages = "$QUITMSG1","$QUITMSG2","$QUITMSG3","$QUITMSG4","$QUITMSG5",
+	"$QUITMSG6","$QUITMSG7","$QUITMSG8","$QUITMSG9","$QUITMSG10","$QUITMSG11",
+	"$QUITMSG12","$QUITMSG13","$QUITMSG14","$QUITMSG15","$QUITMSG16","$QUITMSG17",
+	"$QUITMSG18","$QUITMSG19","$QUITMSG20","$QUITMSG21","$QUITMSG22","$QUITMSG23",
+	"$QUITMSG24","$QUITMSG25","$QUITMSG26","$QUITMSG27","$QUITMSG28","$QUITMSG29",
+	"$QUITMSG30","$QUITMSG31","$QUITMSG32","$QUITMSG33","$QUITMSG34","$QUITMSG35",
+	"$QUITMSG36","$QUITMSG37","$QUITMSG38","$QUITMSG39","$QUITMSG40","$QUITMSG41",
+	"$QUITMSG42","$QUITMSG43","$QUITMSG44","$QUITMSG45","$QUITMSG46","$QUITMSG47",
+	"$QUITMSG48","$QUITMSG49","$QUITMSG50","$QUITMSG51","$QUITMSG52","$QUITMSG53"
+}
+
+clearskills
+
+//Easy Difficulties
+skill TooYoungToDie
+{
+ AutoUseHealth
+ AmmoFactor = 2
+ DamageFactor = 0.5
+ TextColor = "Gray"
+ EasyBossBrain
+ SpawnFilter = Baby
+ Name = "Undersized"
+ Key = "i"
+}
+
+//Easy Difficulty
+skill NotTooRough
+{
+ TextColor = "g4"
+ SpawnFilter = Easy
+ Name = "Just The Begining"
+ Key = "h"
+}
+
+//U-V Difficulty
+skill UltraViolence
+{
+ TextColor = "y6"
+ SpawnFilter = Hard
+ Name = "The ravaging carnage..."
+ Key = "u"
+ DefaultSkill
+}
+
+//Nightmare Difficulty
+skill HARDCORE
+{
+ AmmoFactor = 2
+ ACSReturn = 4
+ TextColor = "q3"
+ FastMonsters
+ RespawnTime = 12
+ SpawnFilter = Nightmare
+ Name = "Bloodshed"
+ MustConfirm
+ Key = "n"
+}
+
+//Hard Difficulty
+skill SSSDeadly
+{
+ TextColor = "l7"
+ AmmoFactor = 3
+ SpawnFilter = Hard
+ Name = "DISRUPTION"
+ MustConfirm = "Monster's spawn rate and health are increased. You have more ammo on pickup. Do you want to continue?"
+/* ReplaceActor = "ZombieMan", "StrongerZombieSpawner"
+ ReplaceActor = "ShotgunGuy", "StrongerShotgunGuySpawner"
+ ReplaceActor = "DoomImp", "StrongerImpSpawner"
+ ReplaceActor = "Demon", "StrongerPinkySpawner"
+ ReplaceActor = "ChaingunGuy", "StrongerChaingunGuySpawner"
+ ReplaceActor = "ArchVile", "StrongerArchVileSpawner"
+ ReplaceActor = "Cacodemon", "StrongerCacoSpawner"
+ ReplaceActor = "Arachnotron", "StrongerArachnotronSpawner"
+ ReplaceActor = "BaronOfHell", "StrongerBaronSpawner"
+ ReplaceActor = "WolfensteinSS", "StrongerNaziSpawner"
+ ReplaceActor = "Cyberdemon", "StrongerCyberdemonSpawner"
+ ReplaceActor = "SpiderMastermind", "StrongerSpiderMastermindSpawner"
+ ReplaceActor = "Fatso", "StrongerFatsoSpawner"
+ ReplaceActor = "HellKnight", "StrongerHellKnightSpawner"
+ ReplaceActor = "Revenant", "StrongerRevSpawner" */
+}
+
+//Harder Difficulty
+skill HOLYFUCK
+{
+ TextColor = "v0"
+ AmmoFactor = 3
+ FastMonsters
+ SpawnFilter = Hard
+ Name = "Demise Incarnate"
+ MustConfirm = "Here comes the danger zone."
+/* ReplaceActor = "ZombieMan", "StrongestZombieSpawner"
+ ReplaceActor = "ShotgunGuy", "StrongestShotgunGuySpawner"
+ ReplaceActor = "ChaingunGuy", "StrongestChaingunGuySpawner"
+ ReplaceActor = "DoomImp", "StrongestImpSpawner"
+ ReplaceActor = "Demon", "StrongestPinkySpawner"
+ ReplaceActor = "LostSoul", "StrongestLostSoulSpawner"
+ ReplaceActor = "ArchVile", "StrongestArchVileSpawner"
+ ReplaceActor = "Cacodemon", "StrongestCacoSpawner"
+ ReplaceActor = "Arachnotron", "StrongestArachnotronSpawner"
+ ReplaceActor = "BaronOfHell", "StrongestBaronSpawner"
+ ReplaceActor = "WolfensteinSS", "StrongestNaziSpawner"
+ ReplaceActor = "Cyberdemon", "StrongestCyberdemonSpawner"
+ ReplaceActor = "SpiderMastermind", "StrongestSpiderMastermindSpawner"
+ ReplaceActor = "Fatso", "StrongestFatsoSpawner"
+ ReplaceActor = "HellKnight", "StrongestHellKnightSpawner"
+ ReplaceActor = "Revenant", "StrongestRevSpawner" */
+}

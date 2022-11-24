@@ -1,0 +1,137 @@
+Class DCY_CombatShotgun : Weapon Replaces Shotgun
+{
+  Default
+  {
+	Tag "Combat Shotgun";
+	Inventory.PickupSound "dcy/shotgunpickup2";
+	Inventory.PickupMessage "You got the Combat Shotgun! The most popular weapon in the whole genre. ...Kinda.";
+	Weapon.AmmoGive 8;
+	Weapon.AmmoUse 1;
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	Weapon.AmmoType "Shell";
+	Weapon.SlotNumber 3;
+	Weapon.SelectionOrder 1300;
+  }
+  
+  action void A_ShotgunFire()
+  {
+	A_StartSound("Shotgun/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_GunFlash();
+	
+	for (int i = 7; i > 0; i--)
+    {
+		if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
+		{
+			A_FireProjectile("DCY_ExplosivePistolTracer", frandom(-2.6, 2.6), 0, flags: FPF_NOAUTOAIM, pitch:frandom(-1.5, 1.5));
+		}
+		else
+		{
+			A_FireProjectile("DCY_PistolTracer", frandom(-2.6, 2.6), 0, flags: FPF_NOAUTOAIM, frandom(-1.5, 1.5));
+		}
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	SHT_ Z -1;
+	Stop;
+  Select:
+	SHG_ WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	SHG_ YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	SHG_ A 1 A_WeaponReady();
+	Loop;
+  Fire:
+	SHG_ A 0;
+	SHG_ A 1;
+	SHG_ B 1 Bright A_ShotgunFire();
+	SHG_ CDEF 1 Bright;
+	SHG_ GHIJ 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	SHG_ KLMNOPQRSTU 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Flash:
+	TNT1 A 3 A_Light1();
+	TNT1 A 3 A_Light2();
+	Goto LightDone;
+  }
+}
+
+Class DCY_UnderlineShotgun : Weapon
+{
+  Default
+  {
+	Tag "Underline Shotgun ''UND-30''";
+	Inventory.PickupMessage "You got the Underline Shotgun! Some kind of an Assault Shotgun or Auto Shotgun.";
+	Obituary "$o was blown away into some meters by $k's Underline Shotgun.";
+	Weapon.AmmoType "Shell";
+	Weapon.AmmoGive 15;
+	Weapon.AmmoUse 1;
+	Weapon.SlotNumber 3;
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	Decal "BulletChip";
+	+FLOORCLIP;
+	+DONTGIB;
+	Weapon.Kickback 65;
+	Inventory.PickupSound "Underline/Pickup";
+  }
+  
+  action void A_UnderlineFire()
+  {
+    A_StartSound("Underline/Fire", CHAN_WEAPON);
+    A_QuakeEx(1, 1, 1, 20, 0, 100, "", QF_RELATIVE|QF_SCALEDOWN, falloff: 200);
+    invoker.DepleteAmmo(invoker.bAltFire, true);
+    A_GunFlash();
+	
+    for (int i = 0; i < 7; i++)
+    {
+		if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
+		{
+			A_FireProjectile("DCY_ExplosivePistolTracer", frandom(-3.2, 3.2), 0, flags: FPF_NOAUTOAIM, pitch:frandom(-2.5, 2.5));
+		}
+		else
+		{
+			A_FireProjectile("DCY_PistolTracer", frandom(-3.2, 3.2), 0, flags: FPF_NOAUTOAIM, pitch:frandom(-2.5, 2.5));
+		}
+    }
+	
+	
+    A_WeaponOffset(frandom(-2.0, 2.0), frandom(-2.0, 2.0), WOF_ADD|WOF_INTERPOLATE);
+  }
+  
+  States
+  {
+  Spawn:
+    S0HT Z -1; //The spawn sprite is not here yet.
+    Stop;
+  Ready:
+	S0HT A 1 A_WeaponReady();
+	Loop;
+  Select:
+	S0HT WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	S0HT YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower;
+	Wait;
+  Fire:
+    S0HT B 0 Bright;
+	S0HT B 1 Bright A_UnderlineFire();
+	S0HT CD 1 Bright;
+	S0HT E 1 A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	S0HT FGH 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	S0HT H 0 A_Refire();
+	Goto Ready;
+  }
+}

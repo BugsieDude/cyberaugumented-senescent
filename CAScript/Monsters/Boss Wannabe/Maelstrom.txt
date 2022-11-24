@@ -1,0 +1,77 @@
+Class DCY_Maelstrom : DCY_Rev
+{
+  Default
+  {
+  Health 2000;
+  DamageFactor 0.95;
+  +NORADIUSDMG
+  +BOSS
+  +NEVERFAST
+  +MISSILEMORE
+  +QUICKTORETALIATE
+  +NOGRAVITY
+  +FLOAT
+  FloatSpeed 20;
+  Speed 12;
+  Tag "Maelstrom";
+  }
+  
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("A storm is brewing by.", "WARNINGM", "Gray");
+  }
+  
+  int bobstate;
+  
+  override void Tick()
+  {
+	double newz = pos.z - BobSin(bobstate) / 8.;
+	super.tick();
+	
+	if (!level.isfrozen() && health > 0)
+	{
+		bobstate = (bobstate + 2) & 63;
+		newz += BobSin(bobstate) / 8.;
+		SetZ(newz);
+		
+		A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-30, 30), frandom(-30, 30), frandom(30, 100), zvel: frandom(0.5, 1.5), flags: SXF_NOCHECKPOSITION, failchance: 70);
+    }
+  }
+  
+  States
+  {
+  Spawn:
+	MAEL A 10 A_Look();
+	Loop;
+  See:
+	MAEL A 2 A_Chase();
+	Loop;
+  Melee:
+  Missile:
+	MAEL B 0;
+	Goto See;
+  Pain:
+	MAEL C 4;
+	MAEL C 4 A_Pain();
+	Goto See;
+  }
+}
+
+Class DCY_MaelstromSmonk : DCY_Smonk
+{ 
+  Default
+  {
+  Scale 2.0; 
+  Alpha 0.15;
+  RenderStyle "Subtract";
+  }
+  
+  States
+  {
+  Spawn:
+	SM03 AAABBBCCCDDEEFF 1 A_FadeOut(0.015, 0);
+	Stop;
+  }
+}

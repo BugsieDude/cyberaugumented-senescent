@@ -1,0 +1,136 @@
+Class DCY_Maltreat : DCY_PinkyParent
+{
+  Default
+  {
+  Tag "\c[j3]Maltreat\cL";
+  Health 300;
+  SeeSound "Maltreat/Sight";
+  ActiveSound "Maltreat/Active";
+  PainSound "Maltreat/Pain";
+  DeathSound "Maltreat/Death";
+  AttackSound "Maltreat/Attack";
+  }
+  
+  States
+  {
+  Spawn:
+	MLT_ A 10 DCY_Look();
+	Loop;
+  Look:
+	U1X_ AAABBBCCCDDD 2 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	MLT_ E 15 { A_FaceTarget(); DCY_AlertSound(); }
+	MLT_ FGGG 6 A_FaceTarget();
+	Goto See;
+  See:
+	MLT_ AAABBBCCCDDD 2
+	{
+		A_Chase();
+		Return A_Jump(20, "Dash");
+	}
+	Loop;
+  Dash:
+	MLT_ AAABBBCCCDDD 1
+	{
+		for (int i = 2; i > 0; i--)
+		{
+			A_Chase();
+			A_Chase();
+			A_SpawnItemEx("DCY_GTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME);
+		}
+		
+		Return A_Jump(25, "See");
+	}
+	Loop;
+  Missile:
+	MLT_ A 2
+	{
+		if (target && Distance3D(target) < 255)
+			Return ResolveState("Lunge");
+			
+		A_Chase("Melee", null);
+		Return A_Jump(100, "Dash");
+	}
+	MLT_ AABBBCCCDDD 2 Fast
+	{
+		if (target && Distance3D(target) < 255)
+			Return ResolveState("Lunge");
+		if (target && Distance3D(target) < 455)
+			Return ResolveState("Rockets");
+			
+		A_Chase("Melee", null);
+		Return ResolveState(null);
+	}
+	Goto See;
+  Lunge:
+	MLT_ EEEEEEEEE 1 A_FaceTarget();
+	MLT_ E 0 A_StartSound("Maltreat/Attack", CHAN_VOICE);
+	MLT_ FFFFFFFF 1 A_Recoil(-5);
+	MLT_ G 8 A_CustomMeleeAttack(8 * random(1, 10), "", "");
+	Goto See;
+  Melee:
+	MLT_ EF 5 A_FaceTarget();
+	MLT_ G 4
+	{
+		A_FaceTarget();
+		A_CustomMeleeAttack(8 * random(1, 10), "", "");
+	}
+	Goto See;
+  Rockets:
+	MLT_ E 10 A_FaceTarget();
+	MLT_ O 6
+	{
+		for (int i = -15; i < 16; i += 30)
+			A_SpawnProjectile("DCY_MaltreatMissile", 45, i);
+		
+		A_FaceTarget();
+		A_StartSound("Grenade/Launch", CHAN_WEAPON, pitch: 1.15);
+	}
+	MLT_ E 10 A_FaceTarget();
+	Goto See;
+  Pain:
+	MLT_ H 4;
+	MLT_ H 4 A_Pain();
+	Goto See;
+  Death:
+	MLT_ H 3;
+	MLT_ I 6 A_Scream();
+	MLT_ J 6 A_NoBlocking();
+	MLT_ KLM 5;
+	MLT_ N -1;
+	Stop;
+  Raise:
+	MLT_ MLKJIH 5;
+	Goto See;
+  }
+}
+
+Class DCY_MaltreatMissile : Rocket
+{
+  Default
+  {
+  Scale 0.85;
+  Damage 5;
+  }
+  
+  States
+  {
+  Spawn:
+	NMSL A 1 Bright;
+	Loop;
+  Death:
+	MISL B 0 Bright;
+  	TNT1 A 1 Bright
+	{
+		A_Scream();
+		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-2, 2), random(-2, 2), random(-2, 2), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-2, 2), random(-2, 2), random(-2, 2), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 17;
+	Stop;
+  }
+}

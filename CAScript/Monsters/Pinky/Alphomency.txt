@@ -1,0 +1,173 @@
+Class DCY_Alphomency : DCY_PinkeII
+{
+  Default
+  {
+  Health 145;
+  Speed 13.5;
+  FastSpeed 14.5;
+  SeeSound "EdgyPinky/Sight";
+  ActiveSound "EdgyPinky/Active";
+  PainSound "EdgyPinky/Pain";
+  DeathSound "EdgyPinky/Death";
+  AttackSound "";
+  Tag "Alphomency";
+  BloodColor "LightBlue";
+  -MISSILEMORE
+  Alpha 1.0;
+  RenderStyle "Translucent";
+  Obituary "$o got castrated by a wraith demon, the Alphomency.";
+  HitObituary "$o got erased by a Alphomency.";
+  Translation "16:47=%[0.00,0.00,0.00]:[0.95,1.14,2.00]", "160:167=%[0.00,0.00,0.00]:[1.20,1.61,2.00]", "168:191=%[0.00,0.00,0.00]:[1.20,1.61,2.00]", "144:151=%[0.00,0.00,0.00]:[1.20,1.61,2.00]", "48:79=%[0.00,0.00,0.00]:[1.20,1.61,2.00]", "128:143=%[0.00,0.00,0.00]:[1.01,1.01,1.01]";
+  }
+  States
+  {
+  Spawn:
+	UU8_ A 10 DCY_Look();
+	Loop;
+  Look:
+	UU8_ AABB 4 Fast DCY_LookingForPlayer();
+	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
+	UU8_ CCDD 4 Fast DCY_LookingForPlayer();
+	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
+	UU8_ A 0 A_CheckSight("See");
+	Goto Alert;
+  Alert:
+	UU8_ E 10 { A_FaceTarget(); DCY_AlertSound(); }
+	UU8_ F 20 A_FaceTarget();
+	UU8_ E 10 A_FaceTarget();
+	Goto See;
+  See:
+	UU8_ A 0 Fast A_Jump(10, "FadeAway");
+	UU8_ AABB 2 Fast A_Chase("Melee", "Missile");
+	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
+	UU8_ CCDD 2 Fast A_Chase("Melee", "Missile");
+	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
+	UU8_ A 0 Fast A_Jump(45, "FadeAway");
+	Loop;
+  FadeAway:
+	UU8_ A 0 Fast
+	{
+		bGhost = true;
+		A_StartSound("dune/active", CHAN_BODY);
+	}
+	UU8_ AABBC 2 Fast
+	{
+		A_Chase(null, null);
+		A_FadeOut(0.2, 0);
+	}
+	UU8_ C 0 Fast A_HideThing();
+	Goto SeeFaded;
+  SeeFaded:
+	UU8_ A 0 Fast A_Jump(55, "FadeIn");
+	UU8_ AABBCCDD 2 Fast A_Chase(null, null);
+	Loop;
+  FadeIn:
+	UU8_ A 0 Fast
+	{
+		bGhost = false;
+		A_Unhidething();
+		A_StartSound("dune/active", CHAN_BODY);
+	}
+	UU8_ AABBC 2 Fast
+	{
+		A_Chase(null, null);
+		A_FadeIn(0.2, 0);
+	}
+	Goto See;
+  Missile:
+	UU8_ A 0
+	{
+		If (target && Distance3D(target) < 222)
+			Return ResolveState("Yeet");
+		If (target && Distance3D(target) < 400)
+			Return ResolveState("BLAEAEURGH");
+		
+		Return A_Jump(20, "FadeAway");
+	}
+	UU8_ AABBCCDD 2 Fast A_Chase("Melee", null);
+	Loop;
+  Yeet:
+	UU8_ EEEEEEEEE 1 A_FaceTarget();
+	UU8_ F 0 A_StartSound("EdgyPinky/Melee", CHAN_VOICE);
+	UU8_ FFFFFFFF 1 A_Recoil(-4);
+	UU8_ G 0 A_CustomMeleeAttack(8 * random(1, 10), "", "");
+	UU8_ G 8;
+	Goto See;
+  BLAEAEURGH:
+	UU8_ EEEF 3 A_FaceTarget();
+	UU8_ F 3 A_SpawnProjectile("AlphomencyProjectile", 39, 0, frandom(-1.0, 1.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.0, 1.0));
+	UU8_ GG 3;
+	UU8_ EEEF 3 A_FaceTarget();
+	UU8_ F 3 A_SpawnProjectile("AlphomencyProjectile", 39, 0, frandom(-1.0, 1.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.0, 1.0));
+	UU8_ GGG 3;
+	Goto See;
+  Melee:
+	UU8_ E 0 A_StartSound("EdgyPinky/Melee", CHAN_VOICE);
+	UU8_ EF 8 A_FaceTarget();
+	UU8_ G 0 A_CustomMeleeAttack(8 * random(1, 10), "");
+	UU8_ G 8;
+	Goto See;
+  Pain:
+	UU8_ H 4
+	{
+		A_SetTranslucent(1.0);
+		A_UnHideThing();
+		bGhost = false;
+	}
+	UU8_ H 4 A_Pain();
+	Goto See;
+  Death:
+	UU8_ H 4
+	{
+		A_SetTranslucent(1.0);
+		A_UnHideThing();
+		bGhost = false;
+	}
+	UU8_ H 8 A_Scream();
+	UU8_ I 7 A_NoBlocking();
+	UU8_ JKLM 7;
+	UU8_ N -1;
+	Stop;
+  Raise:
+	UU8_ ML 8;
+	UU8_ KJIH 8;
+	Goto See;
+  }
+}
+
+Class AlphomencyProjectile : DoomImpBall
+{
+  Default
+  {
+  Damage 7;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.95,1.14,2.00]";
+  +ROLLSPRITE
+  +BLOODLESSIMPACT
+  +NOEXTREMEDEATH
+  Speed 8.5;
+  FastSpeed 15.5;
+  }
+  
+  States
+  {
+  Spawn:
+	BAL3 AB 1 Bright
+	{
+		A_Weave(2, 2, 1, 0.5);
+		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+		A_SetRoll(Roll+15);
+	}
+	Loop;
+  Death:
+	BAL3 C 1 Bright
+	{
+		A_SetRoll(frandom(0.00, 360.00));
+	}
+	BAL3 CCDDDEEE 1 Bright
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+	}
+	Stop;
+  }
+}

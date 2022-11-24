@@ -1,0 +1,289 @@
+Class DCY_RailLazerBase : Actor
+{
+  Default
+  {
+  Scale 8.0;
+  Alpha 0.001;
+  +FORCERADIUSDMG
+  +RANDOMIZE
+  +DONTSPLASH
+  +EXTREMEDEATH
+  +NOINTERACTION
+  +BRIGHT
+  RenderStyle "Add";
+  }
+  
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS A 1
+	{
+		A_FadeIn(frandom(0.25, 0.65), 0);
+		A_QuakeEx(1, 1, 1, 10, 0, 100, "none", QF_SCALEDOWN);
+		A_SetScale(Scale.X-frandom(-0.1, 0.5));
+	}
+	Stop;
+  }
+}
+
+Class DCY_KaiserLazer : DCY_RailLazerBase
+{
+  Default
+  {
+  DamageType "Plasmatic";
+  XScale 12.0;
+  YScale 24.0;
+  Alpha 1.0;
+  }
+  States
+  {
+  Spawn:
+	PLSS A 1
+	{
+	  if (master && Distance3D(master) < 300)
+		Destroy();
+	}
+	PLSS AA 1
+	{
+		if (master && Distance3D(master) < 300)
+			Destroy();
+ 
+		A_QuakeEx(1, 1, 1, 10, 0, 100, "none", QF_SCALEDOWN);
+		A_FadeOut(0.03, 0);
+	}
+	Stop;
+  }
+}
+
+Class DCY_ArbiterLazer : DCY_RailLazerBase { Default { Scale 7.0; } }
+Class DCY_ArbiterLazerFade : DCY_ArbiterLazer
+{
+  Default
+  {
+  Alpha 0.75;
+  }
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS AAAAAAAAAAAAAAAAAAAA 1
+	{
+		A_FadeOut(0.05, 0);
+		A_QuakeEx(1, 1, 1, 10, 0, 100, "none", QF_SCALEDOWN);
+		A_SetScale(Scale.X-0.01);
+	}
+	Stop;
+  }
+}
+
+Class DCY_GehennaTrack : DCY_RailLazerBase
+{
+  Default
+  {
+  Scale 2.25;
+  +BLOODLESSIMPACT;
+  Radius 0;
+  Height 0;
+  }
+}
+
+Class DCY_VamchnormTrack : DCY_GehennaTrack { Default { Scale 3.0; Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.57,2.00]"; } }
+Class DCY_VamchnormLazer : DCY_BallistaTrail { Default { Scale 7.0; Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.57,2.00]"; } }
+
+Class DCY_SiriusTrack : DCY_GehennaTrack { Default { +NOTIMEFREEZE } }
+
+Class DCY_BFG10kLASERTrail : DCY_RailLazerBase
+{ 
+  Default 
+  { 
+    DamageType "BFG"; 
+	+NOTIMEFREEZE;
+  }
+  
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS A 1
+	{	
+		A_FadeIn(frandom(0.25, 0.65), 0);
+		A_QuakeEx(1, 1, 1, 10, 0, 100, "none", QF_SCALEDOWN);
+		A_SetScale(Scale.X-frandom(-0.1, 0.5));
+	}
+	Stop;
+  }
+}
+
+Class DCY_SmallBFG10kLaser : DCY_RailLazerBase { Default { DamageType "BFG"; -NOTIMEFREEZE; Scale 5.5; } }
+
+Class DCY_BallistaTrail : DCY_RailLazerBase
+{
+  Default
+  {
+  DamageType "Ballista";
+  +NOTIMEFREEZE;
+  Scale 6.5;
+  }
+  
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS A 5
+	{
+		A_FadeIn(frandom(0.25, 0.65), 0);
+		A_QuakeEx(1, 1, 1, 10, 0, 100, "none", QF_SCALEDOWN);
+		A_SetScale(Scale.X-frandom(-0.1, 0.5));
+	}
+	PLSS AAAAAAAAAA 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X, Scale.Y-0.15);
+	}
+	Stop;
+  }
+}
+
+Class DCY_EradicatorRay : DCY_BallistaTrail { Default { DamageType "ERADICATOR"; Scale 24.8; SeeSound "Eradicator/Laser"; } }
+Class DCY_VirtuosoTrail : DCY_BallistaTrail
+{
+  Default
+  {
+  -NOTIMEFREEZE
+  Alpha 0.1;
+  XScale 4.45;
+  YScale 7.0;
+  }
+  
+  States
+  {
+  Spawn:
+	TH_L A 0;
+	TH_L A 0
+	{ 
+		A_FadeIn(frandom(0.45, 1));
+		A_SetRoll(frandom(0, 360));
+		Return A_Jump(128, "one", "two", "three");
+	}
+	Goto one;
+  One:
+	TH_L A 1;
+	Goto Fade;
+  Two:
+	TH_L B 1;
+	Goto Fade;
+  Three:
+	TH_L C 1;
+	Goto Fade;
+  Fade:
+	TH_L "#" 1
+	{
+		A_SetRoll(frandom(0, 360));
+		Return A_Jump(128, "Fade1", "Fade2", "Fade3", "Fade4", "Fade5");
+	}
+	Goto Fade1;
+  Fade1:
+	TH_L ABCBCABCBBCABCBACBACAB 1 { A_FadeOut(0.035, 0); A_SetScale(Scale.X, Scale.Y-0.1); A_SetRoll(frandom(0, 360)); }
+	Stop;
+  Fade2:
+	TH_L BCBACBBACBACBACACBAACB 1 { A_FadeOut(0.035, 0); A_SetScale(Scale.X, Scale.Y-0.1); A_SetRoll(frandom(0, 360)); }
+	Stop;
+  Fade3:
+	TH_L CACBAACBACBCBACBBCABCB 1 { A_FadeOut(0.035, 0); A_SetScale(Scale.X, Scale.Y-0.1); A_SetRoll(frandom(0, 360)); }
+	Stop;
+  Fade4:
+	TH_L BACBACBACBACACABCABBBA 1 { A_FadeOut(0.035, 0); A_SetScale(Scale.X, Scale.Y-0.1); A_SetRoll(frandom(0, 360)); }
+	Stop;
+  Fade5:
+	TH_L ACBACBACBABCABCBBACBBA 1 { A_FadeOut(0.035, 0); A_SetScale(Scale.X, Scale.Y-0.1); A_SetRoll(frandom(0, 360)); }
+	Stop;
+  }
+}
+
+Class DCY_VirtuosoTrail1 : DCY_VirtuosoTrail
+{
+  States
+  {
+  Spawn:
+	TH_L A 0;
+	TH_L A 0
+	{ 
+		A_FadeIn(frandom(0.45, 1)); 
+		A_SetRoll(Roll + random(0, 360)); 
+		Return A_Jump(128, "one", "two", "three");
+	}
+	Goto one;
+  One:
+	TH_L A 1;
+	Stop;
+  Two:
+	TH_L B 1;
+	Stop;
+  Three:
+	TH_L C 1;
+	Stop;
+  }
+}
+Class DCY_NeonicWandTrail : DCY_BallistaTrail
+{
+  Default
+  {
+  Scale 2.475;
+  DamageType "Neonic";
+  }
+  
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS A 5
+	{
+		A_FadeIn(frandom(0.25, 0.65), 0);
+		A_SetScale(Scale.X+frandom(-0.1, 0.5));
+	}
+	PLSS AAAAAAAAAA 1
+	{
+		A_FadeOut(0.05, 0);
+		A_SetScale(Scale.X, Scale.Y-0.15);
+	}
+	Stop;
+  }
+}
+
+Class DCY_OverdemoniacLaser : DCY_NeonicWandTrail { Default { Scale 6.0; } }
+Class DCY_OverdemoniacLaser2 : DCY_NeonicWandTrail { Default { Scale 6.0; } }
+
+Class DCY_RazerLaser : DCY_NeonicWandTrail { Default { Scale 4.0; } }
+Class DCY_PhasicRailLaser : DCY_NeonicWandTrail { Default { Scale 4.0; } }
+
+Class DCY_EternalVoidTrail : DCY_BallistaTrail
+{
+  Default
+  {
+  Scale 5.0;
+  Damage 0;
+  DamageType "Player";
+  RenderStyle "Subtract";
+  }
+  
+  double escale;
+  
+  States
+  {
+  Spawn:
+	PLSS A 0;
+	PLSS A 1
+	{
+		A_FadeIn(frandom(0.25, 0.65), 0);
+		A_SetScale(Scale.X+frandom(-0.1, 0.5));
+	}
+	PLSS AAAAAAAAAAAAAAAAAAAA 1
+	{
+		A_FadeOut(0.05, 0);
+		escale = frandom(11.55, 12.15);
+		A_SetScale(escale, escale);
+	}
+	Stop;
+  }
+}
