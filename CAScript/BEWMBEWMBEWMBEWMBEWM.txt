@@ -335,5 +335,5 @@ Class DCY_BlueVoidExplosion : DCY_AndroidExplosion
   }
 }
 
-Class DCY_YanoritExplosion : DCY_Explosion_1 { Default { Scale 0.15; Translation "0:255=%[0.00,0.00,0.00]:[0.74,1.06,2.00]"; } }
+Class DCY_YanoritExplosion : DCY_Explosion_1 { Default { Scale 0.15; Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,0.00]"; } }
 Class DCY_PurpleAndroidExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.30,0.58,2.00]"; } }

@@ -24,7 +24,7 @@ Class DCY_BionicZombie : DCY_MechaZombie
 	static const string messages[] =
 	{
 		"That must've hurted more.",
-		"%o has gotten %p stomach removed all by those bionic lasers."
+		"%o has gotten diced."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];
