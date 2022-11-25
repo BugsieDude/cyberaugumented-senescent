@@ -2206,7 +2206,7 @@ Upheaval/OrbitalBoom "Sounds/DCY Monsters/Upheavalbringer/ray.wav"
 Upheaval/OrbitalLaser "Sounds/DCY Monsters/Upheavalbringer/upheaval_laser.ogg"
 Upheaval/DeathBoom "Sounds/DCY Monsters/Upheavalbringer/explode.ogg"
 
-MW/Sight "Sounds/DCY Monsters/Multidimensional Fuckface/sight.ogg" //He will have a new voice instead of some metallix dude. idk how to voice act
+MW/Sight "Sounds/DCY Monsters/Multidimensional Fuckface/TREMBLE.ogg" //He will have a new voice instead of some metallix dude. idk how to voice act
 MW/Active1 "Sounds/DCY Monsters/Multidimensional Fuckface/talk1.ogg" 
 MW/Active2 "Sounds/DCY Monsters/Multidimensional Fuckface/talk2.ogg" 
 $random MW/Active {MW/Active1 MW/Active2}
@@ -2463,3 +2463,5 @@ Fusillade/Melee2 "Sounds/DCY Monsters/Fusillade/melee2.ogg"
 $random Fusillade/Death { Fusillade/Death1 Fusillade/Death2 }
 Fusillade/Death1 "Sounds/DCY Monsters/Fusillade/death1.ogg"
 Fusillade/Death2 "Sounds/DCY Monsters/Fusillade/death2.ogg"
+
+$random Archdictator/Grunt { ADG1 ADG2 ADG3 

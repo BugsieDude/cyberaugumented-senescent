@@ -74,7 +74,6 @@ Class DCY_NeonicWand : Weapon
 	Weapon.BobSpeed 1.45;
 	+FLOORCLIP;
 	+DONTGIB;
-	+FLOATBOB;
 	+BRIGHT;
 	+WEAPON.EXPLOSIVE;
 	DamageType "Neonic";
@@ -110,115 +109,57 @@ Class DCY_NeonicWand : Weapon
     NNW3 Z -1;
 	Stop;
   Select:
-	NEWN XYZ 1
-	{
-		If(invoker.weaponmode == 1)
-			Return ResolveState("Select2");
-		
-		A_WeaponReady(WRF_NOFIRE);
-		Return ResolveState(Null);
-	}
+	C_AD XYZ 1 Bright A_WeaponReady(WRF_NOFIRE);
 	Goto Ready;
   Deselect:
-	NEWN ZYX 1
-	{
-		If(invoker.weaponmode == 1)
-			Return ResolveState("Deselect2");
-		
-		A_WeaponOffset(0, 32);
-		Return ResolveState(Null);
-	}
-	TNT1 A 0 A_Lower();
-	Wait;
-  Select2:
-	N9WN XYZ 1
-	{
-		If(invoker.weaponmode == 0)
-			Return ResolveState("Select");
-		
-		A_WeaponReady(WRF_NOFIRE);
-		Return ResolveState(Null);
-	}
-	Goto Ready;
-  Deselect2:
-	N9WN ZYX 1
-	{
-		If(invoker.weaponmode == 0)
-			Return ResolveState("Deselect");
-		
-		A_WeaponOffset(0, 32);
-		Return ResolveState(Null);
-	}
+	C_AD ZYX 1 Bright;
 	TNT1 A 0 A_Lower();
 	Wait;
   Ready:
-	TNT1 A 0 A_JumpIf(invoker.weaponmode == 1, "Ready2");
-    NEWN A 5 Bright A_WeaponReady(WRF_ALLOWRELOAD);
-	NEWN BCDCB 4 Bright A_WeaponReady(WRF_ALLOWRELOAD);
-	Loop;
-  Ready2:
-	TNT1 A 0 A_JumpIf(invoker.weaponmode == 0, "Ready");
-	N9WN C 5 Bright A_WeaponReady(WRF_ALLOWRELOAD);
-	N9WN DEF 5 Bright A_WeaponReady(WRF_ALLOWRELOAD);
+    C_AD A 5 Bright A_WeaponReady(WRF_ALLOWRELOAD);
 	Loop;
   Reload: //AKA. Switch Modez
 	TNT1 A 0
 	{
 		A_StartSound("NeonicWand/Switch", CHAN_WEAPON);
-		if (invoker.weaponmode == 1)
-			Return ResolveState("Reload2");
 		
-		invoker.weaponmode = 1;
-		A_SetBlend("00 77 FF", 0.3, 10);
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Neonic Spherule", (240, 150), (480, 360), color: Font.CR_SAPPHIRE, time: (0.3, 2, 1), speed: 0.35, strength: 0.75, frequency: 6.0, id: 78);
-		Return ResolveState(null);
-	}
-    N9WN ABC 5 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOSWITCH);
-	Goto Ready2;
-  Reload2:
-	TNT1 A 0 
-	{
-		A_StartSound("NeonicWand/Switch", CHAN_WEAPON);
-		if (invoker.weaponmode == 0)
-			Return ResolveState("Reload");
+		if (invoker.weaponmode >= 1)
+			invoker.weaponmode = 0;
+		else
+			invoker.weaponmode += 1;
 		
-		invoker.weaponmode = 0;
 		A_SetBlend("00 77 FF", 0.3, 10);
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Purifying Light Powered-Tech Lasers", (240, 150), (480, 360), color: Font.CR_SAPPHIRE, time: (0.3, 2, 1), speed: 0.35, strength: 0.75, frequency: 6.0, id: 78);
-		Return ResolveState(null);
+		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", (invoker.weaponmode == 1) ? "Neonic Spherule" : "Plasmatic Rays", (240, 150), (480, 360), color: Font.CR_SAPPHIRE, time: (0.3, 2, 1), speed: 0.35, strength: 0.75, frequency: 6.0, id: 78);
 	}
-    N9WN CBA 5 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOSWITCH);
+    C_AD AAAAA 2 Bright A_WeaponOffset(frandom(-2.0, 2.0), frandom(-2.0, 2.0) + 32, WOF_INTERPOLATE);
+	C_AD A 2 Bright A_WeaponOffset(0, 32, WOF_INTERPOLATE);
 	Goto Ready;
   Fire:
-	NEWN A 0
-	{
-	  if(invoker.weaponmode == 1)
-		Return ResolveState("FireII");
-	  Return ResolveState(null);
-	}
-	Goto Fire1;
-  Fire1:
-	NEWN EFGH 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOSWITCH|WRF_NOBOB);
+	C_AD BCD 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOSWITCH|WRF_NOBOB);
 	Goto Hold;
   Hold:
-    NEWN I 1 Bright A_NeonLaser();
-	NEWN JKLM 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	TNT1 A 0 A_Refire("Hold");
-	NEWN NOPDCB 2 Bright A_WeaponReady(WRF_NOFIRE|WRF_NOBOB);
-	Goto Ready;
-  Fire2:
-	N9WN G 0
+    C_AD E 1 Bright
 	{
-	  if(invoker.weaponmode == 0)
-		Return ResolveState("Fire1");
-	  Return ResolveState(null);
+		if (invoker.weaponmode == 1)
+			A_NeonSphere();
+		else
+			A_NeonLaser();
 	}
-	Goto FireII;
-  FireII:
-	N9WN G 1 A_NeonSphere();
-	N9WN HIJKL 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	N9WN MNO 3 Bright A_WeaponReady(WRF_NOFIRE|WRF_NOBOB);
-	Goto Ready2;
+	C_AD FGHI 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	C_AD I 0 Bright
+	{
+		if (invoker.weaponmode == 0)
+			A_Refire("Hold");
+	}
+	C_AD JKLAA 2 Bright
+	{
+		if (invoker.weaponmode == 1)
+			tics = 3;
+		
+		tics = 2;
+		A_WeaponReady(WRF_NOFIRE|WRF_NOBOB);
+	}
+	Goto Ready;
   Flash:
 	TNT1 A 2 A_Light1();
 	TNT1 A 1 A_Light0();
