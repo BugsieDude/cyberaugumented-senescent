@@ -4,8 +4,8 @@ Class DCY_NavyTerminator : DCY_Cybie
   {
   Scale 1.25;
   Health 5600;
-  Tag "\c[v6]Terminator ''Codeword - Navy''\c-";
-  Obituary "%o is now in sapphire ashes by the Terminator.";
+  Tag "\c[v6]Extirpater ''Codeword - Navy''\c-";
+  Obituary "%o is now in sapphire ashes by the Extirpater.";
   SeeSound "TerminatorBase/Sight";
   ActiveSound "TerminatorBase/Active";
   PainSound "TerminatorBase/Pain";
@@ -63,7 +63,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 	{
 		A_FaceTarget();
 		A_StartSound("Android/Laser", CHAN_WEAPON, 0, 1.0, 0.75);
-		A_SpawnProjectile("DCY_MechaZombiePlasma", 47, -20, frandom(-2.5, 2.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.25, 1.25));
+		A_SpawnProjectile("DCY_MechaZombiePlasma", 52, -20, frandom(-2.5, 2.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.25, 1.25));
 		Return A_MonsterRefire(10, "See");
 	}
 	Goto Missile+3;
@@ -72,13 +72,13 @@ Class DCY_NavyTerminator : DCY_Cybie
 	NVRM F 5
 	{
 		for (int i = 10; i > -11; i -= 5)
-			A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, i);
+			A_SpawnProjectile("DCY_TransmuterTorpedo", 52, 20, i);
 	}
 	NVRM EEE 5 A_FaceTarget();
 	NVRM F 5
 	{
 		for (int i = 10; i > -11; i -= 5)
-			A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, i);
+			A_SpawnProjectile("DCY_TransmuterTorpedo", 52, 20, i);
 	}
 	NVRM EEEAAAA 5;
 	Goto See;
@@ -101,7 +101,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 			Return ResolveState("Cooldown");
 		
 		A_FaceTarget();
-		A_SpawnProjectile("DCY_TransmuterTorpedo", 47, 20, frandom(-1.2, 1.2), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.2, 1.2));
+		A_SpawnProjectile("DCY_TransmuterTorpedo", 52, 20, frandom(-1.2, 1.2), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.2, 1.2));
 		nmissile++;
 		Return ResolveState(null);
 	}
@@ -125,7 +125,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 	NVRM K 3
 	{
 		A_StartSound("StarProjectile/See", attenuation: 0.45);
-		A_SpawnProjectile("DCY_NavyBallofStar", 47, -20);
+		A_SpawnProjectile("DCY_NavyBallofStar", 52, -20);
 		A_FaceTarget();
 	}
 	NVRM JJJJJJJJJJJJ 3;
@@ -165,7 +165,7 @@ Class DCY_NavyBallofStar : CacodemonBall
 {
   Default
   {
-  DamageFunction (1);
+  DamageFunction (5);
   Alpha 1.0;
   Scale 1.5;
   Radius 33;
@@ -181,14 +181,23 @@ Class DCY_NavyBallofStar : CacodemonBall
   +BRIGHT
   }
   
+  int timer;
+  
   States
   {
   Spawn:
 	TSAR AABBCCDD 1
 	{
-		A_SeekerMissile(random(5, 10), random(10, 16));
 		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20.5, 20.5), frandom(-20.5, 20.5), frandom(-20.5, 20.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), flags: SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_NavyBallTrail", flags: SXF_NOCHECKPOSITION);
+		
+		if (timer > 30 && timer < 50)
+			A_ScaleVelocity(1.15);
+		
+		if (timer < 30)
+			A_SeekerMissile(random(5, 10), random(10, 16));
+		
+		timer++;
 	}
 	Loop;
   Death:
@@ -225,6 +234,37 @@ Class DCY_NavyBallTrail : DCY_Effect
 		A_SetRoll(Roll+10, SPF_INTERPOLATE);
 		A_SetScale(Scale.X+0.01, Scale.Y+0.01);
 	}
+	Stop;
+  }
+}
+
+Class DCY_TerminatorArm : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  Translation "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "160:167=%[0.00,0.00,0.00]:[2.00,0.20,0.20]", "208:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "128:159=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "48:79=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "5:15=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "192:207=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "112:127=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  BounceType "Doom";
+  Speed 8;
+  BounceFactor 0.5;
+  Radius 8;
+  Height 8;
+  Gravity 0.65;
+  Projectile;
+  -NOGRAVITY
+  +THRUACTORS
+  +BOUNCEONFLOORS
+  +BOUNCEONWALLS
+  }
+  
+  States
+  {
+  Spawn:
+	X_2X ABCDEFGHI 3 Bright;
+	Loop;
+  Death:
+	X_2X I 4;
+	X_2X H -1;
 	Stop;
   }
 }

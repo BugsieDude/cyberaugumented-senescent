@@ -25,12 +25,7 @@ Class DCY_Rattail : DCY_Plutonia
   void A_Rattail(bool spread)
   {
 	A_FaceTarget();
-	
-	if (!spread)
-		A_SpawnProjectile("DCY_RattailSphere", 35, 10, frandom(-2, 2));
-	else
-		A_SpawnProjectile("DCY_RattailSphere", 35, 10, frandom(-5, 5));
-		
+	A_SpawnProjectile("DCY_RattailSphere", 35, 10, (spread) ? frandom(-5, 5) : frandom(-2, 2));
 	A_StartSound("Weapons/ZombiePlasma", CHAN_WEAPON);
   }
   
@@ -56,17 +51,18 @@ Class DCY_Rattail : DCY_Plutonia
 		
 		if (target && distance3D(target) < 200)
 			SetStateLabel("Ballthrower");
-		
-		if (health < 140)
-			SetStateLabel("FastMissile");
 	}
-	R1TT F 5 A_Rattail(false);
+	R1TT F 5
+	{
+		tics = (health < 140) ? 2 : 5;
+		A_Rattail((health < 140) ? true : false);
+	}
 	R1TT E 3
 	{
 		A_FaceTarget();
 		missile++;
 		
-		if (missile > 3)
+		if (missile > ((health < 140) ? 5 : 3))
 			SetStateLabel("See");
 	}
 	Goto Missile+1;
@@ -90,18 +86,6 @@ Class DCY_Rattail : DCY_Plutonia
 	}
 	R1TT E 15;
 	Goto See;
-  FastMissile:
-	R1TT E 10 A_FaceTarget();
-	R1TT F 2 A_Rattail(true);
-	R1TT E 3
-	{
-		A_FaceTarget();
-		missile++;
-		
-		if (missile > 5)
-			SetStateLabel("See");
-	}
-	Goto FastMissile+1;
   Pain:
 	R1TT G 4;
 	R1TT G 4 A_Pain();

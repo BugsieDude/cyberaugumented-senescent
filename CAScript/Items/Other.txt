@@ -3,8 +3,8 @@ Class DCY_Palisade : CustomInventory Replaces BlurSphere
   Default
   {
   Inventory.PickupMessage "Palisade... At least ya have some protection in your soul!";
-  Inventory.PickupSound "Ring/Get";
-  Inventory.UseSound "Ring/Get";
+  Inventory.PickupSound "misc/ring_pkup";
+  Inventory.UseSound "misc/ring_pkup";
   Inventory.Amount 1;
   Inventory.MaxAmount 3;
   Inventory.InterHubAmount 3;

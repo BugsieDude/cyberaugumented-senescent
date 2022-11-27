@@ -692,7 +692,7 @@ EternalPainElemental/Laugh "Sounds/DCY Monsters/Vague/laugh.ogg"
 $random EternalPainElemental/Pain { PAE2PN1 PAE2PN2 }
 PAE2PN1 "Sounds/DCY Monsters/Vague/pain1.ogg"
 PAE2PN2 "Sounds/DCY Monsters/Vague/pain2.ogg"
-EternalPainElemental/Death "Sounds/DCY Monsters/Vague/death.wav"
+EternalPainElemental/Death "Sounds/DCY Monsters/Vague/death.ogg"
 $random EternalPainElemental/Barf { PAE2SIT3 PAE2SIT4 PAE2SIT5 null PAE2ACT6 }
 
 Kaiser/See "Sounds/DCY Monsters/Kaiser/sight.ogg"

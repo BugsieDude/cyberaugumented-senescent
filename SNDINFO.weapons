@@ -60,6 +60,7 @@ Minigun/EmphasisLoop "Sounds/Weapons/Slot 4/Minigun/plasmawave.ogg"
 
 LDISLASR "Sounds/Projectiles/dcy_ldis_laser.ogg"
 
+weapons/plasmaf "Sounds/Weapons/Slot 6/Plasma/plasma.ogg"
 $random Plasma/HeatBlast { HEATBLST HEATBLS2 HEATBLS3 }
 HEATBLST "Sounds/Weapons/Slot 6/Plasma/heat_blast1.ogg"
 HEATBLS2 "Sounds/Weapons/Slot 6/Plasma/heat_blast2.ogg"
