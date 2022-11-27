@@ -118,7 +118,11 @@ Class DCY_MaltreatMissile : Rocket
   States
   {
   Spawn:
-	NMSL A 1 Bright;
+	NMSL A 1 Bright
+	{
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
+	}
 	Loop;
   Death:
 	MISL B 0 Bright;
@@ -127,8 +131,18 @@ Class DCY_MaltreatMissile : Rocket
 		A_Scream();
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-2, 2), random(-2, 2), random(-2, 2), random(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-2, 2), random(-2, 2), random(-2, 2), random(0, 360), SXF_NOCHECKPOSITION);
+		
+		for (int i = 2; i > 0; i--)
+		{
+			let exp = Spawn("DCY_Explosion_1_Small", pos);
+			if (exp)
+			{
+				exp.vel.x = frandom(-1, 1);
+				exp.vel.y = frandom(-1, 1);
+				exp.vel.z = frandom(-1, 1);
+				exp.angle = frandom(0, 360);
+			}
+		}
 	}
 	TNT1 A 17;
 	Stop;

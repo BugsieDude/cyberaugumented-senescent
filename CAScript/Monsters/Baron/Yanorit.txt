@@ -122,7 +122,7 @@ Class DCY_PrimeYanoritBall : BaronBall
     TNT1 A 0
     {
 		for (int i = 10; i > 0; i--)
-			A_SpawnParticle(0xf1d9ff, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+			A_SpawnParticle(0xf1ff00, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
 	}
 	BAL7 CCDDDEEE 1 A_FadeOut(0.125, 0);
 	Stop;

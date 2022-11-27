@@ -20,7 +20,7 @@ Class DCY_TheBFG9000 : BFG9000 Replaces BFG9000
 	A_FireProjectile("DCY_BFGSpheroid", 0, 0);
 	invoker.DepleteAmmo(invoker.bAltFire, true);
 	A_GunFlash();
-	A_StartSound("DCYBFGX/FIRE", CHAN_6, CHANF_DEFAULT, 0.75, ATTN_IDLE);
+	A_StartSound("DCYBFGX/FIRE", CHAN_6, CHANF_DEFAULT, 0.65, ATTN_IDLE);
   }
   
   States
@@ -40,9 +40,12 @@ Class DCY_TheBFG9000 : BFG9000 Replaces BFG9000
 	Wait;
   Fire:
 	BFG_ ABC 1 Bright;
-	BFG_ D 1 Bright A_StartSound("DCYBFGX/CHARGE", CHAN_6, CHANF_DEFAULT, 0.35, ATTN_IDLE, 1.15);
-	BFG_ EFGHI 2 Bright;
-	BFG_ A 1 Bright A_StartSound("DCYBFG/Fire", CHAN_WEAPON, CHANF_DEFAULT, 0.6, ATTN_IDLE, frandom(0.85, 0.895));
+	BFG_ D 1 Bright
+	{
+		A_StartSound("DCYBFG/Fire", CHAN_WEAPON, CHANF_DEFAULT, 0.8, ATTN_IDLE);
+		A_StartSound("DCYBFGX/CHARGE", CHAN_6, CHANF_DEFAULT, 0.3, ATTN_IDLE, 1.15);
+	}
+	BFG_ EFGHIA 2 Bright;
 	BFF_ BCDEFGHI 2 Bright A_WeaponOffset(frandom(1.75, -1.75), frandom(32.75, 32.15), WOF_INTERPOLATE);
 	BIG_ A 1 Bright A_BFG();
 	BIG_ BCDEFGHIJ 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
@@ -975,30 +978,11 @@ Class DCY_Deracinator : Weapon
 	N7BG P 1 A_WeaponReady(WRF_NOPRIMARY);
 	Loop;
   Fire:
-    N7BG A 0 A_Jump(128, "Sound1", "Sound2", "Sound3");
-	Goto Sound1;
-  Sound1:
-	N7BG A 0 //Best BFG Sound IMO
-	{
-		A_StopSound(CHAN_6);
-		A_StartSound("OBLTFIRE", CHAN_7, 0, 0.6, 0.5);
-	}
-	Goto FireNow;
-  Sound2:
 	N7BG A 0
 	{
 		A_StopSound(CHAN_6);
-		A_StartSound("OBLTFIR2", CHAN_7, 0, 0.6, 0.5);
+		A_StartSound("ObliterationBFG/Fire", CHAN_7, 0, 0.6, 0.5);
 	}
-	Goto FireNow;
-  Sound3:
-	N7BG A 0
-	{
-		A_StopSound(CHAN_6);
-		A_StartSound("OBLTFIR3", CHAN_7, 0, 0.6, 0.5);
-	}
-	Goto FireNow;
-  FireNow:
 	N7BG QRSTUVWX 1 Bright A_QuakeEx(1, 1, 1, 14, 0, 400, "", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1000);
 	N7BG QRSTUVWX 1 Bright A_QuakeEx(2, 2, 2, 14, 0, 400, "", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1000);
 	N7BG E 2 Bright;
@@ -1026,7 +1010,7 @@ Class DCY_ObliterationBFGProjectile : FastProjectile
   Speed 145.5;
   Damage 500;
   Obituary "%o exploded in a galactical way by $k's Obliteration-BFG.";
-  DeathSound "BFGX/Explode";
+  DeathSound "DCYBFGX/Explode";
   RenderStyle "Add";
   Alpha 0.5;
   Radius 20;

@@ -2,7 +2,6 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
 {
   Default
   {
-  Translation "16:47=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "160:255=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "112:127=%[0.00,0.00,0.00]:[0.00,1.01,2.00]";
   Health 128;
   Tag "Decedent Bigwig";
   Obituary "%o got outsmarted by a Decedent Bigwig.";
@@ -63,17 +62,14 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
 	UGEP E 0 A_Jump(55, "Sentry");
 	Goto MissileContinue;
   MissileContinue:
-	UGEP E 10 A_FaceTarget();
+	UGEP EE 10 A_FaceTarget();
 	UGEP F 3 Bright
 	{
 		A_FaceTarget();
-		A_SpawnProjectile("DCY_MechaZombiePlasma2", 33, 0, frandom(-1.0, 1.0));
-	}
-	UGEP EEEEEE 3 A_FaceTarget();
-	UGEP F 3 Bright
-	{
-		A_FaceTarget();
-		A_SpawnProjectile("DCY_MechaZombiePlasma2", 33, 0, frandom(-1.0, 1.0));
+		A_StartSound("DCYPlasmaShotgun", CHAN_WEAPON);
+		
+		for (int i = 7; i > -1; i--)
+			A_SpawnProjectile("DCY_BigwigPlasma", 33, 0, frandom(-5.0, 5.0), CMF_OFFSETPITCH, frandom(-4, 4));
 	}
 	UGEP EEEEEE 3;
 	Goto See;

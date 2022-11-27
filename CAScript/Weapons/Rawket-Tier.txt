@@ -86,12 +86,7 @@ Class DCY_ShitGrenadeThrowItBackPrivate : Weapon
   {
 	invoker.DepleteAmmo(invoker.bAltFire, true);
 	A_StartSound("Grenade/Launch", CHAN_WEAPON, 0, 0.85, 0.85);
-	
-	if (countInv("DCY_PhotocoagulatorPower"))
-		A_FireProjectile("DCY_Napalm", 0, 0, pitch: -7.5);
-	else
-		A_FireProjectile("DCY_Grenade", 0, 0, pitch: -7.5);
-		
+	A_FireProjectile(countInv("DCY_PhotocoagulatorPower") ? "DCY_Napalm" : "DCY_Grenade", 0, 0, pitch: -7.5);
 	A_QuakeEx(1, 1, 1, 25, 0, 150, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 295);
 	A_WeaponOffset(frandom(-4.5, 4.5), frandom(0, 4.35), WOF_ADD|WOF_INTERPOLATE);
 	A_GunFlash();

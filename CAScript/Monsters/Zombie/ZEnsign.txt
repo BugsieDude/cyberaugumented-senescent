@@ -148,7 +148,7 @@ Class DCY_ZEnsign : DCY_Zombe
 		A_FaceTarget();
 	}
 	UU6_ F 2 { missile--; A_ZEnsignASG(); }
-	UU6_ E 6
+	UU6_ E 7
 	{
 		if (random(0, 8) == 1 && vel.z == 0)
 		{

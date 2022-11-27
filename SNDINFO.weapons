@@ -24,192 +24,170 @@ $rolloff LightningPulse/Explode 200 1000
 LightningPulse/FarExplode "Sounds/Weapons/Slot 6/Plasma/Electricity/ball_boom2.ogg"
 $rolloff LightningPulse/FarExplode 400 2200
 
-DCYBFG/Fire NBFGFIRE
-DCYBFGX/Charge DFGCHARG //Doomguy141 Weapon Sounds
-DCYBFGX/Fire DFG_FIRE
-DCYBFGX/Explode DFGEXPLO
-DCYBFGX/Ready DFGREADY 
-
-BFGD1E BFGD1E
+DCYBFG/Fire "Sounds/Weapons/Slot 7/BFG 9000/dcy_bfg.ogg"
+DCYBFGX/Charge "Sounds/Weapons/Slot 7/BFG 9000/charging.ogg" //Doomguy141 Weapon Sounds
+DCYBFGX/Fire "Sounds/Weapons/Slot 7/BFG 9000/fire.ogg"
+DCYBFGX/Explode "Sounds/Weapons/Slot 7/Deracinator/explode.ogg"
+DCYBFGX/Ready "Sounds/Weapons/Slot 7/BFG 9000/ready.ogg" 
+BFGBALL "Sounds/Weapons/Slot 7/BFG 9000/ball_hum.ogg" 
+BFGD1E "Sounds/Weapons/Slot 7/BFG 9000/ball_explode.ogg" 
 
 $random Rifle/Fire { RIFLEFI1 RIFLEFI2 RIFLEFI3 }
-RIFLEFI1 RIFLEFI1
-RIFLEFI2 RIFLEFI2
-RIFLEFI3 RIFLEFI3
+RIFLEFI1 "Sounds/Weapons/Slot 4/Warbringer/fire1.ogg"
+RIFLEFI2 "Sounds/Weapons/Slot 4/Warbringer/fire2.ogg"
+RIFLEFI3 "Sounds/Weapons/Slot 4/Warbringer/fire3.ogg"
 
 $random Rifle/Laser { RIFLALT1 RIFLALT2 RIFLALT3 }
-RIFLALT1 RIFLALT1 
-RIFLALT2 RIFLALT2 
-RIFLALT3 RIFLALT3 
-Rifle/LaserExplosive RIFLALTE
+RIFLALT1 "Sounds/Weapons/Slot 4/Warbringer/Piercer/fire1.ogg" 
+RIFLALT2 "Sounds/Weapons/Slot 4/Warbringer/Piercer/fire2.ogg"  
+RIFLALT3 "Sounds/Weapons/Slot 4/Warbringer/Piercer/fire3.ogg"  
+Rifle/LaserExplosive "Sounds/Weapons/Slot 4/Warbringer/Piercer/explosive.ogg"
 
-Rifle/LaserAlt LASRRIFL
-Rifle/LaserImpact LRIFIMPC
-LASRGREN LASRGREN
-LASRGRE2 LASRGRE2
-Rifle/Laser2 LASRRIF2
-Rifle/Laser3 LASRSRIF
-SMALLSR9 SMALLSR9
-Rifle/LiquidLaser2 LASRRIFB
+Rifle/LaserAlt "Sounds/Weapons/Slot 6/Plasma/ripper_fire.ogg"
+Rifle/LaserImpact "Sounds/Projectiles/laser_impact.wav"
+LASRGREN "Sounds/Weapons/Slot 6/Plasma/wave_explode.ogg"
+Rifle/Laser2 "Sounds/Weapons/Slot 6/Plasma/wave_fire.ogg"
+Rifle/LiquidLaser2 "Sounds/Projectiles/dcy_waveplasma.ogg"
 
-SCYTHE SCYTHE
-FLAMBALL FLAMBALL
+SCYTHE "Sounds/Projectiles/dcy_laserscythe.ogg"
+FLAMBALL "Sounds/Projectiles/dcy_small_flameball.ogg"
 
-Minigun/WindUp MGUNWINU
-Minigun/Loop DSMINIGN
-Minigun/TurretLoop DSMINIGF
-Minigun/WindDown MGUNWIND
+Minigun/WindUp "Sounds/Weapons/Slot 4/Minigun/winding_up.ogg"
+Minigun/Loop "Sounds/Weapons/Slot 4/Minigun/firing.ogg"
+Minigun/WindDown "Sounds/Weapons/Slot 4/Minigun/winding_down.ogg"
 
-Minigun/EmphasisLoop WAV8MINI
+Minigun/EmphasisLoop "Sounds/Weapons/Slot 4/Minigun/plasmawave.ogg"
 
-LDISLASR LDISLASR
+LDISLASR "Sounds/Projectiles/dcy_ldis_laser.ogg"
 
 $random Plasma/HeatBlast { HEATBLST HEATBLS2 HEATBLS3 }
-HEATBLST HEATBLST
-HEATBLS2 HEATBLS2
-HEATBLS3 HEATBLS3
+HEATBLST "Sounds/Weapons/Slot 6/Plasma/heat_blast1.ogg"
+HEATBLS2 "Sounds/Weapons/Slot 6/Plasma/heat_blast2.ogg"
+HEATBLS3 "Sounds/Weapons/Slot 6/Plasma/heat_blast3.ogg"
 
 $random Ballista/Fire { BALIFIR1 BALIFIR2 }
-BALIFIR1 BALIFIR1
-BALIFIR2 BALIFIR2
+BALIFIR1 "Sounds/Weapons/Slot 6/Ballista/fire1.ogg"
+BALIFIR2 "Sounds/Weapons/Slot 6/Ballista/fire2.ogg"
 $random Ballista/Reload { BALIREL1 BALIREL2 }
-BALIREL1 BALIREL1
-BALIREL2 BALIREL2
-Ballista/Arbalest/Zoom BALIARBZ
-Ballista/Arbalest/ZoomLoop BALIARBL
-$random Ballista/Arbalest/Fire { BALIARF1 BALIARF2 BALIARF3 }
-BALIARF1 BALIARF1
-BALIARF2 BALIARF2
-BALIARF3 BALIARF3
-Ballista/Arbalest/Charge BALICHRG
-Ballista/Arbalest/Reload BALIAREL
+BALIREL1 "Sounds/Weapons/Slot 6/Ballista/reload1.ogg"
+BALIREL2 "Sounds/Weapons/Slot 6/Ballista/reload2.ogg"
+Ballista/Arbalest/Zoom "Sounds/Weapons/Slot 6/Ballista/arbalest.ogg"
+Ballista/Arbalest/ZoomLoop "Sounds/Weapons/Slot 6/Ballista/arbalest_loop.ogg"
+$random Ballista/Arbalest/Fire { BALIARF1 BALIARF2 BALIARF3 BALIARF4 }
+BALIARF1 "Sounds/Weapons/Slot 6/Ballista/arbalest_fire1.ogg"
+BALIARF2 "Sounds/Weapons/Slot 6/Ballista/arbalest_fire2.ogg"
+BALIARF3 "Sounds/Weapons/Slot 6/Ballista/arbalest_fire3.ogg"
+BALIARF4 "Sounds/Weapons/Slot 6/Ballista/arbalest_fire4.ogg"
+Ballista/Arbalest/Charge "Sounds/Weapons/Slot 6/Ballista/arbalest_ready.ogg"
+Ballista/Arbalest/Reload "Sounds/Weapons/Slot 6/Ballista/arbalest_reload.ogg"
 $random Ballista/Explode { BALIEXP1 BALIEXP2 BALIEXP3 BALIEXP4 }
-BALIEXP1 BALIEXP1
-BALIEXP2 BALIEXP2
-BALIEXP3 BALIEXP3
-BALIEXP4 BALIEXP4
-Ballista/Blade/Select BALIDBLD
-Ballista/Blade/Reload DBALIDRL
+BALIEXP1 "Sounds/Weapons/Slot 6/Ballista/explode1.ogg"
+BALIEXP2 "Sounds/Weapons/Slot 6/Ballista/explode2.ogg"
+BALIEXP3 "Sounds/Weapons/Slot 6/Ballista/explode3.ogg"
+BALIEXP4 "Sounds/Weapons/Slot 6/Ballista/explode4.ogg"
+Ballista/Blade/Select "Sounds/Weapons/Slot 6/Ballista/blade.ogg"
+Ballista/Blade/Reload "Sounds/Weapons/Slot 6/Ballista/blade_reload.ogg"
+Ballista/Blade/Ready "Sounds/Weapons/Slot 6/Ballista/blade_reload.ogg"
 $random Ballista/Blade/Fire { BALIDFIR BALIDFI2 BALIDFI3 }
-BALIDFIR BALIDFIR
-BALIDFI2 BALIDFI2
-BALIDFI3 BALIDFI3
+BALIDFIR "Sounds/Weapons/Slot 6/Ballista/blade_fire1.ogg"
+BALIDFI2 "Sounds/Weapons/Slot 6/Ballista/blade_fire2.ogg"
+BALIDFI3 "Sounds/Weapons/Slot 6/Ballista/blade_fire3.ogg"
 
-PlasmaGun/Fire DSPLAS02
-$limit PlasmaGun/Fire 0
-
-DSPLASM4 DSPLASM4
+DSPLASM4 "Sounds/Weapons/Slot 4/Minigun/android_laser.ogg"
 $limit DSPLASM4 0
 
-RXIISHT RXIISHT
+LPISSHLD "Sounds/Projectiles/dcy_genesis_shield.ogg"
+Pistol/LaserCharge "Sounds/Projectiles/dcy_genesis_charge.ogg"
+Pistol/LaserChargedShot "Sounds/Projectiles/dcy_genesis_blast.ogg"
 
-LPISLASR LPISLASR
-LPISSHLD LPISSHLD
-Pistol/LaserCharge LPISCHRG
-Pistol/LaserChargedShot LPISCSHT
-
-Chainsaw/Stop CSAWSTOP
-Chainsaw/Draw CSAWDRAW
-Chainsaw/Loop CSAWLOOP
-Chainsaw/Ready CSAWREDY
+Chainsaw/Stop "Sounds/Weapons/Slot 1/Chainsaw/stop.ogg"
+Chainsaw/Draw "Sounds/Weapons/Slot 1/Chainsaw/dcy_chainsaw_draw.ogg"
+Chainsaw/Loop "Sounds/Weapons/Slot 1/Chainsaw/saw_loop.ogg"
+Chainsaw/Ready "Sounds/Weapons/Slot 1/Chainsaw/ready.ogg"
 $random Chainsaw/Hit { CSAWHIT1 CSAWHIT2 CSAWHIT3 }
-CSAWHIT1 CSAWHIT1
-CSAWHIT2 CSAWHIT2
-CSAWHIT3 CSAWHIT3
+CSAWHIT1 "Sounds/Weapons/Slot 1/Chainsaw/metal_hit1.ogg"
+CSAWHIT2 "Sounds/Weapons/Slot 1/Chainsaw/metal_hit2.ogg"
+CSAWHIT3 "Sounds/Weapons/Slot 1/Chainsaw/metal_hit3.ogg"
 $random Chainsaw/Blood { CSAWBLD1 CSAWBLD2 CSAWBLD3 }
-CSAWBLD1 CSAWBLD1
-CSAWBLD2 CSAWBLD2
-CSAWBLD3 CSAWBLD3
+CSAWBLD1 "Sounds/Weapons/Slot 1/Chainsaw/blood1.ogg"
+CSAWBLD2 "Sounds/Weapons/Slot 1/Chainsaw/blood2.ogg"
+CSAWBLD3 "Sounds/Weapons/Slot 1/Chainsaw/blood3.ogg"
 
-CrucibleChainsaw/Up CRUHSEL
-CrucibleChainsaw/Ready CRUHIDLE
-CrucibleChainsaw/Loop CRUHFIRE
-CrucibleChainsaw/Stop CRUHSTOP
+CrucibleChainsaw/Up "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/ready.ogg"
+CrucibleChainsaw/Ready "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/idle.ogg"
+CrucibleChainsaw/Loop "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/kill_them_all.ogg"
+CrucibleChainsaw/Stop "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/stop.ogg"
 
 $random BurstPistol/Fire { BPISFIR1 BPISFIR2 }
-BPISFIR1 BPISFIR1
-BPISFIR2 BPISFIR2
+BPISFIR1 "Sounds/Weapons/Slot 2/Burst Pistol/fire1.ogg"
+BPISFIR2 "Sounds/Weapons/Slot 2/Burst Pistol/fire2.ogg"
 $random BurstPistol/Burst { BPISBRST BPISBRS2 BPISBRS3 }
-BPISBRST BPISBRST
-BPISBRS2 BPISBRS2
-BPISBRS3 BPISBRS3
+BPISBRST "Sounds/Weapons/Slot 2/Burst Pistol/burst1.ogg"
+BPISBRS2 "Sounds/Weapons/Slot 2/Burst Pistol/burst2.ogg"
+BPISBRS3 "Sounds/Weapons/Slot 2/Burst Pistol/burst3.ogg"
 
 Deagle/Fire "Sounds/Weapons/Misc/dcy_deagle.ogg"
 
 $random Rec { BULREC1 BULREC2 BULREC3 BULREC4 BULREC5 BULREC6 BULREC7 BULREC8 BULREC9 BULREC10 }
-BULREC1 BULREC1
-BULREC2 BULREC2
-BULREC3 BULREC3
-BULREC4 BULREC4
-BULREC5 BULREC5
-BULREC6 BULREC6
-BULREC7 BULREC7
-BULREC8 BULREC8
-BULREC9 BULREC9
-BULREC10 BULREC10
+BULREC1 "Sounds/Projectiles/dcy_bullet_hit1.ogg"
+BULREC2 "Sounds/Projectiles/dcy_bullet_hit2.ogg"
+BULREC3 "Sounds/Projectiles/dcy_bullet_hit3.ogg"
+BULREC4 "Sounds/Projectiles/dcy_bullet_hit4.ogg"
+BULREC5 "Sounds/Projectiles/dcy_bullet_hit5.ogg"
+BULREC6 "Sounds/Projectiles/dcy_bullet_hit6.ogg"
+BULREC7 "Sounds/Projectiles/dcy_bullet_hit7.ogg"
+BULREC8 "Sounds/Projectiles/dcy_bullet_hit8.ogg"
+BULREC9 "Sounds/Projectiles/dcy_bullet_hit9.ogg"
+BULREC10 "Sounds/Projectiles/dcy_bullet_hit10.ogg"
 
 $random Shotgun/Fire { SHOTFIR1 SHOTFIR2 SHOTFIR3 SHOTFIR4 }
-SHOTFIR1 SHOTFIR1
-SHOTFIR2 SHOTFIR2
-SHOTFIR3 SHOTFIR3
-SHOTFIR4 SHOTFIR4
+SHOTFIR1 "Sounds/Weapons/Slot 3/Combat SG/shotgun1.ogg"
+SHOTFIR2 "Sounds/Weapons/Slot 3/Combat SG/shotgun2.ogg"
+SHOTFIR3 "Sounds/Weapons/Slot 3/Combat SG/shotgun3.ogg"
+SHOTFIR4 "Sounds/Weapons/Slot 3/Combat SG/shotgun4.ogg"
 
-PLASMA06 PLASMA06
-
-RocketLauncher/Kaboom RCKTFIRE
-Grenade/Launch GREN8SHT
+RocketLauncher/Kaboom "Sounds/Weapons/Slot 5/Rocket/rocket_fire.ogg"
+Grenade/Launch "Sounds/Weapons/Slot 5/Grenade/grenade_fire.ogg"
+$alias weapons/rocklf RocketLauncher/Kaboom
 
 $random SuperShotgun/Fire { SSGFIRE1 SSGFIRE2 SSGFIRE3 SSGFIRE4 }
-SSGFIRE1 SSGFIRE1
-SSGFIRE2 SSGFIRE2
-SSGFIRE3 SSGFIRE3
-SSGFIRE4 SSGFIRE4
+SSGFIRE1 "Sounds/Weapons/Slot 3/SSG/fire1.ogg"
+SSGFIRE2 "Sounds/Weapons/Slot 3/SSG/fire2.ogg"
+SSGFIRE3 "Sounds/Weapons/Slot 3/SSG/fire3.ogg"
+SSGFIRE4 "Sounds/Weapons/Slot 3/SSG/fire4.ogg"
 $random SuperShotgun/Reload { SSGRELD1 SSGRELD2 }
-SSGRELD1 SSGRELD1
-SSGRELD2 SSGRELD2
+SSGRELD1 "Sounds/Weapons/Slot 3/SSG/reload1.ogg"
+SSGRELD2 "Sounds/Weapons/Slot 3/SSG/reload2.ogg"
 
-Deathbringer/Shot DETBFIRE
-Deathbringer/Checkcheck DETBRELD
-
-UltimentalStaff/Get XJAUPKP
-
-IonScepter/Fire     	DRKMFIR1
-IonScepter/PowerFire	DRKMFIR2
-IonScepter/Beam    	DRKMBEAM
+Deathbringer/Shot "Sounds/Weapons/Slot 8/Deathbringer/fire.ogg"
+Deathbringer/Checkcheck "Sounds/Weapons/Slot 8/Deathbringer/reload.ogg"
 
 $random Explod { EXPLODE1 EXPLODE2 EXPLODE3 EXPLODE4 EXPLODE5 EXPLODE6 EXPLODE7 }
-EXPLODE1 EXPLODE1
-EXPLODE2 EXPLODE2
-EXPLODE3 EXPLODE3
-EXPLODE4 EXPLODE4
-EXPLODE5 EXPLODE5
-EXPLODE6 EXPLODE6
-EXPLODE7 EXPLODE7
+EXPLODE1 "Sounds/DCY SFX/dcy_explosion1.ogg"
+EXPLODE2 "Sounds/DCY SFX/dcy_explosion2.ogg"
+EXPLODE3 "Sounds/DCY SFX/dcy_explosion3.ogg"
+EXPLODE4 "Sounds/DCY SFX/dcy_explosion4.ogg"
+EXPLODE5 "Sounds/DCY SFX/dcy_explosion5.ogg"
+EXPLODE6 "Sounds/DCY SFX/dcy_explosion6.ogg"
+EXPLODE7 "Sounds/DCY SFX/dcy_explosion7.ogg"
 
 $random BigExplod { BIGBOOM1 BIGBOOM2 BIGBOOM3 }
-BIGBOOM1 BIGBOOM1
-BIGBOOM2 BIGBOOM2
-BIGBOOM3 BIGBOOM3
+BIGBOOM1 "Sounds/DCY SFX/dcy_large_explosion1.ogg"
+BIGBOOM2 "Sounds/DCY SFX/dcy_large_explosion2.ogg"
+BIGBOOM3 "Sounds/DCY SFX/dcy_large_explosion3.ogg"
 
 $alias world/barrelx Explod
 $alias weapons/rocklx Explod
 $alias skeleton/tracex Explod
 
-SuperVoidBlackHole/Loop SPBLCKHL
-8BitLikeTune/Loop 8BITAML
-8BitDarkerTune/Loop 8BITAML2
-
-misc/ring_pkup RINGPKUP
-weapons/blizzardfire BLIZFIRE
-HOLYSTF1 HOLYSTF1
-HeXen2/Warning HX2WARN
-STF3FIRE STF3FIRE
-STF3FPOW STF3FPOW
+misc/ring_pkup "Sounds/Inventory/dcy_palisade.ogg"
+HOLYSTF1 "Sounds/Weapons/Slot 8/dcy_choir.wav"
+HeXen2/Warning "Sounds/DCY SFX/dcy_random_alert.wav"
+STF3FIRE "Sounds/Projectiles/dcy_destructor_laser.wav"
+STF3FPOW "Sounds/Projectiles/dcy_destructive_orb.wav"
 PIS2FIRE PIS2SHOT
-RVNSTAF1 RVNSTAF1
-RVNSTAF2 RVNSTAF2
 
-//Dissy's Wunderwaffle sounds
+//Dissy's Wunderwaffe sounds
 RPLSUPGR RPLSUPGR
 RPLSARC1 RPLSARC1
 RPLSARC2 RPLSARC2
@@ -232,6 +210,8 @@ RPLSDESL RPLSDESL
 RPLSSELC RPLSSELC
 
 //Other SFX
+DCYPlasmaShotgun "Sounds/Projectiles/dcy_plasma_shotgun.ogg"
+DCYPlasmaThrower "Sounds/Projectiles/dcy_plasmaflames.ogg"
 TURALERT TURALERT
 TURREADY TURREADY
 XB0WLAUN XB0WLAUN
@@ -495,11 +475,11 @@ Wand/Pickup MAGIWEPP
 UncommonWand/Pickup HEVMAGWP
 RareWand/Pickup SMAGWEPP
 
-NeonicWand/Switch NEONWNDC
-$random NeonicBall/Death {NEONBALX NEONBLX2}
-NEONBALX NEONBALX
-NEONBLX2 NEONBLX2
-NeonicBall/Fire NEONBALL
+NeonicWand/Switch "Sounds/Weapons/Slot 6/Caduceus/switch.ogg"
+Lazer/Fire "Sounds/Weapons/Slot 6/Caduceus/ray.ogg"
+Lazer/Fire2 "Sounds/Weapons/Slot 6/Caduceus/ripper.ogg"
+NeonicBall/Death "Sounds/Weapons/Slot 6/Caduceus/orb_impact.ogg"
+NeonicBall/Fire "Sounds/Weapons/Slot 6/Caduceus/orb.ogg"
 NeonicLaser/Fire NEONLASR
 
 Eradicator/Charge ERDCCHRG

@@ -28,16 +28,7 @@ Class DCY_BurstPistol : Weapon
 	A_StartSound("BurstPistol/Fire", CHAN_WEAPON);
 	A_GunFlash();
 	invoker.DepleteAmmo(invoker.bAltFire, true);
-	
-	if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
-	{
-		A_FireProjectile("DCY_ExplosivePistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
-	}
-	else
-	{
-		A_FireProjectile("DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
-	}
-	
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosivePistolTracer" : "DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
 	A_WeaponOffset(frandom(-1.5, 1.5), frandom(-1.5, 1.5), WOF_ADD|WOF_INTERPOLATE);
   }
   
@@ -45,16 +36,7 @@ Class DCY_BurstPistol : Weapon
   {
 	A_GunFlash();
 	invoker.DepleteAmmo(invoker.bAltFire, true);
-	
-	if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
-	{
-		A_FireProjectile("DCY_ExplosivePistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
-	}
-	else
-	{
-		A_FireProjectile("DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
-	}
-	
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosivePistolTracer" : "DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
 	A_WeaponOffset(frandom(-2.25, 2.25), frandom(-2.25, 2.25), WOF_ADD|WOF_INTERPOLATE);
   }
 	
@@ -317,15 +299,7 @@ Class DCY_Cyberrifle : Weapon
 	A_StartSound("Rifle/Fire", CHAN_WEAPON, volume: 0.75);
 	A_GunFlash();
 	invoker.DepleteAmmo(invoker.bAltFire, true);
-	if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
-	{
-		A_FireProjectile("DCY_ExplosiveRifleTracer", frandom(-0.35, 0.35), 0, 0, frandom(-0.35, 0.35));
-	}
-	else
-	{
-		A_FireProjectile("DCY_RifleTracer", frandom(-0.35, 0.35), 0, 0, frandom(-0.35, 0.35));
-	}
-	
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosiveRifleTracer" : "DCY_RifleTracer", frandom(-0.35, 0.35), 0, 0, frandom(-0.35, 0.35));
 	A_WeaponOffset(frandom(-1.5, 1.5), frandom(-1.5, 1.5), WOF_ADD|WOF_INTERPOLATE);
   }
   

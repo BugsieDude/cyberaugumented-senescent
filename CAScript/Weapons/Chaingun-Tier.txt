@@ -22,19 +22,10 @@ Class DCY_Minigun : Chaingun Replaces Chaingun
 	If(CountInv("DCY_RadiationMitrailleuseInv"))
 	{
 		//invoker.DepleteAmmo(invoker.bAltFire, true); //Double the ammo usage
-		
-		if (!countInv("DCY_EmphasisPower"))
-		{
-			A_StartSound("Android/Laser", CHAN_5, CHANF_DEFAULT, 1.0);
-			A_FireProjectile("DCY_MechaZombiePlasma2", frandom(-1.2, 1.2), 0);
-			A_WeaponOffset(frandom(-3.0, 3.0), frandom(31.0, 36.0), 0);
-		}
-		else
-		{
-			A_StartSound("Minigun/EmphasisLoop", CHAN_5, CHANF_DEFAULT, 1.0, startTime: frandom(0, 0.1));
-			A_FireProjectile("DCY_Blastawave", frandom(-1.2, 1.2), 0, 0);
-			A_WeaponOffset(frandom(-4.0, 4.0), frandom(31.0, 38.0), 0);
-		}
+
+		A_StartSound(CountInv("DCY_EmphasisPower") ? "Minigun/EmphasisLoop" : "Android/Laser", CHAN_5, CHANF_DEFAULT, 1.0, startTime: CountInv("DCY_EmphasisPower") ? frandom(0, 0.1) : 0);
+		A_FireProjectile(CountInv("DCY_EmphasisPower") ? "DCY_Blastawave" : "DCY_MechaZombiePlasma2", frandom(-1.2, 1.2), 0);
+		A_WeaponOffset(CountInv("DCY_EmphasisPower") ? frandom(-3.0, 3.0) : frandom(-4.0, 4.0), CountInv("DCY_EmphasisPower") ? frandom(31.0, 36.0) : frandom(31.0, 38.0), 0);
 		
 		A_WeaponReady(WRF_NOFIRE);
 	}
@@ -42,16 +33,7 @@ Class DCY_Minigun : Chaingun Replaces Chaingun
 	{
 		A_QuakeEx(1, 1, 1, 20, 0, 100, "none", QF_SCALEDOWN, falloff: 200);
 		A_WeaponOffset(frandom(-3.0, 3.0), frandom(31.0, 36.0));
-		
-		if (CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT))
-		{
-			A_FireProjectile("DCY_ExplosivePistolTracer", frandom(-0.75, 0.75), 0);
-		}
-		else
-		{
-			A_FireProjectile("DCY_PistolTracer", frandom(-0.75, 0.75), 0);
-		}
-		
+		A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosivePistolTracer" : "DCY_PistolTracer", frandom(-0.75, 0.75), 0);
 		A_StartSound("Minigun/Loop", CHAN_WEAPON, CHANF_LOOPING, volume: 0.65);
 		A_WeaponReady(WRF_NOFIRE);
 	}
@@ -60,13 +42,9 @@ Class DCY_Minigun : Chaingun Replaces Chaingun
   action void A_MinigunMod()
   {
 	If(!CountInv("DCY_RadiationMitrailleuseInv"))
-	{
 		A_GiveInventory("DCY_RadiationMitrailleuseInv", 1);
-	}
 	Else
-	{
 		A_TakeInventory("DCY_RadiationMitrailleuseInv", 1);
-	}
   }
 
   States

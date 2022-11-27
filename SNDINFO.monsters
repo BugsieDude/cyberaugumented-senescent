@@ -184,10 +184,10 @@ MALTPAI "Sounds/DCY Monsters/Maltreat/pain1.ogg"
 MALTPAI2 "Sounds/DCY Monsters/Maltreat/pain2.ogg"
 Maltreat/Death "Sounds/DCY Monsters/Maltreat/death.ogg"
 
-Raison/Sight "Sounds/DCY Monsters/Espion De L'etre/sight.ogg"
-Raison/Attack "Sounds/DCY Monsters/Espion De L'etre/attack.ogg"
-Raison/Active "Sounds/DCY Monsters/Espion De L'etre/active.ogg"
-Raison/Death "Sounds/DCY Monsters/Espion De L'etre/death.ogg"
+Raison/Sight "Sounds/DCY Monsters/Espion De L'etre/sight.wav"
+Raison/Attack "Sounds/DCY Monsters/Espion De L'etre/attack.wav"
+Raison/Active "Sounds/DCY Monsters/Espion De L'etre/active.wav"
+Raison/Death "Sounds/DCY Monsters/Espion De L'etre/death.wav"
 
 $random HoodGuy/Sight { HSSGSIT1 HSSGSIT2 HSSGSIT3 HSSGSIT4 HSSGSIT5 HSSGSIT6 HSSGSIT7 HSSGSIT8 HSSGSIT9 HSSGSIT10 HSSGSIT11 }
 HSSGSIT1 "Sounds/DCY Monsters/Hoodlum/sight1.ogg"
@@ -529,12 +529,12 @@ Zorg/Pain "Sounds/DCY Monsters/Perserver/pain.ogg"
 Zorg/Active "Sounds/DCY Monsters/Perserver/idle.ogg"
 Zorg/Death "Sounds/DCY Monsters/Perserver/death.ogg"
 
-drone/see "Sounds/DCY Monsters/Automaton Supervisor/drone_sight.wav"
-drone/idle "Sounds/DCY Monsters/Automaton Supervisor/drone_idle.wav"
+drone/see "Sounds/DCY Monsters/Automaton Supervisor/drone_sight.ogg"
+drone/idle "Sounds/DCY Monsters/Automaton Supervisor/drone_hum.ogg"
 drone/fire "Sounds/DCY Monsters/Automaton Supervisor/drone_laser.wav"
 $limit drone/fire 0
-drone/painI "Sounds/DCY Monsters/Automaton Supervisor/drone_pain.wav"
-drone/die "Sounds/DCY Monsters/Automaton Supervisor/drone_death.wav"
+drone/painI "Sounds/DCY Monsters/Automaton Supervisor/drone_pain.ogg"
+drone/die "Sounds/DCY Monsters/Automaton Supervisor/drone_death.ogg"
 
 ATurret/Sight "Sounds/DCY Monsters/Decedent Bigwig/turret_alert.wav"
 ATurret/Pain "Sounds/DCY Monsters/Decedent Bigwig/turret_pain.wav"
@@ -851,10 +851,10 @@ SUP2DTH7 "Sounds/DCY Monsters/Z-Ensign/death7.ogg"
 ZombieEliteSoldier/Sight "Sounds/DCY Monsters/Automaton Supervisor/sight.ogg"
 ZombieEliteSoldier/Active "Sounds/DCY Monsters/Automaton Supervisor/idle.ogg"
 $random ZombieEliteSoldier/Pain { ZENGPAI1 ZENGPAI2 }
-ZENGPAI1 "Sounds/DCY Monsters/Automaton Supervisor/pain1ogg"
+ZENGPAI1 "Sounds/DCY Monsters/Automaton Supervisor/pain1.ogg"
 ZENGPAI2 "Sounds/DCY Monsters/Automaton Supervisor/pain2.ogg"
 ZombieEliteSoldier/Death "Sounds/DCY Monsters/Automaton Supervisor/death.ogg"
-
+Guard2/Hide "Sounds/DCY Monsters/Automaton Supervisor/deploy.ogg"
 $random Exec/Sight { ZADMSIT1 ZADMSIT2 ZADMSIT3 }
 ZADMSIT1 "Sounds/DCY Monsters/Z-Exec/alert1.ogg"
 ZADMSIT2 "Sounds/DCY Monsters/Z-Exec/alert2.ogg"
