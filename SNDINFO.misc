@@ -1,95 +1,96 @@
 misc/startupdone "Sounds/Game/dcy_welcome.ogg"
-misc/kaboom KABOOM
-CYBECREP CYBECREP
-WHATDONE WHATDONE
-PIANPIAN PIANPIAN
-misc/hellotherer H1
-misc/pausegame DCYPAUSE
+misc/kaboom "Sounds/DCY SFX/dcy_disintegrate.ogg"
+CYBECREP "Sounds/DCY SFX/dcy_creepy.ogg"
+WHATDONE "Sounds/Announcements/Minibosses/whathaveyoudone.ogg"
+misc/secret "Sounds/Game/dcy_secret.ogg"
+PIANPIAN "Sounds/Game/dcy_piano.ogg"
+misc/hellotherer "Sounds/Game/dcy_firsttime.ogg"
+misc/pausegame "Sounds/Game/dcy_pause.ogg"
 
-misc/gamefreeze1 DSFREZE1
-misc/gamefreeze2 DSFREZE2
-
-TemperatureDCY T3MPWARN
+misc/gamefreeze1 "Sounds/Menu/dcy_gamefreeze1.ogg"
+misc/gamefreeze2 "Sounds/Menu/dcy_gamefreeze2.ogg"
 
 //Announcements
-Warp/Choir WARP01
-Warp/Spacial WARP02
+Warp/Choir "Sounds/DCY SFX/dcy_warp1.ogg"
+Warp/Spacial "Sounds/DCY SFX/dcy_warp2.ogg"
 
 //yay you did something
-Announce/Complete DSC0MPLA
+Announce/Complete "Sounds/Announcements/dcy_complete.ogg"
 
 //Enemy Announcements
-CMYSTERY "Sounds/Projectiles/MYSTERY.ogg"
-DANGERT DANGERT
-DANGERU DANGERU
-DANGERN DANGERN
-DANGERMW DANGERMW
-SDANGER0 SDANGER0
-SECOIN SECOIN
-ORBWARN0 ORBWARN0
-0RCHWARN 0RCHWARN
+CMYSTERY "Sounds/Announcements/Minibosses/it_is_a_mystery.ogg"
+DANGERT "Sounds/Announcements/Minibosses/calignosity.ogg"
+DANGERU "Sounds/Announcements/Minibosses/alien_soldier.ogg"
+DANGERN "Sounds/Announcements/Minibosses/chorico.ogg"
+DANGERMW "Sounds/Announcements/Minibosses/multidimensional_caster.ogg"
+SDANGER0 "Sounds/Announcements/Minibosses/xusqoox.ogg"
+SECOIN "Sounds/Announcements/Minibosses/kamui.ogg"
+ORBWARN0 "Sounds/Announcements/Minibosses/visitant.ogg"
+0RCHWARN "Sounds/Announcements/Minibosses/arche.ogg"
 $random Z0MBWARX { Z0MBWARN Z0MBWAR1 Z0MBWAR2 }
-Z0MBWARN Z0MBWARN
-Z0MBWAR1 Z0MBWAR1
-Z0MBWAR2 Z0MBWAR2
-DOP3WARN DOP3WARN
-UNKNWARN UNKNWARN
-WARNINGM WARNINGM
-THEFRAID THEFRAID
-THEWARN THEWARN
+Z0MBWARN "Sounds/Announcements/Minibosses/unknown1.ogg"
+Z0MBWAR1 "Sounds/Announcements/Minibosses/unknown2.ogg"
+Z0MBWAR2 "Sounds/Announcements/Minibosses/unknown3.ogg"
+DOP3WARN "Sounds/Announcements/Minibosses/doppelganger.ogg"
+WARNINGM "Sounds/Announcements/Minibosses/maelstrom.ogg"
+THEFRAID "Sounds/Announcements/Minibosses/youll_never_know.ogg"
+THEWARN "Sounds/Announcements/Minibosses/reverend_mother.ogg"
 
 //Switches
-SW1TCHA SW1TCHA
-SW1TCHB SW1TCHB
-SW1TCHC SW1TCHC
-SW1TCHD SW1TCHD
-SW1TCHE SW1TCHE
-SW1TCHF SW1TCHF
-SW1TCHG SW1TCHG
-SW1TCHH SW1TCHH
-SW1TCHI SW1TCHI
-SW1TCHJ SW1TCHJ
-SW1TCHK SW1TCHK
+SW1TCHA "Sounds/Enviroment/Switches/dcy_switch_a.ogg"
+SW1TCHB "Sounds/Enviroment/Switches/dcy_switch_b.ogg"
+SW1TCHC "Sounds/Enviroment/Switches/dcy_switch_c.ogg"
+SW1TCHD "Sounds/Enviroment/Switches/dcy_switch_d.ogg"
+SW1TCHE "Sounds/Enviroment/Switches/dcy_switch_e.ogg"
+SW1TCHF "Sounds/Enviroment/Switches/dcy_switch_f.ogg"
+SW1TCHG "Sounds/Enviroment/Switches/dcy_switch_g.ogg"
+SW1TCHH "Sounds/Enviroment/Switches/dcy_switch_h.ogg"
+SW1TCHI "Sounds/Enviroment/Switches/dcy_switch_i.ogg"
+SW1TCHJ "Sounds/Enviroment/Switches/dcy_switch_j.ogg"
+SW1TCHK "Sounds/Enviroment/Switches/dcy_switch_k.ogg"
 $random SW1TCHL { SW1TCHL1 SW1TCHL2 }
-SW1TCHL1 SW1TCHL1
-SW1TCHL2 SW1TCHL2
-SW1TCHM SW1TCHM
-SW1TCHN SW1TCHN
+SW1TCHL1 "Sounds/Enviroment/Switches/dcy_switch_l1.ogg"
+SW1TCHL2 "Sounds/Enviroment/Switches/dcy_switch_l2.ogg"
+SW1TCHM "Sounds/Enviroment/Switches/dcy_switch_m.ogg"
+SW1TCHN "Sounds/Enviroment/Switches/dcy_switch_n.ogg"
 
 //Player
-slayer/paintiny PLYPAIN1
-slayer/painsmall PLYPAIN2
-slayer/pain PLYPAIN
-slayer/painbig PLYPAIN3
-slayer/painhuge PLYPAIN5
-slayer/painmassive PLYPAIN4
+slayer/paintiny "Sounds/Player/dcy_protag_pain_tiny.ogg"
+slayer/painsmall "Sounds/Player/dcy_protag_pain_small.ogg"
+slayer/pain "Sounds/Player/dcy_protag_pain.ogg"
+slayer/painbig "Sounds/Player/dcy_protag_pain_normal.ogg"
+slayer/painhuge "Sounds/Player/dcy_protag_pain_huge.ogg"
+slayer/painmassive "Sounds/Player/dcy_protag_pain_massive.ogg"
 
-slayer/jump PLYJUMP
+slayer/jump "Sounds/Player/dcy_protag_jump.ogg"
 $random slayer/land { PLYLAND1 PLYLAND2 PLYLAND3 }
-PLYLAND1 PLYLAND1
-PLYLAND2 PLYLAND2
-PLYLAND3 PLYLAND3
+PLYLAND1 "Sounds/Player/dcy_protag_land1.ogg"
+PLYLAND2 "Sounds/Player/dcy_protag_land2.ogg"
+PLYLAND3 "Sounds/Player/dcy_protag_land3.ogg"
 $random slayer/crash { PLYSMSH1 PLYSMSH2 PLYSMSH3 PLYSMSH4 }
-PLYSMSH1 PLYSMSH1
-PLYSMSH2 PLYSMSH2
-PLYSMSH3 PLYSMSH3
-PLYSMSH4 PLYSMSH4
+PLYSMSH1 "Sounds/Player/dcy_protag_crash1.ogg"
+PLYSMSH2 "Sounds/Player/dcy_protag_crash2.ogg"
+PLYSMSH3 "Sounds/Player/dcy_protag_crash3.ogg"
+PLYSMSH4 "Sounds/Player/dcy_protag_crash4.ogg"
 
-$random Water/Surface { WATERSR1 WATERSR2 WATERSR3 WATERSR4 WATERSR5 }
-WATERSR1 WATERSR1
-WATERSR2 WATERSR2
-WATERSR3 WATERSR3
-WATERSR4 WATERSR4
-WATERSR5 WATERSR5
+slayer/noway "Sounds/Player/dcy_no_way.ogg"
+$random Water/Surface { WATERSR1 WATERSR2 WATERSR3 WATERSR4 WATERSR5 WATERSR6 WATERSR7 }
+WATERSR1 "Sounds/Terrain/dcy_emerge1.ogg"
+WATERSR2 "Sounds/Terrain/dcy_emerge2.ogg"
+WATERSR3 "Sounds/Terrain/dcy_emerge3.ogg"
+WATERSR4 "Sounds/Terrain/dcy_emerge4.ogg"
+WATERSR5 "Sounds/Terrain/dcy_emerge5.ogg"
+WATERSR6 "Sounds/Terrain/dcy_emerge6.ogg"
+WATERSR7 "Sounds/Terrain/dcy_emerge7.ogg"
 
-$random Water/Dive { UNDRWATR UNDRWAT1 UNDRWAT2 UNDRWAT3 UNDRWAT4 UNDRWAT5 UNDRWAT6 }
-UNDRWATR UNDRWATR
-UNDRWAT1 UNDRWAT1
-UNDRWAT2 UNDRWAT2
-UNDRWAT3 UNDRWAT3
-UNDRWAT4 UNDRWAT4
-UNDRWAT5 UNDRWAT5
-UNDRWAT6 UNDRWAT6
+$random Water/Dive { UNDRWAT1 UNDRWAT2 }
+UNDRWAT1 "Sounds/Terrain/dcy_submerge1.ogg"
+UNDRWAT2 "Sounds/Terrain/dcy_submerge2.ogg"
+
+$random Water/SplashDive { UNDRWAV1 UNDRWAV2 UNDRWAV3 }
+UNDRWAV1 "Sounds/Terrain/dcy_enter_underwater_velocity1.ogg"
+UNDRWAV2 "Sounds/Terrain/dcy_enter_underwater_velocity2.ogg"
+UNDRWAV3 "Sounds/Terrain/dcy_enter_underwater_velocity3.ogg"
 
 $playeralias	player	male	*death		none
 $playeralias	player	male	*xdeath		none
@@ -100,114 +101,115 @@ $playeralias	player	male	*pain100	slayer/painsmall
 $playeralias	player	male	*pain75		slayer/pain
 $playeralias	player	male	*pain50		slayer/painbig
 $playeralias	player	male	*pain25		slayer/painhuge
-$playeralias 	player  male 	*gibbed		misc/gibbed
+$playeralias 	player  male 	*gibbed		Android/Gib
+$playeralias	player	male	*usefail	slayer/noway
 $playeralias	player	male	*dive		""
 $playeralias	player	male	*surface	""
-$playeralias	player	male	*gasp	""
+$playeralias	player	male	*gasp		""
 
-//Enviroment
-//Switchez
-switches/electri2		dselec2
-switches/electri3		dselec3
-switches/eclunk			dseclunk
-switches/clunk			dsclunk
-switches/china			dschina1
-switches/eye			dseye
-switches/bige			dsbige
-switches/keycard		dskeyc
-switches/gargoyle		dsgrgyle
-switches/skin			dsskinny
-switches/lever			dslever
-switches/lever2			dslever2
-switches/valve			dsvalve
+$playeralias	player	female	*death		none
+$playeralias	player	female	*xdeath		none
+$playeralias	player	female	*land		slayer/land
+$playeralias	player	female	*grunt		slayer/land
+$playeralias	player	female	*jump		slayer/jump
+$playeralias	player	female	*pain100	slayer/painsmall
+$playeralias	player	female	*pain75		slayer/pain
+$playeralias	player	female	*pain50		slayer/painbig
+$playeralias	player	female	*pain25		slayer/painhuge
+$playeralias 	player  female 	*gibbed		Android/Gib
+$playeralias	player	female	*usefail	slayer/noway
+$playeralias	player	female	*dive		""
+$playeralias	player	female	*surface	""
+$playeralias	player	female	*gasp		""
+
+$playeralias	player	other	*death		none
+$playeralias	player	other	*xdeath		none
+$playeralias	player	other	*land		slayer/land
+$playeralias	player	other	*grunt		slayer/land
+$playeralias	player	other	*jump		slayer/jump
+$playeralias	player	other	*pain100	slayer/painsmall
+$playeralias	player	other	*pain75		slayer/pain
+$playeralias	player	other	*pain50		slayer/painbig
+$playeralias	player	other	*pain25		slayer/painhuge
+$playeralias 	player  other 	*gibbed		Android/Gib
+$playeralias	player	other	*usefail	slayer/noway
+$playeralias	player	other	*dive		""
+$playeralias	player	other	*surface	""
+$playeralias	player	other	*gasp		""
 
 //Custom Sounds
+doors/dr1_open "Sounds/Enviroment/dcy_door1_open.wav"
+doors/dr1_clos "Sounds/Enviroment/dcy_door1_close.wav"
 $random doors/dr2_open	{BDROPN2 BDROPN3}
 $random doors/dr2_clos	{BDRCLS2 BDRCLS3}
-BDROPN2 BDROPN2
-BDROPN3 BDROPN3
-BDRCLS2 BDRCLS2
-BDRCLS3 BDRCLS3
+BDROPN2 "Sounds/Enviroment/dcy_door2_open1.wav"
+BDROPN3 "Sounds/Enviroment/dcy_door2_open2.wav"
+BDRCLS2 "Sounds/Enviroment/dcy_door2_close1.wav"
+BDRCLS3 "Sounds/Enviroment/dcy_door2_close2.wav"
 
 torch/blaze T0ORCH
-misc/keytry KEYDOOR
+misc/keytry "Sounds/Enviroment/dcy_key_required.ogg"
 
-dcycyber/teleport DSTELEP2
-dcybosstier/teleport DCYBSSTP
-dcybosstier/teleportend DCYBSST2
-dcysuperboss/teleport DCYBSST3
+dcycyber/teleport "Sounds/DCY SFX/Teleports/dcy_teleport_cyber.ogg"
+dcybosstier/teleport "Sounds/DCY SFX/Teleports/dcy_teleport_miniboss.ogg"
+dcybosstier/teleportend "Sounds/DCY SFX/Teleports/dcy_teleport_miniboss_end.ogg"
 
-dash1 DASH1
-dash2 DASH2
-djump1 DJUMP1
-djump2a djump2a
-djump2b djump2b
+dash1 "Sounds/Player/dcy_dash.ogg"
+dash2 "Sounds/Player/dcy_dash_alt.ogg"
+djump1 "Sounds/Player/dcy_doublejump_alt.ogg"
+djump2a "Sounds/Player/dcy_doublejump_1.ogg"
+djump2b "Sounds/Player/dcy_doublejump_2.ogg"
 
 $volume dash1 0.8
 $volume djump1 0.8
 $volume dash2 0.8
 
-STUNNED STUNNED
-STUNNED2 STUNNED2
-STUNNED3 STUNNED3
-STUNNED4 STUNNED4
-
 //Intermission
-intermission/tick DSINTER1
-intermission/cooptotal DSINTER2
-intermission/nextstage DSINTER2
-$random intermission/paststats {TTSULTR2 TTSLOL TTSHELP TTSINTE2 TTSINTE3 TTSINTE4 TTSINTE5 TTSINTER}
-TTSINTER TTSINTER
-TTSINTE2 TTSINTE2
-TTSINTE3 TTSINTE3
-TTSINTE4 TTSINTE4
-TTSINTE5 TTSINTE5
-TTSHELP TTSHELP
-TTSLOL TTSLOL
-TTSULTR2 TTSULTR2
-intermission/pastcoopstats TTSINTER
-intermission/pastdmstats TTSINTER
+intermission/tick "Sounds/DCY SFX/Intermission/dcy_intermission_score1.ogg"
+intermission/cooptotal "dcy_intermission_score2.ogg"
+intermission/nextstage "dcy_intermission_score2.ogg"
+$random intermission/paststats {TTSULTR2 TTSLOL TTSHELP TTSINTE2 TTSINTE3 TTSINTE4 TTSINTE5 TTSINTER dcyCOMEON}
+TTSINTER "Sounds/DCY SFX/Intermission/dcy_robo_talk6.ogg"
+TTSINTE2 "Sounds/DCY SFX/Intermission/dcy_robo_talk2.ogg"
+TTSINTE3 "Sounds/DCY SFX/Intermission/dcy_robo_talk3.ogg"
+TTSINTE4 "Sounds/DCY SFX/Intermission/dcy_robo_talk4.ogg"
+TTSINTE5 "Sounds/DCY SFX/Intermission/dcy_robo_talk5.ogg"
+TTSHELP "Sounds/DCY SFX/Intermission/dcy_robo_talk1.ogg"
+TTSLOL "Sounds/DCY SFX/Intermission/dcy_robo_talk7.ogg"
+TTSULTR2 "Sounds/DCY SFX/Intermission/dcy_robo_talk8.ogg"
+dcyCOMEON "Sounds/DCY SFX/Intermission/dcy_comeon.ogg"
+$alias intermission/pastcoopstats intermission/paststats
+$alias intermission/pastdmstats intermission/paststats
 
 //Terrain
-slime				dsmuck
-slimesmall			dsmucksm
-water				dssplash
-watersmall			dsfloush
-burn				dsburn
-burnsmall			dsburnsm
-blood1				dssplat1
-blood2				dssplat2
 blood dsgloop
 bloodsmall dsgloop
-
 world/drip			dsempty
-$random "world/watersplash" {dssplas2 splas1 splas2 splas3 splas4 splas5 splas6 splas7 splas8 splas9 splas10}
-dssplash	dssplash
-dssplas2	dssplas2
-splas1 splas1
-splas2 splas2
-splas3 splas3
-splas4 splas4
-splas5 splas5
-splas6 splas6
-splas7 splas7
-splas8 splas8
-splas9 splas9
-splas10 splas10
-$random "world/watersplashsmall" {dssplsml ssplas1 ssplas2 ssplas3 ssplas4 ssplas5 ssplas6 }
-ssplas1 ssplas1
-ssplas2 ssplas2
-ssplas3 ssplas3
-ssplas4 ssplas4
-ssplas5 ssplas5
-ssplas6 ssplas6
-dssplsml dssplsml
-world/sludgegloop		dsploosh
-world/sludgegloopsmall		dsplosml
-world/lavasizzle		dslvsiz
-world/lavsiz2			dslvsiz2
-world/lavasizzlesmall		dslavsml
-world/thunder			dsthun
+$random "world/watersplash" {dssplash splas1 splas2 splas3 splas4 splas5 splas6 splas7 splas8 splas9 splas10}
+dssplash "Sounds/Terrain/dcy_splash1.ogg"
+splas1 "Sounds/Terrain/dcy_splash2.ogg"
+splas2 "Sounds/Terrain/dcy_splash3.ogg"
+splas3 "Sounds/Terrain/dcy_splash4.ogg"
+splas4 "Sounds/Terrain/dcy_splash5.ogg"
+splas5 "Sounds/Terrain/dcy_splash6.ogg"
+splas6 "Sounds/Terrain/dcy_splash7.ogg"
+splas7 "Sounds/Terrain/dcy_splash8.ogg"
+splas8 "Sounds/Terrain/dcy_splash9.ogg"
+splas9 "Sounds/Terrain/dcy_splash10.ogg"
+splas10 "Sounds/Terrain/dcy_splash11.ogg"
+$random "world/watersplashsmall" { dssplas2 ssplas1 ssplas2 ssplas3 ssplas4 ssplas5 ssplas6 }
+dssplas2 "Sounds/Terrain/dcy_small_splash1.ogg"
+ssplas1 "Sounds/Terrain/dcy_small_splash2.ogg"
+ssplas2 "Sounds/Terrain/dcy_small_splash3.ogg"
+ssplas3 "Sounds/Terrain/dcy_small_splash4.ogg"
+ssplas4 "Sounds/Terrain/dcy_small_splash5.ogg"
+ssplas5 "Sounds/Terrain/dcy_small_splash6.ogg"
+ssplas6 "Sounds/Terrain/dcy_small_splash7.ogg"
+world/sludgegloop "Sounds/Terrain/dcy_slime_gloop.wav"
+world/sludgegloopsmall "Sounds/Terrain/dcy_slime_gloop_small.wav"
+world/lavasizzle "Sounds/Terrain/dcy_lava_sizzle_1.ogg"
+world/lavsiz2 "Sounds/Terrain/dcy_lava_sizzle_2.ogg"
+world/lavasizzlesmall "Sounds/Terrain/dcy_lava_sizzle_small.ogg"
 
 
 $volume world/watersplash 0.6 
@@ -225,5 +227,5 @@ $limit world/lavsiz2 4
 $limit world/lavasizzlesmall 4
 
 //Kamikazi
-Kamikazi/Idle DSKAMIDL
-Kamikazi/Scream DSKAMAAH
+Kamikazi/Idle "Sounds/DCY SFX/dcy_ss_kamikazi_idle.wav"
+Kamikazi/Scream "Sounds/DCY SFX/dcy_ss_kamikazi_scream.wav"

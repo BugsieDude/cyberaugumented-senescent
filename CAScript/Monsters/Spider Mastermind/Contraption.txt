@@ -103,6 +103,7 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
   SeeSound "COH/Sight";
   ActiveSound "COH/Active";
   PainSound "COH/Pain";
+  DeathSound "COH/Die";
   }
   
   override void Tick()
@@ -192,13 +193,12 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
 	Goto See;
   Death:
 	CAN_ A 1;
-	C0N_ F 7 { A_StopSound(CHAN_WEAPON); A_RemoveMaster(RMVF_EVERYTHING); }
+	C0N_ A 17 { A_Scream(); A_StopSound(CHAN_WEAPON); A_RemoveMaster(RMVF_EVERYTHING); }
+	C0N_ F 6;
 	C0N_ G 6
 	{
 		for (int i = 3; i > 0; i--)
 			A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
-		
-		A_Scream();
 	}
 	C0N_ HIJK 6 A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
 	C0N_ L 6 A_NoBlocking();

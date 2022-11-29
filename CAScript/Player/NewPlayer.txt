@@ -67,7 +67,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 	{
 		if (playwatersound == 0 && submerged == false)
 		{
-			A_StartSound("Water/Dive", CHAN_VOICE, CHANF_OVERLAP);
+			A_StartSound((self.vel.z < -4.5) ? "Water/SplashDive" : "Water/Dive", 10, CHANF_OVERLAP, attenuation: ATTN_IDLE);
 			playwatersound = 1;
 			submerged = true;
 		}
@@ -79,7 +79,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 	{
 		if (playwatersound == 0)
 		{
-			A_StartSound("Water/Surface", CHAN_VOICE, CHANF_OVERLAP);
+			A_StartSound("Water/Surface", 11, CHANF_OVERLAP, attenuation: ATTN_IDLE);
 			playwatersound = 1;
 			submerged = false;
 		}
