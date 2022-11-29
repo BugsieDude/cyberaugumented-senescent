@@ -35,6 +35,9 @@ Class DCY_Prestidigitator : DCY_VileParent
   See:
 	FWDZ E 4 A_VileChase();
 	Loop;
+  Heal:
+	FWDZ GH 5 Bright;
+	Goto See;	
   Missile:
 	FWDZ E 5 { ghost = 0; }
 	FWDZ E 1
@@ -87,6 +90,20 @@ Class DCY_Prestidigitator : DCY_VileParent
   Cooldown:
 	FWDZ E 10;
 	Goto See;
+  Pain:
+	FWDZ I 4;
+	FWDZ I 4 A_Pain();
+	Goto See;	
+  Death:
+	FWDZ J 5;
+	FWDZ K 1
+	{
+		A_Scream();
+		A_NoBlocking();
+	}
+	FWDZ LMNO 4;
+	FWDZ P -1;
+	Stop;	
   }
 }
 
