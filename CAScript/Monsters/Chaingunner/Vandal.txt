@@ -72,7 +72,7 @@ Class DCY_Vandal : DCY_Plutonia
 	DCHR G 4 A_Pain();
 	Goto See;
   Death:
-	DCHR I 4;
+	DCHR I 4 A_NoBlocking();
 	DCHR I 2 A_Scream();
 	DCHR JKLM 4;
 	DCHR N -1;
