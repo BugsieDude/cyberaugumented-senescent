@@ -184,7 +184,7 @@ Class DCY_AbyssalExarchClone : DCY_AbyssalExarch
 	
 	fading++;
 	
-	if (fading > 200)
+	if (fading > 200 && !dead)
 	{
 		alpha -= 0.1;
 		
@@ -199,7 +199,9 @@ Class DCY_AbyssalExarchClone : DCY_AbyssalExarch
   States
   {
   Death:
-	DDAN J -1 { fading == 400; }
+	D1AN A 1;
+	D1AN ABCDEFGHIJK 3;
+	D1AN KKKKK 1 A_FadeOut(0.2, 0);
 	Stop;
   Clone:
 	Goto MissileContinue;

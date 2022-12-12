@@ -69,25 +69,24 @@ Class DCY_Ruination : DCY_Cybie
 	ZYZ0 H 6 A_Scream();
 	ZYZ0 IJ 5 Bright
 	{
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		}
 	}
 	ZYZ0 K 6
 	{
 		A_NoBlocking();
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		}
 	}
 	ZYZ0 LMNOPPPPPPPPPPPPPPP 6;
-	ZYZ0 P -1 A_BossDeath2;
-	Stop;
-  Death.Massacre:
-	ZYZ0 H 10;
-	ZYZ0 H 6 A_Scream();
-	ZYZ0 IJ 5;
-	ZYZ0 K 5 A_NoBlocking();
-	ZYZ0 LMNOPPPPPPPPPPPPPPPP 6;
 	ZYZ0 P -1 A_BossDeath2;
 	Stop;
   }

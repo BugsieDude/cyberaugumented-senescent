@@ -177,12 +177,11 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
 	LHS_ E 3
 	{
 		If(asteroidspawn >=32)
-			Return ResolveState("Fiyah");
+			SetStateLabel("Fiyah");
 		
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_APComet", 130, 0, random(-360, 360), CMF_AIMDIRECTION|CMF_TRACKOWNER, random(-20, 20));
-		asteroidspawn += 1;
-		Return ResolveState(null);
+		asteroidspawn++;
 	}
 	Loop;
   Pain:
@@ -191,19 +190,12 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
 	LHS_ H 4 A_Pain();
 	Goto See;
   Death:
-    TNT1 A 0 A_SpawnItemEx("DCY_APFXSpawner", 0, 0, 40);
+    TNT1 A 0 { if (damagetype != "Massacre") Spawn("DCY_APFXSpawner", pos + (0, 0, 40)); }
     LHS_ I 1 A_RemoveChildren(1, RMVF_EVERYTHING);
 	LHS_ I 1 A_Scream();
 	LHS_ I 10 A_NoBlocking();
-	TNT1 A 0 A_SpawnItemEx("DCY_APFXSpawner", 0, 0, 40);
+	TNT1 A 0 { if (damagetype != "Massacre") Spawn("DCY_APFXSpawner", pos + (0, 0, 40)); }
 	LHS_ JKLMNO 10;
-	LHS_ O -1 A_BossDeath2();
-	Stop;
-  Death.Massacre:
-	LHS_ I 1;
-	LHS_ I 1 A_RemoveChildren(1,RMVF_EVERYTHING);
-	LHS_ I 1 A_Scream();
-	LHS_ IJKLMNO 10;
 	LHS_ O -1 A_BossDeath2();
 	Stop;
   Raise:

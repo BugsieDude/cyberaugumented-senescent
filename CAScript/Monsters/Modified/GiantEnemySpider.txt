@@ -72,26 +72,23 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	SPID J 16;
 	SPID KLM 5 Bright
 	{
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		}
 	}
 	SPID N 5 Bright
 	{
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		}
 	}
 	SPID OPQRSSSSSSSSSSSS 6;
 	SPID S -1 A_BossDeath2();
-	Stop;
-  Death.Massacre:
-	SPID I 1;
-	SPID I 30 A_ScreamAndUnblock();
-	SPID J 16;
-	SPID KLM 5 Bright;
-	SPID N 5 Bright;
-	SPID OPQRSSSSSSSSSSSS 6;
-	SPID S -1 A_BossDeath2;
 	Stop;
   }
 }

@@ -7,7 +7,7 @@ gameinfo
 	menufontcolor_header = "w3" 
 	menufontcolor_highlight = "w1"
 	menufontcolor_selection = "c1"
-	infopage = "HELPSHIT", "CREDITSH"
+	infopage = "DCYINFO1", "DCYINFO2"
 	dimcolor = "Black"
 	dimamount = 0.6
 	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedWeaponSwayHandler", "CyberaugumentedEventHandler", "Cyberaugumented_StartupHandler"
@@ -16,15 +16,7 @@ gameinfo
 	playerclasses = "CyberaugumentedProtagonist"
 	Border = 8, 8, "VANTABTR", "VANTABT", "VANTABTL", "VANTABR", "VANTABL", "VANTABBR", "VANTABB", "VANTABBL"
 	BorderFlat = "VANTAHUD"
-	quitmessages = "$QUITMSG1","$QUITMSG2","$QUITMSG3","$QUITMSG4","$QUITMSG5",
-	"$QUITMSG6","$QUITMSG7","$QUITMSG8","$QUITMSG9","$QUITMSG10","$QUITMSG11",
-	"$QUITMSG12","$QUITMSG13","$QUITMSG14","$QUITMSG15","$QUITMSG16","$QUITMSG17",
-	"$QUITMSG18","$QUITMSG19","$QUITMSG20","$QUITMSG21","$QUITMSG22","$QUITMSG23",
-	"$QUITMSG24","$QUITMSG25","$QUITMSG26","$QUITMSG27","$QUITMSG28","$QUITMSG29",
-	"$QUITMSG30","$QUITMSG31","$QUITMSG32","$QUITMSG33","$QUITMSG34","$QUITMSG35",
-	"$QUITMSG36","$QUITMSG37","$QUITMSG38","$QUITMSG39","$QUITMSG40","$QUITMSG41",
-	"$QUITMSG42","$QUITMSG43","$QUITMSG44","$QUITMSG45","$QUITMSG46","$QUITMSG47",
-	"$QUITMSG48","$QUITMSG49","$QUITMSG50","$QUITMSG51","$QUITMSG52","$QUITMSG53"
+	quitmessages = "$QUITMSG1","$QUITMSG2","$QUITMSG3","$QUITMSG4","$QUITMSG5","$QUITMSG6","$QUITMSG7"
 }
 
 clearskills

@@ -5,7 +5,7 @@ Class DCY_Trepidation : DCY_Violator
   Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
   RenderStyle "Subtract";
   Alpha 1.0;
-  Health 145;
+  Health 185;
   Tag "\c[g2]Trepidation\c-";
   +MISSILEEVENMORE
   +THRUSPECIES
@@ -26,7 +26,7 @@ Class DCY_Trepidation : DCY_Violator
 	Super.Tick();
 	
 	if (!level.isFrozen() && Health > 0 && Alpha > 0.2)
-		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), zvel: frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), zvel: frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
   }
   
   States
@@ -50,27 +50,35 @@ Class DCY_Trepidation : DCY_Violator
 	Loop;
   Stealthy:
 	NMRE F 10;
-	NMRE E 1 A_StartSound("Trepidation/Teleport", CHAN_WEAPON);
+	NMRE E 1
+	{
+		for (int i = 25; i > 0; i--)
+			A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+		
+		A_StartSound("Trepidation/Teleport", CHAN_WEAPON, attenuation: ATTN_IDLE);
+	}
 	NMRE EEEEE 1 A_FadeOut(0.2, 0);
 	NMRE E 0
 	{
 		bShootable = false;
 		bNoPain = true;
+		bNoClip = true;
 		A_HideThing();
 	}
-	NMRE AAAABBBBCCCCDDDD 2
+	NMRE AAAABBBBCCCCDDDD 4
 	{
-		A_Chase(null, null);
-		A_Wander();
-		A_Chase(null, null);
-		A_Wander();
+		for (int i = 14; i > 0; i--)
+		{
+			A_Chase(null, null);
+			A_Wander();
+		}
 	}
-	NMRE E 1 A_StartSound("Trepidation/Teleport", CHAN_WEAPON);
-	NMRE EEEEE 1 A_FadeIn(0.2, 0);
+	NMRE A 1 A_FadeIn(1, 0);
 	NMRE E 0
 	{
 		bShootable = true;
 		bNoPain = false;
+		bNoClip = false;
 		A_UnHideThing();
 	}
 	Goto See;
@@ -105,7 +113,7 @@ Class DCY_Trepidation : DCY_Violator
   Dash:
 	NMRE EF 8 A_FaceTarget();
 	NMRE G 1 A_Recoil(-30);
-	NMRE GGGGGGG 2 A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
+	NMRE GGGGGGGGGGGGGG 1 A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
 	NMRE F 6 A_Stop();
 	Goto See;
   Pain:
@@ -118,7 +126,16 @@ Class DCY_Trepidation : DCY_Violator
 	Goto See;
   Death:
 	NMRE H 4;
-	NMRE H 10 A_ScreamAndUnblock();
+	NMRE H 10
+	{
+		if (damagetype != "Massacre")
+		{
+			for (int i = 25; i > 0; i--)
+				A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+		}
+		
+		A_ScreamAndUnblock();
+	}
 	NMRE IIIJJJKKKLLLMMMNNO 1 A_SetScale(Scale.X-0.01, Scale.Y-0.01);
 	Stop;
   Raise:
@@ -136,6 +153,7 @@ Class DCY_TrepidationBall : DoomImpBall
   Damage 6;
   Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
   Scale 0.75;
+  Alpha 0.2;
   }
   
   States

@@ -1,0 +1,431 @@
+Class DCY_MarauderGlow : DCY_HexodenicanTrail2
+{
+  Default
+  {
+  RenderStyle "Add";
+  Scale 1.0;
+  Alpha 0.2;
+  }
+  
+  States
+  {
+  Spawn:
+	_MAD "#" 1
+	{
+		if (master)
+		{
+			frame = master.frame;
+			vel = (master.vel / 4);
+		}
+			
+		A_SetScale(Scale.X+frandom(0.001, 0.005));
+		A_FadeOut(0.015);
+	}
+	Wait;
+  }
+}
+
+Class DCY_MarauderFlash : DCY_MarauderGlow
+{
+  Default
+  {
+  Alpha 1.0;
+  RenderStyle "AddStencil";
+  StencilColor "Red";
+  }
+  
+  States
+  {
+  Spawn:
+	"####" "#" 1
+	{
+		if (master)
+		{
+			frame = master.frame;
+			angle = master.angle;
+		}
+			
+		A_SetScale(Scale.X+0.25);
+		A_FadeOut(0.15);
+		Warp(master, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	}
+	Wait;
+  }
+}
+
+Class DCY_Marauder : DCY_Plutonia
+{
+  Default
+  {
+  Health 800;
+  Obituary "%o got hacked and sliced by the deranged Marauder.";
+  Tag "\c[u2]Marauder\c-";
+  SeeSound "DCYMarauder/Sight";
+  ActiveSound "DCYMarauder/Talk";
+  PainSound "DCYMarauder/Pain";
+  DeathSound "DCYMarauder/Death";
+  AttackSound "DCYMarauder/Melee";
+  Species "Marauder";
+  Speed 10;
+  FastSpeed 15;
+  Translation "152:159=%[0.00,0.00,0.00]:[0.40,0.40,0.40]", "9:12=%[0.00,0.00,0.00]:[0.40,0.40,0.40]", "128:151=%[0.00,0.00,0.00]:[0.92,0.75,0.65]", "13:15=%[0.00,0.00,0.00]:[0.92,0.75,0.65]", "236:239=%[0.00,0.00,0.00]:[0.92,0.75,0.65]", "168:191=%[0.50,0.00,0.00]:[2.00,0.00,0.00]", "80:111=%[0.00,0.00,0.00]:[0.61,0.61,0.61]";
+  +BOSS
+  +NORADIUSDMG
+  +BOSSDEATH
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  PainChance 255;
+  }
+  
+  bool doggo;
+  bool attackmode;
+  int shieldm;
+  bool rushing;
+  
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("'Non compos mentis' in the sky.", "CMYSTERY", "u2");
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (health > 0 && !level.isFrozen())
+	{
+		let glow = Spawn("DCY_MarauderGlow", pos);
+		
+		if (glow)
+		{
+			glow.scale = scale;
+			glow.master = self;
+			glow.frame = frame;
+			glow.angle = angle;
+		}
+	}
+	
+	if (shieldm > 0)
+		shieldm--;
+  }
+  
+  void A_MarauderChase()
+  {
+	if ((random(0, 20) == 0) && !rushing)
+	{
+		A_Dodging(15);
+		A_FaceTarget();
+	}
+	
+	if (target)
+	{
+		if (random(0, 30) == 1)
+			rushing = !rushing;
+		
+		if (rushing)
+		{
+			A_FaceTarget();
+			A_Recoil(-3);
+			
+			if (target && distance3D(target) < 500)
+			{
+				if ((random(0, 1) == 0) && shieldm <= 0)
+					SetStateLabel("Swing");
+				else
+				{
+					rushing = false;
+					A_Recoil(frandom(10, 16));
+					
+					if (vel.z == 0)
+						A_Hop(7);
+				}
+			}
+		}
+		else
+			A_Chase();
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	MAUD A 10 DCY_Look();
+	Loop;
+  Idle:
+  Look:
+	MAUD A 10
+	{
+		if (random(0, 15) == 0)
+			SetStateLabel("Moving");
+	}
+	MAUD A 0 A_CheckSight("Look");
+	Goto Alert;
+  Moving:
+	MAUD AAABBBCCCDDD 2
+	{
+		if (random(0, 65) == 0)
+			SetStateLabel("Moving");
+		
+		DCY_LookingForPlayer();
+	}
+	MAUD # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	MAUD G 10
+	{
+		bNODAMAGE = true;
+		A_FaceTarget();
+		DCY_AlertSound();
+	}
+	MAUD U 15
+	{
+		A_FaceTarget();
+		A_StartSound("DCYMarauder/AxeOn", CHAN_WEAPON);
+	}
+	Goto See;
+  See:
+	MAUD AAABBBCCCDDD 1 A_MarauderChase();
+	Loop;
+  Missile:
+	MAUD U 0
+	{
+		if (shieldm <= 0)
+		{
+			if ((random(0, 1) == 0) && (target && distance3D(target) > 500))
+				SetStateLabel("Swing");
+			if (target && distance3D(target) > 300)
+				SetStateLabel("Slice");
+			if (target && distance3D(target) < 200)
+				SetStateLabel("SSG");
+		}
+	}
+	Goto See;
+  Slice:
+	MAUD U 15
+	{
+		A_FaceTarget();
+		A_Recoil(-4);
+		
+		A_StartSound("DCYMarauder/Swing", CHAN_6);
+	}
+	MAUD W 7
+	{
+		A_StartSound("DCYMarauder/Melee", CHAN_VOICE);
+		A_StartSound("DCYMarauder/Slash", CHAN_5);
+		A_StartSound("DemonicSword/Slash", CHAN_7);
+		A_FaceTarget();
+		
+		A_SpawnProjectile("DCY_MarauderSlash", 35);
+	}
+	MAUD A 10;
+	Goto See;
+  Swing:
+	MAUD A 15;
+	MAUD U 10
+	{
+		A_FaceTarget();
+		A_Recoil((target && distance3D(target) < 500) ? -15 : -9);
+		attackmode = 1;
+		bNODAMAGE = false;
+		
+		A_SpawnItemEx("DCY_MarauderFlash", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		
+		A_StartSound("DCYMarauder/Swing", CHAN_6);
+		A_StartSound("DCYMarauder/Melee", CHAN_VOICE);
+		
+		if (random(0, 4) > 1)
+		{
+			for (float i = 1; i < 1.181; i += 0.18)
+				A_StartSound("DoomEternalFlash", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.75, pitch: i);
+		}
+		else
+			A_StartSound("DoomEternalFlash", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.75, pitch: 1.18);
+	}
+	MAUD W 7
+	{
+		A_Recoil(-5);
+		A_StartSound("DCYMarauder/Slash", CHAN_5);
+		A_CustomMeleeAttack(10 * frandom(6, 11), "DCYMarauder/MeleeSwing");
+	}
+	MAUD A 25
+	{
+		attackmode = 0;
+		bNODAMAGE = 1;
+	}
+	Goto See;
+  SSG:
+	MAUD A 15 A_FaceTarget();
+	MAUD E 20
+	{
+		A_FaceTarget();
+		A_StartSound("DCYMarauder/ShotgunUp", CHAN_WEAPON);
+	}
+	MAUD F 5
+	{
+		A_StartSound("DCYMarauder/Shotgun", CHAN_WEAPON, attenuation: 0.5);
+		A_QuakeEx(1, 1, 1, 20, 0, 600, "", QF_SCALEDOWN|QF_3D);
+		A_FaceTarget();
+		
+		for (int i = 14; i > 0; i--)
+			A_SpawnProjectile("DCY_ZombieTracer", 33, 0, frandom(-4.5, 4.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-3.0, 3.0));
+	}
+	MAUD E 10 A_FaceTarget();
+	Goto See;
+  Pain:
+	MAUD G 0
+	{
+		if (attackmode)
+			SetStateLabel("LongPain");
+		
+		if (!attackmode && shieldm <= 0)
+		{
+			shieldm = 50;
+			
+			let shield = Spawn("DCY_MaraudersShield", pos + (0, 0, 16));
+			
+			if (shield)
+				shield.master = self;
+		}
+	}
+	Goto See;
+  LongPain:
+	MAUD G 4 { bNOPAIN = 1; }
+	MAUD G 55 A_Pain();
+	MAUD A 0 { bNOPAIN = 0; attackmode = 0; bNODAMAGE = 1; }
+	Goto See;
+  Pain.Cosmical:
+  Pain.Holy:
+  Pain.Sirius:
+  Pain.CinerealOrdnanceDMG:
+  NormalPain:
+	MAUD G 4 { bNODAMAGE = 0; }
+	MAUD G 4 A_Pain();
+	MAUD G 0 { bNODAMAGE = 1; }
+	Goto See;
+  Death:
+	MAUD H 0 A_SetScale(randompick(1, -1), 1);
+	MAUD H 4 { bNoDropOff = false; }
+	MAUD H 4 A_Scream();
+	MAUD I 4 A_Fall;
+	MAUD JKLM 4;
+	MAUD N -1 A_BossDeath();
+	Stop;
+  XDeath:
+	MAUD O 6;
+    MAUD P 4 A_XScream();
+    MAUD Q 4 A_NoBlocking();
+    MAUD RS 4;
+    MAUD T -1 A_BossDeath();
+    Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_MarauderSlash : DCY_CrusaderSlash
+{
+  Default
+  {
+  XScale .2;
+  YScale 3.4;
+  Radius 20;
+  Height 12;
+  Speed 15;
+  Damage 7;
+  }
+  
+  States
+  {
+  Spawn:
+	TRAC A 1
+	{
+		if (timer < 20)
+			A_ScaleVelocity(1.1);
+		
+		A_SetRoll(Roll + 10, SPF_INTERPOLATE);
+		timer++;
+	}
+	Loop;
+  }
+}
+
+Class DCY_MaraudersShield : Actor
+{
+  Default
+  {
+  SeeSound "";
+  AttackSound "";
+  ActiveSound "";
+  HowlSound "";
+  Species "Marauder";
+  PainSound "MajorNzi/Teleport";
+  DeathSound "RTROBOM1";
+  Tag "Sigil";
+  Scale 1.2;
+  Painchance 255;
+  Radius 18;
+  Height 55;
+  Damage 0;
+  Alpha 1.0;
+  RenderStyle "Add";
+  Mass 0x7FFFFFF;
+  -COUNTKILL
+  +NOGRAVITY
+  +DROPOFF
+  +PAINLESS
+  -SOLID
+  +THRUSPECIES
+  +NOICEDEATH
+  +NOBLOODDECALS
+  +DONTHARMCLASS
+  +NEVERRESPAWN
+  -ISMONSTER
+  +SHOOTABLE
+  +INVULNERABLE
+  +NODAMAGE
+  +NOBLOOD
+  +NOPAIN
+  +PAINLESS
+  +NOCLIP
+  +BRIGHT
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  }
+  
+  override bool CanCollideWith(Actor other, bool passive)
+  {
+	if(!other || !master || !other.target || other == master) return false;
+	if(other.bNOBLOCKMAP == true && other.target.GetSpecies() == master.GetSpecies()) return false;
+    return true;
+  }
+  
+  override void Tick()
+  {
+	Super.Tick();
+	A_Warp(AAPTR_MASTER, 10, 0, 2, 0, WARPF_INTERPOLATE);
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+  Idle:
+  Missile:
+  Melee:
+  See:
+	Q05S A 1 Bright
+	{
+		if (timer > 50)
+			SetStateLabel("Death");
+		
+		A_SetRenderStyle(frandom(0.7, 0.95), STYLE_ADD);
+		timer++;
+	}
+	Loop;
+  Death:
+	Q05S A 1 Bright;
+	Q05S A 1 Bright A_Scream();
+	Q05S AAAAAAAAAA 1 Bright A_FadeOut(0.1, 0);
+	Stop;
+  }
+}

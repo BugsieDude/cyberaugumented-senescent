@@ -113,17 +113,19 @@ Class DCY_PinkeII : DCY_Pinke
   Default
   {
     +SHADOW
-	RenderStyle "OptFuzzy";
-	Alpha 0.5;
+	RenderStyle "Subtract";
+	Alpha 0.2;
 	SeeSound "spectre/sight";
 	AttackSound "spectre/melee";
 	PainSound "spectre/pain";
 	DeathSound "spectre/death";
 	ActiveSound "spectre/active";
 	Obituary "$OB_SPECTREHIT";
-	Tag "$FN_SPECTRE";
+	Tag "Bane";
 	Species "Spectres";
-	Translation "16:47=%[0.00,0.00,0.00]:[1.26,0.61,0.71]", "160:167=%[0.00,0.00,0.00]:[2.00,1.34,1.34]", "208:223=%[0.00,0.00,0.00]:[1.31,0.63,0.63]";
+	BloodType "DCY_SpectreFluid";
+	BloodColor "Yellow";
+	Translation "0:255=@100[233,222,148]";
   }
   
   States

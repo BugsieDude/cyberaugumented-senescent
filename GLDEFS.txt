@@ -378,21 +378,6 @@ Object DCY_CWFX
   Frame D9PJK {Light DCY_ColonialLight4}
 }
 
-Object DCY_CWFX2
-{
-  Frame D9PJA {Light DCY_ColonialLight1}
-  Frame D9PJB {Light DCY_ColonialLight1}
-  Frame D9PJC {Light DCY_ColonialLight1}
-  Frame D9PJD {Light DCY_ColonialLight1}
-  Frame D9PJE {Light DCY_ColonialLight1}
-  Frame D9PJF {Light DCY_ColonialLight2}
-  Frame D9PJG {Light DCY_ColonialLight2}
-  Frame D9PJH {Light DCY_ColonialLight3}
-  Frame D9PJI {Light DCY_ColonialLight3}
-  Frame D9PJJ {Light DCY_ColonialLight4}
-  Frame D9PJK {Light DCY_ColonialLight4}
-}
-
 FlickerLight ColonialBigLight1
 {
   Color 0.9 0.9 0.9

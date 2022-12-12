@@ -26,3 +26,5 @@ user bool cl_weaponsway_vertical = false;
 user int cl_spawntype = 0;
 
 user int cl_effectdistance = 1000;
+
+user bool cl_dcy_mapname = true;

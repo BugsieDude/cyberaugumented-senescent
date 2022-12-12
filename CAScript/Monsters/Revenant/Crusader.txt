@@ -688,6 +688,9 @@ Class DCY_CrusaderSlash : FastProjectile
 				
 			act.angle = angle;
 			act.pitch = pitch;
+			act.roll = roll;
+			act.scale.x = scale.x;
+			act.scale.y = scale.y;
 			act.vel = vel;
 		}
 	}
@@ -725,7 +728,6 @@ Class DCY_CrusaderSlashTrail : DCY_ProjectileBaseTrail
 	{
 		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
 		A_FaceMovementDirection();
-		A_SetRoll(70);
 	}
 	Goto Looping;
   Looping:

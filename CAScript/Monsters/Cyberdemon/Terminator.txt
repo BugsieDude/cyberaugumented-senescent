@@ -137,24 +137,19 @@ Class DCY_NavyTerminator : DCY_Cybie
   Death:
 	NVRM M 1;
 	NVRM M 6 A_Scream();
-	NVRM MMMMMMMMM 3 A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+	NVRM MMMMMMMMM 3 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
 	NVRM M 3
 	{
 		A_Fall();
 		
-		for (int i = 4; i > 0; i--)
-			A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
-		
-		A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+		if (damagetype != "Massacre")
+		{
+			for (int i = 4; i > 0; i--)
+				A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+			
+			A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+		}
 	}
-	NVRM "[" 45;
-	NVRM "[" -1 A_BossDeath2();
-	Stop;
-  Death.Massacre:
-	NVRM M 1;
-	NVRM M 6 A_Scream();
-	NVRM MMMMMMMMM 3;
-	NVRM M 3 A_Fall();
 	NVRM "[" 45;
 	NVRM "[" -1 A_BossDeath2();
 	Stop;

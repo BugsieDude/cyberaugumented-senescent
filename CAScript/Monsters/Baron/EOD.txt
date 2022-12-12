@@ -292,23 +292,17 @@ Class DCY_EOD : DCY_HeckBaron
 	D0R_ E 6 A_NoBlocking();
 	D0R_ FFFFGGGGHHHHIIII 1
 	{
-		for (int i = 2; i > 0; i--)
+		if (damagetype != "Massacre")
 		{
-			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
-			A_SpawnItemEx("DCY_ImpFlame1", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
+			for (int i = 2; i > 0; i--)
+			{
+				A_SpawnItemEx("DCY_ImpBigFlame", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
+				A_SpawnItemEx("DCY_ImpFlame1", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(4, height) * 3, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 130);
+			}
 		}
 	}
 	D0R_ J 4 A_SetRenderStyle(1.0, STYLE_ADD);
-	D0R_ K 4 A_SpawnItemEx("DCY_EODSoul", zofs: 50, zvel: 10, flags: SXF_NOCHECKPOSITION);
-	D0R_ LM 4;
-	Stop;
-  Death.Massacre:
-	DOR_ Q 1;
-	DOR_ Q 20 A_Scream();
-	D0R_ E 6 A_NoBlocking();
-	D0R_ FFFFGGGGHHHHIIII 1;
-	D0R_ J 4 A_SetRenderStyle(1.0, STYLE_ADD);
-	D0R_ K 4;
+	D0R_ K 4 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_EODSoul", zofs: 50, zvel: 10, flags: SXF_NOCHECKPOSITION); }
 	D0R_ LM 4;
 	Stop;
   Raise:

@@ -73,8 +73,8 @@ Power/OhFuck OHFUCC
 
 LEKICK LEKICK
 
-Cyberdemon/RailgunCharge VAMCBEAM
-Cyberdemon/RailgunFire VAMCBEAF
+Cyberdemon/RailgunCharge "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_charge.ogg"
+Cyberdemon/RailgunFire "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_fire.ogg"
 
 EXOTURTC EXOTURTC
 PLSORB2 PLSORB2
@@ -155,10 +155,6 @@ $limit LASRX 0
 
 BishopAttack pop
 BishopMissileExplode bshhit2
-dcy/acosit dsac0sit
-dcy/acopai dsac0pai
-dcy/acodth dsac0dth
-dcy/acoact dsac0act
 
 PARTDIE1 PARTDIE1
 $limit PARTDIE1 0

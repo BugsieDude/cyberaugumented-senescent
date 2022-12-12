@@ -28,8 +28,8 @@ Class DCyb_HUD : BaseStatusBar
 	barinvul
   }
   
-  virtual void DCyb_HUDSet () {}
-  virtual void DCyb_HUDDraw () {}
+  virtual void DCyb_HUDSet() {}
+  virtual void DCyb_HUDDraw() {}
   
   int CY_GetCVar(name cvarname)
   {
@@ -112,8 +112,7 @@ Class DCyb_HUD : BaseStatusBar
 		  else
 			keysprite = i.Icon;
 		  
-		  if(!keysprite.IsValid())
-			continue;
+		  if(!keysprite.IsValid()) continue;
 		}
 		
 		 size = TexMan.GetScaledSize(keysprite);
@@ -259,6 +258,14 @@ Class DCyb_HUD : BaseStatusBar
 	DrawString(dcyb_font, tn, (apos.x + 4, apos.y + 17.5), flags: DI_TEXT_ALIGN_LEFT, Font.CR_UNTRANSLATED);
   }
   
+  virtual void CA_DrawDestination()
+  {
+	vector2 bpos = (-32 + xx, 30 + yy);
+	
+	DrawImage("CHUDDEST", bpos, DI_ITEM_LEFT_BOTTOM);
+	DrawString(dcyb_font, level.levelname, bpos + (-5, -11), flags: DI_TEXT_ALIGN_RIGHT);
+  }
+  
   protected void CA_DrawHUD()
   {
 	CA_DrawKeys();
@@ -272,6 +279,9 @@ Class DCyb_HUD : BaseStatusBar
 	CA_DrawStatBars();
 	CA_DrawAmmo();
 	CA_DrawTemperature();
+	
+	if (CY_GetCVar("cl_dcy_mapname"))
+		CA_DrawDestination();
   }
   
   void DCY_DrawInvBar(InventoryBarState parms, Vector2 position, int numfields, int flags = 0, double bgalpha = 1.)

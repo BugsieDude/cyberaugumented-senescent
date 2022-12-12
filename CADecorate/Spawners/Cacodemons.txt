@@ -5,7 +5,7 @@ ACTOR DCY_RedMeatball : RandomSpawner Replaces Cacodemon
   DropItem "DCY_Wretched", 256, 550
   DropItem "DCY_Inscrutable", 256, 320
   DropItem "DCY_Chrysalis", 256, 155
-  DropItem "DCY_ColonialWizard", 256, 100
+  DropItem "DCY_Tagati", 256, 100
   DropItem "DCY_PlasmaticWizard", 256, 100
   DropItem "DCY_HellCustodian", 256, 96
   DropItem "DCY_Monsoon", 256, 70

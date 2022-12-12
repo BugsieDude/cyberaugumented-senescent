@@ -1,6 +1,8 @@
 misc/gleam DSGLEAM
 misc/darkness DARKNESS
 
+misc/p_pkup "Sounds/Inventory/dcy_last_duel_powerup.ogg"
+
 SmallItem/Pickup CURRENCY
 
 TZITMGET TZITMGET //T-ZerO (An Amiga SHMUP)

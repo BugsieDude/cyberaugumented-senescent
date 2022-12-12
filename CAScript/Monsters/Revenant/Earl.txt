@@ -1,4 +1,4 @@
-Class DCY_DestructiveEarl : DCY_BlueVoidIncarnate
+Class DCY_DestructiveEarl : DCY_SoulCrusher
 {
   Default
   {

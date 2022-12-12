@@ -61,17 +61,11 @@ Class DCY_Mindmonarch : DCY_TheGiantEnemySpider
 	NMBD N 6
 	{
 		A_NoBlocking();
-		A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);
+		
+		if (damagetype != "Massacre")
+			A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);
 	}
-	NMBD OP 6 A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);
-	NMBD QRS 5;
-	NMBD S -1;
-	Stop;
-  Death.Massacre:
-	NMBD I 5;
-	NMBD I 10 A_Scream();
-	NMBD JKLM 6;
-	NMBD NOP 6;
+	NMBD OP 6 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION); }
 	NMBD QRS 5;
 	NMBD S -1;
 	Stop;

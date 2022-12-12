@@ -10,9 +10,11 @@ ACTOR DCY_Shootyboy : RandomSpawner Replaces Shotgunguy
   DropItem "DCY_AutomatonSupervisor", 256, 160
   DropItem "DCY_Hoodlum", 256, 150
   DropItem "DCY_Destructor", 256, 120
+  DropItem "DCY_Malignant", 256, 110
   DropItem "DCY_Nullifier", 256, 110
   DropItem "DCY_ZEnsign", 256, 60
   DropItem "DCY_Z_Exec", 256, 30
   DropItem "DCY_DeathDealer", 256, 30
   DropItem "DCY_ArcheSpiritwalker", 256, 7
+  DropItem "DCY_Marauder", 256, 1
 }

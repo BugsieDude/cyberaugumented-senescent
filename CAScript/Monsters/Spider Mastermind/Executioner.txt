@@ -103,24 +103,12 @@ Class DCY_Executioner : DCY_TheGiantEnemySpider
 	I8HJ IJ 6;
 	I8HJ K 6
 	{
-		A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION, 1);
-		A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION, 50);
+		if (damagetype != "Massacre")
+		{
+			for (int i = 3; i > 0; i--)
+				A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
+		}
 	}
-	I8HJ LM 4;
-	TNT1 A 30 A_NoBlocking();
-	TNT1 A -1 A_BossDeath();
-	Stop;
-  Death.Massacre:
-	I8HJ H 1;
-	I8HJ H 10
-	{
-		bFloorClip = true;
-		bFloat = false;
-		A_Scream();
-		A_Stop();
-	}
-	I8HJ IJK 6;
 	I8HJ LM 4;
 	TNT1 A 30 A_NoBlocking();
 	TNT1 A -1 A_BossDeath();

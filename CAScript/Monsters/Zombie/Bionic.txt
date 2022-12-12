@@ -204,18 +204,15 @@ Class DCY_BionicShield : LostSoul
   
   override bool CanCollideWith(Actor other, bool passive)
   {
-	if(!other || !master || !other.target || other == master)
-		return false;
-	if(other.bNOBLOCKMAP == true && other.target.GetSpecies() == master.GetSpecies())
-		return false;
+	if(!other || !master || !other.target || other == master) return false;
+	if(other.bNOBLOCKMAP == true && other.target.GetSpecies() == master.GetSpecies()) return false;
     return true;
   }
 	
   void A_BionicShieldDeath(string sound, double pitch)
   {
-	A_StartSound(sound, CHAN_VOICE, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
-	A_StartSound(sound, CHAN_5, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
-	A_StartSound(sound, CHAN_6, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
+	for (int i = 4; i < 7; i++)
+		A_StartSound(sound, i, CHANF_OVERLAP, 1.0, ATTN_IDLE, pitch);
   }
   
   static const string ssound[] = {"ShieldBroke1", "ShieldBroke2", "ShieldBroke3", "ShieldBroke4"};

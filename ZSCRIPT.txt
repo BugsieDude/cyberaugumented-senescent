@@ -1,4 +1,4 @@
-Version "4.9.0"
+Version "4.10.0"
 
 //Weapon Swaying
 #include "CAScript/Others/WeaponSway.zc"
@@ -24,7 +24,6 @@ Version "4.9.0"
 //Events
 #include "CAScript/Events/BaseEvent.txt"
 #include "CAScript/Events/Anti.txt"
-#include "CAScript/Events/EffectChoker.txt"
 
 //Items and Ammo
 #include "CAScript/Items/HealthArmorThingy.txt"

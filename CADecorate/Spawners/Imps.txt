@@ -10,6 +10,7 @@ ACTOR DCY_Impo : RandomSpawner Replaces DoomImp
   DropItem "DCY_SubzeroUmbrage", 256, 120
   DropItem "DCY_SiriusImp", 256, 110
   DropItem "DCY_RegulusImp", 256, 80
+  DropItem "DCY_Malignant", 256, 100
   DropItem "DCY_Terminalist", 256, 90
   DropItem "DCY_Sacker", 256, 70
   DropItem "DCY_LightningPhase", 256, 70

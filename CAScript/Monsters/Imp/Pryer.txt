@@ -32,13 +32,13 @@ Class DCY_Pryer : DCY_Impe
 	XX5_ AABBCCDD 4 A_Chase("Missile", "Missile");
 	Loop;
   Missile:
-	XX5_ Q 0;
 	XX5_ Q 0 A_Jump(90, "Dash", "Jump");
 	XX5_ Q 15 A_FaceTarget();
 	XX5_ Q 5
 	{
 		A_SpawnProjectile("DCY_PFire", 37, -12);
 		A_SpawnProjectile("DCY_PFire2", 37, 12);
+		A_FaceTarget();
 	}
 	XX5_ Q 5;
 	Goto See;
@@ -47,18 +47,11 @@ Class DCY_Pryer : DCY_Impe
 	XX5_ E 1 A_FaceTarget();
 	XX5_ E 7
 	{
-		A_ChangeVelocity(0, 0, 12, CVF_RELATIVE|CVF_REPLACE);
+		vel.z = 12;
 		A_Recoil(-12);
 	}
 	XX5_ FG 7;
-	XX5_ Q 5
-	{
-		A_SpawnProjectile("DCY_PFire", 37, -12);
-		A_SpawnProjectile("DCY_PFire2", 37, 12);
-		A_FaceTarget();
-	}
-	XX5_ Q 5;
-	Goto See;
+	Goto Missile+2;
   Dash:
 	XX5_ E 0;
 	XX5_ EF 8 A_FaceTarget();
@@ -67,14 +60,7 @@ Class DCY_Pryer : DCY_Impe
 		A_FaceTarget();
 		A_Recoil(-3);
 	}
-	XX5_ Q 5
-	{
-		A_SpawnProjectile("DCY_PFire", 37, -12);
-		A_SpawnProjectile("DCY_PFire2", 37, 12);
-		A_FaceTarget();
-	}
-	XX5_ Q 5;
-	Goto See;
+	Goto Missile+2;
   Pain:
 	XX5_ H 4;
 	XX5_ H 4 A_Pain();

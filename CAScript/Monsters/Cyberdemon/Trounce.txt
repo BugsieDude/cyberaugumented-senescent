@@ -87,29 +87,23 @@ Class DCY_Trounce : DCY_Cybie
 	F_2D B 6 A_Scream();
 	F_2D CD 5 Bright
 	{
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
-		A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
+		}
 	}
 	F_2D E 6
 	{
 		A_NoBlocking();
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		
+		if (damagetype != "Massacre")
+		{
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+		}
 	}
-	F_2D FGHIIIIJK 5;
-	F_2D L 40
-	{
-		A_QuakeEx(0, 0, 3, 900, 0, 40, "", QF_SCALEDOWN|QF_3D);
-		A_StartSound("Trounce/BodyPound", CHAN_BODY, attenuation: 0.5);
-	}
-	F_2D L -1 A_BossDeath2;
-	Stop;
-  Death.Massacre:
-	F_2M J 10;
-	F_2D A 6 A_StartSound("Trounce/Death", CHAN_VOICE, CHANF_OVERLAP);
-	F_2D BCD 5;
-	F_2D E 5 A_NoBlocking();
 	F_2D FGHIIIIJK 5;
 	F_2D L 40
 	{

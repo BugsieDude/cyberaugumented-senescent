@@ -25,7 +25,7 @@ Class DCY_Caviler : DCY_Impe
 	static const string messages[] =
 	{
 		"%o's lungs were ripped off by a Caviler.",
-		"%o's veins are now zapped by a Caviler.",
+		"%o's veins were zapped by a Caviler.",
 		"The Caviler zapped %o to death."
 	};
 
@@ -140,10 +140,10 @@ Class DCY_Pathogen : DCY_Impe
   Default
   {
   Health 222;
-  SeeSound "blob/sight";
-  ActiveSound "blob/sight";
-  PainSound "blob/pain";
-  DeathSound "blob/faint";
+  SeeSound "dcypathogen/sight";
+  ActiveSound "dcypathogen/sight";
+  PainSound "dcypathogen/pain";
+  DeathSound "dcypathogen/faint";
   Speed 14;
   FastSpeed 18;
   DamageType "Dark";

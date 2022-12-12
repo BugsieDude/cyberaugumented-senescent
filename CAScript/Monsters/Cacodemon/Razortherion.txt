@@ -138,21 +138,18 @@ Class DCY_Razortherion : DCY_CacoParent
   Death:
 	RZTH G 1;
 	RZTH G 10 A_Scream();
-	RZTH GGGGGHH 4 A_SpawnItemEx("DCY_RZSpirit", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), random(-3, 3), random(-2, 2), frandom(1.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
+	RZTH GGGGGHH 4 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_RZSpirit", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), random(-3, 3), random(-2, 2), frandom(1.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION); }
 	RZTH I 6
 	{
 		A_NoBlocking();
 		A_QuakeEx(4, 4, 4, 40, 0, 500, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 1000);
-		for (int i = 6; i > 0; i--)
-			A_SpawnItemEx("DCY_RazortherionExplosion", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION, 100);
+		
+		if (damagetype != "Massacre")
+		{
+			for (int i = 6; i > 0; i--)
+				A_SpawnItemEx("DCY_RazortherionExplosion", frandom(-24.5, 24.5), frandom(-24.5, 24.5), frandom(5.0, 45.0), frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION, 100);
+		}
 	}
-	RZTH JKLMN 6;
-	RZTH O -1;
-	Stop;
-  Death.Massacre:
-	RZTH H 1;
-	RZTH H 6 A_Scream();
-	RZTH I 6 A_NoBlocking();
 	RZTH JKLMN 6;
 	RZTH O -1;
 	Stop;
@@ -180,8 +177,8 @@ Class DCY_RZSpirit : Actor
   States
   {
   Spawn:
-	IMGH A 0 NoDelay A_SetScale(randompick(Scale.X, -Scale.X), Scale.Y);
-	IMGH AABBCCDDEEFFGGG 1 A_ChangeVelocity(frandom(0.25, -0.25), frandom(0.25, -0.25), 0.45, CVF_RELATIVE);
+	IMGH A 0 NoDelay { bSPRITEFLIP = random(0, 1); }
+	IMGH AAAABBBBBCCCCCDDDDDEEEEEFFFFFGGGGG 1 A_ChangeVelocity(frandom(0.05, -0.05), frandom(0.05, -0.05), 0.15, CVF_RELATIVE);
 	Stop;
   }
 }

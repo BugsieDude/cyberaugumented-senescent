@@ -68,10 +68,10 @@ PLYLAND1 "Sounds/Player/dcy_protag_land1.ogg"
 PLYLAND2 "Sounds/Player/dcy_protag_land2.ogg"
 PLYLAND3 "Sounds/Player/dcy_protag_land3.ogg"
 $random slayer/crash { PLYSMSH1 PLYSMSH2 PLYSMSH3 PLYSMSH4 }
-PLYSMSH1 "Sounds/Player/dcy_protag_crash1.ogg"
-PLYSMSH2 "Sounds/Player/dcy_protag_crash2.ogg"
-PLYSMSH3 "Sounds/Player/dcy_protag_crash3.ogg"
-PLYSMSH4 "Sounds/Player/dcy_protag_crash4.ogg"
+PLYSMSH1 "Sounds/Player/dcy_protag_smash1.ogg"
+PLYSMSH2 "Sounds/Player/dcy_protag_smash2.ogg"
+PLYSMSH3 "Sounds/Player/dcy_protag_smash3.ogg"
+PLYSMSH4 "Sounds/Player/dcy_protag_smash4.ogg"
 
 slayer/noway "Sounds/Player/dcy_no_way.ogg"
 $random Water/Surface { WATERSR1 WATERSR2 WATERSR3 WATERSR4 WATERSR5 WATERSR6 WATERSR7 }

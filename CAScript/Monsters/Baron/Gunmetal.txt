@@ -13,11 +13,11 @@ Class DCY_GunmetalInfiltrator : DCY_BaronParent
   +Bright;
   BloodColor "010101";
   DropItem "Blursphere", 25;
-  SeeSound "GunmetalInfiltrator/Sight";
-  ActiveSound "GunmetalInfiltrator/Active";
-  PainSound "GunmetalInfiltrator/Pain";
-  DeathSound "GunmetalInfiltrator/Death";
-  Obituary "%o was liquidated by a Gunmetal Infiltrator.";
+  SeeSound "Emir/Sight";
+  DeathSound "Emir/Death";
+  ActiveSound "Emir/Active";
+  PainSound "Emir/Pain";
+  Obituary "%o got liquidated by a Gunmetal Infiltrator.";
   HitObituary "%o was slashed in half by a Gunmetal Infiltrator.";
   Tag "\c[w3]Gunmetal Infiltrator\c-";
   }

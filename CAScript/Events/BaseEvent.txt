@@ -44,7 +44,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	if (!c.gameannounce)
 	{
 		S_StartSound("misc/hellotherer", 10, CHANF_NOPAUSE);
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Welcome to Cyberaugumented.\n\nYou'll see where this goes out.", (240, 150), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.3, 2, 1), speed: 0.05, strength: 1.0, frequency: 10.0, id: 78);
+		DCY_notHudMessageHandler.PlainMsg("CONFONT", level.levelname, (240, 70), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 2, 1), id: 23);
+		DCY_notHudMessageHandler.PlainMsg("DCYMAPB", "A", (240, 70), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 2, 1), id: 24);
 		c.gameannounce = true;
 	}
   }
@@ -56,7 +57,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	
 	temp1 = 15;
   }
-  
+
   void DTemperature(sound soundx, string colorx, string messagex)
   {
 	if (soundx)
@@ -74,7 +75,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	
 	if (temp1 < -150 && !d.temperaturecoldxannounce)
 	{
-		DTemperature("TemperatureDCYX", "j0", "You're going to die.");
+		DTemperature("TemperatureDCYX", "j0", "You're going to freeze.");
 		d.temperaturecoldxannounce = true;
 	}
 	if (temp1 < -50 && !d.temperaturecoldannounce)

@@ -239,8 +239,8 @@ Class DCY_Plutonia : DCYMonster
   DeathSound "chainguy/death";
   ActiveSound "chainguy/active";
   AttackSound "chainguy/attack";
-  Obituary "%o has been ripped off by the Hell Corps Rifleman.";
-  Tag "Hell Corps Rifleman";
+  Obituary "%o has been ripped off by the Hell Besieger.";
+  Tag "Hell Besieger";
   Dropitem "DCY_CyberRifle";
   Species "Chaingunners";
   }
@@ -287,32 +287,19 @@ Class DCY_Plutonia : DCYMonster
 	}
 	Goto See;
   Death:
-	RE1_ H 0
-	{
-		A_SetScale(randompick(1, -1), 1);
-		
-		if (random(0, 1) == 1)
-			SetStateLabel("Death2");
-	}
-	RE1_ H 4 { bNoDropOff = false; }
-	RE1_ H 4 A_Scream();
-	RE1_ I 4 A_Fall;
-	RE1_ JKLM 4;
-	RE1_ N -1;
-	Stop;
-  Death2:
-	RE1_ U 5 { bNoDropOff = false; }
-	RE1_ V 5 A_Scream();
-	RE1_ W 5 A_Fall;
-	RE1_ XY 4;
-	RE1_ Z -1;
+	RE1_ H 0 A_SetScale(randompick(1, -1), 1);
+	RE1_ H 5 { bNoDropOff = false; }
+	RE1_ H 5 A_Scream();
+	RE1_ I 5 A_Fall;
+	RE1_ JK 4;
+	RE1_ L -1;
 	Stop;
   XDeath:
 	RE1_ O 6;
     RE1_ P 4 A_XScream();
     RE1_ Q 4 A_NoBlocking();
-    RE1_ RS 4;
-    RE1_ T -1;
+    RE1_ RSTUV 4;
+    RE1_ W -1;
     Stop;
   Death.Fire:
     TNT1 A 0;
@@ -327,9 +314,9 @@ Class DCY_Plutonia : DCYMonster
 	FUUU V -1;
 	Stop;
   Raise:
-	RE1_ N 3;
-    RE1_ NMLKHJI 4;
-	RE1_ H 4 A_SetScale(1, 1);
+	RE1_ L 6;
+    RE1_ KJI 6;
+	RE1_ H 6 A_SetScale(1, 1);
     Goto See;
   }
 }

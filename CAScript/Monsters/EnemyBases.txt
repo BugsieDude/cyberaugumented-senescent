@@ -52,12 +52,12 @@ CLASS DCYMonster : Actor
   
   void A_Dodging(double speed)
   {
-    ThrustThing(Angle*128/256+random(64, 192), speed, 0, 0);
+	Vel3DFromAngle(speed, Angle*128/256+random(64, 192), 0);
   }
   
   void A_Hop(double height)
   {
-    A_ChangeVelocity(z: height);
+    vel.z += height;
   }
 
   void DCY_AlertSound()
@@ -75,6 +75,21 @@ CLASS DCYMonster : Actor
 	{
 		S_StartSound(sound, CHAN_5, CHANF_DEFAULT);
 	}
+  }
+  
+  States
+  {
+  Death.Massacre:
+	#### # 1;
+	#### # 0
+	{
+		//Stop all sounds
+		for (int i = 0; i < 8; i++)
+			A_StopSound(i);
+		
+		A_RemoveChildren(1, RMVF_EVERYTHING);
+	}
+	Stop;
   }
 }
 

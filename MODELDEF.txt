@@ -649,6 +649,17 @@ Model DCY_CrusaderSlashTrail
   FrameIndex TRAC A 0 0
 }
 
+Model DCY_MarauderSlash
+{
+  Path "CAModels"
+  SKIN 0 "crusader_slash.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  PITCHFROMMOMENTUM
+  USEACTORROLL
+  FrameIndex TRAC A 0 0
+}
+
 //Sparks
 Model DCY_BulletPuffSpark
 {

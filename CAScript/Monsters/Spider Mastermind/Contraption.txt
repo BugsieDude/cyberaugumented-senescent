@@ -206,5 +206,9 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
 	C0N_ V 40;
 	C0N_ V -1 A_BossDeath2();
 	Stop;
+  Death.Massacre:
+	TNT1 A 1;
+	TNT1 A 0 A_RemoveMaster(RMVF_EVERYTHING);
+	Stop;
   }
 }
