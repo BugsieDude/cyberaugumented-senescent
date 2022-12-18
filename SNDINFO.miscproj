@@ -77,3 +77,8 @@ ShieldBroke4 SHLDBRK4
 FINLCONC FINLCONC
 FINLBOOM FINLBOOM
 FINLSIGN FINLSIGN
+
+$random dcyvomitblood { dcyvomitblood1 dcyvomitblood2 dcyvomitblood3 }
+dcyvomitblood1 "Sounds/DCY SFX/dcy_blood_vomit1.ogg"
+dcyvomitblood2 "Sounds/DCY SFX/dcy_blood_vomit2.ogg"
+dcyvomitblood3 "Sounds/DCY SFX/dcy_blood_vomit3.ogg"

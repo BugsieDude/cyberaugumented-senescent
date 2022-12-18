@@ -1,0 +1,97 @@
+Class DCY_Contaminated : DCY_Zombe
+{
+  Default
+  {
+  Health 120;
+  Tag "\cgContaminated\c-";
+  Speed 12;
+  FastSpeed 15;
+  Obituary "%o suffered the contaminated soldier's feast for blood.";
+  SeeSound "dcycontaminated/sight";
+  ActiveSound "dcycontaminated/idle";
+  PainSound "dcycontaminated/pain";
+  DeathSound "dcycontaminated/death";
+  PainChance 50;
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +NODROPOFF
+  }
+  
+  override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
+  {
+	static const string messages[] =
+	{
+		"%o suffered the contaminated soldier's feast for blood.",
+		"Mutations have gone way too far this time."
+	};
+
+	return messages[Random(0, messages.Size() - 1)];
+  }
+  
+  States
+  {
+  Spawn:
+    P0Z_ A 10 DCY_Look();
+	Loop;
+  Look:
+	P0Z_ AABBCCDD 4 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+    P0Z_ AAABBBCCCDDD 2 A_Chase();
+	Loop;
+  Missile:
+    P0Z_ E 15
+	{
+		if (target && Distance3D(target) < 170)
+			SetStateLabel("Vomit");
+		
+		if (random(0, 2) == 0)
+		{
+			tics = 30;
+			A_Dodging(14);
+		}
+		
+		A_FaceTarget();
+	}
+    P0Z_ F 3 Bright A_SpawnProjectile("DCY_HellRazerPlasma", 32, 10);
+	P0Z_ E 5 A_FaceTarget();
+	P0Z_ F 3 Bright A_SpawnProjectile("DCY_HellRazerPlasma", 32, 10);
+	P0Z_ E 5 A_FaceTarget();
+	P0Z_ F 3 Bright A_SpawnProjectile("DCY_HellRazerPlasma", 32, 10);
+	P0Z_ E 5 A_FaceTarget();
+    Goto See;
+  Vomit:
+	P0Z_ GGGGGGGGGGG 1 A_FaceTarget();
+	P0Z_ G 1 A_StartSound("dcyvomitblood", CHAN_BODY);
+	P0Z_ GGGGGGGGGGGGGGG 2 A_SpawnProjectile("DCY_Vomit", 40, flags: CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch: -20);
+	Goto See;
+  Pain:
+    P0Z_ G 1;
+    P0Z_ G 7 A_Pain();
+    Goto See;
+  Death:
+    P0Z_ G 5;
+	P0Z_ G 5 A_Scream();
+    P0Z_ H 5;
+    P0Z_ I 5 A_NoBlocking();
+    P0Z_ JKL 3;
+    P0Z_ L -1;
+    Stop;
+  XDeath:
+	P0Z_ M 1;
+    P0Z_ M 5 A_XScream();
+	P0Z_ N 4 A_NoBlocking();
+	P0Z_ OPQRST 4;
+	P0Z_ U -1;
+    Stop;
+  Raise:
+    P0Z_ MLKJIH 3;
+    Goto See;
+  }
+}

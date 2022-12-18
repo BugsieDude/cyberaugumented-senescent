@@ -57,5 +57,8 @@ Version "4.10.0"
 #include "CAScript/Weapons/Stronk.txt"
 #include "CAScript/Weapons/TheCinerealOrdnance.txt"
 
+//Props
+#include "CAScript/Props/Lights.txt"
+
 //The status bar
 #include "CAScript/Player/HUD.txt"

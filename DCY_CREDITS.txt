@@ -55,7 +55,7 @@ Dolphman - Lightning Vulgar sprites
 Rare Ltd. - Interface & Enviroment sounds (Killer Instinct)
 FromSoftware - Bloodborne Sounds
 Activision Blizzard - Diablo Sounds
-Overlord (Mew) - Hellfire Cyberdemon and Cerebral Commander sprites
+Overlord (Mew) - Cydestroyer, Hellfire Cyberdemon, and Cerebral Commander sprites
 Bridgeburner (Aka. Eriance) - Mindmaster, Dastard, Vulgars, Infernis, Hexodenican, Wretched, Espouser, etc. sprites
 DoomedArchvile - Alacritous Guy Sprites
 HorrorMovieGuy - Monster sprites
@@ -93,7 +93,7 @@ Official Ultimate Apocalypse Mod Team - Sounds
 Dissy EX - Creator of the Reimagined sounds series
 Wereknight - Former spriter
 MUGEN - Cool ass effect sprites
-VICE - (Hell Razer) Sprites
+VICE - (Hell Razer & Soul Crusher) Sprites
 Xegethra/Amaranthus616 - Black Metal Baron, Heavy Metal Imp, etc. Sprites
 SNK Corp. - (Metal Slug) Sprites for Water Splashes
 BloodyAcid - Sprites
@@ -162,6 +162,9 @@ ItsNatureToDie - Sprites
 Orka - Sprites
 DimosHunter - Sprites
 Tango Gameworks - Sounds
+Agaures - EOD Sprites
+Turtle Rock Studios (Back 4 Blood) - Sounds
+Red Hook Studios (Darkest Dungeon) - Sounds
 
 ================================================================================
 MUSIC AND FANFARES

@@ -101,14 +101,18 @@ Class DCY_MeatballElecball : CacodemonBall Replaces CacodemonBall
   Default
   {
   Alpha 1.0;
-  Translation "0:255=%[0.00,0.00,0.00]:[0.95,0.65,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.63,1.50]";
   +BRIGHT
   }
   
   States
   {
   Spawn:
-	BAL2 AAABBB 1 A_SpawnItemEx("DCY_MeatballElecballTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+	BAL2 AAABBB 1
+	{
+		A_SpawnItemEx("DCY_MeatballElecballTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 220);
+	}
 	Loop;
   Death:
 	BAL2 C 1;
@@ -1331,6 +1335,34 @@ Class DCY_NapalmBigFire : DCY_NapalmFire
 	Goto Spawn+11;
   Gone:
 	E123 "##########" 1 { alpha -= 0.1; }
+	Stop;
+  }
+}
+
+Class DCY_Vomit : DCY_FatThrower
+{
+  Default
+  {
+  -NOGRAVITY
+  Speed 10;
+  FastSpeed 15;
+  SeeSound "";
+  DeathSound "";
+  Damage 1;
+  DamageType "Blood";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1 Bright A_SpawnItemEx("De_Blood_Trail", random(-1, 1), random(-1, 1), random(-1, 1), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Loop;
+  Death:
+	TNT1 A 1
+	{
+		for (int i = 5; i > 0; i--)
+			A_SpawnItemEx("De_Blood", random(-5,5), random(-5,5), random(-5,5), xvel: frandom(1, 5), zvel: frandom(2, 6), angle: frandom(0, 360), flags: SXF_TRANSFERTRANSLATION);
+	}
 	Stop;
   }
 }

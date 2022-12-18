@@ -68,10 +68,19 @@ Class DCY_Malloc : DCY_KnightHell
 	BRUS I 6 A_CustomMeleeAttack(15, "baron/melee");
 	Goto See;
   Pain:
-    BRUS A 3;
-	BRUS A 4 A_Pain();
+    BRUS J 4;
+	BRUS J 4 A_Pain();
 	Goto See;
   Death:
+	BRUS K 0
+	{
+		if (random(0, 2) == 0)
+			SetStateLabel("Death2");
+		if (random(0, 2) == 1)
+			SetStateLabel("Death3");
+	}
+	Goto Death1;
+  Death1:
     BRUS K 1;
 	BRUS K 6 A_Scream();
 	BRUS LM 5
@@ -85,6 +94,29 @@ Class DCY_Malloc : DCY_KnightHell
 	BRUS M 1 A_NoBlocking();
 	BRUS OPQRS 5;
 	BRUS T -1;
+	Stop;
+  Death2:
+	BRUS K 1;
+	BRUS K 6 A_Scream();
+	BD1_ A 6 A_NoBlocking();
+	BD1_ BCDE 6;
+	BD1_ F -1;
+	Stop;
+  Death3:
+	BD2_ A 1;
+	BD2_ A 6 A_Scream();
+	BD2_ B 6 A_NoBlocking();
+	BD2_ CDD 6;
+	BD2_ EF 5
+	{
+		if (damagetype != "Massacre")
+		{
+			for (int i = 2; i > 0; i--)
+				A_SpawnItemEx("DCY_Explosion_1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(10.0, 20.0), 0, 0, 0, 0, SXF_NOCHECKPOSITION);
+		}
+	}
+	BD2_ G 5;
+	BD2_ H -1;
 	Stop;
   Raise:
     BRUS S 4;

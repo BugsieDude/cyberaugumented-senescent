@@ -59,4 +59,56 @@ Class DCY_ArachnoParent : DCYMonster
   }
 }
 
-Class DCY_SmallEnemySpider : DCY_ArachnoParent { Default { BloodColor "Blue"; Translation "16:47=192:207", "168:191=192:207"; } }
+Class DCY_SmallEnemySpider : DCY_ArachnoParent
+{
+  Default
+  {
+  BloodColor "Blue";
+  SeeSound "DCYArachnophobia/Sight";
+  ActiveSound "DCYArachnophobia/Idle";
+  PainSound "DCYArachnophobia/Pain";
+  DeathSound "DCYArachnophobia/Death";
+  Tag "Arachnophobia";
+  }
+  
+  States
+  {
+  Spawn:
+	PSPI A 10 DCY_Look();
+	Loop;
+  Look:
+	"####" A 10 A_Chase(null, null, CHF_DONTMOVE|CHF_NOPLAYACTIVE);
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
+  See:
+	PSPI A 20;
+	PSPI A 3 A_BabyMetal();
+	PSPI ABBCC 3 A_Chase();
+	PSPI D 3 A_BabyMetal();
+	PSPI DEEFF 3 A_Chase();
+	Goto See+1;
+  Missile:
+	PSPI A 20 BRIGHT A_FaceTarget();
+	PSPI G 4 BRIGHT A_BspiAttack();
+	PSPI H 4 BRIGHT;
+	PSPI H 1 BRIGHT A_SpidRefire();
+	Goto Missile+1;
+  Pain:
+	PSPI I 3;
+	PSPI I 3 A_Pain();
+	Goto See+1;
+  Death:
+	PSPI J 20 A_Scream();
+	PSPI K 7 A_NoBlocking();
+	PSPI LMNO 7;
+	PSPI P -1 A_BossDeath2;
+	Stop;
+  Raise:
+	PSPI P 5;
+	PSPI ONMLKJ 5;
+	Goto See+1;
+  }
+}

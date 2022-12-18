@@ -1,6 +1,6 @@
 misc/startupdone "Sounds/Game/dcy_welcome.ogg"
 misc/kaboom "Sounds/DCY SFX/dcy_disintegrate.ogg"
-CYBECREP "Sounds/DCY SFX/dcy_creepy.ogg"
+CYBECREP "Sounds/Game/dcy_creepy.ogg"
 WHATDONE "Sounds/Announcements/Minibosses/whathaveyoudone.ogg"
 misc/secret "Sounds/Game/dcy_secret.ogg"
 PIANPIAN "Sounds/Game/dcy_piano.ogg"
@@ -225,6 +225,11 @@ $limit world/sludgegloopsmall 4
 $limit world/lavasizzle 4
 $limit world/lavsiz2 4
 $limit world/lavasizzlesmall 4
+
+DCYTorch "Sounds/Enviroment/dcy_torch_fire.ogg"
+DCYBurningBarrel "Sounds/Enviroment/dcy_burning_barrel.ogg"
+$limit DCYTorch 0
+$limit DCYBurningBarrel 0
 
 //Kamikazi
 Kamikazi/Idle "Sounds/DCY SFX/dcy_ss_kamikazi_idle.wav"

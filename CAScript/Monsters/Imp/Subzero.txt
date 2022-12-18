@@ -28,7 +28,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
 	{
 		"%o felt the frostbite of an Subzero Umbrage.",
 		"%o got the cold breath.",
-		"The weather temperature is not absolute zero, but... quite cold today thanks to that bitchass Subzero Umbrage."
+		"The weather temperature is quite cold today thanks to that bitchass Subzero Umbrage."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];

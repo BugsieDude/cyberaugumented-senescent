@@ -90,7 +90,13 @@ Class DCY_Commandant : DCY_Plutonia
 	Goto See;
   Death:
   XDeath:
-  Death.Fire:
+	UU2_ H 0
+	{
+		if ((random(0, 1) == 1) && (damagetype != "Massacre"))
+			SetStateLabel("FallOver");
+	}
+	Goto Death1;
+  Death1:
     UU2_ H 1;
 	UU2_ H 1
 	{
@@ -100,6 +106,28 @@ Class DCY_Commandant : DCY_Plutonia
 	UU2_ H 4 A_Fall();
 	UU2_ IJKLM 6;
 	UU2_ N -1;
+	Stop;
+  FallOver:
+	U2U_ A 1 { A_FaceTarget(); A_StartSound("Minigun/Loop", CHAN_WEAPON); }
+	U2U_ A 2 A_Scream();
+	U2U_ B 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 32, 15, 0, 2, 20);
+	U2U_ A 2;
+	U2U_ B 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 32, 15, 0, 2, 20);
+	U2U_ C 2;
+	U2U_ D 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 24, 15, -20, 2, 20);
+	U2U_ C 2;
+	U2U_ D 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 24, 15, -20, 2, 20);
+	U2U_ E 2 A_NoBlocking();
+	U2U_ F 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 24, 15, -20, 2, -20);
+	U2U_ G 2;
+	U2U_ H 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 24, 15, -10, 2, -40);
+	U2U_ I 2;
+	U2U_ J 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 12, 15, -20, 2, -40);
+	U2U_ K 2;
+	U2U_ L 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 12, 15, -20, 2, -20);
+	U2U_ M 2 A_StartSound("Minigun/WindDown", CHAN_WEAPON);
+	U2U_ N 2 Bright A_SpawnProjectile("DCY_ZombieTracer", 12, 15, -20, 2, -20);
+	U2U_ O -1;
 	Stop;
   Raise:
     UU2_ MLKJIH 6;

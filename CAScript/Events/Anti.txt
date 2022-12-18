@@ -5,18 +5,18 @@ CLASS Cyberaugumented_StartupHandler : StaticEventHandler
 	
 	override void OnRegister()
 	{
-		for ( int i=0; i<AllActorClasses.size(); i++ )
+		foreach (classes:AllActorClasses)
 		{
-			if ( AllActorClasses[i].GetClassName() == "BDoomer" || AllActorClasses[i].GetClassName() == "Doomer"
-				|| AllActorClasses[i].GetClassName() == "BrutalDoomer" || AllActorClasses[i].GetClassName() == "HDoomPlayer"
-				|| AllActorClasses[i].GetClassName() == "ComplexDoomPlayer")
+			if (classes.GetClassName() == "BDoomer" || classes.GetClassName() == "Doomer"
+				|| classes.GetClassName() == "BrutalDoomer" || classes.GetClassName() == "HDoomPlayer"
+				|| classes.GetClassName() == "ComplexDoomPlayer")
 				detected = true;
 			
 			if ( detected ) break;
 		}
 		
-		if ( !detected )
-			return;
+		if ( !detected ) return;
+		
 		else
 		{
 			S_ChangeMusic("");

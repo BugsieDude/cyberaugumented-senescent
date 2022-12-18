@@ -16,7 +16,7 @@ CLASS DCYMonster : Actor
   bool boss;
   Sound BurnSound;
   string tcol;
-  TextureID particlefire;
+  transient TextureID particlefire;
   
   property BurnSound: BurnSound;
   property TagColor: tcol;
