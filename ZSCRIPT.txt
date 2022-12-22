@@ -59,6 +59,7 @@ Version "4.10.0"
 
 //Props
 #include "CAScript/Props/Lights.txt"
+#include "CAScript/Props/Eye.txt"
 
 //The status bar
 #include "CAScript/Player/HUD.txt"

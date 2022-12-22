@@ -118,3 +118,72 @@ skill HOLYFUCK
  ReplaceActor = "HellKnight", "StrongestHellKnightSpawner"
  ReplaceActor = "Revenant", "StrongestRevSpawner" */
 }
+
+//New Cast Call
+Intermission Doom2Cast //replaces the standard cast call
+{
+	Cast //first enemy
+	{
+		CastClass = "DCY_Zombe" //class name
+		CastName = "Familliar Foe" //name that shows
+		AttackSound = "Missile", 1, "grunt/attack" //attack state ("Missile") + sound ("grunt/attack") and when to play it (1)
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_AutomatonSupervisor"
+		CastName = "Possessed Androids"
+		AttackSound = "Laser", 2, "AUTOLASR"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Manes"
+		CastName = "Occult"
+		AttackSound = "Breath", 1, "manes/pain"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Fusillade"
+		CastName = "Conflagration"
+		AttackSound = "Missile", 3, "BLERGH"
+		AttackSound = "Melee", 3, "Fusillade/Melee"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Contaminated"
+		CastName = "Bloodlust"
+		AttackSound = "Vomit", 3, "dcyvomitblood"
+	}
+	Cast
+	{
+		CastClass = "DCY_Wretched"
+		CastName = "Phantasmic"
+	}
+	Cast
+	{
+		CastClass = "DCY_GloomKnight"
+		CastName = "Malignance"
+	}
+	Cast
+	{
+		CastClass = "DCY_Tagati"
+		CastName = "Disarray"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Chrysalis"
+		CastName = "Avarice"
+		AttackSound = "Missile", 1, "Chrysalis/Laser"
+	}
+	Cast
+	{
+		CastClass = "DCY_Inscrutable"
+		CastName = "Abyss"
+	}
+	Cast
+	{
+		CastClass = "DCY_DestructiveEarl"
+		CastName = "War and Destruction"
+	}
+	//and so on
+	Link = Doom2Cast	//then restart it
+}

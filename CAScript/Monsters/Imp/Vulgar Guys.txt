@@ -252,24 +252,17 @@ Class DCY_Pathogen : DCY_Impe
     Goto See;
   Death:
   XDeath:
-    V4LG I 8;
-    V4LG J 8 A_Scream();
-    V4LG KL 6;
-    V4LG M 6 { A_SpawnItemEx("DCY_DarkSplash"); A_StartSound("DRKXDTH"); A_NoBlocking(); }
-	V4LG N 5;
-    V4LG O -1;
-    Stop;
-  Death.Massacre:
-	V4LG I 8;
-    V4LG J 8 A_Scream();
-    V4LG KL 6;
-    V4LG M 6 { A_StartSound("DRKXDTH"); A_NoBlocking(); }
-	V4LG N 5;
-    V4LG O -1;
+	V4LG HI 4;
+    V4LG J 4 A_Scream();
+	V4LG K 4 A_NoBlocking();
+    V4LG LMN 4;
+    V4LG O 6 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_DarkSplash"); A_StartSound("DRKXDTH"); A_NoBlocking(); }
+	V4LG PQ 5;
+    V4LG R -1;
     Stop;
   Raise:
-    V4LG ML 8;
-    V4LG KJI 6;
+    V4LG N 8;
+    V4LG MLKJI 6;
     Goto See;
   }
 }

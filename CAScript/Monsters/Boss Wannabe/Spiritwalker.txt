@@ -407,7 +407,7 @@ Class DCY_ArcheBall : CacodemonBall
   Death:
 	PR0S A 1
 	{
-		A_Explode(128, 192);
+		A_Explode(100, 192);
 		for (int i = 2; i > 0; i--)
 			A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 360), SXF_NOCHECKPOSITION);
 	}
@@ -433,7 +433,7 @@ Class DCY_ArcheBallThrust : DCY_ArcheBall
 	}
 	PR0S AB 1
 	{
-		A_SeekerMissile(3, 3);
+		A_Tracer2(2);
 		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_ArcheBallTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}

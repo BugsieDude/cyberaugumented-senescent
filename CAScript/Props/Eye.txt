@@ -1,0 +1,100 @@
+Class DCY_EvilEye : EvilEye Replaces EvilEye
+{
+  override void PostBeginPlay()
+  {
+	let eye = Spawn("DCY_UnknownEye", pos + (0, 0, 32));
+	
+	if (eye)
+		eye.master = self;
+	
+	A_AttachLight("candlelight", DynamicLight.RandomFlickerLight, 0xff6830, 20, 30);
+  }
+  
+  States
+  {
+  Spawn:
+	CAND A -1;
+	Stop;
+  }
+}
+
+Class DCY_UnknownEye : Actor
+{
+  Default
+  {
+	RenderStyle "Add";
+	-SOLID
+	-SHOOTABLE
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOGRAVITY
+	+FLOAT
+	Scale 1.0;
+  }
+  
+  int bobstate;
+  
+  static const string EvilSay[] =
+  {
+	"You feel a cold touch.",
+	"Are you okay?",
+	"You are nothing. Less than nothing. You're sick.",
+	"Welcome to your special hell.",
+	"The intrusive thoughts won.",
+	"Make it stop.",
+	"Kill.",
+	"Hahahaha...",
+	"War is hell.",
+	"Infernal fires are uprising.",
+	"Impending doom will approach soon.",
+	"Will things EVER stay the same? ...again?"
+  };
+  
+  string mesasge;
+  
+  override void Tick()
+  {
+	super.Tick();
+	Warp(master, 0, 0, 32, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	
+	mesasge = EvilSay[random(0, EvilSay.Size() - 1)];
+	
+	if (!playeringame[consolePlayer]) return;
+        
+	let curCamera = players[consolePlayer].camera;
+	if (!curCamera) curCamera = players[consolePlayer].mo;
+	if (!curCamera) return;
+
+	if (CheckIfCloser(curCamera, 300) && (random(0, 560) == 1))
+	{
+		A_StartSound("CYBECREP", CHAN_BODY, attenuation: ATTN_IDLE);
+		
+		if (random(0, 1) == 1)
+			console.printf("\c".."[".."m4".."]"..mesasge.."\c-");
+	}
+  }
+  
+  override void PostBeginPlay()
+  {
+	A_AttachLight("dcyeyelight", DynamicLight.PulseLight, 0x72ed2b, 50, 80, DynamicLight.LF_ATTENUATE);
+  }
+  
+  States
+  {
+  Spawn:
+	_E_Y ABCD 3
+	{
+		if (random(0, 256) == 1)
+			SetStatelabel("Cry");
+		if (random(0, 256) == 0)
+			SetStateLabel("Blink");
+	}
+	Loop;
+  Cry:
+	_E_Y HIJKL 3;
+	Goto Spawn;
+  Blink:
+	_E_Y EFGFE 3;
+	Goto Spawn;
+  }
+}

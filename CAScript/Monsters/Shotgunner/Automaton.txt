@@ -53,7 +53,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 	AJLS AAABBBCCCDDD 3 A_Chase();
 	Loop;
   Missile:
-	TNT1 A 0
+	AJLS A 0
 	{
 		if (health < 100 && !deploydroid)
 		{

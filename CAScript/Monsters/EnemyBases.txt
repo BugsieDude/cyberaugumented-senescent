@@ -26,7 +26,7 @@ CLASS DCYMonster : Actor
 	super.tick();
 	
 	if (!particlefire)
-		particlefire = TexMan.CheckForTexture("graphics/Particles/dcyfirep.png");
+		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
   }
   
   void A_SetPainChance(int num)

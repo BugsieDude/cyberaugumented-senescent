@@ -165,6 +165,7 @@ Tango Gameworks - Sounds
 Agaures - EOD Sprites
 Turtle Rock Studios (Back 4 Blood) - Sounds
 Red Hook Studios (Darkest Dungeon) - Sounds
+splosions - Befouler sprites
 
 ================================================================================
 MUSIC AND FANFARES
