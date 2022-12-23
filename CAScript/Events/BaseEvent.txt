@@ -1,6 +1,7 @@
 CLASS CyberaugumentedEventHandler : EventHandler
 {
   ui int inputtic;
+  bool chillax;
   float temp1;
   
   /*override void WorldThingDied(WorldEvent e)
@@ -56,6 +57,14 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	x.alternateturretsound = randompick(0, 1);
 	
 	temp1 = 15;
+	
+	if (level.levelname == "Deadly Deja Vu" || (level.mapname == "MAP46" || level.mapname == "CHX46"))
+	{
+		DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 6), id: 9999);
+		S_ChangeMusic("");
+		S_StartSound("dcy/deadlydejavu", 10, CHANF_NOPAUSE);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "This feels... familiar What is this? Am I dreaming?", (240, 120), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 5, 1), id: 10000);
+	}
   }
 
   void DTemperature(sound soundx, string colorx, string messagex)
@@ -93,6 +102,10 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		DTemperature("TemperatureDCYX", "q7", "You're going to burn.");
 		d.temperaturehotxannounce = true;
 	}
+	
+	if (level.levelname == "Deadly Deja Vu" || (level.mapname == "MAP46" || level.mapname == "CHX46"))
+		if ((level.time % 200) == 199)
+			if (!chillax) { S_ChangeMusic("*"); chillax = true; }
   }
   
   /*void DCY_TemperatureLevel(sector mySector)

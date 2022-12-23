@@ -53,12 +53,28 @@ Class DCY_SOULKING : DCYMonster
 	}
 	DAJK ND 5;
 	Goto See;
+  Laugh:
+	DAJK Y 7 Bright
+	{
+		A_StartSound("EternalPainElemental/Laugh", CHAN_VOICE);
+		A_FaceTarget();
+	}
+	DAJK ZYZYZYZ 7 Bright A_FaceTarget();
+	DAJK Y 7 Bright
+	{
+		A_StartSound("EternalPainElemental/Laugh", CHAN_VOICE);
+		A_FaceTarget();
+	}
+	DAJK ZYZYZYZ 7 Bright A_FaceTarget();
+	Goto See;
   See:
 	DAJK AABBCC 3 A_Chase();
 	Loop;
   Missile:
 	DAJK D 0
 	{
+		if (target && target.health < 50 && (random(0, 2) == 0))
+			SetStateLabel("Laugh");
 		if (random(0, 4) == 0)
 			SetStateLabel("ScreamAtPlayer");
 	}

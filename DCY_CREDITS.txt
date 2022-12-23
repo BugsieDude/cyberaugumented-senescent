@@ -166,6 +166,7 @@ Agaures - EOD Sprites
 Turtle Rock Studios (Back 4 Blood) - Sounds
 Red Hook Studios (Darkest Dungeon) - Sounds
 splosions - Befouler sprites
+Digital Extremes - Announcement Sounds
 
 ================================================================================
 MUSIC AND FANFARES
