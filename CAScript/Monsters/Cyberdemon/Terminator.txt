@@ -137,9 +137,10 @@ Class DCY_NavyTerminator : DCY_Cybie
   Death:
 	NVRM M 1;
 	NVRM M 6 A_Scream();
-	NVRM MMMMMMMMM 3 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
-	NVRM M 3
+	NVRM MMMNNNOOO 3 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
+	NVRM P 3
 	{
+		A_FaceTarget();
 		A_Fall();
 		
 		if (damagetype != "Massacre")
@@ -148,7 +149,30 @@ Class DCY_NavyTerminator : DCY_Cybie
 				A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
 			
 			A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+		
+			let arm = Spawn("DCY_TerminatorArm", pos + (60, 0, 0));
+			let head = Spawn("DCY_TerminatorHead", pos + (15, 0, 90));
+			let shoulder = Spawn("DCY_TerminatorShoulder", pos + (60, 0, 90));
+			
+			if (arm && head && shoulder)
+			{
+				head.vel.z += 10;
+				
+				arm.Vel3DFromAngle(5, self.angle - 90, self.pitch - 50);
+				head.Vel3DFromAngle(10, self.angle - 170, self.pitch);
+				shoulder.Vel3DFromAngle(8, self.angle - 70, self.pitch - 50);
+				
+				head.translation = translation;
+				shoulder.translation = translation;
+				arm.translation = translation;
+			}
 		}
+	}
+	NVRM QRSTUVWXY 5;
+	NVRM Z 5
+	{
+		A_QuakeEx(0, 0, 3, 40, 0, 900, "", QF_SCALEDOWN|QF_3D);
+		A_StartSound("Trounce/BodyPound", CHAN_BODY, attenuation: 0.5);
 	}
 	NVRM "[" 45;
 	NVRM "[" -1 A_BossDeath2();
@@ -233,33 +257,60 @@ Class DCY_NavyBallTrail : DCY_Effect
   }
 }
 
-Class DCY_TerminatorArm : Actor
+Class DCY_TerminatorArm : DCY_GoreBase
 {
   Default
   {
-  Scale 1.0;
-  Translation "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "160:167=%[0.00,0.00,0.00]:[2.00,0.20,0.20]", "208:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "128:159=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "48:79=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "5:15=%[0.00,0.00,0.00]:[0.88,0.50,0.50]", "192:207=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "112:127=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
-  BounceType "Doom";
-  Speed 8;
-  BounceFactor 0.5;
-  Radius 8;
-  Height 8;
-  Gravity 0.65;
-  Projectile;
-  -NOGRAVITY
-  +THRUACTORS
-  +BOUNCEONFLOORS
-  +BOUNCEONWALLS
+  -ROLLSPRITE
+  }
+  
+  int timer;
+  
+  override void Tick()
+  {
+	super.tick();
+	
+	if (timer < 200)
+	{
+		if ((level.time % 2) == 0)
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 120, 50, 0, frandom(-8, 8), frandom(-8, 8), 20 + frandom(-8, 8), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.04, fadestepf: 0.0001, sizestep: 0.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		timer++;
+	}
   }
   
   States
   {
   Spawn:
-	X_2X ABCDEFGHI 3 Bright;
+	N1__ AAABCDEF 3 Bright;
+	Goto Death;
+  Death:
+	N1__ F -1 { vel.x = 0; vel.y = 0; }
+	Stop;
+  }
+}
+
+Class DCY_TerminatorHead : DCY_TerminatorArm
+{  
+  States
+  {
+  Spawn:
+	N2__ AABBCCDDEEFFGGHH 1 { roll += xroll; }
 	Loop;
   Death:
-	X_2X I 4;
-	X_2X H -1;
+	N2__ I -1 { vel.x = 0; vel.y = 0; roll = 0; }
+	Stop;
+  }
+}
+
+Class DCY_TerminatorShoulder : DCY_TerminatorHead
+{
+  States
+  {
+  Spawn:
+	N3__ AABBCCDDEEFFGGHH 1 { roll += xroll; }
+	Loop;
+  Death:
+	N3__ I -1 { vel.x = 0; vel.y = 0; roll = 0; }
 	Stop;
   }
 }

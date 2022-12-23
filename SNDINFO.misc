@@ -152,6 +152,7 @@ BDRCLS3 "Sounds/Enviroment/dcy_door2_close2.wav"
 torch/blaze T0ORCH
 misc/keytry "Sounds/Enviroment/dcy_key_required.ogg"
 
+misc/teleport "Sounds/DCY SFX/Teleports/dcy_teleportation.ogg"
 dcycyber/teleport "Sounds/DCY SFX/Teleports/dcy_teleport_cyber.ogg"
 dcybosstier/teleport "Sounds/DCY SFX/Teleports/dcy_teleport_miniboss.ogg"
 dcybosstier/teleportend "Sounds/DCY SFX/Teleports/dcy_teleport_miniboss_end.ogg"

@@ -234,7 +234,31 @@ Class DCY_Arbiter : DCY_NavyTerminator
 		if (damagetype != "Massacre")
 			A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(30, 80), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
 	}
-	ARBR TTTT 0 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(50, 70), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
+	ARBR T 6
+	{
+		if (damagetype != "Massacre")
+		{
+			for (int i = 4; i > 0; i--)
+				A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(50, 70), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+		
+			let arm = Spawn("DCY_ArbiterArm", pos + (60, 0, 0));
+			let head = Spawn("DCY_ArbiterHead", pos + (15, 0, 90));
+			let shoulder = Spawn("DCY_ArbiterShoulder", pos + (60, 0, 90));
+			
+			if (arm && head && shoulder)
+			{
+				head.vel.z = 10;
+				
+				arm.Vel3DFromAngle(5, self.angle - 90, self.pitch - 50);
+				head.Vel3DFromAngle(10, self.angle - 170, self.pitch);
+				shoulder.Vel3DFromAngle(8, self.angle - 70, self.pitch - 50);
+				
+				head.translation = translation;
+				shoulder.translation = translation;
+				arm.translation = translation;
+			}
+		}
+	}
 	TNT1 A 50;
 	TNT1 A 1 A_BossDeath2();
 	Stop;
@@ -287,4 +311,43 @@ Class DCY_ArbiterTorpedo : DCY_TransmuterTorpedo
 Class DCY_ArbiterFlare : DCY_TransmuterFlare
 {
   Default { Scale 1.4; }
+}
+
+Class DCY_ArbiterArm : DCY_TerminatorArm
+{
+  States
+  {
+  Spawn:
+	A1__ AAABCDEF 3 Bright;
+	Goto Death;
+  Death:
+	A1__ F -1 { vel.x = 0; vel.y = 0; }
+	Stop;
+  }
+}
+
+Class DCY_ArbiterHead : DCY_TerminatorHead
+{
+  States
+  {
+  Spawn:
+	A2__ AABBCCDDEEFFGGHH 1 { roll += xroll; }
+	Loop;
+  Death:
+	A2__ I -1 { vel.x = 0; vel.y = 0; roll = 0; }
+	Stop;
+  }
+}
+
+Class DCY_ArbiterShoulder : DCY_TerminatorShoulder
+{
+  States
+  {
+  Spawn:
+	A3__ AABBCCDDEEFFGGHH 1 { roll += xroll; }
+	Loop;
+  Death:
+	A3__ I -1 { vel.x = 0; vel.y = 0; roll = 0; }
+	Stop;
+  }
 }

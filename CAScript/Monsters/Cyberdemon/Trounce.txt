@@ -107,9 +107,10 @@ Class DCY_Trounce : DCY_Cybie
 	F_2D FGHIIIIJK 5;
 	F_2D L 40
 	{
-		A_QuakeEx(0, 0, 3, 900, 0, 40, "", QF_SCALEDOWN|QF_3D);
+		A_QuakeEx(0, 0, 3, 40, 0, 900, "", QF_SCALEDOWN|QF_3D);
 		A_StartSound("Trounce/BodyPound", CHAN_BODY, attenuation: 0.5);
 	}
+	F_2D L 30;
 	F_2D L -1 A_BossDeath2;
 	Stop;
   }
