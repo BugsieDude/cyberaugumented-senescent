@@ -2691,3 +2691,18 @@ DCYArachnophobia/death1 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_dea
 DCYArachnophobia/death2 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_death2.ogg"
 DCYArachnophobia/death3 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_death3.ogg"
 DCYArachnophobia/death4 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_death4.ogg"
+
+$random DCYLost/Scream { DCYLost/Scream1 DCYLost/Scream2 DCYLost/Scream3 DCYLost/Scream4 DCYLost/Scream5 DCYLost/Scream6 }
+DCYLost/Scream1 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream1.ogg"
+DCYLost/Scream2 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream2.ogg"
+DCYLost/Scream3 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream3.ogg"
+DCYLost/Scream4 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream4.ogg"
+DCYLost/Scream5 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream5.ogg"
+DCYLost/Scream6 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream6.ogg"
+$volume DCYLost/Scream 0.5
+$random DCYLost/Death { DCYLost/Death1 DCYLost/Death2 DCYLost/Death3 DCYLost/Death4 DCYLost/Death5 }
+DCYLost/Death1 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_death1.ogg"
+DCYLost/Death2 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_death2.ogg"
+DCYLost/Death3 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_death3.ogg"
+DCYLost/Death4 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_death4.ogg"
+DCYLost/Death5 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_death5.ogg"
