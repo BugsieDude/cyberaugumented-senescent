@@ -31,8 +31,15 @@ Class DCY_Overdemoniac : DCY_VileParent
   States
   {
   Spawn:
-	DSJ1 A 10 A_Look();
+	DSJ1 A 10 DCY_Look();
 	Loop;
+  Look:
+	#### AABBCCDDEEFF 2 DCY_LookingForPlayer();
+	#### # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	#### # 0 DCY_AlertSound();
+	Goto See;
   See:
 	DSJ1 AAABBBCCCDDDEEEFFF 2 A_Chase(null, "Missile");
 	Loop;

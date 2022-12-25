@@ -247,10 +247,8 @@ Class DCY_Arbiter : DCY_NavyTerminator
 			
 			if (arm && head && shoulder)
 			{
-				head.vel.z = 10;
-				
 				arm.Vel3DFromAngle(5, self.angle - 90, self.pitch - 50);
-				head.Vel3DFromAngle(10, self.angle - 170, self.pitch);
+				head.Vel3DFromAngle(10, self.angle - 170, self.pitch - 100);
 				shoulder.Vel3DFromAngle(8, self.angle - 70, self.pitch - 50);
 				
 				head.translation = translation;

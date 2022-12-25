@@ -347,25 +347,17 @@ Class DCyb_HUD : BaseStatusBar
   {
 	super.Tick();
 	
-	if (!CY_GetCVar("cl_hudshake"))
+	if ((CPlayer.health > 0) && (CPlayer.health < 10) && CY_GetCVar("cl_dcy_alarmsound"))
 	{
-		xx = 0;
-		yy = 0;
-		return;
+		if ((level.time % 36) == 0)
+			S_StartSound("slayer/lowhealth", 14, volume: 0.75);
 	}
+			
+	if (!CY_GetCVar("cl_hudshake")) { xx = 0; yy = 0; }
 	else
 	{
-		if (CPlayer.mo.CountInv("DCY_BerserkSpeed"))
-		{
-			xx = frandom(-1.5, 1.5);
-			yy = frandom(-1.5, 1.5);
-		}
-		else
-		{
-			xx = 0;
-			yy = 0;
-		}
-		return;
+		xx = (CPlayer.mo.CountInv("DCY_BerserkSpeed")) ? frandom(-1.5, 1.5) : 0;
+		yy = (CPlayer.mo.CountInv("DCY_BerserkSpeed")) ? frandom(-1.5, 1.5) : 0;
 	}
   }
 }

@@ -109,31 +109,60 @@ Class DCY_SphereRing : Actor
   +BRIGHT
   }
   
+  float xpos;
+  float ypos;
+  float zpos;
+  float wangle;
+  float scaleincrease;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	
+	angle = (frandom(-360.00, 360.00));
+	pitch = (frandom(-360.00, 360.00));
+	roll = (frandom(-360.00, 360.00));
+	scaleincrease = 0.06;
+	
+	if (master)
+	{
+		xpos = frandom(-5.0, 5.0);
+		ypos = frandom(-5.0, 5.0);
+		zpos = frandom(-5.0, 5.0);
+		wangle = frandom(0, 360);
+	}
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (master)
+		Warp(master, xpos, ypos, zpos, wangle, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+	
+	if (scaleincrease > 0)
+		scaleincrease -= 0.005;
+  }
+  
   States
   {
   Spawn:
 	EF3_ A 0 NoDelay;
 	Goto Looper;
   Looper:
-	"####" "#" 0;
 	"####" "#" 1
 	{
-		A_SetAngle(frandom(-360.00, 360.00));
-		A_SetPitch(frandom(-360.00, 360.00));
-		A_SetRoll(frandom(-360.00, 360.00));
-		A_SetScale(frandom(0.35, 0.45), frandom(0.35, 0.45));
-	}
-	"####" "#" 1
-	{
-		A_SetScale(Scale.X+0.12, Scale.Y+0.12);
+		A_SetScale(Scale.X+0.06+scaleincrease, Scale.Y+0.06+scaleincrease);
 		A_FadeOut(0.025, 0);
+		
+		if (alpha < 0)
+			Destroy();
 	}
-	"####" "#" 0 A_JumpIf(Alpha <= 0.00000000000000001, "Null");
-	Goto Looper+2;
+	Loop;
   }
 }
 
-Class DCY_SoulSphereRing : DCY_SphereRing { States { Spawn: EF3_ F 0 NoDelay; Goto Looper; } }
+Class DCY_SoulSphereRing : DCY_SphereRing { States { Spawn: EF3_ K 0 NoDelay; Goto Looper; } }
 Class DCY_MegaSphereRing : DCY_SphereRing { States { Spawn: EF3_ G 0 NoDelay; Goto Looper; } }
 Class DCY_UncoRing : DCY_SphereRing { States { Spawn: EF3_ E 0 NoDelay; Goto Looper; } }
 Class DCY_RehabiliationRing : DCY_SphereRing { States { Spawn: EF3_ B 0 NoDelay; Goto Looper; } }

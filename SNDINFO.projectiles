@@ -384,9 +384,6 @@ PsiPistol/LargeLaser BIGLAZHR
 PsiPistol/SmallLaser SMALLAZR
 $limit PsiPistol/SmallLaser 0
 
-LightningVulgar/Fire ZAPPER
-LightningVulgar/Explode ZAPPERX
-
 MLSRLOOP MLSRLOOP
 $pitchshift MLSRLOOP 0
 //Other Explosionz
@@ -511,3 +508,5 @@ LAVAIMP2 LAVAIMP2
 
 DCYGhostProjectile "Sounds/Projectiles/dcy_ghost_scream.wav"
 BLERGH BLERGH
+
+DCYGrenadeTick "Sounds/Projectiles/dcy_grenade_tick.wav"

@@ -117,8 +117,8 @@ Class DCY_LightningVulgarShot : FastProjectile
   Radius 10;
   Height 10;
   DamageType "Lightning";
-  SeeSound "LightningVulgar/Fire";
-  DeathSound "LightningVulgar/Explode";
+  SeeSound "ElectricBall/Sight";
+  DeathSound "ElectricBall/Death";;
   Translation "0:255=%[0.00,0.00,0.00]:[1.02,1.02,2.00]";
   Damage 7;
   +BRIGHT

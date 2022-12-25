@@ -54,7 +54,8 @@ Class DCY_Xusqoox : DCY_VileParent
   {
 	Super.PostBeginPlay();
 	ThingAnnounce("Ready to feel the definition of badassery?", "SDANGER0", "q0");
-
+	
+	awaken = false;
 	A_SpawnItemEx("DCY_XusqooxCrystal", flags: SXF_SETMASTER);
 	A_SpawnItemEx("DCY_XusqooxCrystal2", flags: SXF_SETMASTER);
   }
@@ -64,16 +65,34 @@ Class DCY_Xusqoox : DCY_VileParent
   Spawn:
 	XUSQ A 10
 	{
-		if (awaken == false)
-			A_LookEx(LOF_FULLVOLSEESOUND, 0, 0, 0, 180, "Awaken");
+		if (!awaken)
+			A_LookEx(LOF_NOSEESOUND|LOF_NOSOUNDCHECK, 0, 0, 0, 180, "Unprepared");
 		else
-			A_Look();
+			DCY_Look();
 	}
 	Loop;
+  Unprepared:
+	#### # 0
+	{
+		bNoPain = true;
+		
+		if (awaken)
+			SetStateLabel("Look");
+	}
+	#### AABBCCDDEEFF 4 A_Chase(null, "Awaken", CHF_NOPLAYACTIVE);
+	#### # 0 A_CheckSight("Unprepared");
+	Goto Awaken;
+  Look:
+	#### AABBCCDDEEFF 3 DCY_LookingForPlayer();
+	#### # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	#### # 0 DCY_AlertSound();
+	Goto See;
   Awaken:
 	XUSQ K 4
 	{
-		bNoPain = true;
+		DCY_AlertSound();
 		A_SpawnItemEx("DCY_XusqooxAuraStart");
 		A_SpawnItemEx("DCY_XusqooxAuraStart2");
 	}

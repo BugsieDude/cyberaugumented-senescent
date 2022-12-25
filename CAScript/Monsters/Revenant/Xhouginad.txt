@@ -8,7 +8,7 @@ Class DCY_Xhouginad : DCY_Rev
   DamageFactor "Fluorescent", 0.000;
   Speed 5;
   FastSpeed 7;
-  Obituary "That one fluorescent demon, Xhouginad swiped %o out of this battlefield.";
+  Obituary "Xhouginad swiped %o out of the battlefield.";
   +FLOAT
   +NOGRAVITY
   +MISSILEEVENMORE
@@ -18,8 +18,9 @@ Class DCY_Xhouginad : DCY_Rev
   +DONTHARMSPECIES
   +NOINFIGHTING
   +DONTHARMCLASS
-  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
-  Tag "\c[Sapphire]Revenant Mechaprototype - Xhouginad\c-";
+  BloodType "DCY_SpiritBlood";
+  BloodColor "Cyan";
+  Tag "\c[Sapphire]Remainder Mechaprototype - Xhouginad\c-";
   SeeSound "DarkDroid/Sight";
   ActiveSound "DarkDroid/Active";
   PainSound "";

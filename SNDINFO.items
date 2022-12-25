@@ -89,8 +89,9 @@ GreenArmor/Pickup GRENARMR
 BlueArmor/Pickup BLUEARMR
 RedArmor/Pickup SARMORPK
 
-SoulSphere/PickedUp SOULSPHE
-PowerSphere/PickedUp DSPOWSPH
+SoulSphere/PickedUp "Sounds/Inventory/dcy_soulsphere.ogg"
+Doom4/Megasphere "Sounds/Inventory/dcy_d4_megasphere.ogg"
+PowerSphere/PickedUp "Sounds/Inventory/dcy_powersphere.ogg"
 StronkSphere/PickedUp SPHERE01
 AnotherStronkSphere/PickedUp SPHERE02
 MysteriousSphere/PickedUp SPHERE03
@@ -105,6 +106,12 @@ Berserk/Warning DSBRSWRN
 Berserk/End DSBRSEND
 
 RIPANDTEAR BATTLCRY
+
+//idle noises
+SoulSphere/IdleNoise "Sounds/Inventory/dcy_soulsphere_idle.ogg"
+MegaSphere/IdleNoise "Sounds/Inventory/dcy_d4_megasphere_idle.ogg"
+Invulnerability/IdleNoise "Sounds/Inventory/dcy_invulnerability_idle.ogg"
+Supremacy/IdleNoise "Sounds/Inventory/dcy_supremacy_idle.ogg"
 
 //me luv item noises :)
 POWERGET POWERGET
@@ -141,7 +148,6 @@ DARKPKP DARKPKP
 MECHPKUP MECHPKUP
 
 Ring/Get RINGPKUP
-Doom4/Megasphere D4MGSPHR
 RareItem/Pickup RAREITEM
 PowerFragment/Pickup POWFRGMT
 AllMap/Loop MAP2LOOP

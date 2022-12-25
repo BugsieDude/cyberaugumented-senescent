@@ -30,8 +30,15 @@ Class DCY_Prestidigitator : DCY_VileParent
   States
   {
   Spawn:
-	FWDZ E 10 A_Look();
+	FWDZ E 10 DCY_Look();
 	Loop;
+  Look:
+	#### E 7 DCY_LookingForPlayer();
+	#### # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	#### # 0 DCY_AlertSound();
+	Goto See;
   See:
 	FWDZ E 4 A_VileChase();
 	Loop;

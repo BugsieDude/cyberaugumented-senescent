@@ -75,6 +75,8 @@ PLYSMSH2 "Sounds/Player/dcy_protag_smash2.ogg"
 PLYSMSH3 "Sounds/Player/dcy_protag_smash3.ogg"
 PLYSMSH4 "Sounds/Player/dcy_protag_smash4.ogg"
 
+slayer/lowhealth "Sounds/Player/dcy_protag_lowhealth.ogg"
+
 slayer/noway "Sounds/Player/dcy_no_way.ogg"
 $random Water/Surface { WATERSR1 WATERSR2 WATERSR3 WATERSR4 WATERSR5 WATERSR6 WATERSR7 }
 WATERSR1 "Sounds/Terrain/dcy_emerge1.ogg"

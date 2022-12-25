@@ -1,0 +1,8 @@
+Class DCY_TheristisPsichisl : DCY_Plutonia
+{
+  Default
+  {
+  Health 666;
+  Tag "\c[j1]Theristis Psichisl\c-";
+  }
+}

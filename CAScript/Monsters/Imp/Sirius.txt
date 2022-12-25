@@ -3,19 +3,20 @@ Class DCY_SiriusImp : DCY_Impe
   Default
   {
   Tag "\c[Sapphire]Castrator\c-";
-  Obituary "%o was in blue ash by a Castrator.";
-  HitObituary "%o was lacerated by a Castrator.";
+  Obituary "%o got struck by the bolts of the Castrator.";
+  HitObituary "%o got lacerated by a Castrator.";
   Speed 8;
   FastSpeed 10;
   Mass 200;
-  Health 100;
-  Translation "48:79=%[0.00,0.00,0.00]:[0.57,0.57,0.77]", "168:191=%[0.00,0.00,0.00]:[0.55,1.46,2.00]", "16:47=%[0.00,0.00,0.00]:[0.55,1.46,2.00]", "128:159=%[0.00,0.00,0.00]:[0.57,0.57,0.77]", "5:15=%[0.00,0.00,0.00]:[0.44,0.44,0.44]", "236:239=%[0.00,0.00,0.00]:[0.57,0.57,0.77]", "160:167=%[0.00,0.00,0.00]:[0.57,0.57,0.77]", "112:127=%[0.00,0.00,0.00]:[0.57,0.57,0.77]";
+  Health 200;
+  Translation "168:191=%[0.02,0.00,0.55]:[1.01,2.00,2.00]", "80:111=[255,255,255]:[0,0,0]", "1:2=%[0.00,0.00,0.00]:[0.00,0.00,0.00]", "5:8=[0,0,0]:[0,0,0]", "3:3=[63,63,63]:[115,115,115]", "112:127=[0,255,255]:[10,0,196]", "160:167=%[0.00,0.50,0.50]:[1.10,1.15,2.00]", "208:239=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
   SeeSound "Unwilling/Sight";
   ActiveSound "Unwilling/Active";
   PainSound "Unwilling/Pain";
   HowlSound "Unwilling/Pain";
   DeathSound "Unwilling/Death";
   BloodColor "1B 81 E0";
+  BloodType "AndroidNeonFluid";
   +NOTARGET
   +DONTHARMCLASS
   +MISSILEEVENMORE
@@ -24,108 +25,167 @@ Class DCY_SiriusImp : DCY_Impe
   States
   {
   Spawn:
-    TROO A 10 DCY_Look();
+    DRKF A 10 DCY_Look();
 	Loop;
   Look:
 	"####" AABBCCDD 4 DCY_LookingForPlayer();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
-	"####" "#" 0 DCY_AlertSound();
+	DRKF [ 15 { A_FaceTarget(); DCY_AlertSound(); }
+	DRKF YZYZYZYZYZYZYZYZ 2 A_FaceTarget();
 	Goto See;
   See:
-    TNT1 A 0 A_Jump(128, "Avoid");
-    TROO AABBCCDD 3 A_Chase();
+    DRKF AABBCCDD 3
+	{
+		if (random(0, 3) == 0)
+		{
+			A_Dodging(10);
+			tics = 10;
+		}
+		
+		A_Chase();
+	}
 	Loop;
-  Avoid:
-    TROO A 1 A_Dodging(10);
-	TROO AAAAAA 1;
-	Goto See;
   Melee:
 	TNT1 A 0 A_StartSound("Unwilling/Attack", CHAN_7);
-    TROO EF 3 A_FaceTarget();
-	TROO G 3 A_CustomMeleeAttack(5 * random(1, 10), "imp/melee");
+    DRKF EF 8 A_FaceTarget();
+	DRKF GGGGGGGG 1
+	{
+		if ((level.time % 10) == 0)
+			A_CustomMeleeAttack(5 * random(1, 10), "imp/melee", damagetype: "Lightning");
+		
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), 36 + frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 100);
+	}
 	Goto See;
   Missile:
-    TNT1 A 0 A_Jump(80, "Triple");
+    TNT1 A 0 A_Jump(80, "Alert");
 	Goto NormalMissile;
   NormalMissile:
-    TROO EF 3 A_FaceTarget();
-	TROO GG 0 A_SpawnProjectile("DCY_SiriusImpBall", 30, 0, random(-10, 10));
-	TROO G 3;
-	TROO EF 3 A_FaceTarget();
-	TROO GG 0 A_SpawnProjectile("DCY_SiriusImpBall", 30, 0, random(-10, 10));
-	TROO G 3;
-	Goto See;
-  Triple:
-    TROO EF 3 A_FaceTarget();
-	TROO GGG 0 A_SpawnProjectile("DCY_SiriusImpBall", 30, 0, random(-17, 17));
-	TROO G 3;
+	DRKF E 5 Bright A_FaceTarget();
+    DRKF FFFFFFFFFFF 3 Bright
+	{
+		A_FaceTarget();
+
+		for (int i = -20; i < 21; i += 40)
+			A_SpawnItemEx("DCY_ElecTrailBase", frandom(-5, 5), i + frandom(-5, 5), 36 + frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	}
+	DRKF G 5 Bright
+	{
+		A_FaceTarget();
+		
+		for (int i = 6; i > -7; i -= 12)
+			A_SpawnProjectile("DCY_SiriusImpBall", 30, i, random(-1, 1));
+	}
 	Goto See;
   Pain:
-    TROO H 6 A_Pain();
-	TNT1 A 0 A_Jump(80, "Avoid");
+    DRKF H 6 A_Pain();
+	DRKF A 0
+	{
+		if (random(0, 2) == 0)
+		{
+			A_Dodging(10);
+			tics = 10;
+		}
+	}
 	Goto See;
   Death:
-    TNT1 A 0 A_Jump(128, "Death2");
-	Goto NormalDeath;
-  NormalDeath:
-    TROO I 1;
-	TROO I 1 A_Scream();
-	TROO I 5 A_NoBlocking();
-	TROO JKL 7;
-	TROO M -1;
-	Stop;
-  Death2:
-    1D_8 A 1;
-	1D_8 A 6 A_ScreamAndUnblock();
-	1D_8 CD 7;
-	1D_8 E -1;
-	Stop;
+    DRKF L 6;
+    DRKF M 6 A_Scream();
+    DRKF N 5;
+    DRKF O 5 A_NoBlocking();
+	DRKF PPPPP 3 A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), 16 + frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 100);
+    DRKF P -1;
+    Stop;
   XDeath:
-    TNT1 A 0 A_Jump(128, "XDeath1");
-	Goto XDeathNormal;
-  XDeathNormal:
-    TROO N 6 A_Scream();
-	TROO O 6 A_XScream();
-	TROO P 4 A_NoBlocking();
-	TROO QRST 6;
-	TROO U -1;
-	Stop;
-  XDeath1:
-    1D_1 A 6 A_Scream();
-	1D_1 B 6 A_XScream();
-	1D_1 C 6 A_NoBlocking();
-	1D_1 DEFGH 6;
-	1D_1 I -1;
+    DRKF Q 5;
+    DRKF R 5 A_XScream();
+    DRKF S 5 A_NoBlocking();
+    DRKF TUVW 5;
+    DRKF X -1;
+    Stop;
+  }
+}
+
+Class DCY_SiriusImpBall : CacodemonBall
+{
+  Default
+  {
+  Speed 20;
+  FastSpeed 30;
+  Translation "0:255=%[0.02,0.00,0.55]:[1.01,2.00,2.00]";
+  DamageType "Electric";
+  SeeSound "ElectricBall/Sight";
+  DeathSound "ElectricBall/Death";
+  Damage 7;
+  +ROLLSPRITE
+  Scale 0.65;
+  }
+  
+  States
+  {
+  Spawn:
+	DLIT DEFGH 1
+	{
+		A_SetRoll(Roll+20);
+		vel.y += frandom(-0.1, 0.1);
+		vel.z += frandom(-0.1, 0.1);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecTrailBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_CastratorSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 200);
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		vel.x = 0;
+		vel.y = 0;
+		vel.z = 0;
+		
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0xacfdfc, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	TSAR EFGHIJKLMNO 1
+	{
+		A_Explode(4, 100, damagetype: "lightning");
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
+	TNT1 AAAA 3
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
 	Stop;
   }
 }
 
-Class DCY_SiriusImpBall : DoomImpBall
+Class DCY_CastratorSpark : DCY_Effect
 {
+  int timer;
+  
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[1.06,1.73,1.95]";
-  Speed 20;
-  Damage 2;
-  +NEVERFAST
-  +BRIGHT
-  +ROLLSPRITE
-  SeeSound "Freedoom/Imp/Attack";
-  DeathSound "Freedoom/Imp/ShotX";
+	Translation "0:255=%[0.02,0.00,0.55]:[1.01,2.00,2.00]";
+	Scale 0.2;
+	+NOGRAVITY
+	+NOCLIP
+	+NOINTERACTION
   }
+  
   States
   {
   Spawn:
-    BAL1 AAABBB 1
+    TNT1 A 10 { tics = frandom(2, 6); }
+	TNT1 A 1
 	{
-		A_SetRoll(frandom(0.00, 360.00));
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), zvel: 0.25, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 80);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
 	}
-	Loop;
-  Death:
-    BAL1 CDE 5;
 	Stop;
   }
 }

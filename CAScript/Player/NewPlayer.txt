@@ -50,7 +50,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 	};
 	
 	S_StartSound("misc/secret", 10, attenuation: ATTN_IDLE);
-	A_Print("\c".."[".."j1".."]"..messages[random(0, messages.Size() - 1)].."\cL");
+	A_Log("\c".."[".."j1".."]"..messages[random(0, messages.Size() - 1)].."\cL");
 	return false;
   }
   
@@ -65,7 +65,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 	
 	if (waterlevel == 3)
 	{
-		if (playwatersound == 0 && submerged == false)
+		if (playwatersound == 0 && !submerged)
 		{
 			A_StartSound((self.vel.z < -4.5) ? "Water/SplashDive" : "Water/Dive", 10, CHANF_OVERLAP, attenuation: ATTN_IDLE);
 			playwatersound = 1;
@@ -75,7 +75,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 	else
 		playwatersound = 0;
 	
-	if (waterlevel < 3 && submerged == true)
+	if (waterlevel < 3 && submerged)
 	{
 		if (playwatersound == 0)
 		{

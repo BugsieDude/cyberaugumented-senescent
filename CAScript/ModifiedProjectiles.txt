@@ -12,6 +12,77 @@ Mixin Class DCY_ProjectileEffects
   }
 }
 
+Class DCY_EnemyGrenade : DCY_GoreBase
+{
+  Default
+  {
+	Speed 15;
+	-THRUACTORS
+  }
+  
+  int timer;
+  bool exploded;
+  
+  void DCY_Tick()
+  {
+	A_StartSound("DCYGrenadeTick", CHAN_BODY);
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (level.isFrozen()) return;
+	
+	if (!exploded)
+	{
+		if ((timer < 60) && (level.time % 30) == 0) { frame = 1; A_AttachLight("grenadelight", DynamicLight.PointLight, 0xff0000, 30, 30); A_StartSound("DCYGrenadeTick", CHAN_BODY); }
+		else if ((timer > 60) && (level.time % 8) == 0) { frame = 1; A_AttachLight("grenadelight", DynamicLight.PointLight, 0xff0000, 30, 30); A_StartSound("DCYGrenadeTick", CHAN_BODY); }
+			
+		if ((timer < 60) && (level.time % 30) == 5) { frame = 0; A_RemoveLight("grenadelight"); }
+		if ((timer > 60) && (level.time % 8) == 5) { frame = 0; A_RemoveLight("grenadelight"); }
+			
+		if ((level.time % 2) == 0)
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 120, 20, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), accelz: 0.1, startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+	}
+	
+	timer++;
+	
+	if (timer == 120)
+	{
+		exploded = true;
+		A_StartSound("DCYExplode2", CHAN_WEAPON);
+		SetStateLabel("Explode");
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	EGD_ # 1 A_SetRoll(Roll + (xroll * 2));
+	Loop;
+  Death:
+	EGD_ # -1 { roll = 0; }
+	Stop;
+  Explode:
+	MNAD A 1 Bright;
+	NBKL D 2 Bright
+	{
+		A_Explode();
+		bNoGravity = true;
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_QuakeEx(2, 2, 2, 20, 0, 450, "", QF_SCALEDOWN|QF_3D);
+		A_Explode(128, 160, 1, 0, 25);
+	}
+	NBKL E 2 Bright
+	{
+		for (int i = 4; i > 0; i--)
+			A_SpawnItemEx("DCY_Explosion_1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-2.0, 2.0), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-0.5, 2.5), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	NBKL FGHIJKLM 2 Bright;
+	Stop;
+  }
+}
+  
 Class DCY_ImpFlame1 : DCY_Effect
 {
   Default

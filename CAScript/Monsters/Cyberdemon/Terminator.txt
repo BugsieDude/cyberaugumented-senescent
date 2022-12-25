@@ -137,7 +137,7 @@ Class DCY_NavyTerminator : DCY_Cybie
   Death:
 	NVRM M 1;
 	NVRM M 6 A_Scream();
-	NVRM MMMNNNOOO 3 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
+	NVRM MMMNNNOOO 3 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_AndroidExplosionSmaller", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION); }
 	NVRM P 3
 	{
 		A_FaceTarget();
@@ -155,11 +155,9 @@ Class DCY_NavyTerminator : DCY_Cybie
 			let shoulder = Spawn("DCY_TerminatorShoulder", pos + (60, 0, 90));
 			
 			if (arm && head && shoulder)
-			{
-				head.vel.z += 10;
-				
+			{	
 				arm.Vel3DFromAngle(5, self.angle - 90, self.pitch - 50);
-				head.Vel3DFromAngle(10, self.angle - 170, self.pitch);
+				head.Vel3DFromAngle(10, self.angle - 170, self.pitch - 100);
 				shoulder.Vel3DFromAngle(8, self.angle - 70, self.pitch - 50);
 				
 				head.translation = translation;

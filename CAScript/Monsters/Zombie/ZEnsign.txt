@@ -28,6 +28,7 @@ Class DCY_ZEnsign : DCY_Zombe
   
   protected int weaponslot;
   int missile;
+  int grenadecooldown;
   
   void A_ZEnsignASG()
   {
@@ -77,6 +78,14 @@ Class DCY_ZEnsign : DCY_Zombe
 	return ResolveState(null);
   }
   
+  override void Tick()
+  {
+	super.tick();
+	
+	if (grenadecooldown > 0)
+		grenadecooldown--;
+  }
+  
   States
   {
   Spawn:
@@ -113,8 +122,40 @@ Class DCY_ZEnsign : DCY_Zombe
     #### AABBCCDD 2 A_EnsignChase();
 	Loop;
   Missile:
-    #### # 1 A_EnsignChoose("Missile1", "Missile2", "Missile3");
-	Goto Missile1;
+    #### # 1
+	{
+		if (random(0, 2) == 1) A_StartSound(ActiveSound, CHAN_VOICE);
+		
+		if ((random(0, 4) == 1) && grenadecooldown == 0)
+			SetStateLabel("Grenade");
+		
+		A_EnsignChoose("Missile1", "Missile2", "Missile3");
+	}
+	Goto Choose;
+  Choose:
+	#### # 0 A_EnsignChoose("Missile1", "Missile2", "Missile3");
+	Goto See;
+  Grenade:
+	#### Y 10
+	{
+		if (grenadecooldown > 0)
+			A_EnsignChoose("Missile1", "Missile2", "Missile3");
+		
+		A_FaceTarget();
+	}
+	#### Z 10
+	{	
+		let grenade = Spawn("DCY_EnemyGrenade", pos + (0,0,32));
+		if (grenade)
+		{
+			grenade.target = self;
+			grenade.angle = angle;
+			grenade.Vel3DFromAngle((target && distance3D(target) > 500) ? 34 : 20, grenade.angle, BulletSlope() - 10);
+		}
+		
+		grenadecooldown == 400;
+	}
+	Goto See;
   Missile1:
 	UU5_ E 5 A_FaceTarget();
 	TNT1 A 0 A_Jump(100, "Missile1NoJumpDodge");
@@ -235,14 +276,48 @@ Class DCY_ZEnsign : DCY_Zombe
 	}
 	Goto See;
   Death:
-    #### H 6;
-	#### I 6 A_StartSound("ZEnsign/Death", CHAN_VOICE, 0, 1, 0.45);
+	#### # 0
+	{
+		if (random(0, 3) == 0)
+			SetStateLabel("Death1");
+		if (random(0, 3) == 1)
+			SetStateLabel("Death2");
+		if (random(0, 3) == 3)
+			SetStateLabel("Death3");
+	}
+	Goto NormalDeath;
+  NormalDeath:
+    #### H 6 A_SetScale(randompick(-1, 1) * Scale.X, Scale.Y);
+	#### I 6 A_Scream();
 	#### J 6 A_NoBlocking();
 	#### K 6;
 	#### L -1;
 	Stop;
+  Death1:
+	U_DU A 6;
+	U_DU B 6 A_Scream();
+	U_DU CBC 6;
+	U_DU D 6 A_NoBlocking();
+	U_DU E -1;
+	Stop;
+  Death2:
+	U_D1 A 6;
+	U_D1 B 6 A_Scream();
+	U_D1 C 5 A_NoBlocking();
+	U_D1 DEFGHI 4;
+	U_D1 J -1;
+	Stop;
+  Death3:
+	U_D2 A 6 A_SetScale(randompick(-1, 1) * Scale.X, Scale.Y);
+	U_D2 B 7 A_Scream();
+	U_D2 C 6 A_NoBlocking();
+	U_D2 DE 5;
+	U_D2 F -1;
+	Stop;
   Raise:
-    #### KJIH 5;
+	UU5_ # 0 A_SetScale(Scale.X, Scale.Y);
+    UU5_ KJIH 5;
+	#### # 0 A_EnsignChoose("ZSG", "ZMG", "ZRG");
 	Goto See;
   }
 }

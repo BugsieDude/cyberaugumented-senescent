@@ -27,10 +27,21 @@ Class DCY_Hexodenican : DCY_VileParent
   States
   {
   Spawn:
-	H3X_ A 10 A_Look();
+	H3X_ A 10  DCY_Look();
 	Loop;
+  Look:
+	#### AAAABBBBCCCCDDDDEEEEFFFF 2
+	{
+		DCY_LookingForPlayer();
+		if (!sv_effectchoker) A_SpawnItemEx("DCY_HexodenicanTrail2", -13, 0, 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	#### # 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	#### # 0 DCY_AlertSound();
+	Goto See;
   See:
-	H3X_ AAAAABBBBBCCCCCDDDDD 1
+	H3X_ AAAAABBBBBCCCCCDDDDDEEEEEFFFFF 1
 	{
 		A_Chase();
 		if (!sv_effectchoker) A_SpawnItemEx("DCY_HexodenicanTrail2", -13, 0, 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);

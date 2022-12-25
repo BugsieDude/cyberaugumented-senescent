@@ -847,7 +847,7 @@ hellcaco/death "Sounds/DCY Monsters/Custodian/dcy_hellcaco_death.ogg"
 
 Monsters/NBWalk "Sounds/DCY Monsters/Mechanoid/step.ogg"
 
-$random ZEnsign/Sight { SUP2SIT1 SUP2SIT2 SUP2SIT3 SUP2SIT4 SUP2SIT5 SUP2SIT6 SUP2SIT7 SUP2SIT8 SUP2SIT9 SUP2SIT10 }
+$random ZEnsign/Sight { SUP2SIT1 SUP2SIT2 SUP2SIT3 SUP2SIT4 SUP2SIT5 SUP2SIT6 SUP2SIT7 SUP2SIT8 SUP2SIT9 }
 SUP2SIT1 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight1.ogg"
 SUP2SIT2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight2.ogg"
 SUP2SIT3 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight3.ogg"
@@ -857,7 +857,6 @@ SUP2SIT6 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight6.ogg"
 SUP2SIT7 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight7.ogg"
 SUP2SIT8 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight8.ogg"
 SUP2SIT9 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight9.ogg"
-SUP2SIT10 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight10.ogg"
 $random ZEnsign/Active { SUP2SIT1 SUP2SIT2 SUP2SIT3 SUP2SIT4 SUP2SIT5 SUP2SIT7 SUP2SIT9 SUP2SIT10 SUP2ACT1 SUP2ACT2 SUP2ACT3 SUP2ACT4 SUP2ACT5 SUP2ACT6 SUP2ACT7 SUP2ACT8 SUP2ACT9 SUP2ACT10 SUP2ACT11 SUP2ACT12 SUP2ACT13 }
 SUP2ACT1 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle1.ogg"
 SUP2ACT2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle2.ogg"
@@ -872,9 +871,10 @@ SUP2ACT10 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle10.ogg"
 SUP2ACT11 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle11.ogg"
 SUP2ACT12 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle12.ogg"
 SUP2ACT13 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle13.ogg"
-$random ZEnsign/Pain { SUP2PAIN SUP2PAI2 }
+$random ZEnsign/Pain { SUP2PAIN SUP2PAI2 SUP2PAI3 }
 SUP2PAIN "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain1.ogg"
 SUP2PAI2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain2.ogg"
+SUP2PAI3 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain3.ogg"
 $random ZEnsign/Death { SUP2DTH1 SUP2DTH2 SUP2DTH3 SUP2DTH4 SUP2DTH5 SUP2DTH6 SUP2DTH7 }
 SUP2DTH1 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death1.ogg"
 SUP2DTH2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death2.ogg"

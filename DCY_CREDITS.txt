@@ -167,6 +167,8 @@ Turtle Rock Studios (Back 4 Blood) - Sounds
 Red Hook Studios (Darkest Dungeon) - Sounds
 splosions - Befouler sprites
 Digital Extremes - Announcement Sounds
+Saber Interactive - Sounds
+Fallout - Sounds
 
 ================================================================================
 MUSIC AND FANFARES
