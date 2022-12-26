@@ -50,7 +50,9 @@ Class DCY_Lemures : DCY_VileParent
 		for (int i = 2; i > 0; i--)
 			A_Chase();
 		
-		A_SpawnItemEx("DCY_LemuresTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		if (DCY_EffectDistance(1500))
+			A_SpawnItemEx("DCY_LemuresTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		
 		Return A_Jump(5, "See");
 	}
 	Loop;

@@ -1,3 +1,48 @@
+Class DCY_Powerup : Inventory abstract
+{
+  mixin DCY_Effects;
+  
+  string effectcolor;
+  property EffectColor1 : effectcolor;
+  bool lighty;
+  property SpawnLight : lighty;
+  float lightr;
+  property LightRadius : lightr;
+  bool wobbly;
+  property Pulse : wobbly;
+  sound noise;
+  property AmbientNoise : noise;
+  
+  int bobstate;
+  
+  Default
+  {
+	DCY_Powerup.EffectColor1 "ffffff";
+	DCY_Powerup.SpawnLight True;
+	DCY_Powerup.LightRadius 40;
+	DCY_Powerup.AmbientNoise "";
+	+FLOATBOB
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	RenderStyle "Add";
+	Inventory.PickupMessage "\c[White]???\c-";
+  }
+  
+  override void PostBeginPlay()
+  {
+	if (lighty)
+		A_AttachLight("poweruplight", (wobbly) ? DynamicLight.PulseLight : DynamicLight.PointLight, effectcolor, lightr, (wobbly) ? (lightr / 1.35) : lightr);
+	
+	if (noise != "")
+		A_StartSound(noise, 15, CHANF_LOOPING);
+  }
+  
+  override void DoPickupSpecial(actor toucher)
+  {
+	A_StopSound(15);
+  }
+}
+
 Mixin Class CYPowerup
 {
   int time;

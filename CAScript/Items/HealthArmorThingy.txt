@@ -34,8 +34,8 @@ Class DCY_ThatOneMediKit : Medikit
   Default
   {
   Inventory.PickupSound "D4BEEP3";
-  Inventory.PickupMessage "Picked up a \c[l5]Medical Kit\c-.";
-  Health.LowMessage 30, "Picked up a \c[l5]Medical Kit\c-. ...that you REALLY need! (25+ Health)";
+  Inventory.PickupMessage "Picked up a \c[l5]Medical Kit\c-. (25+ Health)";
+  Health.LowMessage 30, "Finally, a \c[l5]Medical Kit\c-. (25+ Health)";
   }
   
   States

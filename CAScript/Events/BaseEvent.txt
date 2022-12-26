@@ -1,8 +1,10 @@
 CLASS CyberaugumentedEventHandler : EventHandler
 {
   ui int inputtic;
-  bool chillax;
   float temp1;
+  
+  //Cutscene Stuff
+  bool cutscene;
   
   /*override void WorldThingDied(WorldEvent e)
   {
@@ -58,15 +60,75 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	
 	temp1 = 15;
 	
-	if (level.levelname == "Deadly Deja Vu" || (level.mapname == "MAP46" || level.mapname == "CHX46"))
+	DCY_Cutscenes();
+  }
+  
+  override void WorldUnloaded(WorldEvent e)
+  {
+	cutscene = false;
+  }
+  
+  protected void DCY_Cutscenes()
+  {
+	if ((level.levelname == "	Deadly Deja Vu		" || level.levelname == "Deadly Deja Vu" ) && (level.mapname == "MAP46" || level.mapname == "CHX46"))
 	{
-		DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 6), id: 9999);
 		S_ChangeMusic("");
 		S_StartSound("dcy/deadlydejavu", 10, CHANF_NOPAUSE);
+		DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 6), id: 9999);
 		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "This feels... familiar What is this? Am I dreaming?", (240, 120), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 5, 1), id: 10000);
 	}
+	
+	if (level.levelname == "Decimal Error" && (level.mapname == "MAP27" || level.mapname == "SF227"))
+	{
+		S_ChangeMusic("");
+		S_StartSound("dcy/decimalerror", 10, CHANF_NOPAUSE);
+		DCY_notHudMessageHandler.PlainMsg("BIGFONT", "Everything has gone to havoc.", (240, 150), (480, 360), color: Font.CR_GREEN, time: (1, 5, 1), id: 10001);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "Hell does not care about anything or you but the landscapes of ruin.", (240, 166), (480, 360), color: Font.CR_UNTRANSLATED, time: (2, 5, 1), id: 10000);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "Good luck passing through this place in order to complete your mission.", (240, 176), (480, 360), color: Font.CR_UNTRANSLATED, time: (2, 5, 1), id: 10002);
+	}
+	
+	if (level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
+	{
+		DCY_notHudMessageHandler.PlainMsg("DCY_NONE", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 2.25, 1), id: 10000);
+		level.setFrozen(true);
+	}
   }
-
+  
+  void A_CutsceneCheck()
+  {
+	if (level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
+	{
+		if ((level.time % 60) == 10)
+		{
+			if (!cutscene)
+			{
+				DCY_notHudMessageHandler.PlainMsg("Graphics/dcy_getpsyched.png", "A", (160, 100), (320, 200), color: Font.CR_UNTRANSLATED, time: (0.25, 1, 0.25), id: 9998);
+				DCY_notHudMessageHandler.PlainMsg("Graphics/dcy_wolfensteinbg.png", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0.25, 1, 0.25), id: 9999);
+			}
+		}
+		if ((level.time % 60) == 59)
+			if (!cutscene) { level.setFrozen(false); cutscene = true; }
+	}
+			
+	if (level.levelname == "Deadly Deja Vu ")
+	{
+		bool flashtrigger;
+		
+		if (!flashtrigger && (level.time % 1) == 0)
+		{
+			flashtrigger = true;
+			DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 6), id: 9999);
+		}
+		
+		if ((level.time % 200) == 199)
+			if (!cutscene) { S_ChangeMusic("*"); cutscene = true; }
+	}
+	
+	if (level.levelname == "Decimal Error" && (level.mapname == "MAP27" || level.mapname == "SF227"))
+		if ((level.time % 128) == 127)
+			if (!cutscene) { S_ChangeMusic("*"); cutscene = true; }
+  }
+  
   void DTemperature(sound soundx, string colorx, string messagex)
   {
 	if (soundx)
@@ -103,9 +165,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		d.temperaturehotxannounce = true;
 	}
 	
-	if (level.levelname == "Deadly Deja Vu" || (level.mapname == "MAP46" || level.mapname == "CHX46"))
-		if ((level.time % 200) == 199)
-			if (!chillax) { S_ChangeMusic("*"); chillax = true; }
+	A_CutsceneCheck();
   }
   
   /*void DCY_TemperatureLevel(sector mySector)

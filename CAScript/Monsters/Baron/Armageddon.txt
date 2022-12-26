@@ -29,6 +29,7 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
   DropItem "DCY_Emphasis", 100;
   Speed 8;
   FastSpeed 16;
+  DCYMonster.WalkFlames "DCY_LightBlueWalkFlames";
   }
   
   int asteroid;
@@ -41,13 +42,13 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
 	Loop;
   Look:
     LHS_ AAA 2 DCY_LookingForPlayer();
-	LHS_ A 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ A 0 A_WalkFlame();
 	LHS_ BBB 2 DCY_LookingForPlayer();
-	LHS_ B 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ B 0 A_WalkFlame();
 	LHS_ CCC 2 DCY_LookingForPlayer();
-	LHS_ C 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ C 0 A_WalkFlame();
 	LHS_ DDD 2 DCY_LookingForPlayer();
-	LHS_ D 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ D 0 A_WalkFlame();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
@@ -62,23 +63,23 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
   See:
     TNT1 A 0 A_Jump(198, "Faaast");
     LHS_ AAA 2 A_Chase();
-	LHS_ A 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ A 0 A_WalkFlame();
 	LHS_ BBB 2 A_Chase();
-	LHS_ B 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ B 0 A_WalkFlame();
 	LHS_ CCC 2 A_Chase();
-	LHS_ C 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ C 0 A_WalkFlame();
 	LHS_ DDD 2 A_Chase();
-	LHS_ D 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ D 0 A_WalkFlame();
 	Loop;
   Faaast:
     LHS_ AAA 2 A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
-	LHS_ A 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ A 0 A_WalkFlame();
 	LHS_ BBB 2 A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
-	LHS_ B 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ B 0 A_WalkFlame();
 	LHS_ CCC 2 A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
-	LHS_ C 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ C 0 A_WalkFlame();
 	LHS_ DDD 2 A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
-	LHS_ D 0 A_SpawnItemEx("DCY_LightBlueWalkFlames",0,0,0,1,0,0,0,128);
+	LHS_ D 0 A_WalkFlame();
 	TNT1 A 0 A_Jump(192, "See");
 	Loop;
   Melee:

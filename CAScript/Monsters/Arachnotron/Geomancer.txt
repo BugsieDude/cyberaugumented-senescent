@@ -31,7 +31,7 @@ Class DCY_BattlemindGeomancer : DCY_SmallEnemySpider
   {
 	Super.Tick();
 	
-	If (Health > 0 && !IsFrozen())
+	If (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_LunisJetFlareSmall", frandom(33, 31), frandom(33, 31),45,0,0,frandom(-4,-6),0,128);
 		A_SpawnItemEx("DCY_LunisJetFlareSmall", frandom(-33, -31), frandom(-33, -31),45,0,0,frandom(-4,-6),0,128);

@@ -173,7 +173,7 @@ Class DCY_Pathogen : DCY_Impe
   {
 	super.tick();
 	
-	if (health > 0 && !level.isfrozen())
+	if (health > 0 && !level.isfrozen() && DCY_EffectDistance(sfxdistance))
 		A_SpawnItemEx("DCY_DarkeningDrip", frandom(-radius, radius), frandom(-radius, radius), frandom(-height, height), zvel: -0.5, flags: SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 210);
   }
   

@@ -385,7 +385,7 @@ Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
   Height 8;
   Damage 5;
   RenderStyle "Add";
-  SeeSound "UpgradedPlasmaBall";
+  SeeSound "weapons/plasmaf2";
   DeathSound "weapons/plasmax";
   Obituary "$OB_MPPLASMARIFLE";
   Translation "0:255=%[0.00,0.00,0.00]:[0.47,0.66,2.00]";

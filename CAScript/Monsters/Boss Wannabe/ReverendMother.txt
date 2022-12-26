@@ -33,7 +33,7 @@ Class DCY_ReverendMother : DCY_TheGiantEnemySpider
   {
 	Super.Tick();
 	
-	If (Health > 0 && !IsFrozen())
+	If (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare", frandom(55, 65), frandom(55, 65),74,0,0,frandom(-6,-8),0,128);
 		A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare", frandom(-55, -65), frandom(-55, -65),74,0,0,frandom(-6,-8),0,128);

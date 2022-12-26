@@ -2,7 +2,7 @@ Class DCY_Palisade : CustomInventory Replaces BlurSphere
 {
   Default
   {
-  Inventory.PickupMessage "Palisade... At least ya have some protection in your soul!";
+  Inventory.PickupMessage "You must be safe.";
   Inventory.PickupSound "misc/ring_pkup";
   Inventory.UseSound "misc/ring_pkup";
   Inventory.Amount 1;
@@ -54,7 +54,7 @@ Class DCY_Deterrence : CustomInventory
 {
   Default
   {
-  Inventory.PickupMessage "Deterrence. That might regen a lot of your health no problem. Say hello to self medical care!";
+  Inventory.PickupMessage "Say hello to self medical care!";
   Inventory.PickupSound "REGEN01";
   Inventory.UseSound "REGEN02";
   Inventory.Amount 1;
@@ -106,7 +106,7 @@ Class DCY_Barricade : CustomInventory
 {
   Default
   {
-  Inventory.PickupMessage "The Barricade gives you the ability to spam weapons whenever something's... That sounds dumb.";
+  Inventory.PickupMessage "Gadget made for weapons. Enhances weapons with no limits.";
   Inventory.PickupSound "ITEMGET";
   Inventory.UseSound "DSGETPO2";
   Inventory.Amount 1;
@@ -161,7 +161,7 @@ Class DCY_AllMap : AllMap
   {
   Inventory.PickupSound "AllMap/PickedUp";
   ActiveSound "AllMap/Loop";
-  Inventory.PickupMessage "\c[Orange]Automap\c- gained.";
+  Inventory.PickupMessage "\c[Orange]You can see where you are right now.\c-";
   }
   
   States
@@ -191,7 +191,7 @@ Class DCY_VesticalAbettance : CustomInventory
   Inventory.Icon "VTCPE0";
   Scale 0.765;
   Tag "Abettance - Increases your HEALTH and ARMOR by adding 200.";
-  Inventory.PickupMessage "Got an Abettance!";
+  Inventory.PickupMessage "You stumbled apon a portable defence and health kit.";
   Inventory.PickupSound "SPELL05";
   }
   
@@ -264,7 +264,8 @@ Class DCY_Berserk : Berserk
 {
   Default
   {
-  Inventory.PickupMessage "\c[Red]RIP AND TEAR\c-.";
+  Tag "Unending Chaos";
+  Inventory.PickupMessage "\c[Red]You feel like DESTRUCTION is the only choice.\c-";
   Inventory.PickupSound "Berserk/Pickup";
   RenderStyle "Add";
   Translation "0:255=%[0.00,0.00,0.00]:[1.41,0.43,0.43]";
@@ -335,7 +336,7 @@ Class DCY_Photocoagulator : CustomInventory
   Inventory.InterHubAmount 1;
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
-  Inventory.PickupMessage "Photocoagulator! It enhances bullet-based weapons I think...";
+  Inventory.PickupMessage "As you pick up the monitor, it reads 'Make your bullets bombastic!'.";
   Inventory.PickupSound "PHTCPKUP";
   Inventory.UseSound "SPELL06";
   Tag "Photocoagulator - Guns turn explosive.";
@@ -385,7 +386,7 @@ Class DCY_Emphasis : CustomInventory
   Inventory.InterHubAmount 1;
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
-  Inventory.PickupMessage "Emphasis! Something something Level 2 weapons... but for plasma.";
+  Inventory.PickupMessage "The monitor reads that it makes cells and lasers more diverse.";
   Inventory.PickupSound "SPR1POW1";
   Inventory.UseSound "SPR1POW2";
   Tag "Emphasis - Turns plasmatic weapons into something different.";

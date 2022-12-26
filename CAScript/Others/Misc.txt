@@ -1,4 +1,20 @@
-//Terraria's Dummy-like thing
+Mixin Class DCY_Effects
+{
+	bool DCY_EffectDistance(double distance)
+	{
+		if (!playeringame[consolePlayer]) return false;
+			
+		let curCamera = players[consolePlayer].camera;
+		if (!curCamera) curCamera = players[consolePlayer].mo;
+		if (!curCamera) return false;
+
+		if (CheckIfCloser(curCamera, distance))
+			return true;
+		
+		return false;
+	}
+}
+
 Class DCY_Effect : Actor
 { 
   Default
@@ -1061,7 +1077,6 @@ Class DCY_ABarrelofExplosives : ExplosiveBarrel
 {
   Default
   {
-  Scale 0.9;
   Tag "Barrel bundled with \c[x1]Explosives\c-";
   }
   States

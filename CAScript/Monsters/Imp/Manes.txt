@@ -27,7 +27,7 @@ Class DCY_Manes : DCY_Impe
   
   override void Tick()
   {
-	if (!level.isfrozen())
+	if (!level.isfrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-30, 30), frandom(-30, 30), frandom(10, 60), zvel: frandom(0.5, 1.5), flags: SXF_NOCHECKPOSITION, failchance: 128);
 		A_SpawnItemEx("DCY_ManesTrail", xvel: frandom(-1, 1), yvel: frandom(-1, 1), zvel: frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);

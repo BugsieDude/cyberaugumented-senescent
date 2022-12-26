@@ -1,5 +1,8 @@
-CLASS DCYMonster : Actor
+CLASS DCYMonster : Actor abstract
 {
+  mixin DCY_Effects;
+  double sfxdistance;
+  
   Default
   {
     Monster;
@@ -18,6 +21,9 @@ CLASS DCYMonster : Actor
   string tcol;
   transient TextureID particlefire;
   
+  string wf;
+  property WalkFlames : wf;
+  
   property BurnSound: BurnSound;
   property TagColor: tcol;
   
@@ -27,6 +33,12 @@ CLASS DCYMonster : Actor
 	
 	if (!particlefire)
 		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	sfxdistance = 1500;
   }
   
   void A_SetPainChance(int num)
@@ -40,9 +52,14 @@ CLASS DCYMonster : Actor
 	//A_KillMaster("SpawnerDeath");
   }
   
+  void A_WalkFlame()
+  {
+	if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx(wf, xvel: 1, flags: SXF_NOCHECKPOSITION);
+  }
+  
   void DCY_Look()
   {
-	A_LookEx(LOF_NOSEESOUND, label: "Look");
+	A_LookEx((level.levelname == "Decimal Error") ? LOF_NOSOUNDCHECK|LOF_NOSEESOUND : LOF_NOSEESOUND, label: "Look");
   }
   
   void DCY_LookingForPlayer()

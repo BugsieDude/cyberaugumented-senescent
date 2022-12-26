@@ -32,13 +32,11 @@ Class DCY_Qualm : DCY_SkinnyFat
   {
 	Super.Tick();
 	
-	If (Health > 0 && !IsFrozen())
+	If (Health > 0 && !IsFrozen() && DCY_EffectDistance(1500))
 	{
 		for (int i = 2; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare",0,random(10,20),10,0,0,random(-4,-6),0,128,188);
-			A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare",0,random(-10,-20),10,0,0,random(-4,-6),0,128,188);
-		}
+			for (int i = -1; i < 2; i += 2)
+				A_SpawnItemEx("DCY_HyperclusterCommanderJetFlare",0,random(10,20)*i,10,0,0,random(-4,-6),0,128,188);
 	}
   }
   

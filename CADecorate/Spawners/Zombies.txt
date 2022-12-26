@@ -6,5 +6,4 @@ ACTOR DCY_Zamblezeezeze : RandomSpawner Replaces ZombieMan
   DropItem "DCY_MechaZombie", 256, 150
   DropItem "DCY_Contaminated", 256, 50
   DropItem "DCY_Transmuter", 256, 20
-  DropItem "DCY_ZEnsign", 256, 10
 }

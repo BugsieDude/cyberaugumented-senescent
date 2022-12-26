@@ -32,7 +32,7 @@ Class DCY_Visitant : DCY_CacoParent
   {
 	Super.Tick();
 	
-	If (!IsFrozen() && !sv_effectchoker)
+	If (!IsFrozen() && !sv_effectchoker && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_VisitantGlow", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 100);
 		A_SpawnItemEx("DCY_VisitantElectricity", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, flags: SXF_NOCHECKPOSITION, 200);

@@ -28,6 +28,7 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   Obituary "%o got outsmarted by the Firestormer... in a infernal way.";
   HitObituary "It's the Firestormer's melee flaming move! And %o is dead.";
   DropItem "DCY_Photocoagulator", 100;
+  DCYMonster.WalkFlames "DCY_WalkFlames";
   }
   
   void A_WastelandShotty()
@@ -47,11 +48,11 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
     Loop;
   Look:
 	ZRCY AAABB 2 DCY_LookingForPlayer();
-	ZRCY C 0 A_SpawnItemEx("DCY_WalkFlames", xvel: 1, flags: SXF_NOCHECKPOSITION);
+	ZRCY C 0 A_WalkFlame();
 	ZRCY CCDD 2 DCY_LookingForPlayer();
 	ZRCY A 0
 	{
-		A_SpawnItemEx("DCY_WalkFlames", xvel: 1, flags: SXF_NOCHECKPOSITION);
+		A_WalkFlame();
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY, CHANF_DEFAULT);
 	}
 	"####" "#" 0 A_CheckSight("Look");
@@ -61,11 +62,11 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 	Goto See;
   See:
 	ZRCY AAABB 2 A_Chase();
-	ZRCY C 0 A_SpawnItemEx("DCY_WalkFlames", xvel: 1, flags: SXF_NOCHECKPOSITION);
+	ZRCY C 0 A_WalkFlame();
 	ZRCY CCDD 2 A_Chase();
 	ZRCY A 0
 	{
-		A_SpawnItemEx("DCY_WalkFlames", xvel: 1, flags: SXF_NOCHECKPOSITION);
+		A_WalkFlame();
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY, CHANF_DEFAULT);
 	}
 	Loop;

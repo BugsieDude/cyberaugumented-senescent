@@ -33,7 +33,7 @@ Class DCY_Hexodenican : DCY_VileParent
 	#### AAAABBBBCCCCDDDDEEEEFFFF 2
 	{
 		DCY_LookingForPlayer();
-		if (!sv_effectchoker) A_SpawnItemEx("DCY_HexodenicanTrail2", -13, 0, 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		if (!sv_effectchoker && DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_HexodenicanTrail2", -13, 0, 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
 	#### # 0 A_CheckSight("Look");
 	Goto Alert;

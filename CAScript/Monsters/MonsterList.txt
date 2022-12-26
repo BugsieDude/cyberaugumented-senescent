@@ -149,6 +149,7 @@
 #include "CAScript/Monsters/Pinky/Fusillade.txt"
 #include "CAScript/Monsters/Imp/Malignant.txt"
 #include "CAScript/Monsters/Zombie/Contaminated.txt"
+#include "CAScript/Monsters/Chaingunner/Theristis.txt"
 #include "CAScript/Monsters/Marauder.txt"
 #include "CAScript/Monsters/Boss Wannabe/Divine.txt"
 #include "CAScript/Monsters/Boss Wannabe/Eavesdropper.txt"

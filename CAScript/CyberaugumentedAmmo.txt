@@ -296,7 +296,11 @@ Class DCY_UltramodernEnergy : Ammo
   States
   { 
   Spawn:
-    C2LL AB 1 Bright;
-    Loop;
+	C2LL A 0 NoDelay { if (random(0, 1) == 0) SetStateLabel("Spawn2"); }
+    C2LL ABCDEFGHIJKL 3 Bright;
+    Goto Spawn+1;
+  Spawn2:
+	C2LL LKJIHGFEDCBA 3 Bright;
+	Loop;
   }
 }

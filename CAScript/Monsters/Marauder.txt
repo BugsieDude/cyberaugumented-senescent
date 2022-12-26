@@ -92,7 +92,7 @@ Class DCY_Marauder : DCY_Plutonia
   {
 	super.Tick();
 	
-	if (health > 0 && !level.isFrozen())
+	if (health > 0 && !level.isFrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		let glow = Spawn("DCY_MarauderGlow", pos);
 		

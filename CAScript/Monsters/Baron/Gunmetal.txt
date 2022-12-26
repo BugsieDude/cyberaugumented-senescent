@@ -24,8 +24,15 @@ Class DCY_GunmetalInfiltrator : DCY_BaronParent
   States
   {
   Spawn:
-    GNM8 A 10 A_Look();
+    GNM8 A 10 DCY_Look();
 	Loop;
+  Look:
+	GNM8 AAAABBBBCCCCDDDD 3 DCY_LookingForPlayer();
+    "####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	"####" "#" 0 DCY_AlertSound();
+	Goto See;
   See:
     TNT1 A 0 A_Jump(30, "Rush");
 	GNM8 AAAABBBBCCCCDDDD 2 A_Chase();
@@ -35,7 +42,7 @@ Class DCY_GunmetalInfiltrator : DCY_BaronParent
     GNM8 AAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 
 	{
 		A_Chase();
-		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
 	}
 	Goto See;
   Melee:

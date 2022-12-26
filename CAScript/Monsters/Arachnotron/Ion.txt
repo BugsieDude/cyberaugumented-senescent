@@ -31,7 +31,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
   void A_IonArachnoDash()
   {
 	A_Chase();
-	A_SpawnItemEx("DCY_IonSpiderTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME);
+	if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_IonSpiderTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME);
   }
   
   int missile;

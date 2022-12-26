@@ -21,7 +21,7 @@ Class DCY_Prestidigitator : DCY_VileParent
   {
 	super.Tick();
 	
-	if(health > 0 && !isFrozen())
+	if(health > 0 && !isFrozen() && DCY_EffectDistance(1500))
 		A_SpawnItemEx("DCY_PrestidigitatorTrail", zofs: 5, xvel: frandom(-5.0, 5.0), yvel: frandom(-5.0, 5.0), zvel: frandom(-5.0, 5.0), flags: SXF_TRANSFERSPRITEFRAME);
   }
   

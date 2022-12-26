@@ -24,8 +24,16 @@ Class DCY_Tenebrosity : DCY_Pinke
   States
   {
   Spawn:
-	SAR3 A 10 A_Look();
+	SAR3 A 10 DCY_Look();
 	Loop;
+  Look:
+	SAR3 AAABBBCCCDDD 2 DCY_LookingForPlayer();
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	SAR3 E 15 { A_FaceTarget(); DCY_AlertSound(); }
+	SAR3 FFFE 6 A_FaceTarget();
+	Goto See;
   See:
 	SAR3 AAABBBCCCDDD 2 Fast A_Chase();
 	Loop;

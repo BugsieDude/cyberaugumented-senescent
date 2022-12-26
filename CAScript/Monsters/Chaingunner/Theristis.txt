@@ -1,8 +1,151 @@
 Class DCY_TheristisPsichisl : DCY_Plutonia
 {
+  bool glitching;
+  
   Default
   {
   Health 666;
   Tag "\c[j1]Theristis Psichisl\c-";
+  StencilColor "0F 52 BA";
+  BloodColor "0F 52 BA";
+  BloodType "DCY_SpiritBlood";
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +NEVERFAST;
+  +BRIGHT
+  SeeSound "Theristis/Sight";
+  ActiveSound "Theristis/Active";
+  DeathSound "Theristis/Death";
+  PainSound "Theristis/Pain";
+  Speed 4;
+  Obituary "%o embraced the void.";
+  }
+  
+  void A_ResetSpeed()
+  {
+	tics = 2;
+	A_SetSpeed(4);
+	glitching = false;
+  }
+  
+  void A_TheristisChase()
+  {
+	A_Chase();
+	
+	if (Health < 111)
+	{
+		if ((random(0, 20) == 0) && !glitching)
+			glitching = true;
+		
+		if ((random(0, 40) == 0) && glitching)
+			A_ResetSpeed();
+	}
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (!level.isFrozen() && health > 0)
+	{
+		if (glitching)
+		{
+			A_SetRenderStyle(frandom(0.1, 1), random(0, 7));
+			A_SpawnItemEx((random(0, 1)) ? "DCY_HexodenicanTrail" : "DCY_HexodenicanTrail2", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL, failchance: 100);
+			A_SpawnItemEx("DCY_TSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(height / 2, height), zvel: frandom(0.5, 1.5), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERALPHA|SXF_TRANSFERSTENCILCOL|SXF_NOCHECKPOSITION|SXF_TRANSFERALPHA, failchance: 129);
+			
+			if (random(0, 22) == 0)
+				for (int i = 40; i > 0; i--)
+					A_Wander();
+			
+			tics = 1;
+			A_SetSpeed(16);
+		}
+		else
+			A_SetRenderStyle(1, STYLE_NORMAL);
+	
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_HexodenicanTrail2", xofs: -0.5, zofs: 6, zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	TH3_ A 10 A_Look();
+	Loop;
+  See:
+	TH3_ AAAABBBBCCCCDDDD 2 A_TheristisChase();
+	Loop;
+  Missile:
+	TH3_ F 10 { A_ResetSpeed(); A_FaceTarget(); }
+	TH3_ F 1 A_StartSound("DCYTheristisLoop", CHAN_WEAPON, CHANF_LOOPING, attenuation: 0.75);
+	TH3_ F 3
+	{
+		A_SpawnItemEx("DCY_TSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(height / 2, height), zvel: frandom(0.5, 1.5));
+		A_SpawnProjectile("DCY_TheristisSoul", 40, 8, frandom(-3, 3), CMF_OFFSETPITCH, pitch + frandom(-3, 3));
+		A_FaceTarget();
+		Return A_MonsterRefire(10, "Cooldown");
+	}
+	Goto Missile+2;
+  Cooldown:
+	TH3_ A 30 A_StopSound(CHAN_WEAPON);
+	Goto See;
+  Pain:
+	TH3_ E 4 { A_ResetSpeed(); A_StopSound(CHAN_WEAPON); }
+	TH3_ E 4 A_Pain();
+	Goto See;
+  XDeath:
+  Death:
+	TH3_ E 10;
+	TH3_ E 1
+	{
+		A_ResetSpeed();
+		A_StopSound(CHAN_WEAPON);
+		A_ScreamAndUnblock();
+	}
+	TH3_ EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+	{
+		A_SpawnItemEx("DCY_TSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(0, height), zvel: frandom(1.5, 2.5), flags: SXF_TRANSFERSCALE|SXF_TRANSFERALPHA);
+		
+		A_FadeOut(0.025);
+		if (random(0, 1) == 0)
+			A_SpawnParticleEx(0x0f52ba, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0025, sizestep: 1.525);
+	}
+	Stop;
+  Raise:
+	Stop;
   }
 }
+
+Class DCY_TheristisSoul : DCY_ChimeraSoul
+{
+  Default
+  {
+  Speed 15;
+  +NEVERFAST
+  Translation "0:255=%[0.00,0.00,0.00]:[0.28,0.65,1.73]";
+  Scale 0.5;
+  Damage 3;
+  SeeSound "";
+  DamageType "Ice";
+  }
+  
+  States
+  {
+  Spawn:
+	_334 EEEFFF 1
+	{
+		A_Tracer2(1.25);
+		vel.x += frandom(-2, 2);
+		vel.y += frandom(-2, 2);
+		vel.z += frandom(-2, 2);
+		A_SpawnParticleEx(0x0f52ba, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
+	}
+	Loop;
+  Death:
+	_334 GHIJKLM 2;
+	Stop;
+  }
+}
+
+Class DCY_TSoul : DCY_RZSpirit { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.28,0.65,1.73]"; Scale 0.5; } }

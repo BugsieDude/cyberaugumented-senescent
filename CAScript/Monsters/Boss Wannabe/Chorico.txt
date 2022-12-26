@@ -102,7 +102,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   {
     super.Tick();
 	
-	If (Health > 0 && !IsFrozen() && !teleporting && !sv_effectchoker)
+	If (Health > 0 && !IsFrozen() && !teleporting && !sv_effectchoker && DCY_EffectDistance(sfxdistance))
 	{
 		for (int i = 4; i > 0; i--)
 			A_SpawnItemEx("DCY_NimbusJetFlare", frandom(-17.0, 17.0), frandom(-17.0, 17.0), frandom(48.0, 51.0), 0, 0, frandom(-3.5, -6.5), flags: SXF_NOCHECKPOSITION, 50);

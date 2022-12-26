@@ -27,6 +27,7 @@ Class DCY_CorruptInfiltrator : DCY_HeckBaron
   ActiveSound "CI/Active";
   PainSound "CI/Pain";
   DeathSound "CI/Death";
+  DCYMonster.WalkFlames "DCY_WhiteWalkFlames";
   }
   
   int looping;
@@ -48,13 +49,13 @@ Class DCY_CorruptInfiltrator : DCY_HeckBaron
 	ARHO A 10 DCY_Look();
     Loop;
   Look:
-	ARHO A 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO A 0 A_WalkFlame();
 	ARHO AAA 2 DCY_LookingForPlayer();
-	ARHO B 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO B 0 A_WalkFlame();
 	ARHO BBB 2 DCY_LookingForPlayer();
-	ARHO C 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO C 0 A_WalkFlame();
 	ARHO CCC 2 DCY_LookingForPlayer();
-	ARHO D 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO D 0 A_WalkFlame();
 	ARHO DDD 2 DCY_LookingForPlayer();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
@@ -71,13 +72,13 @@ Class DCY_CorruptInfiltrator : DCY_HeckBaron
 	}
 	Goto See;
   See:
-	ARHO A 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO A 0 A_WalkFlame();
 	ARHO AAA 2 A_CorruptChase();
-	ARHO B 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO B 0 A_WalkFlame();
 	ARHO BBB 2 A_CorruptChase();
-	ARHO C 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO C 0 A_WalkFlame();
 	ARHO CCC 2 A_CorruptChase();
-	ARHO D 0 A_SpawnItemEx("DCY_WhiteWalkFlames", 0, 0, 0, 1, 0, 0, 0, SXF_NOCHECKPOSITION);
+	ARHO D 0 A_WalkFlame();
 	ARHO DDD 2 A_CorruptChase();
 	Loop;
   Dodge:
@@ -90,9 +91,11 @@ Class DCY_CorruptInfiltrator : DCY_HeckBaron
 	}
 	Goto DodgeLoop;
   DodgeLoop:
-	ARHO M 1 A_SpawnItemEx("DCY_CorruptInfiltratorTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	ARHO M 1
+	ARHO M 2
 	{
+		A_WalkFlame();
+		A_SpawnItemEx("DCY_CorruptInfiltratorTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		
 		If(looping >= 15)
 		{
 		Return ResolveState("Stopp");

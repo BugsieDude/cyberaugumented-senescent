@@ -38,7 +38,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   {
 	super.tick();
 	
-	if (!level.isFrozen())
+	if (!level.isFrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		let trail = Spawn("DCY_ShadowTrailBase", (pos.x, pos.y, pos.z + 6));
 		

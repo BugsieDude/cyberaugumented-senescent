@@ -29,7 +29,7 @@ Class DCY_DivinePhantom : DCY_Violator //Not a boss, but something else
   {
 	Super.Tick();
 	
-	if (Health > 0 && !IsFrozen())
+	if (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance))
 		A_SpawnItemEx("DCY_DivinePhantomExplosion3", zofs: 5, xvel: frandom(-2, 2), yvel: frandom(-2, 2), zvel: frandom(0.35, 2), flags: SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME, 150);
   }
   

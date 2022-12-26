@@ -10,6 +10,8 @@ Class DCY_RailLazerBase : Actor
   +EXTREMEDEATH
   +NOINTERACTION
   +BRIGHT
+  Radius 0;
+  Height 0;
   RenderStyle "Add";
   }
   

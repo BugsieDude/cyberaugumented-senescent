@@ -83,7 +83,7 @@ Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
   {
 	Super.Tick();
 	
-	if (Health > 0 && !IsFrozen())
+	if (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-3.0, -10.0), frandom(-5.0, 5.0), frandom(12.0, 19.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1, flags: SXF_NOCHECKPOSITION, failchance: 180);
 		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-3.0, -10.0), frandom(-5.0, 5.0), frandom(12.0, 19.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1, flags: SXF_NOCHECKPOSITION, failchance: 120);

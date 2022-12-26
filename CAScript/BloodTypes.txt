@@ -152,6 +152,8 @@ Class DCY_GoreBase : Actor
   +BOUNCEONFLOORS
   +BOUNCEONWALLS
   +ROLLSPRITE
+  +CANNOTPUSH
+  +MOVEWITHSECTOR
   }
   
   int xroll;

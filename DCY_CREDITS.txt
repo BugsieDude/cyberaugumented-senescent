@@ -169,6 +169,10 @@ splosions - Befouler sprites
 Digital Extremes - Announcement Sounds
 Saber Interactive - Sounds
 Fallout - Sounds
+Uboa - Sprites
+Mortarion - Victim Sprites
+Gloom Deluxe - Theristis Psichisl Sprites & Ion Arachno sounds
+Ravick - Sprites
 
 ================================================================================
 MUSIC AND FANFARES

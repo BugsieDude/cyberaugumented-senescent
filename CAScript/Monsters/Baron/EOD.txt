@@ -7,6 +7,7 @@ Class DCY_EOD : DCY_HeckBaron
   BloodColor "91ff00";
   PainChance 50;
   DamageFactor "EOA", 0.00;
+  DCYMonster.WalkFlames "DCY_JadeWalkFlames";
   Tag "\c[n9]The Elucidation of Dilapidator\c-";
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   Scale 1.1;
@@ -93,20 +94,20 @@ Class DCY_EOD : DCY_HeckBaron
     Loop;
   Look:
 	DOR_ AAA 3 DCY_LookingForPlayer();
-	DOR_ B 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ B 0 A_WalkFlame();
 	DOR_ BBB 3 DCY_LookingForPlayer();
 	DOR_ C 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
-		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+		A_WalkFlame();
 	}
 	DOR_ CCC 3 DCY_LookingForPlayer();
-	DOR_ D 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ D 0 A_WalkFlame();
 	DOR_ DDD 3 DCY_LookingForPlayer();
 	DOR_ A 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
-		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+		A_WalkFlame();
 	}
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
@@ -115,20 +116,20 @@ Class DCY_EOD : DCY_HeckBaron
 	Goto See;
   See:
 	DOR_ AAA 3 A_EODChase();
-	DOR_ B 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ B 0 A_WalkFlame();
 	DOR_ BBB 3 A_EODChase();
 	DOR_ C 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
-		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+		A_WalkFlame();
 	}
 	DOR_ CCC 3 A_EODChase();
-	DOR_ D 0 A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+	DOR_ D 0 A_WalkFlame();
 	DOR_ DDD 3 A_EODChase();
 	DOR_ A 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
-		A_SpawnItemEx("DCY_JadeWalkFlames",0,0,0,1,0,0,0,128);
+		A_WalkFlame();
 	}
 	Loop;
   Melee:

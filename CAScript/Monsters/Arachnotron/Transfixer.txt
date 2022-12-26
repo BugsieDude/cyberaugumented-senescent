@@ -33,7 +33,9 @@ Class DCY_Transfixer : DCY_ArachnoParent
 			for (int i = 2; i > 0; i--)
 				A_Chase();
 		}
-		A_SpawnItemEx("DCY_TransfixerTrail", zofs: 5, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		
+		if (DCY_EffectDistance(sfxdistance))
+			A_SpawnItemEx("DCY_TransfixerTrail", zofs: 5, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
 	}
 	
 	if (stepsound == true)

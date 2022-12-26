@@ -15,6 +15,8 @@ Warp/Choir "Sounds/DCY SFX/dcy_warp1.ogg"
 Warp/Spacial "Sounds/DCY SFX/dcy_warp2.ogg"
 dcy/flashback "Sounds/Announcements/dcy_flashback.ogg"
 dcy/deadlydejavu "Sounds/Announcements/dcy_flashback_chillax.ogg"
+dcy/decimalerror "Sounds/Announcements/dcy_havoc_map.ogg"
+dcy/midi "Sounds/Announcements/dcy_midi.ogg"
 
 //yay you did something
 Announce/Complete "Sounds/Announcements/dcy_complete.ogg"
