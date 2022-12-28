@@ -2,12 +2,16 @@ Class DCY_Minigun : DCY_Weapon Replaces Chaingun
 {
   Default
   {
+	Weapon.SelectionOrder 700;
 	Tag "Nightfall Augumented";
 	Inventory.PickupSound "dcy/rocketpickup";
 	Inventory.PickupMessage "You got the Nightfall! It's about to get chaotic in there. Is it? I don't know.";
 	Weapon.SlotNumber 4;
 	+FLOORCLIP;
 	+DONTGIB;
+	Weapon.AmmoUse 1;
+	Weapon.AmmoGive 20;
+	Weapon.AmmoType "Clip";
   }
   
   bool laser;

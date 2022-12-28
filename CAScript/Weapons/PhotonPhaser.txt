@@ -1,0 +1,61 @@
+Class DCY_TheBFG9000 : DCY_Weapon Replaces BFG9000
+{
+  Default
+  {
+	Weapon.SlotNumber 7;
+	Inventory.PickupMessage "You got the Amnesia Proton Phaser! ...Looks like a BFG-9000.";
+	+WEAPON.BFG;
+	Height 20;
+	Weapon.SelectionOrder 2800;
+	Weapon.AmmoUse 40;
+	Weapon.AmmoGive 40;
+	Weapon.AmmoType "Cell";
+	Tag "Amnesia Proton Phaser";
+	Weapon.UpSound "BFG10000Proto/UP";
+	Inventory.PickupSound "BFG10000Proto/UP";
+  }
+
+  action void A_BFG()
+  {
+	A_QuakeEx(3, 3, 3, 34, 0, 200, "", QF_SCALEDOWN, falloff: 400);
+	A_FireProjectile("DCY_BFGSpheroid", 0, 0);
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_GunFlash();
+	A_StartSound("DCYBFGX/FIRE", CHAN_6, CHANF_DEFAULT, 0.65, ATTN_IDLE);
+  }
+  
+  States
+  {
+  Spawn:
+	BIG_ U -1;
+	Stop;
+  Ready:
+	BFG_ A 1 Bright A_WeaponReady();
+	Loop;
+  Select:
+	BIG_ XYZ 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	BIG_ ZYX 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Fire:
+	BFG_ ABC 1 Bright;
+	BFG_ D 1 Bright
+	{
+		A_StartSound("DCYBFG/Fire", CHAN_WEAPON, CHANF_DEFAULT, 0.8, ATTN_IDLE);
+		A_StartSound("DCYBFGX/CHARGE", CHAN_6, CHANF_DEFAULT, 0.3, ATTN_IDLE, 1.15);
+	}
+	BFG_ EFGHIA 2 Bright;
+	BFF_ BCDEFGHI 2 Bright A_WeaponOffset(frandom(1.75, -1.75), frandom(32.75, 32.15), WOF_INTERPOLATE);
+	BIG_ A 1 Bright A_BFG();
+	BIG_ BCDEFGHIJ 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	BIG_ J 0 Bright A_Refire();
+	Goto Ready;
+  Flash:
+	TNT1 A 1;
+	TNT1 A 10 A_Light1();
+	TNT1 A 5 A_Light2();
+	Goto LightDone;
+  }
+}

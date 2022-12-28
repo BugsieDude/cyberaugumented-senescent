@@ -1,4 +1,4 @@
-Class DCY_TheCinerealOrdnance : Weapon
+Class DCY_TheCinerealOrdnance : DCY_Weapon
 {
   Default
   {
@@ -14,13 +14,6 @@ Class DCY_TheCinerealOrdnance : Weapon
   Weapon.UpSound "CinerealOrdnance/Up";
   Inventory.Icon "CINRZ0";
   Tag "The Cinereal Ordnance";
-  Weapon.BobStyle "Alpha";
-  Weapon.BobRangeX 0.45;
-  Weapon.BobRangeY 0.25;
-  Weapon.BobSpeed 1.45;
-  +NOTIMEFREEZE
-  +FLOORCLIP
-  +DONTGIB
   +BRIGHT
   +WEAPON.EXPLOSIVE
   +WEAPON.BFG

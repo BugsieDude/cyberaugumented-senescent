@@ -2,10 +2,11 @@ Class DCY_BallistaManefista : DCY_Weapon
 {
   Default
   {
-	Tag "Mason Ballista";
+	Tag "JM10X 'Mason Ballista' Antimatter Plasma Railgun";
 	Weapon.AmmoType "Cell";
 	Weapon.AmmoGive 50;
 	Weapon.AmmoUse 15;
+	Height 25;
 	Inventory.PickupMessage "The Ballista, a crossbow built with technology that has unimaginable strength inside of it; feels like guts and glory.";
 	Weapon.SlotNumber 6;
 	AttackSound "Ballista/Explode";
@@ -13,7 +14,7 @@ Class DCY_BallistaManefista : DCY_Weapon
 	+WEAPON.EXPLOSIVE;
 	Inventory.Icon "PWBXZ0";
 	Inventory.PickupSound "dcy/plasmariflepickup";
-	Scale 0.9;
+	Scale 0.7;
   }
   
   action void A_Ballista()

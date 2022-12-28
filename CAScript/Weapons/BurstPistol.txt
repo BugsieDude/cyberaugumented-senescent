@@ -2,7 +2,7 @@ Class DCY_BurstPistol : DCY_Weapon
 {
   Default
   {
-	  Tag "UAC-Made Burst Pistol";
+	  Tag "UAC Burst Pistol";
 	  Inventory.PickupSound "dcy/riflepickup";
 	  Weapon.SelectionOrder 1900;
 	  Weapon.AmmoUse1 1;

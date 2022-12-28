@@ -1,0 +1,408 @@
+Class DCY_VeneratedTruncheon : DCY_Weapon
+{
+  Default
+  {
+  Tag "NO INFO - Dismantler";
+  Inventory.PickupMessage "Now, you hold the \c[White]Dismantler\cL. It looks like it's seraph-powered or maykr-powered. Where did this even come from anyways??";
+  Obituary "%o was incinerated in a sacred death by %k's Venerated Truncheon.";
+  Weapon.AmmoType "Cell";
+  Weapon.AmmoGive 100;
+  Weapon.AmmoUse 1;
+  Weapon.Kickback 50;
+  Weapon.SlotNumber 8;
+  Weapon.UpSound "VeneratedTruncheon/Up";
+  Inventory.PickupSound "VeneratedTruncheon/Pickup";
+  +WEAPON.BFG;
+  +WEAPON.NOAUTOFIRE;
+  +WEAPON.NOAUTOAIM;
+  +FLOORCLIP;
+  +FLOATBOB;
+  }
+  
+  action void A_TruncheonBeam()
+  {
+	A_FireProjectile("DCY_VeneratedLaserBeam", frandom(-10.0, 10.0), 0);
+	A_QuakeEx(3, 3, 3, 15, 0, 1000, "", QF_SCALEDOWN, falloff: 1600);
+	
+	if ((level.time % 2) == 1)
+		invoker.DepleteAmmo(invoker.bAltFire, true);
+	
+	A_WeaponOffset(frandom(-2.5, 2.5), frandom(32.5, 35.5), WOF_INTERPOLATE);
+  }
+  
+  int venerated;
+  
+  States
+  {
+  Spawn:
+    LTBR A 0 A_Jump(2, "Ambient");
+    LTBR AAAAAAAAAA 1;
+	Loop;
+  Ambient:
+	LTBR A 0 A_StartSound("HOLYSTF1", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.35);
+	Goto Spawn;
+  Select:
+	LTBS ABC 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	LTBS CBA 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+    LTBR BCDE 2 A_WeaponReady(WRF_ALLOWRELOAD);
+	Loop;
+  Reload:
+	LTBR B 0
+	{
+		A_SetBlend("White", 0.5, 10);
+		A_StartSound("VeneratedTruncheon/Switch", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.75);
+		if(invoker.venerated == 0)
+			Return ResolveState("Reload2");
+		else if(invoker.venerated == 1)
+			Return ResolveState("Reload1");
+		Return ResolveState("Null");
+	}
+	Goto Reload2;
+  Reload1:
+	LTBR B 0
+	{
+		invoker.venerated = 0;
+		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Venerated Beam", (240, 150), (480, 360), color: Font.CR_WHITE, time: (0.3, 2, 1), speed: 0.25, strength: 1.0, frequency: 1.0, id: 78);
+	}
+	LTBR BONMMN 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOFIRE|WRF_NOSWITCH);
+	Goto Ready;
+  Reload2:
+	LTBR B 0
+	{
+		invoker.venerated = 1;
+		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Divine Sun", (240, 150), (480, 360), color: Font.CR_WHITE, time: (0.3, 2, 1), speed: 0.25, strength: 1.0, frequency: 1.0, id: 78);
+	}
+	LTBR BONMMN 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOFIRE|WRF_NOSWITCH);
+	Goto Ready;
+  Fire:
+	LTBR B 0
+	{
+		if(invoker.venerated == 0)
+			Return ResolveState("Fire1");
+		else if(invoker.venerated == 1)
+			Return ResolveState("Fire2");
+		Return ResolveState("Null");
+	}
+	Goto Fire1;
+  Fire1:
+	LTBR F 4 A_StartSound("VeneratedTruncheon/LaserCharge", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.5);
+    LTBR GH 4;
+	LTBR H 0 A_SetBlend("White", 0.75, 15);
+	LTBR H 0 A_QuakeEx(3, 3, 3, 20, 0, 800, "", QF_SCALEUP, 0, 0, 0, 1500);
+	LTBR P 0 A_StartSound("VeneratedTruncheon/Ball/Fire", CHAN_5, CHANF_DEFAULT, 1.0, 0.45);
+	Goto Hold1;
+  Hold1:
+	LTBR P 1 A_TruncheonBeam();
+	LTBR P 0 A_Refire("Hold2");
+	Goto StopFiring;
+  Hold2:
+	LTBR P 1 A_TruncheonBeam();
+	LTBR P 0 A_Refire("Hold3");
+	Goto StopFiring;
+  Hold3:
+	LTBR Q 1 A_TruncheonBeam();
+	LTBR Q 0 A_Refire("Hold4");
+	Goto StopFiring;
+  Hold4:
+	LTBR Q 1 A_TruncheonBeam();
+	LTBR Q 0 A_Refire("Hold5");
+	Goto StopFiring;
+  Hold5:
+	LTBR H 1 A_TruncheonBeam();
+	LTBR H 0 A_Refire("Hold6");
+	Goto StopFiring;
+  Hold6:
+	LTBR H 1 A_TruncheonBeam();
+	LTBR H 0 A_Refire("Hold7");
+	Goto StopFiring;
+  Hold7:
+	LTBR I 1 A_TruncheonBeam();
+	LTBR Q 0 A_Refire("Hold8");
+	Goto StopFiring;
+  Hold8:
+	LTBR I 1 A_TruncheonBeam();
+	LTBR Q 0 A_Refire("Hold1");
+	Goto StopFiring;
+  StopFiring:
+    LTBR G 0;
+	LTBR G 0 A_StartSound("VeneratedTruncheon/LaserSpawn", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.5);
+    LTBR GFEDC 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Fire2:
+    LTBR F 0;
+    LTBR FGHIJ 4;
+	LTBR K 5
+	{
+		A_SetBlend("White", 0.75, 15);
+		A_Quake(4, 15, 0, 600, "");
+		A_Quake(2, 18, 0, 800, "");
+		A_Quake(1, 21, 0, 1000, "");
+		A_GunFlash();
+		A_StartSound("VeneratedTruncheon/Ball/Fire", CHAN_5, CHANF_DEFAULT, 1.0, 0.45);
+		A_FireProjectile("DCY_VeneratedSpheroid", 0, 0);
+		invoker.DepleteAmmo(Invoker.AltFire, true);
+	}
+	LTBR KLMNOR 5;
+	Goto Ready;
+  Flash:
+    TNT1 A 0;
+	TNT1 A 1 A_Light1();
+	TNT1 A 3 A_Light2();
+	TNT1 A 2 A_Light0();
+	Goto LightDone;
+  }
+}
+
+Class DCY_VeneratedLaserBeam : FastProjectile
+{
+  Default
+  {
+  Damage 15;
+  Radius 12;
+  Height 12;
+  Speed 222;
+  DamageType "Holy";
+  RenderStyle "Add";
+  XScale 0.6;
+  YScale 0.45;
+  SeeSound "VeneratedTruncheon/LaserShoot";
+  DeathSound "NeonicLaser/Fire";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,1.01,1.01]";
+  +BRIGHT;
+  +RIPPER;
+  +FORCERADIUSDMG;
+  +NOEXTREMEDEATH;
+  +DONTRIP;
+  }
+  States
+  {
+  Spawn:
+	TRAC B 1
+	{
+		for (int i = 2; i > 0; i--)
+			A_SpawnParticle(0xffffff, SPF_FULLBRIGHT|SPF_RELATIVE, random(10, 35), random(10, 15), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.625);
+	}
+	Loop;
+  Death:
+	TNT1 A 1
+	{
+		A_Explode(100, 100, 0, 1);
+		A_SpawnItemEx("DCY_WFlame", flags: SXF_TRANSFERTRANSLATION);
+		
+		for (int i = 12; i > 0; i--)
+			A_SpawnParticle(0xffffff, SPF_FULLBRIGHT, random(40, 55), 10, frandom(0, 360), frandom(-7.5, 7.5), frandom(-7.5, 7.5), frandom(-7.5, 7.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(0.5, 11.4), accelz: -0.85, fadestepf: 0, sizestep: -0.425);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VeneratedLaserTrail : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Alpha 0.1;
+  RenderStyle "Add";
+  Scale 0.5;
+  +THRUACTORS;
+  +NOINTERACTION;
+  +NOCLIP;
+  +BRIGHT;
+  }
+  States
+  {
+  Spawn:
+    EF2_ B 0;
+	EF2_ B 0 A_JumpIf(Scale.X <= 0.0000000001, "Stahp");
+	EF2_ B 0 A_JumpIf(Alpha <= 0.0000000001, "Stahp");
+	EF2_ B 0 A_SetScale(Scale.X-0.005, Scale.X-0.005);
+	EF2_ B 1 A_FadeOut(0.0025, 0);
+	Loop;
+  Stahp:
+    TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_VeneratedLaserTrail2 : DCY_VeneratedLaserTrail
+{
+  Default
+  {
+  Alpha 0.8;
+  Scale 0.15;
+  }
+  States
+  {
+  Spawn:
+    EF2_ B 0;
+	EF2_ B 0 A_JumpIf(Scale.X <= 0.0000000001, "Stahp");
+	EF2_ B 0 A_JumpIf(Alpha <= 0.0000000001, "Stahp");
+	EF2_ B 0 A_SetScale(Scale.X-0.035, Scale.X-0.035);
+	EF2_ B 0 A_ChangeVelocity(0, 0, -2);
+	EF2_ B 1 A_FadeOut(0.005, 0);
+	Loop;
+  }
+}
+
+Class DCY_VeneratedLaserTrail3 : DCY_VeneratedLaserTrail
+{
+  Default
+  {
+  Alpha 0.01;
+  Scale 1.0;
+  }
+  States
+  {
+  Spawn:
+    EF1_ A 0;
+	EF1_ A 0 A_JumpIf(Scale.X <= 0.0000000001, "Stahp");
+	EF1_ A 0 A_JumpIf(Alpha <= 0.0000000001, "Stahp");
+	EF1_ A 0 A_SetScale(Scale.X-0.05, Scale.X-0.05);
+	TNT1 A 0 A_ChangeVelocity(random(-2, 2), random(-2, 2), random(-2, 2));
+	EF1_ A 1 A_FadeOut(0.0005, 0);
+	Loop;
+  Stahp:
+    TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_VeneratedSpheroid : CacodemonBall
+{
+  Default
+  {
+  SeeSound "VeneratedTruncheon/Ball/Fire";
+  DeathSound "VeneratedTruncheon/Ball/Explode";
+  Damage 100;
+  BounceType "Hexen";
+  BounceCount 14;
+  BounceFactor 1.0;
+  WallBounceFactor 1.0;
+  Radius 55;
+  Height 55;
+  Speed 35.5;
+  DamageType "Holy";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.74,1.74,1.74]";
+  +RIPPER;
+  +NOEXTREMEDEATH;
+  +CANBOUNCEWATER;
+  +BOUNCEONWALLS;
+  +BOUNCEONCEILINGS;
+  +FORCERADIUSDMG;
+  +NEVERFAST;
+  +BRIGHT;
+  }
+  
+  void A_VTrail()
+  {
+	for (int i = 23; i > 0; i--)
+	{
+		A_SpawnItemEx("DCY_VeneratedLaserTrail3", random(-45, 45), random(-45, 45), random(-45, 45), random(-5, 5), random(-5, 5), random(5, 9), random(0, 360), SXF_NOCHECKPOSITION, 30);
+	}
+		
+	for (int i = 7; i > 0; i--)
+	{
+		A_SpawnItemEx("DCY_VeneratedSpheroidTrail", random(-28, 18), random(-28, 28), random(-28, 28), 0, 0, 0, random(0, 360), SXF_NOCHECKPOSITION, 30);
+	}
+  }
+  
+  void A_VXplode()
+  {
+	for (int i = 23; i > 0; i--)
+	{
+		A_SpawnItemEx("DCY_VeneratedLaserTrail2", random(-18, 18), random(-18, 18), random(-18, 18), random(-5, 5), random(-5, 5), random(5, 9), random(0, 360), SXF_NOCHECKPOSITION, 30);
+	}
+	
+	A_Explode(5000, 500, XF_NOTMISSILE, 1);
+	A_Explode(2500, 1000, XF_NOTMISSILE, 1);
+	A_Explode(500, 2000, XF_NOTMISSILE, 1);
+	A_Explode(100, 3000, XF_NOTMISSILE, 1);
+	A_StopSound(CHAN_5);
+	A_QuakeEx(4, 4, 4, 100, 0, 555, "", QF_SCALEDOWN, falloff: 1111, rollintensity: 0.5, rollwave: frandom(-0.5, 0.5));
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay A_StartSound("VeneratedTruncheon/Ball/Idle", CHAN_5, CHANF_LOOPING|CHANF_DEFAULT, 1.0, 0.6);
+	TNT1 AAA 1
+	{
+		A_VTrail();
+		A_VTrail();
+	}
+	Goto Spawn+1;
+  Death:
+    TNT1 A 0 A_VXplode();
+	YT9D AAABBBCCCDDDEEE 1
+	{
+		A_SpawnItemEx("DCY_VeneratedSpheroidExplode", 0, 0, 0, random(-36, 36), random(-36, 36), random(-36, 36), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_VeneratedSpheroidExplode", 0, 0, 0, random(-36, 36), random(-36, 36), random(-36, 36), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_VeneratedSpheroidExplode", 0, 0, 0, random(-36, 36), random(-36, 36), random(-36, 36), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_VeneratedSpheroidExplode", 0, 0, 0, random(-36, 36), random(-36, 36), random(-36, 36), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	Stop;
+  }
+}
+
+Class DCY_VeneratedSpheroidTrail : DCY_VeneratedLaserTrail
+{
+  Default
+  {
+  Scale 1.5;
+  Alpha 0.15;
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 0;
+	TNT1 A 0 A_Jump(192, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5");
+	TNT1 A 0 A_Jump(192, "Spawn0", "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5");
+	Goto Spawn0;
+  Spawn0:
+    TNT1 A 0;
+	AVTE ABCDEFABCD 1 A_FadeOut(0.025, 0);
+	Stop;
+  Spawn1:
+    TNT1 A 0;
+	AVTE DCBAFEDCBA 1 A_FadeOut(0.025, 0);
+	Stop;
+  Spawn2:
+    TNT1 A 0;
+	AVTE CDEFABCDEF 1 A_FadeOut(0.025, 0);
+	Stop;
+  Spawn3:
+    TNT1 A 0;
+	AVTE EFABCDEFAB 1 A_FadeOut(0.025, 0);
+	Stop;
+  Spawn4:
+    TNT1 A 0;
+	AVTE DEFABCDEFA 1 A_FadeOut(0.025, 0);
+	Stop;
+  Spawn5:
+    TNT1 A 0;
+	AVTE BCEFABCDEF 1 A_FadeOut(0.025, 0);
+	Stop;
+  }
+}
+
+Class DCY_VeneratedSpheroidExplode : DCY_VeneratedLaserTrail
+{
+  Default
+  {
+  Scale 2.0;
+  Alpha 0.25;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]";
+  }
+  States
+  {
+  Spawn:
+    SFE1 ABCDEF 5 A_FadeOut(0.15, 0);
+	Stop;
+  }
+}

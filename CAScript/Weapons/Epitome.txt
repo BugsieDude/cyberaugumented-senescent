@@ -1,0 +1,122 @@
+Class DCY_Epitome : Weapon
+{
+  Default
+  {
+  Tag "The Epitome [Staff of Ultimate Aura]";
+  Inventory.PickupMessage "\c[Sapphire]You hold the Epitome with your hands, and feel the power of... Zapping.\cL";
+  Obituary "$o got electrocuted in a fancy way by $k's Epitome.";
+  Height 60;
+  Radius 20;
+  Weapon.AmmoType "DCY_Eminence";
+  Weapon.AmmoUse 10;
+  Weapon.AmmoGive 100;
+  Weapon.BobStyle "Alpha";
+  Weapon.BobRangeX 0.45;
+  Weapon.BobRangeY 0.25;
+  Weapon.BobSpeed 1.45;
+  Weapon.SlotNumber 9;
+  Inventory.Icon "8ECTA0";
+  Inventory.PickupSound "8BITHOLY";
+  +FLOATBOB;
+  +FLOORCLIP;
+  +DONTGIB;
+  }
+  States
+  {
+  Spawn:
+	8ECT A -1 Bright;
+	Stop;
+  Ready:
+	EP8T AABBCCBB 1 Bright A_WeaponReady();
+	Loop;
+  Select:
+	EP8T WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	EP8T YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Fire:
+	EP8T A 0 Bright;
+	EP8T ABCDEFJ 1 Bright;
+	EP8T K 2 Bright
+	{
+		A_FireProjectile("DCY_EpitomeLightningBall", frandom(-1.0, 1.0), 0);
+		invoker.DepleteAmmo(invoker.bAltFire, true);
+		A_StartSound("LIGTFIRE", CHAN_WEAPON, attenuation: 0.75);
+		A_Quake(1, 45, 0, 2000, "None");
+		A_Quake(3, 25, 0, 1500, "None");
+	}
+	EP8T KMOPQRS 2 Bright;
+	EP8T S 0 Bright A_Refire();
+	Goto Ready;
+  AltFire:
+	EP8T A 0 Bright
+	{
+		A_StartSound("BCGNCHRG", CHAN_WEAPON, attenuation: 0.75);
+		A_QuakeEx(1, 1, 1, 50, 0, 500, "none", QF_SCALEUP, 0, 0, 0, 1000);
+	}
+	EP8T ABCTUTUTUTUTUTUTUTUTUTUTUTUTUTUT 1 Bright A_WeaponOffset(frandom(0.25, -0.25), frandom(32.25, 33.25), WOF_INTERPOLATE);
+	EP8T A 0 Bright
+	{
+		A_QuakeEx(2, 2, 2, 70, 0, 500, "none", QF_SCALEUP, 0, 0, 0, 1000);
+		A_WeaponOffset(0, 32);
+	}
+	EP8T TUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTU 1 Bright A_WeaponOffset(frandom(1.0, -1.0), frandom(32.0, 34.0), WOF_INTERPOLATE);
+	EP8T TUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTUTHIJ 1 Bright A_WeaponOffset(frandom(2.0, -2.0), frandom(31.0, 36.0), WOF_INTERPOLATE);
+	EP8T J 0 Bright A_SetBlend("Blue", 0.75, 14);
+	EPT8 J 0 Bright A_WeaponOffset(0, 32);
+	Goto AltHold;
+  AltHold:
+	EP8T K 1 Bright
+	{
+		A_StartSound("LIGTFIRE", CHAN_WEAPON, attenuation: 0.75, pitch: 0.875);
+		invoker.DepleteAmmo(invoker.bAltFire, ammouse: 4);
+		A_FireProjectile("DCY_EpitomeLightningBall", frandom(-20.0, 20.0), 1, 0, frandom(-3.0, 3.0));
+		A_WeaponOffset(frandom(2.0, -2.0), frandom(31.0, 38.0), WOF_INTERPOLATE);
+	}
+	EP8T LNP 1 Bright;
+	EP8T K 0 Bright A_Refire("AltHold");
+	Goto HoldDone;
+  HoldDone:
+	EP8T KLMNOPQR 3 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	EP8T S 3 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Flash:
+    TNT1 A 3 A_Light1();
+	TNT1 A 0 A_Light0();
+	Goto LightDone;
+  }
+}
+
+Class DCY_EpitomeLightningBall : DCY_MultidimensionalZapperBall
+{
+  Default
+  {
+  DamageType "PlayerStun";
+  Damage 200;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.85,1.20,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	LFX2 KLMNO 1 A_Weave(3, 3, 1, 1);
+	Loop;
+  Death:
+    SFE1 A 1;
+	SFE1 A 0 
+	{
+		A_QuakeEx(6, 6, 6, 15, 0, 400, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(4, 4, 4, 25, 0, 600, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(3, 3, 3, 32, 0, 800, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(2, 2, 2, 38, 0, 1000, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 45, 0, 1250, "none", QF_RELATIVE|QF_SCALEDOWN);
+		A_QuakeEx(1, 1, 1, 35, 0, 1250, "none", QF_SCALEDOWN, 0, 0, 0, 0, 0, 0.7, frandom(0.7, -0.7));
+		A_Explode(400, 250, XF_NOTMISSILE, True);
+		A_SpawnItemEx("DCY_MultidimensionalZapperExplodeTrailBarrage", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+    SFE1 AAAABBBBCCCCDDDDEEEEFFFF 1 A_Explode(200, 100, XF_NOTMISSILE, True);
+	Stop;
+  }
+}

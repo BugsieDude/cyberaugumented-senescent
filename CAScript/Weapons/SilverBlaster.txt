@@ -3,8 +3,8 @@ Class DCY_UnderlineShotgun : DCY_Weapon
   Default
   {
 	Tag "Silver Blaster SB-7";
-	Inventory.PickupMessage "You got the Silver Blaster! Some kind of an Assault Shotgun or Auto Shotgun.";
-	Obituary "$o was blown away into some meters by $k's Underline Shotgun.";
+	Inventory.PickupMessage "You got the Silver Blaster! A simple assault/automatic shotgun.";
+	Obituary "$o was blown away into some meters by $k's Silver Blaster.";
 	Weapon.AmmoType "Shell";
 	Weapon.AmmoGive 15;
 	Weapon.AmmoUse 1;
