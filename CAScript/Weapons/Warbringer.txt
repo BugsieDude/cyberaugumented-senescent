@@ -1,0 +1,68 @@
+Class DCY_Cyberrifle : DCY_Weapon
+{
+  Default
+  {
+	Tag "8.12x50mm ''Warbringer''-52 MK4 Automatic Justifier DMR";
+	Weapon.SlotNumber 4;
+	Weapon.AmmoUse1 1;
+	Weapon.AmmoGive1 20;
+	Weapon.SlotNumber 2;
+	Weapon.AmmoType2 "Clip";
+	Weapon.AmmoType1 "Clip";
+	Inventory.PickupSound "dcy/riflepickup";
+	Obituary "%o got holes in %h body by %k.";
+	Inventory.PickupMessage "The Warbringer! It's a mauve rifle with some resemblance of the Heavy Cannon Rifle.";
+	+WEAPON.WIMPY_WEAPON;
+	//+WEAPON.NOAUTOFIRE;
+  }
+  
+  action void A_RifleF()
+  {
+	A_StartSound("Rifle/Fire", CHAN_WEAPON, volume: 0.75);
+	A_GunFlash();
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosiveRifleTracer" : "DCY_RifleTracer", frandom(-0.35, 0.35), 0, 0, frandom(-0.35, 0.35));
+	A_WeaponOffset(frandom(-1.5, 1.5), frandom(-1.5, 1.5), WOF_ADD|WOF_INTERPOLATE);
+  }
+  
+  States
+  {
+  Spawn:
+	RIF_ Z -1;
+	Stop;
+  Select:
+	REE_ ABC 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	REE_ CBA 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	RFL_ A 1 A_WeaponReady();
+	Loop;
+  NoAmmo:
+	RFL_ A 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Fire:
+	RFL_ B 1 Bright; 
+	RFL_ C 1 Bright A_RifleF();
+	RFL_ D 1 Bright;
+	RFL_ E 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	RFL_ F 1
+	{
+		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+		A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	}
+	RFL_ G 1
+	{
+		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+		A_Refire("Fire");
+	}
+	RFL_ H 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Flash:
+	TNT1 A 3 Bright A_Light1();
+	TNT1 A 3 Bright A_Light2();
+    Goto LightDone;
+  }
+}

@@ -13,7 +13,7 @@ Class DCY_TheCinerealOrdnance : Weapon
   Inventory.PickupSound "CinerealOrdnance/Up";
   Weapon.UpSound "CinerealOrdnance/Up";
   Inventory.Icon "CINRZ0";
-  Tag "The ''Cinereal Ordnance'' (Faust-X 0)";
+  Tag "The Cinereal Ordnance";
   Weapon.BobStyle "Alpha";
   Weapon.BobRangeX 0.45;
   Weapon.BobRangeY 0.25;

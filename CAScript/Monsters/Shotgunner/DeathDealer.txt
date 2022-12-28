@@ -3,7 +3,7 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
   Default
   {
   Health 350;
-  Tag "\c[q6]The 'Death Dealer'\c-";
+  Tag "\c[e7]The 'Death Dealer'\c-";
   Speed 13;
   FastSpeed 16;
   +QUICKTORETALIATE
@@ -16,14 +16,13 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
   ActiveSound "DeathDealer/Active";
   PainSound "DeathDealer/Pain";
   DeathSound "DeathDealer/Death";
-  Obituary "This was a very bad day for %o. He saw the 'Death Dealer'. He knew he was dumb enough to get blasted by the Proto BFG-10k lasers.";
+  Obituary "This was a very bad day for %o. He saw the 'Death Dealer'. %g knew he did not realize that it was behind %h.";
   DropItem "Cell", 196;
   DropItem "Cell", 196;
   DropItem "Cell", 196;
   DropItem "DCY_UltramodernEnergy", 196;
   DropItem "DCY_UltramodernEnergy", 196;
-  DropItem "DCY_TheBFG10000", 95;
-  BloodColor "Green";
+  BloodColor "ffc400";
   }
   States
   {

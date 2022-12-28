@@ -1,0 +1,55 @@
+Class DCY_BallistaManefista : DCY_Weapon
+{
+  Default
+  {
+	Tag "Mason Ballista";
+	Weapon.AmmoType "Cell";
+	Weapon.AmmoGive 50;
+	Weapon.AmmoUse 15;
+	Inventory.PickupMessage "The Ballista, a crossbow built with technology that has unimaginable strength inside of it; feels like guts and glory.";
+	Weapon.SlotNumber 6;
+	AttackSound "Ballista/Explode";
+	DamageType "Ballista";
+	+WEAPON.EXPLOSIVE;
+	Inventory.Icon "PWBXZ0";
+	Inventory.PickupSound "dcy/plasmariflepickup";
+	Scale 0.9;
+  }
+  
+  action void A_Ballista()
+  {
+	A_QuakeEx(3, 3, 3, 50, 0, 150, "none", QF_SCALEDOWN, falloff: 250);
+	A_StartSound("Ballista/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_RailAttack(450, 0, 0, flags: RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, pufftype: "DCY_BallistaPuff", sparsity: 64, spawnclass: "DCY_BallistaTrail");
+	A_GunFlash();
+  }
+  
+  States
+  {
+  Spawn:
+	PWBX Z -1;
+	Stop;
+  Ready:
+	PWBX AAAAABBBBBCCCCCDDDDD 1 Bright A_WeaponReady();
+	Loop;
+  Select:
+	PWBX WXY 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	PWBX YXW 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Fire:
+	PW3X A 1 Bright;
+	PW3X B 1 Bright A_Ballista();
+	PW3X CDE 1 Bright;
+	PW3X FGH 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	PW3X H 30 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	PW3X I 2 A_StartSound("Ballista/Reload", CHAN_WEAPON, CHANF_OVERLAP);
+	PW3X IJKL 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	PW3X MNOPQ 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	PWBX AA 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  }
+}

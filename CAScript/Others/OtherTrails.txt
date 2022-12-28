@@ -265,13 +265,13 @@ Class DCY_DeathDealerTrail : DCY_UltraspellerTrail
   Spawn:
 	TNT1 A 1;
 	BF_T "#" 0;
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("f1ffa1"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("e1ff87"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("a9ff47"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("82eb21"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("60bf08"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("2d6e04"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("033302"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("fff9d6"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ffdd00"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.05, Scale.Y+0.05); SetShade("ab7400"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("f0a400"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("6e4b00"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("402100"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); A_SetScale(Scale.X+0.025, Scale.Y+0.025); SetShade("170c00"); }
 	Stop;
   }
 }

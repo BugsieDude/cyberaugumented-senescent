@@ -1,16 +1,9 @@
-Class DCY_HahahaPunchPunch : Weapon Replaces Fist
+Class DCY_HahahaPunchPunch : DCY_Weapon Replaces Fist
 {
   Default
   {
 	Tag "Bare Fists";
-	Weapon.SelectionOrder 3700;
-	Weapon.Kickback 100;
-	Weapon.BobStyle "Alpha";
-	Weapon.BobRangeX 0.45;
-	Weapon.BobRangeY 0.25;
-	Weapon.BobSpeed 1.45;
 	Obituary "$OB_MPFIST";
-	Weapon.SlotNumber 1;
 	+WEAPON.WIMPY_WEAPON;
 	+WEAPON.NOALERT;
 	+WEAPON.MELEEWEAPON;

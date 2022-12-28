@@ -1,0 +1,85 @@
+Class DCY_BurstPistol : DCY_Weapon
+{
+  Default
+  {
+	  Tag "UAC-Made Burst Pistol";
+	  Inventory.PickupSound "dcy/riflepickup";
+	  Weapon.SelectionOrder 1900;
+	  Weapon.AmmoUse1 1;
+	  Weapon.AmmoGive1 50;
+	  Weapon.AmmoUse2 1;
+	  Weapon.AmmoGive2 50;
+	  Weapon.SlotNumber 2;
+	  Weapon.AmmoType2 "Clip";
+	  Weapon.AmmoType1 "Clip";
+	  Obituary "$OB_MPPISTOL";
+	  Inventory.PickupMessage "You got back your... Burst Pistol? Thanks, console.";
+	  +WEAPON.WIMPY_WEAPON;
+	  +WEAPON.NOAUTOFIRE;
+  }
+  
+  action void A_PistolFire()
+  {
+	A_StartSound("BurstPistol/Fire", CHAN_WEAPON);
+	A_GunFlash();
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosivePistolTracer" : "DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
+	A_WeaponOffset(frandom(-1.5, 1.5), frandom(-1.5, 1.5), WOF_ADD|WOF_INTERPOLATE);
+  }
+  
+  action void A_PistolBurstFire()
+  {
+	A_GunFlash();
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosivePistolTracer" : "DCY_PistolTracer", frandom(-0.85, 0.85), 0, 0, frandom(-0.85, 0.85));
+	A_WeaponOffset(frandom(-2.25, 2.25), frandom(-2.25, 2.25), WOF_ADD|WOF_INTERPOLATE);
+  }
+	
+  States
+  {
+  Select:
+	PES_ ABC 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	PES_ CBA 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	PIS_ A 1 A_WeaponReady();
+	Loop;
+  NoAmmo:
+	PIS_ A 1;
+	Goto Ready;
+  Fire:
+	PIS_ A 0;
+	PIS_ B 1 A_PistolFire();
+	PIS_ CD 1 Bright;
+	PIS_ E 1 Bright
+	{
+		A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+		A_WeaponReady(WRF_NOBOB);
+	}
+	PIS_ FGHI 1 A_WeaponReady(WRF_NOBOB);
+	Goto Ready;
+  AltFire:
+	PIS_ A 0;
+	PIS_ A 1;
+	PIS_ B 1;
+	PIS_ C 1
+	{
+		A_PistolBurstFire();
+		A_StartSound("BurstPistol/Burst", CHAN_WEAPON);
+	}
+	PIS_ D 1 Bright A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	PIS_ C 1 A_PistolBurstFire();
+	PIS_ D 1 Bright A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	PIS_ C 1 A_PistolBurstFire();
+	PIS_ D 1 Bright A_WeaponOffset(0, 32, WOF_INTERPOLATE);
+	PIS_ E 1 Bright;
+	PIS_ FGHIAAAA 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	Goto Ready;
+  Flash:
+	TNT1 A 5 Bright A_Light1;
+    Goto LightDone;
+  }
+}

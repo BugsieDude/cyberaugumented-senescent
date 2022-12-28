@@ -1,0 +1,72 @@
+Class DCY_SuperShotty : DCY_Weapon Replaces SuperShotgun
+{
+  Default
+  {
+	Tag "Stevens 430k Model Dual Barrel Shotgun";
+	Inventory.PickupSound "dcy/shotgunpickup";
+	Inventory.PickupMessage "You got the Dual Barrel shotgun! A certified classic. Time to kick ass.";
+	Weapon.SelectionOrder 400;
+	Weapon.AmmoUse 2;
+	Weapon.AmmoGive 8;
+	Weapon.AmmoType "Shell";
+  }
+  
+  action void A_SuperShotgunFire()
+  {
+	A_GunFlash();
+	
+	invoker.DepleteAmmo(invoker.bAltFire, true);
+	
+	for (int i = 7; i > 0; i--)
+    {
+		for (int i = -4; i < 5; i += 8)
+			A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosiveSSGTracer" : "DCY_SSGTracer", frandom(-3.25, 3.25), 0, -4, pitch: frandom(-3.0, 3.0));
+	}
+	
+	A_QuakeEx(1, 1, 1, 30, 0, 90, "none", QF_SCALEDOWN, falloff: 180);
+	A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE);
+  }
+  
+  States
+  {
+  Spawn:
+	_S2G Z -1;
+	Stop;
+  Select:
+	_S2G ABC 1 A_WeaponReady(WRF_NOFIRE);
+	Goto Ready;
+  Deselect:
+	_S2G CBA 1 A_WeaponOffset(0, 32);
+	TNT1 A 0 A_Lower();
+	Wait;
+  Ready:
+	_SSG A 1 A_WeaponReady();
+	Loop;
+  Fire:
+	_SSG A 0;
+	_SSG A 1
+	{
+		A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE);
+		A_StartSound("SuperShotgun/Fire", CHAN_WEAPON);
+	}
+	_SSG B 1 Bright A_SuperShotgunFire();
+	_SSG CDE 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG FGH 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG I 0 A_JumpIfNoAmmo("Ready");
+	_SSG IJKLM 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG N 1
+	{
+		A_StartSound("SuperShotgun/Reload", CHAN_WEAPON, CHANF_OVERLAP, 0.5);
+		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	}
+	_SSG OP 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG QRSTUVWXYZ 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_S2G ABC 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_S2G C 0 A_Refire();
+	Goto Ready;
+  Flash:
+	TNT1 A 2 A_Light1();
+	TNT1 A 2 A_Light2();
+	Goto LightDone;
+  }
+}

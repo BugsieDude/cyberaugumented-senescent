@@ -65,7 +65,7 @@ Class DCY_Chimera : DCY_Rev
 	Goto Souls;
   Souls:
 	INCA J 10 A_FaceTarget();
-	INCA KKKKKKK 4 { A_FaceTarget(); A_SpawnProjectile("DCY_ChimeraSoul", 60, randompick(-20, 20)); }
+	INCA KKKK 6 { A_FaceTarget(); A_SpawnProjectile("DCY_ChimeraSoul", 60, randompick(-20, 20)); }
 	INCA K 10;
 	Goto See;
   Scream:
@@ -108,8 +108,8 @@ Class DCY_ChimeraSoul : DCY_EspouserSoul
   {
   SeeSound "DCYGhostProjectile";
   DeathSound "imp/shotx";
-  Speed 20;
-  Scale 0.8;
+  Speed 10;
+  Scale 0.5;
   }
   
   States
@@ -118,7 +118,7 @@ Class DCY_ChimeraSoul : DCY_EspouserSoul
 	S0UX L 1
 	{
 		A_Tracer2(2);
-		A_SpawnItemEx("DCY_RocketSmonk", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(1, -1), frandom(1, -1), frandom(1, -1), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_RocketSmonk", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(1, -1), frandom(1, -1), frandom(1, -1), frandom(0, 360), SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
 	}
 	Loop;
   }

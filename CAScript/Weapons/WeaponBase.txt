@@ -1,0 +1,17 @@
+Class DCY_Weapon : Weapon abstract
+{
+	Default
+	{
+	Weapon.BobStyle "Alpha";
+	Weapon.BobRangeX 0.45;
+	Weapon.BobRangeY 0.25;
+	Weapon.BobSpeed 1.45;
+	}
+	
+	override void DoEffect()
+	{
+		super.DoEffect();
+		let p = owner.player;
+		if (p && p.readyweapon) p.weaponstate != WF_WEAPONBOBBING;
+	}
+}
