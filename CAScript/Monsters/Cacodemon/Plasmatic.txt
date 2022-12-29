@@ -1,4 +1,4 @@
-Class DCY_PlasmaticWizard : DCY_CacoParent
+Class DCY_Deluder : DCY_CacoParent
 {
   Default
   {
@@ -15,18 +15,31 @@ Class DCY_PlasmaticWizard : DCY_CacoParent
   +DONTHARMSPECIES
   +DONTHARMCLASS
   DamageType "PlasmaW";
-  DropItem "DCY_Eminence", 128;
-  DropItem "DCY_Eminence", 128;
   DamageFactor "PlasmaW", 0.00;
-  BloodColor "Blue";
+  BloodColor "Green";
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   SeeSound "PWizard/Sight";
   PainSound "PWizard/Pain";
   DeathSound "PWizard/Death";
   ActiveSound "PWizard/Active";
   MeleeSound "wizard/melee";
-  Obituary "%o was fried by one of the Plasmatic Helltactician's attacks.";
-  Tag "\c[n5]Plasmatic \c[l5]Helltactician\c-";
+  Obituary "%o was wrong as the Deluder manipulated %h's mind.";
+  Tag "\c[a6]Deluder\c-";
+  }
+  
+  int missile;
+  
+  state A_DeluderDecide()
+  {	
+	switch (random(0, 3))
+	{
+		case 0: Return ResolveState("Missile1"); break;
+		case 1: Return ResolveState("Missile2"); break;
+		case 2: Return ResolveState("Missile3"); break;
+		case 3: Return ResolveState("Melee"); break;
+	}
+	
+	Return ResolveState(null);
   }
   
   void A_PlasmaticDash()
@@ -35,14 +48,17 @@ Class DCY_PlasmaticWizard : DCY_CacoParent
 	A_Chase();
   }
   
-  void A_PlasmaticAttack(bool attacking)
+  void A_PlasmaticAttack()
   {
-	A_Wander();
-	A_Wander();
-	A_FaceTarget();
-	
-	if (attacking == true)
-		A_SpawnProjectile("DCY_WizardPlasma", 30, 10, random(-4, 4), 0, random(-4, 4));
+	if (target)
+	{
+		for (int i = 2; i > 0; i--)
+			A_Wander();
+		A_FaceTarget();
+		
+		if ((level.time % 2) == 0)
+			A_SpawnProjectile("DCY_WizardPlasma", 30, 10, random(-4, 4), 0, random(-4, 4));
+	}
   }
   
   States
@@ -74,9 +90,11 @@ Class DCY_PlasmaticWizard : DCY_CacoParent
 	PWIZ P 9 A_CustomMeleeAttack(random(10, 100), "");
 	Goto See;
   Missile:
-    PWIZ C 0 A_Jump(64, "Missile2", "Missile3", "Melee");
-    PWIZ C 4 A_FaceTarget();
-    PWIZ D 4
+    PWIZ C 0 A_DeluderDecide();
+	Goto Missile1;
+  Missile1:
+    PWIZ C 12 A_FaceTarget();
+    PWIZ D 8
 	{
 		A_SpawnProjectile("DCY_WizardPlasma", 30, 10, -4);
 		A_SpawnProjectile("DCY_WizardPlasma", 30, 0, 0);
@@ -84,19 +102,18 @@ Class DCY_PlasmaticWizard : DCY_CacoParent
 	}
     Goto See;
   Missile2:
-    PWIZ C 4 A_FaceTarget();
-    PWIZ D 2 A_PlasmaticAttack(false);
-	PWIZ D 2 A_PlasmaticAttack(true);
-	PWIZ D 2 A_PlasmaticAttack(false);
-	PWIZ D 2 A_PlasmaticAttack(true);
-	PWIZ D 2 A_PlasmaticAttack(false);
-	PWIZ D 2 A_PlasmaticAttack(true);
-	PWIZ D 2 A_PlasmaticAttack(false);
-	PWIZ D 2 A_PlasmaticAttack(true);
-	PWIZ D 2 A_PlasmaticAttack(false);
-	PWIZ D 2 A_PlasmaticAttack(true);
-    Goto See;
+    PWIZ C 12 { missile = 0; A_FaceTarget(); }
+    PWIZ D 3
+	{
+		if (missile > 10)
+			SetStateLabel("See");
+		
+		missile++;
+		A_PlasmaticAttack();
+	}
+    Goto Missile2+1;
   Missile3:
+	PWIZ N 0 A_Jump(80, "Missile1");
     PWIZ NO 10 A_FaceTarget();
     PWIZ P 10
 	{
@@ -136,7 +153,7 @@ Class DCY_PWZFX1 : DCY_Effect
    Scale 1.0;
    Alpha 0.95;
    RenderStyle "AddStencil";
-   StencilColor "2452b2";
+   StencilColor "Green";
    +NOCLIP
    -SOLID
    +NOGRAVITY
@@ -157,25 +174,33 @@ Class DCY_WizardPlasma : CacodemonBall
 {
   Default
   {
-  DamageFunction 3;
-  Speed 15;
-  FastSpeed 20;
+  Damage 3;
+  Speed 12;
+  FastSpeed 22;
   Radius 8;
   Height 8;
   RenderStyle "Add";
-  Scale 1.25;
+  Scale 1.35;
   Projectile;
   +THRUGHOST
   +BRIGHT
+  +SEEKERMISSILE
   DamageType "PlasmaW";
   SeeSound "WH1PSWNG";
   DeathSound "";
-  Translation "0:255=%[0.00,0.00,0.50]:[0.67,1.28,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.38,1.63,0.41]";
   }
   States
   {
   Spawn:
-    BLPL ABCD 1 A_SpawnItemEx("DCY_WizardPlasmaTrail");
+    BLPL ABCD 1
+	{
+		vel.x += frandom(-1.5, 1.5);
+		vel.y += frandom(-1.5, 1.5);
+		vel.z += frandom(-1.5, 1.5);
+		A_Tracer2(1.5);
+		A_SpawnItemEx("DCY_WizardPlasmaTrail");
+	}
 	Loop;
   Death:
 	TNT1 A 3;
@@ -183,13 +208,13 @@ Class DCY_WizardPlasma : CacodemonBall
   }
 }
 
-Class DCY_WizardPlasmaTrail : DCY_PlasmaTrail { Default { Alpha 0.5; Scale 1.0; Translation "0:255=%[0.00,0.00,0.00]:[0.42,0.55,1.47]"; } }
+Class DCY_WizardPlasmaTrail : DCY_PlasmaTrail { Default { Alpha 0.5; Scale 1.0; Translation "0:255=%[0.00,0.00,0.00]:[0.38,1.63,0.41]"; } }
 
 Class DCY_WizardBlast : CacodemonBall
 {
   Default
   {
-  Speed 20;
+  Speed 15;
   Scale 2.3;
   Projectile;
   +STRIFEDAMAGE
@@ -198,7 +223,7 @@ Class DCY_WizardBlast : CacodemonBall
   Radius 20;
   Height 20;
   DamageFunction 28;
-  Translation "0:255=%[0.00,0.00,0.50]:[0.67,1.28,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.38,1.63,0.41]";
   SeeSound "WH1PLASR";
   Deathsound "BLAST002";
   RenderStyle "Add";
@@ -218,21 +243,16 @@ Class DCY_WizardBlast : CacodemonBall
     Loop;
   Death:
     TNT1 A 1;
-	TNT1 A 0
+	TNT1 A 1
 	{
 		for (int i = 0; i < 360; i += 90)
 		{
 			A_SpawnProjectile("DCY_WizardPlasmaSlow", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
-		}
-		
-		for (int i = 45; i < 360; i += 90)
-		{
-			A_SpawnProjectile("DCY_WizardPlasma", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+			A_SpawnProjectile("DCY_WizardPlasma", 5, 0, i + 45, CMF_AIMDIRECTION|CMF_SAVEPITCH);
 		}
 		
 		A_QuakeEx(4, 4, 4, 30, 0, 500, "none", QF_RELATIVE|QF_SCALEDOWN|QF_3D, falloff: 1000);
 	}
-    TNT1 A 2;
 	Stop;
   }
 }

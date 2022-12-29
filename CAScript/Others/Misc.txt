@@ -349,7 +349,7 @@ Class DCY_CrucibleBulletPuffSpark : DCY_BulletPuffSpark
 	{
 		If(Scale.X <= 0)
 			Destroy();
-
+		
 		A_ScaleVelocity(1);
 		A_SetScale(Scale.X-0.025);
 		A_FadeOut(0.00025, 0);
@@ -376,7 +376,7 @@ Class DCY_AndroidPuffSpark : DCY_BulletPuffSpark
   
   override void PostBeginPlay()
   {
-	super.PostBeginPlay();
+	A_ScaleVelocity(1, AAPTR_DEFAULT);
 	if (!random(0, 1)) A_SetScale(Scale.X*2);
 	A_SetScale(Scale.X*frandom(0.75, 1.115));
   }
@@ -581,7 +581,7 @@ Class DCY_BallistaSpark : DCY_BulletPuffSpark
   States
   {
   Spawn:
-	NULL A 3 NoDelay A_Gravity();
+	NULL A 3 NoDelay;
 	NULL A 1
 	{
 		if (Scale.X <= 0)

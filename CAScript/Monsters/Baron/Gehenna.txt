@@ -1,4 +1,4 @@
-Class DCY_GehennaChasseur : DCY_HeckBaron
+Class DCY_GehennaChasseur : DCY_BaronParent
 {
   Default
   {

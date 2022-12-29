@@ -173,6 +173,7 @@ Uboa - Sprites
 Mortarion - Victim Sprites
 Gloom Deluxe - Theristis Psichisl Sprites & Ion Arachno sounds
 Ravick - Sprites
+Daybreak Game Company/Planetside 2 - Sounds
 
 ================================================================================
 MUSIC AND FANFARES

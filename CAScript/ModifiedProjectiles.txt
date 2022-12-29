@@ -374,6 +374,11 @@ Class DCY_RocketFlare : Actor
 
 Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
 {
+  Mixin DCY_Effects;
+  
+  string ac;
+  property AuraColor : ac;
+  
   Default
   {
   +ROLLSPRITE;
@@ -384,27 +389,35 @@ Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
   Radius 13;
   Height 8;
   Damage 5;
+  DCY_RehauledPlasma.AuraColor "2052bd";
   RenderStyle "Add";
   SeeSound "weapons/plasmaf2";
   DeathSound "weapons/plasmax";
   Obituary "$OB_MPPLASMARIFLE";
-  Translation "0:255=%[0.00,0.00,0.00]:[0.47,0.66,2.00]";
-  Scale 0.2;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.80,1.43]";
+  Scale 1;
   Alpha 1.0;
-  Speed 50;
+  Speed 25;
   DamageType "Plasma";
   }
+  
   States
   {
   Spawn:
-	PLS1 ABCDEFGHIJKL 1
+	BLPL AABBCCDD 1
 	{
 		A_SetRoll(frandom(0.00, 360.00));
 		
-		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 240);
+		if (random(0, 2) == 0)
+		{
+			actor plasma = Spawn("DCY_FluorescentSparkle", pos + (frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0)));
+			if (plasma) { plasma.translation = translation; plasma.bNOGRAVITY = true; }
+		}
 		
-		for (int i = 2; i > 0; i--)
-			A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+		if (DCY_EffectDistance(900))
+			A_SpawnItemEx("DCY_CWFXTrail", flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
+		
+		A_SpawnParticleEx(ac, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
 	}
 	Loop;
   Death:
@@ -418,6 +431,29 @@ Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
 	}
 	PLSE BCDE 2;
 	Stop;
+  }
+}
+
+Class DCY_RehauledAura : DCY_Effect
+{
+  Default
+  {
+  RenderStyle "Add";
+  Radius 0;
+  Height 0;
+  -SOLID
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +BRIGHT
+  Scale 0.65;
+  Alpha 0.5;
+  }
+  
+  States
+  {
+  Spawn:
+	GL0W Z 1 A_FadeOut(0.2);
+	Wait;
   }
 }
 
@@ -452,22 +488,11 @@ Class DCY_ArachPlasma : DCY_RehauledPlasma Replaces ArachnotronPlasma
   {
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.65,0.65]";
   Speed 18;
+  DCY_RehauledPlasma.AuraColor "a83432";
   FastSpeed 20.5;
-  DamageType "RedPlasma";
   }
   States
   {
-  Spawn:
-	PLS1 ABCDEFGHIJKL 1
-	{
-		A_SetRoll(frandom(0.00, 360.00));
-		
-		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 240);
-		
-		for (int i = 2; i > 0; i--)
-			A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
-	}
-	Loop;
   Death:
 	PLSE A 3
 	{

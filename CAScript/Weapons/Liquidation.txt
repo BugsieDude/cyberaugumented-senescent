@@ -26,7 +26,8 @@ Class DCY_TheBFG10000 : DCY_Weapon
   {
 	invoker.lower += 1;	
 	A_QuakeEx(shake3, shake3, shake3, 10, 0, 200, "", QF_SCALEDOWN);
-	A_OverlayOffset(-4, frandom(-shake1, shake1), invoker.lower + frandom(-shake2, shake2), WOF_INTERPOLATE);
+	A_OverlayScale(-4, 1 + (invoker.lower / 100), 1 + (invoker.lower / 100));
+	A_OverlayOffset(-4, frandom(-shake1, shake1) - (invoker.lower / 2), (invoker.lower / 2) + frandom(-shake2, shake2), WOF_INTERPOLATE);
 	
 	return;
   }
@@ -69,13 +70,14 @@ Class DCY_TheBFG10000 : DCY_Weapon
     Goto LightDone;
   ChargeOverlay:
 	L1QU AAAABBBB 1 Bright A_LiquidationShake(1.5, 1.5, 1);
-	L1QU CCCCDDDD 1 Bright A_LiquidationShake(3.15, 2.15, 2);
-	L1QU EEEEFFFGGGHHH 1 Bright A_LiquidationShake(3.75, 2.75, 3);
+	L1QU CCCCDDDD 1 Bright A_LiquidationShake(3.15, 3.15, 2);
+	L1QU EEEEFFFGGGHHH 1 Bright A_LiquidationShake(5.75, 5.75, 3);
 	Stop;
   FiringOverlay:
 	L1QU I 1 Bright
 	{
-		A_OverlayOffset(-4, frandom(-3.0, 3.0), frandom(42.0, 48.0), WOF_INTERPOLATE);
+		A_OverlayOffset(-4, frandom(-3.0, 3.0) - (invoker.lower / 1.5), frandom(32.0, 37.0), WOF_INTERPOLATE);
+		A_OverlayScale(-4, 1 + (invoker.lower / 100), 1 + (invoker.lower / 100), WOF_INTERPOLATE);
 		A_QuakeEx(2, 2, 2, 15, 0, 300, "", QF_RELATIVE|QF_SCALEDOWN, rollintensity: 1.0, rollwave: 0.5);
 	}
 	Loop;
@@ -114,13 +116,13 @@ Class DCY_TheBFG10000 : DCY_Weapon
 	Goto CooldownSupreme;
   CooldownSupreme:
 	TNT1 I 0 A_Overlay(-4, "CooldownOverlay");
-	TNT1 A 10 A_StartSound("BFG10kLaser/Stop", CHAN_6, CHANF_DEFAULT, 0.75);
-	TNT1 A 30 Bright
+	TNT1 A 10
 	{
 		A_StopSound(CHAN_WEAPON);
 		A_StopSound(CHAN_7);
-		A_WeaponOffset(0, 32);
+		A_StartSound("BFG10kLaser/Stop", CHAN_6, CHANF_DEFAULT, 0.75);
 	}
+	TNT1 A 30 Bright A_WeaponOffset(0, 32);
 	Goto Ready;
   }
 }

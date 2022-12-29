@@ -427,7 +427,7 @@ Object DCY_CWFX3
 
 PulseLight DCY_PlasmaticProjectile
 {
-  Color 0.00 0.40 0.85
+  Color 0.00 0.85 0.10
   Size 67
   SecondarySize 74
   Interval 0.5
@@ -440,7 +440,7 @@ Object DCY_WizardPlasma
 
 PulseLight DCY_SuperPlasmaticProjectile
 {
-  Color 0.00 0.40 0.85
+  Color 0.00 0.85 0.10
   Size 125
   SecondarySize 135
   Interval 0.65

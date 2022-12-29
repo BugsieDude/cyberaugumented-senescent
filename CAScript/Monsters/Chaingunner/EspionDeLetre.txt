@@ -39,7 +39,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 		if (health <= 180 && emission == true)
 			A_SpawnProjectile("DCY_EspionEmissionTracer", 30, 0, frandom(-3.0, 3.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-3.0, 3.0));
 		else
-			A_SpawnProjectile("DCY_EspionSmallPlasma", 30, 0, frandom(-2.0, 2.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-2.0, 2.0));
+			A_SpawnProjectile("DCY_RehauledPlasma", 30, 0, frandom(-2.0, 2.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-2.0, 2.0));
 	  }
 	}
   }
@@ -84,37 +84,27 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 	}
 	Loop;
   Missile:
-	DBGE E 1
+	DBGE A 10;
+	DBGE E 30
 	{
-		if (Health <= 100)
-			Return ResolveState("LowHealthMissile");
-		
+		if (self.health <= 100) SetStateLabel("LowHealthMissile");
 		bigplasma = randompick(0, 0, 1);
-		
 		A_FaceTarget();
-		
-		if (bigplasma == false)
-			A_StartSound("DSUHH", attenuation: 0.5);
-		else
-			A_StartSound("Pistol/LaserCharge", attenuation: 0.5);
-		
-		Return ResolveState(null);
+		A_StartSound((emission) ? "RPLSSELC" : ((!bigplasma) ? "DSUHH" : "Pistol/LaserCharge"), attenuation: 0.5);
 	}
-	DBGE E 29 A_FaceTarget();
-	DBGE F 3 A_EspionShoot();
-	DBGE E 2
+	DBGE F 1 A_EspionShoot();
+	DBGE E 1
 	{
 		if (bigplasma == true)
 			A_SetTics(10);
 		else
-			A_SetTics(2);
+			A_SetTics(1);
 		
 		A_FaceTarget();
 	}
 	DBGE E 1
 	{
-		if (bigplasma == true)
-			Return ResolveState("See");
+		if (bigplasma) SetStateLabel("See");
 		Return A_MonsterRefire(100, "See");
 	}
 	Goto Missile+2;
@@ -123,7 +113,6 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 	{
 		A_FaceTarget();
 		emission = true;
-		A_StartSound("RPLSSELC", attenuation: 0.5);
 	}
 	DBGE E 49 { A_FaceTarget(); bigplasma == false; }
 	DBGE F 3 A_EspionShoot();
