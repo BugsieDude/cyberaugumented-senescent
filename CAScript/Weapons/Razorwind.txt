@@ -68,7 +68,7 @@ Class DCY_Razorwind : DCY_Weapon Replaces Pistol
   }
 }
 
-Class DCY_RazorwindLaser : FastProjectile
+Class DCY_RazorwindLaser : DCY_TracerPlayer
 {
   Default
   {
@@ -80,6 +80,7 @@ Class DCY_RazorwindLaser : FastProjectile
   Scale .2;
   MissileHeight 6;
   MissileType "DCY_RazorwindTrail";
+  DCY_TracerPlayer.SparkFX "DCY_AndroidPuffSpark";
   }
   
   static const string ParticleColors[] = { "ffffff", "bffbff", "80d7ff", "87abff" };
@@ -104,15 +105,7 @@ Class DCY_RazorwindLaser : FastProjectile
 	}
 	Goto Death;
   Death:
-	TNT1 A 1
-	{
-		for (int i = 3; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_AndroidPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 60);
-			A_SpawnItemEx("DCY_AndroidPuffSpark", 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION, 28);
-		}
-	}
-	TNT1 A 0;
+	TNT1 A 1 A_Sparks();
 	Stop;
   }
 }

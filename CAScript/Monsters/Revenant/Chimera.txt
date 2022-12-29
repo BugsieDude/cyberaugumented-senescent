@@ -72,7 +72,7 @@ Class DCY_Chimera : DCY_Rev
 	INCA J 10 A_FaceTarget();
 	INCA U 1
 	{
-		A_StartSound("SCREAMSOFTHEDAMNED", CHAN_VOICE, attenuation: 0.75);
+		A_StartSound("PhantomRev/Scream", CHAN_VOICE, attenuation: 0.75);
 		A_QuakeEx(3, 3, 3, 30, 0, 600, "", QF_SCALEDOWN|QF_3D, rollintensity: 3, rollwave: 0.1);
 		A_Explode(6, 380, XF_NOTMISSILE);
 	}

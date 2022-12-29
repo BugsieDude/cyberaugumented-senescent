@@ -471,19 +471,6 @@ Model DCY_TransfixerPlasma
   FrameIndex TRAC E 0 0
 }
 
-Model DCY_EspionSmallPlasma
-{ 
-  Path "CAModels"
-  SKIN 0 "greentracer.png"
-  MODEL 0 "tracer.md3"
-  Scale 10.0 10.0 5.0
-  PITCHFROMMOMENTUM
-  ROTATING
-  Rotation-Vector 1.0 0.0 0.0
-  Rotation-Speed 15.0
-  FrameIndex TRAC E 0 0
-}
-
 Model DCY_EspionEmissionTracer
 { 
   Path "CAModels"

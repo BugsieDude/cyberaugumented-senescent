@@ -11,6 +11,7 @@ Class DCY_UltrapissSoulSphere : DCY_Powerup
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	super.Tick();
 	
 	if (DCY_EffectDistance(900))
@@ -77,7 +78,7 @@ Class DCY_UltrapissMegaSphere : DCY_Powerup
   override void Tick()
   {
 	super.tick();
-	A_HopeEffect();
+	if (!level.isFrozen()) A_HopeEffect();
   }
   
   States
@@ -481,6 +482,7 @@ Class DCY_Supremacy : DCY_Powerup
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	super.Tick();
 	
 	alpha = frandom(0.6, 1.0);
@@ -528,6 +530,7 @@ Class DCY_SupremacyRise : Actor
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	super.Tick();
 	
 	if (DCY_EffectDistance(900))

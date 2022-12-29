@@ -151,7 +151,7 @@ Class DCY_EOD : DCY_HeckBaron
 	Goto MissileChoose;
   MissileChoose:
 	DOR_ E 0 A_Jump(128, "MiniBalls", "BallBarrage", "CometsAndFlames", "Teleporting");
-	Goto Balls;
+	Goto BallBarrage;
   Teleporting:
 	DOR_ A 1
 	{
@@ -174,13 +174,6 @@ Class DCY_EOD : DCY_HeckBaron
 		bDontThrust = false;
 		A_Stop();
 	}
-	Goto See;
-  Balls:
-	DOR_ EF 4 A_FaceTarget();
-	DOR_ G 4 A_EODBall();
-	DOR_ EF 4 A_FaceTarget();
-	DOR_ G 4 A_EODBall();
-	DOR_ H 4;
 	Goto See;
   MiniBalls:
 	DOR_ L 1
@@ -211,11 +204,8 @@ Class DCY_EOD : DCY_HeckBaron
 	DOR_ HGFE 6 A_FaceTarget();
 	DOR_ E 3
 	{
-		for (int i = 2; i > 0; i--)
-			A_SpawnProjectile("DCY_EODBall", 60, 35, frandom(-10, 10));
-		
+		A_SpawnProjectile("DCY_EODBall", 60, 35, frandom(-10, 10));
 		A_FaceTarget();
-		
 		missile++;
 		
 		if (missile > 7)
@@ -406,31 +396,47 @@ Class DCY_EODLargeFlame : CacodemonBall
   }
 }
 
-Class DCY_EODBall : DoomImpBall
+Class DCY_EODBall : DCY_ChimeraSoul
 {
   Default
   {
-  SeeSound "InfernoGallant/Ball";
-  DeathSound "Painsend/FireExplode";
+  SeeSound "";
+  DeathSound "DCYEOD/Tracer";
   Speed 12;
   FastSpeed 18;
   Damage 5;
-  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.46,1.00,0.12]";
   DamageType "EOA";
   }
   
   States
   {
   Spawn:
-	BAL1 A 0 NoDelay A_SetRoll(frandom(-360.0, 360.0));
-	BAL1 AAABBB 1
+	_334 EEEFFF 1
 	{
-		A_SetRoll(Roll+8, SPF_INTERPOLATE);
-		A_SpawnItemEx("DCY_GeneralImpBallTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERROLL|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_Tracer2(1.25);
+		vel.x += frandom(-1, 1);
+		vel.y += frandom(-1, 1);
+		vel.z += frandom(-1, 1);
+		A_SpawnParticleEx(0x4ca122, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
 	}
-	Goto Spawn+2;
+	Loop;
   Death:
-	BAL1 CDE 3;
+	_334 G 2
+	{
+		actor boom = Spawn("DCY_Explosion_1_Smaller", pos);
+		if (boom) boom.translation = translation;
+		
+		for (int i = 2; i > 0; i--)
+		{
+			if (random(0, 2) == 0)
+			{
+				actor spirit = Spawn("DCY_RZSpirit", pos + (frandom(-10, 10), frandom(-10, 10), frandom(-10, 10)));
+				if (spirit) { scale *= 0.75; spirit.translation = translation; }
+			}
+		}
+	}
+	_334 HIJKLM 2;
 	Stop;
   }
 }
@@ -439,16 +445,24 @@ Class DCY_EODMiniBall : DCY_EODBall
 {
   Default
   {
-  Scale 0.45;
+  Scale 1.1;
   +RIPPER
   Damage (1);
   -RANDOMIZE
-  SeeSound "Painsend/Fireball";
+  SeeSound "DCYGhostProjectile";
+  DeathSound "imp/shotx";
   BounceCount 3;
   BounceFactor 1.0;
-  Speed 25;
-  FastSpeed 30;
+  Speed 15;
+  FastSpeed 20;
   BounceType "Hexen";
+  }
+  
+  States
+  {
+  Spawn:
+	SOUX L 1 A_SpawnParticleEx(0x4ca122, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 15, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.045, sizestep: -0.725);
+	Loop;
   }
 }
 

@@ -141,8 +141,6 @@ Class DCY_RemasteredBulletPuff : BulletPuff Replaces BulletPuff
   Spawn:
 	TNT1 A 1 NoDelay
 	{
-		A_StartSound("Rec", CHAN_BODY);
-		
 		for (int i = 4; i > 0; i--)
 		{
 			if (pos.z <= floorz)
