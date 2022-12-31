@@ -3,9 +3,9 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
   Default
   {
   Tag "NO INFO - Dismantler";
-  Inventory.PickupMessage "Now, you hold the \c[White]Dismantler\cL. It looks like it's seraph-powered or maykr-powered. Where did this even come from anyways??";
+  Inventory.PickupMessage "Now, you hold the \c[White]Dismantler\cL. Where did this even come from anyways??";
   Obituary "%o was incinerated in a sacred death by %k's Venerated Truncheon.";
-  Weapon.AmmoType "Cell";
+  Weapon.AmmoType "DCY_Eminence";
   Weapon.AmmoGive 100;
   Weapon.AmmoUse 1;
   Weapon.Kickback 50;
@@ -22,11 +22,9 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
   action void A_TruncheonBeam()
   {
 	A_FireProjectile("DCY_VeneratedLaserBeam", frandom(-10.0, 10.0), 0);
-	A_QuakeEx(3, 3, 3, 15, 0, 1000, "", QF_SCALEDOWN, falloff: 1600);
-	
-	if ((level.time % 2) == 1)
-		invoker.DepleteAmmo(invoker.bAltFire, true);
-	
+	A_QuakeEx(3, 3, 3, 15, 0, 1000, "", QF_SCALEDOWN, falloff: 1600);	
+	if ((level.time % 2) == 1) invoker.DepleteAmmo(invoker.bAltFire, true);
+	if ((level.time % 3) == 1) A_StartSound("VeneratedTruncheon/LaserShoot", 9, CHANF_OVERLAP, startTime: frandom(0, 0.15));
 	A_WeaponOffset(frandom(-2.5, 2.5), frandom(32.5, 35.5), WOF_INTERPOLATE);
   }
   
@@ -170,7 +168,6 @@ Class DCY_VeneratedLaserBeam : FastProjectile
   RenderStyle "Add";
   XScale 0.6;
   YScale 0.45;
-  SeeSound "VeneratedTruncheon/LaserShoot";
   DeathSound "NeonicLaser/Fire";
   Translation "0:255=%[0.00,0.00,0.00]:[1.01,1.01,1.01]";
   +BRIGHT;

@@ -68,7 +68,7 @@ Class DCY_CalamityTsar : DCY_KnightHell
 	}
 	TNT1 A 0
 	{
-		If (Distance3D(target) < 256)
+		If (target && Distance3D(target) < 256)
 			Return ResolveState("Ball");
 			
 		Return A_Jump(25, "Ball");

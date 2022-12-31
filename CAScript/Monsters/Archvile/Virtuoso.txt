@@ -250,8 +250,8 @@ Class DCY_VirtuosoBall : LostSoul
 	LFX2 KMNLOLKOLMNLOKMNLOLKKMNLOLKOLMNLOKMNLKMNLOLKOLMNLOKMNLOLK 1 A_FaceTarget();
 	LFX2 K 1
 	{
-		A_StartSound("EXPLD001", CHAN_BODY, CHANF_OVERLAP, 0.5, 0.4);
-		A_StartSound("B3LLFIRE", CHAN_BODY, CHANF_OVERLAP, 0.5, 0.4);
+		//A_StartSound("EXPLD001", CHAN_BODY, CHANF_OVERLAP, 0.5, 0.4);
+		A_StartSound("B3LLFIRE", CHAN_BODY, CHANF_OVERLAP, attenuation: 0.4);
 		A_CustomRailgun(100, 0, "", "", RGF_SILENT|RGF_FULLBRIGHT, 1, frandom(4, 1), null, frandom(-3.0, 3.0), frandom(-3.0, 3.0), 0, 0, 90, 0, "DCY_VirtuosoTrail");
 		A_QuakeEx(4, 4, 4, 40, 0, 200, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 800);
 	}

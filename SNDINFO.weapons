@@ -246,8 +246,8 @@ DREADLS1 "Sounds/DCY SFX/dcy_dreadnaught_laser1.ogg"
 DREADLS2 "Sounds/DCY SFX/dcy_dreadnaught_laser2.ogg"
 
 $random B0SSSMSH { B0SSSMS1 B0SSSMS2 }
-BOSSSMS1 "Sounds/DCY SFX/dcy_armsmash1.ogg"
-BOSSSMS1 "Sounds/DCY SFX/dcy_armsmash2.ogg"
+B0SSSMS1 "Sounds/DCY SFX/dcy_armsmash1.ogg"
+B0SSSMS2 "Sounds/DCY SFX/dcy_armsmash2.ogg"
 B0SSROCK "Sounds/DCY SFX/dcy_rockfall.ogg"
 
 CARCATK "Sounds/Projectiles/dcy_carcass_rings.ogg"
