@@ -2728,3 +2728,23 @@ Theristis/Death4 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death6.og
 Theristis/Death5 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death7.ogg"
 
 SOULATK3 "Sounds/DCY Monsters/Nightmare/dcy_nightmare.ogg"
+
+$random Vague/Roar { Vague/Roar1 Vague/Roar2 Vague/Roar3 }
+Vague/Roar1 "Sounds/DCY Monsters/Vague/dcy_vague_roar1.ogg"
+Vague/Roar2 "Sounds/DCY Monsters/Vague/dcy_vague_roar2.ogg"
+Vague/Roar3 "Sounds/DCY Monsters/Vague/dcy_vague_roar3.ogg"
+Vague/Bite "Sounds/DCY Monsters/Vague/dcy_vague_bite.ogg"
+$random Vague/Idle { Vague/Idle1 Vague/Idle2 Vague/Idle3 Vague/Idle4 Vague/Idle5 }
+Vague/Idle1 "Sounds/DCY Monsters/Vague/dcy_vague_idle.ogg"
+Vague/Idle2 "Sounds/DCY Monsters/Vague/dcy_vague_idle2.ogg"
+Vague/Idle3 "Sounds/DCY Monsters/Vague/dcy_vague_idle3.ogg"
+Vague/Idle4 "Sounds/DCY Monsters/Vague/dcy_vague_idle4.ogg"
+Vague/Idle5 "Sounds/DCY Monsters/Vague/dcy_vague_idle5.ogg"
+$random Vague/Pain { Vague/Pain1 Vague/Pain2 Vague/Pain3 Vague/Pain4 }
+Vague/Pain1 "Sounds/DCY Monsters/Vague/dcy_vague_pain1.ogg"
+Vague/Pain2 "Sounds/DCY Monsters/Vague/dcy_vague_pain2.ogg"
+Vague/Pain3 "Sounds/DCY Monsters/Vague/dcy_vague_pain3.ogg"
+Vague/Pain4 "Sounds/DCY Monsters/Vague/dcy_vague_pain4.ogg"
+$random Vague/Death { Vague/Death1 Vague/Death2 }
+Vague/Death1 "Sounds/DCY Monsters/Vague/dcy_vague_death.ogg"
+Vague/Death2 "Sounds/DCY Monsters/Vague/dcy_vague_death2.ogg"
