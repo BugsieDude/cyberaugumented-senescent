@@ -261,7 +261,7 @@ V3RYLASR "Sounds/Projectiles/dcy_verytex_beam.ogg"
 V3RYLAS2 "Sounds/Projectiles/dcy_verytex_laser.ogg"
 V3RYHURT "Sounds/Projectiles/dcy_sacker_impact.ogg"
 V3RYSMSH "Sounds/Projectiles/dcy_loudsmash.ogg"
-V3RYEXPL "Sounds/Projectiles/dcy_verytex_explode.ogg"
+V3RYEXPL "Sounds/Projectiles/dcy_verytex_explosion.ogg"
 V3RYMISL "Sounds/Projectiles/dcy_verytex_missile.ogg"
 
 Underline/Pickup "Sounds/Weapons/Slot 3/Silver Blaster/dcy_silver_up.ogg"
