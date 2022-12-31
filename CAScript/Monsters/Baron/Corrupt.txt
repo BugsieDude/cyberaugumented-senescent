@@ -268,7 +268,7 @@ Class DCY_CorruptInfiltratorBall : DCY_TsarBall
   FastSpeed 18.55;
   SeeSound "Corrupt/Flame";
   BounceSound "Corrupt/Flame";
-  DeathSound "FIREBOOM";
+  DeathSound "Corrupt/FlameImpact";
   BounceType "Hexen";
   +CANBOUNCEWATER
   +BOUNCEONWALLS

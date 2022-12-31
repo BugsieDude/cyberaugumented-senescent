@@ -109,7 +109,7 @@ Class DCY_Kaiser : DCY_SOULKING
   }
 }
 
-Class DCY_KaiserLaser : DCY_TLaser { Default { SeeSound ""; DeathSound "HoveringBall/Hit"; DamageType "Plasmatic"; MissileType "DCY_KaiserLaserTrail"; Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]"; } }
+Class DCY_KaiserLaser : DCY_TLaser { Default { SeeSound ""; DeathSound "Kaiser/LaserHit"; DamageType "Plasmatic"; MissileType "DCY_KaiserLaserTrail"; Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]"; } }
 Class DCY_KaiserLaserTrail : DCY_TLTrail { Default { Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]"; } }
 
 Class DCY_KaiserTurret : DCY_FlyingMeatballOutOfTouch

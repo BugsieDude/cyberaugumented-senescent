@@ -19,6 +19,7 @@ Class DCY_Fusillade : DCY_Pinke
   Speed 15;
   FastSpeed 17;
   Health 250;
+  DCYMonster.WalkFlames "DCY_WalkFlames";
   Tag "\c[x1]Fusillade\c-";
   +BRIGHT
   +MISSILEMORE
@@ -26,7 +27,7 @@ Class DCY_Fusillade : DCY_Pinke
   
   void A_FusilladeStep()
   {
-	A_SpawnItemEx("DCY_WalkFlames", zofs: 1);
+	A_WalkFlame();
 	A_StartSound("Dasher/Walk", CHAN_BODY);
   }
 	

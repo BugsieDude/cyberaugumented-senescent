@@ -109,7 +109,7 @@ Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
 	S0_L AAAAAA 2 A_FaceTarget();
 	S0_L B 1
 	{
-		A_StartSound("GoreNest/Scream", CHAN_BODY, pitch: frandom(1.2, 1.4));
+		A_StartSound("GoreNest/Scream", CHAN_BODY, pitch: frandom(1.2, 1.4), starttime: frandom(0.01, 0.1));
 		A_Weave(1, 1, 1, 1);
 		A_SkullAttack();
 	}

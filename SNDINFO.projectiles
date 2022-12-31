@@ -1,15 +1,15 @@
 $random dcyimp/charging { impc1 impc2 impc3 impc4 }
-impc1 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge1.ogg"
-impc2 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge2.ogg"
-impc3 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge3.ogg"
-impc4 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge4.ogg"
-impc5 "Sounds/Projectiles/Enemy SFX/dcy_dastard_charge5.ogg"
-imp/attack "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire.ogg"
+impc1 "Sounds/Projectiles/dcy_dastard_charge1.ogg"
+impc2 "Sounds/Projectiles/dcy_dastard_charge2.ogg"
+impc3 "Sounds/Projectiles/dcy_dastard_charge3.ogg"
+impc4 "Sounds/Projectiles/dcy_dastard_charge4.ogg"
+impc5 "Sounds/Projectiles/dcy_dastard_charge5.ogg"
+imp/attack "Sounds/Projectiles/dcy_dastard_fire.ogg"
 $random imp/shotx { impx1 impx2 impx3 impx4 }
-impx1 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact1.ogg"
-impx2 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact2.ogg"
-impx3 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact3.ogg"
-impx4 "Sounds/Projectiles/Enemy SFX/dcy_dastard_fire_impact4.ogg"
+impx1 "Sounds/Projectiles/dcy_dastard_fire_impact1.ogg"
+impx2 "Sounds/Projectiles/dcy_dastard_fire_impact2.ogg"
+impx3 "Sounds/Projectiles/dcy_dastard_fire_impact3.ogg"
+impx4 "Sounds/Projectiles/dcy_dastard_fire_impact4.ogg"
 
 $random caco/attack { cacof1 cacof2 }
 cacof1 "Sounds/DCY SFX/dcy_cacofire1.ogg"
@@ -63,451 +63,292 @@ CYHOOF6 "Sounds/DCY SFX/dcy_cyhoof6.ogg"
 DemonicSword/Out "Sounds/DCY SFX/dcy_demonsword_out.ogg"
 DemonicSword/Slash "Sounds/DCY SFX/dcy_demonsword.ogg"
 
-Ghostly GHOSTLY
-Power/Recharge POWERRGN
-Kabewm7 KABEWM7
-Kabewm7/Alternate KABEWM7A
-Power/OverchargeStart POWEROV2
-Power/Overcharge POWEROVC
-Power/OhFuck OHFUCC
+Power/Recharge "Sounds/DCY Monsters/Xusqoox/dcy_xusqoox_beam.ogg"
+Power/OverchargeStart "Sounds/Projectiles/dcy_arbiter_charge.ogg"
 
-LEKICK LEKICK
+LEKICK "Sounds/Projectiles/dcy_groundlaser.ogg"
 
 Cyberdemon/RailgunCharge "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_charge.ogg"
 Cyberdemon/RailgunFire "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_fire.ogg"
 
-EXOTURTC EXOTURTC
-PLSORB2 PLSORB2
+EXOTURTC "Sounds/DCY SFX/dcy_exo_deploy.ogg"
+PLSORB2 "Sounds/Projectiles/dcy_virtuoso_orb.ogg"
 
-WtfLmao/BigAssOrb BIGASORB
-
-DCYComet/Spawn		DCYCOMET
-DCYComet/Explode	CMTIMPAC
+DCYComet/Spawn "Sounds/Projectiles/dcy_comet.wav"
+DCYComet/Explode "Sounds/Projectiles/dcy_comet_impact.wav"
 $limit DCYComet/Explode 0
-LngFire		LNG_HIT
-LngHit		LNG2_HIT
-mealstrom/boltcrackle		dsbolt
 
-Le/Laser LELASER
-Le/LaserThing LELASER0
+Le/Laser "Sounds/Projectiles/dcy_lightlaser.wav"
+Le/LaserThing "Sounds/Projectiles/dcy_lightlaser_prepare.wav"
 
-MINCHARG MINCHARG
+PlasmaLaser "Sounds/Projectiles/dcy_mini_liquidation.ogg"
+PlasmaLaser2 "Sounds/Projectiles/dcy_plasmatic2.ogg"
+PlasmaOrb "Sounds/Projectiles/dcy_plasmatic_ball.wav"
 
-PlasmaLaser "Sounds/Projectiles/PLASLASR.ogg"
-PlasmaLaser2 "Sounds/Projectiles/PLASLASR.wav"
-PlasmaOrb PLASBALL
+Corrupt/Flame "Sounds/Projectiles/dcy_infiltrating_flame.ogg"
+Corrupt/FlameImpact "Sounds/Projectiles/dcy_infiltrating_flame_impact.ogg"
+Misc/BigSmash "Sounds/Projectiles/dcy_grandslam.wav"
 
-Corrupt/Flame CORRFLAM
-Misc/BigSmash BIGCRUSH
+PLSBFIRE "Sounds/Projectiles/dcy_virtuoso_explode.ogg"
+SUPERLSR "Sounds/Projectiles/dcy_plasma_fountain.ogg"
 
-PLSBFIRE PLSBFIRE
-SUPERLSR SUPERLSR
+M0NSSHOT "Sounds/Projectiles/dcy_tar_ball.ogg"
 
-M0NSSHOT M0NSSHOT
+DSFLESH "Sounds/Projectiles/dcy_flesh.ogg"
+CYBRLASC "Sounds/DCY SFX/dcy_cyber_lasercharge.ogg"
+CYBRLASR "Sounds/DCY SFX/dcy_cyber_laser.ogg"
+BOSSMGUN "Sounds/Projectiles/dcy_metamor_minigun.ogg"
+BOSSMISL "Sounds/Projectiles/dcy_acrobat_micromissile.ogg"
+CYBRSMSH "Sounds/DCY SFX/dcy_impacted.ogg"
+CYBRSMS2 "Sounds/DCY SFX/dcy_impacted2.ogg"
+CYBRFOOT "Sounds/DCY SFX/dcy_calignosity_step.ogg"
 
-DSPREXPL DSPREXPL
-DSPREXP2 DSPREXP2
-
-DSFLESH DSFLESH
-CYBRLASC CYBRLASC
-CYBRLASR CYBRLASR
-BOSSMGUN BOSSMGUN
-BOSSMISL BOSSMISL
-CYBRSMSH CYBRSMSH
-CYBRSMS2 CYBRSMS2
-CYBRFOOT CYBRFOOT
-
-BigFireball/Attack BIGFBATK
-
+BigFireball/Attack "Sounds/Projectiles/dcy_flamestorm.ogg"
 $rolloff BigFireball/Attack 500 1245
 
 $random BigAssComet/Attack { BIGCMATK BIGCMAT2 }
-BIGCMATK BIGCMATK
-BIGCMAT2 BIGCMAT2
+BIGCMATK "Sounds/Projectiles/dcy_asteroid1.ogg"
+BIGCMAT2 "Sounds/Projectiles/dcy_asteroid2.ogg"
 $rolloff BigComet/Attack 500 1245
-BigAssComet/Death BIGCMEXP
+BigAssComet/Death "Sounds/Projectiles/dcy_asteroid_explode.ogg"
 $rolloff BigComet/Death 500 1245
 
-Misc/Heartbeat HRTBEAT
+Misc/Heartbeat "Sounds/DCY SFX/dcy_heartbeat.ogg"
 
-Kaiser/Charge KAISCHRG
-KaiserDrone/Laser KAISDLSR
-Kaiser/MetalHit KAISMHIT
-Kaiser/Laser KAISLASR
-Kaiser/Beam KAISBLSR
+Kaiser/Charge "Sounds/Projectiles/dcy_kaiser_charge.ogg"
+KaiserDrone/Laser "Sounds/Projectiles/dcy_kaiser_drone_laser.ogg"
+Kaiser/Laser "Sounds/Projectiles/dcy_kaiser_laser.ogg"
+Kaiser/LaserHit "Sounds/Projectiles/dcy_kaiser_laser_impact.ogg"
+Kaiser/Beam "Sounds/Projectiles/dcy_kaiser_beam.ogg"
 
-dcy/disht1 dydisht1
-dcy/disht2 dydisht2
-dcy/blur dcyblur
+dcy/disht1 "Sounds/DCY SFX/dcy_disciple_shot1.ogg"
+dcy/disht2 "Sounds/DCY SFX/dcy_disciple_impact.ogg"
+dcy/blur "Sounds/DCY SFX/dcy_priest_blur.ogg"
 
-Warwire/Laser WARWLASR
+Warwire/Laser "Sounds/Projectiles/dcy_gate_laser.ogg"
 
 $random ArachPlasma { EXOPLAS1 EXOPLAS2 EXOPLAS3 EXOPLAS4 }
-EXOPLAS1 EXOPLAS1
-EXOPLAS2 EXOPLAS2
-EXOPLAS3 EXOPLAS3
-EXOPLAS4 EXOPLAS4
+EXOPLAS1 "Sounds/Projectiles/dcy_arachnotron_plasma1.ogg"
+EXOPLAS2 "Sounds/Projectiles/dcy_arachnotron_plasma2.ogg"
+EXOPLAS3 "Sounds/Projectiles/dcy_arachnotron_plasma3.ogg"
+EXOPLAS4 "Sounds/Projectiles/dcy_arachnotron_plasma4.ogg"
 
-LASERII LASERII
+LASERII "Sounds/Projectiles/dcy_laserii.ogg"
 $limit LASERII 0
-LASRX turlas
+$random LASRX { LASRX1 LASRX2 LASRX3 }
+LASRX1 "Sounds/Projectiles/dcy_zombie_laser_impact1.ogg"
+LASRX2 "Sounds/Projectiles/dcy_zombie_laser_impact2.ogg"
+LASRX3 "Sounds/Projectiles/dcy_zombie_laser_impact3.ogg"
 $limit LASRX 0
 
-BishopAttack pop
-BishopMissileExplode bshhit2
+BishopAttack "Sounds/Projectiles/dcy_pop.ogg"
+BishopMissileExplode "Sounds/Projectiles/dcy_pop_impact.ogg"
 
-PARTDIE1 PARTDIE1
+PARTDIE1 "Sounds/Projectiles/dcy_particle_loud.ogg"
 $limit PARTDIE1 0
 
 $random Weapons/ZombiePlasma { ZOMBPLS1 ZOMBPLS2 ZOMBPLS3 ZOMBPLS4 ZOMBPLS5 }
-ZOMBPLS1 ZOMBPLS1
-ZOMBPLS2 ZOMBPLS2
-ZOMBPLS3 ZOMBPLS3
-ZOMBPLS4 ZOMBPLS4
-ZOMBPLS5 ZOMBPLS5
+ZOMBPLS1 "Sounds/Projectiles/dcy_zombie_plasma1.ogg"
+ZOMBPLS2 "Sounds/Projectiles/dcy_zombie_plasma2.ogg"
+ZOMBPLS3 "Sounds/Projectiles/dcy_zombie_plasma3.ogg"
+ZOMBPLS4 "Sounds/Projectiles/dcy_zombie_plasma4.ogg"
+ZOMBPLS5 "Sounds/Projectiles/dcy_zombie_plasma5.ogg"
 
-$random Weapons/ZombieLaser { ZOMBLSR1 ZOMBLSR2 }
-ZOMBLSR1 ZOMBLSR1
-ZOMBLSR2 ZOMBLSR2
+$random Weapons/ZombieLaser { ZOMBLSR1 ZOMBLSR2 ZOMBLSR3 }
+ZOMBLSR1 "Sounds/Projectiles/dcy_zombie_laser1.ogg"
+ZOMBLSR2 "Sounds/Projectiles/dcy_zombie_laser2.ogg"
+ZOMBLSR3 "Sounds/Projectiles/dcy_zombie_laser3.ogg"
 
-Vandal/Laser VANDLASR
+Vandal/Laser "Sounds/Projectiles/dcy_vandal_laser.ogg"
 $limit Vandal/Laser 0
 
-LASRSH0T LASRSH0T
-UNHLYSHT UNHLYSHT
-ULHLYSHX ULHLYSHX
-FLECTRE FLECTRE
+UNHLYSHT "Sounds/Projectiles/dcy_unholy_plasma.ogg"
 
 $random DTHSOUL { DTHSOULS DTHSOUL2 DTHSOUL3 DTHSOUL4 }
-DTHSOULS DTHSOULS
-DTHSOUL2 DTHSOUL2
-DTHSOUL3 DTHSOUL3
-DTHSOUL4 DTHSOUL4
-DTHSOULP DTHSOULP
+DTHSOULS "Sounds/Projectiles/dcy_tortured_souls1.ogg"
+DTHSOUL2 "Sounds/Projectiles/dcy_tortured_souls2.ogg"
+DTHSOUL3 "Sounds/Projectiles/dcy_tortured_souls3.ogg"
+DTHSOUL4 "Sounds/Projectiles/dcy_tortured_souls4.ogg"
+DTHSOULP "Sounds/Projectiles/dcy_tortured_soul_impact.ogg"
 
 $random DCYExplode2 { NAPEXPZ1 NAPEXPZ2 NAPEXPZ3 }
-NAPEXPZ1 NAPEXPZ1
-NAPEXPZ2 NAPEXPZ2
-NAPEXPZ3 NAPEXPZ3
+NAPEXPZ1 "Sounds/Projectiles/dcy_napalm_explosion1.ogg"
+NAPEXPZ2 "Sounds/Projectiles/dcy_napalm_explosion2.ogg"
+NAPEXPZ3 "Sounds/Projectiles/dcy_napalm_explosion3.ogg"
 
-FIR3LOOP FIR3LOOP
-
-Grenade/Charge GRENCHRG
+Grenade/Charge "Sounds/Projectiles/dcy_shotgun_stickygrenade_charge.ogg"
 
 $random DarkLord/Bomb/Fire { DBMBFAR1 DBMBFAR2 }
-DBMBFAR1 DBMBFAR1
-DBMBFAR2 DBMBFAR2
-DarkLord/Bomb/AltFire DBMBFIRE
-DarkLord/Bomb/Charge DBMBCHRG
+DBMBFAR1 "Sounds/Projectiles/dcy_darklord_bomb_fire1.ogg"
+DBMBFAR2 "Sounds/Projectiles/dcy_darklord_bomb_fire2.ogg"
+DarkLord/Shield "Sounds/Projectiles/dcy_darklord_summon.ogg"
+DarkLord/Bomb/Charge "Sounds/Projectiles/dcy_darklord_bomb_charge.ogg"
 
-SmallBall/Fire SMOLBALL
-Reality/Fucking/Breaks RLTYBROK
-FireGeyser/Hum FIREGYS2
-FireGeyser/Start FIREGYSR
+ALASER "Sounds/Projectiles/dcy_overdemoniac_orb.ogg"
+ALASERX "Sounds/Projectiles/dcy_overdemoniac_orb_impact.ogg"
+BLASER "Sounds/Projectiles/dcy_overdemoniac_ripper.ogg"
+BLASFAR "Sounds/Projectiles/dcy_overdemoniac_ripper_far.ogg"
+BLASERX "Sounds/Projectiles/dcy_overdemoniac_ripper_impact.ogg"
 
-ALASER ALASER
-ALASERX ALASERX
-BLASER BLASER
-BLASFAR BLASFAR
-BLASERX BLASERX
+SELFBOOM "Sounds/Projectiles/dcy_selfexplode.ogg"
 
-DCYSparkle1 SPARKL31
-DCYSparkle2 SPARKL32
-MISLDR0P MISLDR0P
-NEONSHP1 NEONSHP1
-NEONSHP2 NEONSHP2
+hknight/axewhoosh "Sounds/Projectiles/dcy_axe_spin.ogg"
+hknight/hit "Sounds/Projectiles/dcy_axe_impact.ogg"
+hknight/melee "Sounds/Projectiles/dcy_axe_melee.ogg"
+dcy/axefall "Sounds/Projectiles/dcy_axefall.ogg"
 
-SELFBOOM SELFBOOM
+StarProjectile/See "Sounds/Projectiles/dcy_terminator_star.ogg"
+StarProjectile/Explode "Sounds/Projectiles/dcy_terminator_star_explode.ogg"
 
-XTRMCHR1 XTRMCHR1
-XTRMCHR2 XTRMCHR2
-XTRMCHR3 XTRMCHR3
-$random XTRMCHR { XTRMCHR1 XTRMCHR2 XTRMCHR3 }
-
-hknight/axewhoosh kgtatk
-hknight/hit hrnhit
-hknight/melee KGTAT2
-
-StarProjectile/See STARSIT
-StarProjectile/Explode NAVYSTAR
-
-skeleton/seeker S33K3R
+skeleton/seeker "Sounds/Projectiles/dcy_revenant_rocket_loop.ogg"
 $volume skeleton/seeker 0.5
 
 $limit skeleton/seeker 0
 
-ElectricBall/Sight LB2LSHOT
-ElectricBall/Death LB2LDTH
+ElectricBall/Sight "Sounds/Projectiles/dcy_electricball_shot.ogg"
+ElectricBall/Death "Sounds/Projectiles/dcy_electricball_death.ogg"
 
-DSSUPPLS DSSUPPLS
-RBGSH0T RBGSH0T
+DSSUPPLS "Sounds/Projectiles/dcy_goliath_plasma.ogg"
+RBGSH0T "Sounds/Projectiles/dcy_randombullshit_go.ogg"
 
-STRKBALL STRKBALL
-FLAMTHRW FLAMTHRW
+STRKBALL "Sounds/DCY Monsters/Fallen Angel/dcy_fallenangel_seeker.ogg"
+FLAMTHRW "Sounds/DCY Monsters/dcy_darius_flamethrower.ogg"
 
-MAGI2SHT "Sounds/Projectiles/MAGI2SHT.wav"
-MAGISHT1 "Sounds/Projectiles/MAGISHT1.wav"
-SPIRBM1 "Sounds/Projectiles/SPIRBM1.wav"
-SPIRBM2 "Sounds/Projectiles/SPIRBM2.wav"
-SPIRFIR "Sounds/Projectiles/SPIRFIR.wav"
-BIGBOOMX "Sounds/Projectiles/BIGBOOMX.wav"
-DSBGLAS1 "Sounds/Projectiles/DSBGLAS1.wav"
-DSBGLAS2 "Sounds/Projectiles/DSBGLAS2.wav"
-DSGLAS1 "Sounds/Projectiles/DSGLAS1.wav"
-DSGLAS2 "Sounds/Projectiles/DSGLAS2.wav"
-DSHOLY2 "Sounds/Projectiles/DSHOLY2.wav"
-DSHOLY2A "Sounds/Projectiles/DSHOLY2A.wav"
+MAGI2SHT "Sounds/Projectiles/dcy_inscrutable_shot.wav"
+MAGISHT1 "Sounds/Projectiles/dcy_phantom_seeker.wav"
+SPIRBM1 "Sounds/Projectiles/dcy_phantom_impact1.wav"
+SPIRBM2 "Sounds/Projectiles/dcy_phantom_impact2.wav"
+SPIRFIR "Sounds/Projectiles/dcy_phantom_shotgun.wav"
+DSBGLAS1 "Sounds/Projectiles/dcy_soulglass_prebreak.wav"
+DSBGLAS2 "Sounds/Projectiles/dcy_soulglass_break.wav"
+DSGLAS1 "Sounds/Projectiles/dcy_glass_prebreak.wav"
+DSGLAS2 "Sounds/Projectiles/dcy_glass_break.wav"
+DSHOLY2 "Sounds/Projectiles/dcy_scream_phantom.wav"
+DSHOLY2A "Sounds/Projectiles/dcy_phantom_hum"
 
-SHMPBOOM SHMPBOOM
-TracerExplode TRACEXPL
+TracerExplode "Sounds/Projectiles/dcy_explosive_tracer.wav"
 
-JSEXPL1 JSEXPL1
-JSEXPL2 JSEXPL2
-JSEXPL3 JSEXPL3
-$random JSEXPL { JSEXPL1 JSEXPL2 JSEXPL3 }
-
-BIGSLZR BIGSLZR
-BIGSLZR2 BIGSLZR2
-ELECSPRK ELECSPRK
-ELECSPR2 ELECSPR2
+BIGSLZR "Sounds/DCY SFX/dcy_sky_ray.ogg"
+ELECSPRK "Sounds/DCY SFX/dcy_electricspark.ogg"
+ELECSPR2 "Sounds/DCY SFX/dcy_rayflash.ogg"
 
 $limit BIGSLZR 0
 $limit ELECSPR2 0
 
-RegulusSeeker/Charge P2FLMBLF
-RegulusSeeker/Loop P2FLMBLL
-RegulusSeeker/Death P2FLMBLX
-
-THNDSHCK THNDSHCK //From Ancients Awakened
+THNDSHCK "Sounds/Projectiles/dcy_thundershock.ogg" //From Ancients Awakened
 
 //OMEGAPSYCHO
-FIRE001 FIRE001
+FIRE001 "Sounds/Projectiles/dcy_hexodenican_fire.ogg"
 $limit FIRE001 0
-BLAST002 BLAST002
-SHINE001 SHINE001
-SHINE002 SHINE002
-FLAME001 FLAME01
-FLAME002 FLAME02
-LIGTFIR1 LIGTFIR1
-LIGT001 LIGT001
-LIGT002 LIGT002
+BLAST002 "Sounds/Projectiles/dcy_razortherion_beam_explode.ogg"
+SHINE001 "Sounds/DCY SFX/dcy_gem_shine.ogg"
+SHINE002 "Sounds/Projectiles/dcy_utrotrion_groundspell.ogg"
+FLAME001 "Sounds/Projectiles/dcy_darkflame1.ogg"
+FLAME002 "Sounds/Projectiles/dcy_darkflame2.ogg"
+LIGTFIR1 "Sounds/Projectiles/dcy_thunderball.ogg"
+LIGT001 "Sounds/Projectiles/dcy_lightningbolt.ogg"
+LIGT002 "Sounds/Projectiles/dcy_lightningbolt_impact.ogg"
 $limit LIGT002 0
-LIGTCHRG LIGTCHRG
-LIGTFIRE LIGTFIRE
-DRKSHINE DRKSHINE
+LIGTCHRG "Sounds/Projectiles/dcy_lightning_charge.ogg"
+LIGTFIRE "Sounds/Weapons/Slot 8/Epitome/dcy_epitome_fire.ogg"
+DRKSHINE "Sounds/DCY SFX/dcy_shockwave_of_darkness.ogg"
 $limit DRKSHINE 0
-QUAKE001 QUAKE001
-BOWFIRE9 BOWFIRE9
-HOVER001 HOVER001
-BLAST003 BLAST003
-LIFESTEL LIFESTEL
-LASER001 LASER001
-EXPLD001 EXPLD001
-PAIN001 PAIN001
-BALL001 BALL001
-BALL002 BALL002
-HOLYSHIT HOLYSHIT
+BOWFIRE9 "Sounds/Projectiles/dcy_lemures_fire.ogg"
+BLAST003 "Sounds/Projectiles/dcy_lemures_shockwave.ogg"
+LIFESTEL "Sounds/Weapons/dcy_lifesteal.ogg"
+LASER001 "Sounds/Projectiles/dcy_drone_laser.ogg"
+EXPLD001 "Sounds/Projectiles/dcy_explode001.ogg"
+PAIN001 "Sounds/Projectiles/dcy_espouser_soal_moan.ogg"
+BALL001 "Sounds/DCY Monsters/Virtuoso/dcy_virtuoso_turret.ogg"
+BALL002 "Sounds/DCY Monsters/Virtuoso/dcy_virtuoso_teleport.ogg"
+HOLYSHIT "Sounds/DCY SFX/dcy_holyshit.ogg"
 
 //Other
-SFXSPAWN SFXSPAWN
-SFXSPAW2 SFXSPAW2
-READYSFX READYSFX
-BALLCHRG BALLCHRG
-BALLWHSH BALLWHSH
-FALDS1 FALDS1
+BALLCHRG "Sounds/DCY SFX/dcy_ball_windup.ogg"
+BALLWHSH "Sounds/DCY SFX/dcy_ball_whoosh.ogg"
 
-MBALFIRE MBALFIRE
-MBALEXPL MBALEXPL
+MBALFIRE "Sounds/Projectiles/dcy_tagati_ball.wav"
+MBALEXPL "Sounds/Projectiles/dcy_tagati_impact.wav"
 
-MBALFIR2 MBALFIR2
-MBALEXP2 MBALEXP2
+MBALFIR2 "Sounds/Projectiles/dcy_tagati_bigball.wav"
+MBALEXP2 "Sounds/Projectiles/dcy_tagati_bigimpact.wav"
 
-Eerie/Emergency EMERGENC
-$pitchshift Eerie/Emergency 0
-Acid/Raise GSTACIDR
-$pitchshift Acid/Raise 0
+BIGASSLAZOR/FIRE "Sounds/Projectiles/dcy_mindflaying_beam.ogg"
+dcy/intimidating "Sounds/Projectiles/dcy_intimidating.ogg"
 
-Overcharge/Start OVERCHR1
-Overcharge/Finish OVERCHR2
-$pitchshift Overcharge/Start 0
-$pitchshift Overcharge/Finished 0
+MagicProjectile/Shot "Sounds/Projectiles/dcy_anathema_orb.ogg"
+MagicProjectile/Death "Sounds/Projectiles/dcy_anathema_impact.ogg"
 
-FIREBOOM FIREBOOM
-
-PowerLaser/Charge POWERCHR
-PowerLaser/BLAAAAAAAAARGH POWERLSR
-
-QueenBFG/Fire2 QBFGFIR2
-QueenBFG/SuperFire QBFGSFIR
-
-MetalSlug/Cannon MSCANNON
-MetalSlug/Laser MSLASER
-
-Slasher/FireSpin SLASHER
-
-LaserBlast/Bewm DSLBLAST
-$limit LaserBlast/Bewm 0
-
-BIGASSLAZOR/FIRE BIGLAZOR
-LIVIDBOL LIVIDBOL
-
-MagicProjectile/Shot MAGIFIRE
-MagicProjectile/Death MAGIDIE
-
-LightningBewm LGTBEWM
-GL1SSBRK GL1SSBRK
-
-SoulScream/1 SOUSCRM1
-SoulScream/2 SOUSCRM2
-$random Soul/Scream {SOUSCRM1 SOUSCRM2}
-
-GSH/Smash GSSMASH
-GSH/Transform GSTRNSFR
-GSH/Crash GSCRASH
+LightningBewm "Sounds/Projectiles/dcy_lightningexplosion.ogg"
+GL1SSBRK "Sounds/Projectiles/dcy_chorico_shatter.wav"
 
 $random RevenantJet/Start { D4RVJET1 D4RVJET2 D4RVJET3 }
-D4RVJET1 D4RVJET1
-D4RVJET2 D4RVJET2
-D4RVJET3 D4RVJET3
+D4RVJET1 "Sounds/DCY SFX/dcy_revenant_jet_start1.ogg"
+D4RVJET2 "Sounds/DCY SFX/dcy_revenant_jet_start2.ogg"
+D4RVJET3 "Sounds/DCY SFX/dcy_revenant_jet_start3.ogg"
+RevenantJet/Loop "Sounds/DCY SFX/dcy_revenant_jet_loop.ogg"
+$random RevenantJet/Stop { D4RVJET5 D4RVJET6 D4RVJET7 }
+D4RVJET5 "Sounds/DCY SFX/dcy_revenant_jet_stop1.ogg"
+D4RVJET6 "Sounds/DCY SFX/dcy_revenant_jet_stop2.ogg"
+D4RVJET7 "Sounds/DCY SFX/dcy_revenant_jet_stop3.ogg"
 
-RevenantJet/Loop D4RVJET4
-
-$random RevenantJet/Stop { D4RVJET5 D4RVJET6 }
-D4RVJET5 D4RVJET5
-D4RVJET6 D4RVJET6
-
-PsiPistol/Lightning LIGETNG
 $random PsiPistol/Laser { LAZEHR LAZEHR2 }
-LAZEHR LAZEHR
-LAZEHR2 LAZEHR2
-PsiPistol/LargeLaser BIGLAZHR
-PsiPistol/SmallLaser SMALLAZR
+LAZEHR "Sounds/Projectiles/dcy_fluorescent_orb1.ogg"
+LAZEHR2 "Sounds/Projectiles/dcy_fluorescent_orb2.ogg"
+PsiPistol/LargeLaser "Sounds/Projectiles/dcy_fluorescent_orb_large.ogg"
+PsiPistol/SmallLaser "Sounds/Projectiles/dcy_tiny_spinner.ogg"
 $limit PsiPistol/SmallLaser 0
 
-MLSRLOOP MLSRLOOP
-$pitchshift MLSRLOOP 0
 //Other Explosionz
 $random BigLightningExplode { BIGLGXP1 BIGLGXP2 BIGLGXP3 BIGLGXP4 }
-BIGLGXP1 BIGLGXP1
-BIGLGXP2 BIGLGXP2
-BIGLGXP3 BIGLGXP3
-BIGLGXP4 BIGLGXP4
+BIGLGXP1 "Sounds/Projectiles/dcy_swift_plasmaexplosion1.ogg"
+BIGLGXP2 "Sounds/Projectiles/dcy_swift_plasmaexplosion2.ogg"
+BIGLGXP3 "Sounds/Projectiles/dcy_swift_plasmaexplosion3.ogg"
+BIGLGXP4 "Sounds/Projectiles/dcy_swift_plasmaexplosion4.ogg"
+
+R3EXPL2 R3EXPL2
 
 //R-Type Dree
-R3WAVCHR R3WAVCHR
-R3WAVE R3WAVE
-R3BLSRCH R3BLSRCH
-R3BLSRC2 R3BLSRC2
-R3BLSRFR R3BLSRFR
-R3LASR1 R3LASR1
-R3LASR2 R3LASR2
-R3LASR3 R3LASR3
-R3LASR4 R3LASR4
-R3EXPL1 R3EXPL1
-R3EXPL2 R3EXPL2
-R3EXPL3 R3EXPL3
-R3MINIEX R3MINIEX
-R3BEAM1 R3BEAM1
-R3BEAM2 R3BEAM2
-R3BEAMRF R3BEAMRF
-R3BEMRF2 R3BEMRF2
-R3BEMRF3 R3BEMRF3
-R3SHOT1 R3SHOT1
-R3ALRM R3ALRM
-R3APPEAR R3APPEAR
-R3DISSAP R3DISSAP
-R3PORTAL R3PORTAL
-R3CHRG R3CHRG
-R3CHRLOP R3CHRLOP
-R3EXLIFE R3EXLIFE
-R3ITMGET R3ITMGET
-R3ITMGT2 R3ITMGT2
-R3ITMGT3 R3ITMGT3
-R3ITMGT4 R3ITMGT4
-R3PAUSE R3PAUSE
-R3OVERHT R3OVERHT
+R3LASR3 "Sounds/DCY Monsters/Terminalist/dcy_terminalist_beam.ogg"
+R3MINIEX "Sounds/DCY Monsters/Terminalist/dcy_terminalist_impact.ogg"
+R3WAVCHR "Sounds/DCY Monsters/Verdict Partisan/dcy_partisan_wave_charge.ogg"
+R3WAVE "Sounds/DCY Monsters/Verdict Partisan/dcy_partisan_wave.ogg"
 
-//Other Sounds Lmao
-OEXPLD1 OEXPLD1
-OEXPLD2 OEXPLD2
-OEXPLD3 OEXPLD3
-OEXPLD4 OEXPLD4
-OEXPLD5 OEXPLD5
-
-//Space Manbow Sounds
-SMBOSHIT SMBOSHIT
-SMBIGEXP SMBIGEXP
-SMLASER SMLASER
-SMLASER2 SMLASER2
-SMLASER3 SMLASER3
-SMMINLSR SMMINLSR
-SMLITNG SMLITNG
-SMLSRCHR SMLSRCHR
-SMLSRLOP SMLSRLOP
-SMITEMUP SMITEMUP
-SMITMUP2 SMITMUP2
-SMPOWRUP SMPOWRUP
-SMPLYDED SMPLYDED
-SMSHPRDY SMSHPRDY
-SMOPCOR SMOPCOR
-SMCORDON SMCORDON
-SMCORCLS SMCORCLS
-SMEXPL1 SMEXPL1
-SMEXPL2 SMEXPL2
-SMEXPL3 SMEXPL3
-
-//X-Men 2 Sounds
-CLONDIE CLONDIE
-RETRSHOT RETRSHOT
-XMENSHT1 XMENSHT1
-CLONBALL CLONBALL
-XMENTRSF XMENTRSF
-XMENTRS2 XMENTRS2
-XMENTRS3 XMENTRS3
-XMENTRS4 XMENTRS4
-CLONSPHR CLONSPHR
-CLONSPHL CLONSPHL
-$random Misc/MadRoar { CLONROAR CLONROA2 }
-CLONROAR CLONROAR
-CLONROA2 CLONROA2
-CLONLIGT CLONLIGT
-XMENXPLD XMENXPLD
-CLONHURT CLONHURT
-
-$pitchshift SMLSRLOP 0
+//Space Manbow
+SMEXPL2 "Sounds/DCY Monsters/Vague/dcy_vague_explode.ogg"
 
 //Moar
 $random dcyminishield/die { MSHDEXP1 MSHDEXP2 MSHDEXP3 }
-MSHDEXP1 MSHDEXP1
-MSHDEXP2 MSHDEXP2
-MSHDEXP3 MSHDEXP3
+MSHDEXP1 "Sounds/Projectiles/dcy_tiny_shieldexplode_1.ogg"
+MSHDEXP2 "Sounds/Projectiles/dcy_tiny_shieldexplode_2.ogg"
+MSHDEXP3 "Sounds/Projectiles/dcy_tiny_shieldexplode_3.ogg"
 
-EXLAZER EXLAZER
+EXLAZER "Sounds/Projectiles/dcy_ex_laser.ogg"
 
-EXLRFIRE EXLRFIRE
-EXLRLOOP EXLRLOOP
-EXLREND EXLREND
+EXLRFIRE "Sounds/Projectiles/dcy_wolfenstein_laser_fire.ogg"
+EXLRLOOP "Sounds/Projectiles/dcy_wolfenstein_laser_loop.ogg"
+EXLREND "Sounds/Projectiles/dcy_wolfenstein_laser_stop.ogg"
 
-TORPMISL TORPMISL
+TORPMISL "Sounds/Projectiles/dcy_acrobat_comet.wav"
 
-RETFIRE RETFIRE
-RETEXPL0 RETEXPL0
+RETFIRE "Sounds/Projectiles/dcy_sphericalbomb_fire.ogg"
+RETEXPL0 "Sounds/Projectiles/dcy_sphericalbomb_detonate.ogg"
 
-ARPDBALL ARPDBALL
-ARPDBALX ARPDBALX
+ARPDBALL "Sounds/Projectiles/dcy_iceball.ogg"
+ARPDBALX "Sounds/Projectiles/dcy_iceball_impact.ogg"
 
-FIR4FIRE FIR4FIRE
-FIR4IMPC FIR4IMPC
+FIR4FIRE "Sounds/Projectiles/dcy_yellowfireball.ogg"
+FIR4IMPC "Sounds/Projectiles/dcy_yellowfireball_impact.ogg"
 
-ASXSHT1 ASXSHT1
+ASXSHT1 "Sounds/Projectiles/dcy_inscrutable_darkball.ogg"
 
 LAVABUBL "Sounds/Projectiles/dcy_lavaball_bubble.ogg"
 $random DCYLavaImpact { LAVAIMP1 LAVAIMP2 }
-LAVAIMP1 LAVAIMP1
-LAVAIMP2 LAVAIMP2
+LAVAIMP1 "Sounds/Projectiles/dcy_lavaball_impact.ogg"
+LAVAIMP2 "Sounds/Projectiles/dcy_lavaball_impact2.ogg"
 
 DCYGhostProjectile "Sounds/Projectiles/dcy_ghost_scream.wav"
-BLERGH BLERGH
+BLERGH "Sounds/DCY SFX/dcy_corrosive_vomit.ogg"
 
 DCYGrenadeTick "Sounds/Projectiles/dcy_grenade_tick.wav"
 DCYTheristisLoop "Sounds/Projectiles/dcy_emptiness_soul.ogg"

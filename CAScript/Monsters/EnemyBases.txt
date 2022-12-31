@@ -54,6 +54,7 @@ CLASS DCYMonster : Actor abstract
   
   void A_WalkFlame()
   {
+	if (wf == "") return;
 	if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx(wf, xvel: 1, flags: SXF_NOCHECKPOSITION);
   }
   

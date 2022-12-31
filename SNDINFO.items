@@ -1,111 +1,75 @@
-misc/gleam DSGLEAM
-misc/darkness DARKNESS
+misc/gleam "Sounds/DCY SFX/dcy_gleam.wav"
+misc/darkness "Sounds/DCY SFX/dcy_darkness.wav"
 
-misc/p_pkup "Sounds/Inventory/dcy_last_duel_powerup.ogg"
+misc/p_pkup "Sounds/Inventory/dcy_vanilla_powerup.ogg"
 
-SmallItem/Pickup CURRENCY
+SmallItem/Pickup "Sounds/Inventory/Ammo/dcy_ultramodern.ogg"
 
-TZITMGET TZITMGET //T-ZerO (An Amiga SHMUP)
+DCYRUNEPKUP "Sounds/Inventory/dcy_rune.ogg"
+DCYRUNEUSE "Sounds/Inventory/dcy_runeuse.ogg"
+ARTPKUP "Sounds/Inventory/dcy_artifact.ogg"
+T1MEGET "Sounds/Inventory/dcy_timestopper.ogg"
 
-POWGETX POWGETX //Project MSX or Halo
-ITEMGETX ITEMGETX //Same as above
-ITEMGETY ITEMGETY //AEoD
-ITEMGETZ ITEMGETZ //Timespinner
-POWGET0 POWGET0 //Guncaster
-THING THING
-CHOIR2 CHOIR2
-ARTFACT ARTFACT //Binding of Issac (Ayy Lmao)
-RUNEPKUP RUNEPKUP
-RUNEUSE RUNEUSE
-MISCPKUP MISCPKUP
-NV2PHNTM NV2PHNTM
-NV2CELES NV2CELES
-ESENPKUP ESENPKUP
-ARTPKUP ARTPKUP
-T1MEGET T1MEGET
+princeofpersia2/potionsfx "Sounds/Inventory/dcy_abettence.ogg"
 
-REGEN203 REGEN203
-LIGHT203 LIGHT203
-SURTITEM SURTITEM
+SAMRRISE "Sounds/DCY SFX/dcy_samur_rise.ogg"
+SAMRRIS1 "Sounds/DCY SFX/dcy_samur_rise1.ogg"
 
-princeofpersia2/potionsfx POTION1
+SPELL01 "Sounds/DCY SFX/dcy_coolsound_01.ogg"
+SPELL02 "Sounds/Inventory/dcy_prospect_expire.ogg"
+SPELL05 "Sounds/Inventory/dcy_abettance_up.ogg"
+SPELL06 "Sounds/Inventory/dcy_photocoagulator_use.ogg"
+SPELL07 "Sounds/DCY SFX/dcy_healing.ogg"
+SPELL10 "Sounds/Inventory/dcy_prospect_up.ogg"
+SPELL11 "Sounds/DCY SFX/dcy_randomassspell.ogg"
+SPELL12 "Sounds/DCY SFX/dcy_randomassspell2.ogg"
+SPELL13 "Sounds/DCY SFX/dcy_eerie.ogg"
+SPELL14 "Sounds/DCY SFX/dcy_eerie2.ogg"
+SPELL15 "Sounds/DCY SFX/dcy_retrodrip.ogg"
+SPELL16 "Sounds/Inventory/dcy_prospect_activate.ogg"
+SPELL17 "Sounds/DCY SFX/dcy_starfall.ogg"
+PHTCPKUP "Sounds/Inventory/dcy_photocoagulator_pickup.ogg"
 
-SAMRRISE SAMRRISE
-SAMRRIS1 SAMRRIS1
+SupraSpell/Activate "Sounds/DCY SFX/dcy_unleash.ogg"
 
-SPELL01 SPELL01
-SPELL02 SPELL02
-SPELL03 SPELL03
-SPELL04 SPELL04
-SPELL05 SPELL05
-SPELL06 SPELL06
-SPELL07 SPELL07
-SPELL08 SPELL08
-SPELL09 SPELL09
-SPELL10 SPELL10
-SPELL11 SPELL11
-SPELL12 SPELL12
-SPELL13 SPELL13
-SPELL14 SPELL14
-SPELL15 SPELL15
-SPELL16 SPELL16
-SPELL17 SPELL17
-
-SPELGET1 SPELGET1
-PHTCPKUP PHTCPKUP
-
-SupraSpell/Activate SUPRASPL
-
-//Sins of ERA
-Coupdepiedastral "Sounds/Other Sound Effects 2/Sins of ERA/Coupdepiedastral.ogg"
-"Cri de guerre" "Sounds/Other Sound Effects 2/Sins of ERA/Cri de guerre.ogg"
-Assaultvamp "Sounds/Other Sound Effects 2/Sins of ERA/Assaultvamp.ogg"
-Colere "Sounds/Other Sound Effects 2/Sins of ERA/Colere.ogg"
-Griffe "Sounds/Other Sound Effects 2/Sins of ERA/Griffe.ogg"
-Magie1 "Sounds/Other Sound Effects 2/Sins of ERA/Magie1.ogg"
-"Dark sphere" "Sounds/Other Sound Effects 2/Sins of ERA/Dark sphere.ogg"
-earthquakecamerashake "Sounds/Other Sound Effects 2/Sins of ERA/earthquakecamerashake.mp3"
-Evisceration "Sounds/Other Sound Effects 2/Sins of ERA/Evisceration.ogg"
-"Renforcer 2" "Sounds/Other Sound Effects 2/Sins of ERA/Renforcer 2.ogg"
-"Got an object" "Sounds/Other Sound Effects 2/Sins of ERA/Got an object.mp3"
-ShopGet "Sounds/Other Sound Effects 2/Sins of ERA/ERAShop.mp3"
-Souffle "Sounds/Other Sound Effects 2/Sins of ERA/Souffle.ogg"
-Souffle1 "Sounds/Other Sound Effects 2/Sins of ERA/Souffle1.mp3"
-Teleportation "Sounds/Other Sound Effects 2/Sins of ERA/Teleportation.mp3"
-Silence1 "Sounds/Other Sound Effects 2/Sins of ERA/Silence1.mp3"
-Reflection1 "Sounds/Other Sound Effects 2/Sins of ERA/Reflection1.mp3"
-Wind12 "Sounds/Other Sound Effects 2/Sins of ERA/Wind12.mp3"
-Wind13 "Sounds/Other Sound Effects 2/Sins of ERA/Wind13.mp3"
-LevelUpMaybe "Sounds/Other Sound Effects 2/Sins of ERA/ERAUp.mp3"
-"Save Point" "Sounds/Other Sound Effects 2/Sins of ERA/Save Point.wav"
-SaveThing "Sounds/Other Sound Effects 2/Sins of ERA/save.ogg"
-"Soin 2" "Sounds/Other Sound Effects 2/Sins of ERA/Soin 2.wav"
-"TP DBZ" "Sounds/Other Sound Effects 2/Sins of ERA/TP DBZ.mp3"
-BerserkThing "Sounds/Other Sound Effects 2/Sins of ERA/Berserk.mp3"
-Swingweapon "Sounds/Other Sound Effects 2/Sins of ERA/Swingweapon.mp3"
+//Some sfx come from Sins of ERA(?)
+DCY/PunchSlam "Sounds/DCY SFX/dcy_punch_slam.ogg"
+DCY/BattleCry "Sounds/DCY SFX/dcy_battlecry.ogg"
+DCY/SoulSlash "Sounds/DCY SFX/dcy_soulslash.ogg"
+DCY/WindExplode "Sounds/DCY SFX/dcy_wind_explode.ogg"
+DCY/bloodyslash "Sounds/DCY SFX/dcy_bloody_slash
+misc/spectacular "Sounds/Inventory/dcy_splendid.ogg"
+DCY/bloodyslashimpact "Sounds/DCY SFX/dcy_slash_impact_flesh.ogg"
+Souffle "Sounds/Inventory/dcy_unco_sphere.ogg"
+Souffle1 "Sounds/Inventory/dcy_unco_extra.ogg"
+DCY/Soulexplode "Sounds/DCY SFX/dcy_soul_unleash.ogg"
+tornado/speen "Sounds/Projectiles/dcy_tornado.ogg"
+tornado/speen2 "Sounds/Projectiles/dcy_tornado2.ogg"
+dcy/crosscut/use "Sounds/Inventory/dcy_crosscut.ogg"
+dcy/crosscut/up "Sounds/Inventory/dcy_crosscut_up.ogg"
 
 //Health & Armor
-GreenArmor/Pickup GRENARMR
-BlueArmor/Pickup BLUEARMR
-RedArmor/Pickup SARMORPK
+GreenArmor/Pickup "Sounds/Inventory/dcy_greenarmor.ogg"
+BlueArmor/Pickup "Sounds/Inventory/dcy_bluearmor.ogg"
+RedArmor/Pickup "Sounds/Inventory/dcy_defense.wav"
 
 SoulSphere/PickedUp "Sounds/Inventory/dcy_soulsphere.ogg"
 Doom4/Megasphere "Sounds/Inventory/dcy_d4_megasphere.ogg"
 PowerSphere/PickedUp "Sounds/Inventory/dcy_powersphere.ogg"
-StronkSphere/PickedUp SPHERE01
-AnotherStronkSphere/PickedUp SPHERE02
-MysteriousSphere/PickedUp SPHERE03
-InvulnerabilitySphere/PickedUp DSINVPCK
-InvulnerabilitySphere/Warning DSINVWRN
-Raze/Pickup D4QUADD2
-Raze/Warning D4QUADD1
-Raze/End D4QUADD3
-RadiationSphere/PickedUp DSRADPK
-Berserk/PickUp DSBRSPCK
-Berserk/Warning DSBRSWRN
-Berserk/End DSBRSEND
+StronkSphere/PickedUp "Sounds/Inventory/dcy_supremacy.ogg"
+AnotherStronkSphere/PickedUp "Sounds/Inventory/dcy_strongsphere.ogg"
+MysteriousSphere/PickedUp "Sounds/Inventory/dcy_invis.ogg"
+InvulnerabilitySphere/PickedUp "Sounds/Inventory/dcy_invulnerable.ogg"
+InvulnerabilitySphere/Warning "Sounds/Inventory/dcy_invulnerable_warn.ogg"
+Raze/Pickup "Sounds/Inventory/dcy_raze_pickup.ogg"
+Raze/Warning "Sounds/Inventory/dcy_raze_warn.ogg"
+Raze/End "Sounds/Inventory/dcy_raze_end.ogg"
+RadiationSphere/PickedUp "Sounds/Inventory/dcy_hazard_suit.ogg"
+Berserk/PickUp "Sounds/Inventory/dcy_berserk.ogg"
+Berserk/Warning "Sounds/Inventory/dcy_berserk_warn.ogg"
+Berserk/End "Sounds/Inventory/dcy_berserk_end.ogg"
 
-RIPANDTEAR BATTLCRY
+RIPANDTEAR "Sounds/Inventory/dcy_berserk_ripandtear.ogg"
 
 //idle noises
 SoulSphere/IdleNoise "Sounds/Inventory/dcy_soulsphere_idle.ogg"
@@ -114,153 +78,76 @@ Invulnerability/IdleNoise "Sounds/Inventory/dcy_invulnerability_idle.ogg"
 Supremacy/IdleNoise "Sounds/Inventory/dcy_supremacy_idle.ogg"
 
 //me luv item noises :)
-POWERGET POWERGET
-POWGET7 POWGET7
-POWGET4 POWGET4
-POWRGET5 POWRGET5
-POWGET2 POWGET2
-POWRGET3 POWRGET3
+POWERGET "Sounds/Inventory/dcy_exo.ogg"
+PowerGem/Pickup "Sounds/Inventory/dcy_power_get.ogg"
+GreaterPowerGem/Pickup "Sounds/Inventory/dcy_power_use.ogg"
 
-PowerGem/Pickup PWGEMGET
-GreaterPowerGem/Pickup PWGEMGT2
+ITEMGET "Sounds/Inventory/dcy_barricade.ogg"
+ITEMWARN "Sounds/Inventory/dcy_barricade_warning.ogg"
+DSGETPO2 "Sounds/Inventory/dcy_barricade_activate.ogg"
+Eminence/Pickup "Sounds/Inventory/dcy_eminence.ogg"
 
-TranscendentEssence/Loop TRANSCEN
-TranscendentEssence/Activate DEMENUSE
-LunacyEssence/Loop LUNACY
-LunacyEssence/Activate LUNACUSE
+LIGTPKP "Sounds/Inventory/dcy_sparkling.ogg"
+LIGTPKP2 "Sounds/Inventory/dcy_sparkle_pkup.ogg"
 
-UltraGem/Get ULTRGET
+AllMap/Loop "Sounds/Inventory/dcy_allmap_loop.ogg"
+AllMap/PickedUp "Sounds/Inventory/dcy_allmap.ogg"
 
-Castlevania/SphereLoop SPHERLOP
-Castlevania/SphereGet SPHERGET
+SUPREMZ "Sounds/DCY SFX/dcy_enigma_ball.ogg"
 
-ITEMGET ITEMGET
-ITEMWARN ITEMWARN
-DSGETPO2 DSGETPO2
-Eminence/Pickup ITEMGETW
-ITEMGET3 ITEMGET3
+Summon/Blast "Sounds/Projectiles/dcy_summonblast.ogg"
 
-CRATEXPL CRATEXPL
+DSBLAST "Sounds/DCY SFX/dcy_flyaway_emptiness.ogg"
 
-LIGTPKP LIGTPKP
-LIGTPKP2 LIGTPKP2
-DARKPKP DARKPKP
-MECHPKUP MECHPKUP
+D4HASTE "Sounds/Inventory/dcy_fasthands.ogg"
+D4BEEP1 "Sounds/Inventory/dcy_healthcapsule.ogg"
+D4BEEP2 "Sounds/Inventory/dcy_stimpack.ogg"
+D4BEEP3 "Sounds/Inventory/dcy_medikit.ogg"
+D4ARMR1 "Sounds/Inventory/dcy_armorbonus.ogg"
+D4REGEN1 "Sounds/Inventory/dcy_rehabiliation.ogg"
+D4REGEN2 "Sounds/Inventory/dcy_healthpowerup_respawn.ogg"
 
-Ring/Get RINGPKUP
-RareItem/Pickup RAREITEM
-PowerFragment/Pickup POWFRGMT
-AllMap/Loop MAP2LOOP
-AllMap/PickedUp MAP2PKUP
+REGEN01 "Sounds/Inventory/dcy_deterrence_up.ogg"
+REGEN02 "Sounds/Inventory/dcy_deterrence_use.ogg"
 
-ZaWarudo ZAWARDO
-MagicSpell MAGISPEL
+DETEWARN "Sounds/Inventory/dcy_deterrence_warn.wav"
+RUNE03 "Sounds/Inventory/dcy_deterrence_end.wav"
+CROSWARN "Sounds/Inventory/dcy_crosscut_warn.ogg"
+CROSEND "Sounds/Inventory/dcy_crosscut_end.ogg"
+PALIWARN "Sounds/Inventory/dcy_palisade_warn.wav"
+PALIEND "Sounds/Inventory/dcy_palisade_end.wav"
+PHTCWARN "Sounds/Inventory/dcy_photocoagulator_warn.ogg"
+PHTCEND "Sounds/Inventory/dcy_photocoagulator_end.ogg"
+EPHAWARN "Sounds/Inventory/dcy_emphasis_warn.ogg"
+EPHAEND "Sounds/Inventory/dcy_emphasis_end.ogg"
 
-AdvanceItem/1 GBAITEM1 //Serious Sam Gameboiadvancc
-AdvanceItem/2 GBAITEM2 //Serious Sam Gameboiadvancc again
-AdvanceItem/3 GBAITEM3 //Serious Sam Gameboiadvancc again
-AdvanceItem/4 GBAITEM4 //Serious Sam Gameboiadvancc yet again
-AdvanceItem/5 GBAITEM5 //Serious Sam Gameboiadvancc yet again
-AdvanceItem/6 GBAITEM6 //Serious Sam Gameboiadvancc and again
+CSALVA1 "Sounds/Inventory/dcy_salvation_up.ogg"
+CSALVA2 "Sounds/Inventory/dcy_salvation.ogg"
 
-UPTOLOOP UPTOLOOP
-UPTOPKUP UPTOPKUP
-UPTOUSE UPTOUSE
+SPR1POW1 "Sounds/Inventory/dcy_emphasis.ogg"
+SPR1POW2 "Sounds/Inventory/dcy_emphasis_use.ogg"
 
-D4SOULSP D4SOULSP
-
-SOULATK2 SOULATK2
-SOULATK3 SOULATK3
-
-Guard2/Hide GD2HIDE
-
-CeruleanConflagration/SpellPick 00PA01
-Spell/Upgrade 00PA06
-CeruleanConflagration/SpellStart 00AM01
-
-TimeStopperPickup 00AM02
-TimeStopperUse 00NE23
-
-SUPREMZ SUPREMZ
-
-UpgradedHealthBonus/Pickup RHVITAL1
-UpgradedHealthBonus/PickupMK15 RHVITAL2 //It's actually MK-1.5
-UpgradedSoulSphere/Pickup RHMEGAHE
-UpgradedMegasphere/Pickup RHMEGASP
-
-AlephSphere/Loop POWLOOPM
-AlephSphere/Pickup POWGETM
-
-WeaponMod/Pickup MODPIKUP
-
-Summon/Blast SUMMBLST
-
-$random DSBLAST { DSBLAST1 DSBLAST2 }
-DSBLAST1 DSBLAST1
-DSBLAST2 DSBLAST2
-
-D4HASTE D4HASTE
-D4BEEP1 D4BEEP1
-D4BEEP2 D4BEEP2
-D4BEEP3 D4BEEP3
-D4ARMR1 D4ARMR1
-D4QUADD1 D4QUADD1
-D4QUADD3 D4QUADD3
-D4REGEN1 D4REGEN1
-D4REGEN2 D4REGEN2
-
-DSCBEEP DSCBEEP
-
-REGEN01 REGEN01
-REGEN02 REGEN02
-RUNE01 RUNE01
-RUNE02 RUNE02
-RUNE03 RUNE03
-RUNE04 RUNE04
-
-CROSWARN CROSWARN
-CROSEND CROSEND
-PALIWARN PALIWARN
-PALIEND PALIEND
-DETEWARN DETEWARN
-PHTCWARN PHTCWARN
-PHTCEND PHTCEND
-EPHAWARN EPHAWARN
-EPHAEND EPHAEND
-
-CSALVA1 CSALVA1
-CSALVA2 CSALVA2
-
-//Warcraft Tres [the sounds where i found the r667 vamire, inferno demn, etc stuff sound effects i dunno]
-RUNE05 RUNE05
-RUNE06 RUNE06
-misc/shopjingle "Sounds/Items & Powers/SHOP.ogg"
-DARKSKIL DARKSKIL
-SUPRBUFF SUPRBUFF
-ITEMGETH ITEMGETH
-VOIDBUFF VOIDBUFF
-
-OITEMGET OITEMGET
-OITEMBST OITEMBST
-BOOSTER BOOSTER
+DARKSKIL "Sounds/Inventory/dcy_darkness2.ogg"
+SUPRBUFF "Sounds/Inventory/dcy_song.ogg"
 
 //Some Sounds from Final Fantasy 4 After Years
-FF4AFADE FF4AFADE
-FF4ANOI2 FF4ANOI2
-FF4ABOOM FF4ABOOM
+FF4AFADE "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash.ogg"
+FF4ANOI2 "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash2.ogg"
+FF4ABCHR "Sounds/Projectiles/dcy_darkmatter_charge.ogg"
+FF4ABOOM "Sounds/Projectiles/dcy_darkmatter_explode.ogg"
 
-OmegaDivine/Start HOLYPOWR
+OmegaDivine/Start "Sounds/DCY SFX/dcy_powerlight.ogg"
 
 //More pickups
-dcy/clip DCYCLIP
-dcy/shell DCYSHELL
-dcy/rocket DCYROCK
-dcy/cell DCYCELL
-dcy/cellpack DCYCELP
-dcy/backpack DCYBACK
+dcy/clip "Sounds/Inventory/Ammo/dcy_clip.ogg"
+dcy/shell "Sounds/Inventory/Ammo/dcy_shell.ogg"
+dcy/rocket "Sounds/Inventory/Ammo/dcy_rocket.ogg"
+dcy/cell "Sounds/Inventory/Ammo/dcy_shell.ogg"
+dcy/cellpack "Sounds/Inventory/Ammo/dcy_cellpack.ogg"
+dcy/backpack "Sounds/Inventory/Ammo/dcy_backpack.ogg"
 
-dcy/shotgunpickup DCYSHOTG
-dcy/shotgunpickup2 DCYSHOT2
-dcy/riflepickup DCYRIFLE
-dcy/rocketpickup DCYRLAUN
-dcy/plasmariflepickup DCYPRIFL
+dcy/shotgunpickup "Sounds/Weapons/dcy_pickup_shotgun.ogg"
+dcy/shotgunpickup2 "Sounds/Weapons/dcy_pickup_supershotgun.wav"
+dcy/riflepickup "Sounds/Weapons/dcy_pickup_rifle.wav"
+dcy/rocketpickup "Sounds/Weapons/dcy_pickup_launcher.wav"
+dcy/plasmariflepickup "Sounds/Weapons/dcy_pickup_plasma.wav"

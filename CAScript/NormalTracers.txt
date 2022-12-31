@@ -88,7 +88,7 @@ Class DCY_TracerPlayer : FastProjectile
 		}
 		else
 		{
-			A_StartSound("DCYBullet/Hit", CHAN_BODY);
+			A_StartSound("DCYBullet/Hit", CHAN_BODY, volume: 0.5);
 			A_SpawnItemEx("DCY_BulletPuffGlow", flags: SXF_NOCHECKPOSITION);
 			A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
 			A_Sparks();
@@ -173,7 +173,7 @@ Class DCY_BlueZombieTracer : DCY_ZombieTracer
   Death:
 	TNT1 A 2
 	{
-		A_StartSound("DCYBullet/Hit", CHAN_BODY);
+		A_StartSound("DCYBullet/Hit", CHAN_BODY, volume: 0.5);
 		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
 		A_Sparks();
 	}
@@ -423,7 +423,7 @@ Class DCY_ArbiterTracer : DCY_ZombieTracer
   Death:
 	TNT1 A 2
 	{
-		A_StartSound("DCYBullet/Hit", CHAN_BODY);
+		A_StartSound("DCYBullet/Hit", CHAN_BODY, volume: 0.5);
 		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
 		A_Sparks();
 	}
@@ -442,7 +442,7 @@ Class DCY_TripartiteTracer : DCY_ArbiterTracer
   Death:
 	TNT1 A 1
 	{
-		A_StartSound("DCYBullet/Hit", CHAN_BODY);
+		A_StartSound("DCYBullet/Hit", CHAN_BODY, volume: 0.5);
 		A_SpawnItemEx("DCY_BulletPuffGlow", flags: SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
 		A_Sparks();

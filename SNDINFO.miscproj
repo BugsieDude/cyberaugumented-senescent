@@ -1,71 +1,51 @@
-ENGHUM ENGHUM
-SNAKATA SNAKATA
-SNAKATB SNAKATB
+ROTHPOLO "Sounds/Projectiles/dcy_demonic_shotgun.ogg"
+AM2DASH "Sounds/DCY SFX/dcy_enemy_rush.ogg"
 
-DEATHSPL DEATHSPL
-ROTHPOLO ROTHPOLO
+PHASDASH "Sounds/DCY SFX/dcy_deathdealer_dash.ogg"
+OTHRDASH "Sounds/DCY SFX/dcy_upheavalbringer_dodge.ogg"
 
-AM2DASH AM2DASH //Alpha Mission II
+TZBLSTOF "Sounds/DCY SFX/dcy_tzero_blastoff.ogg" //T-ZerO (An Amiga SHMUP)
 
-PHASDASH PHASDASH
-OTHRDASH OTHRDASH
+MREIDISR "Sounds/DCY Monsters/Xusqoox/dcy_xusqoox_distort.ogg"
+MREIDIS2 "Sounds/DCY Monsters/Xusqoox/dcy_xusqoox_distort2.ogg"
+MREIDIS3 "Sounds/DCY Monsters/Xusqoox/dcy_xusqoox_distort3.ogg"
 
-TZBLSTOF TZBLSTOF //T-ZerO (An Amiga SHMUP)
-
-MREIDISR MREIDISR
-MREIDIS2 MREIDIS2
-MREIDIS3 MREIDIS3
-
-EXOSHT1 EXOSHT1
-
-FlashingExplosion FLASHEXP
+FlashingExplosion "Sounds/Projectiles/dcy_flashexplosion.ogg"
 
 $random Earthpound { BRUSPND1 BRUSPND2 BRUSPND3 BRUSPND4 BRUSPND5 }
-BRUSPND1 BRUSPND1
-BRUSPND2 BRUSPND2
-BRUSPND3 BRUSPND3
-BRUSPND4 BRUSPND4
-BRUSPND5 BRUSPND5
+BRUSPND1 "Sounds/DCY SFX/dcy_generic_groundpound1.ogg"
+BRUSPND2 "Sounds/DCY SFX/dcy_generic_groundpound2.ogg"
+BRUSPND3 "Sounds/DCY SFX/dcy_generic_groundpound3.ogg"
+BRUSPND4 "Sounds/DCY SFX/dcy_generic_groundpound4.ogg"
+BRUSPND5 "Sounds/DCY SFX/dcy_generic_groundpound5.ogg"
 
-PENTASUM PENTASUM
+PENTASUM "Sounds/DCY SFX/dcy_summoning_pentagram.ogg"
 BIGSTEPP "Sounds/DCY SFX/dcy_modified_gundam_step.ogg"
 
-CHORTELE CHORTELE
-
-Lightning/Strike LUNLIGTN
-Lightning/StrikeClose LIGTN1NG
-
-HCSHOT HCSHOT
-HCSTAB HCSTAB
+Lightning/Strike "Sounds/Projectiles/dcy_biglightning_far.ogg"
+Lightning/StrikeClose "Sounds/Projectiles/dcy_biglightning.ogg"
 
 UCKABEWM "Sounds/DCY SFX/dcy_android_explosion.ogg"
 ENIGEXPL "Sounds/DCY SFX/dcy_metamor_explosion.ogg"
 
-MREIDASH MREIDASH
+MREIDASH "Sounds/DCY Monsters/Arachnoaversion/dcy_arachnoaversion_dash.ogg"
 
-Enemy/Teleport DSHELTEL
-Enemy/Teleport2 HELTEL1
-Enemy/Teleport3 HELTEL2
-Enemy/Teleport4 HELTEL3
-Enemy/Teleport5 HELTEL4
-Enemy/Teleport6 ULTRTELE
-Enemy/Teleport7A MWIZTELE
-Enemy/Teleport7B MWIZTEL2
-GALCTELE GALCTELE
+Enemy/Teleport3 "Sounds/DCY SFX/Teleports/dcy_vague_teleport.ogg"
+Enemy/Teleport5 "Sounds/DCY SFX/Teleports/dcy_enigma_teleport.ogg"
+Enemy/Teleport7A "Sounds/DCY SFX/Teleports/dcy_mw_telein.ogg"
+Enemy/Teleport7B "Sounds/DCY SFX/Teleports/dcy_mw_teleout.ogg"
+GALCTELE "Sounds/DCY SFX/Teleports/dcy_galactic.ogg"
 
-FlashDie FLASHDIE
+RTROBOM1 "Sounds/DCY SFX/dcy_retroboom.wav"
+RTROBOM2 "Sounds/DCY SFX/dcy_retroboom2.wav"
 
-RTROBOM1 RTROBOM1
-RTROBOM2 RTROBOM2
+ShieldBroke1 "Sounds/DCY SFX/dcy_generic_shieldbreak1.ogg"
+ShieldBroke2 "Sounds/DCY SFX/dcy_generic_shieldbreak2.ogg"
+ShieldBroke3 "Sounds/DCY SFX/dcy_generic_shieldbreak3.ogg"
+ShieldBroke4 "Sounds/DCY SFX/dcy_generic_shieldbreak4.ogg"
 
-ShieldBroke1 SHLDBRK1
-ShieldBroke2 SHLDBRK2
-ShieldBroke3 SHLDBRK3
-ShieldBroke4 SHLDBRK4
-
-FINLCONC FINLCONC
-FINLBOOM FINLBOOM
-FINLSIGN FINLSIGN
+DCY/Paradox "Sounds/DCY SFX/dcy_paradox.ogg"
+DCY/Eerie3 "Sounds/DCY SFX/dcy_eerie3.ogg"
 
 $random dcyvomitblood { dcyvomitblood1 dcyvomitblood2 dcyvomitblood3 }
 dcyvomitblood1 "Sounds/DCY SFX/dcy_blood_vomit1.ogg"

@@ -293,8 +293,8 @@ Class DCY_Crosscut : CustomInventory
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
   Inventory.PickupMessage "\c[x1]Soon you get to drain your enemies' lives just by hurting them. Good.\c-";
-  Inventory.PickupSound "LevelUpMaybe";
-  Inventory.UseSound "Soin 2";
+  Inventory.PickupSound "dcy/crosscut/up";
+  Inventory.UseSound "dcy/crosscut/use";
   RenderStyle "Add";
   Scale 1.25;
   Tag "Crosscut - Portable Drain for 60 seconds.";
