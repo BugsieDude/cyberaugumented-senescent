@@ -135,7 +135,7 @@ Class DCY_TheBFG10000 : DCY_Weapon
 		A_StartSound("BFG10kLaser/Stop", CHAN_6, CHANF_DEFAULT, 0.75);
 	}
 	TNT1 A 29 Bright A_WeaponOffset(0, 32);
-	TNT1 A 1 A_ResetOverlay();
+	TNT1 A 0 A_ResetOverlay();
 	Goto Ready;
   }
 }

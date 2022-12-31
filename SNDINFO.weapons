@@ -27,7 +27,7 @@ $rolloff LightningPulse/FarExplode 400 2200
 DCYBFG/Fire "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg.ogg"
 DCYBFGX/Charge "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_charging.ogg" //Doomguy141 Weapon Sounds
 DCYBFGX/Fire "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_fire.ogg"
-DCYBFGX/Explode "Sounds/Weapons/Slot 7/Deracinator/dcy_deracinator_explode.ogg"
+DCYBFGX/Explode "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_explode.ogg"
 DCYBFGX/Ready "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_ready.ogg" 
 BFGBALL "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_ball_hum.ogg" 
 BFGD1E "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_ball_explode.ogg" 
@@ -113,10 +113,10 @@ CSAWBLD1 "Sounds/Weapons/Slot 1/Power Saw/dcy_saw_blood1.ogg"
 CSAWBLD2 "Sounds/Weapons/Slot 1/Power Saw/dcy_saw_blood2.ogg"
 CSAWBLD3 "Sounds/Weapons/Slot 1/Power Saw/dcy_saw_blood3.ogg"
 
-CrucibleChainsaw/Up "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/dcy_argent_ready.ogg"
-CrucibleChainsaw/Ready "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/dcy_argent_idle.ogg"
-CrucibleChainsaw/Loop "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/dcy_argent_kill_them_all.ogg"
-CrucibleChainsaw/Stop "Sounds/Weapons/Slot 1/Chainsaw/Argent Upgrade/dcy_argent_stop.ogg"
+CrucibleChainsaw/Up "Sounds/Weapons/Slot 1/Power Saw/Argent Upgrade/dcy_argent_ready.ogg"
+CrucibleChainsaw/Ready "Sounds/Weapons/Slot 1/Power Saw/Argent Upgrade/dcy_argent_idle.ogg"
+CrucibleChainsaw/Loop "Sounds/Weapons/Slot 1/Power Saw/Argent Upgrade/dcy_argent_kill_them_all.ogg"
+CrucibleChainsaw/Stop "Sounds/Weapons/Slot 1/Power Saw/Argent Upgrade/dcy_argent_stop.ogg"
 
 $random BurstPistol/Fire { BPISFIR1 BPISFIR2 }
 BPISFIR1 "Sounds/Weapons/Slot 2/Burst Pistol/dcy_burst_fire1.ogg"
@@ -153,7 +153,7 @@ SHOTFIR3 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun3.ogg"
 SHOTFIR4 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun4.ogg"
 
 RocketLauncher/Kaboom "Sounds/Weapons/Slot 5/Legionnaire/dcy_legionnaire_rocket_fire.ogg"
-Grenade/Launch "Sounds/Weapons/Slot 5/Invervention/dcy_infervention_grenade_fire.ogg"
+Grenade/Launch "Sounds/Weapons/Slot 5/Intervention/dcy_intervention_grenade_fire.ogg"
 $alias weapons/rocklf RocketLauncher/Kaboom
 
 $random SuperShotgun/Fire { SSGFIRE1 SSGFIRE2 SSGFIRE3 SSGFIRE4 }
@@ -217,9 +217,6 @@ DCYPlasmaShotgun "Sounds/Projectiles/dcy_plasma_shotgun.ogg"
 DCYPlasmaThrower "Sounds/Projectiles/dcy_plasmaflames.ogg"
 WEPRED2 "Sounds/Weapons/Slot 4/Nightfall/dcy_nightfall_mod.ogg"
 CAMBEEP "Sounds/DCY SFX/dcy_camera_beep.ogg"
-DIVFIRE "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target.ogg"
-DIVLOOP "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target_loop.ogg"
-DIVSTOP "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target_stop.ogg"
 PIS3FIRE "Sounds/Projectiles/dcy_chaingun_fire1.ogg"
 PIS3FIR2 "Sounds/Projectiles/dcy_chaingun_fire2.ogg"
 PIS3FIR3 "Sounds/Projectiles/dcy_chaingun_fire3.ogg"
@@ -231,7 +228,7 @@ PSPLASMA "Sounds/Projectiles/dcy_psx_plasma.ogg"
 
 WH1PPKUP "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_up.ogg"
 WH1PSPIN "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_spin.ogg"
-WH1PSWNG "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_laser.ogg"
+WH1PSWNG "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_laser.wav"
 WH1PLASR "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_hook.ogg"
 WH1PHURT "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_hurt.ogg"
 WH1PGRAB "Sounds/Weapons/Slot 2/Razorwind/dcy_razorwind_grab.ogg"
@@ -275,214 +272,133 @@ UNDLFIR3 "Sounds/Weapons/Slot 3/Silver Blaster/dcy_silver_shot3.ogg"
 UNDLFIR4 "Sounds/Weapons/Slot 3/Silver Blaster/dcy_silver_shot4.ogg"
 UNDLFIR5 "Sounds/Weapons/Slot 3/Silver Blaster/dcy_silver_shot5.ogg"
 
-VeneratedTruncheon/Pickup VNBTPKUP
-VeneratedTruncheon/Up VNBTSEL
-VeneratedTruncheon/Switch VNBTSWTC
-VeneratedTruncheon/Charge VNBTCHRG
-VeneratedTruncheon/Ball/Fire VNBTBALL
-VeneratedTruncheon/Ball/Idle VNBTBALP
-VeneratedTruncheon/Ball/Explode VNBTBALX
-VeneratedTruncheon/Bomb/Spawn VNBTBOMB
-VeneratedTruncheon/Bomb/Explode VNBTBOMX
-VeneratedTruncheon/Switch2 VNBTSWT2
-VeneratedTruncheon/LaserSpawn VNBTLSST
-VeneratedTruncheon/LaserReady VNBTLSRD
-VeneratedTruncheon/LaserCharge VNBTLSCH
-VeneratedTruncheon/LaserShoot VNBTLASR
+VeneratedTruncheon/Pickup "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_up.ogg"
+VeneratedTruncheon/Up "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_select.ogg"
+VeneratedTruncheon/Switch "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_switch.ogg"
+VeneratedTruncheon/Ball/Fire "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_divine_sun.ogg"
+VeneratedTruncheon/Ball/Idle "Sounds/Weapons/Slot 8/Dismantler/dcy_divine_sun_loop.ogg"
+VeneratedTruncheon/Ball/Explode "Sounds/Weapons/Slot 8/Dismantler/dcy_divine_sun_explode.ogg"
+VeneratedTruncheon/LaserSpawn "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_stop.ogg"
+VeneratedTruncheon/LaserCharge "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_charge.ogg"
+VeneratedTruncheon/LaserShoot "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_laser.ogg"
 $limit VeneratedTruncheon/LaserShoot 0
-VeneratedTruncheon/Charge2 VNBTCHR2
-VeneratedTruncheon/NukeExplosion VNBTNUKE
-VeneratedTruncheon/Detonate VNBTDET
 
-UCLASER UCLASER
-UCREFLCT UCREFLCT
-UCLASERX UCLASERX
-ULCRCHRG ULCRCHRG
-ULCRCHR2 ULCRCHR2
-ULCRFIRE ULCRFIRE
+UCLASER "Sounds/Projectiles/dcy_ultracerest_laser.ogg"
+UCLASERX "Sounds/Projectiles/dcy_ultracerest_laser_explode.ogg"
+ULCRCHRG "Sounds/Projectiles/dcy_ultracerest_charge.wav"
+ULCRCHR2 "Sounds/Projectiles/dcy_ultracerest_charge2.ogg"
+ULCRFIRE "Sounds/Projectiles/dcy_ultracerest_charged_shot.ogg"
 
-ROBOMISL ROBOMISL //Sound from Super Darius II (cool)
-ROBOMIS2 ROBOMIS2
-ROBOBOMB ROBOBOMB
-ROBOBEAM ROBOBEAM
-ROBOBLS2 ROBOBLS2
-ROBOBLST ROBOBLST
-Android/Laser ROBOLASR
-Android/LaserX ROBOLASX
-ROBOLAS2 ROBOLAS2
-ROBOLAS3 ROBOLAS3
-ROBOLAS4 ROBOLAS4
-ROBOLAS5 ROBOLAS5
-GIGALASR GIGALASR
-GIGALAS2 GIGALAS2
-AUTOLASR AUTOLASR
-AUTOLAS2 AUTOLAS2
-ROBORIPL ROBORIPL
-BIGMISLE BIGMISLE
-ROBOEXPL ROBOEXPL
-ROBOEXP2 ROBOEXP2
-ROBOFIRE ROBOFIRE
-ROBOFIRL ROBOFIRL
-ROBOSPIT ROBOSPIT
-RIPLLASR RIPPLASR
+ROBOMISL "Sounds/Projectiles/dcy_superdarius2_missile.ogg" //Sounds from Super Darius II
+ROBOMIS2 "Sounds/Projectiles/dcy_gate_missile.ogg"
+ROBOBOMB "Sounds/Projectiles/dcy_repealler_rocket.ogg"
+ROBOBEAM "Sounds/Projectiles/dcy_seeker_laser.ogg"
+Android/Laser "Sounds/Projectiles/dcy_superdarius2_laser.ogg"
+Android/LaserX "Sounds/Projectiles/dcy_superdarius2_laserx.ogg"
+ROBOLAS2 "Sounds/Projectiles/dcy_piercing_beam.ogg"
+ROBOLAS3 "Sounds/Projectiles/dcy_electricshield.ogg"
+ROBOLAS5 "Sounds/Projectiles/dcy_monsoon_beam.ogg"
+GIGALASR "Sounds/Projectiles/dcy_upheaval_laserbarrage.ogg"
+GIGALAS2 "Sounds/Projectiles/dcy_upheaval_laser.ogg"
+AUTOLASR "Sounds/Projectiles/dcy_automaton_laser.ogg"
+AUTOLAS2 "Sounds/Projectiles/dcy_gate_beam.ogg"
+ROBORIPL "Sounds/Projectiles/dcy_ripple.ogg"
+BIGMISLE "Sounds/Projectiles/dcy_big_missile.ogg"
+ROBOEXPL "Sounds/Projectiles/dcy_lasergrenade.ogg"
+ROBOEXP2 "Sounds/Projectiles/dcy_repealler_explode.ogg"
+ROBOFIRE "Sounds/Projectiles/dcy_gate_fire.ogg"
+ROBOFIRL "Sounds/Projectiles/dcy_gate_fireloop.ogg"
+ROBOSPIT "Sounds/Projectiles/dcy_spit_projectile.ogg"
+RIPLLASR "Sounds/Projectiles/dcy_ripper.ogg"
 $limit ROBOEXPL 0
-AOI/Explode AOBAREXP
+AOI/Explode "Sounds/Projectiles/dcy_lapis_torpedo_explode.ogg"
 
-BLOCKEXP BLOCKEXP
-BLOCKEX2 BLOCKEX2
-LIGTNGLS LIGTNGLS
-RIPLLASR RIPLLASR
+D4RAILGF "Sounds/Projectiles/dcy_razer_railgun.ogg"
 
-D4RAILGF D4RAILGF
-LASRREDY LASRREDY
+DNRPGFIR "Sounds/Projectiles/dcy_gehenna_whiz.ogg"
+DNROCKET "Sounds/Projectiles/dcy_cyberrocket.ogg"
 
-TURRLOP1 TURRLOP1
-TURRLOP2 TURRLOP2
+LASER "Sounds/Projectiles/dcy_generic_laser.ogg"
+FASTLASR "Sounds/Projectiles/dcy_ion.ogg"
 
-DNRPGFIR DNRPGFIR
-DNROCKET DNROCKET
-
-TECHUP1 TECHUP1
-TECHUP2 TECHUP2
-TECHUP3 TECHUP3
-Weapons/StardustUp STDSTUP1
-
-DSLSRFIR	DSLSRFIR
-DSLSRIC1	DSLSRIC1
-DSLSRIC2	DSLSRIC2
-DSLSRIC3	DSLSRIC3
-DSLSRIC4	DSLSRIC4
-$random Laser/Bounce	{ DSLSRIC1 DSLSRIC2 DSLSRIC3 DSLSRIC4 }
-
-DCHAING DCHAING
-
-HellStorm/Fire		HSTMFIRE
-HellStorm/Reload	HSTMRELD
-HellStorm/Hit		HSTMHIT
-
-$Limit HellStorm/Hit 0
-
-Frostbite/Fire1	FSTFFIR1
-Frostbite/Hit1	FSTFHIT1
-Frostbite/Fire2 FSTFFIR2
-Frostbite/Hit2	FSTFHIT2
-
-LASER LASER
-LASERII LASERII
-FASTLASR FASTLASR
-
-AA12/Fire		DSAA12
-$limit AA12/Fire	0
-
-UpgradedPlasmaBall UPPLASMA
-$limit UpgradedPlasmaBall 0
-Platinum9kBFG PLBFG
-Platinum9kBFGBallFly PLBFGFLY
-
-BFG10000Proto/Charge B1OGCHAR
-BFG10000Proto/Fire B1OGFIRE
-BFG10000Proto/Fire2 B1OGFIR2
-BFG10000Proto/Up B1OGRISE
-BFG10000Proto/Idle B1OGIDLE
-$random BFG10000Proto/Impact { B1OGIMP1 B1OGIMP2 B1OGIMP3 B1OGIMP4 B1OGIMP5 }
-B1OGIMP1 B1OGIMP1
-B1OGIMP2 B1OGIMP2
-B1OGIMP3 B1OGIMP3
-B1OGIMP4 B1OGIMP4
-B1OGIMP5 B1OGIMP5
-
-Wand/Pickup MAGIWEPP
-UncommonWand/Pickup HEVMAGWP
-RareWand/Pickup SMAGWEPP
+BFG10000Proto/Charge "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_charge.ogg"
+BFG10kLaser/Fire "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_laser.ogg"
+BFG10kLaser/Hold "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_laser_loop.ogg"
+BFG10kLaser/Stop "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_laser_end.ogg"
+BFG10000Proto/Up "Sounds/Weapons/Slot 7/bfg_up.ogg"
+BFG10000Proto/Idle "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_idle.ogg"
+$random BFG10000Proto/Impact { B1OGIMP1 B1OGIMP2 B1OGIMP3 B1OGIMP4 B1OGIMP5 B1OGIMP6 }
+B1OGIMP1 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode1.ogg"
+B1OGIMP2 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode2.ogg"
+B1OGIMP3 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode3.ogg"
+B1OGIMP4 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode4.ogg"
+B1OGIMP5 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode5.ogg"
+B1OGIMP6 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode6.ogg"
 
 NeonicWand/Switch "Sounds/Weapons/Slot 6/Caduceus/switch.ogg"
 Lazer/Fire "Sounds/Weapons/Slot 6/Caduceus/ray.ogg"
 Lazer/Fire2 "Sounds/Weapons/Slot 6/Caduceus/ripper.ogg"
 NeonicBall/Death "Sounds/Weapons/Slot 6/Caduceus/orb_impact.ogg"
 NeonicBall/Fire "Sounds/Weapons/Slot 6/Caduceus/orb.ogg"
-NeonicLaser/Fire NEONLASR
+NeonicLaser/Fire "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_impact.wav"
 
-Eradicator/Charge ERDCCHRG
-Eradicator/Fire ERDCFIRE
-Eradicator/Explode ERDCXPLD
-Eradicator/Laser ERDCLASR
+Eradicator/Charge "Sounds/Weapons/Misc/dcy_eradicator_charge.ogg"
+Eradicator/Fire "Sounds/Weapons/Misc/dcy_eradicator_fire.ogg"
+Eradicator/Explode "Sounds/Weapons/Misc/dcy_eradicator_explode.ogg"
+Eradicator/Laser "Sounds/Weapons/Misc/dcy_eradicator_laser.ogg"
 
-Epitome/Explode EPITOMEX
+Epitome/RayofDeath "Sounds/Weapons/Slot 8/Epitome/dcy_rayofdeath.ogg"
 
-EternalVoid/Charge BLKHCHRG
-EternalVoid/Fire BLKHFIRE
-EternalVoid/ProjectileLoop BLKHHOLE
-EternalVoid/Explode BLKHEXPL
+EternalVoid/Charge "Sounds/Weapons/Slot 9/Eternal Void/dcy_eternalvoid_charge.ogg"
+EternalVoid/Fire "Sounds/Weapons/Slot 9/Eternal Void/dcy_eternalvoid_fire.ogg"
+EternalVoid/ProjectileLoop "Sounds/Weapons/Slot 9/Eternal Void/dcy_blackhole.ogg"
+EternalVoid/Explode "Sounds/Weapons/Slot 9/Eternal Void/dcy_eternalvoid_explode.ogg"
 
-CinerealOrdnance/Active DIIOPN
-CinerealOrdnance/Pickup CINRPKUP
-CinerealOrdnance/Up DIIOPN1
-CinerealOrdnance/Idle DIIOPN3
-CinerealOrdnance/Charge DIIOPN2
-CinerealOrdnance/Laser CINRLASR
-CinerealOrdnance/Cooldown DIIOPN4
-CinerealOrdnance/Nuke CINREXPL
+CinerealOrdnance/Active "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_ambient.ogg"
+CinerealOrdnance/Pickup "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_up.ogg"
+$alias CinerealOrdnance/Up CinerealOrdnance/Pickup
+CinerealOrdnance/Idle "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_loop.ogg"
+CinerealOrdnance/Charge "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_charge.ogg"
+CinerealOrdnance/Laser "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_laser.ogg"
+CinerealOrdnance/Cooldown "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_cooldown.ogg"
+LIGTBALL "Sounds/Weapons/Slot 9/Cinereal Ordnance/dcy_cinereal_zap.wav"
 
-SiriusBFG/Pickup SRUSBFGP
-SiriusBFG/Up SRUSBFGS
-SiriusBFG/Idle SRUSIDLE
-SiriusBFG/Charge SBF3CHRG
-SiriusBFG/Fire SRUSBFGF
-SiriusBFG/Loop SRUSBFGL
+SiriusBFG/Pickup "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_pickup.ogg"
+SiriusBFG/Up "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_up.ogg"
+SiriusBFG/Idle "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_idle.ogg"
+SiriusBFG/Charge "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_charge.ogg"
+SiriusBFG/Fire "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_nuke_fire.ogg"
+SiriusBFG/Loop "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_siriusball_loop.ogg"
 $rolloff SiriusBFG/Loop 500 3000
-SiriusBFG/DeathWait LIGTBAL2
+SiriusBFG/DeathWait "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_siriusball_implode.ogg"
 $rolloff SiriusBFG/DeathWait 1000 4000
-SiriusBFG/DeathStart SRUSBFGX
+SiriusBFG/DeathStart "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_siriusball_nuke.ogg"
 $pitchshift SiriusBFG/DeathStart 0
 $rolloff SiriusBFG/DeathStart 2000 4000
+MECHGRAB "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_ready.ogg"
+DIVFIRE "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target.ogg"
+DIVLOOP "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target_loop.ogg"
+DIVSTOP "Sounds/Weapons/Slot 7/Sirius Crisis/dcy_sirius_target_stop.ogg"
 
-LIGTBALL LIGTBALL
-LIGTBALX LIGTBALX
-
-ObliterationBFG/Raise OBLTRISE
-ObliterationBFG/Idle OBLTIDL
+ObliterationBFG/Raise "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_up.ogg"
+ObliterationBFG/Idle  "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_idle.ogg"
 $random ObliterationBFG/Fire { OBLTFIRE OBLTFIR2 OBLTFIR3 }
-OBLTFIRE OBLTFIRE
-OBLTFIR2 OBLTFIR2
-OBLTFIR3 OBLTFIR3
+OBLTFIRE "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_fire1.ogg"
+OBLTFIR2 "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_fire2.ogg"
+OBLTFIR3 "Sounds/Weapons/Slot 8/Deracinator/dcy_deracinator_fire3.ogg"
 
-$volume ObliterationBFG/Fire 1000
+B3LLCHRG "Sounds/Weapons/Misc/dcy_flyingorb_charge.ogg"
+B3LLFIRE "Sounds/Weapons/Misc/dcy_flyingorb_fire.ogg"
 
-B3LLCHRG B3LLCHRG
-B3LLFIRE B3LLFIRE
+Freedoom/Imp/Attack "Sounds/Projectiles/dcy_alt_fireball.ogg"
+Freedoom/Imp/ShotX "Sounds/Projectiles/dcy_alt_fireball_impact.ogg"
+Freedoom/Brain/Spit "Sounds/Projectiles/dcy_nimbus_bigball.ogg"
 
-//Freedoom
-Freedoom/Imp/Attack FDFIRSHT
-Freedoom/Imp/ShotX FDFIRXPL
-Freedoom/Brain/Spit FDBOSPIT
-Freedoom/Brain/Cube FDBOSCUB
-Freedoom/Misc/P_Pkup FDGETPOW
+$alias PlasmaticLaser PlasmaLaser
 
-//AEoD
-misc/itemuse0 ITEMUSE0
-misc/itemuse2 ITEMUSE2
-weapons/supercharge SPRCHARG
-weapons/superchargecool SPRCHAR2
+PLASMA7 "Sounds/Projectiles/dcy_pacer_fire.ogg"
+PLASMX07 "Sounds/Projectiles/dcy_pacer_impact.ogg"
 
-//Projectiles
-BossRazer/LaserStart BOSRAZRL
-BossRazer/LaserLoop BOSRAZLL
-BossRazer/LaserStop BOSRAZLS
+8BITHOLY "Sounds/Weapons/Slot 8/Epitome/dcy_epitome_acquire.ogg" //epitome idk
 
-PlasmaticLaser PLASLASR
-
-$random PLASMA7 { PLASMA07 PLASMA7A PLASMA7B }
-PLASMA07 PLASMA07
-PLASMA7A PLASMA7A
-PLASMA7B PLASMA7B
-
-PLASMX07 PLASMX07
-
-BFG10kLaser/Fire BLSRFIRE
-BFG10kLaser/Hold BLSRLOOP
-BFG10kLaser/Stop BLSREND
-
-8BITHOLY 8BITHOLY //epitome idk
-
-MECHGRAB MECHGRAB
-ALSHWRIN ALSHWRIN
+ALSHWRIN "Sounds/Weapons/Misc/dcy_strider_swing.ogg"

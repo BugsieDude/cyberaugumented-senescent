@@ -11,7 +11,7 @@ Class DCY_Deracinator : DCY_Weapon
 	Weapon.AmmoGive 40;
 	Weapon.AmmoUse 20;
 	Weapon.Kickback 150;
-	Weapon.SlotNumber 7;
+	Weapon.SlotNumber 8;
 	Weapon.UpSound "ObliterationBFG/Raise";
 	Inventory.PickupSound "ObliterationBFG/Raise";
 	+WEAPON.BFG

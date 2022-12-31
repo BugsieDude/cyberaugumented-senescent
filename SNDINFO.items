@@ -1,6 +1,3 @@
-misc/gleam "Sounds/DCY SFX/dcy_gleam.wav"
-misc/darkness "Sounds/DCY SFX/dcy_darkness.wav"
-
 misc/p_pkup "Sounds/Inventory/dcy_vanilla_powerup.ogg"
 
 SmallItem/Pickup "Sounds/Inventory/Ammo/dcy_ultramodern.ogg"
@@ -37,9 +34,8 @@ DCY/PunchSlam "Sounds/DCY SFX/dcy_punch_slam.ogg"
 DCY/BattleCry "Sounds/DCY SFX/dcy_battlecry.ogg"
 DCY/SoulSlash "Sounds/DCY SFX/dcy_soulslash.ogg"
 DCY/WindExplode "Sounds/DCY SFX/dcy_wind_explode.ogg"
-DCY/bloodyslash "Sounds/DCY SFX/dcy_bloody_slash
+DCY/bloodyslash "Sounds/DCY SFX/dcy_bloody_slash"
 misc/spectacular "Sounds/Inventory/dcy_splendid.ogg"
-DCY/bloodyslashimpact "Sounds/DCY SFX/dcy_slash_impact_flesh.ogg"
 Souffle "Sounds/Inventory/dcy_unco_sphere.ogg"
 Souffle1 "Sounds/Inventory/dcy_unco_extra.ogg"
 DCY/Soulexplode "Sounds/DCY SFX/dcy_soul_unleash.ogg"
@@ -124,13 +120,12 @@ EPHAEND "Sounds/Inventory/dcy_emphasis_end.ogg"
 CSALVA1 "Sounds/Inventory/dcy_salvation_up.ogg"
 CSALVA2 "Sounds/Inventory/dcy_salvation.ogg"
 
-SPR1POW1 "Sounds/Inventory/dcy_emphasis.ogg"
-SPR1POW2 "Sounds/Inventory/dcy_emphasis_use.ogg"
+Emphasis/Up "Sounds/Inventory/dcy_emphasis.ogg"
+Emphasis/Use "Sounds/Inventory/dcy_emphasis_use.ogg"
 
 DARKSKIL "Sounds/Inventory/dcy_darkness2.ogg"
 SUPRBUFF "Sounds/Inventory/dcy_song.ogg"
 
-//Some Sounds from Final Fantasy 4 After Years
 FF4AFADE "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash.ogg"
 FF4ANOI2 "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash2.ogg"
 FF4ABCHR "Sounds/Projectiles/dcy_darkmatter_charge.ogg"

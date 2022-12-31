@@ -14,7 +14,7 @@ Class DCY_Epitome : Weapon
   Weapon.BobRangeX 0.45;
   Weapon.BobRangeY 0.25;
   Weapon.BobSpeed 1.45;
-  Weapon.SlotNumber 9;
+  Weapon.SlotNumber 8;
   Inventory.Icon "8ECTA0";
   Inventory.PickupSound "8BITHOLY";
   +FLOATBOB;

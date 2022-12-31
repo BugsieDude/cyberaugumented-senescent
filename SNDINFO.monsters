@@ -844,7 +844,7 @@ HELCPAI1 "Sounds/DCY Monsters/Custodian/dcy_hellcaco_pain1.ogg"
 HELCPAI2 "Sounds/DCY Monsters/Custodian/dcy_hellcaco_pain2.ogg"
 hellcaco/death "Sounds/DCY Monsters/Custodian/dcy_hellcaco_death.ogg"
 
-Monsters/NBWalk "Sounds/DCY Monsters/Mechanoid/step.ogg"
+Monsters/NBWalk "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_step.ogg"
 
 $random ZEnsign/Sight { SUP2SIT1 SUP2SIT2 SUP2SIT3 SUP2SIT4 SUP2SIT5 SUP2SIT6 SUP2SIT7 SUP2SIT8 SUP2SIT9 }
 SUP2SIT1 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_sight1.ogg"

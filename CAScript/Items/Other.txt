@@ -387,8 +387,8 @@ Class DCY_Emphasis : CustomInventory
   +INVENTORY.INVBAR
   +INVENTORY.HUBPOWER
   Inventory.PickupMessage "The monitor reads that it makes cells and lasers more diverse.";
-  Inventory.PickupSound "SPR1POW1";
-  Inventory.UseSound "SPR1POW2";
+  Inventory.PickupSound "Emphasis/Up";
+  Inventory.UseSound "Emphasis/Use";
   Tag "Emphasis - Turns plasmatic weapons into something different.";
   Inventory.Icon "MAYWZ0";
   }
