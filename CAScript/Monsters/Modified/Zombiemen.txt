@@ -85,7 +85,7 @@ Class DCY_ZombeParent : DCYMonster
 	POSP G 4 A_Pain();
 	Goto See;
   Death:
-	POSP H 0 A_SetScale(randompick(1, -1), 1);
+	POSP H 0 A_Flip();
 	POSP H 3;
 	POSP H 3 A_Scream();
 	POSS I 5 A_Fall();
@@ -192,7 +192,7 @@ Class DCY_ShotgunZombe : DCYMonster
 	SRG_ G 4 A_Pain();
 	Goto See;
   Death:
-	SRG_ H 3 A_SetScale(randompick(1, -1), 1);
+	SRG_ H 3 A_Flip();
 	SRG_ H 3 A_Scream();
 	SRG_ I 5 A_Fall();
 	SRG_ JK 4;
@@ -287,7 +287,7 @@ Class DCY_Plutonia : DCYMonster
 	}
 	Goto See;
   Death:
-	RE1_ H 0 A_SetScale(randompick(1, -1), 1);
+	RE1_ H 0 A_Flip();
 	RE1_ H 5 { bNoDropOff = false; }
 	RE1_ H 5 A_Scream();
 	RE1_ I 5 A_Fall;

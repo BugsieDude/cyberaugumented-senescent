@@ -79,6 +79,7 @@ Class DCY_RazorwindLaser : DCY_TracerPlayer
   RenderStyle "Add";
   Scale .2;
   MissileHeight 6;
+  -THRUGHOST;
   MissileType "DCY_RazorwindTrail";
   DCY_TracerPlayer.SparkFX "DCY_AndroidPuffSpark";
   }

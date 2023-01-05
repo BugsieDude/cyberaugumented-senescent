@@ -129,7 +129,7 @@ Class DCY_Impe : DCYMonster
     TNT1 A 0 A_Jump(128, "Death2");
 	Goto NormalDeath;
   NormalDeath:
-    TROO I 1 A_SetScale(randompick(1, -1), 1);
+    TROO I 1 A_Flip();
 	TROO I 1 A_Scream();
 	TROO I 5 A_NoBlocking();
 	TROO JKL 4;
@@ -295,7 +295,7 @@ Class DCY_Dastard : DCY_Impe
 	FUUU V -1;
 	Stop;
   Death:
-    DAS_ I 1 A_SetScale(randompick(1, -1), 1);
+    DAS_ I 1 A_Flip();
 	DAS_ I 1 A_Scream();
 	DAS_ I 5 A_NoBlocking();
 	DAS_ JKL 4;

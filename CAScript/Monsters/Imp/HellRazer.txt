@@ -157,7 +157,7 @@ Class DCY_HellRazer : DCY_Impe
     TNT1 A 0 A_Jump(256, "Death1", "Death2");
 	Goto Death1;
   Death1:
-    PRZR I 1 { fdeath = 1; }
+    PRZR I 1 { A_Flip(); fdeath = 1; }
 	PRZR I 8 A_Scream();
 	TNT1 A 0 A_Fall();
 	PRZR JKL 8;
@@ -173,21 +173,13 @@ Class DCY_HellRazer : DCY_Impe
   Raise:
     PRZR M 0
 	{
-		if (fdeath = 1)
-		{
-			Return ResolveState("Raise1");
-		}
-		if (fdeath = 2)
-		{
-			Return ResolveState("Raise2");
-		}
-		
-		Return ResolveState(null);
+		if (fdeath = 1) SetStateLabel("Raise1");
+		if (fdeath = 2) SetStateLabel("Raise2");
 	}
 	Goto Raise1;
   Raise1:
     PRZR MLKJI 8;
-	TNT1 A 0 { fdeath = 0; }
+	TNT1 A 0 { fdeath = 0; A_SetScale(Scale.X, Scale.Y); }
 	Goto See;
   Raise2:
     PRZR RQPON 8;

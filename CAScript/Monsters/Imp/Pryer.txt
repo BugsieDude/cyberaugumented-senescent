@@ -67,7 +67,7 @@ Class DCY_Pryer : DCY_Impe
 	Goto See;
   Death:
   Death.Fire:
-	XX5_ R 1;
+	XX5_ R 1 A_Flip();
 	XX5_ R 6
 	{
 		A_NoBlocking();
@@ -89,6 +89,7 @@ Class DCY_Pryer : DCY_Impe
   Raise:
 	XX5_ PO 4;
 	XX5_ NMLKJIH 3;
+	XX5_ H 0 A_SetScale(Scale.X, Scale.Y);
 	Goto See;
   }
 }

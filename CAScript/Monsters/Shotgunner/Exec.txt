@@ -35,6 +35,9 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
   int drone;
   int zmissile;
   int waiting;
+  bool grenadecooldown;
+  bool issmoke;
+  bool smokegrenadecooldown;
   bool seen;
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -65,6 +68,19 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 		waiting += 1;
   }
   
+  void A_ExecDecide()
+  {
+	if (health < 200)
+	{
+		if (random(0, 1) == 0 && !drone)
+			SetStateLabel("TakeOutDeDrone");
+	}
+	
+	if (random(0, 1) == 0) SetStateLabel("FireShit");
+	if (random(0, 2) == 2) SetStateLabel("Dodge");
+	if (random(0, 8) == 6) { issmoke = randompick(0, 0, 1); SetStateLabel("Grenade"); }
+  }
+  
   States
   {
   Spawn:
@@ -85,31 +101,29 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	}
 	Loop;
   Run:
-	ZSEC ABCDABCD 2
+	ZSEC AABBCCDDAABBCCDD 2
 	{
+		bFRIGHTENED = random(0, 1);
 		for (int i = 2; i > 0; i--)
 			A_Chase();
 	}
 	Goto See;
   Dodge:
-	ZSEC A 5 A_Dodging(20);
+	ZSEC A 5 A_Dodging(10);
 	Goto See;
   Missile:
 	ZSEC E 1
 	{
-		if (health < (health / 2))
-		{
-			if (random(0, 4) == 0 && drone)
-				SetStateLabel("TakeOutDeDrone");
-		}
-	}
-	Goto FireShit;
-  FireShit:
-	ZSEC E 10
-	{
 		if (waiting >= 399)
 			A_StartSound("Exec/Spot", CHAN_VOICE);
 		
+		bFRIGHTENED = false;
+		A_ExecDecide();
+	}
+	Goto See;
+  FireShit:
+	ZSEC E 10
+	{	
 		A_FaceTarget();
 		waiting = 0;
 		zmissile = 7;
@@ -126,6 +140,24 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	}
 	ZSEC E 2 A_FaceTarget();
 	Goto FireShit+2;
+  Grenade:
+	ZSEC EEEEE 2 A_FaceTarget();
+	ZSEC F 4
+	{	
+		let grenade = Spawn((issmoke) ? "DCY_EnemySmokeGrenade" : "DCY_EnemyGrenade", pos + (0,0,32));
+		if (grenade)
+		{
+			grenade.target = self;
+			grenade.angle = angle;
+			grenade.species = "Z-Exec";
+			grenade.bTHRUSPECIES = true;
+			grenade.Vel3DFromAngle((target && distance3D(target) > 500) ? ((issmoke) ? 29 : 39) : ((issmoke) ? 14 : 24), grenade.angle, BulletSlope() - 10);
+		}
+		
+		A_FaceTarget();
+	}
+	ZSEC E 10;
+	Goto See;
   TakeOutDeDrone:
 	ZSEC A 10
 	{
@@ -170,6 +202,113 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
     Stop;
   Raise:
 	Stop;
+  }
+}
+
+Class DCY_EnemySmokeGrenade : DCY_GoreBase
+{
+  Default
+  {
+	Speed 15;
+	-THRUACTORS
+  }
+  
+  int timer;
+  bool exploded;
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (level.isFrozen()) return;
+	
+	if (!exploded)
+	{
+		timer++;
+	
+		if (timer == 80)
+		{
+			exploded = true;
+			//A_StartSound("DCYSmoke", CHAN_WEAPON);
+			SetStateLabel("UnleashTheSmoke");
+		}
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	SM0K X 1 A_SetRoll(Roll + (xroll * 2));
+	Loop;
+  Death:
+	SM0K X -1;
+	Stop;
+  UnleashTheSmoke:
+	SM0K X 1 Bright;
+	SM0K XXXXXXXXXXXXXX 4
+	{
+		for (int i = random(1, 2); i > 0; i--)
+		{
+			let smoke = Spawn("DCY_GrenadeSmoke", pos + (frandom(-10, 10), frandom(-10, 10), frandom(-10, 10)));
+			if (smoke)
+			{
+				smoke.vel.x = frandom(-8, 8);
+				smoke.vel.y = frandom(-8, 8);
+				smoke.vel.z = frandom(-8, 8);
+				smoke.scale *= frandom(0.8, 2.5);
+			}
+		}
+	}
+	Stop;
+  }
+}
+
+Class DCY_GrenadeSmoke : Actor
+{
+  Default
+  {
+  RenderStyle "Translucent";
+  Scale 0.1;
+  Alpha 0;
+  Radius 0;
+  Height 0;
+  +FORCEXYBILLBOARD
+  +THRUACTORS
+  +ROLLSPRITE
+  +NOGRAVITY
+  +NOBLOCKMAP
+  }
+  
+  int timer;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	roll = frandom(0, 360);
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (timer < 40)
+	{
+		if (timer > 1) A_SetScale(Scale.X + 3 * (0.9 / timer));
+		if (alpha < 0.4) alpha += 0.05;
+	}
+	else
+		alpha -= 0.00098;
+	
+	A_ScaleVelocity(0.95);
+	if (alpha < 0)
+		Destroy();
+		
+	timer++;
+  }
+  
+  States
+  {
+  Spawn:
+	SM0K Z 1;
+	Loop;
   }
 }
 

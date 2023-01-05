@@ -92,7 +92,7 @@ Class DCY_PhasicRazer : DCY_HellRazer
     XRZR AABBCCDD 2
 	{
 		If(phase >= random(15, 20))
-			Return ResolveState("PhaseEnd");
+			SetStateLabel("PhaseEnd");
 			
 		for (int i = 3; i > 0; i--)
 			A_Chase(null, null, CHF_NIGHTMAREFAST|CHF_NOPLAYACTIVE);
@@ -224,7 +224,7 @@ Class DCY_PhasicRazer : DCY_HellRazer
     TNT1 A 0 A_Jump(256, "Death1", "Death2");
 	Goto Death1;
   Death1:
-    XRZR I 1 { fdeath = 1; }
+    XRZR I 1 { A_Flip(); fdeath = 1; }
 	XRZR I 8 A_Scream();
 	TNT1 A 0 A_Fall();
 	XRZR JKL 8;
@@ -240,21 +240,13 @@ Class DCY_PhasicRazer : DCY_HellRazer
   Raise:
     XRZR M 0
 	{
-		if (fdeath = 1)
-		{
-			Return ResolveState("Raise1");
-		}
-		if (fdeath = 2)
-		{
-			Return ResolveState("Raise2");
-		}
-		
-		Return ResolveState(null);
+		if (fdeath = 1) SetStateLabel("Raise1");
+		if (fdeath = 2) SetStateLabel("Raise2");
 	}
 	Goto Raise1;
   Raise1:
     XRZR MLKJI 8;
-	TNT1 A 0 { fdeath = 0; }
+	TNT1 A 0 { fdeath = 0; A_SetScale(Scale.X, Scale.Y); }
 	Goto See;
   Raise2:
     XRZR RQPON 8;

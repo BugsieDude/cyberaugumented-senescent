@@ -137,7 +137,7 @@ OmegaDivine/Start "Sounds/DCY SFX/dcy_powerlight.ogg"
 dcy/clip "Sounds/Inventory/Ammo/dcy_clip.ogg"
 dcy/shell "Sounds/Inventory/Ammo/dcy_shell.ogg"
 dcy/rocket "Sounds/Inventory/Ammo/dcy_rocket.ogg"
-dcy/cell "Sounds/Inventory/Ammo/dcy_shell.ogg"
+dcy/cell "Sounds/Inventory/Ammo/dcy_cell.ogg"
 dcy/cellpack "Sounds/Inventory/Ammo/dcy_cellpack.ogg"
 dcy/backpack "Sounds/Inventory/Ammo/dcy_backpack.ogg"
 

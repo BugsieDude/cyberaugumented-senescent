@@ -25,9 +25,9 @@ QUITMSG = "?";
 QUITMSG1 = "Ya gonna have some penalty on demon killin'. Don't go to your tea party or coffee break yet, pally."; 
 QUITMSG2 = "Wait, don't quit! Some demonic and occult fellas try to rob a bank and... no.";
 QUITMSG3 = "Relish your very precious minutes.";
-QUITMSG4 = "The chemicals in my brain tell me to cyberaugument myself. ...I don't like that joke.";
+QUITMSG4 = "The chemicals in my brain tell me to stay. Please stay, marine.";
 QUITMSG5 = "Have a nice snack. I'll be waiting.";
-QUITMSG6 = "Don't you wanna go save your own universe?";
+QUITMSG6 = "Don't you wanna go save your own world?";
 QUITMSG7 = "Taking a walk is beneficial for your health! But wait. Don't you also walk in this game too? Play DOOM more, it's beneficial!! I swear!!";
 
 //Weapon Sway

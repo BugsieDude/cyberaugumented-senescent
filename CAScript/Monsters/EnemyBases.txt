@@ -77,7 +77,12 @@ CLASS DCYMonster : Actor abstract
   {
     vel.z += height;
   }
-
+  
+  void A_Flip()
+  {
+	A_SetScale(Scale.X * randompick(-1, 1), Scale.Y);
+  }
+  
   void DCY_AlertSound()
   {
 	A_StartSound(SeeSound, CHAN_VOICE, attenuation: (!bBOSS) ? 1 : 0);

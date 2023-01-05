@@ -96,7 +96,7 @@ Class DCY_RegulusImp : DCY_Impe
     Goto See;
   Death:
   XDeath:
-    FAEM H 8;
+    FAEM H 8 A_Flip();
     FAEM I 8 A_Scream();
     FAEM J 6;
     FAEM K 6 A_NoBlocking();
@@ -106,6 +106,7 @@ Class DCY_RegulusImp : DCY_Impe
     Stop;
   Raise:
     FAEM NMLKJIH 6;
+	FAEM H 0 A_SetScale(Scale.X, Scale.Y);
 	Goto See;
   }
 }

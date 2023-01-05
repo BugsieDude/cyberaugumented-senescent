@@ -24,7 +24,7 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
 	A_FireProjectile("DCY_VeneratedLaserBeam", frandom(-10.0, 10.0), 0);
 	A_QuakeEx(3, 3, 3, 15, 0, 1000, "", QF_SCALEDOWN, falloff: 1600);	
 	if ((level.time % 2) == 1) invoker.DepleteAmmo(invoker.bAltFire, true);
-	if ((level.time % 3) == 1) A_StartSound("VeneratedTruncheon/LaserShoot", 9, CHANF_OVERLAP, startTime: frandom(0, 0.15));
+	if ((level.time % 3) == 1) A_StartSound("VeneratedTruncheon/LaserShoot", 9, CHANF_OVERLAP);
 	A_WeaponOffset(frandom(-2.5, 2.5), frandom(32.5, 35.5), WOF_INTERPOLATE);
   }
   

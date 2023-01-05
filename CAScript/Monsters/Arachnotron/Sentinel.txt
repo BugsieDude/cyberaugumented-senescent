@@ -214,6 +214,7 @@ Class DCY_FluorescentSparkle : Actor
   +BRIGHT
   +THRUACTORS
   +NOBLOCKMAP
+  +DONTSPLASH
   +ROLLSPRITE
   RenderStyle "Add";
   Translation "0:255=%[0.00,0.00,0.50]:[1.01,2.00,2.00]";
