@@ -1,7 +1,7 @@
 ACTOR DCY_Impo : RandomSpawner Replaces DoomImp
 {
   DropItem "DCY_Dastard", 256, 2200
-  DropItem "DCY_Painsend", 256, 1000
+  DropItem "DCY_Painsend", 256, 750
   DropItem "DCY_Violator", 256, 850
   DropItem "DCY_Pryer", 256, 1500
   DropItem "DCY_Serpent", 256, 740

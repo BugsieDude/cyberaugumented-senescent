@@ -30,7 +30,9 @@ Class DCY_BionicZombie : DCY_MechaZombie
 	return messages[Random(0, messages.Size() - 1)];
   }
   
+  int missile;
   int shield;
+  
   States
   {
   Spawn:
@@ -84,33 +86,41 @@ Class DCY_BionicZombie : DCY_MechaZombie
   Missile:
 	UCYQ E 20
 	{
+		missile = random(2, 4);
 		A_FaceTarget();
 		A_StartSound("UpgradedMechaZombie/Attack", CHAN_VOICE);
 	}
-    UCYQ E 6 A_FaceTarget();
+    UCYQ E 5 A_FaceTarget();
 	UCYQ F 6
 	{
-		A_StartSound("Android/LaserX", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_AbyssalAndroidPlasma2", 33, 1, random(-1, 1));
-		A_MonsterRefire(128, "See");
+		A_StartSound("Android/LaserX", CHAN_WEAPON, attenuation: 0.75);
+		
+		missile--;
+		
+		for (int i = 7; i > 0; i--)
+			A_SpawnProjectile("DCY_AbyssalAndroidPlasma2", 33, 1, random(-5, 5), CMF_OFFSETPITCH, pitch + frandom(-6, 6));
 	}
-	TNT1 A 0 A_Jump(50, "See");
+	UCYQ E 10
+	{
+		if (missile <= 0)
+			SetStateLabel("See");
+	}
 	Goto Missile+1;
   Pain:
     UCYQ G 3;
 	UCYQ G 3 A_Pain();
 	Goto See;
   Death:
-	UCYQ O 1;
-    UCYQ O 3
+	UCYQ H 1;
+    UCYQ H 6
 	{
 		shield = 0;
 		A_KillChildren("DED");
 		A_Scream();
 		A_NoBlocking();
 	}
-    UCYQ HIJKLM 6;
-	UCYQ N -1;
+    UCYQ IJK 6;
+	UCYQ L -1;
 	Stop;
   XDeath:
 	UCYQ O 1;
@@ -121,8 +131,8 @@ Class DCY_BionicZombie : DCY_MechaZombie
 	}
 	UCYQ P 3 A_StartSound("Android/Gib", CHAN_VOICE);
 	UCYQ P 1 A_NoBlocking();
-	UCYQ QRSTUV 6;
-	UCYQ W -1;
+	UCYQ QRST 6;
+	UCYQ U -1;
 	Stop;
   Death.Fire:
     TNT1 A 0;

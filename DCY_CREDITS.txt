@@ -176,6 +176,7 @@ Ravick - Sprites
 Daybreak Game Company/Planetside 2 - Sounds
 Neoworm & Mechadon - Nailborg sprites
 Captain J - Sprites
+Gifty - Barrel animations
 
 ================================================================================
 MUSIC AND FANFARES

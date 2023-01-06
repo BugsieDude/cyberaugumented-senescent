@@ -5,7 +5,7 @@ Class DCY_Malignant : DCY_Impe
   Health 200;
   DamageType "Poison";
   Obituary "$o felt the poison of a Malignant.";
-  HitObituary "%o was deep fried by a pryer.";
+  HitObituary "%o mutated under the eyes of the Malignant.";
   Tag "Malignant";
   SeeSound "Malignant/Sight";
   ActiveSound "Malignant/Idle";

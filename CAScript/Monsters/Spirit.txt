@@ -38,10 +38,8 @@ CLASS DCY_Spirit : Archvile
   override bool CanResurrect (Actor other, bool passive)
   {
 	if (!passive)
-	{
 		return (health >= SpawnHealth() / 3 || other.SpawnHealth() >= 0);
-	}
-
+	
 	return true;
   }
   
