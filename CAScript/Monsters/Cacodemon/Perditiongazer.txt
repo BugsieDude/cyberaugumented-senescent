@@ -1,0 +1,193 @@
+Class DCY_Perditiongazer : DCY_CacoParent
+{
+  Default
+  {
+  Health 400;
+  Tag "Perditiongazer";
+  SeeSound "D4Caco/Sight";
+  PainSound "D4Caco/Pain";
+  HowlSound "D4Caco/Howl";
+  MeleeSound "D4Caco/Melee";
+  ActiveSound "D4Caco/Active";
+  DeathSound "D4Caco/Death";
+  BloodColor "Blue";
+  DamageFactor "Electric", 0;
+  +DONTHARMCLASS
+  }
+  
+  void A_PGChase()
+  {
+	A_Recoil(-0.1);
+	A_Chase();
+	
+	if (!random(0, 10))
+		A_Dodging(-2);
+	
+	if (!random(0, 20))
+	{
+		vel.x = frandom(-2, 2);
+		vel.y = frandom(-2, 2);
+		vel.z = frandom(-2, 2);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	PGE_ A 10 DCY_Look();
+    Loop;
+  Look:
+	PGE_ A 3
+	{
+		A_Recoil(-0.085);
+		DCY_LookingForPlayer();
+	}
+    Loop;
+  Alert:
+	PGE_ B 0 A_StartSound(SeeSound, CHAN_VOICE);
+	PGE_ BBCCCCBB 3 A_FaceTarget();
+	Goto See;
+  See:
+	PGE_ A 4 A_PGChase();
+	Loop;
+  Melee:
+	PGE_ B 0 A_StartSound("D4Caco/Attack", CHAN_VOICE);
+	PGE_ BC 4 A_FaceTarget();
+	PGE_ D 4 A_CustomMeleeAttack(10 * random(3, 6), "d4caco/melee");
+	PGE_ C 4;
+	Goto See;
+  Missile:
+	PGE_ B 0
+	{
+		if (target && distance3D(target) < 100)
+			SetStateLabel("Rippers");
+		if (!random(0, 2) && target && distance3D(target) < 300)
+			SetStateLabel("Rippers");
+	}
+	PGE_ BC 6 A_FaceTarget();
+	PGE_ D 4
+	{
+		A_StartSound("D4Caco/Spit", CHAN_5);
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_PerditionGazerBall", 30, 0, 0);
+	}
+	PGE_ CBA 3;
+	PGE_ A 0 A_Stop;
+	Goto See;
+  Rippers:
+	PGE_ B 0
+	{
+		A_Stop();
+		A_StartSound("D4Caco/Charge", CHAN_VOICE);
+	}
+	PGE_ BCDDD 6 A_FaceTarget();
+	PGE_ DDDDDDDDDDDDDD 1
+	{
+		A_StartSound("caco/attack", CHAN_5);
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_PerditionGazerSB", 30, 0, frandom(-20, 20), CMF_OFFSETPITCH, pitch + frandom(-20, 20));
+	}
+	PGE_ CBA 3;
+	Goto See;
+  Pain:
+	PGE_ E 5;
+	PGE_ F 5 A_Pain();
+	Goto See;
+  Death:
+	PGE_ G 10;
+	PGE_ H 6 A_Scream();
+	PGE_ I 6 A_NoBlocking();
+	PGE_ JK 7;
+	PGE_ L -1;
+	Stop;
+  Raise:
+	PGE_ KJIHG 7;
+	Goto See;
+  }
+}
+
+Class DCY_PerditionGazerBall : DCY_ImpFireball
+{
+  Default
+  {
+	Speed 15;
+	FastSpeed 25;
+	Scale 0.7;
+	Translation "0:255=%[0.00,0.00,0.00]:[0.13,0.70,1.87]";
+	DeathSound "ElectricBall/Death";
+	SeeSound "caco/attack";
+	DamageType "Electric";
+  }
+  
+  States
+  {
+  Spawn:
+    DLIT DEFGH 1
+	{
+		A_SpawnItemEx("DCY_MastermindJetFlareSmall", zvel: 0.25, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 30);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 80);
+		A_SpawnItemEx("DCY_ElecTrailBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, failchance: 100);
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0x73c2ff, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	TSAR EFGHIJKLMNO 1
+	{
+		A_Explode(3, 100, damagetype: "Electric");
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
+	Stop;
+  }
+}
+
+Class DCY_PerditionGazerSB : DCY_PerditionGazerBall
+{
+  Default
+  {
+  +RIPPER
+  Damage 1;
+  Scale 0.4;
+  Speed 23;
+  BounceFactor 1.0;
+  BounceCount 5;
+  BounceType "Hexen";
+  +NEVERFAST
+  }
+  
+  States
+  {
+  Spawn:
+	P_FX AAAABBBB 1
+	{
+		roll += 10;
+		A_SpawnItemEx("DCY_LightningPhaseBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 80);
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0x73c2ff, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	TSAR EFGHIJKLMNO random(0, 1)
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
+	Stop;
+  }
+}

@@ -51,7 +51,7 @@ Class DCY_Urozon : DCY_Pinke
 	CYF3 AAABBBCCCDDD 1
 	{
 		A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
-		A_SpawnItemEx("DCY_UrozonAura", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		if (DCY_EffectDistance(4000)) A_SpawnItemEx("DCY_UrozonAura", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
 	CYF3 A 0 A_Jump(80, "See");
 	Loop;
@@ -74,6 +74,7 @@ Class DCY_Urozon : DCY_Pinke
 		{
 			A_Chase(null, null, CHF_NOPLAYACTIVE);
 			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_Wander();
@@ -101,6 +102,7 @@ Class DCY_Urozon : DCY_Pinke
 		{
 			A_Chase(null, null, CHF_NOPLAYACTIVE);
 			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_Wander();

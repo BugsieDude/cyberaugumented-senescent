@@ -122,8 +122,8 @@ Class DCY_VerdictPartisan : DCY_Rev
   XDeath:
     XXX_ G 1;
 	XXX_ G 15 A_ScreamAndUnblock();
-	XXX_ HIJKLM 7;
-	XXX_ M -1;
+	XXX_ HIJK 7;
+	XXX_ L -1;
 	Stop;
   Raise:
     XXX_ LKJIH 8;

@@ -61,11 +61,11 @@ Class DCY_GloomKnight : DCY_Rev
     GK38 K 6;
 	GK38 L 6 A_Scream();
 	TNT1 A 0 A_NoBlocking();
-	GK38 MNOPQ 6;
-	GK38 R -1;
+	GK38 MNO 6;
+	GK38 P -1;
 	Stop;
   Raise:
-    GK38 QPONM 6;
+    GK38 PONM 6;
 	Goto See;
   }
 }
