@@ -1,9 +1,9 @@
-ACTOR DCY_Spooder : RandomSpawner Replaces SpiderMastermind
+ACTOR DCY_Spooder : DCY_Spawner Replaces SpiderMastermind
 {
-  DropItem "DCY_TheGiantEnemySpider", 256, 678
-  DropItem "DCY_Executioner", 256, 340
-  DropItem "DCY_Mindmonarch", 256, 190
-  DropItem "DCY_ContraptionOfHell", 256, 120
-  DropItem "DCY_Ultraspeller", 256, 3
-  //DropItem "DCY_OmegaSp00der", 256, 5
+  DropItem "DCY_TheGiantEnemySpider", 0, 678
+  DropItem "DCY_Executioner", 10, 340
+  DropItem "DCY_Mindmonarch", 20, 190
+  DropItem "DCY_ContraptionOfHell", 30, 120
+  DropItem "DCY_Ultraspeller", 80, 3
+  //DropItem "DCY_OmegaSp00der", 80, 5
 }

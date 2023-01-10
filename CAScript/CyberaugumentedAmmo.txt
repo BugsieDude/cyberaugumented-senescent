@@ -1,6 +1,8 @@
 //Backpacks
 Class DCY_Backpack : Backpack Replaces Backpack
 {
+  Mixin DCY_Progression;
+  
   Default
   {
   Inventory.PickupSound "dcy/backpack";

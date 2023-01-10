@@ -1,20 +1,20 @@
-ACTOR DCY_Shootyboy : RandomSpawner Replaces Shotgunguy
+ACTOR DCY_Shootyboy : DCY_Spawner Replaces Shotgunguy
 {
-  DropItem "DCY_ShotgunZombe", 256, 1000
-  DropItem "DCY_DarkIonConsul", 256, 800
-  DropItem "DCY_SuperShotgunSoldier", 256, 720
-  DropItem "DCY_Umbra", 256, 340
-  DropItem "DCY_DecedentBigWig", 256, 250
-  DropItem "DCY_Transmuter", 256, 100
-  DropItem "DCY_BionicZombie", 256, 240
-  DropItem "DCY_AutomatonSupervisor", 256, 160
-  DropItem "DCY_Hoodlum", 256, 150
-  DropItem "DCY_Destructor", 256, 120
-  DropItem "DCY_Malignant", 256, 110
-  DropItem "DCY_Nullifier", 256, 110
-  DropItem "DCY_ZEnsign", 256, 60
-  DropItem "DCY_Z_Exec", 256, 30
-  DropItem "DCY_DeathDealer", 256, 30
-  DropItem "DCY_ArcheSpiritwalker", 256, 7
-  DropItem "DCY_Marauder", 256, 1
+  DropItem "DCY_ShotgunZombe", 0, 1000
+  DropItem "DCY_DarkIonConsul", 10, 800
+  DropItem "DCY_SuperShotgunSoldier", 5, 720
+  DropItem "DCY_Umbra", 6, 340
+  DropItem "DCY_DecedentBigWig", 7, 250
+  DropItem "DCY_Transmuter", 6, 100
+  DropItem "DCY_BionicZombie", 5, 240
+  DropItem "DCY_AutomatonSupervisor", 7, 160
+  DropItem "DCY_Hoodlum", 7, 150
+  DropItem "DCY_Destructor", 10, 120
+  DropItem "DCY_Malignant", 11, 110
+  DropItem "DCY_Nullifier", 23, 110
+  DropItem "DCY_ZEnsign", 14, 60
+  DropItem "DCY_Z_Exec", 20, 30
+  DropItem "DCY_DeathDealer", 30, 30
+  DropItem "DCY_ArcheSpiritwalker", 28, 1
+  DropItem "DCY_Marauder", 60, 1
 }

@@ -1,5 +1,7 @@
 Version "4.10.0"
 
+//Menu
+
 //Weapon Swaying
 #include "CAScript/Others/WeaponSway.zc"
 #include "CAScript/Others/WeaponSwayMenu.zc"
@@ -10,6 +12,7 @@ Version "4.10.0"
 //Misc.
 #include "CAScript/AABB.txt"
 #include "CAScript/Mindful.txt"
+#include "CAScript/Varietastic.txt"
 #include "CAScript/Others/Misc.txt"
 #include "CAScript/Others/TeleportFX.txt"
 #include "CAScript/Splashes.txt"
@@ -26,6 +29,7 @@ Version "4.10.0"
 #include "CAScript/Events/Anti.txt"
 
 //Items and Ammo
+#include "CAScript/Items/ItemBase.txt"
 #include "CAScript/Items/HealthArmorThingy.txt"
 #include "CAScript/CyberaugumentedAmmo.txt"
 #include "CAScript/Items/PowerupBase.txt"

@@ -121,7 +121,7 @@ Class DCY_Repealler : DCY_BaronParent
   }
 }
 
-Class DCY_RepeallerAura : DCY_DivinePhantomExplosion3
+Class DCY_RepeallerAura : DCY_CuratorExplosion3
 {
 	override void Tick()
 	{

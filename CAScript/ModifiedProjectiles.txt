@@ -392,7 +392,7 @@ Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
   DCY_RehauledPlasma.AuraColor "2052bd";
   RenderStyle "Add";
   SeeSound "weapons/plasmaf2";
-  DeathSound "weapons/plasmax";
+  DeathSound "LASRX";
   Obituary "$OB_MPPLASMARIFLE";
   Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.80,1.43]";
   Scale 1;

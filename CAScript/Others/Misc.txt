@@ -8,6 +8,33 @@ Mixin Class DCY_Effects
 		
 		return false;
 	}
+	
+	bool DCY_EffectSight()
+	{			
+		for (int i = 0; i < MAXPLAYERS; i++)
+			if(playeringame[i] && CheckSight(players[i].mo))
+				return true;
+		
+		return false;
+	}
+	
+	bool DCY_EffectRange(double distance)
+	{			
+		for (int i = 0; i < MAXPLAYERS; i++)
+			if(playeringame[i] && !CheckRange(distance))
+				return true;
+		
+		return false;
+	}
+}
+
+Mixin Class DCY_Progression
+{
+	action void DCY_IncreaseLevel(int level = 1)
+	{
+		let d = DCY_Variables.Get();
+		if(d) d.dcyLevel += level;
+	}
 }
 
 Class DCY_Effect : Actor

@@ -113,6 +113,12 @@ Class DCY_TheCinerealOrdnance : DCY_Weapon
 	CINR TSRQP 5;
 	Goto Ready;
   }
+  
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(20);
+	return Super.CreateCopy(other);
+  }
 }
 
 Class DCY_CinerealOrdnanceLaser : FastProjectile

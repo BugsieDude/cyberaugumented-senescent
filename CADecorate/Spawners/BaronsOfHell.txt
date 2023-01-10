@@ -1,18 +1,18 @@
-ACTOR DCY_DeBruiser : RandomSpawner Replaces BaronofHell
+ACTOR DCY_DeBruiser : DCY_Spawner Replaces BaronofHell
 {
-  DropItem "DCY_HeckBaron", 256, 1300
-  DropItem "DCY_PrimeYanorit", 256, 345
-  DropItem "DCY_Abater", 256, 286
-  DropItem "DCY_PrimerialEmir", 256, 191
-  DropItem "DCY_GunmetalInfiltrator", 256, 125
-  DropItem "DCY_Repealler", 256, 128
-  DropItem "DCY_Excoriator", 256, 110
-  DropItem "DCY_GehennaChasseur", 256, 100
-  DropItem "DCY_WastelandInfiltrator", 256, 100
-  DropItem "DCY_Utrotrion", 256, 50
-  DropItem "DCY_CorruptInfiltrator", 256, 30
-  DropItem "DCY_ArmageddonPredominator", 256, 20
-  DropItem "DCY_EOD", 256, 20
-  DropItem "DCY_Aamon", 256, 10
-  DropItem "DCY_Calignosity", 256, 1
+  DropItem "DCY_HeckBaron", 0, 1300
+  DropItem "DCY_PrimeYanorit", 9, 345
+  DropItem "DCY_Abater", 7, 286
+  DropItem "DCY_PrimerialEmir", 9, 191
+  DropItem "DCY_GunmetalInfiltrator", 9, 125
+  DropItem "DCY_Repealler", 11, 128
+  DropItem "DCY_Excoriator", 13, 110
+  DropItem "DCY_GehennaChasseur", 15, 100
+  DropItem "DCY_WastelandInfiltrator", 20, 100
+  DropItem "DCY_Utrotrion", 20, 50
+  DropItem "DCY_CorruptInfiltrator", 20, 30
+  DropItem "DCY_ArmageddonPredominator", 20, 20
+  DropItem "DCY_EOD", 35, 20
+  DropItem "DCY_Aamon", 40, 10
+  DropItem "DCY_Calignosity", 25, 1
 }

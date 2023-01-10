@@ -16,6 +16,22 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   override void NetworkProcess(ConsoleEvent e)
   {
+	if(e.name == "dcy_checkprogress")
+	{
+		let g = DCY_Variables.Get();
+		if (g) Console.Printf("Current level: %d", g.dcyLevel);
+	}
+	if(e.name == "dcy_increaselevel")
+	{
+		let g = DCY_Variables.Get();
+		g.dcyLevel++;
+	}
+	if(e.name == "dcy_decreaselevel")
+	{
+		let g = DCY_Variables.Get();
+		g.dcyLevel--;
+	}
+	
 	if(e.Player >= 0 && PlayerInGame[e.Player] && Players[e.Player].Mo)
     {
 		if(e.name == "DCY_Dash")
@@ -33,6 +49,24 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	//Effect Choker
     if(sv_effectchoker && e.thing && e.thing is "DCY_Effect")
         e.thing.Destroy();
+	
+	//Lost Souls
+	bool counts = (e.thing && e.thing.bCountKill);
+	
+	if(dcy_soulcount && counts && e.thing is "DCY_SkullParent")
+	{
+		e.thing.bCountKill = false;
+		Level.total_monsters--;
+	}
+  }
+  
+  override void WorldThingRevived(WorldEvent e)
+  {
+	if(dcy_rescount && e.thing && e.thing.bCountKill)
+	{
+		e.thing.bCountKill = false;
+		Level.total_monsters--;
+	}
   }
   
   override void NewGame()
@@ -66,6 +100,12 @@ CLASS CyberaugumentedEventHandler : EventHandler
   override void WorldUnloaded(WorldEvent e)
   {
 	cutscene = false;
+	let d = DCY_Variables.Get();
+	
+	if (d)
+	{
+		d.dcyLevel++;
+	}
   }
   
   protected void DCY_Cutscenes()

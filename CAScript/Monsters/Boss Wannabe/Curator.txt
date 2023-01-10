@@ -1,0 +1,255 @@
+Class DCY_Curator : DCY_Violator //Not a boss, but something else
+{
+  Default
+  {
+  Speed 18;
+  Tag "\c[z3]Curator\c-";
+  Obituary "%o percieved the absolute death sun by a Curator.";
+  HitObituary "%o percieved the absolute death sun by a Curator.";
+  Health 600;
+  PainChance 20;
+  DamageFactor 0.9;
+  Scale 1.05;
+  SeeSound "Prowler/Active";
+  ActiveSound "Prowler/Active";
+  PainSound "Prowler/Pain";
+  DeathSound "Prowler/BurningScream";
+  +NOBLOOD
+  +NODROPOFF
+  +NEVERFAST
+  +NOINFIGHTING
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +MISSILEEVENMORE
+  +QUICKTORETALIATE
+  +BOSS
+  +BRIGHT
+  }
+  
+  int death;
+  
+  override void Tick()
+  {
+	Super.Tick();
+	
+	if (Health > 0 && !IsFrozen() && !bNOTONAUTOMAP && DCY_EffectDistance(sfxdistance))
+	{
+		A_SpawnParticleEx(0x302d00, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(60, 95), 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(10, 50), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(1.0, 3.0), fadestepf: 0.045, sizestep: 0.825);
+		
+		let trail = Spawn("DCY_ShadowTrailBase", (pos.x, pos.y, pos.z + 6));
+		
+		if (trail)
+		{
+			trail.vel.x = frandom(-2.0, 2.0);
+			trail.vel.y = frandom(-2.0, 2.0);
+			trail.vel.z = frandom(0, 2.0);
+			trail.frame = frame;
+			trail.scale = scale;
+			trail.angle = angle;
+			trail.sprite = GetSpriteIndex("SZ84");
+		}
+	}
+  }
+  
+  void A_PhantomBall()
+  {
+	if (target)
+	{
+	  A_StartSound("WAVESPIT", CHAN_WEAPON, attenuation: 0.5);
+	  A_SpawnProjectile("DCY_CuratorBall", 30, 0);
+	}
+  }
+  
+  void A_CuratorJump()
+  {
+	bNODROPOFF = false;
+	int jumpheight;
+	int recoilrate;
+	
+	if (target)
+	{
+		recoilrate = (target.pos.z < self.pos.z - 10) ? -10 : -(Distance3D(target) / 10);
+		jumpheight = (target.pos.z < self.pos.z - 10) ? 10 : ((target.pos.z - self.pos.z) / 9.5) + 3;
+	}
+	
+  	A_Recoil((recoilrate < -22) ? -22 : recoilrate);
+	A_Hop((jumpheight > 18) ? 18 : jumpheight);
+	A_FaceTarget();
+  }
+  
+  void A_CuratorChase()
+  {
+	A_Chase();
+	if (!random(0, 20) && (target && Distance3D(target) < 355 && (target.pos.z < self.pos.z - 10) || (target.pos.z > self.pos.z + 10))) { A_FaceTarget(); SetStateLabel("JumpChase"); }
+	if (!random(0, self.health * 4) && target && Distance3D(target) < 2000) SetStateLabel("Dissapear");
+  }
+  
+  States
+  {
+  Spawn:
+	AQHW A 10 A_Look();
+	Loop;
+  See:
+    AQHW BBCCDDEE 2 A_CuratorChase();
+	Loop;
+  Dissapear:
+	TNT1 A 10
+	{
+		for (int i = 0; i < 8; i++) A_StopSound(i);
+		if (target && Distance3D(target) < 2000) bNOCLIP = (self.health < 400) ? random(0, 1) : randompick(0, 0, 0, 0, 1);
+		bSHOOTABLE = false;
+		bNOTONAUTOMAP = true;
+		bNOPAIN = true;
+	}
+	TNT1 AAAAAAAAAAAAAAAAAAAAAA random(3, 12)
+	{
+		for (int i = 20; i > 0; i--)
+		{
+			if (health < 500) A_Chase(null, null, CHF_NOPLAYACTIVE);
+			else
+			{
+			A_Wander();
+			if (!random(0, 2)) A_Chase(null, null, CHF_NOPLAYACTIVE);
+			}
+		}
+	}
+	TNT1 A 0
+	{
+		bSHOOTABLE = true;
+		bNOTONAUTOMAP = false;
+		bNOCLIP = false;
+		bNOPAIN = false;
+		A_FaceTarget();
+	}
+	Goto JumpChase;
+  Melee:
+    AQHW EF 4 A_FaceTarget();
+	AQHW G 4 A_CustomMeleeAttack(random(1, 8) * 12, "imp/melee");
+	TNT1 A 0 A_Jump(150, "Missile");
+	Goto See;
+  Missile:
+    TNT1 A 0
+	{
+		if (target && Distance3D(target) < 355) SetStateLabel("Jump");
+		if (!random(0, 1) && (target && (target.pos.z < self.pos.z - 10))) SetStateLabel("Jump");
+		if (!random(0, 70)) SetStateLabel("Dissapear");
+	}
+    AQHW AFG 3 A_FaceTarget();
+	AQHW H 3 A_PhantomBall();
+	AQHW GA 6 A_FaceTarget();
+	Goto See;
+  Jump:
+    AQHW A 8
+	{
+		A_FaceTarget();
+		Return A_Jump(100, "Missile");
+	}
+	AQHW F 8;
+	AQHW G 1 A_CuratorJump();
+	AQHW GGGGGGGGGGGGG 1
+	{
+		if (target.pos.z > self.pos.z + 10)
+		{
+			A_Recoil(-3);
+		
+			vel.x *= 0.92;
+			vel.y *= 0.92;
+		}
+	}
+	AQHW A 0 { bNODROPOFF = false; }
+	Goto Missile+1;
+  JumpChase:
+	AQHW F 8;
+	AQHW G 1 A_CuratorJump();
+	AQHW GGGGGGGGGGGGG 1
+	{
+		if (target.pos.z > self.pos.z + 10)
+		{
+			A_Recoil(-3);
+		
+			vel.x *= 0.96;
+			vel.y *= 0.96;
+		}
+	}
+	AQHW A 15 { bNODROPOFF = false; }
+	Goto See;
+  Pain:
+    AQHW I 4;
+    AQHW I 4 A_Pain();
+	Goto See;
+  Death:
+  XDeath:
+	AQHW I 1;
+    AQHW I 10 A_StartSound("Prowler/BurningScream", CHAN_VOICE, attenuation: 0.3);
+	Goto DeathLoop;
+  DeathLoop:
+	AQHW I 2
+	{
+		If (death >=20) SetStateLabel("DeathInitiate");
+		A_SpawnItemEx("DCY_CuratorExplosion2", zofs: 6, xvel: frandom(-1.0, 1.0), yvel: frandom(-1.0, 1.0), zvel: random(3, 8), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		death++;
+	}
+	Loop;
+  DeathInitiate:
+	AQHW I 2
+	{
+		death = 0;
+		A_SpawnItemEx("DCY_CuratorExplosion", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	TNT1 A 5 A_NoBlocking();
+	Stop;
+  Raise:
+	Stop;
+  }
+}
+
+Class DCY_CuratorBall : DCY_ViolationBall
+{
+  Default
+  {
+  Speed 5;
+  Damage 10;
+  Scale 1.4;
+  +NEVERFAST
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
+  SeeSound "WAVESPIT";
+  DeathSound "WAVESPIX";
+  }
+  
+  bool moving;
+  
+  States
+  {
+  Spawn: 
+	WV00 AB 1
+	{
+		A_SpawnParticleEx(0x302d00, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(60, 95), 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10, 10), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(1.0, 3.0), fadestepf: 0.045, sizestep: 0.825);
+		A_SpawnItemEx("DCY_BlastawaveTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION);
+		A_Weave(1, 1, 1, 1);
+		
+		if (!moving) A_ScaleVelocity(1.05);
+		if ((level.time % 30) == 30) moving = true;
+		vel.y += frandom(-0.4, 0.4);
+		vel.z += frandom(-0.2, 0.2);
+	}
+	Loop;
+  Death:
+	MPB_ H 3
+	{
+		A_Explode(20, 100);
+		A_SetScale(1.0, 1.0);
+		A_SetRenderStyle(1.0, STYLE_ADD);
+		A_SetRoll(frandom(0, 360));
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnParticleEx(0x02d00, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_Explosion_1", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		}
+	}
+	MPB_ IJKL 2;
+	Stop;
+  }
+}
+
+Class DCY_CuratorTFX : DCY_ElecDeathBase { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }
+Class DCY_CuratorPlasma : DCY_RehauledPlasma { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; Speed 28; FastSpeed 33; } }

@@ -18,6 +18,10 @@ The weapon set you start with is completely similar to ye olde Classic Doom, but
 During levels, you can check the temperature to see if it's hot or cold. Sometimes you WANT to be careful of extreme temperatures. Keep in mind in certain areas where lava or burning barrels are present, there will be more hotter enemies to stumble against. During ice themed levels, you will be more likely to confront colder enemies.
 
 ***Keep in mind that this feature has not been implemented yet!***
+
+## Progression 
+Heavily inspired by Pandemonia. Upon completing maps, etc, you will start to face more entitites that will kick your ass.
+
 ## Weapon Modules
 Directly inspired from DOOM (2016) and Doom Eternal. There will be weapon mods scattered around some places and dropped from special monsters. Once you picked something up, it will be directly added to the Arsenal Menu—which is, in fact, the main home for modifying weapons and more.
 

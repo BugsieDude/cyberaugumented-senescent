@@ -151,7 +151,7 @@
 #include "CAScript/Monsters/Chaingunner/Theristis.txt"
 #include "CAScript/Monsters/Cacodemon/Perditiongazer.txt"
 #include "CAScript/Monsters/Marauder.txt"
-#include "CAScript/Monsters/Boss Wannabe/Divine.txt"
+#include "CAScript/Monsters/Boss Wannabe/Curator.txt"
 #include "CAScript/Monsters/Boss Wannabe/Eavesdropper.txt"
 #include "CAScript/Monsters/Boss Wannabe/Exo.txt"
 #include "CAScript/Monsters/Boss Wannabe/Urozon.txt"

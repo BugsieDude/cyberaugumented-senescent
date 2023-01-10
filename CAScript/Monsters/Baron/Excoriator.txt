@@ -54,7 +54,7 @@ Class DCY_Excoriator : DCY_BaronParent
   {
     super.Tick();
 	
-	If (Health > 0 && !IsFrozen() && !sv_effectchoker)
+	If (Health > 0 && !IsFrozen() && !sv_effectchoker && DCY_EffectDistance(sfxdistance))
 	{
 		for (int i = 2; i > 0; i--)
 			A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(38.0, 41.0), 0, 0, frandom(-2.0, -5.0), flags: SXF_NOCHECKPOSITION, 140);

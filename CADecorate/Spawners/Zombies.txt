@@ -1,9 +1,9 @@
-ACTOR DCY_Zamblezeezeze : RandomSpawner Replaces ZombieMan
+ACTOR DCY_Zamblezeezeze : DCY_Spawner Replaces ZombieMan
 {
-  DropItem "DCY_Zombe", 256, 512
-  DropItem "DCY_Combatant", 256, 300
-  DropItem "DCY_Pacer", 256, 256
-  DropItem "DCY_MechaZombie", 256, 150
-  DropItem "DCY_Contaminated", 256, 50
-  DropItem "DCY_Transmuter", 256, 20
+  DropItem "DCY_Zombe", 0, 512
+  DropItem "DCY_Combatant", 0, 300
+  DropItem "DCY_Pacer", 7, 50
+  DropItem "DCY_MechaZombie", 10, 150
+  DropItem "DCY_Contaminated", 7, 50
+  DropItem "DCY_Transmuter", 10, 20
 }

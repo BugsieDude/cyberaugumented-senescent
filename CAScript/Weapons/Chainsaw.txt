@@ -70,7 +70,7 @@ Class DCY_ChainsawGoBZZZZZZZZZZZZZZZZ : DCY_Weapon
   }
 }
 
-Class DCY_ArgentChainsaw : Chainsaw //Um.
+Class DCY_ArgentChainsaw : DCY_ChainsawGoBZZZZZZZZZZZZZZZZ //Um.
 {
   Default
   {
@@ -80,11 +80,6 @@ Class DCY_ArgentChainsaw : Chainsaw //Um.
 	Weapon.UpSound "CrucibleChainsaw/Up";
 	Inventory.PickupSound "CrucibleChainsaw/Up";
 	Obituary "%o was never seen again.";
-	Weapon.BobStyle "Alpha";
-	Weapon.BobRangeX 0.45;
-	Weapon.BobRangeY 0.25;
-	Weapon.BobSpeed 1.45;
-	-WEAPON.WIMPY_WEAPON;
 	+EXTREMEDEATH;
 	DamageType "Crucible";
   }
@@ -136,5 +131,11 @@ Class DCY_ArgentChainsaw : Chainsaw //Um.
 	CRUH B 1 Bright A_StopSound(CHAN_6);
 	CRUH A 1 Bright A_StartSound("CrucibleChainsaw/Stop", CHAN_WEAPON, volume: 0.75);
 	Goto Ready;
+  }
+  
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(19);
+	return Super.CreateCopy(other);
   }
 }

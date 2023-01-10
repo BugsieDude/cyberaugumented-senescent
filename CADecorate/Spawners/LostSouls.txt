@@ -1,9 +1,9 @@
-ACTOR DCY_GhostRider : RandomSpawner Replaces LostSoul
+ACTOR DCY_GhostRider : DCY_Spawner Replaces LostSoul
 {
-  DropItem "DCY_FlyingSkullWithFIRE", 256, 700
-  DropItem "DCY_PhantomSoul", 256, 360
-  DropItem "DCY_NightmareSoul", 256, 200
-  DropItem "DCY_Sullied", 256, 60
-  DropItem "DCY_LunarChiller", 256, 25
-  DropItem "DCY_Manes", 256, 7
+  DropItem "DCY_FlyingSkullWithFIRE", 0, 700
+  DropItem "DCY_PhantomSoul", 0, 100
+  DropItem "DCY_NightmareSoul", 0, 70
+  DropItem "DCY_Sullied", 8, 60
+  DropItem "DCY_LunarChiller", 12, 25
+  DropItem "DCY_Manes", 11, 7
 }

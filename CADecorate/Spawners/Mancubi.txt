@@ -1,7 +1,7 @@
-ACTOR DCY_SkinnyFate : RandomSpawner Replaces Fatso
+ACTOR DCY_SkinnyFate : DCY_Spawner Replaces Fatso
 {
-  DropItem "DCY_SkinnyFat", 256, 1200
-  DropItem "DCY_RadiationCorpulence", 256, 920
-  DropItem "DCY_Disrelish", 256, 500
-  DropItem "DCY_Xenabus", 256, 350
+  DropItem "DCY_SkinnyFat", 0, 1200
+  DropItem "DCY_RadiationCorpulence", 1, 920
+  DropItem "DCY_Disrelish", 10, 500
+  DropItem "DCY_Xenabus", 12, 350
 }

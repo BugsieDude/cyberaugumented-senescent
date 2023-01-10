@@ -97,7 +97,7 @@ Class DCY_BurningBarrel : BurningBarrel Replaces BurningBarrel
 		if ((level.time % random(3, 9)) == 0)
 			A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 65, random(3, 6), 0, frandom(-10, 10), frandom(-10, 10), 25 + frandom(-0.35, 0.35), frandom(-0.1, 0.1), 0.5 - frandom(-0.1, 0.1), frandom(0.05, 0.2), frandom(-0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.2), fadestepf: 0, sizestep: -0.115);
 			
-		if (DCY_EffectDistance(800) && (level.time % random(2, 7)) == 0)
+		if (DCY_EffectRange(800) && (level.time % random(2, 7)) == 0)
 			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 100, 60, 0, frandom(-8, 8), 5 - frandom(-8, 8), 35, frandom(-0.1, 0.1), 0.5 - frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.07, fadestepf: 0.0003, sizestep: 0.25, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 	}
   }
@@ -112,7 +112,7 @@ Class DCY_BurningBarrel : BurningBarrel Replaces BurningBarrel
   {
 	super.tick();
 	
-	if (DCY_EffectDistance(1200)) A_BarrelBlaze();
+	if (DCY_EffectRange(1200)) A_BarrelBlaze();
 	
 	if (waterlevel > 0)
 	{

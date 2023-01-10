@@ -62,6 +62,12 @@ Class DCY_Deracinator : DCY_Weapon
 	N7BG P 3 Bright A_Refire();
 	Goto Ready;
   }
+  
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(5);
+	return Super.CreateCopy(other);
+  }
 }
 
 Class DCY_ObliterationBFGProjectile : FastProjectile

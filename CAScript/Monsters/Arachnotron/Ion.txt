@@ -63,7 +63,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 		A_FaceTarget();
 		missile = random(8, 6);
 	}
-	CSPI G 3 Bright
+	CSPI G 3
 	{
 		if (missile == 0)
 			Return ResolveState("See");
@@ -74,7 +74,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 		missile -= 1;
 		Return ResolveState(null);
 	}
-	CSPI H 3 Bright A_FaceTarget();
+	CSPI H 3 A_FaceTarget();
 	Goto FireDaShits+1;
   QuadShots:
     CSPI A 35
@@ -82,7 +82,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 		A_FaceTarget();
 		missile = random(1, 2);
 	}
-	CSPI  GH 20 Bright
+	CSPI  GH 20
 	{
 		if (missile == 0)
 			Return ResolveState("See");

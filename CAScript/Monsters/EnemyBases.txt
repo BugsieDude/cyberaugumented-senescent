@@ -41,6 +41,12 @@ CLASS DCYMonster : Actor abstract
 	sfxdistance = 1500;
   }
   
+  int ProgressionLevel()
+  {
+	let d = DCY_Variables.Get();
+	return (d) ? d.dcyLevel : 0;
+  }
+  
   void A_SetPainChance(int num)
   {
 	painchance = num;

@@ -6,6 +6,9 @@ addkeysection "Cyberaugumented" DashKeysection
 addmenukey "Dash" DCY_Dash
 alias DCY_Dash "NetEvent DCY_Dash"
 defaultbind Alt DCY_Dash
+alias DCY_CheckProgress "NetEvent dcy_checkprogress"
+alias dcy_increaselevel "NetEvent dcy_increaselevel"
+alias dcy_decreaselevel "NetEvent dcy_decreaselevel"
 
 //other
 alias divine "give all; take keys; buddha"

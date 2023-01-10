@@ -19,6 +19,12 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
   +FLOATBOB;
   }
   
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(5);
+	return Super.CreateCopy(other);
+  }
+  
   action void A_TruncheonBeam()
   {
 	A_FireProjectile("DCY_VeneratedLaserBeam", frandom(-10.0, 10.0), 0);

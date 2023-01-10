@@ -14,7 +14,6 @@ Class DCY_KranioThanatou : DCY_Rev
   Tag "\c[j5]Kranio Thanatou\c-";
   +MISSILEMORE
   +DONTHARMSPECIES
-  +BRIGHT
   }
   
   double direction;

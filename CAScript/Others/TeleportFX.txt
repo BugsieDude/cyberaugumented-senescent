@@ -3,6 +3,8 @@ Class DCY_Teleportation : TeleportFog Replaces TeleportFog
   bool dt;
   property NoTranslate : dt;
   
+  mixin DCY_Effects;
+  
   Default
   {
   Translation "0:255=%[0.00,0.00,0.00]:[1.33,2.00,0.65]";
@@ -26,7 +28,7 @@ Class DCY_Teleportation : TeleportFog Replaces TeleportFog
 		A_SpawnItemEx("DCY_TeleFog", frandom(-45, 45), frandom(-45, 45), frandom(10, 50), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), (dt) ? SXF_NOCHECKPOSITION : SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 90);
 		A_SpawnItemEx("DCY_TeleOrb", zofs: 30, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
-	TNT1 AAAAAAAAAAA 1 { if (!sv_effectchoker) A_SpawnItemEx("DCY_TeleSparkle", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(10.0, 50.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
+	TNT1 AAAAAAAAAAA 1 { if (!sv_effectchoker && DCY_EffectSight()) A_SpawnItemEx("DCY_TeleSparkle", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(10.0, 50.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
 	TNT1 A 10;
 	Stop;
   }
@@ -96,6 +98,8 @@ Class DCY_TeleFog : DCY_TeleSparkle
   override void Tick()
   {
 	super.Tick();
+	if (level.isFrozen()) return;
+	
 	A_SetScale(Scale.X + 0.02);
 	
 	if (!fading && alpha < 0.4)
@@ -148,7 +152,7 @@ Class DCY_CyberTeleport : DCY_EnemyTeleport
 		for (int i = 2; i > 0; i--)
 			A_SpawnItemEx("DCY_TeleFog", frandom(-45, 45), frandom(-45, 45), frandom(10, 50), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 90);
 	}
-	TNT1 AAAAAAAAAAAAAAAAA 1 { if (!sv_effectchoker) A_SpawnItemEx("DCY_TeleSparkle", frandom(-60.0, 60.0), frandom(-60.0, 60.0), frandom(10.0, 100.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
+	TNT1 AAAAAAAAAAAAAAAAA 1 { if (!sv_effectchoker && DCY_EffectSight()) A_SpawnItemEx("DCY_TeleSparkle", frandom(-60.0, 60.0), frandom(-60.0, 60.0), frandom(10.0, 100.0), 0, 0, 0, frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 144); }
 	TNT1 A 50;
 	Stop;
   }

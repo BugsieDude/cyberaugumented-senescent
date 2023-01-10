@@ -4,8 +4,14 @@ server noarchive bool cyberaugumented_announcestart = false;
 server bool sv_allowdash = true;
 server bool sv_allowdoublejump = true;
 
+server bool sv_dcy_progressivespawns = true;
+server float sv_dcy_progression = 1.000;
+
 server float sv_dashpower = 32;
 server int sv_dashpowerup = 8;
+
+server bool dcy_soulcount = true;
+server bool dcy_rescount = true;
 
 server int sv_dashcooldown = 35;
 

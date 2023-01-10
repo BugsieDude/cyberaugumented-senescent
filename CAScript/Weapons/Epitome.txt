@@ -1,4 +1,4 @@
-Class DCY_Epitome : Weapon
+Class DCY_Epitome : DCY_Weapon
 {
   Default
   {
@@ -10,10 +10,6 @@ Class DCY_Epitome : Weapon
   Weapon.AmmoType "DCY_Eminence";
   Weapon.AmmoUse 10;
   Weapon.AmmoGive 100;
-  Weapon.BobStyle "Alpha";
-  Weapon.BobRangeX 0.45;
-  Weapon.BobRangeY 0.25;
-  Weapon.BobSpeed 1.45;
   Weapon.SlotNumber 8;
   Inventory.Icon "8ECTA0";
   Inventory.PickupSound "8BITHOLY";

@@ -7,6 +7,7 @@ Class DCY_ArachnoParent : DCYMonster
   Height 64;
   Mass 600;
   Speed 12;
+  Scale 1.2;
   PainChance 128;
   +BOSSDEATH
   SeeSound "baby/sight";

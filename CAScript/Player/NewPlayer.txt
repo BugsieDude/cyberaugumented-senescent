@@ -220,17 +220,11 @@ Class CyberaugumentedProtagonist : DoomPlayer
   DamageFactor "Neonic", 0.00;
   DamageFactor "Ballista", 0.00;
   DamageFactor "Marines", 0.00;
-  Player.StartItem "DCY_UnderlineShotgun";
-  Player.StartItem "DCY_CombatShotgun";
   Player.StartItem "DCY_BurstPistol";
-  Player.StartItem "DCY_ChainsawGoBZZZZZZZZZZZZZZZZ";
   Player.StartItem "DCY_HahahaPunchPunch";
-  Player.StartItem "DCY_CyberRifle";
   Player.StartItem "MegasphereHealth", 100;
   //Player.StartItem "DCY_RehauledPlasmaRifle";
-  Player.StartItem "Clip", 150;
-  Player.StartItem "Shell", 50;
-  Player.StartItem "Cell", 128;
+  Player.StartItem "Clip", 50;
   Player.WeaponSlot 1, "DCY_HahahaPunchPunch", "DCY_ChainsawGoBZZZZZZZZZZZZZZZZ", "DCY_ArgentChainsaw";
   Player.WeaponSlot 2, "DCY_BurstPistol", "DCY_Razorwind";
   Player.WeaponSlot 3, "DCY_CombatShotgun", "DCY_UnderlineShotgun", "DCY_SuperShotty";

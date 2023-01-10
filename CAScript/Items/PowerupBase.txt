@@ -1,91 +1,3 @@
-Class DCY_Powerup : Inventory abstract
-{
-  mixin DCY_Effects;
-  
-  string effectcolor;
-  property EffectColor1 : effectcolor;
-  bool lighty;
-  property SpawnLight : lighty;
-  float lightr;
-  property LightRadius : lightr;
-  bool wobbly;
-  property Pulse : wobbly;
-  sound noise;
-  property AmbientNoise : noise;
-  
-  int bobstate;
-  
-  Default
-  {
-	DCY_Powerup.EffectColor1 "ffffff";
-	DCY_Powerup.SpawnLight True;
-	DCY_Powerup.LightRadius 40;
-	DCY_Powerup.AmbientNoise "";
-	+FLOATBOB
-	+COUNTITEM
-	+INVENTORY.AUTOACTIVATE
-	RenderStyle "Add";
-	Inventory.PickupMessage "\c[White]???\c-";
-  }
-  
-  override void PostBeginPlay()
-  {
-	if (lighty)
-		A_AttachLight("poweruplight", (wobbly) ? DynamicLight.PulseLight : DynamicLight.PointLight, effectcolor, lightr, (wobbly) ? (lightr / 1.35) : lightr);
-	
-	if (noise != "")
-		A_StartSound(noise, 15, CHANF_LOOPING);
-  }
-  
-  override void DoPickupSpecial(actor toucher)
-  {
-	A_StopSound(15);
-  }
-}
-
-Mixin Class CYPowerup
-{
-  int time;
-  
-  void PowerTimer(sound warnsound, sound expiresound, color c, color c2, bool warn)
-  {
-    if (warn == true)
-	{
-		if(time == 140 || time == 105 || time == 70 || time == 35)
-		{
-		  Owner.A_StartSound(warnsound, 20, flags: CHANF_LOCAL|CHANF_OVERLAP);
-		  Owner.A_SetBlend(c, 0.4, 12, c2);
-		}
-	}
-	else
-	{
-		if(time == 140)
-		{
-		  Owner.A_StartSound(warnsound, 20, flags: CHANF_LOCAL|CHANF_OVERLAP);
-		  Owner.A_SetBlend(c, 0.4, 46, c2);
-		}
-	}
-	
-	if (time == 2)
-	{
-	  Owner.A_SetBlend("White", 0.6, 20, c);
-	  Owner.A_StartSound(expiresound, 20, flags: CHANF_LOCAL|CHANF_OVERLAP);
-	}
-  }
-}
-
-Mixin Class CYItem
-{
-  string RingT;
-  Property RingT: RingT;
-  
-  void A_SpawnRings(string ringtype)
-  {
-	for (int i = 5; i > 0; i--)
-		A_SpawnItemEx(ringtype, frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), 0, 0, 0, frandom(0.0, 360.0), SXF_NOCHECKPOSITION, 10);
-  }
-}
-
 Class DCY_CSphereAura : DCY_Effect
 {
   float fade;
@@ -217,7 +129,8 @@ Class DCY_PhotocoagulatorRing : DCY_SphereRing { States { Spawn: EF3_ D 0 NoDela
 
 Class DCY_RingThing : Actor
 {
-  Mixin CYItem;
+  string ringtype;
+  property RingT : ringtype;
   
   Default
   {
@@ -237,7 +150,11 @@ Class DCY_RingThing : Actor
   States
   {
   Spawn:
-	TNT1 A 4 NoDelay A_SpawnRings(RingT);
+	TNT1 A 4 NoDelay
+	{
+		for (int i = 5; i > 0; i--)
+			A_SpawnItemEx(ringtype, frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), 0, 0, 0, frandom(0.0, 360.0), SXF_NOCHECKPOSITION, 10);
+	}
 	TNT1 A 1;
 	Stop;
   }

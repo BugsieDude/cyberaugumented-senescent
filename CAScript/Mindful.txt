@@ -1,5 +1,7 @@
 Class DCY_Variables : Thinker
 {
+  int dcyLevel;
+  
   bool gameannounce;
   
   int SpawnerLevel;

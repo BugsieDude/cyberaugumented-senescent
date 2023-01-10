@@ -1,3 +1,70 @@
-Class DCY_Spawner : RandomSpawner
+Class DCY_Spawner : RandomSpawner //Progression system heavily inspired by Pandemonia. Thanks, Dust!
 {
+  static int ReturnProgressionLevel(int level)
+  {
+	let d = DCY_Variables.Get();
+	return (sv_dcy_progressivespawns) ? d.dcyLevel : 256;
+  }
   
+  override Name ChooseSpawn()
+  {
+	DropItem di;   // di will be our drop item list iterator
+	DropItem drop; // while drop stays as the reference point.
+	int n = 0;
+	bool nomonsters = sv_nomonsters || level.nomonsters;
+			
+	drop = di = GetDropItems();
+	if(di != null)
+	{
+		while(di != null)
+		{
+			bool shouldSkip = (di.Name == 'None') || (nomonsters && IsMonster(di));
+			
+			if (!shouldSkip)
+			{
+				int amt = di.Amount;
+				if(amt < 0) amt = 1; // default value is -1, we need a positive value.
+				n += amt; // this is how we can weight the list.
+			}
+
+			di = di.Next;
+		}
+			
+		if (n == 0) return 'None'; // Nothing left to spawn. They must have all been monsters, and monsters are disabled.
+		
+		// Then we reset the iterator to the start position...
+		di = drop;
+			
+		// Take a random number...
+		n = random[randomspawn](0, n-1);
+			
+		// And iterate in the array up to the random number chosen.
+		while (n > -1 && di != null)
+		{
+			let prob = di.Probability;
+			let lvl = prob * sv_dcy_progression;
+			
+			if (di.Name != 'None' && (!nomonsters || !IsMonster(di)) && (lvl <= ReturnProgressionLevel(1)))
+			{
+				int amt = di.Amount;
+				if (amt < 0) amt = 1;
+				n -= amt;
+				if ((di.Next != null) && (n > -1))
+					di = di.Next;
+				else
+					n = -1;
+			}
+			else
+				di = di.Next;
+		}
+			
+		if (di == null) return 'Unknown';
+		else if (random[randomspawn]() <= 255)
+			return di.Name;
+		else
+			return 'None';
+	}
+	else
+		return 'None';
+	}
+}

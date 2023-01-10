@@ -68,8 +68,8 @@ Class DCY_ShadowTrailBase : DCY_ProjectileBaseTrail
 
 Class DCY_TransfixerTrail : DCY_HexodenicanTrail { Default { StencilColor "Purple"; } }
 Class DCY_ManesTrail : DCY_HexodenicanTrail2 { Default { StencilColor "Black"; RenderStyle "Stencil"; Alpha 0.125; } }
-Class DCY_DivinePhantomExplosion2 : DCY_HexodenicanTrail { Default { StencilColor "Yellow"; } }
-Class DCY_DivinePhantomExplosion3 : DCY_HexodenicanTrail
+Class DCY_CuratorExplosion2 : DCY_HexodenicanTrail { Default { StencilColor "Yellow"; } }
+Class DCY_CuratorExplosion3 : DCY_HexodenicanTrail
 {
   Default
   {
@@ -88,7 +88,7 @@ Class DCY_DivinePhantomExplosion3 : DCY_HexodenicanTrail
   }
 }
 
-Class DCY_DivinePhantomExplosion : DCY_DivinePhantomExplosion2
+Class DCY_CuratorExplosion : DCY_CuratorExplosion2
 {
   States
   {
@@ -419,7 +419,7 @@ Class DCY_AversionTrail : DCY_ExoTrail
 
 Class DCY_EavesdropperTrail : DCY_HexodenicanTrail { Default { StencilColor "4b1ec7"; } }
 
-Class DCY_EavesdropperDeathTrail : DCY_DivinePhantomExplosion { Default { StencilColor "4b1ec7"; } }
+Class DCY_EavesdropperDeathTrail : DCY_CuratorExplosion { Default { StencilColor "4b1ec7"; } }
 
 Class DCY_LemuresTrail : DCY_ExoTrail
 {

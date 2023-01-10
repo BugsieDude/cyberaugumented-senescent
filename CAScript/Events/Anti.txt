@@ -1,4 +1,4 @@
-CLASS Cyberaugumented_StartupHandler : StaticEventHandler
+Class CyberaugumentedStartupHandler : StaticEventHandler
 {
 	int timer;
 	bool detected;
@@ -27,7 +27,7 @@ CLASS Cyberaugumented_StartupHandler : StaticEventHandler
 		}
 	}
 	
-	override void WorldLoaded( WorldEvent e )
+	override void WorldLoaded(WorldEvent e)
 	{
 		if ( !detected && !bDestroyed )
 			Destroy();

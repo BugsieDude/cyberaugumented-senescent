@@ -102,6 +102,12 @@ Class DCY_NeonicWand : DCY_Weapon
 	TNT1 A 4 A_Light0();
 	Goto LightDone;
   }
+  
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(2);
+	return Super.CreateCopy(other);
+  }
 }
 
 Class DCY_NeonicBall : FastProjectile

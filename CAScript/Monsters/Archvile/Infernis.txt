@@ -106,14 +106,6 @@ Class DCY_Infernis : DCY_VileParent //Yet again a Doom RPG enemy
 	H7LN QRS 6;
 	H7LN T -1;
 	Stop;
-  Death.Massacre:
-    H7LN N 1;
-	H7LN N 7 A_Scream();
-	H7LN O 8;
-	H7LN P 8 A_NoBlocking();
-	H7LN QRS 6;
-	H7LN T -1;
-	Stop;
   Heal:
     H7LN GHGHGH 4 Bright;
 	Goto See;

@@ -10,7 +10,7 @@ gameinfo
 	infopage = "DCYINFO1", "DCYINFO2"
 	dimcolor = "Black"
 	dimamount = 0.6
-	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedWeaponSwayHandler", "CyberaugumentedEventHandler", "Cyberaugumented_StartupHandler"
+	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedWeaponSwayHandler", "CyberaugumentedEventHandler", "CyberaugumentedStartupHandler"
 	StatusBarClass = "DCyb_HUD"
 	BackpackType = "DCY_Backpack"
 	playerclasses = "CyberaugumentedProtagonist"

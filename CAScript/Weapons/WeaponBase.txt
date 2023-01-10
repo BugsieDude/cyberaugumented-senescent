@@ -1,5 +1,7 @@
 Class DCY_Weapon : Weapon abstract
 {
+	mixin DCY_Progression;
+	
 	Default
 	{
 	Weapon.BobStyle "Alpha";
@@ -13,5 +15,11 @@ Class DCY_Weapon : Weapon abstract
 		super.DoEffect();
 		let p = owner.player;
 		if (p && p.readyweapon) p.weaponstate != WF_WEAPONBOBBING;
+	}
+	
+	override Inventory CreateCopy(Actor other)
+    {
+		DCY_IncreaseLevel(1);
+		return Super.CreateCopy(other);
 	}
 }

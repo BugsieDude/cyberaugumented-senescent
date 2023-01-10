@@ -1,14 +1,11 @@
-Class DCY_EternalVoid : Weapon
+Class DCY_EternalVoid : DCY_Weapon
 {
   Default
   {
   Tag "U.A.C-26 Zeta ''Eternal Void'' Eradicating Black-Hole Projectile Releaser";
   Inventory.PickupMessage "\c[k2]...the Eternal Void.\cL";
   Obituary "$o is now extinct.";
-  Weapon.BobStyle "Alpha";
-  Weapon.BobRangeX 0.45;
-  Weapon.BobRangeY 0.25;
-  Weapon.BobSpeed 1.45;
+  Weapon.BobSpeed 1.25;
   Height 20;
   Scale 0.75;
   Weapon.AmmoType "DCY_UltramodernEnergy";
@@ -66,6 +63,12 @@ Class DCY_EternalVoid : Weapon
   Flash:
 	TNT1 A 10 A_Light1();
 	Goto LightDone;
+  }
+  
+  override Inventory CreateCopy(Actor other)
+  {
+	DCY_IncreaseLevel(15);
+	return Super.CreateCopy(other);
   }
 }
 
