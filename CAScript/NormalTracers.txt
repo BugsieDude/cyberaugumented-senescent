@@ -44,6 +44,11 @@ Class DCY_TracerPlayer : FastProjectile
   
   void A_Sparks()
   {
+	int zposs;
+	float ang1;
+	float ang2;
+	float angles;
+	
 	for (int i = 3; i > 0; i--)
 	{
 		if (pos.z <= floorz)

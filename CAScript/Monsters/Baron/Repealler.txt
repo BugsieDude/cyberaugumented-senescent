@@ -13,7 +13,6 @@ Class DCY_Repealler : DCY_BaronParent
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   Tag "\c[y4]Repealler\c-";
   DamageFactor "Electric", 0.00;
-  +BRIGHT
   +MISSILEEVENMORE
   }
   

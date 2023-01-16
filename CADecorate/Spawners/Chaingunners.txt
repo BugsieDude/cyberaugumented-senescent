@@ -2,24 +2,25 @@ ACTOR DCY_PlutoniaExperiment : DCY_Spawner Replaces ChaingunGuy
 {
   DropItem "DCY_Plutonia", 0, 750
   DropItem "DCY_HellPrototypeMech", 0, 500
-  DropItem "DCY_BionicZombie", 5, 100
-  DropItem "DCY_DecedentBigwig", 10, 70
+  DropItem "DCY_BionicZombie", 7, 100
+  DropItem "DCY_DecedentBigwig", 15, 70
   DropItem "DCY_Umbra", 13, 70
-  DropItem "DCY_Transmuter", 10, 90
-  DropItem "DCY_Commandant", 3, 60
-  DropItem "DCY_Nullifier", 20, 85
-  DropItem "DCY_AlacritousGuy", 15, 80
-  DropItem "DCY_AutomatonSupervisor", 10, 60
-  DropItem "DCY_Rattail", 10, 60
-  DropItem "DCY_Vandal", 13, 55
+  DropItem "DCY_Transmuter", 15, 90
+  DropItem "DCY_Commandant", 5, 60
+  DropItem "DCY_Nullifier", 20, 10
+  DropItem "DCY_Nullifier", 40, 85
+  DropItem "DCY_AlacritousGuy", 25, 80
+  DropItem "DCY_AutomatonSupervisor", 15, 60
+  DropItem "DCY_Rattail", 15, 60
+  DropItem "DCY_Vandal", 17, 55
   DropItem "DCY_HellRazer", 7, 65
-  DropItem "DCY_EspionDeLetre", 20, 30
-  DropItem "DCY_ShadowCrusader", 20, 30
-  DropItem "DCY_ZEnsign", 20, 40
+  DropItem "DCY_EspionDeLetre", 30, 30
+  DropItem "DCY_ShadowCrusader", 30, 30
+  DropItem "DCY_ZEnsign", 21, 40
   DropItem "DCY_Tagati", 23, 20
-  DropItem "DCY_TheristisPsichisl", 40, 16
+  DropItem "DCY_TheristisPsichisl", 45, 16
   DropItem "DCY_Z_Exec", 30, 16
   DropItem "DCY_DeathDealer", 30, 7
   DropItem "DCY_Marauder", 20, 1
-  DropItem "DCY_Marauder", 50, 1
+  DropItem "DCY_Marauder", 60, 1
 }

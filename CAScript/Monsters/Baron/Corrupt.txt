@@ -10,7 +10,6 @@ Class DCY_CorruptInfiltrator : DCY_HeckBaron
   +QUICKTORETALIATE
   +NODROPOFF
   +DONTRIP
-  +BRIGHT
   Speed 12.35;
   Mass 550;
   DropItem "DCY_Palisade", 70;

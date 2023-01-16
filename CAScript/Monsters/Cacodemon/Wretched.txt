@@ -4,10 +4,10 @@ Class DCY_Wretched : DCY_CacoParent
   {
   Health 500;
   Tag "Wretched";
-  BloodType "AndroidNeonFluid";
-  BloodColor "Cyan";
-  Speed 14;
-  FastSpeed 18;
+  BloodType "DCY_ElecDeathBase";
+  BloodColor "Red";
+  Speed 10;
+  FastSpeed 12;
   Mass 600;
   PainChance 96;
   SeeSound "Wretched/Sight";
@@ -17,8 +17,9 @@ Class DCY_Wretched : DCY_CacoParent
   +MISSILEMORE
   +QUICKTORETALIATE
   +DONTHARMCLASS
-  +BRIGHT
   }
+  
+  int phasetimer;
   
   States
   {
@@ -26,70 +27,86 @@ Class DCY_Wretched : DCY_CacoParent
     SCD8 ABCD 3 DCY_Look();
     Loop;
   Look:
-	SCD8 ABCD 2 DCY_LookingForPlayer();
+	SCD8 ABCD 3 DCY_LookingForPlayer();
     Loop;
   Alert:
 	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
 	Goto See;
   See:
-	SCD8 A 0 A_Jump(50, "Dodge");
-    SCD8 ABCDABCD 3 A_Chase("Flame", "Missile");
+	SCD8 A 0 A_Jump(50, "Dodge", "Teleportation");
+    SCD8 ABCDABCD 3
+	{
+		A_Recoil(-0.15);
+		A_Chase("Flame", "Missile");
+	}
 	Loop;
   Dodge:
-	SCD8 A 0 A_Dodging(12);
+	SCD8 A 0 A_Dodging(8);
 	SCD8 AAAA 5 A_Chase("Flame", "Missile", CHF_DONTMOVE);
+	Goto See;
+  Teleportation:
+	SCD8 K 10 { phasetimer = random(30, 60); }
+	SCD8 K 0
+	{
+		if (DCY_EffectDistance(sfxdistance)) Spawn("DCY_WretchedTeleport", pos);
+	}
+	SCD8 K 1
+	{
+		A_HideThing();
+		bSHOOTABLE = false;
+		
+		phasetimer--;
+		
+		for (int i = 5; i > 0; i--)
+		{
+			vel.x += frandom(-7, 7);
+			vel.y += frandom(-7, 7);
+			vel.z += frandom(-7, 7);
+			
+			A_Wander();
+			
+			for (int i = 2; i > 0; i--) A_SpawnItemEx("DCY_ArgentPhase", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		}
+		
+		if (phasetimer <= 0) SetStateLabel("Cool");
+	}
+	Goto Teleportation+2;
+  Cool:
+	SCD8 K 15
+	{
+		A_UnhideThing();
+		A_Stop();
+		if (DCY_EffectDistance(sfxdistance)) Spawn("DCY_WretchedTeleport", pos);
+		bSHOOTABLE = true;
+	}
 	Goto See;
   Missile:
 	SCD8 B 0
 	{
 		If(target && Distance3D(target) < 256)
-			return resolvestate("Flame");
+			SetStateLabel("Flame");
 		
 		A_FaceTarget();
 		A_Stop();
-		return A_Jump(128, "Dual", "TripleAtARow", "DualAtARow");
 	}
 	SCD8 B 0 A_Jump(100, "Comets");
 	Goto MissileNormal;
   MissileNormal:
-	SCD8 EEEEEEEEEEFFFFFFFF 1 A_FaceTarget();
-	SCD8 G 1 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFFF 1;
-	Goto See;
-  Dual:
-	SCD8 EEEEEEEEEEEEEFFFFFFFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24, -10);
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24, 10);
-	SCD8 GGGGGGGGGGFFFFFFFFFF 1;
-	Goto See;
-  TripleAtARow:
-	SCD8 EEEEEEFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFF 1;
-	Goto See;
-  DualAtARow:
-	SCD8 EEEEEEFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFF 1 A_FaceTarget();
-	SCD8 G 0 A_SpawnProjectile("DCY_WretchedBall", 24);
-	SCD8 GGGGGGFFFFFF 1;
-	Goto See;
-  Comets:
-	SCD8 HHHHHIIIII 3 A_FaceTarget();
-	SCD8 JJJJ 7
+	SCD8 EF 8 A_FaceTarget();
+	SCD8 G 8
 	{
-		A_SpawnProjectile("DCY_WretchedComet", 24, 0, random(-15, 5));
 		A_FaceTarget();
+		A_SpawnProjectile("DCY_WretchedBall", 24);
 	}
-	SCD8 JJJJJFFFFFF 2;
+	SCD8 F 8;
 	Goto See;
   Flame:
-	SCD8 H 0 A_Jump(60, "MissileContinue");
-	SCD8 L 0 A_StartSound("Wretched/Sight", CHAN_VOICE);
+	SCD8 L 0
+	{
+		A_Stop();
+		A_StartSound("Wretched/Sight", CHAN_VOICE);
+		Return A_Jump(60, "MissileContinue");
+	}
 	SCD8 HHHHHHHHIIIIIII 1 A_FaceTarget();
 	SCD8 J 0 A_StartSound("FLAMTHRW", CHAN_WEAPON);
 	SCD8 JJJJJJJIIIIII 2
@@ -101,7 +118,11 @@ Class DCY_Wretched : DCY_CacoParent
 	Goto See;
   Pain:
     SCD8 K 3;
-	SCD8 K 2 A_Pain();
+	SCD8 K 2
+	{
+		if (random(0, 7) == 7) SetStateLabel("Teleportation");
+		A_Pain();
+	}
 	Goto See;
   Death:
     SCD8 L 1;
@@ -109,18 +130,8 @@ Class DCY_Wretched : DCY_CacoParent
 	SCD8 M 8
 	{
 		A_StartSound("Wretched/DeathExplosion", CHAN_BODY);
-		
-		for (int i = 4; i > 0; i--)
-			A_SpawnItemEx("DCY_AndroidExplosion", frandom(-4.0, 4.0), frandom(-4.0, 4.0), 40 + frandom(-4.0, 4.0), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_WretchedExplosion", flags: SXF_NOCHECKPOSITION);
 	}
-	SCD8 N 6 A_NoBlocking();
-	SCD8 OPQ 5;
-	TNT1 A -1;
-	Stop;
-  Death.Massacre:
-    SCD8 L 1;
-	SCD8 L 8 A_Scream();
-	SCD8 M 8 A_StartSound("Wretched/DeathExplosion", CHAN_BODY);
 	SCD8 N 6 A_NoBlocking();
 	SCD8 OPQ 5;
 	TNT1 A -1;
@@ -132,14 +143,145 @@ Class DCY_Wretched : DCY_CacoParent
   }
 }
 
-Class DCY_WretchedBall : DCY_IFlame { Default { Damage 4; Speed 11; FastSpeed 22; } }
-
-Class DCY_WretchedComet : DCY_GeneralComet
+Class DCY_ArgentPhase : DCY_HexodenicanTrail
 {
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[1.04,1.38,2.00]";
-  Speed 12.5;
-  FastSpeed 20;
+  RenderStyle "Add";
+  StencilColor "Red";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.00,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  Scale 1.0;
+  Alpha 0.9;
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	if (tracer) A_FaceTracer();
+  }
+}
+
+Class DCY_WretchedBall : DCY_ImpFireball
+{
+  Default
+  {
+  Damage 7;
+  Speed 20;
+  FastSpeed 30;
+  SeeSound "ArgentBall";
+  DeathSound "ArgentImpact";
+  Translation "0:255=%[0.27,0.00,0.00]:[2.00,0.50,0.50]";
+  +ROLLSPRITE
+  +SEEKERMISSILE
+  }
+  
+  int timer;
+  
+  void A_ArgentZap()
+  {
+	A_Explode(3, 90, XF_NOTMISSILE);
+	A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 190);
+  }
+
+
+  States
+  {
+  Spawn:
+	DLIT DEFGH 1
+	{
+		A_SetRoll(Roll+20);
+		
+		timer++;
+		if (timer >= 20)
+		{
+			if (!level.time % random(1, 20))
+			{
+				vel.x = frandom(-2.0, 2.0);
+				vel.y = frandom(-2.0, 2.0);
+				vel.z = frandom(-2.0, 2.0);
+			}
+			
+			if (timer < 100) A_Tracer2(2.65);
+		}
+		
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 190);
+		A_SpawnItemEx("DCY_ElecTrailBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0xff2222, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+			A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 190);
+		}
+	}
+	TSAR EFGHIJKLMNO 1 A_ArgentZap();
+	TNT1 AAAAAAAAAA 2 A_ArgentZap();
+	Stop;
+  }
+}
+
+Class DCY_WretchedExplosion : Actor
+{
+  Default
+  {
+	-SOLID
+	+NOGRAVITY
+	Radius 0;
+	Height 0;
+	Scale 1.7;
+	Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.20,0.20]";
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	A_Explode(4, 140, XF_NOTMISSILE);
+	A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SiriusArc", frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 100);
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	A_QuakeEx(1, 1, 6, 45, 0, 800, "", QF_3D|QF_SCALEDOWN);
+	A_SpawnItemEx("DCY_BionicRing", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 AAAA 2 A_SpawnItemEx("DCY_MonochromaticExplosionBiggie", frandom(-4.0, 4.0), frandom(-4.0, 4.0), 40 + frandom(-4.0, 4.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 A 70;
+	Stop;
+  }
+}
+
+Class DCY_WretchedTeleport : DCY_WretchedExplosion
+{
+  override void Tick()
+  {
+	Actor.Tick();
+	A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+	A_SpawnItemEx("DCY_SiriusArc", frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 100);
+  }
+  
+  override void PostBeginPlay()
+  {
+	actor ring = spawn("DCY_BionicRing", pos);
+	if (ring) ring.scale *= 0.1;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 10;
+	Stop;
   }
 }

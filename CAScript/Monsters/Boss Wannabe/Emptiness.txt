@@ -2,7 +2,7 @@ Class DCY_Emptiness : DCY_VileParent
 {
   Default
   {
-  Health 2500;
+  Health 2200;
   Speed 25;
   Alpha 5.0;
   FastSpeed 30;

@@ -12,6 +12,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
   int playwatersound;
   bool submerged;
   bool falling;
+  double wna;
   playerinfo CAPlayer;
 	
   override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)
@@ -39,18 +40,45 @@ Class CyberaugumentedProtagonist : DoomPlayer
 
   override bool OnGiveSecret(bool printmsg, bool playsound)
   {
+	static const string toptext1[] =
+	{
+		"Secret",
+		"Mystery",
+		"Untold Place",
+		"Unknown Area",
+		"Mysterious Location",
+		"Privious Location",
+		"Privy",
+		"Veiled Area",
+		"Undisclosure"
+	};
+	
+	static const string toptext2[] =
+	{
+		"found",
+		"discovered",
+		"observed",
+		"percieved",
+		"located",
+		"spotted",
+		"pinpointed",
+		"retrieved"
+	};
+	
 	static const string messages[] =
 	{
-		"Secret found.",
-		"Hip hip hooray!",
-		"Time to be a treasure searcher.",
-		"Sparkle sparkle... Magic.",
-		"Ya got yourself here, not me.",
+		"It is nothing but a mystery",
+		"It is a mystery",
+		"OOOYEAAAAAAAAAAH",
+		"0_0",
 		"You found a secret!"
 	};
 	
 	S_StartSound("misc/secret", 10, attenuation: ATTN_IDLE);
-	A_Log("\c".."[".."j1".."]"..messages[random(0, messages.Size() - 1)].."\cL");
+	DCY_notHudMessageHandler.PlainMsg("BIGFONT", "\c".."[".."j1".."]"..toptext1[random(0, toptext1.Size() - 1)].." "..toptext2[random(0, toptext2.Size() - 1)],
+	(240, 180), (480, 360), color: Font.CR_GREEN, time: (0, 3, 0.41), id: 5000);
+	DCY_notHudMessageHandler.PlainMsg("SMALLFONT", messages[random(0, messages.Size() - 1)], (240, 196), (480, 360), color: Font.CR_UNTRANSLATED, time: (0, 3, 0.41), id: 5001);
+	DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80,1033), (160,2000), time: (0, 3, 0.41), id: 6000);
 	return false;
   }
   
@@ -84,6 +112,28 @@ Class CyberaugumentedProtagonist : DoomPlayer
 			submerged = false;
 		}
 	}
+  }
+  
+  override Vector2 BobWeapon(double ticFrac) //inspired by Nobody told me about ID and Lithium
+  {
+	Vector2 p[2];
+	Weapon w = player ? player.readyWeapon : null;
+	
+	if (!w || w.bDONTBOB) return (0, 0);
+	
+	for (int i = 0; i < 2; i++)
+	{
+		p[i] = (0, 0);
+		double a = w.bobSpeed * 128 * player.GetWBobSpeed() * (level.time - 1 + i) * 0.044;
+		double b = (!i) ? prevBob : player.bob;
+		
+		p[i].x = b * w.BobRangeX * ViewBob;
+		p[i].y = b * w.BobRangeY * ViewBob;
+		p[i].x *= Sin(a) + cos(a / 5) / 7;
+		p[i].y *= Abs(Sin(a));
+	}
+	
+	return p[0] * (1. - ticfrac) + p[1] * ticfrac;
   }
   
   override void HandleMovement()

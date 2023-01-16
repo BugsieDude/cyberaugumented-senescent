@@ -76,19 +76,13 @@ CLASS DCY_Spirit : Archvile
   {
   	A_Scream();
 	A_SpawnItemEx("DCY_SpiritRing", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	
+	for (int i = 7; i > 0; i--)
+	{
+		A_SpawnItemEx("DCY_SpiritExplosion", random(-10, 10), random(-10, 10), random(15, 55), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_SpiritTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-5.3, 5.3), frandom(-5.3, 5.3), frandom(-5.3, 5.3), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
+	
 	A_StartSound("reaver/death", CHAN_BODY, CHANF_DEFAULT, 1.0, 1.0, 0.75);
 	A_StartSound("reaver/death", CHAN_6, CHANF_DEFAULT, 1.0, 1.0, 0.75);
 	A_SetTranslucent(0.00, 1);

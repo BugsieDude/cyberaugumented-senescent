@@ -10,7 +10,6 @@ Class DCY_CalamityTsar : DCY_KnightHell
   +MISSILEMORE
   +DONTGIB
   +QUICKTORETALIATE
-  +BRIGHT
   PainChance 65;
   BloodColor "Yellow";
   SeeSound "Tsar/Sight";

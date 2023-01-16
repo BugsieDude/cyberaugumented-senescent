@@ -215,21 +215,21 @@ Class DCY_WretchedFlame : DCY_FatThrower
 {
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[0.18,2.00,2.00]";
+  Translation "0:255=%[0.20,0.00,0.00]:[2.00,0.03,0.03]";
   DamageType "WretchedFire";
   Alpha 0.1;
   }
   States
   {
   Spawn:
-	EXP_ A 0;
 	EXP_ ABCDEFGHIJKLM 1 Bright
 	{
-		A_Explode(4, 30, 0, 1);
+		A_Explode(5, 35, 0, 1);
 		A_SpawnItemEx("DCY_AndroidExplosionSmall", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		
 		for (int i = 3; i > 0; i--)
 		{
+			A_SpawnItemEx("DCY_ElecDeathBase", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 			A_SpawnItemEx("DCY_WretchedthrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		}
 	}

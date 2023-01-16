@@ -114,7 +114,7 @@ Class DCY_Transfixer : DCY_ArachnoParent
 	PBDO Q 15 Bright;
 	PBDO R 5 Bright
 	{
-		A_StartSound("PISFIR4", CHAN_WEAPON, attenuation: 0.45);
+		A_StartSound("Transfixer/Plasma", CHAN_WEAPON, attenuation: 0.45);
 		
 		if (target)
 		{
@@ -176,7 +176,7 @@ Class DCY_TransfixerPlasmaball : CacodemonBall
   Speed 20;
   Scale 1.0;
   Translation "0:255=%[0.00,0.00,0.00]:[1.39,0.94,1.93]";
-  SeeSound "PlasmaOrb";
+  SeeSound "Transfixer/Plasma";
   DeathSound "Painsend/FireExplode";
   }
   States

@@ -134,20 +134,20 @@ Class DCY_Vamchnorm : DCY_Cybie
 	}
 	Goto Death+2;
   Explode:
-	CARD E 6 Bright A_Scream();
-	CARD F 6 Bright
+	CARD E 6 A_Scream();
+	CARD F 6
 	{
 		A_Stop();
 		A_NoBlocking();
 	}
-	CARD G 6 Bright
+	CARD G 6
 	{
 		if (damagetype != "Massacre")
 			A_SpawnItemEx("DCY_VamchnormExplode", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_NOCHECKPOSITION);
 		
 		A_StartSound("Cyber/Death", CHAN_BODY, attenuation: ATTN_NONE, startTime: 0.2);
 	}
-	CARD H 6 Bright { if (damagetype != "Massacre") A_SpawnItemEx("DCY_VamchnormExplode", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_NOCHECKPOSITION); }
+	CARD H 6 { if (damagetype != "Massacre") A_SpawnItemEx("DCY_VamchnormExplode", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_NOCHECKPOSITION); }
 	CARD IJKL 6;
 	TNT1 A 10;
 	TNT1 A 1 A_BossDeath2();

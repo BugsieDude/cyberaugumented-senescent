@@ -13,7 +13,6 @@ Class DCY_Monsoon : DCY_CacoParent
   DamageFactor "Electric", 0.00;
   +MISSILEMORE
   +MISSILEEVENMORE
-  +BRIGHT
   +NOINFIGHTING
   +QUICKTORETALIATE
   Tag "\c[x5]Monsoon\c-";

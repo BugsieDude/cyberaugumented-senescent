@@ -16,7 +16,6 @@ Class DCY_PrimeYanorit : DCY_BaronParent
   +QUICKTORETALIATE
   +NOBLOODDECALS
   +NODROPOFF
-  +BRIGHT
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   BloodColor "Yellow";
   Speed 10;

@@ -16,7 +16,6 @@ Class DCY_Excoriator : DCY_BaronParent
   ActiveSound "Excoriator/Active";
   PainSound "Excoriator/Pain";
   DeathSound "Excoriator/Death";
-  +BRIGHT
   +NOGRAVITY
   +DONTHARMSPECIES
   +DONTHARMCLASS
@@ -106,8 +105,8 @@ Class DCY_Excoriator : DCY_BaronParent
 	Goto Rockets;
   MiniMissile:
 	FR6T C 20 { mmissile = 0; A_FaceTarget(); }
-	FR6T D 3 Bright A_MM();
-	FR6T C 2 Bright
+	FR6T D 3 A_MM();
+	FR6T C 2
 	{
 		if (mmissile > 15)
 			SetStateLabel("See");
@@ -118,14 +117,14 @@ Class DCY_Excoriator : DCY_BaronParent
 	Goto MiniMissile+1;
   Rockets:
 	FR6T C 15 A_FaceTarget();
-	FR6T D 5 Bright A_AMissile();
-	FR6T C 4 Bright A_FaceTarget();
-	FR6T D 5 Bright A_AMissile();
-	FR6T C 4 Bright A_FaceTarget();
-	FR6T D 5 Bright A_AMissile();
-	FR6T C 4 Bright A_FaceTarget();
-	FR6T D 5 Bright A_AMissile();
-	FR6T C 15 Bright;
+	FR6T D 5 A_AMissile();
+	FR6T C 4 A_FaceTarget();
+	FR6T D 5 A_AMissile();
+	FR6T C 4 A_FaceTarget();
+	FR6T D 5 A_AMissile();
+	FR6T C 4 A_FaceTarget();
+	FR6T D 5 A_AMissile();
+	FR6T C 15;
 	Goto See;
   Napalm:
 	FR6T C 15 A_FaceTarget();
@@ -182,7 +181,7 @@ Class DCY_AComet : DCY_GComet
   States
   {
   Spawn: 
-    AC_Z AAAABBBBCCCC 1 Bright
+    AC_Z AAAABBBBCCCC 1
 	{
 		A_Tracer2(3);
 		A_SpawnItemEx("DCY_ACometTrail", flags: SXF_NOCHECKPOSITION);

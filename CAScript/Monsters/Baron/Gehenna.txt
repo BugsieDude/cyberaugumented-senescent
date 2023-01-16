@@ -14,7 +14,6 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   +FLOAT
   +MISSILEEVENMORE
   +FIRERESIST
-  +BRIGHT
   FloatSpeed 9;
   FastSpeed 13;
   Speed 9;
@@ -77,14 +76,14 @@ Class DCY_GehennaChasseur : DCY_BaronParent
 	Goto See;
   Rockets:
 	HYCY CCCCCCCCCCCCCCC 1 A_FaceTarget();
-	HYCY E 5 Bright A_GehennaMissile();
-	HYCY C 4 Bright A_FaceTarget();
-	HYCY E 5 Bright A_GehennaMissile();
-	HYCY C 4 Bright A_FaceTarget();
-	HYCY E 5 Bright A_GehennaMissile();
-	HYCY C 4 Bright A_FaceTarget();
-	HYCY E 5 Bright A_GehennaMissile();
-	HYCY C 15 Bright;
+	HYCY E 5 A_GehennaMissile();
+	HYCY C 4 A_FaceTarget();
+	HYCY E 5 A_GehennaMissile();
+	HYCY C 4 A_FaceTarget();
+	HYCY E 5 A_GehennaMissile();
+	HYCY C 4 A_FaceTarget();
+	HYCY E 5 A_GehennaMissile();
+	HYCY C 15;
 	Goto See;
   LaserBombs:
 	HYCY C 1 { bombloop = random(2, 4); }
@@ -146,7 +145,7 @@ Class DCY_GehennaMissile : Rocket
 	}
 	Loop;
   Death:
-	TNT1 A 1 Bright
+	TNT1 A 1
 	{
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);

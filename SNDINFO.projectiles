@@ -71,6 +71,15 @@ LEKICK "Sounds/Projectiles/dcy_groundlaser.ogg"
 Cyberdemon/RailgunCharge "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_charge.ogg"
 Cyberdemon/RailgunFire "Sounds/DCY Monsters/Vamchnorm/dcy_vamchnorm_beam_fire.ogg"
 
+ArgentBall "Sounds/Projectiles/dcy_argent_ball.ogg"
+
+$random ArgentImpact { ARI1 ARI2 ARI3 ARI4 ARI5 }
+ARI1 "Sounds/Projectiles/dcy_argent_impact1.ogg"
+ARI2 "Sounds/Projectiles/dcy_argent_impact2.ogg"
+ARI3 "Sounds/Projectiles/dcy_argent_impact3.ogg"
+ARI4 "Sounds/Projectiles/dcy_argent_impact4.ogg"
+ARI5 "Sounds/Projectiles/dcy_argent_impact5.ogg"
+
 EXOTURTC "Sounds/DCY SFX/dcy_exo_deploy.ogg"
 PLSORB2 "Sounds/Projectiles/dcy_virtuoso_orb.ogg"
 

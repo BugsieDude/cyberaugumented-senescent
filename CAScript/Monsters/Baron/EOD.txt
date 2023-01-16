@@ -15,7 +15,6 @@ Class DCY_EOD : DCY_HeckBaron
   +MISSILEEVENMORE
   +QUICKTORETALIATE
   +NOINFIGHTING
-  +BRIGHT
   +NOFEAR
   +DONTHARMCLASS
   +DONTHARMSPECIES
@@ -461,7 +460,7 @@ Class DCY_EODMiniBall : DCY_EODBall
   States
   {
   Spawn:
-	SOUX L 1 A_SpawnParticleEx(0x4ca122, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 15, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.045, sizestep: -0.725);
+	SOUX L 1 A_SpawnParticleEx(0x4ca122, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 25, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.045, sizestep: -0.725);
 	Loop;
   }
 }
@@ -475,7 +474,6 @@ Class DCY_EODTrail2 : Actor
   +THRUACTORS
   +THRUSPECIES
   -SOLID
-  +BRIGHT
   Radius 20;
   Height 64;
   }

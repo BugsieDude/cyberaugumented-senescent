@@ -10,7 +10,6 @@ Class DCY_GunmetalInfiltrator : DCY_BaronParent
   +NOFEAR;
   +DONTHARMCLASS;
   +NEVERRESPAWN;
-  +Bright;
   BloodColor "010101";
   DropItem "Blursphere", 25;
   SeeSound "Emir/Sight";

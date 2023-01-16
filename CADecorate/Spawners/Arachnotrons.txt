@@ -5,10 +5,10 @@ ACTOR DCY_HOLYSHITTHERESASmallEnemySpider : DCY_Spawner Replaces Arachnotron
   DropItem "DCY_Tracnomechatron", 10, 500
   DropItem "DCY_IonArachnotron", 10, 300
   DropItem "DCY_Tripartite", 8, 300
-  DropItem "DCY_BattlemindGeomancer", 15, 240
-  DropItem "DCY_FluorescentSentinel", 15, 180
-  DropItem "DCY_Transfixer", 20, 128
-  DropItem "DCY_Goliath", 25, 100
-  DropItem "DCY_Convector", 35, 66
-  DropItem "DCY_Arachnoaversion", 25, 1
+  DropItem "DCY_BattlemindGeomancer", 18, 240
+  DropItem "DCY_FluorescentSentinel", 18, 180
+  DropItem "DCY_Transfixer", 25, 128
+  DropItem "DCY_Goliath", 35, 100
+  DropItem "DCY_Convector", 45, 66
+  DropItem "DCY_Arachnoaversion", 20, 1
 }

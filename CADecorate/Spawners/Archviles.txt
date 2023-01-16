@@ -1,17 +1,17 @@
 ACTOR DCY_OHFUCK : DCY_Spawner Replaces Archvile
 {
-  DropItem "DCY_ALIEN", 1, 866
-  DropItem "DCY_Infernis", 5, 270
-  DropItem "DCY_Apollyon", 8, 228
-  DropItem "DCY_Hexodenican", 12, 40
-  DropItem "DCY_FulminationVirtuoso", 23, 9
-  DropItem "DCY_Overdemoniac", 35, 9
-  DropItem "DCY_Voidcaster", 20, 11
-  DropItem "DCY_Lemures", 18, 11
-  DropItem "DCY_Espouser", 20, 20
-  DropItem "DCY_Prestidigitator", 40, 6
-  DropItem "DCY_Emptiness", 20, 1
-  DropItem "DCY_Emptiness", 45, 1
-  DropItem "DCY_Xusqoox", 30, 1
-  DropItem "DCY_Upheavalbringer", 35, 1
+  DropItem "DCY_ALIEN", 0, 866
+  DropItem "DCY_Infernis", 8, 270
+  DropItem "DCY_Apollyon", 10, 228
+  DropItem "DCY_Hexodenican", 18, 40
+  DropItem "DCY_FulminationVirtuoso", 25, 9
+  DropItem "DCY_Overdemoniac", 45, 9
+  DropItem "DCY_Voidcaster", 30, 11
+  DropItem "DCY_Lemures", 25, 11
+  DropItem "DCY_Espouser", 28, 20
+  DropItem "DCY_Prestidigitator", 45, 6
+  DropItem "DCY_Emptiness", 15, 1
+  DropItem "DCY_Emptiness", 35, 1
+  DropItem "DCY_Xusqoox", 23, 1
+  DropItem "DCY_Upheavalbringer", 27, 1
 }

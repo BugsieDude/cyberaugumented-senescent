@@ -19,7 +19,6 @@ Class DCY_Overdemoniac : DCY_VileParent
   +MISSILEMORE
   +FLOORCLIP
   +FIRERESIST
-  +BRIGHT
   +NOFEAR
   Scale 1.15;
   PainChance 50;

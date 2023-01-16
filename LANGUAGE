@@ -29,15 +29,3 @@ QUITMSG4 = "The chemicals in my brain tell me to stay. Please stay, marine.";
 QUITMSG5 = "Have a nice snack. I'll be waiting.";
 QUITMSG6 = "Don't you wanna go save your own world?";
 QUITMSG7 = "Taking a walk is beneficial for your health! But wait. Don't you also walk in this game too? Play DOOM more, it's beneficial!! I swear!!";
-
-//Weapon Sway
-OPTMNU_WPNSWAY = "Credits to Nash for WeaponSway!";
-WPNSWAYMNU_TITLE = "Weapon Swaying";
-
-WPNSWAYMNU_ENABLED = "Enabled";
-WPNSWAYMNU_INVERT = "Invert Horizontal Shift";
-WPNSWAYMNU_VERTICAL = "Vertical Shift";
-
-WPNSWAYMNU_HELPTEXT_ENABLED = "Enable weapon sway effect.";
-WPNSWAYMNU_HELPTEXT_INVERT = "Inverts the horizontal sway direction.";
-WPNSWAYMNU_HELPTEXT_VERTICAL = "Shift weapon vertically. Requires tall sprite assets.";

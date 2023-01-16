@@ -93,7 +93,6 @@ OptionMenu "ModOptionsMenu"
 	StaticText ""
 	SubMenu "Enemies", "DisableEnableEnemies"
 	SubMenu "Dashing", "CyberaugumentedDashingMenu"
-	SubMenu "Weapon Swaying", "WeaponSwayMenu"
 	StaticText ""
 	Option "Enemy Announcements",	"cyberaugumented_noenemyannouncements",	"DisableEnableAnnounce"
 	StaticText "Disables/Enables the announcements"
@@ -155,18 +154,4 @@ OptionValue "DJumpSoundType"
 {
 	0, "Double Jump Sound"
 	1, "DOOM (2016)"
-
-}
-
-OptionMenu "WeaponSwayMenu"
-{
-	Class "WeaponSwayMenu"
-	Title "$WPNSWAYMNU_TITLE"
-	Position -32
-
-	StaticText ""
-
-	WeaponSwayOption "$WPNSWAYMNU_ENABLED",		"$WPNSWAYMNU_HELPTEXT_ENABLED",		"cl_weaponsway",			"YesNo"
-	WeaponSwayOption "$WPNSWAYMNU_INVERT",		"$WPNSWAYMNU_HELPTEXT_INVERT",		"cl_weaponsway_invert",		"YesNo"
-	WeaponSwayOption "$WPNSWAYMNU_VERTICAL",	"$WPNSWAYMNU_HELPTEXT_VERTICAL",	"cl_weaponsway_vertical",	"YesNo"
 }

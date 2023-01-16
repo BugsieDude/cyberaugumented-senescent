@@ -23,7 +23,7 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
   void A_LiquidatingPlasma(double angle)
   {
 	A_StartSound("PlasmaLaser2", CHAN_WEAPON);
-	A_SpawnProjectile("DCY_LiquidatorPlasma", 32, angle, random(-5, 5));
+	A_SpawnProjectile("DCY_ArachPlasma", 32, angle, random(-5, 5));
 	A_FaceTarget();
   }
   States
@@ -162,42 +162,5 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
     RIMP ML 8;
     RIMP KJI 6;
     Goto See;
-  }
-}
-
-Class DCY_LiquidatorPlasma : PlasmaBall
-{
-  Default
-  {
-  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,1.01]";
-  Obituary "$o was assassinated by the Liquidator Imp's projectiles flying all around this place.";
-  SeeSound "PlasmaLaser2";
-  +BRIGHT
-  DamageFunction 1;
-  Alpha 0.8;
-  }
-  
-  States
-  {
-  Spawn:
-	BLPL AABBCCDD 1
-	{
-		A_SetRoll(frandom(0.00, 360.00));
-		
-		for (int i = 2; i > 0; i--)
-			A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
-	}
-	Loop;
-  Death:
-	PLSE A 3
-	{
-		A_SetScale(1.0, 1.0);
-		A_SetRenderStyle(1.0, STYLE_ADD);
-		A_SetRoll(frandom(0.00, 360.00));
-		for (int i = 4; i > 0; i--)
-			A_SpawnParticle(0xffb5b0, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
-	}
-	PLSE BCDE 2;
-	Stop;
   }
 }

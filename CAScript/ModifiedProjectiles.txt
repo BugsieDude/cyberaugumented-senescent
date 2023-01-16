@@ -23,11 +23,6 @@ Class DCY_EnemyGrenade : DCY_GoreBase
   int timer;
   bool exploded;
   
-  void DCY_Tick()
-  {
-	A_StartSound("DCYGrenadeTick", CHAN_BODY);
-  }
-  
   override void Tick()
   {
 	super.Tick();

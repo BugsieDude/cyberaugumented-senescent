@@ -23,7 +23,6 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   +NOBLOOD
   +NEVERRESPAWN
   +BOSSDEATH
-  +BRIGHT
   Tag "\c[Fire]FIRE-STORMER\c- ''Codeword - \c[z3]Wasteland \c[x1]Infiltrator\c-''";
   Obituary "%o got outsmarted by the Firestormer... in a infernal way.";
   HitObituary "It's the Firestormer's melee flaming move! And %o is dead.";
@@ -140,14 +139,6 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 		A_SpawnItemEx("DCY_Explosion_1_Biggie", zofs: 25, flags: SXF_NOCHECKPOSITION);
 		A_NoBlocking();
 	}
-	ZRCY LMNOP 6;
-	ZRCY P -1 A_BossDeath2();
-	Stop;
-  Death.Massacre:
-	ZRCY G 1;
-	ZRCY G 10 A_Scream();
-	ZRCY K 7;
-	ZRCY K 2 A_NoBlocking();
 	ZRCY LMNOP 6;
 	ZRCY P -1 A_BossDeath2();
 	Stop;

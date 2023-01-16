@@ -26,7 +26,6 @@ Class DCY_Utrotrion : DCY_BaronParent
   +MISSILEMORE
   +FIRERESIST
   +NOICEDEATH
-  +BRIGHT
   }
   
   States

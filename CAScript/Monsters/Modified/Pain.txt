@@ -45,8 +45,8 @@ Class DCY_SOULKING : DCYMonster
 		A_StartSound("EternalPainElemental/WarCry", CHAN_VOICE, attenuation: 0.85);
 		A_FaceTarget();
 	}
-	DAJK NO 4 Bright A_FaceTarget();
-	DAJK OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 1 Bright
+	DAJK NO 4 A_FaceTarget();
+	DAJK OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 1
 	{
 		A_FaceTarget();
 		A_QuakeEx(6, 0, 0, 30, 0, 600, "", QF_SCALEDOWN|QF_RELATIVE|QF_3D, rollintensity: 0.5, rollwave: 0.5);
@@ -54,13 +54,13 @@ Class DCY_SOULKING : DCYMonster
 	DAJK ND 5;
 	Goto See;
   Laugh:
-	DAJK Y 7 Bright
+	DAJK Y 7 
 	{
 		A_StartSound("EternalPainElemental/Laugh", CHAN_VOICE);
 		A_FaceTarget();
 	}
-	DAJK ZYZYZYZ 7 Bright A_FaceTarget();
-	DAJK Y 7 Bright
+	DAJK ZYZYZYZ 7 A_FaceTarget();
+	DAJK Y 7
 	{
 		A_StartSound("EternalPainElemental/Laugh", CHAN_VOICE);
 		A_FaceTarget();
@@ -79,16 +79,16 @@ Class DCY_SOULKING : DCYMonster
 			SetStateLabel("ScreamAtPlayer");
 	}
 	DAJK DE 5 A_FaceTarget();
-	DAJK F 4 BRIGHT A_FaceTarget();
-	DAJK F 1 BRIGHT A_PainAttack("DCY_FlyingSkullWithFIRE");
+	DAJK F 4 A_FaceTarget();
+	DAJK F 1 A_PainAttack("DCY_FlyingSkullWithFIRE");
 	Goto See;
   Pain:
 	DAJK G 6;
 	DAJK G 6 A_Pain();
 	Goto See;
   Death:
-	DAJK G 6 BRIGHT;
-	DAJK G 6 BRIGHT
+	DAJK G 6;
+	DAJK G 6
 	{
 		if (health < -200)
 			A_StartSound("EternalPainElemental/Death", CHAN_VOICE);
@@ -96,9 +96,9 @@ Class DCY_SOULKING : DCYMonster
 			A_Scream();
 	}
 	DAJK HI 6;
-	DAJK JJKK 3 BRIGHT A_SpawnItemEx("DCY_Explosion_1", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
-	DAJK L 6 BRIGHT A_PainDie("DCY_FlyingSkullWithFIRE");
-	DAJK M 6 BRIGHT;
+	DAJK JJKK 3 A_SpawnItemEx("DCY_Explosion_1", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
+	DAJK L 6 A_PainDie("DCY_FlyingSkullWithFIRE");
+	DAJK M 6;
 	Stop;
   Raise:
 	DAJK MLKJIH 8;

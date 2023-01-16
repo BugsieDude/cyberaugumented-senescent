@@ -1,8 +1,8 @@
 ACTOR DCY_SoulsEverywhereA : DCY_Spawner Replaces PainElemental
 {
   DropItem "DCY_SOULKING", 0, 700
-  DropItem "DCY_Beholder", 4, 100
-  DropItem "DCY_Rahovart", 5, 70
-  DropItem "DCY_Kaiser", 10, 100
-  DropItem "DCY_Vague", 13, 35
+  DropItem "DCY_Beholder", 8, 100
+  DropItem "DCY_Rahovart", 12, 70
+  DropItem "DCY_Kaiser", 16, 100
+  DropItem "DCY_Vague", 30, 35
 }

@@ -2,9 +2,9 @@ ACTOR DCY_BruhMomentoNumeroTres : DCY_Spawner Replaces HellKnight
 {
   DropItem "DCY_KnightHell", 0, 800
   DropItem "DCY_Malloc", 0, 200
-  DropItem "DCY_FluorescentChevalier", 5, 108
+  DropItem "DCY_FluorescentChevalier", 10, 108
   DropItem "DCY_CalamityTsar", 7, 90
-  DropItem "DCY_Wastrel", 10, 40
-  DropItem "DCY_Abater", 10, 20
-  DropItem "DCY_Larrikin", 15, 20
+  DropItem "DCY_Wastrel", 15, 40
+  DropItem "DCY_Abater", 15, 20
+  DropItem "DCY_Larrikin", 23, 20
 }

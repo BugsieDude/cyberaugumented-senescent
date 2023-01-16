@@ -1,19 +1,19 @@
 ACTOR DCY_Pinkyisalsoexplode : DCY_Spawner Replaces Demon
 {
   DropItem "DCY_Pinke", 0, 700
-  DropItem "DCY_Dasher", 4, 200
-  DropItem "DCY_Alphomency", 5, 45
-  DropItem "DCY_Fusillade", 9, 38
-  DropItem "DCY_Maltreat", 10, 25
-  DropItem "DCY_Kranion", 12, 20
+  DropItem "DCY_Dasher", 8, 200
+  DropItem "DCY_Alphomency", 12, 45
+  DropItem "DCY_Fusillade", 16, 38
+  DropItem "DCY_Maltreat", 23, 25
+  DropItem "DCY_Kranion", 17, 20
   DropItem "DCY_Urozon", 25, 3
 }
 
 ACTOR DCY_CrazyStealth : DCY_Spawner Replaces Spectre
 {
   DropItem "DCY_PinkeII", 0, 700
-  DropItem "DCY_Alphomency", 5, 35
-  DropItem "DCY_Tenebrosity", 8, 25
-  DropItem "DCY_BloodshedAssailant", 13, 10
+  DropItem "DCY_Alphomency", 12, 35
+  DropItem "DCY_Tenebrosity", 16, 25
+  DropItem "DCY_BloodshedAssailant", 23, 10
   DropItem "DCY_Urozon", 25, 2
 }
