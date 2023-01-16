@@ -15,6 +15,11 @@ Class DCyb_HUD : BaseStatusBar
   const CY_RESW = 320;
   const CY_RESH = 200;
   
+  string pauseimage;
+  
+  float pausex;
+  float pausey;
+  
   string tn;
   
   HUDFont dcyb_font, dcyb_font2;
@@ -84,6 +89,21 @@ Class DCyb_HUD : BaseStatusBar
   protected void CA_DrawStatusBar(double TicFrac)
   {
 	DrawImage("VANTABAR", (0, 168), DI_ITEM_OFFSETS);
+  }
+  
+  override bool DrawPaused(int player)
+  {
+	if (!pauseimage) {
+		pauseimage = "DCYPAUSD";
+		S_StartSound("misc/pausegame", CHAN_ITEM, CHANF_NOPAUSE|CHANF_NOSTOP|CHANF_UI|CHANF_OVERLAP);
+	}
+	
+    float pausex = 160 + sin(gametic * 2.25) * 50;
+	float pausey = -abs(cos(gametic * 1.75) * 40);
+	
+	DrawImage(pauseimage, (pausex, pausey), DI_ITEM_CENTER);
+	
+	return true;
   }
   
   //Hud Stuff
@@ -346,6 +366,8 @@ Class DCyb_HUD : BaseStatusBar
   override void Tick()
   {
 	super.Tick();
+	
+	if (pauseimage == "DCYPAUSD") pauseimage = "";
 	
 	if ((CPlayer.health > 0) && (CPlayer.health < 10) && CY_GetCVar("cl_dcy_alarmsound"))
 	{

@@ -4,12 +4,10 @@ Class DCY_Variables : Thinker
   
   bool gameannounce;
   
-  int SpawnerLevel;
-  
-  int AllMonsters;
-  int AllItems;
-  int AllSecrets;
-  int CompletionistReward;
+  bool AllMonsters;
+  bool AllItems;
+  bool AllSecrets;
+  bool CompletionistReward;
   
   int numberofminibosses;
   int numberofsuperbosses;

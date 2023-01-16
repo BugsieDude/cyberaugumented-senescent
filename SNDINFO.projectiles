@@ -80,6 +80,12 @@ ARI3 "Sounds/Projectiles/dcy_argent_impact3.ogg"
 ARI4 "Sounds/Projectiles/dcy_argent_impact4.ogg"
 ARI5 "Sounds/Projectiles/dcy_argent_impact5.ogg"
 
+$random ArgentTeleport { ART1 ART2 ART3 ART4 } //how artistic
+ART1 "Sounds/DCY SFX/dcy_argent_teleport1.ogg"
+ART2 "Sounds/DCY SFX/dcy_argent_teleport2.ogg"
+ART3 "Sounds/DCY SFX/dcy_argent_teleport3.ogg"
+ART4 "Sounds/DCY SFX/dcy_argent_teleport4.ogg"
+
 EXOTURTC "Sounds/DCY SFX/dcy_exo_deploy.ogg"
 PLSORB2 "Sounds/Projectiles/dcy_virtuoso_orb.ogg"
 
