@@ -71,6 +71,8 @@ Class CyberaugumentedProtagonist : DoomPlayer
 		"It is a mystery",
 		"OOOYEAAAAAAAAAAH",
 		"0_0",
+		"Huzzah. It's real.",
+		"...secret... secret...",
 		"You found a secret!"
 	};
 	

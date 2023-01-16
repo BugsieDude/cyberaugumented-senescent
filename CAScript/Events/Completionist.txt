@@ -1,4 +1,54 @@
 extend class CyberaugumentedEventHandler
 {
-
+	bool tmonster, tsecret, titem;
+	int mc, ic, sc, tm, ti, ts, t;
+	
+	override void PlayerEntered(PlayerEvent e)
+	{
+		tmonster = tsecret = titem = false;
+		t = 0;
+	}
+	
+	void Tracker()
+	{
+		if (t >= 15)
+		{
+			if (!CVar.GetCVar("dcy_tracker", players[consoleplayer])) return;
+			mc = level.killed_monsters;
+			tm = level.total_monsters;
+			ic = level.found_items;
+			ti = level.total_items;
+			sc = level.found_secrets;
+			ts = level.total_secrets;
+			
+			if (deathmatch) return;
+			if (tm < 5 && !ti && !ts) return;
+			if (!tm && !tmonster) tmonster = true;
+			if (!ti && !titem) titem = true;
+			if (!ts && !tsecret) tsecret = true;
+			
+			if (mc >= tm && !tmonster) { TrackerMessage("monster", 1202); tmonster = true; }
+			if (ic >= ti && !titem) { TrackerMessage("items", 1303); titem = true; }
+			if (sc >= ts && !tsecret) { TrackerMessage("secrets", 1101); tsecret = true; }
+		}
+		else t++;
+	}
+	
+	void TrackerMessage(name n, int i)
+	{
+		string s;
+		sound sd;
+		double zy;
+		
+		switch (n)
+		{
+			case 'monster': s = "All entities are eliminated."; sd = "dcy/mapdone"; zy = 0; break;
+			case 'items': s = "Collected everything that was left."; sd = "Announce/Complete"; zy = -25; break;
+			case 'secrets': s = "Everything's discovered."; sd = "Announce/Complete"; zy = -50; break;
+		}
+		
+		S_StartSound(sd, 58, CHANF_UI, 1, 0);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", s, (240, 240 + (zy * 0.12)), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.3, 3, 0.41), id: i);
+		DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80,2000 + zy), (160,3000), time: (0.3, 3, 0.41), id: i + 1);
+	}
 }

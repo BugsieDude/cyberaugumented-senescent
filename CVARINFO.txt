@@ -35,3 +35,6 @@ user int cl_effectdistance = 1000;
 
 user bool cl_dcy_mapname = true;
 user bool cl_dcy_alarmsound = true;
+
+user bool dcy_tracker = true;
+server bool dcy_completionist = true;

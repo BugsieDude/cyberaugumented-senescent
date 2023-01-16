@@ -184,6 +184,13 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   override void WorldTick()
   {
+	TempCheck();
+	Tracker();
+	A_CutsceneCheck();
+  }
+  
+  void TempCheck()
+  {
 	let d = DCY_Variables.Get();
 	let temp = d.temperature;
 	
@@ -209,8 +216,6 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		DTemperature("TemperatureDCYX", "q7", "You're going to burn.");
 		d.temperaturehotxannounce = true;
 	}
-	
-	A_CutsceneCheck();
   }
   
   /*void DCY_TemperatureLevel(sector mySector)

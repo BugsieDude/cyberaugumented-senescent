@@ -95,13 +95,14 @@ Class DCyb_HUD : BaseStatusBar
   {
 	if (!pauseimage) {
 		pauseimage = "DCYPAUSD";
-		S_StartSound("misc/pausegame", CHAN_ITEM, CHANF_NOPAUSE|CHANF_NOSTOP|CHANF_UI|CHANF_OVERLAP);
+		S_StartSound("misc/pausegame", CHAN_ITEM, CHANF_NOPAUSE|CHANF_NOSTOP|CHANF_UI);
 	}
 	
     float pausex = 160 + sin(gametic * 2.25) * 50;
 	float pausey = -abs(cos(gametic * 1.75) * 40);
 	
 	DrawImage(pauseimage, (pausex, pausey), DI_ITEM_CENTER);
+	DrawImage((pauseimage) ? "DCYPAUSR" : "", (pausex, -pausey + 20), DI_ITEM_CENTER);
 	
 	return true;
   }
@@ -121,17 +122,15 @@ Class DCyb_HUD : BaseStatusBar
 	{
 	  if (i is "Key")
 	  {
-	    if (count >= 10) { break; }
+	    if (count >= 10) break;
 		
 		keysprite = i.AltHUDIcon;
 		
 		if (!keysprite.IsValid())
 		{
-		  if (SpriteSpawnState && i.SpawnState && i.SpawnState.sprite != 0)
-			keysprite = i.SpawnState.GetSpriteTexture(0);
-		  else
-			keysprite = i.Icon;
-		  
+			keysprite = (SpriteSpawnState && i.SpawnState && i.SpawnState.sprite != 0) ?
+			i.SpawnState.GetSpriteTexture(0) : i.Icon;
+		
 		  if(!keysprite.IsValid()) continue;
 		}
 		
