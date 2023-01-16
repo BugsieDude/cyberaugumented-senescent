@@ -5,6 +5,10 @@ Class DCY_Combatant : DCY_Zombe
   Health 45;
   Tag "Combatant";
   Obituary "%o got shot by a Combatant.";
+  SeeSound "DCYCombatant/Sight";
+  ActiveSound "DCYCombatant/Idle";
+  PainSound "DCYCombatant/Pain";
+  DeathSound "DCYCombatant/Death";
   Translation "128:159=%[0.00,0.00,0.00]:[0.20,0.20,0.20]", "48:79=%[0.00,0.00,0.00]:[1.18,0.72,0.53]", "16:47=%[0.00,0.00,0.00]:[1.57,0.00,0.00]", "80:111=[255,255,255]:[4,4,4]", "142:142=%[0.00,0.00,0.00]:[0.31,0.31,0.31]", "74:79=%[0.00,0.00,0.00]:[0.31,0.31,0.31]", "1:2=%[0.00,0.00,0.00]:[0.31,0.31,0.31]";
   }
   
