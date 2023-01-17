@@ -20,7 +20,7 @@ Flat:
 	#3963bd
 }
 
-//From NewTextColors. For some reason. Credits to FuzzBallFox!
+//NewTextColors - Credits to FuzzBallFox!
 
 // SKY BLUE //
 C1 {

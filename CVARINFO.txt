@@ -25,16 +25,10 @@ user bool cl_hudshake = true;
 user int cl_dashsoundtype = 0;
 user int cl_djumpsoundtype = 0;
 
-user bool cl_weaponsway = true;
-user bool cl_weaponsway_invert = false;
-user bool cl_weaponsway_vertical = false;
-
-user int cl_spawntype = 0;
-
 user int cl_effectdistance = 1000;
 
 user bool cl_dcy_mapname = true;
 user bool cl_dcy_alarmsound = true;
 
-user bool dcy_tracker = true;
+server bool dcy_tracker = true;
 server bool dcy_completionist = true;

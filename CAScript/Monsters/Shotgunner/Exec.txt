@@ -332,6 +332,7 @@ Class DCY_Z_ExecDrone : DCY_SkullParent
   Speed 7;
   PainChance 20;
   Monster;
+  -BRIGHT
   +FLOATBOB
   +DONTHARMSPECIES
   +LOOKALLAROUND
@@ -409,7 +410,7 @@ Class DCY_Z_ExecDrone : DCY_SkullParent
 		bFloatBob = false;
 		A_ScreamAndUnblock();
 	}
-	DRON FGHIJK 4 Bright;
+	DRON FGHIJK 4;
 	Stop;
   Raise:
 	Stop;

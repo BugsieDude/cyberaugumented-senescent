@@ -2810,3 +2810,4 @@ DCYCombatant/Death1 "Sounds/DCY Monsters/Combatant/dcy_combatant_die1.ogg"
 DCYCombatant/Death2 "Sounds/DCY Monsters/Combatant/dcy_combatant_die2.ogg"
 DCYCombatant/Death3 "Sounds/DCY Monsters/Combatant/dcy_combatant_die3.ogg"
 DCYCombatant/Death4 "Sounds/DCY Monsters/Combatant/dcy_combatant_die4.ogg"
+$volume DCYCombatant/Death 0.75

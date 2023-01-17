@@ -1,26 +1,18 @@
 [enu default] //USA English
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Startup Messages
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 STARTUP1 = "\cnLet's kick ass.\c-";
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Other
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
-SWSTRING = "This is the shareware version of Doom... wait... THIS ISN'T RIGHT. THIS IS A PARADOX.";
+SWSTRING = "This is the shareware version of Doom...";
 SECRETMESSAGE = "\c[j1]Secret found.";
 OB_MPTELEFRAG = "$o was in a telefragging catharsis."
 OB_MONTELEFRAG = "$o was in a telefragging catharsis."
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Episode finished quotes
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //N/A
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Quit Messages
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 QUITMSG = "?";
 QUITMSG1 = "Ya gonna have some penalty on demon killin'. Don't go to your tea party or coffee break yet, pally."; 
 QUITMSG2 = "Wait, don't quit! Some demonic and occult fellas try to rob a bank and... no.";
@@ -29,3 +21,28 @@ QUITMSG4 = "The chemicals in my brain tell me to stay. Please stay, marine.";
 QUITMSG5 = "Have a nice snack. I'll be waiting.";
 QUITMSG6 = "Don't you wanna go save your own world?";
 QUITMSG7 = "Taking a walk is beneficial for your health! But wait. Don't you also walk in this game too? Play DOOM more, it's beneficial!! I swear!!";
+
+//Tooltips
+TIP_CYBERAUGUMENTEDDASHINGMENU = "The configurations for the player's mechanics. Typically this mod used to be a DOOM Eternal inspired mod before it started to become unique.";
+TIP_SV_ALLOWDOUBLEJUMP = "Enables/Disables double jumping.";
+TIP_SV_ALLOWDASH = "Enables/Disables dashing.";
+TIP_SV_DASHCOOLDOWN = "Dash Cooldown in tics. The default value is 35.";
+TIP_CL_ALLOWDASHSOUND = "Turning this on emits dashing noises.";
+TIP_CL_ALLOWDJUMPSOUND = "Double jumping noises to give you a DOOM 2016 experience.";
+TIP_CL_DASHSOUNDTYPE = "For some reason we included two types of dashing and double jumping sounds.";
+TIP_CL_DJUMPSOUNDTYPE = "For some reason we included two types of dashing and double jumping sounds.";
+TIP_SV_DASHPOWER = "Modify the thrusting to be faster or slower.";
+TIP_SV_DASHPOWERUP = "While dashing mid-air, you have the ability to jump straight away. Don't like it? You can always turn it down to 0.";
+
+TIP_CYBERAUGUMENTED_NOENEMYANNOUNCEMENTS = "If on, the game will notify you if there are boss variants of the roster wandering around the map.";
+TIP_CL_HUDSHAKE = "Things are about to get quaky. Picking up a Berserk powerup will cause the HUD to shake.";
+TIP_DCY_SOULCOUNT = "Repeals Lost Souls and its species from the kill counter.";
+TIP_DCY_RESCOUNT = "It does what is says in the tin. Refrains resurrected enemies from the kill counter.";
+TIP_CL_EFFECTDISTANCE = "Almost all effect will start to dissapear if far away from the said number in the slider.";
+TIP_SV_EFFECTCHOKER = "Disables all effects from spawning for peformance.";
+TIP_CL_DCY_MAPNAME = "Shows the map name and a location symbol on the top right of the HUD.";
+TIP_CL_DCY_ALARMSOUND = "An looping alarm sound plays when your health is lower or equal than 10.";
+TIP_SV_DCY_PROGRESSIVESPAWNS = "Enables the progression system. Collecting weapons, mods and clearing maps will increase Hell's force. Heavily recommended if you're not a masochist.";
+TIP_SV_DCY_PROGRESSION = "The multiplication meter for the progression system. The lower, the slower the progression will be. The higher, the faster.";
+TIP_DCY_TRACKER = "Upon killing all monsters, collecting all items, and finding all secrets, you will be announced that you have filled the emptiness of the level stats.";
+TIP_DCY_COMPLETIONIST = "Filling up a level stat will give you a special reward, especially when completing the level.";

@@ -13,7 +13,7 @@ extend class CyberaugumentedEventHandler
 	{
 		if (t >= 15)
 		{
-			if (!CVar.GetCVar("dcy_tracker", players[consoleplayer])) return;
+			if (!dcy_tracker) return;
 			mc = level.killed_monsters;
 			tm = level.total_monsters;
 			ic = level.found_items;
@@ -27,28 +27,27 @@ extend class CyberaugumentedEventHandler
 			if (!ti && !titem) titem = true;
 			if (!ts && !tsecret) tsecret = true;
 			
-			if (mc >= tm && !tmonster) { TrackerMessage("monster", 1202); tmonster = true; }
-			if (ic >= ti && !titem) { TrackerMessage("items", 1303); titem = true; }
-			if (sc >= ts && !tsecret) { TrackerMessage("secrets", 1101); tsecret = true; }
+			if (mc >= tm && !tmonster) { TrackerMessage("monster"); tmonster = true; }
+			if (ic >= ti && !titem) { TrackerMessage("items"); titem = true; }
+			if (sc >= ts && !tsecret) { TrackerMessage("secrets"); tsecret = true; }
 		}
 		else t++;
 	}
 	
-	void TrackerMessage(name n, int i)
+	void TrackerMessage(name n)
 	{
 		string s;
 		sound sd;
-		double zy;
 		
 		switch (n)
 		{
-			case 'monster': s = "All entities are eliminated."; sd = "dcy/mapdone"; zy = 0; break;
-			case 'items': s = "Collected everything that was left."; sd = "Announce/Complete"; zy = -25; break;
-			case 'secrets': s = "Everything's discovered."; sd = "Announce/Complete"; zy = -50; break;
+			case 'monster': s = "All entities are eliminated."; sd = "dcy/mapdone"; break;
+			case 'items': s = "Collected everything that was left."; sd = "Announce/Complete"; break;
+			case 'secrets': s = "Everything's discovered."; sd = "Announce/Complete"; break;
 		}
 		
 		S_StartSound(sd, 58, CHANF_UI, 1, 0);
-		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", s, (240, 240 + (zy * 0.12)), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.3, 3, 0.41), id: i);
-		DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80,2000 + zy), (160,3000), time: (0.3, 3, 0.41), id: i + 1);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", s, (240, 240), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.3, 3, 0.41), id: 1111);
+		DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80, 2000), (160, 3000), time: (0.3, 3, 0.41), id: 1112);
 	}
 }

@@ -15,7 +15,6 @@ Class DCY_Kaiser : DCY_SOULKING
   DropItem "DCY_UltramodernEnergy", 128;
   Speed 10;
   FastSpeed 12;
-  +BRIGHT
   +MISSILEEVENMORE
   +DONTFALL
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
@@ -138,7 +137,6 @@ Class DCY_KaiserTurret : DCY_FlyingMeatballOutOfTouch
   +NEVERFAST
   +LOOKALLAROUND
   +DONTTHRUST
-  +BRIGHT
   }
   
   States
@@ -174,7 +172,7 @@ Class DCY_KaiserTurret : DCY_FlyingMeatballOutOfTouch
   XDeath:
 	HDRN A 10;
 	DRON E 4 A_ScreamAndUnblock();
-	DRON FGHIJK 4 Bright;
+	DRON FGHIJK 4;
 	Stop;
   Raise:
 	Stop;
