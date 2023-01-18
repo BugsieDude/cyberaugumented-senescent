@@ -22,7 +22,7 @@ Class DCY_Perserver : DCY_Impe
   Spawn:
 	SDDM A 10 DCY_Look();
 	Loop;
-  Loop:
+  Look:
 	SDDM AABBCCDD 2 DCY_LookingForPlayer();
 	Loop;
   Alert:
