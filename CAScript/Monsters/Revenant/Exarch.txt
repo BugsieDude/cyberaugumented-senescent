@@ -32,8 +32,13 @@ Class DCY_AbyssalExarch : DCY_Rev
   States
   {
   Spawn:
-	DDAN A 10 A_Look();
+	DDAN A 10 DCY_Look();
 	Loop;
+  Look:
+    DDAN AABBCCDD 3 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   See:
 	DDAN AABBCCDD 3
 	{

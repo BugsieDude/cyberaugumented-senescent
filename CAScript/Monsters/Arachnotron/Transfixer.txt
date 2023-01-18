@@ -47,8 +47,16 @@ Class DCY_Transfixer : DCY_ArachnoParent
   States
   {
   Spawn:
-	PBDO A 10 A_Look();
+	PBDO A 10 DCY_Look();
 	Loop;
+  Look:
+    PBDO A 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    PBDO ABBCC 2 DCY_LookingForPlayer();
+    PBDO D 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    PBDO DEEFF 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   See:
 	PBDO A 30;
     PBDO A 2 A_TransfixerChase(true);

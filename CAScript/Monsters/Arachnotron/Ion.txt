@@ -38,8 +38,16 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
   States
   {
   Spawn:
-    CSPI A 10 A_Look();
+    CSPI A 10 DCY_Look();
 	Loop;
+  Look:
+	CSPI A 2 A_BabyMetal();
+	CSPI ABBCC 2 DCY_LookingForPlayer();
+	CSPI D 2 A_BabyMetal();
+	CSPI DEEFF 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   SeePlusOne:
     Goto See+1;
   See:

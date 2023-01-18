@@ -68,8 +68,15 @@ Class DCY_Excoriator : DCY_BaronParent
   States
   {
   Spawn:
-	FR6T AB 2 A_Look();
+	FR6T AB 2 DCY_Look();
 	Loop;
+  Look:
+    FR6T ABABAB 2 DCY_LookingForPlayer();
+    TNT1 A 0 A_CheckSight("Look");
+    Goto Alert;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	FR6T AB 2
 	{

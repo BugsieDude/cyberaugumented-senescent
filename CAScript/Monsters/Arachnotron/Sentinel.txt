@@ -57,8 +57,14 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
   States
   {
   Spawn:
-	FL0O AB 2 A_Look();
+	FL0O AB 2 DCY_Look();
 	Loop;
+  Look:
+	FL0O AB 2 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	FL0O AB 2 A_Chase();
 	Loop;

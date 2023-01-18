@@ -18,8 +18,14 @@ Class DCY_Rahovart : DCY_SOULKING
   States
   {
   Spawn:
-	PAIN A 10 A_Look();
+	PAIN A 10 DCY_Look();
 	Loop;
+  Look:
+    PAIN AABBCC 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	PAIN AABBCC 2 A_Chase();
 	Loop;

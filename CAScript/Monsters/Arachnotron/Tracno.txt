@@ -35,8 +35,17 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
   States
   {
   Spawn:
-	BSP2 A 10 A_LookEx(0, 0, 0, 0, 90, "See1");
+	BSP2 A 10 DCY_Look();
 	Loop;
+  Look:
+	BSP2 A 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    BSP2 ABBCC 2 DCY_LookingForPlayer();
+    BSP2 D 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    BSP2 DEEFF 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+	Goto See1;
   See1:
 	BSP2 A 30;
 	Goto See;

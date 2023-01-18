@@ -26,8 +26,26 @@ Class DCY_Receptacle : DCY_ArachnoParent
   States
   {
   Spawn:
-	1R1C A 10 A_Look();
+	1R1C A 10 DCY_Look();
 	Loop;
+  Look:
+	1R1C AABB 2 DCY_LookingForPlayer();
+	1R1C C 2
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("DemonicSpider/Step", CHAN_BODY);
+	}
+	1R1C CDDEE 2 DCY_LookingForPlayer();
+	1R1C F 2
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("DemonicSpider/Step", CHAN_BODY);
+	}
+	1R1C F 2 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	1R1C A 30;
 	1R1C AABB 2 A_Chase();

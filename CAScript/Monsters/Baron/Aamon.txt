@@ -72,9 +72,16 @@ Class DCY_Aamon : DCY_HeckBaron
   
   States
   {
-  Spawn:
-	30SS A 10 A_Look();
+   Spawn:
+	30SS A 10 DCY_Look();
 	Loop;
+  Look:
+	30SS AABBCCDD 2 DCY_LookingForPlayer();
+    TNT1 A 0 A_CheckSight("Look");
+    Goto Alert;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	30SS AABBCCDD 2 A_Chase();
 	Loop;

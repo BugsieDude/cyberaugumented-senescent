@@ -43,8 +43,14 @@ Class DCY_BattlemindGeomancer : DCY_SmallEnemySpider
   States
   {
   Spawn:
-	C8RP AB 3 A_Look();
+	C8RP AB 3 DCY_Look();
 	Loop;
+  Look:
+    C8RP ABABAB 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	C8RP ABABAB 3 A_Chase();
 	C8RP A 0 A_Jump(68, "Dodge");

@@ -48,8 +48,15 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   States
   {
   Spawn:
-	HYCY AB 3 A_Look();
+	HYCY AB 3 DCY_Look();
 	Loop;
+  Look:
+    HYCY ABABAB 3 DCY_lookingForPlayer();
+    TNT1 A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	HYCY ABABAB 3 A_Chase();
 	Loop;

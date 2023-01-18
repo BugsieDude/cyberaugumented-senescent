@@ -52,8 +52,25 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
   States
   {
   Spawn:
-	CSP3 A 10 A_Look();
+	CSP3 A 10 DCY_Look();
 	Loop;
+  Look:
+    CSP3 AABB 3 DCY_LookingForPlayer();
+	CSP3 C 3
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("Aracgunner/Walk", CHAN_BODY, pitch: 0.82);
+	}
+	CSP3 CDDEE 3 DCY_LookingForPlayer();
+	CSP3 F 3
+	{
+		DCY_LookingForPlayer();
+		A_StartSound("Aracgunner/Walk", CHAN_BODY, pitch: 0.82);
+	}
+	CSP3 F 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   See:
 	CSP3 A 10;
 	CSP3 AABB 3 A_Chase();

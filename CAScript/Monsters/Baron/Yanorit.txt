@@ -39,8 +39,16 @@ Class DCY_PrimeYanorit : DCY_BaronParent
   States
   {
   Spawn:
-	EFER ABCD 5 A_Look();
+	EFER ABCD 5 DCY_Look();
 	Loop;
+  Look:
+	EFER AAABBB 2 DCY_LookingForPlayer();
+	EFER CCCDDD 2 DCY_LookingForPlayer();
+    TNT1 A 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	EFER AAABBB 2 A_Chase();
 	EFER CCCDDD 2 A_Chase();

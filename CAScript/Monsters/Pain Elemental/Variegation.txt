@@ -28,8 +28,14 @@ Class DCY_VariegationDemon : DCY_SOULKING
   States
   {
   Spawn:
-    VL_N A 10 A_Look();
+    VL_N A 10 DCY_Look();
 	Loop;
+  Look:
+    VL_N AABBCC 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	TNT1 A 0 A_Jump(40, "Teleporting");
     VL_N AABBCC 2 A_Chase();

@@ -25,8 +25,14 @@ Class DCY_Kaiser : DCY_SOULKING
   States
   {
   Spawn:
-	AAAG A 10 A_Look();
+	AAAG A 10 DCY_Look();
 	Loop;
+  Look:
+    AAAG ABCB 5 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	AAAG ABCB 5 A_Chase();
 	Loop;

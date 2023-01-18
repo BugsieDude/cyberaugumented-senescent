@@ -14,8 +14,14 @@ Class DCY_Beholder : DCY_SOULKING
   States
   {
   Spawn:
-	B3H0 A 10 A_Look();
+	B3H0 A 10 DCY_Look();
 	Loop;
+  Look:
+    B3H0 A 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	B3H0 A 2 A_Chase();
 	Loop;

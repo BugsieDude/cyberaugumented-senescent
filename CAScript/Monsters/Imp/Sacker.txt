@@ -46,8 +46,13 @@ Class DCY_Sacker : DCY_Impe
   States
   {
   Spawn:
-	TIO4 A 10 A_Look();
+	TIO4 A 10 DCY_Look();
 	Loop;
+  Look:
+    TIO4 AABBCCDD 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   See:
 	TIO4 AABBCCDD 2
 	{

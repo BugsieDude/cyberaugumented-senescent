@@ -35,8 +35,13 @@ Class DCY_BloodshedAssailant : DCY_Pinke
   States
   {
   Spawn:
-	UU9_ A 10 A_Look();
+	UU9_ A 10 DCY_Look();
 	Loop;
+  Look:
+    UU9_ AAABBBCCCDDD 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
   See:
 	UU9_ AAABBBCCCDDD 2 A_Chase();
 	Loop;

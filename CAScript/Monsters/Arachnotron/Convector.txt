@@ -36,8 +36,13 @@ Class DCY_Convector : DCY_ArachnoParent
   States
   {
   Spawn:
-	HFBT AB 2 A_Look();
+	HFBT AB 2 DCY_Look();
 	Loop;
+  Look:
+    HFBT AB 2 DCY_LookingForPlayer();
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   See:
 	HFBT AB 2 A_Chase();
 	Loop;

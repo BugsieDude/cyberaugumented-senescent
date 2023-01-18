@@ -26,18 +26,21 @@ Class DCY_Goliath : DCY_ArachnoParent
   States
   {
   Spawn:
-	G___ A 10 A_Look();
+	G___ A 10 DCY_Look();
 	Loop;
-  See:
-	G___ BBCCDDEEFF 4 A_Chase();
-	G___ G 4
-	{
-		A_Chase();
+  Look:
+    G___ BBCCDDEEFF 4 DCY_LookingForPlayer();
+    G___ G 4
+    {
+        DCY_LookingForPlayer();
 		A_StartSound("roboarachno/step", CHAN_BODY);
 	}
-	G___ GHHIIHHGG 4 A_Chase();
+    G___ GHHIIHHGG 4 DCY_LookingForPlayer();
 	G___ B 0 A_StartSound("roboarachno/step", CHAN_BODY);
 	Loop;
+  Alert:
+    "####" "#" 0 DCY_AlertSound();
+    Goto See;
   MissileStahp:
 	Goto Missile+1;
   Missile:
