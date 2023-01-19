@@ -74,7 +74,7 @@ Class DCY_Trounce : DCY_Cybie
 	{
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_ZombieTracer", 53, 16, frandom(-2.0, 2.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-2.0, 2.0));
-		A_StartSound("PISFIR4", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.75);
+		A_StartSound("PIS3FIR3", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.75);
 		Return A_MonsterRefire(96, "See");
 	}
 	Goto Chaingun+1;

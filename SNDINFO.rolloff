@@ -1,0 +1,43 @@
+//Bullets
+$rolloff BurstPistol/Fire 300 3500
+$rolloff Underline/Fire 300 3500
+$rolloff Shotgun/Fire 300 3500
+$rolloff SuperShotgun/Fire 300 3500
+$rolloff Deagle/Fire 300 3500
+$rolloff Minigun/Loop 300 3500
+
+$rolloff Minigun/WindUp 200 2300
+$rolloff Minigun/WindDown 200 2300
+$rolloff SHMPBOOM 300 3000
+$rolloff PLASMA7 300 3500
+$rolloff PIS5FIRE 300 3500
+$rolloff PIS3FIR4 300 3500
+$rolloff PIS3FIR3 300 3500
+$rolloff PIS3FIR2 300 3500
+
+//Rockets
+$rolloff DNRPGFIR 300 2200
+$rolloff ROBOMISL 300 2200
+$rolloff STF3FIRE 300 2200
+
+//Plasma
+$rolloff Weapons/ZombiePlasma 300 3500
+$rolloff Vandal/Laser 300 3500
+$rolloff Android/LaserX 300 2000
+$rolloff Android/Laser 300 3000
+$rolloff Cyberdemon/RailgunCharge 300 2500
+$rolloff Cyberdemon/RailgunFire 300 3500
+$rolloff DSPLASM4 300 3500
+$rolloff DSWTH 300 2500
+$rolloff CARCATK 300 3000
+$rolloff D4RAILGF 300 3500
+$rolloff FASTLASR 300 3500
+$rolloff DSSUPPLS 300 3500
+$rolloff RBGSH0T 300 3500
+$rolloff CONVFIRE 300 3500
+$rolloff UNHLYSHT 300 3500
+$rolloff AUTOLASR 300 3500
+$rolloff DCYPlasmaShotgun 300 3500
+$rolloff PlasmaLaser 300 3000
+$rolloff PSPLASMA 300 3000
+$rolloff Weapons/BFG10kFire2 300 3500
