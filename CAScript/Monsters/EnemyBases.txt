@@ -94,6 +94,15 @@ CLASS DCYMonster : Actor abstract
 	A_StartSound(SeeSound, CHAN_VOICE, attenuation: (!bBOSS) ? 1 : 0);
   }
   
+  void DCY_SoulExplode()
+  {
+	if (damagetype != "Massacre")
+	{
+		A_SpawnItemEx("DCY_TSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(0, height), zvel: frandom(1.5, 2.5), flags: SXF_TRANSFERSCALE|SXF_TRANSFERALPHA);
+		if (!random(0, 1)) A_SpawnParticleEx(0x0f52ba, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0025, sizestep: 1.525);
+	}
+  }
+		
   static void ThingAnnounce(String message, String sound, String mColor)
   {
 	if (cyberaugumented_noenemyannouncements || level.mapname == "TITLEMAP")

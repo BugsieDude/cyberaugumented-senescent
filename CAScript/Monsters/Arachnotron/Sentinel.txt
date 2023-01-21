@@ -135,33 +135,11 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
 		bDontFall = false;
 		bNoGravity = false;
 	}
-	FL0O GGGG 1 A_SpawnItemEx("DCY_AndroidExplosion", random(-25, 25), random(-25, 25), 25, frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION);
-	FL0O HIJKL 5;
-	FL0O L -1 A_BossDeath2();
-	Stop;
-  XDeath:
-	FL0O F 1;
-	FL0O F 13 A_StartSound("FSentinel/Death", CHAN_VOICE, 0, 1.0, 0.35);
-	FL0O G 3
+	FL0O GGGGGGGGGGGG 1
 	{
-		A_NoBlocking();
-		bDontFall = false;
-		bNoGravity = false;
+		DCY_SoulExplode();
+		if (!(level.time % 3)) A_SpawnItemEx("DCY_AndroidExplosion", random(-25, 25), random(-25, 25), 25, frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION);
 	}
-	FL0O GGGGGGGGGGG 2 A_SpawnItemEx("DCY_AndroidExplosion", random(-25, 25), random(-25, 25), 25, frandom(1.0, -1.0), frandom(1.0, -1.0), frandom(1.0, -1.0), random(0, 360), SXF_NOCHECKPOSITION);
-	FL0O HIJKL 5;
-	FL0O L -1 A_BossDeath2();
-	Stop;
-  Death.Massacre:
-	FL0O F 1;
-	FL0O F 13 A_StartSound("FSentinel/Death", CHAN_VOICE, 0, 1.0, 0.35);
-	FL0O G 3
-	{
-		A_NoBlocking();
-		bDontFall = false;
-		bNoGravity = false;
-	}
-	FL0O GGGGGGG 2;
 	FL0O HIJKL 5;
 	FL0O L -1 A_BossDeath2();
 	Stop;
