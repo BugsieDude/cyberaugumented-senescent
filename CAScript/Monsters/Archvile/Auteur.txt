@@ -36,6 +36,9 @@ Class DCY_Auteur : DCY_VileParent
   See:
     A_1_ A 3 A_Chase("Missile", "Missile", CHF_RESURRECT);
 	Loop;
+  Raise:
+	A_1_ E 20;
+	Goto See;
   Missile:
 	A_1_ B 0
 	{

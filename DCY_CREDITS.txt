@@ -181,6 +181,8 @@ Remilia - Teleportation sound (idfk who originally made the teleport sound so I 
 Lukas Tvrdon - Manes sounds
 DitheredOutput - Combatant Sounds
 Terminal Reality (Bloodrayne) - Sounds
+Frictional Games - Sounds
+Gunfire Games - Sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help
