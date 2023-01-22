@@ -9,6 +9,7 @@ Class DCY_Trepidation : DCY_Violator
   Tag "\c[g2]Trepidation\c-";
   +MISSILEEVENMORE
   +THRUSPECIES
+  +NOBLOOD
   SeeSound "Trepidation/Sight";
   ActiveSound "Trepidation/Active";
   PainSound "Trepidation/Pain";
@@ -26,7 +27,7 @@ Class DCY_Trepidation : DCY_Violator
 	Super.Tick();
 	
 	if (!level.isFrozen() && Health > 0 && Alpha > 0.2 && DCY_EffectDistance(sfxdistance))
-		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), zvel: frandom(-1, 1), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION, failchance: 150);
+		A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 90, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.1, fadestepf: 0.0015, sizestep: 1.525);
   }
   
   States
@@ -65,11 +66,11 @@ Class DCY_Trepidation : DCY_Violator
 		bNoClip = true;
 		A_HideThing();
 	}
-	NMRE AAAABBBBCCCCDDDD 4
+	NMRE AAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 4
 	{
 		for (int i = 14; i > 0; i--)
 		{
-			A_Chase(null, null);
+			A_Chase(null, null, CHF_NOPLAYACTIVE);
 			A_Wander();
 		}
 	}

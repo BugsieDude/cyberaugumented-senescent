@@ -33,17 +33,17 @@ Class DCY_Infernis : DCY_VileParent //Yet again a Doom RPG enemy
   States
   {
   Spawn:
-    H7LN A 10 DCY_Look();
+    A_1_ A 10 DCY_Look();
 	Loop;
   Look:
-	#### AAABBBCCCDDDEEEFFF 2 DCY_LookingForPlayer();
+	#### A 2 DCY_LookingForPlayer();
 	#### # 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	#### # 0 DCY_AlertSound();
 	Goto See;
   See:
-    H7LN AAABBBCCCDDDEEEFFF 2 A_Chase("Missile", "Missile", CHF_RESURRECT);
+    A_1_ A 2 A_Chase("Missile", "Missile", CHF_RESURRECT);
 	Loop;
   Missile:
 	H7LN G 0 A_Jump(128, "Fireballs");
