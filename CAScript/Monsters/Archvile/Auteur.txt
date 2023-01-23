@@ -36,16 +36,17 @@ Class DCY_Auteur : DCY_VileParent
   See:
     A_1_ A 3 A_Chase("Missile", "Missile", CHF_RESURRECT);
 	Loop;
-  Raise:
+  Heal:
 	A_1_ E 20;
 	Goto See;
   Missile:
 	A_1_ B 0
 	{
-		switch(random(0, 1))
+		switch(random(0, 2))
 		{
 			case 0: Return ResolveState("Wave"); break;
 			case 1: Return ResolveState("Balls"); break;
+			case 2: Return ResolveState("Vile"); break;
 		}
 		
 		Return ResolveState(null);
@@ -74,6 +75,13 @@ Class DCY_Auteur : DCY_VileParent
 	}
 	A_1_ CD 5 A_FaceTarget();
 	Goto See;
+  Vile:
+    A_1_ B 5 Bright { A_FaceTarget(); A_StartSound("Auteur/Idle", CHAN_VOICE); }
+    A_1_ B 1 Bright A_VileTarget("DCY_AuteurVile");
+    A_1_ BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCC 1 Bright A_FaceTarget();
+    A_1_ D 9 Bright A_VileAttack();
+    A_1_ A 20 Bright;
+    Goto See;
   Pain:
 	A_1_ F 4;
 	A_1_ F 4 A_Pain();
@@ -201,6 +209,59 @@ Class DCY_AuteurBall : DCY_ImpFireball
 		A_FadeOut(0.2, 0);
 	}
 	C3AL ABAB 1 A_FadeOut(0.2, 0);
+	Stop;
+  }
+}
+
+Class DCY_AuteurVile : ArchvileFire
+{
+  Default
+  {
+  Alpha 0;
+  Obituary "$OB_VILE";
+  }
+  
+  static const string ParticleColors[] = { "4ad5ff", "149dff", "0048ff" };
+  
+  override void Tick()
+  {
+	timer++;
+	
+	if (timer > 65)
+	{
+		for (float i = 0; i < 5; i += 0.25)
+		{
+			A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 45, random(9, 12), frandom(0, 360), frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(4.0, 13.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.3 + i, fadestepf: 0.05, sizestep: -0.65);
+			A_SpawnParticleEx(0x4ad5ff, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 87, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5) + i, startalphaf: 0.35, fadestepf: 0.015, sizestep: -0.3);
+		}
+		
+		A_StopSound(10);
+		if (tracer) tracer.A_StopSound(10);
+		A_StartSound("Auteur/VileAtk", pitch: 2);
+		Destroy();
+	}
+	
+	A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(9, 12), frandom(0, 360), frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(4.0, 13.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.3, fadestepf: 0, sizestep: -0.45);
+	A_SpawnParticleEx(0x0048ff, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 87, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5) + 1.5, startalphaf: 0.35, fadestepf: 0.0035, sizestep: -0.5);
+	A_Fire();
+  }
+  
+  override void PostBeginPlay()
+  {
+	float randompitch = frandom(0.2, 0.6);
+	
+	A_StartSound("Auteur/VileAtk");
+	for (int i = 3; i > 0; i--)
+		A_StartSound("Supremacy/IdleNoise", 10, CHANF_OVERLAP, 3.0, pitch: randompitch);
+	if (tracer) tracer.A_StartSound("Supremacy/IdleNoise", 10, CHANF_OVERLAP, 3.0, pitch: randompitch);
+  }
+  
+  int timer;
+  
+  States
+  {
+  Spawn:
+    TNT1 A -1;
 	Stop;
   }
 }
