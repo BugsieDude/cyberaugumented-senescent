@@ -2856,3 +2856,7 @@ Auteur/VileAtk5 "Sounds/DCY Monsters/Auteur/dcy_auteur_vile5.ogg"
 Auteur/VileAtk6 "Sounds/DCY Monsters/Auteur/dcy_auteur_vile6.ogg"
 Auteur/VileAtk7 "Sounds/DCY Monsters/Auteur/dcy_auteur_vile7.ogg"
 Auteur/VileAtk8 "Sounds/DCY Monsters/Auteur/dcy_auteur_vile8.ogg"
+Auteur/Ball "Sounds/Projectiles/dcy_auteur_ball.ogg"
+Auteur/BallX "Sounds/Projectiles/dcy_auteur_ball_impact.ogg"
+$limit Auteur/Ball 0
+$limit Auteur/BallX 0
