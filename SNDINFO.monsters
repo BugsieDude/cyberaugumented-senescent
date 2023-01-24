@@ -743,6 +743,15 @@ PAE2DTH1 "Sounds/DCY Monsters/Befouler/dcy_befouler_death1.ogg"
 PAE2DTH2 "Sounds/DCY Monsters/Befouler/dcy_befouler_death2.ogg"
 PAE2DTH3 "Sounds/DCY Monsters/Befouler/dcy_befouler_death3.ogg"
 $random EternalPainElemental/Barf { PAE2SIT3 PAE2SIT4 PAE2SIT5 null PAE2ACT6 }
+$random EternalPainElemental/Spit { PAE2SPI1 PAE2SPI2 PAE2SPI3 PAE2SPI4 PAE2SPI5 PAE2SPI6 PAE2SPI7 PAE2SPI8 }
+PAE2SPI1 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit1.ogg"
+PAE2SPI2 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit2.ogg"
+PAE2SPI3 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit3.ogg"
+PAE2SPI4 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit4.ogg"
+PAE2SPI5 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit5.ogg"
+PAE2SPI6 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit6.ogg"
+PAE2SPI7 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit7.ogg"
+PAE2SPI8 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit8.ogg"
 
 Kaiser/See "Sounds/DCY Monsters/Kaiser/dcy_kaiser_sight.ogg"
 Kaiser/Active "Sounds/DCY Monsters/Kaiser/dcy_kaiser_idle.ogg"
