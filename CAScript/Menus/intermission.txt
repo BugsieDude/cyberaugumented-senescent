@@ -191,8 +191,8 @@ Class DCY_Intermission : StatusScreen
 		return;
 	}
 	
-	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.005; }
-	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.005; }
+	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.00525; }
+	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.00525; }
 	
 	bg.updateAnimatedBack();
 	
