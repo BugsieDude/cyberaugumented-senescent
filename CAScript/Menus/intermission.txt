@@ -13,7 +13,10 @@ Class DCY_Intermission : StatusScreen
   double alphastats;
   double assmooth;
   double amsmooth;
+  double xmove;
+  double x2move;
   bool moveback;
+  float interpolate;
   
   TextureID border;
   TextureID flash;
@@ -22,6 +25,13 @@ Class DCY_Intermission : StatusScreen
   {
 	DCYTIME = 136,
 	DCYSTATY = 70,
+  };
+  
+  enum DCYStates
+  {
+	LEFT = 0,
+	CENTER = 1,
+	RIGHT = 2,
   };
   
   override void initStats()
@@ -34,6 +44,8 @@ Class DCY_Intermission : StatusScreen
 	
 	assmooth = 0;
 	amsmooth = 0;
+	xmove = -100;
+	x2move = 100;
 	
 	intermissioncounter = gameinfo.intermissioncounter;
 	acceleratestage = 0;
@@ -191,6 +203,14 @@ Class DCY_Intermission : StatusScreen
 		return;
 	}
 	
+	if (bcnt > 65)
+	{
+		xmove += 8 - interpolate;
+		x2move += -8 + interpolate;
+		
+		if (interpolate < 8) interpolate += 0.35; else interpolate = 8;
+	}
+		
 	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.00525; }
 	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.00525; }
 	
@@ -251,9 +271,9 @@ Class DCY_Intermission : StatusScreen
 	int align;
 	switch(alignment)
 	{
-		case 0: align = x; break;
-		case 1: align = x - fnt.StringWidth(text) / 2; break;
-		case 2: align = x - fnt.StringWidth(text); break;
+		case left: align = x; break;
+		case center: align = x - fnt.StringWidth(text) / 2; break;
+		case right: align = x - fnt.StringWidth(text); break;
 	}
 	screen.DrawText(fnt, c, align, y, text,
 	DTA_320x200, true,
@@ -303,31 +323,18 @@ Class DCY_Intermission : StatusScreen
 		statsx = max(0, (320 - allwidth) / 2);
 		
 	printFont = generic_ui? IntermissionFont : content.mFont;
-	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty, "$TXT_IMKILLS", alpha: alphastats);
-	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty + lh, "$TXT_IMITEMS", alpha: alphastats);
-	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty + 2 * lh, "$TXT_IMSECRETS", alpha: alphastats);
-	DCY_DrawText(smallmainfont, tcolor, SP_TIMEX, dcytime, "$TXT_IMTIME", alpha: alphastats);
-	if (wbs.partime) DCY_DrawText(smallmainfont, tcolor, 160 + SP_TIMEX, dcytime, "$TXT_IMPAR", alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty, "\c[q7]"..StringTable.Localize("$TXT_IMKILLS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty + lh, "\c[m4]"..StringTable.Localize("$TXT_IMITEMS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty + 2 * lh, "\c[z2]"..StringTable.Localize("$TXT_IMSECRETS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, SP_TIMEX + xmove, dcytime - 7, "\c[v7]"..StringTable.Localize("$TXT_IMTIME"), alpha: alphastats);
+	if (wbs.partime) DCY_DrawText(smallmainfont, tcolor, 160 + SP_TIMEX + x2move, dcytime - 7, "\c[v7]"..StringTable.Localize("$TXT_IMPAR"), alpha: alphastats);
 			 
-	drawPercent (printFont, 320 - statsx, dcystaty, cnt_kills[0], wbs.maxkills, true, tcolor);
-	drawPercent (printFont, 320 - statsx, dcystaty+lh, cnt_items[0], wbs.maxitems, true, tcolor);
-	drawPercent (printFont, 320 - statsx, dcystaty+2*lh, cnt_secret[0], wbs.maxsecret, true, tcolor);
-	drawTimeFont (printFont, 160 - SP_TIMEX, dcytime, cnt_time, tcolor);
-			 
-	// This really sucks - not just by its message - and should have been removed long ago!
-	// To avoid problems here, the "sucks" text only gets printed if the lump is present, this even applies to the text replacement.
-			 
-	if (cnt_time >= wbs.sucktime * 60 * 60 && wbs.sucktime > 0 && Sucks.IsValid())
-	{ // "sucks"
-		int x = 160 - SP_TIMEX;
-		int y = dcytime;
-		DCY_DrawText(smallmainfont, tColor, x  - printFont.StringWidth("$TXT_IMSUCKS"), y - smallmainfont.GetHeight() - 2, "$TXT_IMSUCKS", alpha: alphastats);
-	}
-
-	if (wi_showtotaltime)
-		 drawTimeFont(printFont, 160 - SP_TIMEX, dcytime + lh, cnt_total_time, tcolor);
-
-	if (wbs.partime)
-		drawTimeFont(printFont, 320 - SP_TIMEX, dcytime, cnt_par, tcolor);
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty, cnt_kills[0], wbs.maxkills, true, tcolor);
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty+lh, cnt_items[0], wbs.maxitems, true, tcolor);
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty+2*lh, cnt_secret[0], wbs.maxsecret, true, tcolor);
+	drawTimeFont(smallmainfont, 160 - SP_TIMEX + xmove, dcytime, cnt_time, tcolor);
+	
+	if (wi_showtotaltime) drawTimeFont(smallmainfont, 160 - SP_TIMEX + xmove, dcytime + lh, cnt_total_time, tcolor);
+	if (wbs.partime) drawTimeFont(smallmainfont, 320 - SP_TIMEX + x2move, dcytime, cnt_par, tcolor);
   }
 }

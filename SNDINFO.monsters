@@ -1716,6 +1716,12 @@ MFKPAI3 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_pain3.ogg"
 $random Wastrel/Death { MFKDTH1 MFKDTH2 }
 MFKDTH1 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_death1.ogg"
 MFKDTH2 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_death2.ogg"
+$random Wastrel/Swing { MFKSWN1 MFKSWN2 MFKSWN3 MFKSWN4 MFKSWN5 }
+MFKSWN1 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_swoosh1.ogg"
+MFKSWN2 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_swoosh2.ogg"
+MFKSWN3 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_swoosh3.ogg"
+MFKSWN4 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_swoosh4.ogg"
+MFKSWN5 "Sounds/DCY Monsters/Wastrel/dcy_wastrel_swoosh5.ogg"
 
 $random ShadowCrusader/Sight { SCRUSIT1 SCRUSIT2 }
 SCRUSIT1 "Sounds/DCY Monsters/Shadow Crusader/dcy_scrusader_sight1.ogg"
