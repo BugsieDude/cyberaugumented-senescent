@@ -1,17 +1,49 @@
 Class DCY_Intermission : StatusScreen
 {
   int intermissioncounter;
-  string mainfont;
+  font mainfont;
+  font smallmainfont;
   float screenalpha;
   double borderx;
   double bordery;
   double borderint;
   int intc;
   double alphafade;
+  double alphamap;
+  double alphastats;
+  double assmooth;
+  double amsmooth;
   bool moveback;
   
   TextureID border;
   TextureID flash;
+  
+  enum DCYValues
+  {
+	DCYTIME = 136,
+	DCYSTATY = 70,
+  };
+  
+  override void initStats()
+  {
+	alphafade = 2;
+	mainfont = "BIGFONT";
+	smallmainfont = "SMALLFONT";
+	border = TexMan.CheckForTexture("Graphics/DCY_NON3.png");
+	flash = TexMan.CheckForTexture("Graphics/DCY_NONE.png");
+	
+	assmooth = 0;
+	amsmooth = 0;
+	
+	intermissioncounter = gameinfo.intermissioncounter;
+	acceleratestage = 0;
+	sp_state = 1;
+	cnt_kills[0] = cnt_items[0] = cnt_secret[0] = -1;
+	cnt_time = cnt_par = -1;
+	cnt_pause = GameTicRate;
+	
+	cnt_total_time = -1;
+  }
   
   override void updateStats()
   {
@@ -127,27 +159,11 @@ Class DCY_Intermission : StatusScreen
 	}
   }
   
-  override void initStats()
-  {
-	alphafade = 2;
-	mainfont = "BIGFONT";
-	border = TexMan.CheckForTexture("Graphics/DCY_NON3.png");
-	flash = TexMan.CheckForTexture("Graphics/DCY_NONE.png");
-	
-	intermissioncounter = gameinfo.intermissioncounter;
-	acceleratestage = 0;
-	sp_state = 1;
-	cnt_kills[0] = cnt_items[0] = cnt_secret[0] = -1;
-	cnt_time = cnt_par = -1;
-	cnt_pause = GameTicRate;
-	
-	cnt_total_time = -1;
-  }
-  
   override void Ticker()
   {
 	bcnt++;  
 	
+	if (bcnt == 1) S_ChangeMusic("");
 	if (bcnt == 10) { S_StartSound("dcy/allover", 67, CHANF_UI); }
 	if (bcnt == 90) StartMusic();
 	
@@ -174,6 +190,9 @@ Class DCY_Intermission : StatusScreen
 		CurState = StatCount;
 		return;
 	}
+	
+	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.005; }
+	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.005; }
 	
 	bg.updateAnimatedBack();
 	
@@ -207,7 +226,7 @@ Class DCY_Intermission : StatusScreen
 		break;
 	}
 	
-	screen.DrawTexture(border, true, -1000, (cheight / 2) - (bordery * 100), DTA_ScaleX, 2000, DTA_ScaleY, bordery, DTA_FullscreenScale, scalemode, DTA_VirtualWidth, cwidth, DTA_VirtualHeight, cheight, DTA_DestWidth, 200, DTA_DestHeight, 200);
+	screen.DrawTexture(border, true, -1000, 600 - (bordery * 100), DTA_ScaleX, 2000, DTA_ScaleY, bordery, DTA_FullscreenScale, scalemode, DTA_VirtualWidth, 1, DTA_VirtualHeight, 1200, DTA_DestWidth, 200, DTA_DestHeight, 200);
 	screen.DrawTexture(flash, true, 0, 0, DTA_ScaleX, 2000, DTA_ScaleY, 2000, DTA_FullscreenScale, scalemode, DTA_DestWidth, 200, DTA_DestHeight, 200, DTA_Alpha, alphafade, DTA_VirtualWidth, cwidth, DTA_VirtualHeight, cheight);
   
 	switch (CurState) //states
@@ -227,55 +246,29 @@ Class DCY_Intermission : StatusScreen
 	}
   }
   
-  int DrawName(int y, TextureID tex, string levelname)
+  void DCY_DrawText(font fnt, color c, int x, int y, string text, int alignment = 0, float alpha = 1, float warper = 1)
   {
-	if (levelname.Length() > 0)
+	int align;
+	switch(alignment)
 	{
-		int h = 0;
-		int lumph = mapname.mFont.GetHeight() * scaleFactorY;
-		
-		BrokenLines lines = mapname.mFont.BreakLines(levelname, wrapwidth / scaleFactorX);
-		int count = lines.Count();
-		
-		for (int i = 0; i < count; i++)
-		{
-			DrawText(mapname.mFont, mapname.mColor, (cwidth - lines.StringWidth(i) * scaleFactorX) / 2, y + h, lines.StringAt(i), true);
-			h += lumph;
-		}
-		
-		return y + h;
+		case 0: align = x; break;
+		case 1: align = x - fnt.StringWidth(text) / 2; break;
+		case 2: align = x - fnt.StringWidth(text); break;
 	}
-	
-	return 0;
+	screen.DrawText(fnt, c, align, y, text,
+	DTA_320x200, true,
+	DTA_Alpha, alpha,
+	DTA_ScaleX, warper);
   }
   
-  int DrawAuthor(int y, String levelname)
-  {
-	if (levelname.Length() > 0)
-	{
-		int h = 0;
-		int lumph = author.mFont.GetHeight() * scaleFactorY;
-		
-		BrokenLines lines = author.mFont.BreakLines(levelname, wrapwidth / scaleFactorX);
-		
-		int count = lines.Count();
-		for (int i = 0; i < count; i++)
-		{
-			DrawText(author.mFont, author.mColor, (cwidth - lines.StringWidth(i) * scaleFactorX) / 2, y + h, lines.StringAt(i), true);
-			h += lumph;
-		}
-		return y + h;
-	}
-	return y;
-  }
-	
   override void drawShowNextLoc()
   {
 	borderint = 0;
 	moveback = true;
 	if (bordery < 1.5) bordery = 1.5;
-	DrawName(screen.getHeight() / 2 - 30, wbs.LName1, lnametexts[1]);
-	DrawAuthor(screen.getHeight() / 2 - 10, authortexts[1]);
+	
+	BrokenLines lines = mainfont.BreakLines(lnametexts[1], 300);
+	DCY_DrawText(mainfont, Font.CR_UNTRANSLATED, 260 - (alphamap * 100), 92, lines.StringAt(0), 1, alphamap, alphamap);
   }
   
   override void drawStats (void)
@@ -283,11 +276,13 @@ Class DCY_Intermission : StatusScreen
 	if (bcnt < 65) return;
 		
 	// line height
-	int lh = IntermissionFont.GetHeight() * 3 / 2;
+	int lh = IntermissionFont.GetHeight() * 3 / 2.5;
 	
-	DrawName(80, wbs.LName0, "Now leaving: ".."\c[q1]"..lnametexts[0]);
+	BrokenLines lines = mainfont.BreakLines(lnametexts[0], 300);
+	DCY_DrawText(mainfont, font.CR_UNTRANSLATED, 260 - (alphastats * 100), 40, lines.StringAt(0), 1, alpha: alphastats, warper: alphastats);
+	DCY_DrawText(smallmainfont, font.CR_UNTRANSLATED, 160, 60, "Completed.", 1, alpha: alphastats);
 	
-	let tcolor = Font.CR_WHITE;
+	let tcolor = Font.CR_UNTRANSLATED;
 
 	Font printFont;
 	Font textFont = generic_ui? NewSmallFont : content.mFont;
@@ -308,16 +303,16 @@ Class DCY_Intermission : StatusScreen
 		statsx = max(0, (320 - allwidth) / 2);
 		
 	printFont = generic_ui? IntermissionFont : content.mFont;
-	DrawText (textFont, tcolor, statsx, SP_STATSY, "$TXT_IMKILLS");
-	DrawText (textFont, tcolor, statsx, SP_STATSY+lh, "$TXT_IMITEMS");
-	DrawText (textFont, tcolor, statsx, SP_STATSY+2*lh, "$TXT_IMSECRETS");
-	DrawText (textFont, tcolor, SP_TIMEX, timey, "$TXT_IMTIME");
-	if (wbs.partime) DrawText (textFont, tcolor, 160 + SP_TIMEX, timey, "$TXT_IMPAR");
+	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty, "$TXT_IMKILLS", alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty + lh, "$TXT_IMITEMS", alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx, dcystaty + 2 * lh, "$TXT_IMSECRETS", alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, SP_TIMEX, dcytime, "$TXT_IMTIME", alpha: alphastats);
+	if (wbs.partime) DCY_DrawText(smallmainfont, tcolor, 160 + SP_TIMEX, dcytime, "$TXT_IMPAR", alpha: alphastats);
 			 
-	drawPercent (printFont, 320 - statsx, SP_STATSY, cnt_kills[0], wbs.maxkills, true, tcolor);
-	drawPercent (printFont, 320 - statsx, SP_STATSY+lh, cnt_items[0], wbs.maxitems, true, tcolor);
-	drawPercent (printFont, 320 - statsx, SP_STATSY+2*lh, cnt_secret[0], wbs.maxsecret, true, tcolor);
-	drawTimeFont (printFont, 160 - SP_TIMEX, timey, cnt_time, tcolor);
+	drawPercent (printFont, 320 - statsx, dcystaty, cnt_kills[0], wbs.maxkills, true, tcolor);
+	drawPercent (printFont, 320 - statsx, dcystaty+lh, cnt_items[0], wbs.maxitems, true, tcolor);
+	drawPercent (printFont, 320 - statsx, dcystaty+2*lh, cnt_secret[0], wbs.maxsecret, true, tcolor);
+	drawTimeFont (printFont, 160 - SP_TIMEX, dcytime, cnt_time, tcolor);
 			 
 	// This really sucks - not just by its message - and should have been removed long ago!
 	// To avoid problems here, the "sucks" text only gets printed if the lump is present, this even applies to the text replacement.
@@ -325,14 +320,14 @@ Class DCY_Intermission : StatusScreen
 	if (cnt_time >= wbs.sucktime * 60 * 60 && wbs.sucktime > 0 && Sucks.IsValid())
 	{ // "sucks"
 		int x = 160 - SP_TIMEX;
-		int y = timey;
-		DrawText (textFont, tColor, x  - printFont.StringWidth("$TXT_IMSUCKS"), y - printFont.GetHeight() - 2,	"$TXT_IMSUCKS");
+		int y = dcytime;
+		DCY_DrawText(smallmainfont, tColor, x  - printFont.StringWidth("$TXT_IMSUCKS"), y - smallmainfont.GetHeight() - 2, "$TXT_IMSUCKS", alpha: alphastats);
 	}
 
 	if (wi_showtotaltime)
-		 drawTimeFont(printFont, 160 - SP_TIMEX, timey + lh, cnt_total_time, tcolor);
+		 drawTimeFont(printFont, 160 - SP_TIMEX, dcytime + lh, cnt_total_time, tcolor);
 
 	if (wbs.partime)
-		drawTimeFont (printFont, 320 - SP_TIMEX, timey, cnt_par, tcolor);
+		drawTimeFont(printFont, 320 - SP_TIMEX, dcytime, cnt_par, tcolor);
   }
 }
