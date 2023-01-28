@@ -11,6 +11,7 @@ gameinfo
 	dimcolor = "Black"
 	dimamount = 0.6
 	cursorpic = "DCYC0RSU"
+	statscreen_single = "DCY_Intermission"
 	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "CyberaugumentedStartupHandler"
 	StatusBarClass = "DCyb_HUD"
 	BackpackType = "DCY_Backpack"
