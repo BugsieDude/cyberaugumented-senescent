@@ -18,8 +18,8 @@ Class DCY_Apollyon : DCY_VileParent
   ActiveSound "Apollyon/Active";
   PainSound "Apollyon/Pain";
   DeathSound "Apollyon/Death";
-  Obituary "%o was turned into scarlet dust by an Apollyon.";
-  HitObituary "%o was turned into scarlet dust by an Apollyon.";
+  Obituary "%o got turned into scarlet dust by an Apollyon.";
+  HitObituary "%o got turned into scarlet dust by an Apollyon.";
   }
   
   States

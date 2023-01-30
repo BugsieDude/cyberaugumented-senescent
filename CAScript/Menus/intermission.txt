@@ -1,0 +1,340 @@
+Class DCY_Intermission : StatusScreen
+{
+  int intermissioncounter;
+  font mainfont;
+  font smallmainfont;
+  float screenalpha;
+  double borderx;
+  double bordery;
+  double borderint;
+  int intc;
+  double alphafade;
+  double alphamap;
+  double alphastats;
+  double assmooth;
+  double amsmooth;
+  double xmove;
+  double x2move;
+  bool moveback;
+  float interpolate;
+  
+  TextureID border;
+  TextureID flash;
+  
+  enum DCYValues
+  {
+	DCYTIME = 136,
+	DCYSTATY = 70,
+  };
+  
+  enum DCYStates
+  {
+	LEFT = 0,
+	CENTER = 1,
+	RIGHT = 2,
+  };
+  
+  override void initStats()
+  {
+	alphafade = 2;
+	mainfont = "BIGFONT";
+	smallmainfont = "SMALLFONT";
+	border = TexMan.CheckForTexture("Graphics/DCY_NON3.png");
+	flash = TexMan.CheckForTexture("Graphics/DCY_NONE.png");
+	
+	assmooth = 0;
+	amsmooth = 0;
+	xmove = -100;
+	x2move = 100;
+	
+	intermissioncounter = gameinfo.intermissioncounter;
+	acceleratestage = 0;
+	sp_state = 1;
+	cnt_kills[0] = cnt_items[0] = cnt_secret[0] = -1;
+	cnt_time = cnt_par = -1;
+	cnt_pause = GameTicRate;
+	
+	cnt_total_time = -1;
+  }
+  
+  override void updateStats()
+  {
+	if (acceleratestage && sp_state != 10)
+	{
+		acceleratestage = 0;
+		sp_state = 10;
+		PlaySound("intermission/nextstage");
+		
+		cnt_kills[0] = Plrs[me].skills;
+		cnt_items[0] = Plrs[me].sitems;
+		cnt_secret[0] = Plrs[me].ssecret;
+		cnt_time = Thinker.Tics2Seconds(Plrs[me].stime);
+		cnt_par = wbs.partime / GameTicRate;
+		cnt_total_time = Thinker.Tics2Seconds(wbs.totaltime);
+	}
+
+	if (sp_state == 2)
+	{
+		if (intermissioncounter)
+		{
+			cnt_kills[0] += 2;
+			if (!(bcnt&3)) PlaySound("intermission/tick");
+		}
+		
+		if (!intermissioncounter || cnt_kills[0] >= Plrs[me].skills)
+		{
+			cnt_kills[0] = Plrs[me].skills;
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+	}
+	else if (sp_state == 4)
+	{
+		if (intermissioncounter)
+		{
+			cnt_items[0] += 2;
+			if (!(bcnt&3)) PlaySound("intermission/tick");
+		}
+		
+		if (!intermissioncounter || cnt_items[0] >= Plrs[me].sitems)
+		{
+			cnt_items[0] = Plrs[me].sitems;
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+	}
+	else if (sp_state == 6)
+	{
+		if (intermissioncounter)
+		{
+			cnt_secret[0] += 2;
+			if (!(bcnt&3)) PlaySound("intermission/tick");
+		}
+		
+		if (!intermissioncounter || cnt_secret[0] >= Plrs[me].ssecret)
+		{
+			cnt_secret[0] = Plrs[me].ssecret;
+			PlaySound("intermission/nextstage");
+			sp_state++;
+		}
+	}
+	
+	else if (sp_state == 8)
+	{
+		if (intermissioncounter)
+		{
+			if (!(bcnt&3)) PlaySound("intermission/tick");
+
+			cnt_time += 3;
+			cnt_par += 3;
+			cnt_total_time += 3;
+		}
+
+		int sec = Thinker.Tics2Seconds(Plrs[me].stime);
+		if (!intermissioncounter || cnt_time >= sec)
+			cnt_time = sec;
+
+		int tsec = Thinker.Tics2Seconds(wbs.totaltime);
+		if (!intermissioncounter || cnt_total_time >= tsec)
+			cnt_total_time = tsec;
+
+		int psec = wbs.partime / GameTicRate;
+		if (!intermissioncounter || cnt_par >= psec)
+		{
+			cnt_par = psec;
+
+			if (cnt_time >= sec)
+			{
+				cnt_total_time = tsec;
+				PlaySound("intermission/nextstage");
+				sp_state++;
+			}
+		}
+	}
+	
+	else if (sp_state == 10)
+	{
+		if (acceleratestage)
+		{
+			PlaySound("intermission/paststats");
+			initShowNextLoc();
+		}
+	}
+	
+	else if (sp_state & 1)
+	{
+		if (!--cnt_pause)
+		{
+			sp_state++;
+			cnt_pause = GameTicRate;
+		}
+	}
+  }
+  
+  override void Ticker()
+  {
+	bcnt++;  
+	
+	if (bcnt == 1) S_ChangeMusic("");
+	if (bcnt == 10) { S_StartSound("dcy/allover", 67, CHANF_UI); }
+	if (bcnt == 90) StartMusic();
+	
+	alphafade -= 0.085;
+	
+	if (bcnt > 30 && bcnt < 65 && !moveback)
+	{
+		if (bordery < 4.6)
+		{
+			bordery += 0.22 - borderint;
+			borderint += 0.0065;
+		}
+		return;
+	}
+	
+	if (moveback && (bordery > 1.5))
+	{
+		bordery += -0.35 + borderint;
+		borderint -= 0.065;
+	}
+	
+	if (bcnt == 65 && !moveback)
+	{
+		CurState = StatCount;
+		return;
+	}
+	
+	if (bcnt > 65)
+	{
+		xmove += 8 - interpolate;
+		x2move += -8 + interpolate;
+		
+		if (interpolate < 8) interpolate += 0.35; else interpolate = 8;
+	}
+		
+	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.00525; }
+	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.00525; }
+	
+	bg.updateAnimatedBack();
+	
+	switch (CurState)
+	{
+		case StatCount:
+		updateStats(); break;
+		case ShowNextLoc:
+		updateShowNextLoc(); break;
+		case NoState:
+		updateNoState(); break;
+		case LeavingIntermission: break;
+	}
+  }
+  
+  override void Drawer()
+  {	
+	switch (CurState) //animated background
+	{
+	case StatCount:
+		bg.drawBackground(CurState, false, false);
+		break;
+	
+	case ShowNextLoc:
+	case LeavingIntermission:
+		bg.drawBackground(CurState, true, snl_pointeron);
+		break;
+	
+	default:
+		bg.drawBackground(CurState, true, snl_pointeron);
+		break;
+	}
+	
+	screen.DrawTexture(border, true, -1000, 600 - (bordery * 100), DTA_ScaleX, 2000, DTA_ScaleY, bordery, DTA_FullscreenScale, scalemode, DTA_VirtualWidth, 1, DTA_VirtualHeight, 1200, DTA_DestWidth, 200, DTA_DestHeight, 200);
+	screen.DrawTexture(flash, true, 0, 0, DTA_ScaleX, 2000, DTA_ScaleY, 2000, DTA_FullscreenScale, scalemode, DTA_DestWidth, 200, DTA_DestHeight, 200, DTA_Alpha, alphafade, DTA_VirtualWidth, cwidth, DTA_VirtualHeight, cheight);
+  
+	switch (CurState) //states
+	{
+	case StatCount:
+		drawStats();
+		break;
+	
+	case ShowNextLoc:
+	case LeavingIntermission:	// this must still draw the screen once more for the wipe code to pick up.
+		drawShowNextLoc();
+		break;
+	
+	default:
+		drawNoState();
+		break;
+	}
+  }
+  
+  void DCY_DrawText(font fnt, color c, int x, int y, string text, int alignment = 0, float alpha = 1, float warper = 1)
+  {
+	int align;
+	switch(alignment)
+	{
+		case left: align = x; break;
+		case center: align = x - fnt.StringWidth(text) / 2; break;
+		case right: align = x - fnt.StringWidth(text); break;
+	}
+	screen.DrawText(fnt, c, align, y, text,
+	DTA_320x200, true,
+	DTA_Alpha, alpha,
+	DTA_ScaleX, warper);
+  }
+  
+  override void drawShowNextLoc()
+  {
+	borderint = 0;
+	moveback = true;
+	if (bordery < 1.5) bordery = 1.5;
+	
+	BrokenLines lines = mainfont.BreakLines(lnametexts[1], 300);
+	DCY_DrawText(mainfont, Font.CR_UNTRANSLATED, 260 - (alphamap * 100), 92, lines.StringAt(0), 1, alphamap, alphamap);
+  }
+  
+  override void drawStats (void)
+  {
+	if (bcnt < 65) return;
+		
+	// line height
+	int lh = IntermissionFont.GetHeight() * 3 / 2.5;
+	
+	BrokenLines lines = mainfont.BreakLines(lnametexts[0], 300);
+	DCY_DrawText(mainfont, font.CR_UNTRANSLATED, 260 - (alphastats * 100), 40, lines.StringAt(0), 1, alpha: alphastats, warper: alphastats);
+	DCY_DrawText(smallmainfont, font.CR_UNTRANSLATED, 160, 60, "Completed.", 1, alpha: alphastats);
+	
+	let tcolor = Font.CR_UNTRANSLATED;
+
+	Font printFont;
+	Font textFont = generic_ui? NewSmallFont : content.mFont;
+	int statsx = SP_STATSX;
+
+	int timey = SP_TIMEY;
+	if (wi_showtotaltime)
+		timey = min(SP_TIMEY, 200 - 2 * lh);
+
+	// Check if everything fits on the screen.
+	String percentage = wi_percents? " 0000%" : " 0000/0000";
+	int perc_width = textFont.StringWidth(percentage);
+	int k_width = textFont.StringWidth("$TXT_IMKILLS");
+	int i_width = textFont.StringWidth("$TXT_IMITEMS");
+	int s_width = textFont.StringWidth("$TXT_IMSECRETS");
+	int allwidth = max(k_width, i_width, s_width) + perc_width;
+	if ((SP_STATSX*2 + allwidth) > 320)	// The content does not fit so adjust the position a bit.
+		statsx = max(0, (320 - allwidth) / 2);
+		
+	printFont = generic_ui? IntermissionFont : content.mFont;
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty, "\c[q7]"..StringTable.Localize("$TXT_IMKILLS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty + lh, "\c[m4]"..StringTable.Localize("$TXT_IMITEMS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, statsx + xmove, dcystaty + 2 * lh, "\c[z2]"..StringTable.Localize("$TXT_IMSECRETS"), alpha: alphastats);
+	DCY_DrawText(smallmainfont, tcolor, SP_TIMEX + xmove, dcytime - 7, "\c[v7]"..StringTable.Localize("$TXT_IMTIME"), alpha: alphastats);
+	if (wbs.partime) DCY_DrawText(smallmainfont, tcolor, 160 + SP_TIMEX + x2move, dcytime - 7, "\c[v7]"..StringTable.Localize("$TXT_IMPAR"), alpha: alphastats);
+			 
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty, cnt_kills[0], wbs.maxkills, true, tcolor);
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty+lh, cnt_items[0], wbs.maxitems, true, tcolor);
+	drawPercent(smallmainfont, 320 - statsx + x2move, -5 + dcystaty+2*lh, cnt_secret[0], wbs.maxsecret, true, tcolor);
+	drawTimeFont(smallmainfont, 160 - SP_TIMEX + xmove, dcytime, cnt_time, tcolor);
+	
+	if (wi_showtotaltime) drawTimeFont(smallmainfont, 160 - SP_TIMEX + xmove, dcytime + lh, cnt_total_time, tcolor);
+	if (wbs.partime) drawTimeFont(smallmainfont, 320 - SP_TIMEX + x2move, dcytime, cnt_par, tcolor);
+  }
+}

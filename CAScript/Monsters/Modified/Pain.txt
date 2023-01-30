@@ -78,9 +78,15 @@ Class DCY_SOULKING : DCYMonster
 		if (random(0, 4) == 0)
 			SetStateLabel("ScreamAtPlayer");
 	}
+	DAJK A 5 A_FaceTarget();
 	DAJK DE 5 A_FaceTarget();
-	DAJK F 4 A_FaceTarget();
+	DAJK F 4
+	{
+		A_StartSound("EternalPainElemental/Spit", CHAN_VOICE);
+		A_FaceTarget();
+	}
 	DAJK F 1 A_PainAttack("DCY_FlyingSkullWithFIRE");
+	DAJK ED 5 A_FaceTarget();
 	Goto See;
   Pain:
 	DAJK G 6;

@@ -248,6 +248,7 @@ Class DCY_WretchedExplosion : Actor
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	super.Tick();
 	A_Explode(4, 140, XF_NOTMISSILE);
 	A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);

@@ -79,7 +79,7 @@ Class DCY_FluorescentChevalier : DCY_KnightHell
   Death:
     PYRO R 1;
 	PYRO R 7 A_ScreamAndUnblock();
-	PYRO STUVWXY 8;
+	PYRO STUVWXY 8 DCY_SoulExplode();
 	PYRO Z -1;
 	Stop;
   Raise:

@@ -341,9 +341,9 @@ Class DCY_OverdemoniacBeam : DCY_EnemyTracer
 {
   Default
   {
-  DamageFunction 7;
-  Speed 30;
-  Scale .5;
+  DamageFunction 8;
+  Speed 70;
+  Scale .4;
   Height 20;
   Radius 20;
   +NEVERFAST
@@ -352,10 +352,43 @@ Class DCY_OverdemoniacBeam : DCY_EnemyTracer
   +EXTREMEDEATH
   SeeSound "BLASER";
   DeathSound "BLASERX";
-  Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,2.00]";
+  MissileType "DCY_OverdemoniacBeamTrail";
+  MissileHeight 6;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.75,0.75]";
   }
   
   int timer;
+  
+  override void Effect()
+  {
+	class<Actor> trail = MissileName;
+	if (trail != null)
+	{
+		double hitz = pos.z - 8;
+		
+		if (hitz < floorz)
+			hitz = floorz;
+			
+		// Do not clip this offset to the floor.
+		hitz += MissileHeight;
+		
+		Actor act = Spawn (trail, (pos.xy, hitz), ALLOW_REPLACE);
+		if (act != null)
+		{
+			if (bGetOwner && target != null)
+				act.target = target;
+			else
+				act.target = self;
+				
+			act.angle = angle;
+			act.pitch = pitch;
+			act.roll = roll;
+			act.scale.x = scale.x;
+			act.scale.y = scale.y;
+			act.vel = vel;
+		}
+	}
+  }
   
   States
   {
@@ -367,19 +400,76 @@ Class DCY_OverdemoniacBeam : DCY_EnemyTracer
 			A_ScaleVelocity(1.0065);
 			timer++;
 		}
+		
+		if (!(level.time % 4)) A_SpawnItemEx("DCY_OverdemoniacRing", xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_ABSOLUTEVELOCITY|SXF_NOCHECKPOSITION);
 	}
 	Loop;
   Death:
-	SUPH A 0;
 	TNT1 A 50
 	{
 		A_QuakeEx(4, 4, 4, 40, 0, 600, "none", QF_SCALEDOWN|QF_RELATIVE, 0, 0, 0, 0, 978);
-		A_SpawnItemEx("DCY_MonochromaticExplosion", frandom(1.5, 1.5), frandom(1.5, 1.5), frandom(1.5, 1.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_MonochromaticExplosion", frandom(1.5, 1.5), frandom(1.5, 1.5), frandom(1.5, 1.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_OverdemoniacExplosion", 0, 0, 0, 0, 0, 0, frandom(0, 360), SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_WretchedTeleport", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_BionicRing", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_OverdemoniacExplosion", angle: frandom(0, 360), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
 		A_Explode(50, 79, XF_NOTMISSILE);
 	}
 	Stop;
+  }
+}
+
+Class DCY_OverdemoniacBeamTrail : DCY_ProjectileBaseTrail
+{
+  Default
+  {
+  Scale .4;
+  Alpha 0.135;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.01,0.00,0.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	TRAC A 0 NoDelay
+	{
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
+		A_FaceMovementDirection();
+	}
+	Goto Looping;
+  Looping:
+	TRAC A 1 A_FadeOut(0.01);
+	Wait;
+  }
+}
+
+Class DCY_OverdemoniacRing : DCY_OverdemoniacBeamTrail
+{
+  Default
+  {
+  Scale .5;
+  Alpha 1.0;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.00,0.00,0.00]";
+  +WALLSPRITE
+  +ROLLSPRITE
+  }
+  
+  States
+  {
+  Spawn:
+	SPE1 A 0 NoDelay
+	{
+		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
+		A_FaceMovementDirection();
+	}
+	Goto Looping;
+  Looping:
+	SPE1 A 1
+	{
+		A_SetScale(Scale.X + 0.1);
+		A_SetRoll(Roll + 5);
+		A_FadeOut(0.05);
+	}
+	Wait;
   }
 }
 
@@ -410,6 +500,7 @@ Class DCY_UmbraLaser : DCY_JadeLaserEnemy
 	Stop;
   }
 }
+
 
 Class DCY_ArbiterTracer : DCY_ZombieTracer
 {

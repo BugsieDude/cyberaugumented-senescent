@@ -23,6 +23,7 @@ Announce/Complete "Sounds/Announcements/dcy_complete.ogg"
 Announce/CompletionistReward "Sounds/Announcements/dcy_completionist.ogg"
 dcy/mapdone "Sounds/Announcements/dcy_winwin.ogg"
 dcy/fail "Sounds/Announcements/dcy_youfuckedup.ogg"
+dcy/allover "Sounds/Announcements/dcy_over.ogg"
 
 //Enemy Announcements
 CMYSTERY "Sounds/Announcements/Minibosses/dcy_it_is_a_mystery.ogg"

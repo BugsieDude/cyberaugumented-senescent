@@ -11,7 +11,7 @@ Class DCY_Manes : DCY_Impe
   Health 400;
   FloatSpeed 4;
   FastSpeed 12;
-  Translation "16:239=%[0.00,0.00,0.35]:[0.00,0.00,2.00]";
+  Translation "16:239=%[0.00,0.00,0.00]:[0.00,0.65,2.00]";
   +FLOAT
   +NOGRAVITY
   +VISIBILITYPULSE
@@ -29,7 +29,7 @@ Class DCY_Manes : DCY_Impe
   {
 	if (!level.isfrozen() && DCY_EffectDistance(sfxdistance))
 	{
-		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-30, 30), frandom(-30, 30), frandom(10, 60), zvel: frandom(0.5, 1.5), flags: SXF_NOCHECKPOSITION, failchance: 128);
+		if (!(level.time % 2)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
 		A_SpawnItemEx("DCY_ManesTrail", xvel: frandom(-1, 1), yvel: frandom(-1, 1), zvel: frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 	}
 	
@@ -128,26 +128,27 @@ Class DCY_ManesBall : DCY_MeatballElecball
 {
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[0.10,0.10,0.50]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.80,1.50]";
   DamageType "Ghost";
   SeeSound "";
+  Scale 0.55;
   }
   
   States
   {
   Spawn:
-	SUE1 BBBBCCCCCDDDDDDCCCCC 1
+	ZT__ AAAABBBB 1
 	{
 		roll += 3;
 		A_SpawnItemEx("DCY_CWFXTrail", flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
 		vel.x += frandom(-1, 1);
 		vel.y += frandom(-1, 1);
 		vel.z += frandom(-1, 1);
-		A_SpawnParticleEx(0x000066, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), random(25, 35), 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.825);
+		A_SpawnParticleEx(0x0f52ba, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), random(10, 20), 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.825);
 	}
 	Loop;
   Death:
-	SUE1 BCDEF 5;
+	SUE1 CDEFGHIJKL 3;
 	Stop;
   }
 }

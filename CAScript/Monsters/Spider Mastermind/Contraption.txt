@@ -38,6 +38,7 @@ Class DCY_ContraptionOfHell : DCY_TheGiantEnemySpider
 			if (bFRIENDLY)
 				head.bFRIENDLY = true;
 
+			head.scale = scale;
 			head.bAMBUSH = bAMBUSH;
 			head.master = self;
 		}

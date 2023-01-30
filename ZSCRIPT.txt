@@ -2,6 +2,7 @@ Version "4.10.0"
 
 //Menu
 #include "CAScript/Menus/Tooltips.txt"
+#include "CAScript/Menus/Intermission.txt"
 
 //The Player
 #include "CAScript/Player/NewPlayer.txt"
