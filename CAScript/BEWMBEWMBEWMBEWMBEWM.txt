@@ -337,3 +337,7 @@ Class DCY_BlueVoidExplosion : DCY_AndroidExplosion
 
 Class DCY_YanoritExplosion : DCY_Explosion_1 { Default { Scale 0.15; Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,0.00]"; } }
 Class DCY_PurpleAndroidExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.30,0.58,2.00]"; } }
+Class DCY_Explosion_1_Nightmare : DCY_Explosion_1_Small { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.57,2.00]"; } }
+Class DCY_Explosion_1_Phantom : DCY_Explosion_1_Small { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }
+Class DCY_Explosion_1_Nightmare2 : DCY_Explosion_1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.57,0.57,2.00]"; } }
+Class DCY_Explosion_1_Phantom2 : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]"; } }

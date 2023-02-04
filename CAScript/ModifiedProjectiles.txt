@@ -367,6 +367,97 @@ Class DCY_RocketFlare : Actor
   }
 }
 
+Class DCY_XBall : FastProjectile 
+{
+  Default
+  {
+  DamageType "Aurum";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.72,0.82]";
+  SeeSound "Cacomom/Attack";
+  DeathSound "ball/Death";
+  Radius 10;
+  Height 10;
+  Damage 5;
+  Speed 22;
+  FastSpeed 24;
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_XBallTrail2", flags: SXF_NOCHECKPOSITION);
+		A_Weave(2, 2, 1, 1);
+	}
+	Loop;
+  Death:
+    TNT1 AAAAAAAAA 1 A_SpawnItemEx("DCY_XBallTrail2", frandom(-4, 4), frandom(-4, 4), frandom(-4, 4), random(-8, 8), random(-8, 8), random(-8, 8), random(-180, 180), SXF_NOCHECKPOSITION);
+	Stop;
+  }
+}
+
+Class DCY_XBall2 : CacodemonBall
+{
+  Default
+  {
+  DamageType "Aurum";
+  Damage 4;
+  Speed 30;
+  FastSpeed 32.5;
+  Height 9;
+  Radius 9;
+  Scale 1.0;
+  }
+  States
+  {
+  Spawn:
+	333L AAABBBCCC 1 Bright A_SpawnItemEx("DCY_XBallTrail", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
+	Loop;
+  Death:
+	333L AAAAA 0 A_SpawnItemEx("DCY_XBallTrail", 0, 0, 0, random(-10, 10), random(-10, 10), random(-10, 10), random(-320, 230), SXF_NOCHECKPOSITION);
+	333L DEFGHIJ 4 Bright;
+	Stop;
+  }
+}
+
+Class DCY_XBallTrail : Actor
+{
+  Default
+  {
+  Scale 1.5;
+  Height 0;
+  Radius 0;
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.72,0.82]";
+  +NOCLIP
+  +NOINTERACTION
+  +BRIGHT
+  +DONTSPLASH
+  }
+  States
+  {
+  Spawn:
+    3XP0 AB 2;
+	3XP0 CDE 1;
+	Stop;
+  }
+}
+
+Class DCY_XBallTrail2 : DCY_XBallTrail
+{
+  Default
+  {
+  Scale 1.75;
+  }
+  States
+  {
+  Spawn:
+	3XP0 ABC 2;
+	3XP0 DE 1;
+	Stop;
+  }
+}
+
 Class DCY_RehauledPlasma : FastProjectile Replaces PlasmaBall
 {
   Mixin DCY_Effects;

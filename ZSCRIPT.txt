@@ -36,7 +36,6 @@ Version "4.10.0"
 #include "CAScript/Items/Other.txt"
 
 //Effects
-#include "CAScript/Weapons/The-Heirloom.txt"
 #include "CAScript/Others/OtherTrails.txt"
 #include "CAScript/JetFlares.txt"
 #include "CAScript/BloodTypes.txt"
@@ -69,7 +68,7 @@ Version "4.10.0"
 #include "CAScript/Weapons/Dismantler.txt"
 #include "CAScript/Weapons/Epitome.txt"
 #include "CAScript/Weapons/EternalVoid.txt"
-#include "CAScript/Weapons/TheCinerealOrdnance.txt"
+//#include "CAScript/Weapons/TheCinerealOrdnance.txt"
 
 //Props
 #include "CAScript/Props/Lights.txt"

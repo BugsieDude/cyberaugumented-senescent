@@ -1,6 +1,7 @@
 I'd like to list the creators of the resources used in there as a part of respect.
 First off, here are some major contributors for this mod, just for you guys to know
-who made this mod a living reality.
+who made this mod a living reality. If I forgot to credit some resources, feel free
+to tell me!
 
 ================================================================================
 DISCLAIMERS
@@ -8,7 +9,8 @@ DISCLAIMERS
 
 Please do not edit my mod and release it to the whole world showing your
 'original' mod or addon. This is called theft. If you'd like to add things from
-my mod, please ask me. Please do not repost my mod at any time.
+my mod, please ask me. If you want to add stuff that is not made by me, feel
+free to do. Please do not repost my mod at any time.
 
 ================================================================================
 CONTRIBUTOR TEAM + CREATOR
@@ -33,8 +35,8 @@ Special thanks to...
 
 Agent_Ash - For helping me with ZScript
 Boondorl and the entire ZDoom server - Helping me making this mod a reality
-Deimos Anomaly ("What the bruh...") - The main idea of dynamic spawners and the temperature system.
-reuzel - For supporting this mod
+Deimos Anomaly - The main idea of dynamic spawners and the temperature system.
+Visceral - For supporting this mod
 
 You - For downloading and trying out Cyberaugumented.
 
@@ -44,7 +46,7 @@ CREATORS OF RESOURCES USED IN THIS MOD
 
 id Software - Sounds
 Midway Software - (PSX Doom) Sounds
-Bethesda Software & id Software - DOOM (2016) and DOOM Eternal
+Bethesda Software & id Software - DOOM (2016) and DOOM Eternal, Widescreen assets
 MicroProse - Monster sounds
 Rondo of Blood | Dracula X (Konami) - Projectile effect sprites
 Raven Software - Monster Sprites, sounds (Hexen II and Heretic II)
@@ -58,10 +60,11 @@ Activision Blizzard - Diablo Sounds
 Overlord (Mew) - Cydestroyer, Hellfire Cyberdemon, and Cerebral Commander sprites
 Bridgeburner (Aka. Eriance) - Mindmaster, Dastard, Vulgars, Infernis, Hexodenican, Wretched, Espouser, etc. sprites
 DoomedArchvile - Alacritous Guy Sprites
-HorrorMovieGuy - Monster sprites
+HorrorMovieGuy/HorrorMovieRei - Monster sprites
 raymoohawk - Automaton Supervisor and Decedent Bigwig sprites
 Urric - Overdemoniac Sprites
 Xim - Destructor, Transmuter sprites
+revo794 - Menu noises
 WildStudios & WildTangent - Pickup Sounds
 Interplay Entertainment - Sounds
 Tripwire Interactive - Monster sounds (Blue Void Incarnate, Abater, Destructive Earl, etc.)
@@ -95,9 +98,9 @@ Wereknight - Former spriter
 MUGEN - Cool ass effect sprites
 VICE - (Hell Razer & Soul Crusher) Sprites
 Xegethra/Amaranthus616 - Black Metal Baron, Heavy Metal Imp, etc. Sprites
-SNK Corp. - (Metal Slug) Sprites for Water Splashes
+SNK Corp. - (Metal Slug) Sprites for Water Splashes + Alpha Mission 2 Startup Sound
 BloodyAcid - Sprites
-Craneo - Mr. Funny Funny Man
+Craneo - Sprites
 Digital Extremes - Sounds
 Epic Games - (Unreal Tournament, Gears of War) Sounds
 Jukem - Weapon sprites
@@ -137,10 +140,10 @@ EOA - Tracer & Spark models
 TG5 - Sprites
 Ultra64 - Rattail Sprites
 Kamina - Sounds
-Nash - The Weapon Swaying script
+Nash - The Weapon Swaying script, Widescreen assets
 Fuzzball - For the NewTextColors_260 text colors
 Konjak (Iconoclasts) - Exhauster fucking dies sound
-Valve Studios (Team Fortress 2, Half-Life 2, etc) - Sounds
+Valve (Team Fortress 2, Half-Life 2, Left 4 Dead, etc) - Sounds
 Titanium - Sprites and Sounds
 Feralidragon - Sounds
 Arkore - Deracinator sprites
@@ -183,6 +186,8 @@ DitheredOutput - Combatant Sounds
 Terminal Reality (Bloodrayne) - Sounds
 Frictional Games - Sounds
 Gunfire Games - Sounds
+MothraMaster - Boot Sprites
+Korp - Boot Sprites
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

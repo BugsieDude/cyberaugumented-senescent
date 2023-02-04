@@ -5,9 +5,9 @@ ACTOR DCY_DeTyrant : DCY_Spawner Replaces Cyberdemon
   DropItem "DCY_NavyTerminator", 15, 150
   DropItem "DCY_Vamchnorm", 25, 100
   DropItem "DCY_Arbiter", 30, 80
-  DropItem "DCY_Ultraspeller", 50, 1
+  //DropItem "DCY_Ultraspeller", 50, 1
   DropItem "DCY_ChoricoNepheloma", 45, 2
-  DropItem "DCY_MultidimensionalSpawner", 70, 1
+  //DropItem "DCY_MultidimensionalSpawner", 70, 1
 }
 
 ACTOR DCY_MultidimensionalSpawner : RandomSpawner

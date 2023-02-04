@@ -82,14 +82,18 @@ Class DCY_Violator : DCY_Dastard
 	Goto Missile+15;
   Lunge:
     TNT1 A 0 A_Jump(80, "Missile");
-    VI0_ EF 6 A_FaceTarget;
-	VI0_ G 10
+	VI0_ V 6 A_FaceTarget;
+    VI3_ D 6 A_FaceTarget;
+	VI3_ E 6
 	{
 		A_StartSound("dastard/pain", CHAN_VOICE);
-		A_Hop(5);
+		A_Hop(6);
 		A_Recoil(-14);
 	}
-	VI0_ FE 4;
+	VI3_ F 4 { if (vel.z == 0) SetStateLabel("Back"); }
+	Goto Lunge+4;
+  Back:
+	VI3_ GH 8;
 	TNT1 A 0 A_Jump(150, "MissileContinue");
 	Goto See;
   MissileContinue:

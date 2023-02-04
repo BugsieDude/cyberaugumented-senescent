@@ -1,3 +1,2 @@
 excludemap TEST
-excludeactor DCYMonster
 excludeactor DCY_MultidimensionalCaster

@@ -36,7 +36,7 @@ Class DCY_MultidimensionalCaster : DCY_Cybie //Strong boi
   BloodColor "2ba0ff";
   Speed 20;
   FastSpeed 30;
-  DropItem "DCY_TheCinerealOrdnance";
+  //DropItem "DCY_TheCinerealOrdnance";
   DamageFactor 0.65;
   DamageFactor "Holy", 0.35;
   DamageFactor "Emptiness", 0.5;

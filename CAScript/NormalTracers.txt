@@ -449,7 +449,7 @@ Class DCY_OverdemoniacRing : DCY_OverdemoniacBeamTrail
   Scale .5;
   Alpha 1.0;
   Translation "0:255=%[0.00,0.00,0.00]:[1.00,0.00,0.00]";
-  +WALLSPRITE
+  +FLATSPRITE
   +ROLLSPRITE
   }
   
@@ -460,9 +460,8 @@ Class DCY_OverdemoniacRing : DCY_OverdemoniacBeamTrail
 	{
 		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
 		A_FaceMovementDirection();
+		A_SetPitch(Pitch + 90);
 	}
-	Goto Looping;
-  Looping:
 	SPE1 A 1
 	{
 		A_SetScale(Scale.X + 0.1);

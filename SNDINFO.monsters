@@ -2813,27 +2813,20 @@ DCYCombatant/Sight2 "Sounds/DCY Monsters/Combatant/dcy_combatant_see2.ogg"
 DCYCombatant/Sight3 "Sounds/DCY Monsters/Combatant/dcy_combatant_see3.ogg"
 DCYCombatant/Sight4 "Sounds/DCY Monsters/Combatant/dcy_combatant_see4.ogg"
 DCYCombatant/Sight5 "Sounds/DCY Monsters/Combatant/dcy_combatant_see5.ogg"
-$random DCYCombatant/Idle { DCYCombatant/Idle1 DCYCombatant/Idle2 DCYCombatant/Idle3 DCYCombatant/Idle4 DCYCombatant/Idle5 DCYCombatant/Idle6 DCYCombatant/Idle7 }
+$random DCYCombatant/Idle { DCYCombatant/Idle1 DCYCombatant/Idle2 DCYCombatant/Idle3 DCYCombatant/Idle4 DCYCombatant/Idle5 }
 DCYCombatant/Idle1 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle1.ogg"
 DCYCombatant/Idle2 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle2.ogg"
 DCYCombatant/Idle3 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle3.ogg"
 DCYCombatant/Idle4 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle4.ogg"
 DCYCombatant/Idle5 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle5.ogg"
-DCYCombatant/Idle6 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle6.ogg"
-DCYCombatant/Idle7 "Sounds/DCY Monsters/Combatant/dcy_combatant_idle7.ogg"
-$random DCYCombatant/Pain { DCYCombatant/Pain1 DCYCombatant/Pain2 DCYCombatant/Pain3 DCYCombatant/Pain4 DCYCombatant/Pain5 DCYCombatant/Pain6 DCYCombatant/Pain7 }
+$random DCYCombatant/Pain { DCYCombatant/Pain1 DCYCombatant/Pain2 DCYCombatant/Pain3 }
 DCYCombatant/Pain1 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain1.ogg"
 DCYCombatant/Pain2 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain2.ogg"
 DCYCombatant/Pain3 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain3.ogg"
-DCYCombatant/Pain4 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain4.ogg"
-DCYCombatant/Pain5 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain5.ogg"
-DCYCombatant/Pain6 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain6.ogg"
-DCYCombatant/Pain7 "Sounds/DCY Monsters/Combatant/dcy_combatant_pain7.ogg"
-$random DCYCombatant/Death { DCYCombatant/Death1 DCYCombatant/Death2 DCYCombatant/Death3 DCYCombatant/Death4 }
+$random DCYCombatant/Death { DCYCombatant/Death1 DCYCombatant/Death2 DCYCombatant/Death3 }
 DCYCombatant/Death1 "Sounds/DCY Monsters/Combatant/dcy_combatant_die1.ogg"
 DCYCombatant/Death2 "Sounds/DCY Monsters/Combatant/dcy_combatant_die2.ogg"
 DCYCombatant/Death3 "Sounds/DCY Monsters/Combatant/dcy_combatant_die3.ogg"
-DCYCombatant/Death4 "Sounds/DCY Monsters/Combatant/dcy_combatant_die4.ogg"
 $volume DCYCombatant/Death 0.75
 
 $random Auteur/Sight { Auteur/Sight1 Auteur/Sight2 Auteur/Sight3 Auteur/Sight4 }

@@ -170,7 +170,7 @@ Intermission Doom2Cast //replaces the standard cast call
 		CastClass = "DCY_Tagati"
 		CastName = "Disarray"
 	}
-	Cast //second enemy
+	Cast
 	{
 		CastClass = "DCY_Chrysalis"
 		CastName = "Avarice"
@@ -180,6 +180,16 @@ Intermission Doom2Cast //replaces the standard cast call
 	{
 		CastClass = "DCY_Inscrutable"
 		CastName = "Abyss"
+	}
+	Cast
+	{
+		CastClass = "DCY_Overdemoniac"
+		CastName = "Argent Infused"
+	}
+	Cast
+	{
+		CastClass = "DCY_TheristisPsichisl"
+		CastName = "Mindfuck"
 	}
 	Cast
 	{

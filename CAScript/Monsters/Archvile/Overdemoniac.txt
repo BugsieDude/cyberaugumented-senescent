@@ -187,7 +187,7 @@ Class DCY_OverdemoniacOrb : CacodemonBall
   States
   {
   Spawn:
-	ETV6 AB 1;
+	ETV6 AB 1 { if (DCY_EffectDistance(1000)) { actor l = spawn("DCY_ElecTrailBase", pos + (frandom(-5, 5), frandom(-5, 5), frandom(-5, 5))); if (l) { l.translation = translation; l.alpha *= 0.45; } } }
 	Loop;
   Death:
 	TNT1 A 10

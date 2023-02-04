@@ -193,8 +193,8 @@ Class DCY_Intermission : StatusScreen
 	
 	if (moveback && (bordery > 1.5))
 	{
-		bordery += -0.35 + borderint;
-		borderint -= 0.065;
+		bordery -= 0.25 + borderint;
+		borderint -= 0.0141;
 	}
 	
 	if (bcnt == 65 && !moveback)
@@ -283,10 +283,8 @@ Class DCY_Intermission : StatusScreen
   
   override void drawShowNextLoc()
   {
-	borderint = 0;
+	if (!moveback) { if (bordery < 1.5) bordery = 1.5; borderint = 0; }
 	moveback = true;
-	if (bordery < 1.5) bordery = 1.5;
-	
 	BrokenLines lines = mainfont.BreakLines(lnametexts[1], 300);
 	DCY_DrawText(mainfont, Font.CR_UNTRANSLATED, 260 - (alphamap * 100), 92, lines.StringAt(0), 1, alphamap, alphamap);
   }

@@ -408,6 +408,8 @@ Class DCY_EspouserServer : DCY_Impe
   Death.EspouserDeath:
 	DHUI NNNNN 2 A_FadeOut(0.2, 0);
 	Stop;
+  Raise:
+	Stop;
   }
 }
 

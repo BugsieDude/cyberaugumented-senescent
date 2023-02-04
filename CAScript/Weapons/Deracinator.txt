@@ -8,8 +8,8 @@ Class DCY_Deracinator : DCY_Weapon
 	Obituary "%o is no more.";
 	Height 20;
 	Weapon.AmmoType "DCY_UltramodernEnergy";
-	Weapon.AmmoGive 40;
-	Weapon.AmmoUse 20;
+	Weapon.AmmoGive 100;
+	Weapon.AmmoUse 100;
 	Weapon.Kickback 150;
 	Weapon.SlotNumber 8;
 	Weapon.UpSound "ObliterationBFG/Raise";

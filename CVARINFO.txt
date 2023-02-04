@@ -5,7 +5,7 @@ server bool sv_allowdash = true;
 server bool sv_allowdoublejump = true;
 
 server bool sv_dcy_progressivespawns = true;
-server float sv_dcy_progression = 1.000;
+server float sv_dcy_progression = 1.500;
 
 server float sv_dashpower = 32;
 server int sv_dashpowerup = 8;
