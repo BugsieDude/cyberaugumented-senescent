@@ -167,7 +167,7 @@ Class DCY_AllMap : AllMap
   States
   {
   Spawn:
-	MAYY ABCDCB 6 Bright A_LoopActiveSound();
+	MAYY ABCDCB 6 A_LoopActiveSound();
 	Loop;
   Pickup:
 	MAYY A 0 Bright A_StopSound(CHAN_BODY);
