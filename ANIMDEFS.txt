@@ -1,4 +1,7 @@
- //HUD
+//Other
+warp2 texture M771Z0
+
+//HUD
  
 TEXTURE CHUDARR1
 	Pic CHUDARR1 Tics 5

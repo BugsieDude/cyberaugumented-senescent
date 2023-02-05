@@ -10,7 +10,7 @@ Class DCY_GloomKnight : DCY_Rev
   PainSound "GKnight/Pain";
   DeathSound "GKnight/Death";
   DropItem "DCY_Eminence", 192;
-  Tag "\c[m4]Gloom Knight\c-";
+  Tag "\c[j1]Gloom Knight\c-";
   +NOBLOOD
   }
   
@@ -60,7 +60,7 @@ Class DCY_GloomKnight : DCY_Rev
     GK38 K 6;
 	GK38 L 6 A_Scream();
 	TNT1 A 0 A_NoBlocking();
-	GK38 MNO 6;
+	GK38 MNO 6 { if (!random(0, 1)) DCY_SoulExplode(); }
 	GK38 P -1;
 	Stop;
   Raise:
@@ -73,10 +73,11 @@ Class DCY_GAxe : DCY_WAxe
 {
   Default
   {
-  Translation "116:121=[255,255,255]:[38,255,38]", "112:115=[255,255,255]:[255,255,255]", "121:127=[0,255,0]:[0,0,0]", "128:159=%[0.00,0.00,0.00]:[0.39,0.39,0.39]", "80:111=%[0.00,0.00,0.00]:[0.39,0.39,0.39]", "48:79=%[0.00,0.00,0.00]:[0.97,0.67,0.67]", "236:239=%[0.00,0.00,0.00]:[0.98,0.65,0.65]";
+  Translation "48:79=%[0.00,0.00,0.00]:[1.18,0.61,0.51]", "128:159=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "80:111=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "232:239=%[0.00,0.00,0.00]:[1.19,0.61,0.51]", "112:127=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "160:231=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "248:255=%[0.00,0.00,0.24]:[0.42,0.66,2.00]";
   Damage 6;
   Speed 12;
   FastSpeed 18;
+  StencilColor "00258a";
   DamageType "Poison";
   }
   States
@@ -87,8 +88,8 @@ Class DCY_GAxe : DCY_WAxe
 		if ((level.time % 9) == 0)
 			A_StartSound("hknight/axewhoosh");
 		
-		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION, failchance: 150);
-		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
 		A_Tracer2(2);
 	}
 	Loop;
