@@ -7,7 +7,6 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
   +BOSS
   +MISSILEEVENMORE
   +NEVERFAST
-  +BRIGHT
   PainChance 30;
   Tag "\c[Sapphire]Eaves\c[g2]dropper\c-";
   Speed 15;

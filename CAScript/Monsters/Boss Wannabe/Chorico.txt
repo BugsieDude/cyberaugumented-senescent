@@ -80,7 +80,6 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   +FLOAT
   +NOFEAR
   -NOPAIN
-  +BRIGHT
   Speed 17;
   FloatSpeed 17;
   }
@@ -124,7 +123,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 	}
 	Loop;
   Teleporting:
-    CH0R AB 1 Bright;
+    CH0R AB 1;
 	CH0R A 2 A_NephelomaTeleportSetup(false);
 	TNT1 A 1;
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander();
@@ -137,7 +136,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 	Goto Teleport2;
   Teleport2:
 	CH0R AB 1;
-	CH0R A 2 Bright
+	CH0R A 2
 	{
 		A_NephelomaTeleportSetup(false);
 		bNoTarget = true;
@@ -160,7 +159,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 	}
 	Loop;
   Teleport2End:
-	CH0R A 1 Bright
+	CH0R A 1
 	{
 		bNoFear = true;
 		bFrightened = false;

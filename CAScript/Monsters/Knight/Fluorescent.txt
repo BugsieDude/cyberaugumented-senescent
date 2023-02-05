@@ -4,14 +4,13 @@ Class DCY_FluorescentChevalier : DCY_KnightHell
   {
   Tag "\c[e3]Soul Chevalier\c-";
   Health 700;
-  Translation "112:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]", "0:111=%[0.00,0.00,0.00]:[0.59,0.59,0.59]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "13:79=%[0.00,0.00,0.00]:[0.32,0.63,1.69]", "160:239=%[0.00,0.00,0.00]:[0.32,0.63,1.69]", "248:255=%[0.00,0.00,0.00]:[0.32,0.63,1.69]";
   +MISSILEMORE
   +MISSILEEVENMORE
   +NODROPOFF
   +ALWAYSFAST
   +DONTGIB
   +QUICKTORETALIATE
-  +BRIGHT
   BloodColor "6895de";
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   MeleeDamage 15;
@@ -101,7 +100,7 @@ Class DCY_FBall : FastProjectile
   Alpha 1.0;
   SeeSound "Freedoom/Imp/Attack";
   DeathSound "Freedoom/Imp/ShotX";
-  Translation "0:255=%[0.04,0.05,0.14]:[0.68,0.91,1.82]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.32,0.63,1.69]";
   +NEVERFAST
   +BRIGHT
   }

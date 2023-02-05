@@ -485,12 +485,37 @@ Class DCY_Rehabiliation : DCY_Powerup
   Inventory.PickupSound "D4REGEN1";
   DCY_Powerup.AmbientNoise "Rehabiliation/IdleNoise";
   DCY_Powerup.EffectColor1 "333300";
+  RenderStyle "Normal";
+  +ROLLSPRITE
+  +ROLLCENTER
+  -BRIGHT
+  }
+  
+  float rollspeed;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	rollspeed = frandom(-4, 4);
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	A_SetRoll(Roll + rollspeed, SPF_INTERPOLATE);
+	if (DCY_EffectDistance(900))
+	{
+		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 70, 0, frandom(8, 8), frandom(8, 8), frandom(8, 8) + 15, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.5, 1.5), random(1, -1) * 0.025, random(1, -1) * 0.025, random(1, -1) * 0.025, startalphaf: 0.15, fadestepf: 0.0035, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		
+		if ((level.time % 2) == 0)
+			A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 60, random(3, 6), frandom(0, 360), frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8, 8) + 15, frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.4, fadestepf: 0, sizestep: -0.15);
+	}
   }
   
   States
   {
   Spawn:
-    LFSP AABBCCDDCCBB 1 Bright A_SpawnItemEx("DCY_RehabiliationAura", random(-1, 1), random(-1, 1), random(19, 23), random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
+    R8HA AABBCCDDCCBB 1;
     Loop;
   }
   

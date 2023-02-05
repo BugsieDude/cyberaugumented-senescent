@@ -3,7 +3,7 @@ Class DCY_Urozon : DCY_Pinke
   Default
   {
   Health 1300;
-  Translation "16:47=%[0.00,0.00,0.00]:[0.40,0.43,1.64]", "168:191=%[0.00,0.05,0.20]:[0.40,0.43,1.65]", "128:159=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "48:79=%[0.00,0.00,0.00]:[1.68,0.52,0.52]", "160:167=%[0.00,0.00,0.00]:[2.00,0.67,0.67]", "80:111=%[0.00,0.00,0.00]:[0.79,0.79,0.79]", "0:15=%[0.00,0.00,0.00]:[0.78,0.78,0.78]", "208:239=%[0.00,0.00,0.00]:[0.76,0.76,0.76]";
+  Translation "16:47=%[0.00,0.00,0.00]:[0.40,0.43,1.64]", "168:191=%[0.00,0.05,0.20]:[0.40,0.43,1.65]", "128:159=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "48:79=%[0.00,0.00,0.00]:[1.68,0.52,0.52]", "160:167=%[0.00,0.00,0.00]:[2.00,0.67,0.67]", "80:111=%[0.00,0.00,0.00]:[0.79,0.79,0.79]", "0:15=%[0.00,0.00,0.00]:[0.78,0.78,0.78]", "208:239=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "160:165=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
   Speed 15;
   FastSpeed 20;
   PainChance 100;
@@ -179,8 +179,8 @@ Class DCY_Urozon : DCY_Pinke
 	UROZ AABBCCDD 3 A_Chase("Melee", null);
 	Loop;
   MissileFire:
-	UROZ EOEOEFPFP 2 Bright A_FaceTarget();
-	UROZ P 2 Bright
+	UROZ EOEOEFPFP 2 A_FaceTarget();
+	UROZ P 2
 	{
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_ArbiterTorpedo", 35, 0, 0);
@@ -190,13 +190,13 @@ Class DCY_Urozon : DCY_Pinke
 	UROZ FE 10;
 	Goto See;
   Flamethrower:
-	UROZ EOEPFP 1 Bright
+	UROZ EOEPFP 1
 	{
 		flamethrower = 0;
 		A_FaceTarget();
 	}
-	UROZ P 0 Bright A_StartSound("ROBOFIRL", CHAN_6, CHANF_OVERLAP, 1.0, 0.5);
-	UROZ PFPF 1 Bright
+	UROZ P 0 A_StartSound("ROBOFIRL", CHAN_6, CHANF_OVERLAP, 1.0, 0.5);
+	UROZ PFPF 1
 	{
 		If(flamethrower >= 30)
 		{

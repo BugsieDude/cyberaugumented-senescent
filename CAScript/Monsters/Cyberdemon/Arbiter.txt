@@ -13,7 +13,6 @@ Class DCY_Arbiter : DCY_NavyTerminator
   Obituary "%o got a giant painful hole in the face and the chest by the Arbiter.";
   +NOGRAVITY
   +FLOAT
-  +BRIGHT
   +MISSILEMORE
   +QUICKTORETALIATE
   DropItem "DCY_UltramodernEnergy", 128;
@@ -130,8 +129,8 @@ Class DCY_Arbiter : DCY_NavyTerminator
 	ARBR M 30 A_FaceTarget();
 	Goto THECOMBOSTARTED;
   THECOMBOSTARTED:
-	ARBR P 1 Bright;
-	ARBR P 2 Bright
+	ARBR P 1;
+	ARBR P 2
 	{
 		if (soundplayed == false)
 		{
@@ -160,13 +159,13 @@ Class DCY_Arbiter : DCY_NavyTerminator
 		A_ArbiterVoice(0.95, 10);
 		A_FaceTarget();
 	}
-	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR F 5 { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
 	ARBR E 14 A_FaceTarget();
-	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR F 5 { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
 	ARBR E 14 A_FaceTarget();
-	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR F 5 { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
 	ARBR E 14 A_FaceTarget();
-	ARBR F 5 Bright { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
+	ARBR F 5 { A_ArbiterRocket(); Return A_Jump(30, "THECOMBOSTARTED", "LAZOR"); }
 	Goto Cooldown2;
   Lazor:
 	ARBR J 0
@@ -294,14 +293,14 @@ Class DCY_ArbiterTorpedo : DCY_TransmuterTorpedo
 		for (int i = 5; i > 0; i--)
 			A_SpawnItemEx("DCY_AndroidExplosion", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), 0, 0, 0, random(0, 360), SXF_NOCHECKPOSITION);
 	}
-    TNT1 A 1 Bright A_Explode(140, 145, XF_NOTMISSILE, 1);
+    TNT1 A 1 A_Explode(140, 145, XF_NOTMISSILE, 1);
 	TNT1 A 0
 	{
 		A_FadeOut(0.085, 0);
 		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
 		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 	}
-	TNT1 A 40 Bright;
+	TNT1 A 40;
     Stop;
   }
 }
@@ -316,7 +315,7 @@ Class DCY_ArbiterArm : DCY_TerminatorArm
   States
   {
   Spawn:
-	A1__ AAABCDEF 3 Bright;
+	A1__ AAABCDEF 3;
 	Goto Death;
   Death:
 	A1__ F -1 { vel.x = 0; vel.y = 0; }

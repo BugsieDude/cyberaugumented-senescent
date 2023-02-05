@@ -1,0 +1,48 @@
+Class DCY_Meat3 : Meat3 Replaces Meat3
+{
+  override void PostBeginPlay()
+  {
+	switch (random(0, 1))
+	{
+		case 0: sprite = GetSpriteIndex("GOR3"); frame = 0; break;
+		case 1: sprite = GetSpriteIndex("O_W_"); frame = 0; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	GOR3 A 0; O_W_ A 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Impaled : LiveStick Replaces LiveStick
+{
+  bool animate;
+  
+  override void PostBeginPlay()
+  {
+	switch (random(0, 1))
+	{
+		case 0: sprite = GetSpriteIndex("POL6"); animate = true; break;
+		case 1: sprite = GetSpriteIndex("D_E_"); animate = true; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	POL6 AB 0; D_E_ AB 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # 1 { if (animate) SetStateLabel("Animated"); }
+	Goto Spawn+1;
+  Animated:
+	#### AB random(6, 8);
+	Loop;
+  }
+}

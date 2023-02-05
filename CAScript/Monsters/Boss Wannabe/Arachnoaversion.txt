@@ -17,7 +17,6 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   +MISSILEMORE
   +DONTFALL
   +AVOIDMELEE
-  +BRIGHT
   +BOSS
   Scale 1.25;
   DamageFactor 0.65;

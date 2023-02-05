@@ -7,7 +7,6 @@ Class DCY_NeonicWand : DCY_Weapon
 	Weapon.AmmoType "DCY_UltramodernEnergy";
 	Weapon.AmmoUse 1;
 	Weapon.AmmoGive 40;
-	+BRIGHT;
 	+WEAPON.EXPLOSIVE;
 	DamageType "Neonic";
 	Weapon.SlotNumber 6;
