@@ -10,7 +10,7 @@ Class DCY_GloomKnight : DCY_Rev
   PainSound "GKnight/Pain";
   DeathSound "GKnight/Death";
   DropItem "DCY_Eminence", 192;
-  Tag "\c[j1]Gloom Knight\c-";
+  Tag "\c[j1]Psyche\c-";
   +NOBLOOD
   }
   
@@ -57,11 +57,17 @@ Class DCY_GloomKnight : DCY_Rev
 	Goto See;
   Death:
   XDeath:
+	GK38 K 0 { if (!random(0,1)) SetStateLabel("Death2"); }
     GK38 K 6;
-	GK38 L 6 A_Scream();
-	TNT1 A 0 A_NoBlocking();
+	GK38 L 6 A_ScreamAndUnblock();
 	GK38 MNO 6 { if (!random(0, 1)) DCY_SoulExplode(); }
 	GK38 P -1;
+	Stop;
+  Death2:
+	GK38 Q 6;
+	GK38 R 6 A_ScreamAndUnblock();
+	GK38 ST 6;
+	GK38 U -1;
 	Stop;
   Raise:
     GK38 PONM 6;
