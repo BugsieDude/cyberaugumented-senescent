@@ -3,7 +3,7 @@ Class DCY_Destructor : DCY_ShotgunZombe
   Default
   {
   Health 110;
-  Translation "16:47=%[0.00,0.00,0.00]:[1.29,0.00,0.00]", "48:79=%[0.00,0.00,0.00]:[1.10,0.57,0.47]";
+  Translation "16:47=[255,0,0]:[0,0,0]", "168:191=[255,0,0]:[0,0,0]", "80:111=[255,255,255]:[0,0,0]", "48:79=%[0.00,0.00,0.00]:[0.95,0.78,0.65]", "9:12=%[0.00,0.00,0.00]:[0.50,0.00,0.00]";
   Tag "\c[Red]Unholy Destructor\c-";
   Obituary "%o was executed by the Destructor's strength.";
   Speed 8;
@@ -36,7 +36,7 @@ Class DCY_Destructor : DCY_ShotgunZombe
 		"%o was executed by the Unholy Destructor's strength.",
 		"You got all messed up.",
 		"Something has gone wrong.",
-		"Hey guys, it's Goofaton Slapstick here. I slapped my balls when I saw the Destructor. My brother, Gerald IV the Foolish, has imploded the universe. we're fucking dying"
+		"I slapped my balls when I saw the Destructor. My brother, Gerald IV the Foolish, has imploded the universe. i hate that i made this joke"
 	};
 
 	return messages[Random(0, messages.Size() - 1)];

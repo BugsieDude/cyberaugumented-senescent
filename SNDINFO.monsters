@@ -1453,10 +1453,7 @@ $random Unwilling/Attack { UNWLATK1 UNWLATK2 UNWLATK3 }
 UNWLATK1 "Sounds/DCY Monsters/Castrator/dcy_castrator_attack1.ogg"
 UNWLATK2 "Sounds/DCY Monsters/Castrator/dcy_castrator_attack2.ogg"
 UNWLATK3 "Sounds/DCY Monsters/Castrator/dcy_castrator_attack3.ogg"
-$random Unwilling/Death { UNWLDIE1 UNWLDIE2 UNWLDIE3 }
-UNWLDIE1 "Sounds/DCY Monsters/Castrator/dcy_castrator_death1.ogg"
-UNWLDIE2 "Sounds/DCY Monsters/Castrator/dcy_castrator_death2.ogg"
-UNWLDIE3 "Sounds/DCY Monsters/Castrator/dcy_castrator_death3.ogg"
+Unwilling/Death "Sounds/DCY Monsters/Castrator/dcy_castrator_death.ogg"
 $random Unwilling/Active { UNWLACT1 UNWLACT2 UNWLACT3 }
 UNWLACT1 "Sounds/DCY Monsters/Castrator/dcy_castrator_idle1.ogg"
 UNWLACT2 "Sounds/DCY Monsters/Castrator/dcy_castrator_idle2.ogg"

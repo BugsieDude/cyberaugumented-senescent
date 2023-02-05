@@ -71,6 +71,7 @@ RIPANDTEAR "Sounds/Inventory/dcy_berserk_ripandtear.ogg"
 SoulSphere/IdleNoise "Sounds/Inventory/dcy_soulsphere_idle.ogg"
 MegaSphere/IdleNoise "Sounds/Inventory/dcy_d4_megasphere_idle.ogg"
 Invulnerability/IdleNoise "Sounds/Inventory/dcy_invulnerability_idle.ogg"
+Rehabiliation/IdleNoise "Sounds/Inventory/dcy_rehabiliation_loop.ogg"
 UncoSphere/IdleNoise "Sounds/Inventory/dcy_uncosphere_loop.ogg"
 $volume UncoSphere/IdleNoise 0.75
 Supremacy/IdleNoise "Sounds/Inventory/dcy_supremacy_idle.ogg"

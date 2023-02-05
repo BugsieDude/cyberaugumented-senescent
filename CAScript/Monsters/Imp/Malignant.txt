@@ -89,6 +89,15 @@ Class DCY_Malignant : DCY_Impe
 	JAAS H 4 A_Pain();
 	Goto See;
   Death:
+	JASS A 6 A_SetScale(Scale.X * randompick(-1, 1), Scale.Y);
+	JASS B 6
+	{
+		A_StartSound("unwilling/death", CHAN_VOICE);
+		A_NoBlocking();
+	}
+	JASS CDE 6;
+	JASS F -1;
+	Stop;
   XDeath:
 	JAAS H 6;
 	JAAS I 6 A_Scream();
@@ -97,6 +106,7 @@ Class DCY_Malignant : DCY_Impe
 	JAAS P -1;
 	Stop;
   Raise:
+	JAAS O 0 A_SetScale(Scale.X, Scale.Y);
 	JAAS ONMLKJIH 5;
 	Goto See;
   }

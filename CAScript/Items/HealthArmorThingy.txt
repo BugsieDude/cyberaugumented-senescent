@@ -8,7 +8,7 @@ Class DCY_Helth : HealthBonus
   States
   {
   Spawn:
-	HLTB ABCDCB 3 Bright;
+	HLTB ABCDCB 3;
 	Loop;
   }
 }
@@ -24,7 +24,7 @@ Class DCY_Steempack : Stimpack
   States
   {
   Spawn:
-	ST1M ABCDCB 7 Bright;
+	ST1M ABCDCB 7;
 	Loop;
   }
 }
@@ -41,7 +41,7 @@ Class DCY_ThatOneMediKit : Medikit
   States
   {
   Spawn:
-	MK1T ABCDCB 6 Bright;
+	MK1T ABCDCB 6;
 	Loop;
   }
 }
@@ -57,7 +57,7 @@ Class DCY_Canister : ArmorBonus
   States
   {
   Spawn:
-	ARMB ABCDCB 3 Bright;
+	ARMB ABCDCB 3;
 	Loop;
   }
 }
@@ -73,8 +73,8 @@ Class DCY_GreenArmorThing : GreenArmor
   States
   {
   Spawn:
-    ARM1 A 25 Bright;
-	ARM1 BCB 5 Bright;
+    ARM1 A 25;
+	ARM1 BCB 5;
     Loop;
   }
 }
@@ -90,8 +90,8 @@ Class DCY_BlueArmorThing : BlueArmor
   States
   {
   Spawn:
-    ARM2 A 25 Bright;
-	ARM2 BCB 7 Bright;
+    ARM2 A 25;
+	ARM2 BCB 7;
     Loop;
   }
 }
@@ -115,8 +115,8 @@ Class DCY_HiResArmorThing : BlueArmor
   States
   {
   Spawn:
-    ARM3 A 25 Bright;
-	ARM3 BCB 7 Bright;
+    ARM3 A 25;
+	ARM3 BCB 7;
     Loop;
   }
 }

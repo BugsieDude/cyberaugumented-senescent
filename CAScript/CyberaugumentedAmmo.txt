@@ -166,7 +166,7 @@ Class DCY_Cell : Cell Replaces Cell
   States
   {
   Spawn:
-	_DLL HGFABCDEDCBAFGH 9 Bright;
+	_DLL HGFABCDEDCBAFGH 9;
 	Loop;
   Pickup:
 	_DLL A 0
@@ -189,7 +189,7 @@ Class DCY_Cellpack : Cellpack Replaces Cellpack
   States
   {
   Spawn:
-	_DLX ABCDCB 3 Bright;
+	_DLX ABCDCB 3;
 	Loop;
   Pickup:
 	_DLX A 0
@@ -219,7 +219,7 @@ Class DCY_Eminence : Ammo
   States
   {
   Spawn:
-    _2BM ABCDEFGHIJKL 2 Bright;
+    _2BM ABCDEFGHIJKL 2;
 	Loop;
   }
 }

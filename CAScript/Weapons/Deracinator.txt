@@ -21,7 +21,7 @@ Class DCY_Deracinator : DCY_Weapon
   States
   {
   Spawn:
-	NBXG A -1 Bright;
+	NBXG A -1;
 	Stop;
   Select:
     N8BG XYZ 1 A_WeaponReady(WRF_NOFIRE);

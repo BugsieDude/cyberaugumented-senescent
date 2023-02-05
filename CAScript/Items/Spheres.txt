@@ -483,6 +483,8 @@ Class DCY_Rehabiliation : DCY_Powerup
   {
   Inventory.PickupMessage "\c[n2]You undergo through a feeling of rehabiliation by embracing what's near you.\c- (150+ Health)";
   Inventory.PickupSound "D4REGEN1";
+  DCY_Powerup.AmbientNoise "Rehabiliation/IdleNoise";
+  DCY_Powerup.EffectColor1 "333300";
   }
   
   States

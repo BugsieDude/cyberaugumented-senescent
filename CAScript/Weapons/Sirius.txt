@@ -50,7 +50,7 @@ Class DCY_SiriusCrisis : DCY_Weapon
   States
   {
   Spawn:
-    BFG8 A -1 Bright;
+    BFG8 A -1;
 	Stop;
   Select:
     SRB0 A 1 Bright A_Raise(20);

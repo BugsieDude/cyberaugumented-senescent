@@ -35,7 +35,12 @@ Class DCY_Warwire : DCY_Rev
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
-	"####" "#" 0 DCY_AlertSound();
+	"####" "#" 0 { if (!random(0, 1)) SetStateLabel("BattleCry"); DCY_AlertSound(); }
+	Goto See;
+  BattleCry:
+	H6X_ AB 6 A_FaceTarget();
+	H6X_ B 0 DCY_AlertSound();
+	H6X_ CDEDCDED 3 A_FaceTarget();
 	Goto See;
   See:
     TNT1 A 0 A_Jump(128, "Dash");

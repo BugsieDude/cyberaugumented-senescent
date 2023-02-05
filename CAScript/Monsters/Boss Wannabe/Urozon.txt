@@ -40,35 +40,35 @@ Class DCY_Urozon : DCY_Pinke
   States
   {
   Spawn:
-	CYF3 A 10 A_Look();
+	UROZ A 10 A_Look();
 	Loop;
   See:
-	CYF3 A 0 A_Jump(13, "NothingPersonal");
-	CYF3 A 0 A_Jump(40, "Dash");
-	CYF3 AABBCCDD 3 A_Chase();
+	UROZ A 0 A_Jump(13, "NothingPersonal");
+	UROZ A 0 A_Jump(40, "Dash");
+	UROZ AABBCCDD 3 A_Chase();
 	Loop;
   Dash:
-	CYF3 AAABBBCCCDDD 1
+	UROZ AAABBBCCCDDD 1
 	{
 		A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
 		if (DCY_EffectDistance(4000)) A_SpawnItemEx("DCY_UrozonAura", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
-	CYF3 A 0 A_Jump(80, "See");
+	UROZ A 0 A_Jump(80, "See");
 	Loop;
   NothingPersonal:
-	CYF3 A 0 Fast;
-	CYF3 A 0 A_JumpIf(target && Distance3D(target) < 250, "Lunge");
-	CYF3 A 0 Fast { bGhost = true; }
-	CYF3 AAA 5 A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION);
-	CYF3 A 0 A_JumpIf(target && Distance3D(target) < 250, "flamethrower");
-	CYF3 AAA 5 A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION);
-	CYF3 A 0
+	UROZ A 0 Fast;
+	UROZ A 0 A_JumpIf(target && Distance3D(target) < 250, "Lunge");
+	UROZ A 0 Fast { bGhost = true; }
+	UROZ AAA 5 A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION);
+	UROZ A 0 A_JumpIf(target && Distance3D(target) < 250, "flamethrower");
+	UROZ AAA 5 A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION);
+	UROZ A 0
 	{
 		bNoPain = true;
 		A_SetSpeed(55);
 		A_SetTranslucent(0.00, 0);
 	}
-	CYF3 ABCDABCDABCDABCDABCDABCDABCDABCD 1
+	UROZ ABCDABCDABCDABCDABCDABCDABCDABCD 1
 	{
 		for (int i = 7; i > 0; i--)
 		{
@@ -80,7 +80,7 @@ Class DCY_Urozon : DCY_Pinke
 			A_Wander();
 		}
 	}
-	CYF3 A 10
+	UROZ A 10
 	{
 		bNoPain = false;
 		bGhost = false;
@@ -89,14 +89,14 @@ Class DCY_Urozon : DCY_Pinke
 	}
 	Goto See;
   Retreat:
-	CYF3 A 0
+	UROZ A 0
 	{
 		bNoPain = true;
 		bGhost = false;
 		A_SetSpeed(55);
 		A_SetTranslucent(0.00, 0);
 	}
-	CYF3 ABCDABCDABCDABCD 1
+	UROZ ABCDABCDABCDABCD 1
 	{
 		for (int i = 7; i > 0; i--)
 		{
@@ -108,7 +108,7 @@ Class DCY_Urozon : DCY_Pinke
 			A_Wander();
 		}
 	}
-	CYF3 A 10
+	UROZ A 10
 	{
 		bNoPain = false;
 		bGhost = false;
@@ -117,26 +117,26 @@ Class DCY_Urozon : DCY_Pinke
 	}
 	Goto See;
   Lunge:
-	CYF3 E 0;
-	CYF3 E 0 { bGhost = false; }
-	CYF3 EEEEEEEE 1 A_FaceTarget();
-	CYF3 E 1
+	UROZ E 0;
+	UROZ E 0 { bGhost = false; }
+	UROZ EEEEEEEE 1 A_FaceTarget();
+	UROZ E 1
 	{
 		A_FaceTarget();
 		A_StartSound("Urozon/Sight", CHAN_VOICE);
 		Return A_Jump(40, "JumpNLunge", "JumpNLunge", "flamethrower");
 	}
-	CYF3 FFFFFFFF 1
+	UROZ FFFFFFFF 1
 	{
 		A_CustomMeleeAttack(random(2, 10), "", "");
 		A_Recoil(-9);
 	}
-	CYF3 G 5 A_CustomMeleeAttack(10 * random(2, 10), "", "");
+	UROZ G 5 A_CustomMeleeAttack(10 * random(2, 10), "", "");
 	Goto See;
   SuperLunge:
-	CYF3 EEEEOEOEOEO 1 A_FaceTarget();
-	CYF3 P 1 A_StartSound("Urozon/Scream", CHAN_VOICE, attenuation: ATTN_NONE);
-	CYF3 PFPFPFPFPFP 2
+	UROZ EEEEOEOEOEO 1 A_FaceTarget();
+	UROZ P 1 A_StartSound("Urozon/Scream", CHAN_VOICE, attenuation: ATTN_NONE);
+	UROZ PFPFPFPFPFP 2
 	{
 		bNoPain = true;
 		A_QuakeEx(2, 2, 2, 30, 0, 1000, "", QF_SCALEDOWN);
@@ -144,7 +144,7 @@ Class DCY_Urozon : DCY_Pinke
 		A_FaceTarget();
 		A_CustomMeleeAttack(2 * random(2, 10), "", "");
 	}
-	CYF3 PPPPPPPPPPPPP 1
+	UROZ PPPPPPPPPPPPP 1
 	{
 		A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 		A_SpawnItemEx("DCY_UrozonAura", -32, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
@@ -153,11 +153,11 @@ Class DCY_Urozon : DCY_Pinke
 		bNoPain = false;
 		bNoDropoff = true;
 	}
-	CYF3 G 5 { A_CustomMeleeAttack(20 * random(2, 10), "", ""); bNoDropOff = false; }
+	UROZ G 5 { A_CustomMeleeAttack(20 * random(2, 10), "", ""); bNoDropOff = false; }
 	Goto See;
   Melee:
-	CYF3 EF 6 A_FaceTarget();
-	CYF3 G 4
+	UROZ EF 6 A_FaceTarget();
+	UROZ G 4
 	{
 		A_FaceTarget();
 		A_StartSound("demon/melee", CHAN_VOICE);
@@ -165,7 +165,7 @@ Class DCY_Urozon : DCY_Pinke
 	}
 	Goto See;
   Missile:
-	CYF3 A 0
+	UROZ A 0
 	{
 		If (target && Distance3D(target) < 250)
 			Return ResolveState("Lunge");
@@ -176,27 +176,27 @@ Class DCY_Urozon : DCY_Pinke
 		
 		Return A_Jump(40, "Lunge", "JumpNLunge");
 	}
-	CYF3 AABBCCDD 3 A_Chase("Melee", null);
+	UROZ AABBCCDD 3 A_Chase("Melee", null);
 	Loop;
   MissileFire:
-	CYF3 EOEOEFPFP 2 Bright A_FaceTarget();
-	CYF3 P 2 Bright
+	UROZ EOEOEFPFP 2 Bright A_FaceTarget();
+	UROZ P 2 Bright
 	{
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_ArbiterTorpedo", 35, 0, 0);
 		A_SpawnProjectile("DCY_TransmuterTorpedo", 35, 0, -10);
 		A_SpawnProjectile("DCY_TransmuterTorpedo", 35, 0, 10);
 	}
-	CYF3 FE 10;
+	UROZ FE 10;
 	Goto See;
   Flamethrower:
-	CYF3 EOEPFP 1 Bright
+	UROZ EOEPFP 1 Bright
 	{
 		flamethrower = 0;
 		A_FaceTarget();
 	}
-	CYF3 P 0 Bright A_StartSound("ROBOFIRL", CHAN_6, CHANF_OVERLAP, 1.0, 0.5);
-	CYF3 PFPF 1 Bright
+	UROZ P 0 Bright A_StartSound("ROBOFIRL", CHAN_6, CHANF_OVERLAP, 1.0, 0.5);
+	UROZ PFPF 1 Bright
 	{
 		If(flamethrower >= 30)
 		{
@@ -212,29 +212,29 @@ Class DCY_Urozon : DCY_Pinke
 	}
 	Goto flamethrower+6;
   FlamethrowerEnd:
-	CYF3 FE 6;
+	UROZ FE 6;
 	Goto See;
   JumpNLunge:
-	CYF3 E 10 A_FaceTarget();
-	CYF3 E 1
+	UROZ E 10 A_FaceTarget();
+	UROZ E 1
 	{
 		A_Hop(17.5);
 		A_StartSound("MonsterSpit", CHAN_VOICE, attenuation: 0.25);
 		bNoPain = true;
 		A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
-	CYF3 EEEEEEEEEEEEEEEE 1
+	UROZ EEEEEEEEEEEEEEEE 1
 	{
 		A_FaceTarget();
 		A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
-	CYF3 E 1
+	UROZ E 1
 	{
 		bNoGravity = true;
 		A_FaceTarget();
 	}
-	CYF3 EEEEEFFFFF 1 A_FaceTarget();
-	CYF3 P 10
+	UROZ EEEEEFFFFF 1 A_FaceTarget();
+	UROZ P 10
 	{
 		A_StartSound("TwirlingLaser", CHAN_WEAPON, 1.0, 0, 0.25);
 		A_SpawnProjectile("DCY_UrozonHornLaser", 60);
@@ -242,24 +242,24 @@ Class DCY_Urozon : DCY_Pinke
 		A_SpawnProjectile("DCY_UrozonHornLaser3", 60);
 		A_FaceTarget();
 	}
-	CYF3 PE 5;
-	CYF3 E 10
+	UROZ PE 5;
+	UROZ E 10
 	{
 		bNoGravity = false;
 		bNoPain = false;
 	}
 	Goto See;
   Pain:
-	CYF3 H 3;
-	CYF3 H 0 A_Jump(60, "SuperLunge");
-	CYF3 H 0 A_Jump(100, "Lunge", "Retreat", "JumpNLunge");
-	CYF3 H 3 A_Pain();
+	UROZ H 3;
+	UROZ H 0 A_Jump(60, "SuperLunge");
+	UROZ H 0 A_Jump(100, "Lunge", "Retreat", "JumpNLunge");
+	UROZ H 3 A_Pain();
 	Goto See;
   Death:
-	CYF3 I 1;
-	CYF3 I 6 A_ScreamAndUnblock();
-	CYF3 JKLM 6;
-	CYF3 N -1;
+	UROZ I 1;
+	UROZ I 6 A_ScreamAndUnblock();
+	UROZ JKLM 6;
+	UROZ N -1;
 	Stop;
   Raise:
 	Stop;

@@ -22,7 +22,7 @@ Class DCY_EternalVoid : DCY_Weapon
   States
   {
   Spawn:
-	BHL_ YZ 1 Bright;
+	BHL_ YZ 1;
 	Loop;
   Ready:
 	BKH_ AB 1 Bright A_WeaponReady();

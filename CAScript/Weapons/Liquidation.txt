@@ -50,7 +50,7 @@ Class DCY_TheBFG10000 : DCY_Weapon
   States
   {
   Spawn:
-    BFG2 Z -1 Bright;
+    BFG2 Z -1;
     Loop;
   Ready:
     L1QU A 1 Bright
