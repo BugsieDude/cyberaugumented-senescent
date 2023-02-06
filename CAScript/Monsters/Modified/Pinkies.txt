@@ -240,13 +240,13 @@ Class DCY_PinkeII : DCY_Pinke
   override void Tick()
   {
 	super.Tick();
-	alpha = (activated) ? 1 : 0.2;
+	if (sprite == GetSpriteIndex("UU9_")) alpha = (activated) ? 1 : 0.2;
   }
   
   States
   {
   LoadSprites:
-	9T9_ ABCD 0;
+	9T9_ ABCD 0; UU9_ ABCDEFGHIJKLMN 0;
   Spawn:
 	UU9_ A 10 DCY_Look();
 	Loop;
@@ -289,7 +289,7 @@ Class DCY_PinkeII : DCY_Pinke
 	UU9_ A 0 { activated = false; }
 	Goto See;
   Dash:
-	UU9_ EF 5 { activated = true; }
+	UU9_ EF 5 { A_FaceTarget(); activated = true; }
 	UU9_ G 10
 	{
 		A_Recoil(-13);
