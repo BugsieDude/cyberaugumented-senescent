@@ -156,12 +156,13 @@ Class DCY_UncoSphere : DCY_Powerup
   
   override void Tick()
   {
-	if (level.isFrozen() && !DCY_EffectDistance(2000)) return;
-	
+	if (level.isFrozen()) return;
 	super.Tick();
-	
+	if (DCY_EffectDistance(2000))
+	{
 	if ((level.time % 3) == random(0, 3)) A_SpawnItemEx("DCY_UncoRipple", random(-1, 1), random(-1, 1), random(26, 29), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 180, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.25, fadestepf: 0.005, sizestep: -0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+	}
   }
   
   States
@@ -214,6 +215,7 @@ Class DCY_UncoRipple : DCY_Effect
 
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	super.Tick();
 	A_SetScale(Scale.X + 0.065);
 	A_SetRoll(roll + num, SPF_INTERPOLATE);
@@ -503,7 +505,7 @@ Class DCY_Rehabiliation : DCY_Powerup
   {
 	super.Tick();
 	A_SetRoll(Roll + rollspeed, SPF_INTERPOLATE);
-	if (DCY_EffectDistance(900))
+	if (DCY_EffectDistance(900) && !level.isFrozen())
 	{
 		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 70, 0, frandom(8, 8), frandom(8, 8), frandom(8, 8) + 15, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.5, 1.5), random(1, -1) * 0.025, random(1, -1) * 0.025, random(1, -1) * 0.025, startalphaf: 0.15, fadestepf: 0.0035, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		

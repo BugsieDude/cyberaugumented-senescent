@@ -55,27 +55,27 @@ Class DCY_PinkyParent : DCYMonster
 	Goto See;
   Ram:
 	SARG E 1 A_Jump(128, "Dash");
-	SARG E 1 A_StartSound("demon/sight", CHAN_VOICE);
+	SARG E 1 A_StartSound(SightSound, CHAN_VOICE);
 	SARG EEEEEEEEFFFFFFFF 1 A_FaceTarget();
 	SARG A 2 A_Recoil(-1);
 	SARG B 2 A_PinkyRam(1);
-	SARG CDAB 2 A_PinkyRam(3);
-	SARG CDABCDAB 2 A_PinkyRam(6);
-	SARG CDAB 2 A_PinkyRam(3);
+	SARG CDAB 2 A_PinkyRam(2);
+	SARG CDABCDAB 2 A_PinkyRam(5);
+	SARG CDAB 2 A_PinkyRam(2);
 	SARG CD 2 A_PinkyRam(1);
 	SARG A 10;
 	Goto See;
   Dash:
 	SARG E 0 A_Flip();
-	SARG EF 5;
+	SARG EF 5 A_FaceTarget();
 	SARG G 10
 	{
-		A_Recoil(-20);
+		A_Recoil(-13);
 		A_FaceTarget();
-		A_StartSound("demon/melee", CHAN_VOICE);
+		A_StartSound(AttackSound, CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
 	}
-	Goto Ram+14;
+	Goto See;
   Crashed:
 	SARG H 20
 	{
@@ -86,7 +86,7 @@ Class DCY_PinkyParent : DCYMonster
 	Goto See;
   Melee:
     SARG EF 8 Fast A_FaceTarget();
-    SARG G 8 Fast A_CustomMeleeAttack((4 * random(1, 10)), "demon/melee", "");
+    SARG G 8 Fast A_CustomMeleeAttack((4 * random(1, 10)), AttackSound, "");
     Goto See;
   Pain:
     SARG H 2 Fast;
@@ -153,22 +153,22 @@ Class DCY_Pinke : DCY_PinkyParent
 	_FUS EEEEEEEEFFFFFFFF 1 A_FaceTarget();
 	_FUS A 2 A_Recoil(-1);
 	_FUS B 2 A_PinkyRam(1);
-	_FUS CDAB 2 A_PinkyRam(3);
-	_FUS CDABCDAB 2 A_PinkyRam(6);
-	_FUS CDAB 2 A_PinkyRam(3);
+	_FUS CDAB 2 A_PinkyRam(2);
+	_FUS CDABCDAB 2 A_PinkyRam(5);
+	_FUS CDAB 2 A_PinkyRam(2);
 	_FUS CD 2 A_PinkyRam(1);
 	_FUS A 10;
 	Goto See;
   Dash:
-	_FUS EF 5;
+	_FUS EF 5 A_FaceTarget();
 	_FUS G 10
 	{
-		A_Recoil(-20);
+		A_Recoil(-13);
 		A_FaceTarget();
 		A_StartSound(AttackSound, CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
 	}
-	Goto Ram+14;
+	Goto See;
   Crashed:
 	_FUS H 20
 	{
@@ -208,11 +208,11 @@ Class DCY_PinkeII : DCY_Pinke
     +SHADOW
 	RenderStyle "Subtract";
 	Alpha 0.2;
-	SeeSound "spectre/sight";
-	AttackSound "spectre/melee";
-	PainSound "spectre/pain";
-	DeathSound "spectre/death";
-	ActiveSound "spectre/active";
+	SeeSound "DCYBane/Sight";
+	AttackSound "DCYBane/Bite";
+	PainSound "DCYBane/pain";
+	DeathSound "DCYBane/death";
+	ActiveSound "DCYBane/Idle";
 	Obituary "$OB_SPECTREHIT";
 	Tag "Bane";
 	Species "Spectres";
@@ -243,13 +243,13 @@ Class DCY_PinkeII : DCY_Pinke
 	Goto See;
   Ram:
 	SARG E 1 A_Jump(128, "Dash");
-	SARG E 1 A_StartSound("spectre/sight", CHAN_VOICE);
+	SARG E 1 A_StartSound(SightSound, CHAN_VOICE);
 	SARG EEEEEEEEFFFFFFFF 1 A_FaceTarget();
 	SARG A 2 A_Recoil(-1);
 	SARG B 2 A_PinkyRam(1);
-	SARG CDAB 2 A_PinkyRam(3);
-	SARG CDABCDAB 2 A_PinkyRam(6);
-	SARG CDAB 2 A_PinkyRam(3);
+	SARG CDAB 2 A_PinkyRam(2);
+	SARG CDABCDAB 2 A_PinkyRam(5);
+	SARG CDAB 2 A_PinkyRam(2);
 	SARG CD 2 A_PinkyRam(1);
 	SARG A 10;
 	Goto See;
@@ -257,12 +257,12 @@ Class DCY_PinkeII : DCY_Pinke
 	SARG EF 5;
 	SARG G 10
 	{
-		A_Recoil(-20);
+		A_Recoil(-13);
 		A_FaceTarget();
 		A_StartSound("spectre/melee", CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
 	}
-	Goto Ram+14;
+	See;
   Crashed:
 	SARG H 20
 	{
@@ -273,7 +273,7 @@ Class DCY_PinkeII : DCY_Pinke
 	Goto See;
   Melee:
     SARG EF 8 Fast A_FaceTarget();
-    SARG G 8 Fast A_CustomMeleeAttack((4 * random(1, 10)), "spectre/melee", "none");
+    SARG G 8 Fast A_CustomMeleeAttack((4 * random(1, 10)), AttackSound, "none");
     Goto See;
   Pain:
     SARG H 2 Fast;
