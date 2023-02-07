@@ -978,7 +978,7 @@ Class DCY_Arc : Actor
   {
   Spawn:
 	L1G5 A 0 NoDelay { A_SetScale(frandompick(Scale.X, -Scale.X), Scale.Y); A_SetRoll(frandom(0, 360)); A_SetAngle(frandom(0, 360)); A_SetPitch(frandom(0, 360)); }
-	L1G5 A 2;
+	L1G5 AAAA 1 A_SetScale(Scale.X + 0.1);
 	Stop;
   }
 }

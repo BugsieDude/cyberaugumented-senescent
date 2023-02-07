@@ -3,15 +3,19 @@ Class DCY_Lemures : DCY_VileParent
   Default
   {
   Health 1400;
-  BloodColor "42f5c5";
+  BloodColor "ffaa00";
+  RenderStyle "Add";
   SeeSound "Lemures/Sight";
   ActiveSound "";
   PainSound "Lemures/Pain";
   DeathSound "Lemures/Death";
-  Tag "\c[n8]Lemures\cL";
+  Tag "\c[b6]Lemures\cL";
   DamageType "Lemures";
-  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  BloodType "DCY_ElecDeathBase";
+  Translation "0:255=%[0.76,0.21,0.08]:[0.00,0.00,0.00]";
   DamageFactor "Lemures", 0.00;
+  Alpha 1.5;
+  Scale 1.12;
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +QUICKTORETALIATE
@@ -20,6 +24,19 @@ Class DCY_Lemures : DCY_VileParent
   }
   
   int ballangle;
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (!level.isFrozen() && DCY_EffectDistance(1500))
+	{
+		A_SpawnItemEx("DCY_LemuresAura", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), (!random(0, 1)) ? 0 : frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME, 20);
+		A_SpawnItemEx("DCY_Arc", frandom(-self.radius, self.radius), frandom(-self.radius, self.radius), frandom(0, self.height), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 70);
+		alpha = frandom(1.4, 3);
+		A_SetScale(frandom(1.12, 1.13), frandom(1.12, 1.13));
+	}
+  }
   
   States
   {
@@ -48,48 +65,17 @@ Class DCY_Lemures : DCY_VileParent
 	L3ML AAABBBCCCDDD 1
 	{
 		for (int i = 2; i > 0; i--)
+		{
 			A_Chase();
 		
-		if (DCY_EffectDistance(1500))
-			A_SpawnItemEx("DCY_LemuresTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+			if (DCY_EffectDistance(1500))
+				A_SpawnItemEx("DCY_LemuresAura", zofs: 5, xvel: frandom(3, -3), yvel: frandom(-3, 13), zvel: frandom(-3, 3), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
 		
 		Return A_Jump(5, "See");
 	}
 	Loop;
   Missile:
-	L3M2 A 0
-	{
-		If (Health < 650 && target && distance3D(target) < 370)
-			SetStateLabel("Shockwave");
-		
-		Return A_Jump(140, "Balls", "BouncingBalls");
-	}
-	L3M2 ABC 6 A_FaceTarget();
-	L3M2 A 6
-	{
-		for (int i = 30; i > -31; i -= 30)
-			A_SpawnProjectile("DCY_LemuresTracer", 5, 0, i);
-	}
-	L3M2 ABC 6 A_FaceTarget();
-	L3M2 A 6
-	{
-		for (int i = 30; i > -31; i -= 15)
-			A_SpawnProjectile("DCY_LemuresTracer", 5, 0, i);
-	}
-	L3M2 BCABCABC 6 A_FaceTarget();
-	Goto See;
-  Balls:
-	L3ML G 0 { ballangle = 40; }
-	L3ML GHIH 3 A_FaceTarget();
-	L3ML IHGHIHGHIHGH 3
-	{
-		A_SpawnProjectile("DCY_LemuresFireball", 87, -18, ballangle);
-		A_SpawnProjectile("DCY_LemuresFireball", 87, 18, -ballangle);
-		
-		A_FaceTarget();
-		ballangle -= 8;
-	}
-	Goto See;
   BouncingBalls:
 	L3M2 ABCABC 6 A_FaceTarget();
 	L3M2 ABCAB 6
@@ -100,23 +86,6 @@ Class DCY_Lemures : DCY_VileParent
 	}
 	L3M2 BCABCABC 6 A_FaceTarget();
 	Goto See;
-  Shockwave:
-	L3ML L 2;
-	L3ML K 2
-	{
-		A_StartSound("Lemures/Death", CHAN_VOICE, attenuation: 0.5);
-		A_StartSound("SCRE1M", CHAN_BODY, volume: 0.5, attenuation: 0.5);
-	}
-	L3ML LKLKJ 2 A_FaceTarget();
-	L3ML I 2
-	{
-		A_StartSound("BLAST003", CHAN_WEAPON, attenuation: 0.5);
-		
-		for (int i = 0; i < 360; i += 45)
-			A_SpawnProjectile("DCY_LemuresShockwave", 0, 0, i);
-	}
-	L3ML HGHIHGHIHGIHIGHIGHIG 2;
-	Goto See;
   Pain:
 	L3ML Q 4;
 	L3ML Q 3 A_Pain();
@@ -124,151 +93,31 @@ Class DCY_Lemures : DCY_VileParent
   Death:
 	L3ML Q 10;
 	L3ML Q 1 A_ScreamAndUnblock();
-	L3ML RSTUVWXY 6 A_SpawnItemEx("DCY_LemuresSoul", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(2.0, 10.0), flags: SXF_NOCHECKPOSITION);
-	L3ML Z -1;
-	Stop;
-  Death.Massacre:
-	L3ML Q 10;
-	L3ML Q 1 A_ScreamAndUnblock();
 	L3ML RSTUVWXY 6;
-	L3ML Z -1;
-	Stop;
-  }
-}
-
-Class DCY_LemuresTracer : DCY_ApollyonTracer
-{
-  Default
-  {
-  Translation "0:255=%[0.00,0.50,0.50]:[1.01,2.00,1.01]";
-  DamageType "Normal";
-  Speed 35;
-  Damage 2;
-  WallBounceFactor 1.0;
-  BounceFactor 1.0;
-  +NEVERFAST
-  +RIPPER;
-  -SEEKERMISSILE;
-  }
-  
-  States
-  {
-  Spawn:
-    TNT1 A 1 Bright
+	L3ML Z 60;
+	L3ML Z 0
 	{
-		if (looping >= 100)
-			Destroy();
-		
-		looping++;
-		A_Weave(3, 0, 2, 0);
-		A_SpawnItemEx("DCY_LemuresTracerFire", zofs: 3, flags: SXF_NOCHECKPOSITION);
+		for (int i = 3; i > 1; i--) A_StartSound("V3RYSMSH", i, CHANF_OVERLAP);
+		A_SpawnItemEx("DCY_LemuresExplosion", zofs: 10, flags: SXF_NOCHECKPOSITION);
 	}
-    Loop;
-  Death:
-	PXPL AAA 0 Bright A_SpawnItemEx("DCY_Explosion_1", 0, 0, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-    FTRA K 3 Bright;
-    FTRA L 2 Bright A_Explode(64, 64);
-    FTRA MNO 2 Bright;
-    Stop;
+	Stop;
   }
 }
 
-Class DCY_LemuresTracerFire : DCY_FAura1
+Class DCY_LemuresExplosion : DCY_WretchedExplosion { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.76,0.31,0.08]"; } }
+
+Class DCY_LemuresAura : DCY_ProjectileBaseTrail
 {
-  Default
-  {
-  Translation "0:255=%[0.00,0.50,0.50]:[1.01,2.00,1.01]";
-  DamageType "Normal";
-  Scale 1.25;
-  Alpha 1.0;
-  }
-  
+  Default { Alpha 0.2; }
   States
   {
   Spawn:
-	FTR3 ABCDEFGIJ 2 A_Explode(1, 10);
-	Stop;
+	#### # 1 A_FadeOut(0.005, 0);
+	Wait;
   }
 }
 
 Class DCY_LemuresSoul : DCY_RZSpirit { Default { Translation "0:255=%[0.00,0.50,0.50]:[1.01,2.00,1.01]"; +DONTSPLASH +BRIGHT Alpha 1.0; } }
-
-Class DCY_LemuresShockwave : CacodemonBall
-{
-  Default
-  {
-  Radius 40;
-  Height 10;
-  +FLOORHUGGER
-  -SOLID
-  +THRUACTORS
-  +THRUSPECIES
-  +DONTSPLASH
-  +RIPPER
-  +NEVERFAST
-  DamageFunction 0;
-  Speed 20;
-  DamageType "Lemures";
-  SeeSound "";
-  DeathSound "";
-  }
-  
-  int time;
-  
-  States
-  {
-  Spawn:
-	TNT1 A 0 NoDelay { time = 10; }
-	TNT1 A 1
-	{
-		if (time <= 0)
-			Destroy();
-		
-		time--;
-		
-		A_Explode(1, 200, XF_NOTMISSILE);
-		for (int i = 2; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_ArchfireLemures", frandom(-100.0, 100.0), frandom(-100.0, 100.0), 1);
-			A_SpawnItemEx("DCY_LemuresSoul", frandom(-60.0, 60.0), frandom(-60.0, 60.0), 1, zvel: frandom(1, 2));
-		}
-	}
-	Goto Spawn+1;
-  Death:
-	TNT1 A 0;
-	Stop;
-  }
-}
-
-Class DCY_ArchfireLemures : DCY_Archfire { Default { DamageType "Lemures"; Translation "0:255=%[0.00,0.00,0.00]:[0.18,1.56,1.08]"; } }
-
-Class DCY_LemuresFireball : DoomImpBall
-{
-  Default
-  {
-  Translation "0:255=%[0.00,0.00,0.00]:[0.18,1.56,1.08]";
-  SeeSound "BOWFIRE9";
-  Speed 15;
-  FastSpeed 25;
-  +RIPPER
-  DamageFunction 1;
-  }
-  
-  States
-  {
-  Spawn:
-    BAL1 AABB 1 A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
-	Loop;
-  Death:
-	TNT1 A 0
-	{
-		for (int i = 7; i > 0; i--)
-			A_SpawnParticle(0xabffe6, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(3.5, 6.4), accelz: -0.85);
-	}
-	BAL1 CCDDEE 2 A_FadeOut(0.2, 0);
-	Stop;
-  }
-}
 
 Class DCY_LemuresGrenade : DoomImpBall
 {
@@ -294,7 +143,7 @@ Class DCY_LemuresGrenade : DoomImpBall
   Alpha 1.0;
   SeeSound "LPISLASR";
   DeathSound "LIGTBALX";
-  Translation "0:255=%[0.00,0.00,0.00]:[0.18,1.56,1.08]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.76,0.31,0.08]";
   }
   
   States
@@ -302,8 +151,10 @@ Class DCY_LemuresGrenade : DoomImpBall
   Spawn:
 	C3AL AB 1
 	{
-		A_SpawnItemEx("DCY_RocketSmonk", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 180);
 		A_SpawnItemEx("DCY_FluorescentOrbTS", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticleEx(0xff2200, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 45, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.025, sizestep: -0.55);
+		A_SpawnItemEx("DCY_Arc", frandom(-self.radius, self.radius), frandom(-self.radius, self.radius), frandom(-self.height, self.height), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 70);
 	}
 	Loop;
   Death:
@@ -311,8 +162,8 @@ Class DCY_LemuresGrenade : DoomImpBall
 	{
 		A_Explode(25, 69, XF_NOTMISSILE, 0);
 		
-		for (int i = 3; i > 0; i--)
-			A_SpawnItemEx("DCY_Explosion_1_Small", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = 14; i > 0; i--) A_SpawnItemEx("DCY_ElecDeathBase", frandom(-6, 6), frandom(-6, 6), frandom(-6, 6), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_Explosion_1_Small", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 			
 		A_StartSound("ROBOEXPL", CHAN_BODY, 0, 1, 0.5);
 	}

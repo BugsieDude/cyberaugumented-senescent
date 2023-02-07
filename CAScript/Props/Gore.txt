@@ -26,17 +26,22 @@ Class DCY_Impaled : LiveStick Replaces LiveStick
   
   override void PostBeginPlay()
   {
-	switch (random(0, 1))
+	switch (random(0, 6))
 	{
 		case 0: sprite = GetSpriteIndex("POL6"); animate = true; break;
 		case 1: sprite = GetSpriteIndex("D_E_"); animate = true; break;
+		case 2: sprite = GetSpriteIndex("POLF"); animate = true; break;
+		case 3: sprite = GetSpriteIndex("POLG"); break;
+		case 4: sprite = GetSpriteIndex("POLH"); break;
+		case 5: sprite = GetSpriteIndex("SK2_"); frame = random(0, 2); scale.x *= randompick(1, -1); break;
+		case 6: sprite = GetSpriteIndex("WLFG"); break;
 	}
   }
   
   States
   {
   LoadSprites:
-	POL6 AB 0; D_E_ AB 0;
+	POL6 AB 0; D_E_ AB 0; POLF AB 0; POLG A 0; POLH A 0; SK2_ ABC 0; WLFG A 0;
   Spawn:
 	TNT1 A 0 NoDelay;
 	#### # 1 { if (animate) SetStateLabel("Animated"); }
@@ -44,5 +49,172 @@ Class DCY_Impaled : LiveStick Replaces LiveStick
   Animated:
 	#### AB random(6, 8);
 	Loop;
+  }
+}
+
+Class DCY_Impaled2 : DeadStick Replaces DeadStick
+{ 
+  override void PostBeginPlay()
+  {
+	switch (random(0, 5))
+	{
+		case 0: sprite = GetSpriteIndex("POL1"); break;
+		case 1: sprite = GetSpriteIndex("D_E_"); frame = 2; break;
+		case 2: sprite = GetSpriteIndex("POLD"); break;
+		case 3: sprite = GetSpriteIndex("POLG"); break;
+		case 4: sprite = GetSpriteIndex("POLH"); break;
+		case 5: sprite = GetSpriteIndex("SK2_"); frame = random(0, 2); scale.x *= randompick(1, -1); break;
+		case 6: sprite = GetSpriteIndex("C0R_"); frame = 8; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	POL1 AB 0; D_E_ C 0; POLG A 0; POLH A 0; POLD A 0; SK2_ ABC 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass : DeadMarine Replaces DeadMarine
+{ 
+  override void PostBeginPlay()
+  {
+	scale.x *= randompick(1, -1);
+	switch (randompick(0, 1, 1))
+	{
+		case 0: sprite = GetSpriteIndex("PLAY"); frame = 13; break;
+		case 1: sprite = GetSpriteIndex("MC_E"); frame = random(0, 21); break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	PLAY N 0; MC_E ABCDEFGHIJKLMNOPQRSTUV 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass1 : DeadZombieman Replaces DeadZombieman
+{ 
+  override void PostBeginPlay()
+  {
+	scale.x *= randompick(1, -1);
+	switch (random(0, 3))
+	{
+		case 0: sprite = GetSpriteIndex("POSP"); frame = 11; break;
+		case 1: sprite = GetSpriteIndex("C0R_"); frame = random(6, 8); break;
+		case 2: sprite = GetSpriteIndex("C0R_"); frame = randompick(10, 11, 11, 11); break;
+		case 3: sprite = GetSpriteIndex("C0R_"); frame = 14; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	POSP L 0; C0R_ ABCDEFGHIJKLMNOPQRSTUVXYZ 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass2 : DeadShotgunGuy Replaces DeadShotgunGuy
+{ 
+  override void PostBeginPlay()
+  {
+	scale.x *= randompick(1, -1);
+	switch (random(0, 3))
+	{
+		case 0: sprite = GetSpriteIndex("SRG_"); frame = 11; break;
+		case 1: sprite = GetSpriteIndex("C0R_"); frame = random(0, 4); break;
+		case 2: sprite = GetSpriteIndex("C0R_"); frame = randompick(10, 11, 11, 11); break;
+		case 3: sprite = GetSpriteIndex("C0R_"); frame = 14; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	SRG_ L 0; C0R_ ABCDEFGHIJKLMNOPQRSTUVXYZ 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass3 : DeadDoomImp Replaces DeadDoomImp
+{ 
+  override void PostBeginPlay()
+  {
+	scale.x *= randompick(1, -1);
+	switch (random(0, 4))
+	{
+		case 0: sprite = GetSpriteIndex("DAS_"); frame = 12; break;
+		case 1: sprite = GetSpriteIndex("VI0_"); frame = 12; break;
+		case 2: sprite = GetSpriteIndex("VI1_"); frame = 8; break;
+		case 3: sprite = GetSpriteIndex("VI2_"); frame = 4; break;
+		case 4: sprite = GetSpriteIndex("C0R_"); frame = randompick(14, 5, 12); break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	DAS_ M 0; VI0_ M 0; VI1_ IW 0; VI2_ E 0; C0R_ ABCDEFGHIJKLMNOPQRSTUVXYZ 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass4 : DeadDemon Replaces DeadDemon
+{ 
+  override void PostBeginPlay()
+  {
+	scale.x *= randompick(1, -1);
+	sprite = GetSpriteIndex("C0R_"); frame = randompick(13, 15);
+  }
+  
+  States
+  {
+  LoadSprites:
+	C0R_ ABCDEFGHIJKLMNOPQRSTUVXYZ 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
+  }
+}
+
+Class DCY_Deadass5 : DeadCacodemon Replaces DeadCacodemon
+{ 
+  override void PostBeginPlay()
+  {
+	switch (random(0, 1))
+	{
+		case 0: sprite = GetSpriteIndex("3GGS"); frame = 11; break;
+		case 1: sprite = GetSpriteIndex("PGE_"); frame = 11; break;
+	}
+  }
+  
+  States
+  {
+  LoadSprites:
+	3GGS L 0; PGE_ L 0;
+  Spawn:
+	TNT1 A 0 NoDelay;
+	#### # -1;
+	Stop;
   }
 }

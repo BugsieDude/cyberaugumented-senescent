@@ -31,7 +31,7 @@ Class DCY_Emptiness : DCY_VileParent
   +NEVERRESPAWN
   +QUICKTORETALIATE
   RenderStyle "Subtract";
-  Tag "\c[g2]The Emptiness\c-";
+  Tag "\c[b7]The Emptiness\c-";
   Obituary "%o could not explain what %g has beholded before \c[g2]The Emptiness\c- sodomized %h.";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";

@@ -4,7 +4,7 @@ Class DCY_CombatShotgun : DCY_Weapon Replaces Shotgun
   {
 	Tag "UXA Combat Shotgun 2650";
 	Inventory.PickupSound "dcy/shotgunpickup2";
-	Inventory.PickupMessage "You got the Combat Shotgun! The most popular weapon in the whole genre. ...Kinda.";
+	Inventory.PickupMessage "You got the Combat Shotgun! Sweet seven bullet packed in a shell shooter!";
 	Weapon.AmmoGive 8;
 	Weapon.AmmoUse 1;
 	Weapon.AmmoType "Shell";

@@ -21,6 +21,7 @@ QUITMSG4 = "Please stay, marine.";
 QUITMSG5 = "Have a nice snack. I'll be waiting.";
 QUITMSG6 = "Don't you wanna go save your own world? ..Nay?";
 QUITMSG7 = "GLORY TO MY ASS";
+QUITMSG8 = "GLORY TO MY ASS";
 
 //Tooltips
 TIP_CYBERAUGUMENTEDDASHINGMENU = "The configurations for the player's mechanics. Typically this mod used to be a DOOM Eternal inspired mod before it started to become unique.";
