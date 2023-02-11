@@ -27,10 +27,7 @@ Class De_Blood : Actor Replaces Blood
 		trail.scale = scale;
 		trail.translation = translation;
 		
-		if (brightness)
-		{
-			trail.bBRIGHT = true;
-		}
+		if (brightness) trail.bBRIGHT = true;
 	}
   }
   

@@ -32,7 +32,10 @@ Class DCY_Mindmonarch : DCY_TheGiantEnemySpider
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	NMBD AABBCCDDEEFF 4 A_Chase();
+	NMBD AABBCC 4 A_Chase();
+	NMBD D 0 A_StartSound("DCYDictator/Step", CHAN_BODY, attenuation: 0.75);
+	NMBD DDEEFF 4 A_Chase();
+	NMBD A 0 A_StartSound("DCYDictator/Step", CHAN_BODY, attenuation: 0.75);
 	Loop;
   Missile:
 	NMBD G 0 { laser = 80; }

@@ -39,7 +39,7 @@
 #include "CAScript/Monsters/Zombie/Pacer.txt"
 #include "CAScript/Monsters/Arachnotron/Ion.txt"
 #include "CAScript/Monsters/Imp/Subzero.txt"
-#include "CAScript/Monsters/Imp/Sirius.txt"
+#include "CAScript/Monsters/Imp/Castrator.txt"
 #include "CAScript/Monsters/Imp/Regulus.txt"
 #include "CAScript/Monsters/Revenant/Verdict.txt"
 #include "CAScript/Monsters/Baron/Emir.txt"

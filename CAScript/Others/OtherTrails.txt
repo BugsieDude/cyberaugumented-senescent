@@ -67,7 +67,8 @@ Class DCY_ShadowTrailBase : DCY_ProjectileBaseTrail
 }
 
 Class DCY_TransfixerTrail : DCY_HexodenicanTrail { Default { StencilColor "Purple"; } }
-Class DCY_ManesTrail : DCY_HexodenicanTrail2 { Default { StencilColor "Black"; RenderStyle "Stencil"; Alpha 0.125; } }
+Class DCY_ManesTrail : DCY_HexodenicanTrail { Default { StencilColor "Black"; RenderStyle "Stencil"; Alpha 0.325; } }
+Class DCY_ManesTrail2 : DCY_ShadowTrailBase { Default { Translation "0:255=4:4", "16:47=0:0", "168:191=0:0", "128:159=0:0"; Alpha 0.1; } }
 Class DCY_CuratorExplosion2 : DCY_HexodenicanTrail { Default { StencilColor "Yellow"; } }
 Class DCY_CuratorExplosion3 : DCY_HexodenicanTrail
 {

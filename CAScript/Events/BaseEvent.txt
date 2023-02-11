@@ -2,6 +2,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 {
   ui int inputtic;
   float temp1;
+  int plvl;
   
   //Cutscene Stuff
   bool cutscene;
@@ -187,6 +188,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	TempCheck();
 	Tracker();
 	A_CutsceneCheck();
+	let d = DCY_Variables.Get();
+	plvl = d.dcylevel;
   }
   
   void TempCheck()

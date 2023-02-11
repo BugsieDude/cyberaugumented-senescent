@@ -22,7 +22,7 @@ Class DCY_Clip : Clip Replaces Clip
   Default
   {
   Inventory.PickupSound "dcy/clip";
-  Inventory.PickupMessage "Picked up a clip of bullets.";
+  Inventory.PickupMessage "Picked up a stripper clip.";
   }
   
   States
@@ -45,7 +45,7 @@ Class DCY_ClipBox : ClipBox Replaces ClipBox
   Default
   {
   Inventory.PickupSound "dcy/clip";
-  Inventory.PickupMessage "Picked up a box containing a good amount of clips.";
+  Inventory.PickupMessage "Picked up a crate filled with stripper clips.";
   }
   
   States
@@ -68,7 +68,7 @@ Class DCY_Shell : Shell Replaces Shell
   Default
   {
   Inventory.PickupSound "dcy/shell";
-  Inventory.PickupMessage "Picked up 4 shells specifically for your shotgun needs.";
+  Inventory.PickupMessage "Picked up four stranded shells.";
   }
   
   States
@@ -91,7 +91,7 @@ Class DCY_Shellbox : ShellBox Replaces ShellBox
   Default
   {
   Inventory.PickupSound "dcy/shell";
-  Inventory.PickupMessage "Acquired the box of shells.";
+  Inventory.PickupMessage "Found a box with twenty shells inside.";
   }
   
   States
@@ -114,7 +114,7 @@ Class DCY_RocketA : RocketAmmo Replaces RocketAmmo
   Default
   {
   Inventory.PickupSound "dcy/rocket";
-  Inventory.PickupMessage "Obtained a unactivated rocket for ammo.";
+  Inventory.PickupMessage "Obtained a built, unused rocket.";
   }
   
   States
@@ -137,7 +137,7 @@ Class DCY_RocketBox : RocketBox Replaces RocketBox
   Default
   {
   Inventory.PickupSound "dcy/rocket";
-  Inventory.PickupMessage "Picked up a box, which contains a good load of rockets.";
+  Inventory.PickupMessage "The lootbox is now yours, now with missiles.";
   }
   
   States
@@ -160,7 +160,7 @@ Class DCY_Cell : Cell Replaces Cell
   Default
   {
   Inventory.PickupSound "dcy/cell";
-  Inventory.PickupMessage "Acquired an energy cell.";
+  Inventory.PickupMessage "Acquired a energy cell.";
   }
   
   States
@@ -183,7 +183,7 @@ Class DCY_Cellpack : Cellpack Replaces Cellpack
   Default
   {
   Inventory.PickupSound "dcy/cellpack";
-  Inventory.PickupMessage "A cell with a bunch of energy in it.";
+  Inventory.PickupMessage "This is not a visualizer, but it is a cube powered with lots of energy.";
   }
   
   States
@@ -263,31 +263,11 @@ Class DCY_CinerealPrestige : Ammo
   }
 }
 
-Class DCY_ProtoCell : Ammo
-{
-  Default
-  {
-  Inventory.PickupMessage "Picked up an Prototype Energy Power Unit.";
-  Inventory.PickupSound "items/cell";
-  Inventory.Icon "CELLA0";
-  Inventory.Amount 10;
-  Inventory.MaxAmount 300;
-  Ammo.BackpackAmount 20;
-  Ammo.BackpackMaxAmount 600;
-  }
-  States
-  { 
-  Spawn:
-    CELL A 1;
-    Loop;
-  }
-}
-
 Class DCY_UltramodernEnergy : Ammo
 {
   Default
   {
-  Inventory.PickupMessage "You got the Ultramodern Energy Cell.";
+  Inventory.PickupMessage "Got a vessel of Ultramodern energy.";
   Inventory.PickupSound "SmallItem/Pickup";
   Inventory.Icon "C2LLB0";
   Inventory.Amount 15;

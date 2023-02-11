@@ -9,7 +9,7 @@ Class DCY_EternalVoid : DCY_Weapon
   Height 20;
   Scale 0.75;
   Weapon.AmmoType "DCY_UltramodernEnergy";
-  Weapon.AmmoUse 100;
+  Weapon.AmmoUse 600;
   Weapon.AmmoGive 100;
   Weapon.SlotNumber 9;
   Inventory.Icon "BHL_Z0";

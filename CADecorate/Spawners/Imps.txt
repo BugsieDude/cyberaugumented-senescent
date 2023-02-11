@@ -8,7 +8,7 @@ ACTOR DCY_Impo : DCY_Spawner Replaces DoomImp
   DropItem "DCY_Perserver", 14, 430
   DropItem "DCY_LiquidatorTypeImp", 14, 100
   DropItem "DCY_SubzeroUmbrage", 20, 120
-  DropItem "DCY_SiriusImp", 25, 110
+  DropItem "DCY_Castrator", 25, 110
   DropItem "DCY_RegulusImp", 25, 80
   DropItem "DCY_Malignant", 25, 100
   DropItem "DCY_Terminalist", 14, 90

@@ -17,7 +17,6 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
   +MISSILEMORE
   +DONTFALL
   +AVOIDMELEE
-  +BRIGHT
   Scale 1.25;
   PainChance 25;
   DamageFactor "Ice", 0.8;

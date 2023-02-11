@@ -1,14 +1,36 @@
-Mixin Class DCY_ProjectileEffects
+Class DCY_Projectile : Actor
 {
-  action void A_SpawnFlames(string fcolor, float ftimer, float fsize, float faccel)
+  int sfxdistance;
+  
+  override void PostBeginPlay()
   {
-	A_SpawnParticleEx(fcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, ftimer, fsize, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), accelz: faccel, startalphaf: 1.0, fadestepf: 0.025, sizestep: -(ftimer / 10), startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+	super.PostBeginPlay();
+	sfxdistance = 1500;
+  }
+  
+  Default
+  {
+  Projectile;
+  }
+  
+  Mixin DCY_Effects;
+  
+  action void A_SpawnFlames(string fcolor = "ffffff", float ftimer = 20, float fsize = 40, float faccel = 0,
+							bool smonk = true, float offsets = 1, bool allsmoke = false)
+  {
+	A_SpawnParticleEx(fcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, ftimer, fsize, 0, frandom(-offsets, offsets), frandom(-offsets, offsets), frandom(-offsets, offsets), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), accelz: faccel, startalphaf: 1.0, fadestepf: 0.025, sizestep: -(fsize / 10) / (ftimer / 10), startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	
 	if ((level.time % random(3, 9)) == 0)
 		A_SpawnParticleEx(fcolor, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, random(3, 6), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.2), fadestepf: 0, sizestep: -0.115);	
-	
-	if ((level.time % random(2, 7)) == 0)
-		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, ftimer * 1.5, fsize, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+	if (smonk)
+	{
+		if (allsmoke) A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, ftimer * 1.5, fsize, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		else
+		{
+			if ((level.time % random(2, 7)) == 0)
+				A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, ftimer * 1.5, fsize, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		}
+	}
   }
 }
 
@@ -34,7 +56,7 @@ Class DCY_EnemyGrenade : DCY_GoreBase
 		else if ((timer > 60) && (level.time % 8) == 0) { frame = 1; A_AttachLight("grenadelight", DynamicLight.PointLight, 0xff0000, 30, 30); A_StartSound("DCYGrenadeTick", CHAN_BODY); }
 			
 		if ((timer < 60) && (level.time % 30) == 5) { frame = 0; A_RemoveLight("grenadelight"); }
-		if ((timer > 60) && (level.time % 8) == 5) { frame = 0; A_RemoveLight("grenadelight"); }
+		if ((timer > 60) && (level.time % 15) == 5) { frame = 0; A_RemoveLight("grenadelight"); }
 			
 		if ((level.time % 2) == 0)
 			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 120, 20, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), accelz: 0.1, startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
@@ -117,24 +139,32 @@ Class DCY_ImpBigFlame : DCY_ImpFlame1
   }
 }
 
-Class DCY_ImpFireball : DoomImpBall Replaces DoomImpBall
+Class DCY_ImpFireball : DCY_Projectile Replaces DoomImpBall
 {
   Default
   {
+  Radius 6;
+  Height 8;
+  Speed 10;
+  FastSpeed 20;
+  Damage 3;
+  +RANDOMIZE
+  +ZDOOMTRANS
+  RenderStyle "Add";
+  SeeSound "imp/attack";
+  DeathSound "imp/shotx";
   Alpha 1.0;
   +BRIGHT;
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.91,0.00]";
   }
-  
-  Mixin DCY_ProjectileEffects;
   
   States
   {
   Spawn:
     FBS1 AABBCC 1
 	{
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
-		//A_SpawnFlames("ff7e3d", 20, 40, 0);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
+		A_SpawnFlames("ff7e3d", 20, 40, 0, true, frandom(-1.5, 1.5));
 	}
 	Loop;
   Death:
@@ -148,21 +178,36 @@ Class DCY_ImpFireball : DoomImpBall Replaces DoomImpBall
   }
 }
 
-Class DCY_LeFatFireball : FatShot Replaces FatShot
+Class DCY_LeFatFireball : DCY_Projectile Replaces FatShot
 {
   Default
   {
   Alpha 1.0;
-  Translation "0:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  Translation "0:255=%[0.50,0.00,0.00]:[1.00,0.50,0.00]";
   +BRIGHT;
+  Radius 6;
+  Height 8;
+  Speed 20;
+  Damage 8;
+  +RANDOMIZE
+  +ZDOOMTRANS
+  RenderStyle "Add";
+  SeeSound "fatso/attack";
+  DeathSound "fatso/shotx";
   }
+  
   States
   {
   Spawn:
     MANF AABB 1
 	{
-		A_SpawnItemEx("DCY_ImpBigFlame", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: frandom(1, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 210);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: frandom(1, 2.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 210);
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+			A_SpawnItemEx("DCY_ProjectileBaseTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME, failchance: 20);
+			A_SpawnFlames("ff9e5d", 20, 60, 0, false);
+		}
 	}
 	Loop;
   Death:
@@ -176,13 +221,23 @@ Class DCY_LeFatFireball : FatShot Replaces FatShot
   }
 }
 
-Class DCY_MeatballElecball : CacodemonBall Replaces CacodemonBall
+Class DCY_MeatballElecball : DCY_Projectile Replaces CacodemonBall
 {
   Default
   {
   Alpha 1.0;
-  Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.63,1.50]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.83,1.50]";
   +BRIGHT
+  Radius 6;
+  Height 8;
+  Speed 10;
+  FastSpeed 20;
+  Damage 5;
+  +RANDOMIZE
+  +ZDOOMTRANS
+  RenderStyle "Add";
+  SeeSound "caco/attack";
+  DeathSound "caco/shotx";
   }
   
   States
@@ -190,8 +245,12 @@ Class DCY_MeatballElecball : CacodemonBall Replaces CacodemonBall
   Spawn:
 	BAL2 AAABBB 1
 	{
-		A_SpawnItemEx("DCY_MeatballElecballTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 220);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 220);
+			A_SpawnItemEx("DCY_ElecTrailBase", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0x206cff, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 100, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.015);	
+		}
 	}
 	Loop;
   Death:
@@ -227,7 +286,7 @@ Class DCY_MeatballElecballTrail : DCY_Effect
   }
 }
 
-Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
+Class DCY_HomingMissile : DCY_Projectile Replaces RevenantTracer
 {
   Default
   {
@@ -239,6 +298,13 @@ Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
   FastSpeed 15;
   RenderStyle "Normal";
   Translation "168:173=[255,255,255]:[255,255,128]", "174:180=[255,255,128]:[255,121,0]", "181:191=[255,121,0]:[64,9,0]", "224:231=[255,255,255]:[255,255,128]", "208:216=[255,255,255]:[255,255,128]", "217:223=[255,255,128]:[255,121,0]", "232:235=%[0.00,0.00,0.00]:[2.00,0.95,0.00]", "236:239=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[255,255,128]:[64,9,0]", "16:23=[255,255,255]:[255,255,128]", "24:31=[255,255,128]:[255,121,0]", "32:47=[255,121,0]:[64,9,0]", "192:195=[255,255,255]:[255,255,128]", "196:201=[255,255,128]:[255,121,0]", "202:207=[255,121,0]:[64,9,0]", "112:119=[255,255,128]:[255,121,0]", "120:127=[255,121,0]:[64,9,0]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.50,0.07,0.00]:[2.00,2.00,1.01]", "80:111=%[0.00,0.00,0.00]:[0.49,0.49,0.49]";
+  Radius 11;
+  Height 8;
+  Speed 10;
+  +RANDOMIZE
+  +ZDOOMTRANS
+  SeeSound "skeleton/attack";
+  DeathSound "skeleton/tracex";
   }
   
   static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
@@ -256,7 +322,7 @@ Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
 			timer++;
 		}
 
-		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("ff7e3d", 25, 20, 0, true, frandom(-2.5, 2.5));
 	}
 	Goto Spawn+1;
   Death:
@@ -267,8 +333,8 @@ Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
 		A_StopSound(CHAN_6);
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION);
 	}
 	TNT1 A 17;
 	Stop;
@@ -277,22 +343,79 @@ Class DCY_HomingMissile : RevenantTracer Replaces RevenantTracer
 
 Class DCY_BaronKnightFlame : DCY_ImpFlame1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.55,1.38,0.46]"; } }
 
-Class DCY_BaronFireball : BaronBall Replaces BaronBall
+Class DCY_ExplosiveBallT : Actor
+{
+  Default
+  {
+  Radius 0;
+  Height 0;
+  Scale 0.45;
+  RenderStyle "Add";
+  Alpha 0.8;
+  +DONTSPLASH;
+  +NOCLIP;
+  +ROLLSPRITE;
+  +NOINTERACTION;
+  +BRIGHT;
+  +THRUACTORS;
+  }
+  States
+  {
+  Spawn:
+	BEWM A 0 NoDelay A_SetRoll(random(0, 360));
+	"####" EGIKMPQVX 1
+	{ 
+		A_FadeOut(0.005, 0);
+		A_SetScale(Scale.X-0.02, Scale.Y-0.02); 
+	}
+	B2WM CGGGG 1
+	{ 
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X-0.03, Scale.Y-0.03); 
+	}
+	Stop;
+  }
+}
+
+Class DCY_BaronFireball : DCY_Projectile Replaces BaronBall
 {
   Default
   {
   Alpha 0.7;
   +BRIGHT;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,2.00,0.00]";
+  Radius 6;
+  Height 16;
+  Speed 15;
+  FastSpeed 20;
+  Damage 8;
+  Projectile;
+  +RANDOMIZE
+  +ZDOOMTRANS
+  RenderStyle "Add";
+  SeeSound "baron/attack";
+  DeathSound "baron/shotx";
+  Decal "BaronScorch";
   }
   States
   {
   Spawn:
-    BAL7 A 0;
-    BAL7 AAABBB 1 A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
+    BAL7 AAABBB 1
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			let splosion = Spawn("DCY_ExplosiveBallT", pos);
+			if (splosion) { splosion.translation = translation; splosion.scale *= 0.25; }
+			A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
+			A_SpawnFlames("10ff10", 40, 50, 0, false);
+		}
+	}
 	Loop;
   Death:
     TNT1 A 0
     {
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		for (int i = 7; i > 0; i--)
 			A_SpawnParticle(0x93ff91, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
 	}
@@ -301,16 +424,24 @@ Class DCY_BaronFireball : BaronBall Replaces BaronBall
   }
 }
 
-Class DCY_OverhauledRocket : Rocket Replaces Rocket
+Class DCY_OverhauledRocket : DCY_Projectile Replaces Rocket
 {
   Default
   {
   DamageType "Explosive";
   Speed 31.7755;
+  Damage 20;
+  +RANDOMIZE
+  +DEHEXPLOSION
+  SeeSound "weapons/rocklf";
+  DeathSound "weapons/rocklx";
+  Obituary "$OB_MPROCKET";
   RenderStyle "Normal";
   Scale 1.2;
   Alpha 1.0;
   -ROCKETTRAIL
+  Radius 11;
+  Height 8;
   }
   
   static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
@@ -318,13 +449,14 @@ Class DCY_OverhauledRocket : Rocket Replaces Rocket
   States
   {
   Spawn:
-	NMSL A 0;
 	NMSL A 1
 	{
-		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1, sizestep: -0.325);
-		A_SpawnItemEx("DCY_RocketFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 100);
-		A_SpawnItemEx("DCY_RocketSmonk", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 210);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnFlames("ff3e1f", 30, 25, 0, allsmoke: true);
+			if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0xff3e1f, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 80, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.075);	
+			A_SpawnItemEx("DCY_RocketFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
+		}
 	}
 	Loop;
   Death:
@@ -357,6 +489,7 @@ Class DCY_RocketFlare : Actor
   +BRIGHT;
   +CLIENTSIDEONLY;
   +ROLLSPRITE;
+  Translation "0:255=%[0.00,0.00,0.00]:[1.00,0.50,0.00]";
   }
   States
   {
