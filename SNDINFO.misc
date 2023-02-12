@@ -10,6 +10,11 @@ misc/pausegame "Sounds/Game/dcy_pause.ogg"
 misc/gamefreeze1 "Sounds/Menu/dcy_gamefreeze1.ogg"
 misc/gamefreeze2 "Sounds/Menu/dcy_gamefreeze2.ogg"
 
+$random dcyeye/ambient { CYBECREP CYBECREP dcyeye/ambient1 dcyeye/ambient2 dcyeye/ambient3 }
+dcyeye/ambient1 "Sounds/Enviroment/dcy_evileye_ambient1.ogg"
+dcyeye/ambient2 "Sounds/Enviroment/dcy_evileye_ambient2.ogg"
+dcyeye/ambient3 "Sounds/Enviroment/dcy_evileye_ambient3.ogg"
+
 //Announcements
 Warp/Choir "Sounds/DCY SFX/dcy_warp1.ogg"
 Warp/Spacial "Sounds/DCY SFX/dcy_warp2.ogg"

@@ -14,11 +14,15 @@ Class DCY_Chimera : DCY_Rev
   Tag "Chimera";
   Obituary "%o's lost %p hearing sensory system.";
   -MISSILEMORE
+  +NOINFIGHTING
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
   +BRIGHT
   Health 400;
   }
   
   bool rush;
+  bool enraged;
   
   States
   {

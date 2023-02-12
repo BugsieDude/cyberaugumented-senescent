@@ -188,6 +188,7 @@ Frictional Games - Sounds
 Gunfire Games - Sounds
 MothraMaster - Boot Sprites
 Korp - Boot Sprites
+OMOCAT - Sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

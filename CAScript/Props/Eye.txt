@@ -38,13 +38,13 @@ Class DCY_UnknownEye : Actor
   {
 	"You feel a cold touch.",
 	"Are you okay?",
-	"You are nothing. Less than nothing. You're sick.",
-	"Welcome to your special hell.",
-	"The intrusive thoughts won.",
+	"You are nothing, even less than nothing; you're sick.",
+	"Welcome to your own special hell.",
+	"The voices.",
 	"Make it stop.",
 	"Kill.",
 	"Hahahaha...",
-	"War is hell.",
+	"War is hell. Hell is war.",
 	"Infernal fires are uprising.",
 	"Impending doom will approach soon.",
 	"Will things EVER stay the same? ...again?"
@@ -67,7 +67,7 @@ Class DCY_UnknownEye : Actor
 
 	if (CheckIfCloser(curCamera, 300) && (random(0, 560) == 1))
 	{
-		A_StartSound("CYBECREP", CHAN_BODY, attenuation: ATTN_IDLE);
+		A_StartSound("dcyeye/ambient", CHAN_BODY, attenuation: ATTN_IDLE);
 		
 		if (random(0, 1) == 1)
 			console.printf("\c".."[".."m4".."]"..mesasge.."\c-");

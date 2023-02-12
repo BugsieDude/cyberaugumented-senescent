@@ -230,10 +230,12 @@ HSSGPAI6 "Sounds/DCY Monsters/Hoodlum/dcy_strogg_soldier_pain6.ogg"
 
 Sacker/Sight "Sounds/DCY Monsters/Sacker/dcy_sacker_sight.ogg"
 Sacker/Active "Sounds/DCY Monsters/Sacker/dcy_sacker_idle.ogg"
-$random Sacker/Pain { Sacker/Pain1 Sacker/Pain2 Sacker/Pain3 }
+$random Sacker/Pain { Sacker/Pain1 Sacker/Pain2 Sacker/Pain3 Sacker/Pain4 Sacker/Pain5 }
 Sacker/Pain1 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain1.ogg"
 Sacker/Pain2 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain2.ogg"
 Sacker/Pain3 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain3.ogg"
+Sacker/Pain4 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain4.ogg"
+Sacker/Pain5 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain5.ogg"
 $random Sacker/Death { Sacker/Death1 Sacker/Death2 Sacker/Death3 Sacker/Death4 Sacker/Death5 }
 Sacker/Death1 "Sounds/DCY Monsters/Sacker/dcy_sacker_death1.ogg"
 Sacker/Death2 "Sounds/DCY Monsters/Sacker/dcy_sacker_death2.ogg"
@@ -1315,6 +1317,11 @@ HELSSIT1 "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_blather1.ogg"
 HELSSIT2 "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_blather2.ogg"
 HELSSIT3 "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_blather3.ogg"
 $rolloff Destructor/Sight 300 2000
+$random Destructor/Pain { HELSP1 HELSP2 }
+HELSP1 "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_pain.ogg"
+HELSP2 "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_pain2.ogg"
+$random Destructor/Sight { HELSSIT1 HELSSIT2 HELSSIT3 }
+Destructor/Death "Sounds/DCY Monsters/Unholy Destructor/dcy_destructor_death.ogg"
 
 $random PhasicRazer/Sight { B10WSIT1 B10WSIT2 B10WSIT3 }
 B10WSIT1 "Sounds/DCY Monsters/Phasic Razer/dcy_phasicrazer_sight1.ogg"
