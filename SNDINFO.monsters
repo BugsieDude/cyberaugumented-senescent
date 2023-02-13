@@ -2809,21 +2809,28 @@ Theristis/Sight1 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_sight1.og
 Theristis/Sight2 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_sight3.ogg"
 Theristis/Sight3 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_sight4.ogg"
 Theristis/Sight4 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_sight5.ogg"
-$random Theristis/Active { Theristis/Idle1 Theristis/Idle2 Theristis/Idle3 Theristis/Idle4 Theristis/Idle4 }
+$random Theristis/Active { Theristis/Idle1 Theristis/Idle2 Theristis/Idle3 Theristis/Idle4 Theristis/Idle5 }
 Theristis/Idle1 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_chatter1.ogg"
 Theristis/Idle2 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_chatter5.ogg"
 Theristis/Idle3 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_chatter6.ogg"
 Theristis/Idle4 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_chatter8.ogg"
-$random Theristis/Pain { Theristis/Pain1 Theristis/Pain2 Theristis/Pain3 }
+Theristis/Idle5 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_chatter9.ogg"
+$random Theristis/Pain { Theristis/Pain1 Theristis/Pain2 Theristis/Pain3 Theristis/Pain4 Theristis/Pain5 }
 Theristis/Pain1 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_pain1.ogg"
 Theristis/Pain2 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_pain2.ogg"
 Theristis/Pain3 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_pain3.ogg"
-$random Theristis/Death { Theristis/Death1 Theristis/Death2 Theristis/Death3 Theristis/Death4 Theristis/Death5 Theristis/Death5 Theristis/Death5 }
+Theristis/Pain4 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_pain4.ogg"
+Theristis/Pain5 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_pain5.ogg"
+$random Theristis/Death { Theristis/Death1 Theristis/Death2 Theristis/Death3 Theristis/Death4 Theristis/Death5 Theristis/Death5 Theristis/Death5 Theristis/Death6 }
 Theristis/Death1 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death3.ogg"
 Theristis/Death2 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death4.ogg"
 Theristis/Death3 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death5.ogg"
 Theristis/Death4 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death6.ogg"
 Theristis/Death5 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death7.ogg"
+Theristis/Death6 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_death2.ogg"
+$random Theristis/Suffering { Theristis/Suffering1 Theristis/Suffering2 }
+Theristis/Suffering1 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_suffering.ogg"
+Theristis/Suffering2 "Sounds/DCY Monsters/Theristis Psichisl/dcy_theristis_suffering2.ogg"
 
 SOULATK3 "Sounds/DCY Monsters/Nightmare/dcy_nightmare.ogg"
 

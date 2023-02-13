@@ -2,13 +2,13 @@ Class DCY_Chimera : DCY_Rev
 {
   Default
   {
-  BloodColor "White";
-  BloodType "DCY_SpiritBlood";
-  Translation "16:47=%[0.27,0.27,0.27]:[2.00,2.00,2.00]", "168:191=%[0.27,0.27,0.27]:[2.00,2.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.46,0.46,0.46]", "5:15=%[0.00,0.00,0.00]:[0.46,0.46,0.46]", "1:3=%[0.00,0.00,0.00]:[0.46,0.46,0.46]";
+  BloodColor "2b50d6";
+  BloodType "DCY_ElecDeathBase";
+  Translation "0:224=%[0.00,0.00,0.00]:[0.43,0.43,0.43]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "80:111=[192,192,192]:[10,10,10]", "16:47=%[0.00,0.00,0.18]:[0.37,0.57,1.74]", "168:191=%[0.00,0.24,1.61]:[1.03,1.37,2.00]", "232:239=%[0.00,0.17,0.47]:[0.00,0.59,1.59]";
   SeeSound "PhantomRev/Scream";
   ActiveSound "PhantomRev/Active";
   PainSound "PhantomRev/Pain";
-  DeathSound "PhantomRev/Death";
+  DeathSound "LunarChiller/Death";
   Speed 8;
   FastSpeed 13;
   Tag "Chimera";
@@ -17,7 +17,6 @@ Class DCY_Chimera : DCY_Rev
   +NOINFIGHTING
   +DONTHARMSPECIES
   +DONTHARMCLASS
-  +BRIGHT
   Health 400;
   }
   
@@ -57,7 +56,12 @@ Class DCY_Chimera : DCY_Rev
 	INCA A 10 { rush = !rush; }
 	Goto See;
   Melee:
-	INCA GH 6 A_FaceTarget();
+	INCA G 6 A_FaceTarget();
+	INCA HHHH 2
+	{
+		A_Recoil(-2);
+		A_FaceTarget();
+	}
 	INCA I 6 A_CustomMeleeAttack(10 * random(3, 8), "skeleton/melee");
 	Goto See;
   Missile:
@@ -94,7 +98,11 @@ Class DCY_Chimera : DCY_Rev
   Death:
 	INCX A 4;
 	INCX B 4 A_ScreamAndUnblock();
-	INCX CDEFGHIJ 4 A_SpawnItemEx("DCY_EspouserShriekingSoul", zofs: 30, xvel: frandom(10, 30), zvel: frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION, failchance: 50);
+	INCX CDEFGHIJ 4
+	{
+		if (DCY_EffectDistance(sfxdistance)) for (int i = random(2, 3); i > 0; i--) DCY_SoulExplode();
+		A_SpawnItemEx("DCY_EspouserShriekingSoul", zofs: 30, xvel: frandom(10, 30), zvel: frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION, failchance: 50);
+	}
 	INCX K -1;
 	Stop;
   Death.Massacre:
@@ -112,7 +120,7 @@ Class DCY_ChimeraSoul : DCY_EspouserSoul
   {
   SeeSound "DCYGhostProjectile";
   DeathSound "imp/shotx";
-  Speed 10;
+  Speed 30;
   Scale 0.5;
   }
   

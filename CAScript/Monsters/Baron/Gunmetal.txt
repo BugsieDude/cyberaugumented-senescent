@@ -117,14 +117,6 @@ Class DCY_GunmetalInfiltrator : DCY_BaronParent
     GNM8 MNOPQRSTUV 5;
     GNM8 W -1 A_BossDeath2();
     Stop;
-  Death.Massacre:
-    GNM8 I 8;
-    GNM8 J 6 A_Scream();
-	GNM8 K 5;
-    GNM8 L 4 A_NoBlocking();
-    GNM8 MNOPQRSTUV 5;
-    GNM8 W -1 A_BossDeath2();
-    Stop;
   Raise:
 	GNM8 VUTSRQPOMNLKJI 3;
 	Goto See;
@@ -153,7 +145,7 @@ Class DCY_GTrail : DCY_Effect
 	Goto SpawnLoop;
   SpawnLoop:
     "####" "#" 1;
-    "####" "##########" 1 Bright A_FadeOut();
+    "####" "##########" 1 A_FadeOut();
 	Stop;
   }
 }

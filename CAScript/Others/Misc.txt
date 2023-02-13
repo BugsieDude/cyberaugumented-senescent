@@ -841,6 +841,7 @@ Class DCY_WalkFlames : DCY_Effect
   +THRUACTORS;
   +FLOORHUGGER;
   +CLIENTSIDEONLY;
+  Translation "0:255=%[0.45,0.00,0.00]:[1.97,1.46,0.63]";
   }
   States
   {
