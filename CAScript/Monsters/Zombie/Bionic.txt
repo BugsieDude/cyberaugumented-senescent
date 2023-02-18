@@ -1,4 +1,4 @@
-Class DCY_BionicZombie : DCY_MechaZombie
+Class DCY_BionicZombie : DCY_ZombeParent
 {
   Default
   {
@@ -11,7 +11,7 @@ Class DCY_BionicZombie : DCY_MechaZombie
   PainSound "UpgradedMechaZombie/Pain";
   DeathSound "UpgradedMechaZombie/Death";
   Species "BIONIC";
-  DropItem "PlasmaRifle", 80;
+  DropItem "PlasmaRifle", 20;
   DropItem "Cell", 180;
   DropItem "Clip";
   DropItem "BlurSphere", 20;

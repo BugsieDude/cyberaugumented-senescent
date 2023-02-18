@@ -7,12 +7,12 @@ CLASS DCYMonster : Actor abstract
   {
     Monster;
     +FLOORCLIP;
+	+ROLLCENTER;
 	DCYMonster.TagColor "j";
 	Tag "Monster";
 	TeleFogSourceType "DCY_EnemyTeleport";
 	TeleFogDestType "DCY_EnemyTeleport";
 	DamageFactor "SpawnerDeath", 0;
-	PainChance "PlayerStun", 256;
   }
   
   int warningdistance;
@@ -109,10 +109,7 @@ CLASS DCYMonster : Actor abstract
 		return;
 		
 	console.printf("\c".."["..mColor.."]"..message.."\c-");
-	if(sound)
-	{
-		S_StartSound(sound, CHAN_5, CHANF_DEFAULT);
-	}
+	if(sound) S_StartSound(sound, CHAN_5, CHANF_DEFAULT);
   }
   
   States

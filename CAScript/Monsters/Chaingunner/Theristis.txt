@@ -35,7 +35,11 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
 	if (Health < 111)
 	{
 		if ((random(0, 20) == 0) && !glitching)
+		{
+			A_StopSound(CHAN_VOICE);
+			A_StartSound("Theristis/Suffering", CHAN_WEAPON);
 			glitching = true;
+		}
 		
 		if ((random(0, 40) == 0) && glitching)
 			A_ResetSpeed();

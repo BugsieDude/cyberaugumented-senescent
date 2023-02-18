@@ -1,6 +1,7 @@
 ACTOR DCY_PlutoniaExperiment : DCY_Spawner Replaces ChaingunGuy
 {
   DropItem "DCY_Plutonia", 0, 750
+  DropItem "DCY_Huntsman", 0, 750
   DropItem "DCY_HellPrototypeMech", 0, 500
   DropItem "DCY_BionicZombie", 7, 100
   DropItem "DCY_DecedentBigwig", 15, 70

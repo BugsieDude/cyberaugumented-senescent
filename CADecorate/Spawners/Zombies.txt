@@ -3,7 +3,7 @@ ACTOR DCY_Zamblezeezeze : DCY_Spawner Replaces ZombieMan
   DropItem "DCY_Zombe", 0, 512
   DropItem "DCY_Combatant", 0, 300
   DropItem "DCY_Pacer", 7, 50
-  DropItem "DCY_MechaZombie", 7, 150
+  DropItem "DCY_Huntsman", 4, 150
   DropItem "DCY_Contaminated", 10, 50
   DropItem "DCY_Transmuter", 17, 20
 }

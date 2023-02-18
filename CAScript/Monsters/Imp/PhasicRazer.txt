@@ -173,7 +173,7 @@ Class DCY_PhasicRazer : DCY_HellRazer
 	{
 		A_FaceTarget();
 		A_StartSound("LASERII", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_PhasicRazerLaser", 32, 0);
+		A_SpawnProjectile("DCY_UmbraPlasma", 32, 0);
 	}
 	XRZR E 3
 	{
