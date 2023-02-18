@@ -281,7 +281,6 @@ Class DCY_ArbiterTorpedo : DCY_TransmuterTorpedo
 	64MS A 1
 	{
 		A_SpawnItemEx("DCY_ArbiterFlare", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2));
-		A_SpawnItemEx("DCY_TransmuterFlame", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), zvel: 1, failchance: 100);
 		
 		for (int i = 2; i > 0; i--)
 			A_SpawnParticle(0xabe9ff, SPF_FULLBRIGHT, random(20, 40) - 25, random(9, 13), frandom(0, 360), frandom(-7.0, 7.0), frandom(-7.0, 7.0), frandom(-7.0, 7.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);

@@ -176,10 +176,11 @@ Class DCY_BlueVoidTorpedoRainStart : DCY_TransmuterTorpedo
   {
 	super.tick();
 	
-	if (!IsFrozen())
+	if (DCY_EffectDistance(sfxdistance) && !level.isFrozen())
 	{
-		A_SpawnParticle(0xabe9ff, SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0) - 11, frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);
-		A_SpawnItemEx("DCY_TransmuterFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 150);
+		A_SpawnFlames("174ee6", 40, 25, 0, false);
+		if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0x174ee6, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 50, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4), fadestepf: 0, sizestep: -0.175);	
+		A_SpawnItemEx("DCY_TransmuterFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
 	}
   }
   
@@ -252,7 +253,11 @@ Class DCY_BlueVoidMissileRain : CacodemonBall
     TNT1 AAAAAAAAAAAA 0 A_Chase(null, null, CHF_NOPLAYACTIVE);
     TNT1 AAAAAAAAA 1 A_Chase(null, null, CHF_NOPLAYACTIVE);
     TNT1 A 0 ThrustThing(random(0, 360), random(-50, 50), 0, 1);
-    TNT1 A 0 A_SpawnItemEx("DCY_FallingLapisTorpedo", 0, 0, -10, 0, 0, -40, random(-88, 88), SXF_NOCHECKPOSITION);
+    TNT1 A 0
+	{
+		A_SpawnItemEx("DCY_FallingLapisTorpedo", zofs: -10, zvel: -30, angle: random(-88, 88), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_TorpedoAlert", zofs: -10, zvel: -99999, angle: random(-88, 88), flags: SXF_NOCHECKPOSITION);
+	}
     Goto Spawn1+1;
   Death:
   Stahp:
@@ -275,10 +280,44 @@ Class DCY_FallingLapisTorpedo : DCY_TransmuterTorpedo
   Spawn:
     HMIS B 1
 	{
-		A_SpawnItemEx("DCY_TransmuterFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION, failchance: 150);
-		A_SpawnItemEx("DCY_TransmuterFlame", frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 210);
-		A_SpawnParticle(0xabe9ff, SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0) + 11, frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnFlames("174ee6", 40, 25, 0, false);
+			if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0x174ee6, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 50, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4), fadestepf: 0, sizestep: -0.175);	
+			A_SpawnItemEx("DCY_TransmuterFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
+		}
 	}
 	Loop;
+  }
+}
+
+Class DCY_TorpedoAlert : Actor
+{
+  Default
+  {
+  RenderStyle "Add";
+  +BRIGHT
+  +FLATSPRITE
+  Alpha 0;
+  Scale 1.2;
+  }
+  
+  double anglestart;
+  
+  override void PostBeginPlay() { super.postBeginPlay(); anglestart = frandom(-12, 12); }
+  override void Tick()
+  {
+	super.tick();
+	if (!level.isFrozen()) angle += anglestart;
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 3;
+	A349 AAAAA 1 A_FadeIn(0.1);
+	A349 A 20;
+	A349 AAAAA 1 A_FadeOut(0.1);
+	Stop;
   }
 }

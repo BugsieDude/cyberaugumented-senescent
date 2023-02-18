@@ -280,57 +280,6 @@ Object DCY_LaserImpBeam
   Frame TNT1A0 {Light DCY_LaserImpBeamLight}
 }*/
 
-PulseLight DCY_XenabalLLight
-{
-  Color 0.40 0.45 0.00
-  Size 45
-  SecondarySize 60
-  Interval 0.7
-}
-
-Object DCY_XBall
-{
-  Frame TNT1A0 {Light DCY_XenaballLight}
-}
-
-PulseLight DCY_XenabalLLight2
-{
-  Color 0.34 0.45 0.00
-  Size 65
-  SecondarySize 55
-  Interval 0.75
-}
-
-PulseLight DCY_XenabalLLight3
-{
-  Color 0.14 0.25 0.00
-  Size 65
-  SecondarySize 55
-  Interval 0.75
-}
-
-PulseLight DCY_XenabalLLight4
-{
-  Color 0.04 0.15 0.00
-  Size 65
-  SecondarySize 55
-  Interval 0.75
-}
-
-Object DCY_XBall2
-{
-  Frame AALA0 {Light DCY_XenaballLight2}
-  Frame AALB0 {Light DCY_XenaballLight2}
-  Frame AALC0 {Light DCY_XenaballLight2}
-  Frame AALD0 {Light DCY_XenaballLight}
-  Frame AALE0 {Light DCY_XenaballLight}
-  Frame AALF0 {Light DCY_XenaballLight2}
-  Frame AALG0 {Light DCY_XenaballLight2}
-  Frame AALH0 {Light DCY_XenaballLight3}
-  Frame AALI0 {Light DCY_XenaballLight4}
-  Frame AALJ0 {Light DCY_XenaballLight4}
-}
-
 FlickerLight ColonialLight1
 {
   Color 0.9 0.9 0.9

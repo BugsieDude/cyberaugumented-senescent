@@ -1126,6 +1126,17 @@ Model DCY_SiriusTrack
   FrameIndex PLSS A 0 0
 }
 
+Model DCY_RipperLaserTrail
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "siriustrack.png"
+  Scale 0.5 2.0 1.0
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
 //Black Hole Shits
 
 Model DCY_DestructiveBlackHolePlasmaBall

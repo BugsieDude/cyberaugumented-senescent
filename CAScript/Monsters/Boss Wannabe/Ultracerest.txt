@@ -298,8 +298,6 @@ Class DCY_UltracerestRocket : Rocket
 	NMSL A 1 Bright
 	{
 		A_SpawnItemEx("DCY_TransmuterFlare", frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), flags: SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_TransmuterFlame", frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 210);
-		
 		for (int i = 2; i > 0; i--)
 			A_SpawnParticle(0xabe9ff, SPF_FULLBRIGHT, random(20, 40), random(9, 13), frandom(0, 360), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.1);
 	}

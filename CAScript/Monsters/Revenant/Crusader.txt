@@ -611,7 +611,7 @@ Class DCY_CrusaderSword : CacodemonBall
   }
 }
 
-Class DCY_CrusaderBall : DCY_XBall2
+Class DCY_CrusaderBall : DCY_MeatballElecball
 {
   Default
   {
