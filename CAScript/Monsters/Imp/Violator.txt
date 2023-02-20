@@ -182,8 +182,13 @@ Class DCY_ViolationFire : DCY_ImpFireball
   Spawn:
     FBS1 AABBCC 1
 	{
-		//A_SpawnParticleEx(0xffdc9c, Texman.SetNull(), STYLE_ADD, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), fadestepf: 0, sizestep: -0.125);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			let splosion = Spawn("DCY_ExplosiveBallT", pos);
+			if (splosion) { splosion.translation = translation; splosion.scale *= 0.225; }
+			A_SpawnFlames("ff4444", 20, 50, 0, false, thrust: 3.25);
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
+		}
 	}
 	Loop;
   Death:
