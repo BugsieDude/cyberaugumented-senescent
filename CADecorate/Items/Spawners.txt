@@ -23,6 +23,11 @@ ACTOR DCY_GreenArmorIGuess : RandomSpawner Replaces GreenArmor
   DropItem "DCY_GreenArmorThing", 256, 256
 }
 
+ACTOR DCY_Vision : RandomSpawner Replaces Infrared
+{
+  DropItem "DCY_Infrared", 256, 256
+}
+
 ACTOR DCY_MarineArmorThing : RandomSpawner Replaces BlueArmor
 {
   DropItem "DCY_BlueArmorThing", 256, 150

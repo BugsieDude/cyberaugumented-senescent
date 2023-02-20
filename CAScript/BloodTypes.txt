@@ -96,6 +96,9 @@ Class DCY_SpectreFluid : De_Blood
 
 Class DCY_SpiritBlood : DE_BLOOD
 {
+  Mixin DCY_Projectiles;
+  Mixin DCY_Effects;
+  
   Default
   {
   RenderStyle "Add";

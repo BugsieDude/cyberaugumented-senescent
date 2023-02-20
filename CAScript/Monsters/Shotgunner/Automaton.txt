@@ -31,7 +31,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 	static const string messages[] =
 	{
 		"%o wasn't good enough for the supervisor's arsenal.",
-		"I guess you could say you we're an automaton unsupervisor."
+		"I guess you could say you we're an automaton opposer."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];
@@ -81,7 +81,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 			missile++;
 		}
 	}
-	AJLS E 10 Bright A_FaceTarget();
+	AJLS E 10 A_FaceTarget();
 	Goto Laser+1;
   Deploy:
 	AJLS E 50
@@ -164,6 +164,7 @@ Class DCY_AutomatonDroid : DCY_SkullParent
   +FLOATBOB
   +NOBLOOD
   +NOCLIP
+  -BRIGHT
   +NOINFIGHTING
   -COUNTKILL
   DamageFactor "Automaton", 0.000;
@@ -244,7 +245,7 @@ Class DCY_AutomatonDroid2 : DCY_AutomatonDroid
   }
 }
 
-Class DCY_AutomatonLaser : FastProjectile
+Class DCY_AutomatonLaser : DCY_FastProjectile
 {
   Default
   {
@@ -257,29 +258,34 @@ Class DCY_AutomatonLaser : FastProjectile
   Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
   SeeSound "";
   DeathSound "";
-  MissileType "DCY_FluorescentOrbTSA";
+  MissileType "DCY_RipperLaserTrailLong";
+  DCY_FastProjectile.CV true;
+  DCY_FastProjectile.CR true;
+  DCY_FastProjectile.CT true;
   MissileHeight 6;
   +NEVERFAST
+  +BRIGHT
   +RIPPER
   +NOEXTREMEDEATH
   -RANDOMIZE
-  +BRIGHT
   }
   
   States
   {
   Spawn:
-    TNT1 A 1;
+    TNT1 A 1
+	{
+		A_SpawnFlames("008ea1", 15, smonk: false);
+		A_SpawnParticleEx(0x008ea1, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), fadestepf: -2);
+	}
 	Loop;
   Death:
 	THZ4 D 2
 	{
 		for (int i = 13; i > 0; i--)
-			A_SpawnParticle(0xaaffff, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(3.5, 6.4), accelz: -0.85, fadestepf: 0, sizestep: -0.125);
+			A_SpawnParticleEx(0xaaffff, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 45), 5, frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(3.5, 6.4), accelz: -0.85, fadestepf: 0, sizestep: -0.125);
 	}
 	THZ4 EFGHIJKLM 2;
 	Stop;
   }
 }
-
-Class DCY_FluorescentOrbTSA : DCY_FluorescentOrbTS { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]"; } }

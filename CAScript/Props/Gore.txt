@@ -1,3 +1,30 @@
+Mixin Class DCY_MarineColors
+{
+  static const string MarineColor[] =
+  {
+	"DCYMCrimson",
+	"DCYMRed",
+	"DCYMOrange",
+	"DCYMYellow",
+	"DCYMCharteuse",
+	"DCYMCyan",
+	"DCYMGreen",
+	"DCYMBlue",
+	"DCYMIndigo",
+	"DCYMPink",
+	"DCYMFuchsia",
+	"DCYMPurple",
+	"DCYMBlack",
+	"DCYMGray",
+	"DCYMDark"
+  };
+  
+  void A_SetMarineColor()
+  {
+	self.A_SetTranslation(MarineColor[random(0, MarineColor.Size() - 1)]);
+  }
+}
+
 Class DCY_Meat3 : Meat3 Replaces Meat3
 {
   override void PostBeginPlay()
@@ -22,6 +49,7 @@ Class DCY_Meat3 : Meat3 Replaces Meat3
 
 Class DCY_Impaled : LiveStick Replaces LiveStick
 {
+  Mixin DCY_MarineColors;
   bool animate;
   
   override void PostBeginPlay()
@@ -30,10 +58,10 @@ Class DCY_Impaled : LiveStick Replaces LiveStick
 	{
 		case 0: sprite = GetSpriteIndex("POL6"); animate = true; break;
 		case 1: sprite = GetSpriteIndex("D_E_"); animate = true; break;
-		case 2: sprite = GetSpriteIndex("POLF"); animate = true; break;
-		case 3: sprite = GetSpriteIndex("POLG"); break;
-		case 4: sprite = GetSpriteIndex("POLH"); break;
-		case 5: sprite = GetSpriteIndex("SK2_"); frame = random(0, 2); scale.x *= randompick(1, -1); break;
+		case 2: sprite = GetSpriteIndex("POLF"); animate = true; A_SetMarineColor(); break;
+		case 3: sprite = GetSpriteIndex("POLG"); A_SetMarineColor(); break;
+		case 4: sprite = GetSpriteIndex("POLH"); A_SetMarineColor(); break;
+		case 5: sprite = GetSpriteIndex("SK2_"); frame = random(0, 2); if (!frame) A_SetMarineColor(); scale.x *= randompick(1, -1); break;
 		case 6: sprite = GetSpriteIndex("WLFG"); break;
 	}
   }
@@ -54,15 +82,16 @@ Class DCY_Impaled : LiveStick Replaces LiveStick
 
 Class DCY_Impaled2 : DeadStick Replaces DeadStick
 { 
+  Mixin DCY_MarineColors;
   override void PostBeginPlay()
   {
 	switch (random(0, 5))
 	{
 		case 0: sprite = GetSpriteIndex("POL1"); break;
 		case 1: sprite = GetSpriteIndex("D_E_"); frame = 2; break;
-		case 2: sprite = GetSpriteIndex("POLD"); break;
-		case 3: sprite = GetSpriteIndex("POLG"); break;
-		case 4: sprite = GetSpriteIndex("POLH"); break;
+		case 2: sprite = GetSpriteIndex("POLD"); A_SetMarineColor(); break;
+		case 3: sprite = GetSpriteIndex("POLG"); A_SetMarineColor(); break;
+		case 4: sprite = GetSpriteIndex("POLH"); A_SetMarineColor(); break;
 		case 5: sprite = GetSpriteIndex("SK2_"); frame = random(0, 2); scale.x *= randompick(1, -1); break;
 		case 6: sprite = GetSpriteIndex("C0R_"); frame = 8; break;
 	}
@@ -81,13 +110,15 @@ Class DCY_Impaled2 : DeadStick Replaces DeadStick
 
 Class DCY_Deadass : DeadMarine Replaces DeadMarine
 { 
+  Mixin DCY_MarineColors;
+  
   override void PostBeginPlay()
   {
 	scale.x *= randompick(1, -1);
 	switch (randompick(0, 1, 1))
 	{
-		case 0: sprite = GetSpriteIndex("PLAY"); frame = 13; break;
-		case 1: sprite = GetSpriteIndex("MC_E"); frame = random(0, 21); break;
+		case 0: sprite = GetSpriteIndex("PLAY"); frame = 13; A_SetMarineColor(); break;
+		case 1: sprite = GetSpriteIndex("MC_E"); frame = random(0, 21); A_SetMarineColor(); break;
 	}
   }
   

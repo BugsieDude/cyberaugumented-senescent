@@ -46,9 +46,13 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 	ZRCY A 10 DCY_Look();
     Loop;
   Look:
-	ZRCY AAABB 2 DCY_LookingForPlayer();
-	ZRCY C 0 A_WalkFlame();
-	ZRCY CCDD 2 DCY_LookingForPlayer();
+	ZRCY AAABBB 3 DCY_LookingForPlayer();
+	ZRCY C 0
+	{
+		A_WalkFlame();
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY, CHANF_DEFAULT);
+	}
+	ZRCY CCCDDD 3 DCY_LookingForPlayer();
 	ZRCY A 0
 	{
 		A_WalkFlame();
@@ -60,9 +64,13 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
 	Goto See;
   See:
-	ZRCY AAABB 2 A_Chase();
-	ZRCY C 0 A_WalkFlame();
-	ZRCY CCDD 2 A_Chase();
+	ZRCY AAABBB 3 A_Chase();
+	ZRCY C 0
+	{
+		A_WalkFlame();
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY, CHANF_DEFAULT);
+	}
+	ZRCY CCCDDD 3 A_Chase();
 	ZRCY A 0
 	{
 		A_WalkFlame();

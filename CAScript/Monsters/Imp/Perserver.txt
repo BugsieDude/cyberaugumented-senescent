@@ -11,7 +11,7 @@ Class DCY_Perserver : DCY_Impe
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   BloodColor "2ba0ff";
   Tag "Perserver";
-  Speed 13.2555555;
+  Speed 10.2555555;
   FastSpeed 13.5555555;
   DropItem "DCY_UltramodernEnergy", 25;
   Obituary "%o got outsmarted by a Perserver demon, that just kicked ass.";
@@ -45,7 +45,7 @@ Class DCY_Perserver : DCY_Impe
 	Goto See;
   MissileContinue:
 	SDDM EEEEEEEEE 1 A_FaceTarget();
-	SDDM F 3 Bright
+	SDDM F 3
 	{
 		A_SpawnProjectile("DCY_PerserverMissile", 30, 8, frandom(-1.65, 1.65), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(0.655, -0.655));
 		A_FaceTarget();
@@ -97,8 +97,17 @@ Class DCY_PerserverMissile : FastProjectile
   States
   {
   Spawn:
-    THZ4 A 1 Bright A_SpawnItemEx("DCY_ProjectileBaseTrail", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
-    Loop;
+    THZ4 A 1 Bright
+	{
+		if (random(0, 2) == 0)
+		{
+			actor plasma = Spawn("DCY_FluorescentSparkle", pos + (frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0)));
+			if (plasma) { plasma.translation = translation; plasma.bNOGRAVITY = true; }
+		}
+		
+		A_SpawnParticleEx(0x1279ff, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
+	}
+	Loop;
   Death:
     THZ4 DEFGHIJKLM 1 Bright;
     Stop;

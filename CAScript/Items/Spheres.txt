@@ -261,6 +261,7 @@ Class DCY_UltrapissInvulnerability : InvulnerabilitySphere Replaces Invulnerabil
   Powerup.Color "00 80 80", 0.135;
   Inventory.PickupSound "InvulnerabilitySphere/PickedUp";
   Inventory.PickupMessage "\c[Green]You are indestructable! How is this possible?\c-";
+  Tag "Embodiment of Adamantine";
   RenderStyle "Add";
   Alpha 1.0;
   Powerup.Type "DCY_PowerInvulCA";
@@ -305,7 +306,8 @@ Class DCY_RadiationSymbol : RadSuit
   RenderStyle "Add";
   Alpha 1.0;
   Inventory.PickupSound "RadiationSphere/PickedUp";
-  Inventory.PickupMessage "\c[Green]Radiation Protection\c-";
+  Inventory.PickupMessage "\c[Green]Hazard Protection\c-";
+  Tag "Hazard Protection";
   }
   
   States
@@ -382,6 +384,7 @@ Class DCY_RazeSpherule : CustomInventory
   +VISIBILITYPULSE
   Inventory.PickupFlash "DCY_UncoRingThing";
   RenderStyle "Add";
+  Tag "Raze Spherule";
   }
   
   States
@@ -491,6 +494,7 @@ Class DCY_Rehabiliation : DCY_Powerup
   +ROLLSPRITE
   +ROLLCENTER
   -BRIGHT
+  Tag "Rehabiliation Core";
   }
   
   float rollspeed;
@@ -687,7 +691,7 @@ Class DCY_Prospect : CustomInventory
   RenderStyle "Add";
   Translation "0:255=%[0.00,0.00,0.50]:[2.00,1.01,1.01]";
   Scale 1.1;
-  Tag "Prospect - Invulnerability for 7 seconds. But damages enemies instead.";
+  Tag "Prospect - Invulnerability with some other aspects.";
   Inventory.Icon "_407E0";
   }
   

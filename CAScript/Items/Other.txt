@@ -1,3 +1,19 @@
+Class DCY_Infrared : Infrared Replaces Infrared
+{
+  Default
+  {
+  Inventory.PickupMessage "Right now, you're wearing the Light Amplification Visor. Night vision is real.";
+  Tag "Global Vision NG-80 Triple Eyed Visor";
+  }
+  
+  States
+  {
+  Spawn:
+    PV1S ABCB 5;
+    Loop;
+  }
+}
+
 Class DCY_Palisade : CustomInventory Replaces BlurSphere
 {
   Default
@@ -161,6 +177,7 @@ Class DCY_AllMap : AllMap
   {
   Inventory.PickupSound "AllMap/PickedUp";
   ActiveSound "AllMap/Loop";
+  Tag "Advanced GPU";
   Inventory.PickupMessage "\c[Orange]You can see where you are right now.\c-";
   }
   
@@ -190,7 +207,7 @@ Class DCY_VesticalAbettance : CustomInventory
   Inventory.InterHubAmount 4;
   Inventory.Icon "VTCPE0";
   Scale 0.765;
-  Tag "Abettance - Increases your HEALTH and ARMOR by adding 200.";
+  Tag "Abettance - Portable Megasphere.";
   Inventory.PickupMessage "You stumbled apon a portable defence and health kit.";
   Inventory.PickupSound "SPELL05";
   }
@@ -238,8 +255,8 @@ Class DCY_VesticalHealth : Health
   +INVENTORY.ALWAYSPICKUP;
   -COUNTITEM;
   Scale 1.3;
-  Inventory.Amount 200;
-  Inventory.MaxAmount 600;
+  Inventory.Amount 100;
+  Inventory.MaxAmount 200;
   Inventory.Icon "VTCPA0";
   Inventory.PickupMessage "...um.";
   Inventory.PickupSound "";
@@ -255,8 +272,8 @@ Class DCY_VesticalShield : BasicArmorPickup
   +INVENTORY.AUTOACTIVATE;
   +INVENTORY.ALWAYSPICKUP;
   Inventory.Icon "VTCPA0";
-  Armor.SavePercent 800;
-  Armor.SaveAmount 800;
+  Armor.SavePercent 100;
+  Armor.SaveAmount 200;
   }
 }
 

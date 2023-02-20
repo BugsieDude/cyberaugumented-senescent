@@ -7,6 +7,7 @@ Class DCY_Backpack : Backpack Replaces Backpack
   {
   Inventory.PickupSound "dcy/backpack";
   Inventory.PickupMessage "Time to get those weapons locked up. (Ammo increased.)";
+  Tag "Tactical Range Backpack";
   }
   
   States
@@ -23,6 +24,7 @@ Class DCY_Clip : Clip Replaces Clip
   {
   Inventory.PickupSound "dcy/clip";
   Inventory.PickupMessage "Picked up a stripper clip.";
+  Tag "Stripper Clip of Bullets";
   }
   
   States
@@ -46,6 +48,7 @@ Class DCY_ClipBox : ClipBox Replaces ClipBox
   {
   Inventory.PickupSound "dcy/clip";
   Inventory.PickupMessage "Picked up a crate filled with stripper clips.";
+  Tag "Crate of Bullets";
   }
   
   States
@@ -69,6 +72,7 @@ Class DCY_Shell : Shell Replaces Shell
   {
   Inventory.PickupSound "dcy/shell";
   Inventory.PickupMessage "Picked up four stranded shells.";
+  Tag "Stranded Shotgun Shells";
   }
   
   States
@@ -92,6 +96,7 @@ Class DCY_Shellbox : ShellBox Replaces ShellBox
   {
   Inventory.PickupSound "dcy/shell";
   Inventory.PickupMessage "Found a box with twenty shells inside.";
+  Tag "Shellbox";
   }
   
   States
@@ -115,6 +120,7 @@ Class DCY_RocketA : RocketAmmo Replaces RocketAmmo
   {
   Inventory.PickupSound "dcy/rocket";
   Inventory.PickupMessage "Obtained a built, unused rocket.";
+  Tag "Unused Rocket";
   }
   
   States
@@ -138,6 +144,7 @@ Class DCY_RocketBox : RocketBox Replaces RocketBox
   {
   Inventory.PickupSound "dcy/rocket";
   Inventory.PickupMessage "The lootbox is now yours, now with missiles.";
+  Tag "Missile Box";
   }
   
   States
@@ -161,6 +168,7 @@ Class DCY_Cell : Cell Replaces Cell
   {
   Inventory.PickupSound "dcy/cell";
   Inventory.PickupMessage "Acquired a energy cell.";
+  Tag "ENVISAGE Energy Cell";
   }
   
   States
@@ -184,6 +192,7 @@ Class DCY_Cellpack : Cellpack Replaces Cellpack
   {
   Inventory.PickupSound "dcy/cellpack";
   Inventory.PickupMessage "This is not a visualizer, but it is a cube powered with lots of energy.";
+  Tag "ENVISAGE Power Cube";
   }
   
   States
@@ -215,6 +224,7 @@ Class DCY_Eminence : Ammo
   Inventory.Icon "_2BMA0";
   +FLOATBOB;
   Scale 0.85;
+  Tag "Vigor";
   }
   States
   {
@@ -232,6 +242,7 @@ Class DCY_EminencePack : DCY_Eminence
   Ammo.BackpackAmount 40;
   Inventory.PickupSound "ARTPKUP";
   Inventory.PickupMessage "You feel Incandescence.";
+  Tag "Vigor";
   Scale 1.0;
   }
   
@@ -254,6 +265,7 @@ Class DCY_CinerealPrestige : Ammo
   Ammo.BackpackMaxAmount 400;
   Inventory.PickupMessage "The Cinereal Prestige is in your hands.";
   Inventory.PickupSound "CinerealPrestige/Pickup";
+  Tag "Cinereal Prestige";
   }
   States
   {
@@ -274,6 +286,7 @@ Class DCY_UltramodernEnergy : Ammo
   Inventory.MaxAmount 500;
   Ammo.BackpackAmount 30;
   Ammo.BackpackMaxAmount 500;
+  Tag "Exuberance-XVII Ultramodern Energy";
   }
   States
   { 

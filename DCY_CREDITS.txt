@@ -72,7 +72,7 @@ KDiZD - Z-Exec sprites (along with frankenspriting from id and Rogue Entertainme
 Vader - Malwrath Sprites
 Rottking - Perserver Sprites
 zrrion the insect - Lightning arc effect sprites
-Melvinflynt - Abyssal Exarch, Vizier, Sacker, etc. (Doom X) sprites [I miss you, Doom X.]
+Melvinflynt (Pierre Ramirez) - Abyssal Exarch, Vizier, Sacker, etc. (Doom X) sprites [I miss you, Doom X.]
 Reaper Doom - Sacker (Elite Imp Edits) sprites
 High Councilor - Monster Sprites (Maltreat, Lemures, Arachnoaversion, Qualm, Inciter, etc.)
 DustedPandemonic - War (Destructive Earl) Sprites
@@ -85,7 +85,7 @@ Naxat Soft - (Nexzr, Fausette Amour, etc.) Lightning Phase sounds, Multidimensio
 Irem - (R-Type III, R-Type Leo) Sounds
 Konami (Contra III, Gradius III) - Sounds
 Nigoro (La-Mulana 2013) - Sounds
-Visceral Games - (Dead Space) Lightning Phase sounds
+Visceral Games - (Dead Space) Lightning Phase sounds, etc.
 Bill the Demon [Macintosh Game] - Barricade sounds
 OMEGAPSYCHO (I don't know the origin of FLAME001 and related) - Sounds
 Alpha Doom - Sounds
@@ -182,13 +182,13 @@ Captain J - Sprites
 Gifty - Barrel animations
 Remilia - Teleportation sound (idfk who originally made the teleport sound so I just had to credit the creator of Freaky Panties)
 Lukas Tvrdon - Manes sounds
-DitheredOutput - Combatant Sounds
-Terminal Reality (Bloodrayne) - Sounds
+Terminal Reality (Bloodrayne 1 & 2) - Sounds
 Frictional Games - Sounds
 Gunfire Games - Sounds
 MothraMaster - Boot Sprites
 Korp - Boot Sprites
 OMOCAT - Sounds
+MothraMaster - Automaton Supervisor Grenade sprites
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

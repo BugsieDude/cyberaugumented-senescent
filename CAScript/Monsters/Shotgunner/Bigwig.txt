@@ -63,7 +63,7 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
 	Goto MissileContinue;
   MissileContinue:
 	UGEP EE 10 A_FaceTarget();
-	UGEP F 3 Bright
+	UGEP F 3
 	{
 		A_FaceTarget();
 		A_StartSound("DCYPlasmaShotgun", CHAN_WEAPON);
@@ -247,7 +247,7 @@ Class DCY_DecedentTurret : DCYMonster
 	RTUR A 1 A_Stop();
 	RTUR AAAAAAAAA 1 A_FaceTarget();
 	RTUR B 1 A_SpawnProjectile("DCY_TransmuterTorpedo", 17);
-	RTUR BBBB 1 Bright A_FaceTarget();
+	RTUR BBBB 1 A_FaceTarget();
 	RTUR AAAAAAAAAAAAA 1 A_FaceTarget();
 	RTUR A 0 A_MonsterRefire(128, "Cooldown");
 	Goto Missile+2;
@@ -264,11 +264,7 @@ Class DCY_DecedentTurret : DCYMonster
 	{
 		let d = DCY_Variables.Get();
 		let x = d.alternateturretsound;
-		
-		if (x)
-			A_StartSound("TURRDTH");
-		else
-			A_StartSound("TURRDTH2");
+		A_StartSound((x) ? "TURRDTH" : "TURRDTH2");
 	}
 	RTUR AAA 0 A_SpawnItemEx("DCY_AndroidExplosion", random(-10, 10), random(-10, 10), random(10, 22), frandom(-0.9, 0.9), frandom(-0.9, 0.9), frandom(-0.9, 0.9), random(0, 360), SXF_NOCHECKPOSITION);
 	RTUR C -1;

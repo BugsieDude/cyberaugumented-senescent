@@ -125,7 +125,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   }
 }
 
-Class DCY_GehennaMissile : Rocket
+Class DCY_GehennaMissile : DCY_OverhauledRocket
 {
   Default
   {
@@ -146,14 +146,20 @@ Class DCY_GehennaMissile : Rocket
   Spawn:
 	HMIS A 1
 	{
-		A_SpawnItemEx("DCY_RocketFlare", 0, 0, 3);
-		A_SpawnItemEx("DCY_ImpFlame1", 0, 0, 3, zvel: 1, failchance: 140);
-		A_Weave(2, 2, 1, 1);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnFlames("c95a0a", 25, 32, 0, allsmoke: true);
+			if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0xc95a0a, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 80, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.125);			
+			A_SpawnItemEx("DCY_RocketFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.51, 0.51), frandom(-0.51, 0.51), frandom(-0.51, 0.51), random(0, 360), SXF_NOCHECKPOSITION);
+		}
+		
+		A_Weave(1, 1, 1, 1);
 	}
 	Loop;
   Death:
 	TNT1 A 1
 	{
+		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 100, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.05, fadestepf: 0.0007, sizestep: 0.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 		A_SetTranslucent(0.865, 2);

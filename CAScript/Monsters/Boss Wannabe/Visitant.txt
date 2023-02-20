@@ -32,10 +32,13 @@ Class DCY_Visitant : DCY_CacoParent
   {
 	Super.Tick();
 	
+	if (!isFrozen() && health > 0) vel /= 1.1;
 	If (!IsFrozen() && !sv_effectchoker && DCY_EffectDistance(sfxdistance))
 	{
 		A_SpawnItemEx("DCY_VisitantGlow", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION, 100);
-		A_SpawnItemEx("DCY_VisitantElectricity", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, flags: SXF_NOCHECKPOSITION, 200);
+		A_SpawnItemEx("DCY_VisitantElectricity", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, flags: SXF_NOCHECKPOSITION, 250);
+		A_SpawnItemEx("DCY_Arc", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 200);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 240);
 	}
   }
   
@@ -50,6 +53,16 @@ Class DCY_Visitant : DCY_CacoParent
 	return messages[Random(0, messages.Size() - 1)];
   }
   
+  void A_VisitantChase()
+  {
+	A_Chase("Missile", "Missile", CHF_DONTMOVE);
+	vel.x += frandom(-2, 2);
+	vel.y += frandom(-2, 2);
+	vel.z += frandom(-2, 2);
+	angle += frandom(-10, 10);
+	A_Recoil(-(speed / 20));
+  }
+  
   States
   {
   Spawn:
@@ -58,7 +71,7 @@ Class DCY_Visitant : DCY_CacoParent
   See:
 	TNT1 A 1
 	{
-		A_Chase();
+		A_VisitantChase();
 		Return A_Jump(2, "Teleporting", "Dash");
 	}
 	Loop;
@@ -66,13 +79,7 @@ Class DCY_Visitant : DCY_CacoParent
 	TNT1 A 1
 	{
 		A_SpawnItemEx("DCY_VisitantGlow", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0) + 30, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-		
-		for (int i = 3; i > 0; i--)
-		{
-			A_Chase();
-			A_Chase();
-		}
-		
+		for (int i = 3; i > 0; i--) A_VisitantChase();
 		Return A_Jump(2, "See", "Teleporting");
 	}
 	Loop;
@@ -84,7 +91,7 @@ Class DCY_Visitant : DCY_CacoParent
 		for (int i = 300; i > 0; i--)
 			A_Wander();
 	}
-	TNT1 A 1
+	TNT1 A 2
 	{
 		A_StartSound("Visitant/Teleport", attenuation: 0.45);
 		A_SpawnItemEx("DCY_BionicRing", zofs: 30, flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
@@ -100,11 +107,11 @@ Class DCY_Visitant : DCY_CacoParent
 	Goto See;
   Missile:
   FastBolt:
+	TNT1 A 20;
 	TNT1 A 10
 	{
 		A_StartSound("Visitant/Attack", CHAN_VOICE, attenuation: 0.5);
 		A_FaceTarget();
-		A_Dodging(randompick(0, -20, 20));
 	}
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
 	{

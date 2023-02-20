@@ -139,16 +139,16 @@ Class DCY_Abater : DCY_KnightHell
 		A_RemoveChildren(1, RMVF_EVERYTHING);
 		A_Scream();
 	}
-	BRUS LM 5 Bright;
-	BRUS N 5 Bright
+	BRUS LM 5;
+	BRUS N 5
 	{
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(25.0, 30.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, frandom(0.00, 360.00), SXF_NOCHECKPOSITION);
 	}
-    BRUS O 5 Bright A_NoBlocking();
-    BRUS QR 4 Bright;
+    BRUS O 5 A_NoBlocking();
+    BRUS QR 4;
     BRUS S 4;
     BRUS T -1 A_BossDeath2();
     Stop;
