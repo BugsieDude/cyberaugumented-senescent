@@ -216,11 +216,13 @@ Class DCY_VesticalAbettance : CustomInventory
   
   static const string messages[] =
   {
-	"\c+...Gah. Weird feeling.\c-",
-	"\c+I hope you feel better now.\c-",
-	"\c+Ready to kill? Or are you just getting healed all by yourself?\c-",
-	"\c+Usin' this to kill a big horde of enemies.\c-",
-	"\c+Some areas are just crazy mad.\c-"
+	"Things feel better now.",
+	"Life has improved.",
+	"There we go.",
+	"Now you're all new.",
+	"Don't forget to drink water! Or Health Containers. That counts as water.",
+	"May your woes be few and your days be many.",
+	"All set."
   };
   
   string messagenum;
@@ -235,13 +237,12 @@ Class DCY_VesticalAbettance : CustomInventory
 	TNT1 A 1
 	{
 		invoker.information = "(100+ Health & 100+ Armor)";
-		invoker.messagenum = invoker.messages[random(0, 4)];
+		invoker.messagenum = invoker.messages[random(0, invoker.messages.Size() - 1)];
 		A_GiveInventory("DCY_VesticalHealth");
 		A_GiveInventory("DCY_VesticalShield");
 		A_SetBlend("White", 0.7, 30, "Orange");
-		A_StartSound("princeofpersia2/potionsfx", CHAN_5);
 		A_StartSound("D4REGEN2", CHAN_ITEM);
-		A_Log(invoker.messagenum.." "..invoker.information);
+		A_Log("\c+"..invoker.messagenum.."\c- "..invoker.information);
 	}
 	Stop;
   }
@@ -283,7 +284,7 @@ Class DCY_Berserk : Berserk
   Default
   {
   Tag "Unending Chaos";
-  Inventory.PickupMessage "\c[Red]You feel like DESTRUCTION is the only choice.\c-";
+  Inventory.PickupMessage "\c[b6]Power overload corrupts your mind.\c-";
   Inventory.PickupSound "Berserk/Pickup";
   RenderStyle "Add";
   Translation "0:255=%[0.00,0.00,0.00]:[1.41,0.43,0.43]";

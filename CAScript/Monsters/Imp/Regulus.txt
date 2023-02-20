@@ -15,7 +15,7 @@ Class DCY_RegulusImp : DCY_Impe
   PainSound "EternalGargoyle/Pain";
   DeathSound "EternalGargoyle/Death";
   MeleeSound "imp/melee";
-  Obituary "%o got TOASTED.";
+  Obituary "%o got CHILLED.";
   HitObituary "%o was slashed into pieces by a Varmint.";
   BloodColor "00 33 99";
   Tag "\c[y9]Varmint\c-";

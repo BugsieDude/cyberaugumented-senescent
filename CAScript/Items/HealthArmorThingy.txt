@@ -4,6 +4,7 @@ Class DCY_Helth : HealthBonus
   {
   Inventory.PickupSound "D4BEEP1";
   Inventory.PickupMessage "Picked up a \c[l5]Health Container\c-. (1+ Health)";
+  Tag "Health Container";
   }
   States
   {
@@ -19,6 +20,7 @@ Class DCY_Steempack : Stimpack
   {
   Inventory.PickupSound "D4BEEP2"; 
   Inventory.PickupMessage "Picked up a \c[l5]Stimpack of Health\c-. (10+ Health)";
+  Tag "Stimpack";
   }
   
   States
@@ -36,6 +38,7 @@ Class DCY_ThatOneMediKit : Medikit
   Inventory.PickupSound "D4BEEP3";
   Inventory.PickupMessage "Picked up a \c[l5]Medical Kit\c-. (25+ Health)";
   Health.LowMessage 30, "Finally, a \c[l5]Medical Kit\c-. (25+ Health)";
+  Tag "Medical Kit";
   }
   
   States
@@ -52,6 +55,7 @@ Class DCY_Canister : ArmorBonus
   {
   Inventory.PickupSound "D4ARMR1";
   Inventory.PickupMessage "Picked up an \c[a6]Armor Canister\c-. (1+ Armor)";
+  Tag "Armor Canister";
   }
   
   States
@@ -68,6 +72,7 @@ Class DCY_GreenArmorThing : GreenArmor
   {
   Inventory.PickupSound "GreenArmor/Pickup";
   Inventory.PickupMessage "Picked up the \c[Green]Common Armor Chestplate.\c- (100+ Armor)";
+  Tag "Common Armor Chestplate";
   }
   
   States
@@ -85,6 +90,7 @@ Class DCY_BlueArmorThing : BlueArmor
   {
   Inventory.PickupSound "BlueArmor/Pickup";
   Inventory.PickupMessage "Picked up the \c[Sapphire]Defensive Chestplate.\c- (200+ Armor)";
+  Tag "Defensive Chestplate";
   }
   
   States
@@ -110,6 +116,7 @@ Class DCY_HiResArmorThing : BlueArmor
   Armor.SaveAmount 300;
   Inventory.Icon "ARM3A0";
   Inventory.PickupMessage "Picked up the \c[Red]Defiance Chestplate.\c- (300+ Armor)";
+  Tag "Defiance Chestplate";
   }
   
   States
