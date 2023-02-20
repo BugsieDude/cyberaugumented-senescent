@@ -163,7 +163,7 @@ Class DCY_GehennaMissile : DCY_OverhauledRocket
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 		A_SetTranslucent(0.865, 2);
-		A_Explode(25, 80, XF_NOTMISSILE, 1);
+		A_Explode(30, 80, XF_NOTMISSILE, 1);
 	}
     Stop;
   }

@@ -102,7 +102,7 @@ Class DCY_PrimeYanorit : DCY_BaronParent
   }
 }
 
-Class DCY_PrimeYanoritBall : BaronBall
+Class DCY_PrimeYanoritBall : DCY_BaronFireball
 {
   Default
   {
@@ -117,12 +117,11 @@ Class DCY_PrimeYanoritBall : BaronBall
   States
   {
   Spawn:
-    BAL7 A 0;
-	BAL7 A 0 A_Weave(3, 3, 1, 1);
+	BAL7 A 0 NoDelay A_Weave(3, 3, 1, 1);
     BAL7 AAABBB 1
 	{
 		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
-		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 40);
+		A_SpawnFlames("f2e100", 20, 40, 0, true, frandom(-1.5, 1.5));
 	}
 	Loop;
   Death:
@@ -136,4 +135,4 @@ Class DCY_PrimeYanoritBall : BaronBall
   }
 }
 
-Class DCY_YanoritFlame : DCY_InfernisFlame2 { Default { Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,0.00]"; } }
+Class DCY_YanoritFlame : DCY_BaronKnightFlame { Default { Scale 1.4; Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,0.00]"; } }

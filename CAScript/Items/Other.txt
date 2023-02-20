@@ -234,7 +234,7 @@ Class DCY_VesticalAbettance : CustomInventory
   Use:
 	TNT1 A 1
 	{
-		invoker.information = "(200+ Health & 800+ Armor)";
+		invoker.information = "(100+ Health & 100+ Armor)";
 		invoker.messagenum = invoker.messages[random(0, 4)];
 		A_GiveInventory("DCY_VesticalHealth");
 		A_GiveInventory("DCY_VesticalShield");
@@ -256,14 +256,14 @@ Class DCY_VesticalHealth : Health
   -COUNTITEM;
   Scale 1.3;
   Inventory.Amount 100;
-  Inventory.MaxAmount 200;
+  Inventory.MaxAmount 400;
   Inventory.Icon "VTCPA0";
   Inventory.PickupMessage "...um.";
   Inventory.PickupSound "";
   }
 }
 
-Class DCY_VesticalShield : BasicArmorPickup
+Class DCY_VesticalShield : ArmorBonus
 {
   Default
   {
@@ -272,8 +272,9 @@ Class DCY_VesticalShield : BasicArmorPickup
   +INVENTORY.AUTOACTIVATE;
   +INVENTORY.ALWAYSPICKUP;
   Inventory.Icon "VTCPA0";
-  Armor.SavePercent 100;
-  Armor.SaveAmount 200;
+  Armor.SavePercent 33;
+  Armor.SaveAmount 100;
+  Armor.MaxSaveAmount 400;
   }
 }
 
