@@ -367,3 +367,9 @@ BLERGH "Sounds/DCY SFX/dcy_corrosive_vomit.ogg"
 
 DCYGrenadeTick "Sounds/Projectiles/dcy_grenade_tick.wav"
 DCYTheristisLoop "Sounds/Projectiles/dcy_emptiness_soul.ogg"
+
+DCYDeadlyBreath "Sounds/Projectiles/dcy_deadlybreath.ogg"
+AirbusterLaser "Sounds/Projectiles/dcy_airbuster_laser.ogg"
+
+Consul/Charge "Sounds/Projectiles/dcy_darkioncharge.ogg"
+Consul/ChargedFire "Sounds/Projectiles/dcy_darkion_chargedfire.ogg"

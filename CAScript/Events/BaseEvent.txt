@@ -15,10 +15,13 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	}
   }*/
   
-  static float lerp (float v0, float v1, float t)
-  {
-	return (1 - t) * v0 + t * v1;
-  } //literally stole this from wikipedia
+  static double lerp (double a, double b, double t) {
+	return a + ((b - a) * t);
+  }
+  
+  static Vector3 lerp3 (Vector3 a, Vector3 b, double t) {
+	return a + ((b - a) * t);
+  }
   
   override void NetworkProcess(ConsoleEvent e)
   {
@@ -163,7 +166,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		if (!flashtrigger && (level.time % 1) == 0)
 		{
 			flashtrigger = true;
-			DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 6), id: 9999);
+			DCY_notHudMessageHandler.PlainMsg("DCY_NON2", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 1, 5), id: 9999);
 		}
 		
 		if ((level.time % 200) == 199)

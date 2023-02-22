@@ -105,7 +105,7 @@ Class DCY_Caviler : DCY_Impe
   }
 }
 
-Class DCY_LightningVulgarShot : FastProjectile
+Class DCY_LightningVulgarShot : DCY_MeatballElecBall
 {
   Default
   {
@@ -113,7 +113,7 @@ Class DCY_LightningVulgarShot : FastProjectile
   FastSpeed 19;
   RenderStyle "Add";
   Alpha 1.0;
-  Scale 1.0;
+  Scale 1.1;
   Radius 10;
   Height 10;
   DamageType "Lightning";
@@ -123,13 +123,22 @@ Class DCY_LightningVulgarShot : FastProjectile
   Damage 7;
   +BRIGHT
   }
+  
   States
   {
   Spawn:
-	P_FX AAABBB 1 A_SpawnItemEx("DCY_LightningPhaseBallTrail", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	P_FX AAABBB 1
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 220);
+			A_SpawnItemEx("DCY_ElecTrailBase", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			if ((level.time % random(1, 8)) == 0) A_SpawnParticleEx(0x6e73b8, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 100, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.015);	
+		}
+	}
 	Loop;
   Death:
-    P_FX CDEFGH 2;
+	P_FX CDEFGH 2 A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
 	Stop;
   }
 }
@@ -288,10 +297,7 @@ Class DCY_DarkSplash : DCY_Effect
   Spawn:
 	TNT1 F 0 NoDelay
 	{
-		for (int i = 6; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_BloodParticleX", zofs: 2, xvel: random(-5,5), zvel: frandom(3, 6), angle: frandom(0, 360), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
-		}
+		for (int i = 15; i > 0; i--) A_SpawnItemEx("DCY_BloodParticleX", zofs: 2, xvel: random(-5,5), yvel: random(-5,5), zvel: frandom(3, 6), angle: frandom(0, 360), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
 	}
 	GSPL ABCDEFGHIJKLMNOPQRSTUVWXYZ 1;
     Stop;
@@ -299,7 +305,7 @@ Class DCY_DarkSplash : DCY_Effect
 }
 
 
-Class DCY_DarkeningVulgarShot : FastProjectile
+Class DCY_DarkeningVulgarShot : DCY_Projectile
 {
   Default
   {
@@ -308,9 +314,10 @@ Class DCY_DarkeningVulgarShot : FastProjectile
   Radius 12;
   Height 12;
   Alpha 0;
-  Scale 1.0;
+  Scale 2.0;
   SeeSound "M0NSSHOT";
   RenderStyle "Subtract";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.70,1.37,0.67]";
   Damage 6;
   }
   States
@@ -318,15 +325,19 @@ Class DCY_DarkeningVulgarShot : FastProjectile
   Spawn:
 	TNT1 A 1
 	{
-		A_SpawnItemEx("DCY_DarkeningVulgarAura", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_DarkeningDrip", frandom(-radius, radius), frandom(-radius, radius), frandom(-height, height), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 210);
+		A_SpawnItemEx("Sub_Blood_Trail", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+		A_SpawnItemEx("DCY_BloodParticleX", frandom(-radius, radius), frandom(-radius, radius), frandom(-height, height), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 170);
 		A_Weave(2, 2, 1, 1);
 	}
 	Loop;
   Death:
 	TNT1 A 2
 	{
-		for (int i = 8; i > 0; i--)
+		for (int i = 8; i > 0; i--) {
+			A_SpawnItemEx("DCY_BloodParticleX", frandom(-radius, radius), frandom(-radius, radius), frandom(-height, height), zvel: -0.5, flags: SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
 			A_SpawnParticle(0x0e0624, 0, random(25, 50), frandom(4, 10), frandom(0, 360), velx: frandom(-5.0, 5.0), vely: frandom(-5.0, 5.0), velz: frandom(-5.0, 5.0), accelz: -0.85);
+		}
 	}
 	Stop;
   }

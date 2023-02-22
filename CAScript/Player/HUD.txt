@@ -51,7 +51,6 @@ Class DCyb_HUD : BaseStatusBar
 	super.Init();
 	
     SetSize(32, 320, 200);
-	
     Font fnt = "SMALLFONT";
 	dcyb_font = HUDFont.Create(fnt);
     fnt = "SMALLFONT";

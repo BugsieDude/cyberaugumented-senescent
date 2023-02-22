@@ -129,6 +129,8 @@ Emphasis/Use "Sounds/Inventory/dcy_emphasis_use.ogg"
 DARKSKIL "Sounds/Inventory/dcy_darkness2.ogg"
 SUPRBUFF "Sounds/Inventory/dcy_song.ogg"
 
+dcy/anamnesis "Sounds/Inventory/dcy_anamnesis.ogg"
+
 FF4AFADE "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash.ogg"
 FF4ANOI2 "Sounds/DCY Monsters/Corrupt Infiltrator/dcy_corrupt_dash2.ogg"
 FF4ABCHR "Sounds/Projectiles/dcy_darkmatter_charge.ogg"

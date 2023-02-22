@@ -4,8 +4,8 @@ Class DCY_Destructor : DCY_ShotgunZombe
   {
   Health 110;
   Translation "16:47=[255,0,0]:[0,0,0]", "168:191=[255,0,0]:[0,0,0]", "80:111=[255,255,255]:[0,0,0]", "48:79=%[0.00,0.00,0.00]:[0.95,0.78,0.65]", "9:12=%[0.00,0.00,0.00]:[0.50,0.00,0.00]";
-  Tag "\c[Red]Unholy Destructor\c-";
-  Obituary "%o was executed by the Destructor's strength.";
+  Tag "\c[Red]Destructor\c-";
+  Obituary "%o saw the Destructor's strength.";
   Speed 8;
   FastSpeed 12;
   SeeSound "Destructor/Sight";
@@ -26,17 +26,16 @@ Class DCY_Destructor : DCY_ShotgunZombe
   void A_DestructorFire()
   {
 	A_FaceTarget();
-	A_SpawnProjectile("DCY_DestructorMissile", 30, 0, random(-3, 3));
+	A_SpawnProjectile("DCY_DestructorMissile", 30, 0, random(-3, 3), CMF_OFFSETPITCH, pitch + frandom(-3, 3));
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
   {
 	static const string messages[] =
 	{
-		"%o was executed by the Unholy Destructor's strength.",
+		"%o saw the Destructor's strength.",
 		"You got all messed up.",
-		"Something has gone wrong.",
-		"I slapped my balls when I saw the Destructor. My brother, Gerald IV the Foolish, has imploded the universe. i hate that i made this joke"
+		"Something has gone wrong."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];
@@ -136,51 +135,36 @@ Class DCY_Destructor : DCY_ShotgunZombe
   }
 }
 
-Class DCY_DestructorMissile : DCY_ConsulProj
+Class DCY_DestructorMissile : DCY_ImpFireball
 {
   Default
   {
-  Damage 2;
+  Damage 7;
   Radius 10;
   Height 10;
-  Scale 0.5;
-  Speed 25.5;
+  Scale 0.8;
+  Speed 20.5;
   FastSpeed 30.5;
-  MissileType "DCY_DestructorMissileTrail";
-  SeeSound "STF3FIRE";
+  SeeSound "ArgentBall";
+  DeathSound "ArgentImpact";
   MissileHeight 6;
-  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.60,0.60]";
   +BRIGHT
+  +SEEKERMISSILE
   }
   States
   {
   Spawn:
-	F8PJ AAABBBCCCDDD 1;
-	Loop;
-  Death:
-	F8PJ EFGHIJK 3;
-	Stop;
-  }
-}
-
-Class DCY_DestructorMissileTrail : DCY_ConsulAura
-{
-  Default
-  {
-  Scale 0.15;
-  Alpha 0.15;
-  }
-  States
-  {
-  Spawn:
-	EF1_ J 1
+	ZT__ AAAABBBB 1
 	{
-		If (Alpha <= 0.00000001)
-			Return ResolveState("Null");
-		
-		A_FadeOut(0.025, 0);
-		Return ResolveState(null);
+		roll += 3;
+		A_SpawnItemEx("DCY_Arc", flags: SXF_TRANSFERTRANSLATION, failchance: 120);
+		if (!random(0, 60)) { A_SpawnItemEx("DCY_ElecDeathBase", flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION); A_Tracer2(100); }
+		A_SpawnParticleEx(0x943232, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 30, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.825);
 	}
 	Loop;
+  Death:
+	ZT__ CDEFGHIJKL 2 A_SpawnItemEx("DCY_ElecDeathBase", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_TRANSFERTRANSLATION, failchance: 20);
+	Stop;
   }
 }

@@ -10,7 +10,6 @@ ACTOR DCY_DeBruiser : DCY_Spawner Replaces BaronofHell
   DropItem "DCY_GehennaChasseur", 20, 100
   DropItem "DCY_WastelandInfiltrator", 25, 50
   DropItem "DCY_Utrotrion", 25, 40
-  DropItem "DCY_CorruptInfiltrator", 25, 30
   DropItem "DCY_ArmageddonPredominator", 35, 20
   DropItem "DCY_EOD", 35, 20
   DropItem "DCY_Aamon", 45, 10

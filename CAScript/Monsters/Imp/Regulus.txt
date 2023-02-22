@@ -2,7 +2,7 @@ Class DCY_RegulusImp : DCY_Impe
 {
   Default
   {
-  Translation "48:79=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "128:159=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "5:15=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "224:255=%[0.00,0.00,0.00]:[0.47,0.47,0.47]", "168:191=%[0.00,0.00,0.00]:[0.00,0.00,2.00]", "16:47=%[0.00,0.00,0.00]:[0.00,0.00,2.00]", "160:167=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "112:127=%[0.00,0.00,0.00]:[0.00,1.01,2.00]";
+  Translation "48:79=[128,128,128]:[0,0,0]", "1:3=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "5:15=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "128:167=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "236:239=%[0.00,0.00,0.00]:[0.45,0.45,0.45]", "112:127=%[0.00,0.00,0.00]:[1.12,1.30,1.56]", "16:47=%[0.00,0.00,0.15]:[0.77,0.91,1.28]", "168:191=%[0.00,0.00,0.00]:[0.69,0.76,1.51]";
   Health 128;
   Radius 20;
   Height 56;
@@ -15,9 +15,10 @@ Class DCY_RegulusImp : DCY_Impe
   PainSound "EternalGargoyle/Pain";
   DeathSound "EternalGargoyle/Death";
   MeleeSound "imp/melee";
-  Obituary "%o got CHILLED.";
-  HitObituary "%o was slashed into pieces by a Varmint.";
-  BloodColor "00 33 99";
+  DamageType "Ice";
+  Obituary "A varmint entangled %o in cold blood.";
+  HitObituary "A varmint entangled %o in cold blood.";
+  BloodColor "7377c9";
   Tag "\c[y9]Varmint\c-";
   +FLOAT
   +NOGRAVITY
@@ -25,6 +26,10 @@ Class DCY_RegulusImp : DCY_Impe
   +QUICKTORETALIATE
   +DONTHARMCLASS
   }
+  
+  float chill;
+  float chillangle;
+  
   States
   {
   Spawn:
@@ -41,54 +46,52 @@ Class DCY_RegulusImp : DCY_Impe
     FAEM AABBCCDD 3 A_Chase();
     Loop;
   Melee:
-    FAEM EF 4 A_FaceTarget();
-	FAEM O 4 A_CustomMeleeAttack(5 * random(1, 5), "imp/melee");
+    FAEM EF 4 { A_Recoil(-4); A_FaceTarget(); }
+	FAEM OOO 4 A_CustomMeleeAttack(5 * random(1, 5), "imp/melee");
+	FAEM F 4 A_Stop();
 	Goto See;
   Missile:
-    FAEM E 8
+	FAEM E 0
+	{
+		if (target && distance3D(target) < 240) return ResolveState("Frostthrower");
+		
+		switch (random(0, 1))
+		{
+			case 0: return ResolveState("Normal"); break;
+			case 1: return ResolveState("Sway"); break;
+		}
+		
+		return ResolveState(null);
+	}
+	Goto Normal;
+  Frostthrower:
+	FAEM O 10 A_FaceTarget();
+	FAEM F 10 { A_StartSound("DCYDeadlyBreath"); A_Facetarget(); }
+	FAEM EEEEEEEEEEE 4
 	{
 		A_FaceTarget();
-		Return A_Jump(128, "MissileMK2", "MissileMK2Type2", "MissileType2", "MissileType3");
+		A_SpawnProjectile("DCY_RegulusThrower", 40, 0, frandom(-2, 2));
 	}
+	FAEM F 10 A_FaceTarget();
+	Goto See;
+  Normal:
+	FAEM E 8 A_FaceTarget();
 	FAEM F 8 A_FaceTarget();
-    FAEM O 8
+	FAEM OOO 12
 	{
-		for (int i = -8; i < 9; i += 8)
-			A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, i);
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_RegulusImpBall", 31);
 	}
     Goto See;
-  MissileType2:
-    FAEM EF 8 A_FaceTarget;
-    FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
-	FAEM F 7 A_FaceTarget;
-	FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
-	FAEM F 7 A_FaceTarget;
-	FAEM O 6 A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 0);
-	TNT1 A 0 A_Jump(128, "MissileMK2Type2");
-    Goto See;
-  MissileType3:
-    FAEM EF 6 A_FaceTarget();
-	FAEM OO 4
+  Sway:
+    FAEM E 10 { chillangle = randompick(-20, 20); A_FaceTarget(); chill = -chillangle; }
+	FAEM F 10 A_FaceTarget();
+    FAEM OOOOO 7
 	{
-		A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, -6);
-		A_SpawnProjectile("DCY_RegulusImpBall", 36, 0, 6);
+		A_FaceTarget();
+		chill += chillangle;
+		A_SpawnProjectile("DCY_RegulusImpBall", 31, 0, chill - (chillangle * 2));
 	}
-	TNT1 A 0 A_Jump(128, "MissileMK2");
-    Goto See;
-  MissileMK2:
-    TNT1 A 0 A_Jump(128, "MissileMK2Type2");
-    FAEM EF 6 A_FaceTarget();
-	FAEM O 6
-	{
-		A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-10, -8));
-		A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(10, 8));
-	}
-    Goto See;
-  MissileMK2Type2:
-    FAEM EF 7 A_FaceTarget();
-    FAEM O 8 A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-3, 3));
-	FAEM FEF 4 A_FaceTarget();
-	FAEM O 8 A_SpawnProjectile("DCY_RegulusImpBallMK2", 36, 0, random(-3, 3));
     Goto See;
   Pain:
     FAEM G 2;
@@ -111,7 +114,7 @@ Class DCY_RegulusImp : DCY_Impe
   }
 }
 
-Class DCY_RegulusImpBall : DoomImpBall
+Class DCY_RegulusImpBall : DCY_ImpFireball
 {
   Default
   {
@@ -119,32 +122,39 @@ Class DCY_RegulusImpBall : DoomImpBall
   Height 8;
   Speed 15;
   FastSpeed 30;
-  Damage 3;
+  Damage 6;
   Renderstyle "Add";
   Projectile;
   +RANDOMIZE
+  DamageType "Ice";
   SeeSound "Freedoom/Imp/Attack";
   DeathSound "Freedoom/Imp/ShotX";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.03,1.04,1.39]";
   Decal "DoomImpScorch";
   }
   States
   {
   Spawn:
-    RGBL AAAABBBB 1 Bright A_SpawnItemEx("DCY_RegulusImpBallTrail", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
+    RGBL AAAABBBB 1 Bright
+	{
+		A_SpawnItemEx("DCY_RegulusImpBallTrail", 0, 0, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), 0, SXF_NOCHECKPOSITION);
+		A_SpawnParticleEx(0x7377c9, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, random(3, 6), angle, frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), fadestepf: 0, sizestep: -0.115);	
+	}
     Loop;
   Death:
-    RGBL CDEFG 3 Bright;
-    Stop;
+    RGBL C 3 Bright A_SpawnParticleEx(0x7377c9, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0025, sizestep: 1.525);
+	RGBL DEFG 3 Bright;
+	Stop;
   }
 }
 
-Class DCY_RegulusImpBallTrail : Actor
+Class DCY_RegulusImpBallTrail : DCY_Effect
 {
   Default
   {
   Scale 1.0;
   RenderStyle "Add";
-  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.50,1.01]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.52,0.52,0.94]";
   +NOINTERACTION;
   -SOLID;
   }
@@ -156,66 +166,30 @@ Class DCY_RegulusImpBallTrail : Actor
   }
 }
 
-Class DCY_RegulusImpBallMK2 : Actor
+Class DCY_RegulusThrower : DCY_RegulusImpBall
 {
   Default
   {
-  Radius 6;
-  Height 8;
-  Speed 10;
-  FastSpeed 15;
-  Damage 5;
-  Renderstyle "Add";
-  Projectile;
-  +RANDOMIZE
-  +FORCERADIUSDMG
-  +SEEKERMISSILE
-  SeeSound "RegulusSeeker/Charge";
-  DeathSound "RegulusSeeker/Death";
-  Decal "DoomImpScorch";
+  Damage (0);
+  SeeSound "";
+  DeathSound "";
+  +RIPPER
   }
-  
-  int time;
   
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay A_StartSound("RegulusSeeker/Loop", CHAN_AUTO);
-    RBL2 AAABBBCCCDDD 1 Bright
+	TNT1 A 1
 	{
-		A_SpawnItemEx("DCY_RegulusImpBallMK2Trail", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), 0, SXF_NOCHECKPOSITION);
-		
-		if (time == 4)
-		{
-			time = 0;
-			A_SeekerMissile(2, 4);
-		}
-		
-		time++;
+		A_FadeOut(0.0415);
+		if ((GetAge() % 2) == 0) A_Explode(5, 50);
+		vel.x += frandom(-0.1, 0.1);
+		vel.y += frandom(-0.1, 0.1);
+		vel.z += frandom(-0.1, 0.1);
+		A_SpawnParticleEx(0x7377c9, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 128, 60, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0045, sizestep: 1.525);
 	}
-    Loop;
+	Wait;
   Death:
-    RBL2 E 3 A_StartSound("RegulusSeeker/Death");
-    RBL2 FGHIJ 3 Bright;
-    Stop;
-  }
-}
-
-Class DCY_RegulusImpBallMK2Trail : Actor
-{
-  Default
-  {
-  RenderStyle "Add";
-  Scale 1.0;
-  Alpha 0.75;
-  +NOINTERACTION
-  -SOLID
-  Translation "0:255=%[0.00,0.00,0.00]:[0.00,0.50,1.01]";
-  }
-  States
-  {
-  Spawn:
-    RBL2 AABBCCDDAA 1 A_FadeOut(0.1);
 	Stop;
   }
 }

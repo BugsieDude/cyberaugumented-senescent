@@ -186,7 +186,7 @@ Class DCY_ViolationFire : DCY_ImpFireball
 		{
 			let splosion = Spawn("DCY_ExplosiveBallT", pos);
 			if (splosion) { splosion.translation = translation; splosion.scale *= 0.225; }
-			A_SpawnFlames("ff4444", 20, 50, 0, false, thrust: 3.25);
+			A_SpawnFlames("ff3333", 20, 50, 0, false, thrust: 3.25);
 			A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
 		}
 	}

@@ -187,7 +187,7 @@ Class DCY_CWPuff : BishopPuff
   }
 }
 
-Class DCY_CWFX : FastProjectile
+Class DCY_CWFX : DCY_FastProjectile
 {
   Default
   {

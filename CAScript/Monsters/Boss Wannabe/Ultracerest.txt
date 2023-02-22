@@ -274,7 +274,7 @@ Class DCY_Ultracerest : DCY_Impe //stronk
   }
 }
 
-Class DCY_UCAura : DCY_CorruptInfiltratorTrail { Default { StencilColor "02 73 C4"; +NOTIMEFREEZE; } }
+Class DCY_UCAura : DCY_HexodenicanTrail { Default { StencilColor "02 73 C4"; +NOTIMEFREEZE; Scale 1; } }
 
 Class DCY_UltracerestRocket : Rocket
 {

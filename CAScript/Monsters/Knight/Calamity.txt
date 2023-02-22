@@ -16,6 +16,7 @@ Class DCY_CalamityTsar : DCY_KnightHell
   ActiveSound "Tsar/Active";
   PainSound "Tsar/Pain";
   DeathSound "Tsar/Death";
+  DCYMonster.WalkFlames "DCY_YellowWalkFlames";
   Speed 8;
   FastSpeed 10;
   }
@@ -26,14 +27,14 @@ Class DCY_CalamityTsar : DCY_KnightHell
 	HL59 A 10 DCY_Look();
 	Loop;
   Look:
-	HL59 AABBCCDD 3 DCY_LookingForPlayer();
+	HL59 AABBCCDD 3 { if (!random(0, 3)) A_WalkFlame(); DCY_LookingForPlayer(); }
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	HL59 AABBCCDD 3 A_Chase();
+	HL59 AABBCCDD 3 { if (!random(0, 3)) A_WalkFlame(); A_Chase(); }
 	Loop;
   Missile:
 	HL59 A 0 A_Jump(128, "Ball");
@@ -129,12 +130,12 @@ Class DCY_CalamityTsarSuperAura : Actor
   }
 }
 
-Class DCY_TsarBall : BaronBall
+Class DCY_TsarBall : DCY_BaronFireball
 {
   Default
   {
   Damage 4;
-  Speed 14.5;
+  Speed 12.5;
   FastSpeed 22.5;
   +BRIGHT
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,2.00,1.01]";
@@ -146,6 +147,7 @@ Class DCY_TsarBall : BaronBall
 	BAL7 AABB 1
 	{
 		A_Weave(2, 0, 2, 0);
+		A_SpawnFlames("ffe66b", 15, 40, 0, false, frandom(-1.5, 1.5), thrust: 4);
 		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
 	}
 	Loop;

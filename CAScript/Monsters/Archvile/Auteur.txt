@@ -228,6 +228,7 @@ Class DCY_AuteurVile : ArchvileFire
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	timer++;
 	
 	if (timer > 65)

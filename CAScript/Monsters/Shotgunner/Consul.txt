@@ -7,6 +7,7 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   Radius 16;
   Mass 250;
   Speed 6;
+  Health 70;
   +DONTOVERLAP
   +QUICKTORETALIATE
   +MISSILEMORE
@@ -23,8 +24,12 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   AttackSound "DarkConsul/Active";
   PainSound "DarkConsul/Pain";
   ActiveSound "DarkConsul/Active";
-  Obituary "%o was slain by a Dark Ion Consul.";
+  Obituary "A Dark Ion Consul outsmarted %o.";
   }
+  
+  int charge;
+  int missile;
+  
   States
   {
   Spawn:
@@ -47,62 +52,78 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   MissileStart:
     Goto Missile+1;
   Missile:
-    TNT1 A 0 A_JumpIf(target && distance3D(target) < 190, "Dash");
-    TNT1 A 0 A_Jump(20, "Triple");
-    Y9MD EJ 5 A_FaceTarget();
-	Y9MD K 3 Bright
+    TNT1 A 0
 	{
-		A_StartSound("Deagle/Fire", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
+		missile = random(3, 6);
+		If (!random(0, 3) && (target && distance3D(target) < 190)) SetStateLabel("Dash");
+		if (!random(0, 9)) SetStateLabel("Charge");
 	}
-	Goto See;
+	Goto Normal;
+  Normal:
+    Y9MD EJ 5 A_FaceTarget();
+	Y9MD K 5
+	{
+		A_FaceTarget();
+		missile--;
+		A_SpawnProjectile("DCY_ConsulPlasma", 40, 0, frandom(-1, 1));
+	}
+	Y9MD J 6
+	{
+		A_FaceTarget();
+		if (missile <= 0) SetStateLabel("See");
+	}
+	Goto Normal+2;
+  Charge:
+	Y9MD E 0 A_StartSound("Consul/Charge", CHAN_WEAPON);
+	Y9MD EEJJ 5 A_FaceTarget();
+	Y9MD KJ 2
+	{
+		A_FaceTarget();
+		charge++;
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 40, 0, frandom(40, 60), frandom(-20, 20), frandom(-10, 10) + 31, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
+		if (charge > 40) SetStateLabel("CFire");
+	}
+	Goto Charge+5;
+  CFire:
+	Y9MD K 5
+	{
+		A_StartSound("Consul/ChargedFire", CHAN_WEAPON, attenuation: 0.75);
+		A_Recoil(10);
+		A_FaceTarget();
+		charge = 0;
+		A_SpawnProjectile("DCY_ConsulCharged", 40, 0, frandom(-1, 1));
+	}
+	Y9MD JA 20
+	{
+		A_FaceTarget();
+		if (missile <= 0) SetStateLabel("See");
+	}
+	Goto Normal+2;
   Dash:
-    TNT1 A 0 A_Jump(150, "MissileStart");
 	Y9MD EF 6 A_FaceTarget();
-	Y9MD GGGG 2 A_Recoil(-8);
+	Y9MD GGGG 2 A_Recoil(-7);
 	TNT1 A 0 A_Stop();
 	Goto MissileStart;
-  Triple:
-    Y9MD EJ 5 A_FaceTarget();
-	Y9MD K 10 Bright
-	{
-		A_StartSound("Deagle/Fire", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
-	}
-	Y9MD J 16 A_FaceTarget();
-	Y9MD K 10 Bright
-	{
-		A_StartSound("Deagle/Fire", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
-	}
-	Y9MD J 16 A_FaceTarget();
-	Y9MD K 10 Bright
-	{
-		A_StartSound("Deagle/Fire", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_EnemyDeagleTracer", 40, 0, frandom(-1, 1));
-	}
-	Y9MD J 16 A_FaceTarget();
-	Goto See;
   Pain:
-    Y9MD H 5 A_Pain();
+    Y9MD H 5 { A_StopSound(CHAN_WEAPON); A_Pain(); }
 	Goto See;
   Death:
-    Y9IM A 2;
+    Y9IM A 2 A_StopSound(CHAN_WEAPON);
 	Y9IM A 2 A_ScreamAndUnblock();
     Y9IM ABCDEFG 5;
 	Y9IM H -1;
 	Stop;
   XDeath:
-    Y9IM I 2;
+    Y9IM I 2 A_StopSound(CHAN_WEAPON);
 	Y9IM I 1 A_XScream();
     Y9IM I 2 A_NoBlocking();
 	Y9IM JKLMNOP 5;
 	Y9IM Q -1;
 	Stop;
   Death.Fire:
-	TNT1 A 0;
 	TNT1 A 0
 	{
+		A_StopSound(CHAN_WEAPON);
 		A_Scream();
 		A_NoBlocking();
 	}
@@ -115,65 +136,73 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   }
 }
 
-Class DCY_ConsulProj : FastProjectile
+Class DCY_ConsulPlasma : DCY_RehauledPlasma
 {
   Default
   {
-  Speed 25;
-  FastSpeed 30;
-  Damage (7);
-  Radius 8;
-  Height 8;
-  RenderStyle "Add";
-  Alpha 1.0;
-  Scale 0.5;
-  SeeSound "RETRSHOT";
-  DeathSound "MagicProjectile/Death";
-  Translation "5:255=%[0.00,0.00,0.00]:[2.00,0.13,0.13]";
-  +NOEXTREMEDEATH
-  -RANDOMIZE
-  +BRIGHT
+  Speed 22;
+  Scale 1.1;
+  Translation "0:255=%[0.37,0.00,0.00]:[2.00,0.98,0.98]";
+  SeeSound "ArachPlasma";
   }
   
   States
   {
   Spawn:
-	SUE2 AB 1 A_SpawnItemEx("DCY_FluorescentOrbT", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), xvel: frandom(0, -2), zvel: frandom(3, 0), flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+	9_AL AAABBBCCC 1
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			for (int i = 2; i > 0; i--) A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 70, frandom(1.00, 4.00), angle, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), (Vel.x / 4.75), (Vel.y / 4.75), (Vel.z / 4.75), startalphaf: 1.0, fadestepf: 0, sizestep: -0.15);
+			A_SpawnFlames("941313", 15, 10, 0, false, thrust: 2.25, ember: false);
+		}
+	}
 	Loop;
   Death:
-    SUE2 CDE 3;
+	TNT1 A 0
+	{
+		A_SpawnItemEx("DCY_Explosion_1_Smaller", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.124, sizestep: 3.25);
+	}
+	9_AL DEFGH 3;
 	Stop;
   }
 }
 
-Class DCY_ConsulAura : Actor
+Class DCY_ConsulCharged : DCY_ConsulPlasma
 {
   Default
   {
-  Radius 0;
-  Height 0;
-  RenderStyle "Add";
-  Alpha 0.085;
-  Scale 0.385;
-  +BRIGHT
-  +NOINTERACTION
-  +NOCLIP
-  +DONTSPLASH
+  Scale 1;
+  Speed 20;
+  Damage 10;
+  Translation "0:255=%[0.24,0.00,0.00]:[2.00,0.55,0.55]";
+  SeeSound "";
   }
+  
   States
   {
   Spawn:
-	EF1_ C 1
+	DLIT DEFGH 1
 	{
-		If (alpha <= 0.00001)
+		if (DCY_EffectDistance(sfxdistance))
 		{
-			Return ResolveState("Null");
+			A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 60, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
+			A_SpawnItemEx("DCY_ElectrailBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+			for (int i = 2; i > 0; i--) A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 70, frandom(1.00, 4.00), angle, frandom(-15, 15), frandom(-15, 15), frandom(-15, 15), (Vel.x / 4.75), (Vel.y / 4.75), (Vel.z / 4.75), startalphaf: 1.0, fadestepf: 0, sizestep: -0.15);
+			A_SpawnFlames("941313", 15, 25, 0, false, thrust: 2.25, ember: false);
+			A_SpawnFlames("ffffff", 15, 10, 0, false, thrust: 2.25, ember: false);
 		}
-		
-		A_SetScale(Scale.X-0.00001, Scale.Y-0.00001);
-		A_FadeOut(0.025, 0);
-		Return ResolveState(null);
 	}
 	Loop;
+  Death:
+	TNT1 A 0
+	{
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.124, sizestep: 3.25);
+	}
+	9_AL DEFGH 3 A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2),  flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	Stop;
   }
 }

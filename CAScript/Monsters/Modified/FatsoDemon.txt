@@ -22,8 +22,7 @@ Class DCY_SkinnyFat : DCYMonster
   
   void A_FatThrower()
   {
-	A_SpawnProjectile("DCY_FatThrower", 30, -13);
-	A_SpawnProjectile("DCY_FatThrower", 30, 13);
+	for (int i = -13; i < 14; i += 26) A_SpawnProjectile("DCY_FatThrower", 30, -13);
 	A_FaceTarget();
   }
   
@@ -53,15 +52,24 @@ Class DCY_SkinnyFat : DCYMonster
 			A_FaceTarget();
 		}
 	}
-    _JUG H 0 Bright;
-	_JUG H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 11.25, CMF_TRACKOWNER);
-	_JUG H 0 Bright A_SpawnProjectile("FatShot", 30, 13, 0, CMF_TRACKOWNER);
-    _JUG HIG 7 A_FaceTarget();
-    _JUG H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 0, CMF_TRACKOWNER);
-	_JUG H 0 Bright A_SpawnProjectile("FatShot", 30, 13, -11.25, CMF_TRACKOWNER);
-    _JUG HIG 7 A_FaceTarget();
-    _JUG H 0 Bright A_SpawnProjectile("FatShot", 30, -13, 5.625, CMF_TRACKOWNER);
-	_JUG H 0 Bright A_SpawnProjectile("FatShot", 30, 13, 5.625, CMF_TRACKOWNER);
+    _JUG H 7
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("FatShot", 30, -13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+	}
+	_JUG I 7 A_FaceTarget();
+	_JUG H 7
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("FatShot", 30, 13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+	}
+	_JUG I 7 A_FaceTarget();
+	_JUG H 7
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("FatShot", 30, 13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
+		A_SpawnProjectile("FatShot", 30, -13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
+	}
     _JUG HIGG 7 A_FaceTarget();
     Goto See;
   FLAMETHROWERATK:
