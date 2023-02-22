@@ -113,7 +113,7 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
   Death:
 	E3RL J 2;
 	E3RL J 15 A_Scream();
-	E3RL PJPJPJPJPJPJ 3 Bright;
+	E3RL PJPJPJPJPJPJ 3;
 	E3RL P 1
 	{
 		A_Explode(128, 256, XF_NOTMISSILE);

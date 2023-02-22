@@ -118,7 +118,6 @@
 #include "CAScript/Monsters/Mancubus/Disrelish.txt"
 #include "CAScript/Monsters/Revenant/Exarch.txt"
 #include "CAScript/Monsters/Revenant/Kranio.txt"
-#include "CAScript/Monsters/Imp/Sacker.txt"
 #include "CAScript/Monsters/Chaingunner/Nullifier.txt"
 #include "CAScript/Monsters/Chaingunner/ShadowCrusader.txt"
 #include "CAScript/Monsters/Archvile/Prestidigitator.txt"

@@ -5,10 +5,10 @@ Class DCY_Anathema : DCY_Impe
   Translation "16:47=%[0.00,0.00,0.00]:[0.63,0.63,0.63]", "128:159=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "13:15=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "236:239=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "160:167=%[0.00,0.00,0.00]:[1.17,0.00,0.00]", "208:231=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "248:249=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
   Health 333;
   Tag "\c[Red]Anathema\c-";
-  SeeSound "Anathema/Sight";
-  ActiveSound "Anathema/Active";
-  PainSound "Anathema/Pain";
-  DeathSound "Anathema/Death";
+  SeeSound "sacker/sight";
+  ActiveSound "sacker/active";
+  PainSound "sacker/pain";
+  DeathSound "sacker/death";
   +MISSILEEVENMORE
   DamageType "Anathemic";
   Obituary "The anathema's cluster ripped %o apart.";

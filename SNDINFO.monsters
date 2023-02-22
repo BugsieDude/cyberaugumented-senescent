@@ -520,11 +520,6 @@ dcypathogen/faint "Sounds/DCY Monsters/Pathogen/dcy_pathogen_faint.ogg"
 DRKXDTH "Sounds/DCY Monsters/Pathogen/dcy_pathogen_splash.ogg"
 DRKDRIP "Sounds/DCY Monsters/Pathogen/dcy_pathogen_drip.ogg"
 
-Anathema/Sight "Sounds/DCY Monsters/Anathema/dcy_anathema_sight.ogg"
-$alias Anathema/Active Anathema/Sight
-Anathema/Pain "Sounds/DCY Monsters/Anathema/dcy_anathema_pain.ogg"
-Anathema/Death "Sounds/DCY Monsters/Anathema/dcy_anathema_death.ogg"
-
 $random Emir/Sight { EmirSit1 EmirSit2 EmirSit3 }
 EmirSit1 "Sounds/DCY Monsters/Emir/dcy_emir_sight1.ogg"
 EmirSit2 "Sounds/DCY Monsters/Emir/dcy_emir_sight2.ogg"
