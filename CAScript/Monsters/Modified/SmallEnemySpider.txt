@@ -92,11 +92,11 @@ Class DCY_SmallEnemySpider : DCY_ArachnoParent
 	PSPI DEEFF 3 A_Chase();
 	Goto See+1;
   Missile:
-	PSPI A 20 BRIGHT A_FaceTarget();
-	PSPI G 4 BRIGHT A_BspiAttack();
-	PSPI H 4 BRIGHT;
-	PSPI H 1 BRIGHT A_SpidRefire();
-	Goto Missile+1;
+	PSPI AAAAAGGGGG 2 A_FaceTarget();
+	PSPI H 3 A_SpawnProjectile("DCY_ConsulPlasma", 30, 0, frandom(-3, 3), CMF_OFFSETPITCH, frandom(-3, 3) + pitch);
+	PSPI G 4;
+	PSPI G 1 A_SpidRefire();
+	Goto Missile+10;
   Pain:
 	PSPI I 3;
 	PSPI I 3 A_Pain();

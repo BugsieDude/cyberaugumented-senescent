@@ -2,8 +2,8 @@ Class DCY_Razortherion : DCY_CacoParent
 {
   Default
   {
-  Speed 20.75;
-  FastSpeed 23.5;
+  Speed 15;
+  FastSpeed 21;
   Health 1250;
   BloodColor "Green";
   +MISSILEMORE
@@ -24,7 +24,7 @@ Class DCY_Razortherion : DCY_CacoParent
   HowlSound "razortherion/pain";
   Obituary "%o was smited by Razortherion's superpowers.";
   Tag "\c[x9]Elite Prophet Razortherion\c-";
-  DamageFactor 0.8;
+  DamageFactor 0.9;
   DamageFactor "RazortherionDamage", 0.00;
   }
   

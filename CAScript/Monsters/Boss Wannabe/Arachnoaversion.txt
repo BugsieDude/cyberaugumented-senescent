@@ -177,11 +177,10 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   }
 }
 
-Class DCY_AversionPlasma : DCY_ReceptacleBigPlasma
+Class DCY_AversionPlasma : PlasmaBall
 {
   Default
   {
-  DeathSound "CONVEXPL";
   Speed 28;
   FastSpeed 34;
   Scale 0.85;
