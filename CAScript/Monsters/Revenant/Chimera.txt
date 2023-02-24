@@ -73,7 +73,8 @@ Class DCY_Chimera : DCY_Rev
 	Goto Souls;
   Souls:
 	INCA J 10 A_FaceTarget();
-	INCA KKKK 6 { A_FaceTarget(); A_SpawnProjectile("DCY_ChimeraSoul", 60, randompick(-20, 20)); }
+	INCA K 12 { A_FaceTarget(); A_SpawnProjectile("DCY_ManesBallBig", 60, -20); }
+	INCA K 12 { A_FaceTarget(); A_SpawnProjectile("DCY_ManesBallBig", 60, 20); }
 	INCA K 10;
 	Goto See;
   Scream:
@@ -99,10 +100,7 @@ Class DCY_Chimera : DCY_Rev
 	INCX A 4;
 	INCX B 4 A_ScreamAndUnblock();
 	INCX CDEFGHIJ 4
-	{
-		if (DCY_EffectDistance(sfxdistance)) for (int i = random(2, 3); i > 0; i--) DCY_SoulExplode();
-		A_SpawnItemEx("DCY_EspouserShriekingSoul", zofs: 30, xvel: frandom(10, 30), zvel: frandom(-10, 10), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION, failchance: 50);
-	}
+	{ if (DCY_EffectDistance(sfxdistance)) for (int i = random(2, 3); i > 0; i--) DCY_SoulExplode(); }
 	INCX K -1;
 	Stop;
   Death.Massacre:
@@ -111,27 +109,5 @@ Class DCY_Chimera : DCY_Rev
 	INCX CDEFGHIJ 4;
 	INCX K -1;
 	Stop;
-  }
-}
-
-Class DCY_ChimeraSoul : DCY_EspouserSoul
-{
-  Default
-  {
-  SeeSound "DCYGhostProjectile";
-  DeathSound "imp/shotx";
-  Speed 30;
-  Scale 0.5;
-  }
-  
-  States
-  {
-  Spawn:
-	S0UX L 1
-	{
-		A_Tracer2(2);
-		A_SpawnItemEx("DCY_RocketSmonk", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(1, -1), frandom(1, -1), frandom(1, -1), frandom(0, 360), SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
-	}
-	Loop;
   }
 }

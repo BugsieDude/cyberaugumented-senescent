@@ -2,19 +2,19 @@ Class DCY_Remainder : DCY_Rev
 {
   Default
   {
-  DamageType "Fire";
-  DamageFactor "Fire", 0.00;
-  DamageFactor "Ice", 1.25;
   Tag "Remainder";
   SeeSound "Remainder/Sight";
   PainSound "Remainder/Pain";
   ActiveSound "Remainder/Active";
   DeathSound "Remainder/Death";
-  BloodColor "Orange";
+  BloodColor "Blue";
   BloodType "AndroidNeonFluid";
-  Translation "16:47=%[0.00,0.00,0.00]:[0.65,0.65,0.65]", "255:255=%[0.00,0.00,0.00]:[0.65,0.65,0.65]", "169:191=%[0.00,0.00,0.00]:[0.65,0.65,0.65]", "112:115=[255,255,255]:[255,255,128]", "116:120=[255,255,128]:[255,128,0]", "121:125=[255,128,0]:[64,0,0]", "125:127=[64,0,0]:[0,0,0]", "0:0=[0,0,0]:[255,255,255]", "0:0=[0,0,0]:[255,255,255]", "0:0=[0,0,0]:[255,255,255]", "83:83=[0,0,0]:[255,255,255]";
+  StencilColor "1f53ff";
+  Translation "16:47=[96,96,96]:[0,0,0]", "80:111=[192,192,192]:[0,0,0]", "4:4=[216,216,216]:[192,192,192]", "112:127=%[0.00,0.00,0.00]:[0.00,0.80,2.00]", "160:254=%[0.00,0.00,0.00]:[0.00,0.80,2.00]", "168:191=[96,96,96]:[0,0,0]", "224:224=[216,216,216]:[192,192,192]", "208:208=[216,216,216]:[192,192,192]", "255:255=%[0.00,0.00,0.00]:[0.57,0.57,0.57]";
   Health 388;
   }
+  
+  int phasecooldown;
   
   States
   {
@@ -29,8 +29,28 @@ Class DCY_Remainder : DCY_Rev
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	R3M_ AABBCCDDEEFF 3 A_Chase();
+	R3M_ AABBCCDDEEFF 3
+	{
+		if ((!random(0, 60)) && phasecooldown <= 0)
+		{
+			SetStateLabel("Phase");
+			phasecooldown = 400;
+		}
+		
+		if (phasecooldown > 0) phasecooldown -= random(1, 3);
+		A_Chase();
+	}
 	Loop;
+  Phase:
+	R3M_ A 10;
+	R3M_ A 1 A_SpawnItemEx("DCY_HexodenicanTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+	TNT1 A 3
+	{
+		A_StartSound("Remainder/Phase");
+		for (int i = random(10, 100); i > 0; i--) A_Wander();
+	}
+	R3M_ A 1 A_SpawnItemEx("DCY_HexodenicanTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+	Goto See;
   Melee:
 	R3M_ G 6;
 	R3M_ H 6 A_SkelWhoosh();
@@ -42,21 +62,21 @@ Class DCY_Remainder : DCY_Rev
 		A_FaceTarget();
 		Return A_Jump(128, "Fireball");
 	}
-	R3M_ JJJJJ 4
+	R3M_ J 10
 	{
 		A_FaceTarget();
 		
 		for (int i = 17; i > -18; i -= 34)
-			A_SpawnProjectile("DCY_SmallFireball", 70, i, frandom(-3, 3), CMF_OFFSETPITCH, frandom(-3, 3));
+			A_SpawnProjectile("DCY_RemainderRocket", 70, i, frandom(-3, 3), CMF_OFFSETPITCH, frandom(-3, 3));
 	}
 	R3M_ K 10;
 	Goto See;
   Fireball:
-	R3M_ G 2 A_StartSound("Remainder/Sight", CHAN_VOICE);
-	R3M_ GGGGGGGGGGGGGG 2
+	R3M_ G 2 A_StartSound("PhantomRev/Pain", CHAN_VOICE);
+	R3M_ GGGGGGGGGGGGGGGGGGGG 2
 	{
 		A_FaceTarget();
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-5, 5) - 10, frandom(-5, 5) + 20, frandom(-5, 5) + 36, zvel: 2, flags: SXF_NOCHECKPOSITION);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0x1f53ff, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, 40, 0, frandom(-5, 5) - 10, frandom(-5, 5) + 20, frandom(-5, 5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -2.325);
 	}
 	R3M_ H 5 A_FaceTarget();
 	R3M_ I 5 A_SpawnProjectile("DCY_RemainderFireball", 30);
@@ -77,7 +97,51 @@ Class DCY_Remainder : DCY_Rev
   }
 }
 
-Class DCY_RemainderFireball : DoomImpBall
+Class DCY_RemainderRocket : DCY_HomingMissile
+{
+  Default
+  {
+  Speed 15;
+  Translation "0:255=%[0.00,0.00,0.35]:[0.09,0.80,2.00]", "80:111=[255,255,255]:[0,0,0]";
+  Damage 5;
+  }
+  
+  bool home;
+  
+  States
+  {
+  Spawn:
+	TMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, 0.85, pitch: 1.4);
+	TMIS A 2 Bright
+	{
+		if (!home && (!(level.time % 20)) && (tracer && distance3D(tracer) < 400))
+		{
+			A_StartSound("AirbusterLaser", CHAN_BODY);
+			A_ScaleVelocity(0.8);
+			for (int i = 2; i > 0; i--) A_SeekerMissile(999, 999, SMF_LOOK|SMF_PRECISE);
+			home = true;
+		}
+		A_SpawnItemEx("DCY_FluorescentJetFlareSmall", flags: SXF_NOCHECKPOSITION);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("1f53ff", 25, 30, 0, true, frandom(-2.5, 2.5), allsmoke: true);
+	}
+	Goto Spawn+1;
+  Death:
+	TMIS B 0 Bright;
+  	TMIS B 6 Bright
+	{
+		A_Scream();
+		A_StopSound(CHAN_6);
+		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
+	TMIS CD 6 Bright;
+	Stop;
+  }
+}
+
+Class DCY_RemainderFireball : DCY_ImpFireball
 {
   Default
   {
@@ -90,7 +154,7 @@ Class DCY_RemainderFireball : DoomImpBall
   Scale 1.1;
   SeeSound "LAVABUBL";
   DeathSound "DCYLavaImpact";
-  Translation "0:255=%[0.25,0.00,0.00]:[2.00,2.00,1.01]";
+  Translation "0:255=%[0.00,0.00,0.24]:[0.94,1.36,2.00]";
   }
   
   States
@@ -98,56 +162,21 @@ Class DCY_RemainderFireball : DoomImpBall
   Spawn:
 	C3AL AB 1
 	{
-		A_Tracer2(4.5);
-		A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(1.5, 7.4), accelz: -0.55);
-		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
+		A_Tracer2(3.25);
+		A_SpawnParticleEx(0x1f53ff, Texman.CheckforTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(1.5, 7.4), accelz: -0.55);
+		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnFlames("1f53ff", 40, 40, allsmoke: true);
 	}
 	Loop;
   Death:
 	C3AL A 1
 	{
-		A_Explode(8, 180);
+		A_Explode(12, 180);
 		
 		for (int i = 25; i > 0; i--)
-			A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
+			A_SpawnParticleEx(0x1f53ff, Texman.CheckforTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
 		
-		A_SpawnItemEx("DCY_Explosion_1");
-	}
-	C3AL BCDE 1;
-	Stop;
-  }
-}
-
-Class DCY_SmallFireball : DCY_RemainderFireball
-{
-  Default
-  {
-  Damage 2;
-  Speed 20;
-  FastSpeed 23;
-  Scale 0.35;
-  Radius 4;
-  Height 8;
-  SeeSound "Painsend/Fireball";
-  DeathSound "FIR4IMPC";
-  }
-  
-  States
-  {
-  Spawn:
-	BAL7 AB 1
-	{
-		A_Tracer2(1);
-		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
-	}
-	Loop;
-  Death:
-	C3AL A 1
-	{
-		for (int i = 6; i > 0; i--)
-			A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
-		
-		A_SpawnItemEx("DCY_Explosion_1_Smaller");
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_TRANSFERTRANSLATION);
 	}
 	C3AL BCDE 1;
 	Stop;

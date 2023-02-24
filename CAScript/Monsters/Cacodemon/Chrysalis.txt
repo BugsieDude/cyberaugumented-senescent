@@ -8,7 +8,7 @@ Class DCY_Chrysalis : DCY_CacoParent
   Radius 25;
   Height 55;
   Tag "\c[w4]Chrysalis\c-";
-  Translation "1:2=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "168:173=[255,255,255]:[255,255,128]", "174:180=[255,255,128]:[255,191,0]", "181:191=[255,191,0]:[81,52,0]", "224:231=[255,255,255]:[255,255,128]", "208:216=[255,255,255]:[255,255,128]", "217:223=[255,255,128]:[255,191,0]", "232:235=%[0.00,0.00,0.00]:[2.00,1.50,0.00]", "236:239=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "48:79=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[255,204,0]:[81,52,0]", "16:23=[255,255,255]:[255,255,128]", "24:31=[255,255,128]:[255,191,0]", "32:47=[255,191,0]:[81,52,0]", "192:195=[255,255,255]:[255,255,128]", "196:201=[255,255,128]:[255,191,0]", "202:207=[255,191,0]:[81,52,0]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "112:127=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.64,0.41,0.00]:[2.00,2.00,1.01]";
+  Translation "0:255=%[0.07,0.00,0.00]:[1.41,0.50,0.00]", "0:3=[0,0,0]:[36,36,36]", "5:15=[0,0,0]:[17,17,17]", "70:79=[65,65,65]:[0,0,0]", "80:111=[192,192,192]:[0,0,0]", "128:143=[129,129,129]:[25,25,25]", "144:151=[77,77,77]:[17,17,17]", "13:15=%[0.00,0.00,0.00]:[0.40,0.40,0.40]", "236:239=%[0.00,0.00,0.00]:[0.21,0.21,0.21]";
   SeeSound "ATurret2/Sight";
   ActiveSound "ATurret/Sight";
   PainSound "ATurret/Pain";
@@ -95,12 +95,12 @@ Class DCY_Chrysalis : DCY_CacoParent
 		A_NoBlocking();
 	}
 	GARD KLM 6;
-	GARD NNN 1
+	GARD NNNNNN 1
 	{
 		if (damagetype != "Massacre")
-			A_SpawnItemEx("DCY_Explosion_1_Phantom", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(20, 30));
+			A_SpawnItemEx("DCY_Explosion_1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(20, 30));
 	}
-	GARD NOPQR 5;
+	GARD OPQR 5;
 	GARD S -1;
 	Stop;
   Raise:
@@ -124,7 +124,7 @@ Class DCY_ChrysalisBall : DCY_MeatballElecball
   +SEEKERMISSILE
   Scale 0.7;
   Alpha 1;
-  Translation "0:255=%[0.20,0.09,0.00]:[2.00,1.73,1.01]";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.40,0.00]";
   SeeSound "Chrysalis/Laser";
   DeathSound "Chrysalis/LaserXplode";
   }
@@ -133,7 +133,7 @@ Class DCY_ChrysalisBall : DCY_MeatballElecball
   
   void A_SpawnTrail()
   {
-	A_SpawnParticleEx(0xa88532, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT, 34, random(5, 10), 0, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), fadestepf: 0.1, sizestep: -1.15);
+	A_SpawnParticleEx(0xff5500, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT, 34, random(15, 20), 0, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), fadestepf: 0.1, sizestep: -1.15);
 	
 	if (random(0, 2) == 0)
 	{
@@ -141,7 +141,7 @@ Class DCY_ChrysalisBall : DCY_MeatballElecball
 		if (plasma) { plasma.translation = translation; plasma.bNOGRAVITY = true; }
 	}
 	
-	A_SpawnParticleEx(0xa88532, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
+	A_SpawnParticleEx(0xff5500, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 25, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
   }
   
   States
@@ -174,8 +174,8 @@ Class DCY_ChrysalisBall : DCY_MeatballElecball
   Death:
 	RFX1 G 2
 	{
-		for (int i = 20; i > 0; i--)
-			A_SpawnParticle(0xfff5c2, SPF_FULLBRIGHT, 40, random(10, 15), 0, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-15, 15), frandom(-15, 15), frandom(-15, 15), fadestepf: 0.1, sizestep: -1.15);
+		for (int i = 7; i > 0; i--)
+			A_SpawnParticleEx(0xff5500, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, random(10, 15), 0, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), fadestepf: 0.2, sizestep: 1.15);
 	}
 	RFX1 GHIJKLMNO 2;
 	Stop;

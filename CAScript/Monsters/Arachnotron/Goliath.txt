@@ -20,7 +20,7 @@ Class DCY_Goliath : DCY_ArachnoParent
   Health 1300;
   Speed 6;
   FastSpeed 10;
-  Obituary "%o felt the might of an Abyssal Polypheme, code named ''Goliath''.";
+  Obituary "%o felt the might of a Goliath.";
   }
   
   States
@@ -41,6 +41,16 @@ Class DCY_Goliath : DCY_ArachnoParent
   Alert:
     "####" "#" 0 DCY_AlertSound();
     Goto See;
+  See:
+    G___ BBCCDDEEFF 4 A_Chase();
+    G___ G 4
+    {
+        A_Chase();
+		A_StartSound("roboarachno/step", CHAN_BODY);
+	}
+    G___ GHHIIHHGG 4 A_Chase();
+	G___ B 0 A_StartSound("roboarachno/step", CHAN_BODY);
+	Loop;
   MissileStahp:
 	Goto Missile+1;
   Missile:

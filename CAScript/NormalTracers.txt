@@ -1,4 +1,4 @@
-Class DCY_TracerPlayer : FastProjectile
+Class DCY_TracerPlayer : DCY_FastProjectile
 {
   sound whiz;
   property WhizSound : whiz;
@@ -56,13 +56,7 @@ Class DCY_TracerPlayer : FastProjectile
 			A_SpawnItemEx(spark, 0, 0, 1, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 60);
 			A_SpawnItemEx(spark, 0, 0, 1, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 28);
 		}
-		else
-		{
-			A_SpawnItemEx(spark, 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 60);
-			A_SpawnItemEx(spark, 0, 0, 0, frandom(4.0, 14.5), 0, Pitch+frandom(2.0, 8.0)+frandom(3.0, -3.0), frandom(-20.0, 20.0)+180, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 28);
-		}
-		
-		if (pos.z >= ceilingz - height)
+		else if (pos.z >= ceilingz - height)
 		{
 			A_SpawnItemEx(spark, 0, 0, -1, frandom(4.0, 14.5), 0, frandom(-3.0, -6.0), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 60);
 			A_SpawnItemEx(spark, 0, 0, -1, frandom(4.0, 14.5), 0, frandom(-3.0, -6.0), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 28);
@@ -190,9 +184,9 @@ Class DCY_MechaZombiePlasma : DCY_EnemyTracer
 {
   Default
   {
-  Speed 75;
-  FastSpeed 78.5;
-  DamageFunction 4;
+  Speed 58;
+  FastSpeed 68.5;
+  Damage 4;
   Radius 5;
   Height 5;
   Scale .15;
@@ -292,7 +286,7 @@ Class DCY_AbyssalAndroidPlasma : DCY_MechaZombiePlasma
   Default
   {
   SeeSound "Android/Laser";
-  DamageFunction 3;
+  Damage 3;
   DCY_TracerPlayer.SparkFX "DCY_RedAndroidPuffSpark";
   }
   

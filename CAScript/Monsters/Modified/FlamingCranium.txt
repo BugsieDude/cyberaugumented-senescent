@@ -1,5 +1,17 @@
 Class DCY_SkullParent : DCYMonster
 {
+  action void A_SkullFlame(string fcolor = "ffffff", float ftimer = 20, float fsize = 45, float faccel = 0,
+							bool smonk = false, float offsets = 5, bool ember = true, float zvel2 = 1.5)
+  {
+	A_SpawnParticleEx(fcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, ftimer, fsize, angle, frandom(-offsets, offsets) - 10, frandom(-offsets, offsets), frandom(-offsets, offsets) + 20, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1) + zvel2, accelz: faccel, startalphaf: 1.0, fadestepf: 0.025, sizestep: -(fsize / 10) / (ftimer / 10), startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+	
+	if ((ember) && ((level.time % random(1, 9)) == 0)) A_SpawnParticleEx(fcolor, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, random(3, 6), angle, frandom(-1, 1) - 10, frandom(-1, 1), frandom(-1, 1) + 20, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, 0.2), fadestepf: 0, sizestep: -0.115);
+	
+	if (smonk)
+		if ((level.time % random(3, 9)) == 0)
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, ftimer * 1.5, fsize, angle, frandom(-1, 1) - 10, frandom(-1, 1), frandom(-1, 1) + 30, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1) + (zvel2 / 1.5), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+  }
+  
   Default
   {
   Radius 16;
@@ -18,7 +30,6 @@ Class DCY_SkullParent : DCYMonster
   Alpha 1.0;
   Scale 0.82;
   +NOBLOOD;
-  +BRIGHT;
   +DONTHARMCLASS;
   Species "LeFlameSoul";
   Species "Souls";
@@ -52,19 +63,19 @@ Class DCY_SkullParent : DCYMonster
 	L0ST A 2;
 	Goto See;
   Pain:
-	L0ST C 3 Bright;
-    L0ST C 3 Bright A_Pain();
+	L0ST C 3;
+    L0ST C 3 A_Pain();
     Goto See;
   Death:
-    L0ST F 3 Bright;
-    L0ST G 3 Bright A_ScreamAndUnblock();
-    L0ST H 3 Bright
+    L0ST F 3;
+    L0ST G 3 A_ScreamAndUnblock();
+    L0ST H 3
 	{
 		A_RemoveChildren(true, flags: RMVF_EVERYTHING);
 		A_Stop();
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 20, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
 	}
-    L0ST I 3 Bright;
+    L0ST I 3;
     Stop;
   }
 }
@@ -83,11 +94,7 @@ Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
   {
 	Super.Tick();
 	
-	if (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance))
-	{
-		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-3.0, -10.0), frandom(-5.0, 5.0), frandom(12.0, 19.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1, flags: SXF_NOCHECKPOSITION, failchance: 180);
-		A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-3.0, -10.0), frandom(-5.0, 5.0), frandom(12.0, 19.0), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
-	}
+	if (Health > 0 && !IsFrozen() && DCY_EffectDistance(sfxdistance)) A_SkullFlame("eb7134");
   }
   
   States
@@ -109,7 +116,7 @@ Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
 	S0_L AAAAAA 2 A_FaceTarget();
 	S0_L B 1
 	{
-		A_StartSound("GoreNest/Scream", CHAN_BODY, volume: 0.75, pitch: frandom(1.2, 1.4), starttime: frandom(0.3, 0.5));
+		A_StartSound("GoreNest/Scream", CHAN_BODY, volume: 0.7, pitch: frandom(1.2, 1.4), starttime: frandom(0.3, 0.5));
 		A_Weave(1, 1, 1, 1);
 		A_SkullAttack();
 	}
@@ -121,12 +128,12 @@ Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
 	S0_L A 2;
 	Goto See;
   Pain:
-	S0_L C 3 Bright;
-    S0_L C 3 Bright A_Pain();
+	S0_L C 3 A_StopSound(CHAN_BODY);
+    S0_L C 3 A_Pain();
     Goto See;
   Death:
-    S0_L F 3 Bright;
-    S0_L G 3 Bright { A_StopSound(CHAN_BODY); A_ScreamAndUnblock(); }
+    S0_L F 3;
+    S0_L G 3 { A_StopSound(CHAN_BODY); A_ScreamAndUnblock(); }
     S0_L H 3 Bright
 	{
 		A_RemoveChildren(true, flags: RMVF_EVERYTHING);

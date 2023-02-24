@@ -1,4 +1,4 @@
-Class DCY_EternalVoid : DCY_Weapon
+/*Class DCY_EternalVoid : DCY_Weapon
 {
   Default
   {
@@ -70,7 +70,7 @@ Class DCY_EternalVoid : DCY_Weapon
 	DCY_IncreaseLevel(15);
 	return Super.CreateCopy(other);
   }
-}
+}*/
 
 Class DCY_BHFX1 : Actor //Aura
 {

@@ -2,18 +2,18 @@ Class DCY_AlacritousGuy : DCY_Plutonia
 {
   Default
   {
-  Health 90;
+  Health 120;
   Tag "Alacritous Hellgunner";
   Obituary "%o couldn't handle it up with the Alacritous Hellgunner.";
-  Translation "16:47=%[0.00,0.00,0.00]:[1.01,0.50,0.00]";
+  Translation "112:127=[74,74,74]:[0,0,0]", "80:111=[255,255,255]:[0,0,0]", "0:15=%[0.00,0.00,0.00]:[0.40,0.40,0.40]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "48:79=%[0.00,0.00,0.00]:[0.61,0.46,0.40]", "80:98=%[0.00,0.00,0.00]:[1.26,0.56,0.23]";
   Speed 5;
   FastSpeed 8;
   Mass 380;
   PainChance 90;
-  SeeSound "AlacritousGuy/Sight";
-  ActiveSound "AlacritousGuy/Active";
-  PainSound "AlacritousGuy/Pain";
-  DeathSound "AlacritousGuy/Death";
+  SeeSound "Rattail/Sight";
+  ActiveSound "Rattail/Active";
+  PainSound "Rattail/Pain";
+  DeathSound "Rattail/Death";
   DropItem "Chaingun";
   DropItem "DCY_Photocoagulator", 45;
   DropItem "DCY_BlueArmorThing", 100;
@@ -22,37 +22,38 @@ Class DCY_AlacritousGuy : DCY_Plutonia
   States
   {
   Spawn:
-    UCHW A 10 DCY_Look();
+    UCHG A 10 DCY_Look();
 	Loop;
   Look:
-	UCHW AABBCCDD 3 DCY_LookingForPlayer();
+	UCHG AABBCCDD 3 DCY_LookingForPlayer();
 	Loop;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    UCHW AAABBBCCCDDD 3 A_Chase();
+    UCHG AAABBBCCCDDD 3 A_Chase();
 	Loop;
   Missile:
-    UCHF A 0;
-	UCHF A 40 A_FaceTarget();
+    UCHG E 0 A_StartSound("Minigun/WindUp", CHAN_WEAPON, pitch: 0.85);
+	UCHG EEEEEEEEEEEEEEEEE 2 A_FaceTarget();
 	Goto MissileLoop1;
   MissileLoop1:
-    UCHF B 2
+    UCHG F 1
 	{
 		A_StartSound("SHMPBOOM", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_AlacritousGuyBullet", 33, 5, random(-1, 1), CMF_OFFSETPITCH|CMF_TRACKOWNER, random(1, 1));
-		A_FaceTarget();
+		A_StartSound("Deagle/Fire", CHAN_6);
+		A_SpawnProjectile("DCY_AlacritousGuyBullet", 33, 5, random(-1, 1), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch + random(1, 1));
+		A_FaceTarget(1, 1);
 	}
-	UCHF A 2 A_FaceTarget();
-	UCHF B 0 A_MonsterRefire(40, "Cooldown");
-	Goto MissileLoop1;
+	UCHG E 1 A_FaceTarget(1, 1);
+	UCHG B 0 A_CheckSight("Cooldown");
+	Loop;
   Cooldown:
-	UCHW A 15;
+	UCHG A 45 A_StartSound("Minigun/WindDown", CHAN_WEAPON, pitch: 0.75);
 	Goto See;
   Pain:
-    UCHH A 3;
-	UCHH A 3 A_Pain();
+    UCHG G 3;
+	UCHG G 3 A_Pain();
 	Goto See;
   Death:
 	TNT1 A 0 A_Jump(130, "OtherDeath");

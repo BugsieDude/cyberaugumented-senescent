@@ -9,8 +9,8 @@ Class DCY_Espouser : DCY_VileParent
   +MISSILEMORE
   +FLOAT
   +NOGRAVITY
-  DamageType "Ghost";
-  DamageFactor "Ghost", 0.00;
+  DamageType "Occult";
+  DamageFactor "Occult", 0.00;
   Tag "\c[w2]Espouser\c-";
   SeeSound "Espouser/Sight";
   ActiveSound "Espouser/Active";
@@ -199,11 +199,11 @@ Class DCY_Espouser : DCY_VileParent
   }
 }
 
-Class DCY_EspouserFire : CacodemonBall
+Class DCY_EspouserFire : DCY_MeatballElecball
 {
   Default
   {
-  DamageType "Ghost";
+  DamageType "Occult";
   Scale 0.5;
   Translation "0:255=%[0.06,0.06,0.06]:[1.31,1.31,1.31]";
   Damage 2;
@@ -223,14 +223,14 @@ Class DCY_EspouserFire : CacodemonBall
   }
 }
 
-Class DCY_EspouserSoul : CacodemonBall
+Class DCY_EspouserSoul : DCY_MeatballElecball
 {
   Default
   {
   +SEEKERMISSILE
   Radius 7;
   Height 7;
-  DamageType "Ghost";
+  DamageType "Occult";
   SeeSound "Espouser/Missile";
   Speed 23;
   FastSpeed 28;
@@ -331,7 +331,7 @@ Class DCY_EspouserServer : DCY_Impe
   +NEVERFAST
   +GHOST
   +NOINFIGHTING
-  DamageFactor "Ghost", 0.00;
+  DamageFactor "Occult", 0.00;
   Species "Ghostly";
   Scale 1.1;
   Translation "0:255=%[0.04,0.02,0.09]:[1.51,1.51,1.51]";
@@ -420,7 +420,7 @@ Class DCY_ServerBall : DCY_ExoBall
   Scale 0.75;
   Speed 20;
   Damage 3;
-  DamageType "Ghost";
+  DamageType "Occult";
   SeeSound "Espouser/Melee";
   DeathSound "";
   +NEVERFAST

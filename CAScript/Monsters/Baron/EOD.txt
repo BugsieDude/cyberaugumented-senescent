@@ -2,8 +2,8 @@ Class DCY_EOD : DCY_HeckBaron
 {
   Default
   {
-  Health 2400;
-  Translation "1:3=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "168:173=[255,255,255]:[225,255,134]", "174:180=[225,255,134]:[124,225,0]", "181:191=[124,225,0]:[0,64,0]", "224:231=[255,255,255]:[225,255,134]", "208:216=[255,255,255]:[225,255,134]", "217:223=[225,255,134]:[124,225,0]", "232:235=%[0.00,0.00,0.00]:[1.01,2.00,0.00]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "56:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "48:55=%[0.00,0.00,0.00]:[1.77,2.00,1.06]", "13:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "160:167=[124,225,0]:[0,64,0]", "16:23=[255,255,255]:[225,255,134]", "24:31=[225,255,134]:[124,225,0]", "32:47=[124,225,0]:[0,64,0]", "192:195=[255,255,255]:[225,255,134]", "196:201=[225,255,134]:[124,225,0]", "202:207=[124,225,0]:[0,64,0]", "112:127=%[0.00,0.00,0.00]:[0.35,0.54,0.32]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=[225,255,134]:[0,64,0]";
+  Health 2000;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.59,1.69,0.00]", "0:3=%[0.00,0.00,0.00]:[0.19,0.19,0.19]", "5:15=%[0.00,0.00,0.00]:[0.17,0.17,0.17]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "80:111=[255,255,255]:[0,0,0]";
   BloodColor "91ff00";
   PainChance 50;
   DamageFactor "EOA", 0.00;
@@ -155,7 +155,7 @@ Class DCY_EOD : DCY_HeckBaron
 	DOR_ A 1
 	{
 		for (int i = 0; i < 360; i += 90)
-			A_SpawnItemEx("DCY_EODTrail2", angle: angle + i + 45, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERPOINTERS|SXF_TRANSFERPITCH|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+			A_SpawnItemEx("DCY_EODTrail2", angle: self.angle + i + 45, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERPOINTERS|SXF_TRANSFERPITCH|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
 		
 		bSolid = false;
 		bShootable = false;
@@ -181,17 +181,14 @@ Class DCY_EOD : DCY_HeckBaron
 		missile = 0;
 	}
 	DOR_ LKJI 6 A_FaceTarget();
-	DOR_ I 2
+	DOR_ I 15
 	{
-		for (int i = 2; i > 0; i--)
-			A_SpawnProjectile("DCY_EODMiniBall", 60, -35, frandom(-10, 10), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-10, 10));
+		for (int i = missile; i > 0; i--)
+			A_SpawnProjectile("DCY_EODMiniBall", 60, -35, ((3 * missile) * frandom(-1, 1)), CMF_OFFSETPITCH, pitch + ((3 * missile) * frandom(-1, 1)));
 		
 		A_FaceTarget();
-		
 		missile++;
-		
-		if (missile > 15)
-			SetStateLabel("See");
+		if (missile > 5) SetStateLabel("See");
 	}
 	Goto MiniBalls+5;
   BallBarrage:
@@ -201,7 +198,7 @@ Class DCY_EOD : DCY_HeckBaron
 		missile = 0;
 	}
 	DOR_ HGFE 6 A_FaceTarget();
-	DOR_ E 3
+	DOR_ E 6
 	{
 		A_SpawnProjectile("DCY_EODBall", 60, 35, frandom(-10, 10));
 		A_FaceTarget();
@@ -222,7 +219,7 @@ Class DCY_EOD : DCY_HeckBaron
 	{
 		A_FaceTarget();
 		
-		if (flame == true)
+		if (flame)
 			A_EODFlame();
 		else
 			A_SpawnProjectile("DCY_EODComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, 35);
@@ -234,7 +231,7 @@ Class DCY_EOD : DCY_HeckBaron
 	{
 		A_FaceTarget();
 		
-		if (flame == true)
+		if (flame)
 			A_EODFlame();
 		else
 			A_SpawnProjectile("DCY_EODComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, 35);
@@ -300,11 +297,20 @@ Class DCY_EOD : DCY_HeckBaron
   }
 }
 
+Class DCY_EodTest : DCY_EOD
+{
+  States
+  {
+  Missile:
+	Goto Miniballs;
+  }
+}
+
 Class DCY_EODComet : DCY_GeneralComet
 {
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.80,1.77,0.00]";
   -NOGRAVITY
   BounceType "Doom";
   BounceFactor 0.865;
@@ -315,7 +321,7 @@ Class DCY_EODComet : DCY_GeneralComet
   }
 }
 
-Class DCY_EODLargeFlameExplosion : Actor
+Class DCY_EODLargeFlameExplosion : DCY_Projectile
 {
   Default
   {
@@ -324,7 +330,7 @@ Class DCY_EODLargeFlameExplosion : Actor
   Speed 0;
   FastSpeed 0;
   DamageType "EOA";
-  Translation "0:255=%[0.00,0.00,0.00]:[1.36,2.00,0.72]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.80,1.77,0.00]";
   +RIPPER
   +THRUACTORS
   Radius 20;
@@ -342,21 +348,21 @@ Class DCY_EODLargeFlameExplosion : Actor
 		for (int i = 3; i > 0; i--)
 		{
 			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
-			A_SpawnItemEx("DCY_ImpFlame1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
+			A_SpawnItemEx("DCY_Explosion_1_Small", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 100);
 		}
 	}
 	TNT1 AAAAAAAAAA 1
 	{
 		A_Explode(3, 55, XF_NOTMISSILE, 0, 10);
 		A_SpawnItemEx("DCY_ImpBigFlame", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		A_SpawnItemEx("DCY_Explosion_1_Small", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
 	}
 	TNT1 A 30;
 	Stop;
   }
 }
 
-Class DCY_EODLargeFlame : CacodemonBall
+Class DCY_EODLargeFlame : DCY_MeatballElecball
 {
   Default
   {
@@ -395,15 +401,16 @@ Class DCY_EODLargeFlame : CacodemonBall
   }
 }
 
-Class DCY_EODBall : DCY_ChimeraSoul
+Class DCY_EODBall : DCY_EspouserSoul
 {
   Default
   {
   SeeSound "";
+  Scale 0.5;
   DeathSound "DCYEOD/Tracer";
   Speed 12;
   FastSpeed 18;
-  Damage 5;
+  Damage 6;
   Translation "0:255=%[0.00,0.00,0.00]:[0.46,1.00,0.12]";
   DamageType "EOA";
   }
@@ -444,28 +451,35 @@ Class DCY_EODMiniBall : DCY_EODBall
 {
   Default
   {
-  Scale 1.1;
-  +RIPPER
-  Damage (1);
+  Scale 1.2;
+  Damage 7;
   -RANDOMIZE
-  SeeSound "DCYGhostProjectile";
-  DeathSound "imp/shotx";
-  BounceCount 3;
-  BounceFactor 1.0;
+  SeeSound "EOD/Miniball";
+  DeathSound "Auteur/BallX";
   Speed 15;
   FastSpeed 20;
-  BounceType "Hexen";
+  Translation "0:255=%[0.00,0.34,0.00]:[1.83,2.00,1.01]";
   }
   
   States
   {
   Spawn:
-	SOUX L 1 A_SpawnParticleEx(0x4ca122, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 25, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.045, sizestep: -0.725);
+	9_AL AAABBBCCC 1
+	{
+		if (DCY_EffectDistance(sfxdistance))
+			for (int i = 2; i > 0; i--) A_SpawnParticleEx(0x247d09, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 70, frandom(1.00, 4.00), angle, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), (Vel.x / 3.75), (Vel.y / 3.75), (Vel.z / 3.75), startalphaf: 1.0, fadestepf: 0, sizestep: -0.25);
+			
+		A_SpawnParticleEx(0x247d09, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 25, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.0325, sizestep: 0.55);
+	}
 	Loop;
+  Death:
+	9_AL C 3 A_SpawnItemEx("DCY_AndroidExplosion", random(-1, 1), random(-1, 1), random(-1, 1), 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	9_AL DEFGHIJK 3 A_FadeOut(0.2, 0);
+	Stop;
   }
 }
 
-Class DCY_EODTrail2 : Actor
+Class DCY_EODTrail2 : DCY_Effect
 {
   Default
   {

@@ -12,7 +12,6 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +NEVERFAST;
-  +BRIGHT
   SeeSound "Theristis/Sight";
   ActiveSound "Theristis/Active";
   DeathSound "Theristis/Death";
@@ -118,7 +117,7 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
   }
 }
 
-Class DCY_TheristisSoul : DCY_ChimeraSoul
+Class DCY_TheristisSoul : DCY_EspouserSoul
 {
   Default
   {

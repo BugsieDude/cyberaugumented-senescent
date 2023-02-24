@@ -11,6 +11,7 @@ Class DCY_Convector : DCY_ArachnoParent
   +DONTFALL
   +NOGRAVITY
   +FLOAT
+  PainChance 50;
   Tag "\c[x1]Convector\c-";
   SeeSound "Convector/Sight";
   ActiveSound "Convector/Hover";

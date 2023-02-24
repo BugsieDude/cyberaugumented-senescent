@@ -3,8 +3,8 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   Default
   {
   Health 300;
-  Speed 13;
-  FastSpeed 15;
+  Speed 9;
+  FastSpeed 13;
   RenderStyle "Add";
   Alpha 3.0;
   Mass 100;

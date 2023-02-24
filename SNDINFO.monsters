@@ -1484,7 +1484,6 @@ pri1 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle.ogg"
 pri2 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle2.ogg"
 pri3 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle3.ogg"
 PhantomRev/Pain "Sounds/DCY Monsters/Chimera/dcy_chimera_pain.ogg"
-PhantomRev/Death "Sounds/DCY Monsters/Chimera/dcy_chimera_death.ogg"
 SCREAMSOFTHEDAMNED "Sounds/DCY Monsters/Chimera/dcy_chimera_SCREAMSOFTHEDAMNED.wav"
 
 $random Unwilling/Attack { UNWLATK1 UNWLATK2 UNWLATK3 }
@@ -2356,10 +2355,21 @@ COH/Pain "Sounds/DCY Monsters/Contraption/dcy_coh_pain.ogg"
 TANKL00P "Sounds/DCY Monsters/Contraption/dcy_coh_tank_movement.ogg"
 COH/Die "Sounds/DCY Monsters/Contraption/dcy_coh_explode.wav"
 
-Remainder/Sight "Sounds/DCY Monsters/Remainder/dcy_remainder_blehh.lmp"
-Remainder/Active "Sounds/DCY Monsters/Remainder/dcy_remainder_idle.lmp"
-Remainder/Pain "Sounds/DCY Monsters/Remainder/dcy_remainder_grunt.lmp"
-Remainder/Death "Sounds/DCY Monsters/Remainder/dcy_remainder_death.lmp"
+$random Remainder/Sight { Remainder/Sight1 Remainder/Sight2 Remainder/Sight3 Remainder/Sight4 }
+Remainder/Sight1 "Sounds/DCY Monsters/Remainder/dcy_remainder_sight.ogg"
+Remainder/Sight2 "Sounds/DCY Monsters/Remainder/dcy_remainder_sight2.ogg"
+Remainder/Sight3 "Sounds/DCY Monsters/Remainder/dcy_remainder_sight3.ogg"
+Remainder/Sight4 "Sounds/DCY Monsters/Remainder/dcy_remainder_sight4.ogg"
+$random Remainder/Active { Remainder/Active1 Remainder/Active2 Remainder/Active3 Remainder/Active4 Remainder/Active5 Remainder/Active6 }
+Remainder/Active1 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle1.ogg"
+Remainder/Active2 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle2.ogg"
+Remainder/Active3 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle3.ogg"
+Remainder/Active4 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle4.ogg"
+Remainder/Active5 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle5.ogg"
+Remainder/Active6 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle6.ogg"
+Remainder/Pain "Sounds/DCY Monsters/Remainder/dcy_remainder_pain.ogg"
+Remainder/Death "Sounds/DCY Monsters/Remainder/dcy_remainder_death.ogg"
+Remainder/Phase "Sounds/DCY Monsters/Remainder/dcy_remainder_phase.ogg"
 
 Upheaval/Sight "Sounds/DCY Monsters/Upheavalbringer/dcy_upheavalbringer_sight.ogg"
 $random Upheaval/Active { UPHBACT1 UPHBACT2 }
