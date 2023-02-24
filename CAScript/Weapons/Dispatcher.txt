@@ -186,10 +186,10 @@ Class DCY_EmissionTracer : DCY_MechaZombiePlasma
   SeeSound "RPLSFIR";
   DeathSound "RPLSPIM";
   DamageType "Neonic";
-  Speed 130;
+  Speed 100;
   +NEVERFAST
   +RANDOMIZE
-  Scale .2275;
+  Scale .3275;
   }
   
   States
@@ -198,6 +198,7 @@ Class DCY_EmissionTracer : DCY_MechaZombiePlasma
 	TRAC F 1;
 	Loop;
   Death:
+  XDeath:
 	TNT1 A 1;
 	TNT1 A 1
 	{

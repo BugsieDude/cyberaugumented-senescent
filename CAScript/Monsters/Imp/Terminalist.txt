@@ -154,7 +154,7 @@ Class DCY_Terminalist : DCY_Impe
   }
 }
 
-Class DCY_TLaser : FastProjectile
+Class DCY_TLaser : DCY_FastProjectile
 {
   Default
   {
@@ -168,6 +168,8 @@ Class DCY_TLaser : FastProjectile
   MissileType "DCY_TLTrail";
   MissileHeight 6;
   RenderStyle "Add";
+  DCY_FastProjectile.CSX true;
+  DCY_FastProjectile.CSY true;
   Scale 1.0;
   Alpha 1.0;
   Radius 14;

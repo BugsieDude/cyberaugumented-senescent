@@ -636,7 +636,7 @@ Class DCY_EspionEmissionTracer : DCY_MechaZombiePlasma
   Speed 130;
   +NEVERFAST
   +RANDOMIZE
-  Scale .2275;
+  Scale .3275;
   DCY_TracerPlayer.SparkFX "DCY_RedAndroidPuffSpark";
   }
   
@@ -646,6 +646,7 @@ Class DCY_EspionEmissionTracer : DCY_MechaZombiePlasma
 	TRAC E 1;
 	Loop;
   Death:
+  XDeath:
 	TNT1 A 1;
 	TNT1 A 1
 	{

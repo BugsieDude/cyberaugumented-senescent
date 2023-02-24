@@ -19,7 +19,6 @@ ACTOR DCY_Impo : DCY_Spawner Replaces DoomImp
   DropItem "DCY_Anathema", 15, 70
   DropItem "DCY_Manes", 11, 19
   DropItem "DCY_HellRazer", 10, 27
-  DropItem "DCY_PhasicRazer", 20, 23
   DropItem "DCY_Curator", 20, 2
   DropItem "DCY_Eavesdropper", 17, 1
   DropItem "DCY_ExoImp", 25, 1

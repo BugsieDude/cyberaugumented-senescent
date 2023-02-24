@@ -52,7 +52,6 @@
 #include "CAScript/Monsters/Baron/Yanorit.txt"
 #include "CAScript/Monsters/Cyberdemon/Terminator.txt"
 #include "CAScript/Monsters/Shotgunner/Bigwig.txt"
-#include "CAScript/Monsters/Imp/PhasicRazer.txt"
 #include "CAScript/Monsters/Zombie/Bionic.txt"
 #include "CAScript/Monsters/Arachnotron/Sentinel.txt"
 #include "CAScript/Monsters/Imp/Perserver.txt"

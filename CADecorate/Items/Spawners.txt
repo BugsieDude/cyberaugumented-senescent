@@ -45,7 +45,7 @@ ACTOR DCY_TwoHundredAoomrmorAndHoolth : RandomSpawner Replaces Megasphere
 {
   DropItem "DCY_UltrapissMegasphere", 256, 150
   DropItem "DCY_UncoSphere", 256, 50
-  DropItem "DCY_VesticalAbettance", 256, 23
+  DropItem "DCY_VesticalAbettance", 256, 100
 }
 
 ACTOR DCY_LiquidProtection : RandomSpawner Replaces RadSuit

@@ -220,7 +220,7 @@ Class DCY_VesticalAbettance : CustomInventory
 	"Life has improved.",
 	"There we go.",
 	"Now you're all new.",
-	"Don't forget to drink water! Or Health Containers. That counts as water.",
+	"This ain't your ordinary medkit.",
 	"May your woes be few and your days be many.",
 	"All set."
   };
