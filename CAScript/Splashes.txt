@@ -471,7 +471,7 @@ Class DCY_LavaSplashBase1 : Actor
 			A_SpawnProjectile("DCY_LavaParticleXFaster", 2, random(-5,5), frandom(0, 360), 2, frandom(-50, -140));
 		}
 		
-		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 40, 0, frandom(-1, 1), frandom(-1, 1), 25, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.5, fadestepf: 0.01, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 40, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.5, fadestepf: 0.01, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 	}
     Stop;
   }
@@ -503,7 +503,7 @@ Class DCY_LavaSplashBaseSmall : Actor
 			A_SpawnProjectile("DCY_LavaParticleXFaster", 12, 0, frandom(0, 360), 2, frandom(-50, -140));
 		}
 		
-		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 40, 0, frandom(-1, 1), frandom(-1, 1), 25, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.05, fadestepf: 0.0007, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 40, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), startalphaf: 0.05, fadestepf: 0.0007, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 	}
 	LVAS ABCDEF 5;
     Stop;
