@@ -191,6 +191,8 @@ OMOCAT - Sounds
 MothraMaster - Automaton Supervisor Grenade sprites
 RiboNucleic Asshat - Liquids
 3saster - Liquid Replacer
+NMK, UPL - Secret Sound
+Looking Glass Studios (System Shock 1 & 2) - Sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

@@ -1,5 +1,7 @@
 Class De_Blood : Actor Replaces Blood
 {
+  Mixin DCY_Effects;
+  
   string bloodtype;
   property Type : bloodtype;
   
@@ -18,6 +20,8 @@ Class De_Blood : Actor Replaces Blood
   
   void A_SpawnBlood(string blood, bool brightness)
   {
+    if (!DCY_EffectDistance(1000)) return;
+	
 	let trail = Spawn(blood, pos);
 	
 	if (trail)

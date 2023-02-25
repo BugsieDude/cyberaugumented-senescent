@@ -76,7 +76,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
 		"You found a secret!"
 	};
 	
-	S_StartSound("misc/secret", 10, attenuation: ATTN_IDLE);
+	S_StartSound("misc/secret", 10, CHANF_UI, attenuation: ATTN_IDLE);
 	DCY_notHudMessageHandler.PlainMsg("BIGFONT", "\c".."[".."j1".."]"..toptext1[random(0, toptext1.Size() - 1)].." "..toptext2[random(0, toptext2.Size() - 1)],
 	(240, 180), (480, 360), color: Font.CR_GREEN, time: (0, 3, 0.41), id: 5000);
 	DCY_notHudMessageHandler.PlainMsg("SMALLFONT", messages[random(0, messages.Size() - 1)], (240, 196), (480, 360), color: Font.CR_UNTRANSLATED, time: (0, 3, 0.41), id: 5001);
