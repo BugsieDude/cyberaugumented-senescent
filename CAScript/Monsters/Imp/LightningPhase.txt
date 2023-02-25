@@ -17,7 +17,7 @@ Class DCY_LightningPhase : DCY_Impe
   DeathSound "LightningPhase/Death";
   Obituary "%o was all safe until a Lightning Phase sneaked upon %h.";
   HitObituary "%o was ripped and zapped by the Lightning Phase.";
-  Tag "\c[l7]Lightning Phase\c-";
+  Tag "\c[j5]Lightning Phase\c-";
   MeleeSound "Doom4Imp/Slash";
   Scale 1.07;
   MeleeDamage 6;
@@ -82,18 +82,16 @@ Class DCY_LightningPhase : DCY_Impe
 	LMEI F 6;
 	Goto See;
   Missile:
-    LMEI E 0;
 	LMEI E 0
 	{
 		phased = 0;
 		A_UnHideThing();
 		A_SetTranslucent(1.0, 0);
-	}
-	LMEI E 0
-	{
-		If(target && Distance3D(target) < 200)
-			Return ResolveState("Lunge");
 		
+		If(target && Distance3D(target) < 200)
+			SetStateLabel("Lunge");
+		
+		if (!random(0, 10)) SetStateLabel("Discharge");
 		A_FaceTarget();
 		Return A_Jump(100, "Phase");
 	}
@@ -129,6 +127,24 @@ Class DCY_LightningPhase : DCY_Impe
 		A_SpawnProjectile("DCY_LightningPhaseBall", 32, 0, random(-1, 1));
 	}
 	LMEI F 7 A_FaceTarget();
+	Goto See;
+  Discharge:
+	LMEI A 10 A_FaceTarget();
+	LMEI A 0 A_StartSound("CYBRLASC", CHAN_WEAPON);
+	LMEI EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFFFF 2
+	{
+		A_FaceTarget(1.9, 1.9);
+		if (DCY_EffectDistance(sfxdistance))
+			A_SpawnItemEx("DCY_LightningPhaseElec", 0, 20, 32, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+	}
+	LMEI G 7
+	{
+		A_FaceTarget(1.9, 1.9);
+		A_Recoil(10);
+		A_StartSound("LIGTFIR1", CHAN_WEAPON);
+		A_SpawnProjectile("DCY_LightningPhaseDischarge", 32, 0, random(-1, 1), CMF_AIMDIRECTION, pitch);
+	}
+	LMEI H 25;
 	Goto See;
   Pain:
     LMEI H 4
@@ -190,12 +206,11 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
   Spawn:
 	LMBB AAAABBBB 1 Bright
 	{
-		A_Weave(3, 3, 1, 1);
+		A_Weave(1, 1, 1, 1);
 		A_SetRoll(frandom(0.00, 360.00));
 		if (bSEEKERMISSILE) A_SeekerMissile(1, 5, SMF_PRECISE);
-		if (random(0, 30) == 0) bSEEKERMISSILE = 0;
+		if (random(0, 20) == 0) bSEEKERMISSILE = 0;
 		A_SpawnItemEx("DCY_LightningPhaseBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 230);
 		if (DCY_EffectDistance(sfxdistance))
 		{
 			for (int i = 2; i > 0; i--) A_SpawnParticleEx(0x008028, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 70, frandom(1.00, 4.00), angle, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), (Vel.x / 4.75), (Vel.y / 4.75), (Vel.z / 4.75), startalphaf: 1.0, fadestepf: 0, sizestep: -0.15);
@@ -206,6 +221,70 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
   Death:
 	LMBB C 3 Bright A_SpawnParticleEx(0x008028, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.124, sizestep: 3.25);
 	LMBB DEFG 3 Bright;
+	Stop;
+  }
+}
+
+Class DCY_LightningPhaseDischarge : DCY_FastProjectile
+{
+  Default
+  {
+  Damage 15;
+  Scale 0.5;
+  Speed 40;
+  +NEVERFAST
+  -SEEKERMISSILE
+  SeeSound "LIGT001";
+  DeathSound "LIGT002";
+  MissileType "DCY_RipperLaserTrail";
+  DCY_FastProjectile.CSX true;
+  DCY_FastProjectile.CSY true;
+  DCY_FastProjectile.CT true;
+  DCY_FastProjectile.CV true;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.45,2.00,0.45]";
+  Obituary "%o was all safe until a Lightning Phase sneaked upon %h.";
+  RenderStyle "Add";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecTrailBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_LightningPhaseTrail2", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_CastratorSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 200);
+		vel.x += frandom(-0.1, 0.1);
+		vel.y += frandom(-0.1, 0.1);
+		vel.z += frandom(-0.1, 0.1);
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		vel.x = 0;
+		vel.y = 0;
+		vel.z = 0;
+		
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0x008028, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	TSAR EFGHIJKLMNO 1
+	{
+		A_Explode(4, 100, damagetype: "lightning");
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
+	TNT1 AAAA 3
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
 	Stop;
   }
 }
@@ -234,6 +313,58 @@ Class DCY_LightningPhaseBallTrail : DCY_Effect
 		A_SetScale(Scale.X-0.1, Scale.Y-0.1);
 		A_FadeOut(0.1);
 	}
+	Stop;
+  }
+}
+
+Class DCY_LightningPhaseTrail2 : DCY_LightningPhaseBallTrail
+{
+  Default
+  {
+  Alpha 0.5;
+  Scale 0.7;
+  RenderStyle "Add";
+  Radius 1;
+  Height 1;
+  +NOCLIP
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +DONTSPLASH
+  +ROLLSPRITE
+  -SOLID
+  }
+  States
+  {
+  Spawn:
+	DLIT DEFGH 1 Bright 
+	{
+		if (Scale.x < 0) Destroy();
+		A_SetScale(Scale.X-0.006, Scale.Y-0.006);
+		A_FadeOut(0.005);
+		roll = frandom(0, 360);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 240);
+	}
+	Wait;
+  }
+}
+
+Class DCY_LightningPhaseElec : DCY_LightningPhaseBallTrail
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[0.45,2.00,0.45]";
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	roll = frandom(0, 360);
+  }
+  
+  States
+  {
+  Spawn:
+	P_FX CDEFGH 2;
 	Stop;
   }
 }
