@@ -59,11 +59,11 @@ Class DCY_NavyTerminator : DCY_Cybie
 		voiceline = random(0, 7);
 		A_FaceTarget();
 	}
-	NVRM HI 4
+	NVRM HI 5
 	{
 		A_FaceTarget();
 		A_StartSound("Android/Laser", CHAN_WEAPON, 0, 1.0, 0.75);
-		A_SpawnProjectile("DCY_MechaZombiePlasma", 52, -20, frandom(-2.5, 2.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.25, 1.25));
+		A_SpawnProjectile("DCY_UltracerestLaser", 52, -20, frandom(-2.5, 2.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-1.25, 1.25));
 		Return A_MonsterRefire(10, "See");
 	}
 	Goto Missile+3;

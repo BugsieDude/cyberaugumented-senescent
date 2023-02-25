@@ -162,6 +162,7 @@ Class DCY_BlueZombieTracer : DCY_ZombieTracer
   Default
   {
 	DCY_TracerPlayer.SparkFX "DCY_BlueBulletPuffSpark";
+	DamageType "Electric";
   }
   
   States
@@ -174,8 +175,12 @@ Class DCY_BlueZombieTracer : DCY_ZombieTracer
 	{
 		A_StartSound("DCYBullet/Hit", CHAN_BODY, volume: 0.5);
 		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_ElecDeathBase", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
 		A_Sparks();
 	}
+	Stop;
+  XDeath:
+	TNT1 A 2 A_SpawnItemEx("DCY_ElecDeathBase", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
 	Stop;
   }
 } 
@@ -325,7 +330,7 @@ Class DCY_PhasicRazerLaser : DCY_MechaZombiePlasma
   }
 }
 
-Class DCY_KaiserMechaZombiePlasma : DCY_MechaZombiePlasma { Default { SeeSound "KaiserDrone/Laser"; } }
+Class DCY_KaiserMechaZombiePlasma : DCY_MechaZombiePlasma { Default { SeeSound "KaiserDrone/Laser"; Damage 2; } }
 
 Class DCY_AbyssalAndroidPlasma2 : DCY_AbyssalAndroidPlasma { Default { Species "BIONIC"; +THRUSPECIES; +MTHRUSPECIES; DamageFunction 4; } }
 
@@ -589,7 +594,7 @@ Class DCY_VandalLaser : DCY_ZombieTracer
   }
 }
 
-Class DCY_DronePlasma : DCY_AbyssalAndroidPlasma { Default { SeeSound "LASER001"; Damage 4; Speed 60; } }
+Class DCY_DronePlasma : DCY_AbyssalAndroidPlasma { Default { SeeSound "LASER001"; Damage 3; Speed 40; } }
 
 Class DCY_EspionPlasma : DCY_MechaZombiePlasma
 {

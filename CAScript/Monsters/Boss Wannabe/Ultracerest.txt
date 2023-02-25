@@ -60,7 +60,7 @@ Class DCY_Ultracerest : DCY_Impe //stronk
   override void PostBeginPlay()
   {
 	Super.PostBeginPlay();
-	ThingAnnounce("???: Sup, fuckface!", "Warp/Choir", "l5");
+	ThingAnnounce("???: Sup, fuckface!", "WHATDONE", "l5");
   }
   
   States

@@ -2,13 +2,14 @@ Class DCY_LightningPhase : DCY_Impe
 {
   Default
   {
-  Health 115;
+  Health 145;
   Speed 9;
   +MISSILEEVENMORE;
   +QUICKTORETALIATE;
   +DONTHARMCLASS;
   +DONTHARMSPECIES;
   +NODROPOFF;
+  DamageFactor "Electric", 0;
   BloodColor "Red";
   Translation "80:111=[208,208,208]:[14,14,14]", "1:3=[0,0,0]:[59,59,59]", "5:15=%[0.00,0.00,0.00]:[0.46,0.46,0.46]", "192:207=[64,255,64]:[0,43,0]", "240:247=[0,43,0]:[0,0,0]", "16:79=%[0.00,0.00,0.00]:[1.79,0.22,0.22]", "160:191=%[0.00,0.00,0.00]:[1.79,0.22,0.22]", "208:255=%[0.00,0.00,0.00]:[1.79,0.22,0.22]";
   SeeSound "LightningPhase/Sight";
@@ -93,7 +94,7 @@ Class DCY_LightningPhase : DCY_Impe
 		
 		if (!random(0, 10)) SetStateLabel("Discharge");
 		A_FaceTarget();
-		Return A_Jump(100, "Phase");
+		Return A_Jump(60, "Phase");
 	}
 	Goto NormalMissile;
   Phase:
@@ -133,13 +134,13 @@ Class DCY_LightningPhase : DCY_Impe
 	LMEI A 0 A_StartSound("CYBRLASC", CHAN_WEAPON);
 	LMEI EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFFFF 2
 	{
-		A_FaceTarget(1.9, 1.9);
+		A_FaceTarget(2.9, 2.9);
 		if (DCY_EffectDistance(sfxdistance))
 			A_SpawnItemEx("DCY_LightningPhaseElec", 0, 20, 32, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
 	}
 	LMEI G 7
 	{
-		A_FaceTarget(1.9, 1.9);
+		A_FaceTarget(2.9, 2.9);
 		A_Recoil(10);
 		A_StartSound("LIGTFIR1", CHAN_WEAPON);
 		A_SpawnProjectile("DCY_LightningPhaseDischarge", 32, 0, random(-1, 1), CMF_AIMDIRECTION, pitch);
@@ -189,7 +190,7 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
 {
   Default
   {
-  Damage 7;
+  Damage 6;
   Speed 15.5;
   FastSpeed 18.5;
   Scale 1.3;
@@ -342,7 +343,8 @@ Class DCY_LightningPhaseTrail2 : DCY_LightningPhaseBallTrail
 		A_SetScale(Scale.X-0.006, Scale.Y-0.006);
 		A_FadeOut(0.005);
 		roll = frandom(0, 360);
-		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 240);
+		A_Explode(1, 50, damagetype: "Electric");
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
 	}
 	Wait;
   }

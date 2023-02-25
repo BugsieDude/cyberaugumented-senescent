@@ -9,7 +9,7 @@ ACTOR DCY_PlutoniaExperiment : DCY_Spawner Replaces ChaingunGuy
   DropItem "DCY_Transmuter", 15, 90
   DropItem "DCY_Commandant", 5, 60
   DropItem "DCY_Nullifier", 20, 10
-  DropItem "DCY_Nullifier", 40, 85
+  DropItem "DCY_Nullifier", 40, 45
   DropItem "DCY_AlacritousGuy", 25, 80
   DropItem "DCY_AutomatonSupervisor", 15, 60
   DropItem "DCY_Rattail", 15, 60
