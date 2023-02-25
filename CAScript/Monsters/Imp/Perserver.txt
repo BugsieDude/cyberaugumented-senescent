@@ -78,7 +78,7 @@ Class DCY_Perserver : DCY_Impe
   }
 }
 
-Class DCY_PerserverMissile : FastProjectile
+Class DCY_PerserverMissile : DCY_FastProjectile
 {
   Default
   {

@@ -309,6 +309,8 @@ ROBOEXP2 "Sounds/Projectiles/dcy_repealler_explode.ogg"
 ROBOFIRE "Sounds/Projectiles/dcy_gate_fire.ogg"
 ROBOFIRL "Sounds/Projectiles/dcy_gate_fireloop.ogg"
 ROBOSPIT "Sounds/Projectiles/dcy_spit_projectile.ogg"
+ROBORAIL "Sounds/Projectiles/dcy_robotic_railgun.ogg"
+ROBORAI2 "Sounds/Projectiles/dcy_robotic_railgun2.ogg"
 RIPLLASR "Sounds/Projectiles/dcy_ripper.ogg"
 $limit ROBOEXPL 0
 AOI/Explode "Sounds/Projectiles/dcy_lapis_torpedo_explode.ogg"

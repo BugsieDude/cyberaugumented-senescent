@@ -1126,6 +1126,28 @@ Model DCY_SiriusTrack
   FrameIndex PLSS A 0 0
 }
 
+Model DCY_RZLaser
+{
+  Path "CAModels"
+  SKIN 0 "greentracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 10.0 10.0 5.0
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex TRAC D 0 0
+}
+
+Model DCY_RZLaserAura
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "siriustrack.png"
+  Scale 10.0 10.0 5.0
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
 Model DCY_RipperLaserTrail
 { 
   Path "CAModels"

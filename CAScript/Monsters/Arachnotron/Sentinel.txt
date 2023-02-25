@@ -147,7 +147,7 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
   }
 }
 
-Class DCY_FSBeam : FastProjectile
+Class DCY_FSBeam : DCY_FastProjectile
 {
   Default
   {
@@ -189,7 +189,7 @@ Class DCY_FSBeam : FastProjectile
   }
 }
 
-Class DCY_FluorescentSparkle : Actor
+Class DCY_FluorescentSparkle : DCY_Effect
 {
   Default
   {
@@ -214,7 +214,7 @@ Class DCY_FluorescentSparkle : Actor
   }
 }
 
-Class DCY_FluorescentAura : Actor
+Class DCY_FluorescentAura : DCY_Effect
 {
   Default
   {
@@ -245,7 +245,7 @@ Class DCY_FluorescentAura : Actor
   }
 }
 
-Class DCY_FluorescentOrb : CacodemonBall
+Class DCY_FluorescentOrb : DCY_MeatballElecball
 {
   Default
   {
@@ -289,7 +289,7 @@ Class DCY_FluorescentOrb : CacodemonBall
   }
 }
 
-Class DCY_FluorescentOrbT : Actor
+Class DCY_FluorescentOrbT : DCY_Effect
 {
   Default
   {

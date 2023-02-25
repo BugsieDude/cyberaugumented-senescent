@@ -78,8 +78,8 @@ Class DCY_Inscrutable : DCY_CacoParent
 	}
 	Goto Missile1;
   Missile1:
-	1DSC AAC 5 Bright A_FaceTarget();
-    1DSC C 7 Bright
+	1DSC AAC 5 A_FaceTarget();
+    1DSC C 7
 	{
 		A_StartSound("MAGI2SHT", CHAN_WEAPON);
 		
@@ -95,8 +95,8 @@ Class DCY_Inscrutable : DCY_CacoParent
 	}
 	Goto Missile1+3;
   Missile1A:
-	1DSC CC 5 Bright A_FaceTarget();
-    1DSC D 15 Bright
+	1DSC CC 5 A_FaceTarget();
+    1DSC D 15
 	{
 		for (int i = -30; i < 31; i += 15)
 		{
@@ -108,17 +108,17 @@ Class DCY_Inscrutable : DCY_CacoParent
 	TNT1 A 0 A_Jump(64, "Missile2", "Missile2A");
 	Goto See;
   Missile2:
-    1DSC EE 5 Bright A_FaceTarget();
-	1DSC F 0 Bright A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
-    1DSC F 10 Bright A_SpawnProjectile("DCY_PastorShot2",30,-8,0,0);
+    1DSC EE 5 A_FaceTarget();
+	1DSC F 0 A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
+    1DSC F 10 A_SpawnProjectile("DCY_PastorShot2",30,-8,0,0);
 	Goto See;
   Missile2A:
-    1DSC EE 5 Bright A_FaceTarget();
-	1DSC F 5 Bright A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
-    1DSC FF 5 Bright A_FaceTarget();
-    1DSC F 5 Bright A_SpawnProjectile("DCY_PastorShot2",30,-8,0,0);
-    1DSC FF 5 Bright A_FaceTarget();
-	1DSC F 5 Bright A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
+    1DSC EE 5 A_FaceTarget();
+	1DSC F 5 A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
+    1DSC FF 5 A_FaceTarget();
+    1DSC F 5 A_SpawnProjectile("DCY_PastorShot2",30,-8,0,0);
+    1DSC FF 5 A_FaceTarget();
+	1DSC F 5 A_SpawnProjectile("DCY_PastorShot2",30,8,0,0);
 	Goto See;
   Pain:
     1DSC G 2;
@@ -126,13 +126,13 @@ Class DCY_Inscrutable : DCY_CacoParent
 	1DSC G 2 A_Pain();
 	Goto See;
   Death: 
-	1DSC H 1 Bright;
+	1DSC H 1;
 	1DSC H 0 A_StopSound(CHAN_7);
-    1DSC H 7 Bright A_Scream();
-    1DSC I 5 Bright;
-    1DSC J 5 Bright;
-    1DSC K 5 Bright A_NoBlocking();
-    1DSC LMN 4 Bright;
+    1DSC H 7 A_Scream();
+    1DSC I 5;
+    1DSC J 5;
+    1DSC K 5 A_NoBlocking();
+    1DSC LMN 4;
     1DSC O -1;
     Stop;
   Raise: 
@@ -156,6 +156,7 @@ Class DCY_DFX3 : DCY_Effect
    -SOLID
    +NOGRAVITY
    +CLIENTSIDEONLY
+   +BRIGHT
    }
    States
    {
@@ -169,7 +170,7 @@ Class DCY_DFX3 : DCY_Effect
 	  Goto FadeOut;
    FadeOut:
       1DSC A 1 A_FadeOut(0.1);
-      Loop;
+      Wait;
    }
 }
 
@@ -195,7 +196,7 @@ Class DCY_DFX1 : DCY_DFX3
   }
 }
 
-Class DCY_PastorShot1 : DCY_Effect
+Class DCY_PastorShot1 : DCY_Projectile
 {
   Default
   {
@@ -217,7 +218,7 @@ Class DCY_PastorShot1 : DCY_Effect
    States
    {
    Spawn:
-      AV_3 AAABBB 1 Bright
+      AV_3 AAABBB 1
 	  {
 		if (bSEEKERMISSILE)
 			A_Tracer2(1.5);
@@ -226,7 +227,7 @@ Class DCY_PastorShot1 : DCY_Effect
 	  }
       Loop;
    Death:
-      AV_3 CDEFG 3 Bright;
+      AV_3 CDEFG 3;
       Stop;
    }
 }
@@ -258,7 +259,7 @@ Class DCY_PastorShot2 : DCY_PastorShot1
   States
   {
   Spawn:
-	RBL2 AAABBBCCCDDD 1 Bright
+	RBL2 AAABBBCCCDDD 1
 	{
 		if (timer < 20)
 		{
@@ -274,7 +275,7 @@ Class DCY_PastorShot2 : DCY_PastorShot1
 	Loop;
   Death:
 	RBL2 E 2 A_SpawnItemEx("DCY_MonochromaticExplosionSmaller", flags: SXF_TRANSFERRENDERSTYLE);
-	RBL2 FGHIJKL 2 Bright;
+	RBL2 FGHIJKL 2;
 	Stop;
  }
 }
