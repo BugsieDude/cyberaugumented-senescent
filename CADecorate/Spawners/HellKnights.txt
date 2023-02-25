@@ -1,4 +1,4 @@
-ACTOR DCY_BruhMomentoNumeroTres : DCY_Spawner Replaces HellKnight
+ACTOR DCY_Warriors : DCY_Spawner Replaces HellKnight
 {
   DropItem "DCY_KnightHell", 0, 800
   DropItem "DCY_Malloc", 0, 200

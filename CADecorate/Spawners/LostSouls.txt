@@ -1,6 +1,6 @@
 ACTOR DCY_GhostRider : DCY_Spawner Replaces LostSoul
 {
-  DropItem "DCY_FlyingSkullWithFIRE", 0, 700
+  DropItem "DCY_FlamingCranium", 0, 700
   DropItem "DCY_Sullied", 8, 60
   DropItem "DCY_LunarChiller", 16, 25
   DropItem "DCY_Manes", 11, 7

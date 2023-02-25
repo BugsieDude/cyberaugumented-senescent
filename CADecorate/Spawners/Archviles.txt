@@ -1,4 +1,4 @@
-ACTOR DCY_OHFUCK : DCY_Spawner Replaces Archvile
+ACTOR DCY_MadMartian : DCY_Spawner Replaces Archvile
 {
   DropItem "DCY_ALIEN", 0, 866
   DropItem "DCY_Auteur", 8, 270
@@ -12,6 +12,4 @@ ACTOR DCY_OHFUCK : DCY_Spawner Replaces Archvile
   DropItem "DCY_Prestidigitator", 45, 6
   DropItem "DCY_Emptiness", 15, 1
   DropItem "DCY_Emptiness", 35, 1
-  DropItem "DCY_Xusqoox", 23, 1
-  DropItem "DCY_Upheavalbringer", 27, 1
 }

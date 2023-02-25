@@ -1,4 +1,4 @@
-ACTOR DCY_Pinkyisalsoexplode : DCY_Spawner Replaces Demon
+ACTOR DCY_DemonPigs : DCY_Spawner Replaces Demon
 {
   DropItem "DCY_Pinke", 0, 700
   DropItem "DCY_Dasher", 8, 200

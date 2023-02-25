@@ -35,6 +35,12 @@ Mixin Class DCY_Progression
 		let d = DCY_Variables.Get();
 		if(d) d.dcyLevel += level;
 	}
+	
+	action void DCY_DecreaseLevel(int level = 1)
+	{
+		let d = DCY_Variables.Get();
+		if(d && d.dcyLevel && d.dcyLevel > 0) d.dcyLevel -= level;
+	}
 }
 
 Class DCY_Effect : Actor
@@ -456,6 +462,7 @@ Class DCY_BFG10kLaserPuff : DCY_RemasteredBulletPuff
   +ALWAYSPUFF;
   +ROLLSPRITE
   +FLATSPRITE
+  +BRIGHT
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.49,0.72]";
   Scale 1.1;
   }

@@ -180,11 +180,11 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
 		A_SpawnContraptionMissile("DCY_EarlRocket");
 		A_FaceTarget();
 	}
-	CAN_ B 6
+	CAN_ B 10
 	{
 		A_FaceTarget();
 		missilecount++;
-		if (missilecount > 10)
+		if (missilecount > 6)
 			SetStateLabel("See");
 	}
 	Loop;

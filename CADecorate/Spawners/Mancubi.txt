@@ -1,4 +1,4 @@
-ACTOR DCY_SkinnyFate : DCY_Spawner Replaces Fatso
+ACTOR DCY_Blubber : DCY_Spawner Replaces Fatso
 {
   DropItem "DCY_SkinnyFat", 0, 1200
   DropItem "DCY_RadiationCorpulence", 1, 920

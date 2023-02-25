@@ -4,6 +4,10 @@ Version "4.10.0"
 #include "CAScript/Menus/Tooltips.txt"
 #include "CAScript/Menus/Intermission.txt"
 
+//ZForms Menus
+#include "CAScript/ZForms/Include.txt"
+#include "CAScript/ZForms/WIP.txt"
+
 //The Player
 #include "CAScript/Player/NewPlayer.txt"
 

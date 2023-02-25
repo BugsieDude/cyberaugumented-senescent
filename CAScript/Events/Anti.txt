@@ -2,15 +2,15 @@ Class CyberaugumentedStartupHandler : StaticEventHandler
 {
 	int timer;
 	bool detected;
+	int unreasonable;
 	
 	override void OnRegister()
 	{
 		foreach (classes:AllActorClasses)
 		{
 			if (classes.GetClassName() == "BDoomer" || classes.GetClassName() == "Doomer"
-				|| classes.GetClassName() == "BrutalDoomer" || classes.GetClassName() == "HDoomPlayer"
-				|| classes.GetClassName() == "ComplexDoomPlayer")
-				detected = true;
+				|| classes.GetClassName() == "BrutalDoomer" || classes.GetClassName() == "HDoomPlayer")
+				{ detected = true; if (!random(0, 100)) unreasonable = 1; }
 			
 			if ( detected ) break;
 		}
@@ -42,7 +42,7 @@ Class CyberaugumentedStartupHandler : StaticEventHandler
 			if ( playeringame[i] ) players[i].cheats |= CF_TOTALLYFROZEN;
 		
 		for (int i = 1000; i > 0; i--) Console.Printf("\n");
-		if (timer == 1) S_StartSound("dcy/deadlydejavu", CHAN_BODY, CHANF_UI|CHANF_NOPAUSE|CHANF_OVERLAP, 1.0, ATTN_NONE);
+		if (timer == 1) S_StartSound((unreasonable) ? "whatdone" : "dcy/deadlydejavu", CHAN_BODY, CHANF_UI|CHANF_NOPAUSE|CHANF_OVERLAP, 1.0, ATTN_NONE);
 		
 		timer++;
 	}
@@ -58,6 +58,6 @@ Class CyberaugumentedStartupHandler : StaticEventHandler
 		S_ChangeMusic("");
 		
 		for (int i = 0; i < 2; i++)
-			Menu.SetMenu("dcy_moai");
+			Menu.SetMenu((unreasonable) ? "dcy_something" : "dcy_moai");
 	}
 }

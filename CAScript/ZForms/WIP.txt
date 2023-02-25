@@ -1,0 +1,37 @@
+/*class DCY_WeaponModMenu : DCY_ZFGenericMenu
+{
+    override void init(Menu parent)
+	{
+        Super.init(parent);
+        let baseRes = (1920, 1080);
+        setBaseResolution(baseRes);
+    }
+}*/ //Keep on eye on that, it'll be implemented soon!
+
+class dcy_moai : DCY_ZFGenericMenu
+{
+    override void init(Menu parent)
+	{
+        Super.init(parent);
+        let baseRes = (504, 304);
+		
+		let image = DCY_ZFImage.create((0, 0), (504, 304), image: "dcy_moai");
+        image.pack(mainFrame);
+		
+		setBaseResolution(baseRes);
+    }
+}
+
+class dcy_something : DCY_ZFGenericMenu
+{
+    override void init(Menu parent)
+	{
+        Super.init(parent);
+        let baseRes = (320, 200);
+		
+		let image = DCY_ZFImage.create((0, 0), (320, 200), image: "Graphics/ZForms/upstander.png");
+        image.pack(mainFrame);
+		
+		setBaseResolution(baseRes);
+    }
+}

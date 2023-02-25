@@ -5,7 +5,8 @@ Class DCY_Deluder : DCY_CacoParent
   Health 650;
   Radius 20;
   Height 56;
-  Speed 17;
+  Speed 10;
+  FastSpeed 13;
   PainChance 55;
   +QUICKTORETALIATE
   +MISSILEMORE

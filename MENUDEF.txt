@@ -107,6 +107,7 @@ OptionMenu "CyberaugumentedVisual"
 	Slider "Effect Distance", "cl_effectdistance", 0, 25535, 1
 	Option "Effect Choker", "sv_effectchoker", "YesNo"
 	Option "Map Name on HUD", "cl_dcy_mapname", "EnableDisable2"
+	Option "Progression Level on HUD", "cl_dcy_hud_level", "EnableDisable2"
 	Option "Liquid Prospect", "dcy_liquids", "LiquidChanger"
 }
 

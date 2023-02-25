@@ -1,4 +1,4 @@
-Class DCY_Beholder : DCY_SOULKING
+Class DCY_Beholder : DCY_Befouler
 {
   Default
   {

@@ -1,4 +1,4 @@
-ACTOR DCY_DeTyrant : DCY_Spawner Replaces Cyberdemon
+ACTOR DCY_TheTyrant : DCY_Spawner Replaces Cyberdemon
 {
   DropItem "DCY_Trounce", 0, 600
   DropItem "DCY_Ruination", 0, 200

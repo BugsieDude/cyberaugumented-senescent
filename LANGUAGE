@@ -25,6 +25,7 @@ QUITMSG8 = "GLORY TO MY ASS";
 
 //Tooltips
 TIP_CYBERAUGUMENTEDDASHINGMENU = "The configurations for the player's mechanics. Typically this mod used to be a DOOM Eternal inspired mod before it started to become unique.";
+TIP_CYBERAUGUMENTEDVISUAL = "The configurations for other visual aspects, including the HUD and gameplay-wise.";
 TIP_SV_ALLOWDOUBLEJUMP = "Enables/Disables double jumping.";
 TIP_SV_ALLOWDASH = "Enables/Disables dashing.";
 TIP_SV_DASHCOOLDOWN = "Dash Cooldown in tics. The default value is 35.";

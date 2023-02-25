@@ -1,4 +1,4 @@
-Class DCY_Rahovart : DCY_SOULKING
+Class DCY_Rahovart : DCY_Befouler
 {
   Default
   {

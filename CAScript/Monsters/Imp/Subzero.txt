@@ -130,12 +130,11 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   XDeath:
 	SZ83 H 1;
     SZ83 H 19 A_ScreamAndUnblock();
-	SZ83 HHHHHHHHHHH 1 A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-10, 10), frandom(-10, 10), frandom(10, 35), 0, 0, frandom(0, 6), 0, SXF_NOCHECKPOSITION, 100);
+	SZ83 HHHHHHHHHHH 1 A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
 	SZ83 HHHHHHHHHH 2
 	{
 		A_FadeOut(0.045, 0);
-		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-10, 10), frandom(-10, 10), frandom(10, 35), 0, 0, frandom(0, 6), 0, SXF_NOCHECKPOSITION, 100);
-		A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-10, 10), frandom(-10, 10), frandom(10, 35), 0, 0, frandom(0, 6), 0, SXF_NOCHECKPOSITION, 100);
+		A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
 	}
 	Stop;
   Death.Massacre:

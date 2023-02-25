@@ -1,4 +1,4 @@
-ACTOR DCY_DeBruiser : DCY_Spawner Replaces BaronofHell
+ACTOR DCY_BuffBruiser : DCY_Spawner Replaces BaronofHell
 {
   DropItem "DCY_HeckBaron", 0, 1300
   DropItem "DCY_PrimeYanorit", 10, 345

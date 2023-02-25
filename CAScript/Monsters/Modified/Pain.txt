@@ -1,4 +1,4 @@
-Class DCY_SOULKING : DCYMonster
+Class DCY_Befouler : DCYMonster
 {
   Default
   {
@@ -85,7 +85,7 @@ Class DCY_SOULKING : DCYMonster
 		A_StartSound("EternalPainElemental/Spit", CHAN_VOICE);
 		A_FaceTarget();
 	}
-	DAJK F 1 A_PainAttack("DCY_FlyingSkullWithFIRE");
+	DAJK F 1 A_PainAttack("DCY_FlamingCranium");
 	DAJK ED 5 A_FaceTarget();
 	Goto See;
   Pain:
@@ -103,7 +103,7 @@ Class DCY_SOULKING : DCYMonster
 	}
 	DAJK HI 6;
 	DAJK JJKK 3 A_SpawnItemEx("DCY_Explosion_1", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
-	DAJK L 6 A_PainDie("DCY_FlyingSkullWithFIRE");
+	DAJK L 6 A_PainDie("DCY_FlamingCranium");
 	DAJK M 6;
 	Stop;
   Raise:

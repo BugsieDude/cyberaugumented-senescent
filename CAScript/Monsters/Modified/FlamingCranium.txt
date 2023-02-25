@@ -80,7 +80,7 @@ Class DCY_SkullParent : DCYMonster
   }
 }
 
-Class DCY_FlyingSkullWITHFIRE : DCY_SkullParent
+Class DCY_FlamingCranium : DCY_SkullParent
 {
   Default
   {

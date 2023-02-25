@@ -1027,13 +1027,7 @@ Class DCY_EmptyVessel : Actor
 	frame = int(zframe);
 	
 	if (Health > 0 && !IsFrozen())
-	{
-		for (int i = 3; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-7, 7), frandom(-7, 7), frandom(-7, 7) + 22.5, frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), frandom(0, 360), SXF_TRANSFERRENDERSTYLE, failchance: 120);
-			A_SpawnItemEx("DCY_MaelstromSmonk", frandom(-7, 7), frandom(-7, 7), frandom(-7, 7) + 22.5, frandom(-7, 7), frandom(-7, 7), frandom(-7, 7), frandom(0, 360), SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE, failchance: 60);
-		}
-	}
+		if (!(level.time % 2)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
   }
   
   States

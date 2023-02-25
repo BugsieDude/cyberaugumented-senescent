@@ -1,4 +1,4 @@
-Class DCY_Vague : DCY_SOULKING
+Class DCY_Vague : DCY_Befouler
 {
   Default
   {

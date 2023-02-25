@@ -17,14 +17,14 @@ CLASS DCYMonster : Actor abstract
   
   int warningdistance;
   bool boss;
-  Sound BurnSound;
+  Sound brns;
   string tcol;
   transient TextureID particlefire;
   
   string wf;
   property WalkFlames : wf;
   
-  property BurnSound: BurnSound;
+  property BurnSound: brns;
   property TagColor: tcol;
   
   override void tick()

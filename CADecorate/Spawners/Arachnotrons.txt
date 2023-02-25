@@ -1,4 +1,4 @@
-ACTOR DCY_HOLYSHITTHERESASmallEnemySpider : DCY_Spawner Replaces Arachnotron
+ACTOR DCY_LittleSpedor : DCY_Spawner Replaces Arachnotron
 {
   DropItem "DCY_SmallEnemySpider", 0, 1300
   DropItem "DCY_Receptacle", 0, 950

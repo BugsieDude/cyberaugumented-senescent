@@ -1,4 +1,4 @@
-ACTOR DCY_Shootyboy : DCY_Spawner Replaces Shotgunguy
+ACTOR DCY_Shotgunners : DCY_Spawner Replaces Shotgunguy
 {
   DropItem "DCY_ShotgunZombe", 0, 1000
   DropItem "DCY_DarkIonConsul", 13, 100

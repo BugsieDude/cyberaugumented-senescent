@@ -41,6 +41,9 @@ Class DCY_TorchBase : Actor
   
   override void PostBeginPlay()
   {
+	if (level.levelname == "Babylon's Chimera" || level.levelname == "The Cage" //Sunder Peformance
+		|| level.isFrozen()) return;
+	
 	A_StartSound("DCYTorch", CHAN_BODY, CHANF_LOOPING, attenuation: 2, pitch: frandom(0.7, 1.3), startTime: frandom(0, 1));
 	A_AttachLight("torchlight", DynamicLight.RandomFlickerLight, color1, (small) ? 40 : 60, (small) ? 45 : 70);
   }

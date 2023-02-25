@@ -1,4 +1,4 @@
-ACTOR DCY_Zamblezeezeze : DCY_Spawner Replaces ZombieMan
+ACTOR DCY_UndeadGuys : DCY_Spawner Replaces ZombieMan
 {
   DropItem "DCY_Zombe", 0, 512
   DropItem "DCY_Combatant", 0, 300

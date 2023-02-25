@@ -1,4 +1,4 @@
-Class DCY_Besmirch : DCY_SOULKING
+Class DCY_Besmirch : DCY_Befouler
 {
   Default
   {

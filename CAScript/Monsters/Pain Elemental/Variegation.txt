@@ -1,4 +1,4 @@
-Class DCY_VariegationDemon : DCY_SOULKING
+Class DCY_VariegationDemon : DCY_Befouler
 {
   Default
   {

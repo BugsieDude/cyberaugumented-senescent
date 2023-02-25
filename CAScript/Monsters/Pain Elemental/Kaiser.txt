@@ -1,4 +1,4 @@
-Class DCY_Kaiser : DCY_SOULKING
+Class DCY_Kaiser : DCY_Befouler
 {
   Default
   {
