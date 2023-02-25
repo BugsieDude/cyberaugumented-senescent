@@ -1,0 +1,8 @@
+Texture Optional "DC_WFL",64,128 { NoDecals Patch "DC_WFLL1",0,0 }
+Texture Optional "DC_WAT",64,64 { NoDecals Patch "FWATER1",0,0 }
+Texture Optional "DC_LAV",64,64 { NoDecals Patch "LAVA1",0,0 }
+Texture Optional "DC_BLD",64,64 { NoDecals Patch "BLOOD1",0,0 }
+Texture Optional "DC_NKG",64,64 { NoDecals Patch "NUKAGE1",0,0 }
+Texture Optional "DC_SLM",64,64 { NoDecals Patch "SLIME01",0,0 }
+Texture Optional "DC_SL2",64,64 { NoDecals Patch "SLIME06",0,0 }
+Texture Optional "DC_BRN",64,32 { NoDecals Patch "DBRAIN1",0,0 }

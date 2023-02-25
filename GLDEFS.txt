@@ -1,4 +1,48 @@
 //GLDEFS
+Glow
+{
+	Texture "BFALL1", 000000, 0
+	Texture "BFALL2", 000000, 0
+	Texture "BFALL3", 000000, 0
+	Texture "BFALL4", 000000, 0
+	Texture "WFALL1", 000000, 0
+	Texture "WFALL2", 000000, 0
+	Texture "WFALL3", 000000, 0
+	Texture "WFALL4", 000000, 0
+	Texture "FWATER1", 000000, 0
+	Texture "FWATER2", 000000, 0
+	Texture "FWATER3", 000000, 0
+	Texture "FWATER4", 000000, 0
+	Texture "NUKAGE1", 048000, 255
+	Texture "NUKAGE2", 048000, 255
+	Texture "NUKAGE3", 048000, 255
+	Texture "NUKAGE4", 048000, 255
+	Texture "BLOOD1", 000000, 0
+	Texture "BLOOD2", 000000, 0
+	Texture "BLOOD3", 000000, 0
+	Texture "FIRELAV2", 000000, 0
+	Texture "SLIME01", 000000, 0
+	Texture "SLIME02", 000000, 0
+	Texture "SLIME03", 000000, 0
+	Texture "SLIME04", 000000, 0
+	Texture "SLIME05", 000000, 0
+	Texture "SLIME06", 000000, 0
+	Texture "SLIME07", 000000, 0
+	Texture "SLIME08", 000000, 0
+	Texture "SFALL1", 048000, 255
+	Texture "SFALL2", 048000, 255
+	Texture "SFALL3", 048000, 255
+	Texture "SFALL4", 048000, 255
+	Texture "LAVA1", 995000, 255
+	Texture "LAVA2", 995000, 255
+	Texture "LAVA3", 995000, 255
+	Texture "LAVA4", 995000, 255
+	
+	Texture "DC_NKG", 048000, 255
+	Texture "DC_SFLL1", 048000, 255
+	Texture "DC_LAV", 995000, 255
+	Texture "DC_LFLL1", 995000, 255
+}
 
 PulseLight DCY_LightningPhaseBall1
 {

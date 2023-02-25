@@ -66,14 +66,11 @@ OptionMenu "DCYModOptionsMenu"
     StaticText "You can modify all of these to your liking."
 	StaticText ""
 	SubMenu "Mechanics", "CyberaugumentedDashingMenu"
+	SubMenu "Visuals", "CyberaugumentedVisual"
 	StaticText ""
 	Option "Enemy Announcements", "cyberaugumented_noenemyannouncements", "DisableEnableAnnounce"
-	Option "HUD Shake",	"cl_hudshake", "EnableDisable2"
 	Option "Refrain Souls from the Kill Count",	"dcy_soulcount", "EnableDisable2"
 	Option "Refrain the Resurrected from the Kill Count",	"dcy_rescount", "EnableDisable2"
-	Slider "Effect Distance", "cl_effectdistance", 0, 25535, 1
-	Option "Effect Choker", "sv_effectchoker", "YesNo"
-	Option "Map Name on HUD", "cl_dcy_mapname", "EnableDisable2"
 	Option "Low Health Alarm", "cl_dcy_alarmsound", "EnableDisable2"
 	Option "Level Stat Tracker", "dcy_tracker", "EnableDisable2"
 	Option "Completionist Rewards", "dcy_completionist", "YesNo"
@@ -101,6 +98,18 @@ OptionMenu "CyberaugumentedDashingMenu"
 	Slider "Upward Dash Power", "sv_dashpowerup", 0, 10, 1
 }
 
+OptionMenu "CyberaugumentedVisual" 
+{
+	Title "Visuals"
+	Class "DCY_OptionMenu"
+	StaticText ""
+	Option "HUD Shake",	"cl_hudshake", "EnableDisable2"
+	Slider "Effect Distance", "cl_effectdistance", 0, 25535, 1
+	Option "Effect Choker", "sv_effectchoker", "YesNo"
+	Option "Map Name on HUD", "cl_dcy_mapname", "EnableDisable2"
+	Option "Liquid Prospect", "dcy_liquids", "LiquidChanger"
+}
+
 OptionValue "DashSoundType"
 {
 	0, "DOOM Eternal"
@@ -111,4 +120,11 @@ OptionValue "DJumpSoundType"
 {
 	0, "Double Jump Sound"
 	1, "DOOM (2016)"
+}
+
+OptionValue "LiquidChanger"
+{
+	0, "Vanilla Liquids"
+	1, "Full-on Overhaul"
+	2, "Liquids only"
 }

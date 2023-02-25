@@ -25,6 +25,7 @@ Version "4.10.0"
 //Events
 #include "CAScript/Events/BaseEvent.txt"
 #include "CAScript/Events/Completionist.txt"
+#include "CAScript/Events/Texture.txt"
 #include "CAScript/Events/Anti.txt"
 
 //Items and Ammo

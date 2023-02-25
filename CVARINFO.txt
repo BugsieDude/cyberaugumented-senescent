@@ -33,3 +33,5 @@ user bool cl_dcy_alarmsound = true;
 
 server bool dcy_tracker = true;
 server bool dcy_completionist = true;
+
+server int dcy_liquids = 1;

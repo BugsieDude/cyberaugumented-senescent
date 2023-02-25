@@ -191,6 +191,10 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	TempCheck();
 	Tracker();
 	A_CutsceneCheck();
+	
+	if(liquidtex != dcy_liquids) DCY_ReplaceLiquidTextures();
+	liquidtex = dcy_liquids;
+		
 	let d = DCY_Variables.Get();
 	plvl = d.dcylevel;
   }

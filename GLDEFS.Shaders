@@ -1,0 +1,47 @@
+HardwareShader Flat DC_WAT
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/watermap.png"
+    Speed 1.3
+}
+
+HardwareShader Flat DC_NKG
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/nukemap.png"
+    Speed 1.6
+}
+
+HardwareShader Flat DC_BLD
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/bloodmap.png"
+    Speed 1.2
+}
+
+HardwareShader Flat DC_SLM
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/mudmap.png"
+    Speed 0.75
+}
+
+HardwareShader Flat DC_SL2
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/mudmap.png"
+    Speed 0.65
+}
+
+HardwareShader Flat DC_LAV
+{
+    Shader "Shaders/Procedural Liquids/voronoi.fp" 330
+    Texture noise "Shaders/Procedural Liquids/rgb_noise.png"
+    Texture colormap "Shaders/Procedural Liquids/lavamap.png"
+    Speed 0.95
+}

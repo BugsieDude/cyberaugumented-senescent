@@ -189,6 +189,8 @@ MothraMaster - Boot Sprites
 Korp - Boot Sprites
 OMOCAT - Sounds
 MothraMaster - Automaton Supervisor Grenade sprites
+RiboNucleic Asshat - Liquids
+3saster - Liquid Replacer
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

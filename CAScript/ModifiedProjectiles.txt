@@ -31,13 +31,13 @@ Mixin Class DCY_Projectiles
   }
 }
 
-Class DCY_Projectile : Actor
+Class DCY_Projectile : Actor abstract
 {
   Mixin DCY_Effects;
   Mixin DCY_Projectiles;
 }
 
-Class DCY_FastProjectile : FastProjectile
+Class DCY_FastProjectile : FastProjectile abstract
 {
   Mixin DCY_Effects;
   Mixin DCY_Projectiles;

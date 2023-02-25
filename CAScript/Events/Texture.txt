@@ -1,0 +1,198 @@
+extend class CyberaugumentedEventHandler
+{
+	private int liquidtex;
+	
+	void DCY_ReplaceTextures(string from,string to,int surface = 0)
+	{
+		int tex1 = int(TexMan.CheckForTexture(from,TexMan.Type_Any,TexMan.TryAny));
+		if(tex1 < 0) return;
+		int tex2 = int(TexMan.CheckForTexture(to,TexMan.Type_Any,TexMan.TryAny));
+		if(tex2 < 0) return;
+		if(surface >= 2) level.ReplaceTextures(from,to,TexMan.NOT_FLOOR|TexMan.NOT_CEILING);
+		else if(surface == 1) level.ReplaceTextures(from,to,TexMan.NOT_BOTTOM|TexMan.NOT_MIDDLE|TexMan.NOT_TOP);
+		else level.ReplaceTextures(from,to,0);
+	}
+	
+	void DCY_ReplaceLiquidTextures()
+	{
+		if(dcy_liquids == 1)
+		{
+			//lava
+			DCY_ReplaceTextures("LFALL1","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL2","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL3","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL4","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL_N1","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL_N2","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL_N3","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LFALL_N4","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("SFFALLL1","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("SFFALLL2","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("SFFALLL3","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("SFFALLL4","DC_LFLL1",surface: 2);
+			DCY_ReplaceTextures("LAVA1","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA2","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA3","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA4","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA1","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA2","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA3","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA4","DC_LAV",surface: 1);
+			//water
+			DCY_ReplaceTextures("WFALL1","DC_WFLL1",surface: 2);
+			DCY_ReplaceTextures("WFALL2","DC_WFLL1",surface: 2);
+			DCY_ReplaceTextures("WFALL3","DC_WFLL1",surface: 2);
+			DCY_ReplaceTextures("WFALL4","DC_WFLL1",surface: 2);
+			DCY_ReplaceTextures("FWATER1","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER2","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER3","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER4","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER1","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER2","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER3","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER4","DC_WAT",surface: 1);
+			//blood
+			DCY_ReplaceTextures("BFALL1","DC_BFLL1",surface: 2);
+			DCY_ReplaceTextures("BFALL2","DC_BFLL1",surface: 2);
+			DCY_ReplaceTextures("BFALL3","DC_BFLL1",surface: 2);
+			DCY_ReplaceTextures("BFALL4","DC_BFLL1",surface: 2);
+			DCY_ReplaceTextures("BLOOD1","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD2","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD3","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD4","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD1","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD2","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD3","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD4","DC_BLD",surface: 1);
+			//acid
+			DCY_ReplaceTextures("SFALL1","DC_SFLL1",surface: 2);
+			DCY_ReplaceTextures("SFALL2","DC_SFLL1",surface: 2);
+			DCY_ReplaceTextures("SFALL3","DC_SFLL1",surface: 2);
+			DCY_ReplaceTextures("SFALL4","DC_SFLL1",surface: 2);
+			DCY_ReplaceTextures("NUKAGE1","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE2","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE3","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE4","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE1","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE2","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE3","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE4","DC_NKG",surface: 1);
+			//slime 1
+			DCY_ReplaceTextures("SLIME01","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME02","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME03","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME04","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME01","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME02","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME03","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME04","DC_SLM",surface: 1);
+			//slime 2
+			DCY_ReplaceTextures("SLIME05","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME06","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME07","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME08","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME05","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME06","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME07","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME08","DC_SL2",surface: 1);
+			//Boss brain
+			DCY_ReplaceTextures("DBRAIN1","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN2","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN3","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN4","ET_DBRN",surface: 2);
+		}
+		else if(dcy_liquids == 2)
+		{
+			//lava
+			DCY_ReplaceTextures("DC_LFLL1","LFALL1",surface: 2);
+			DCY_ReplaceTextures("LAVA1","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA2","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA3","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA4","DC_LAV",surface: 2);
+			DCY_ReplaceTextures("LAVA1","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA2","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA3","DC_LAV",surface: 1);
+			DCY_ReplaceTextures("LAVA4","DC_LAV",surface: 1);
+			//water
+			DCY_ReplaceTextures("DC_WFLL1","WFALL1",surface: 2);
+			DCY_ReplaceTextures("FWATER1","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER2","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER3","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER4","DC_WAT",surface: 2);
+			DCY_ReplaceTextures("FWATER1","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER2","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER3","DC_WAT",surface: 1);
+			DCY_ReplaceTextures("FWATER4","DC_WAT",surface: 1);
+			//blood
+			DCY_ReplaceTextures("DC_BFLL1","BFALL1",surface: 2);
+			DCY_ReplaceTextures("BLOOD1","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD2","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD3","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD4","DC_BLD",surface: 2);
+			DCY_ReplaceTextures("BLOOD1","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD2","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD3","DC_BLD",surface: 1);
+			DCY_ReplaceTextures("BLOOD4","DC_BLD",surface: 1);
+			//acid
+			DCY_ReplaceTextures("DC_SFLL1","SFALL1",surface: 2);
+			DCY_ReplaceTextures("NUKAGE1","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE2","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE3","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE4","DC_NKG",surface: 2);
+			DCY_ReplaceTextures("NUKAGE1","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE2","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE3","DC_NKG",surface: 1);
+			DCY_ReplaceTextures("NUKAGE4","DC_NKG",surface: 1);
+			//slime 1
+			DCY_ReplaceTextures("SLIME01","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME02","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME03","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME04","DC_SLM",surface: 2);
+			DCY_ReplaceTextures("SLIME01","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME02","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME03","DC_SLM",surface: 1);
+			DCY_ReplaceTextures("SLIME04","DC_SLM",surface: 1);
+			//slime 2
+			DCY_ReplaceTextures("SLIME05","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME06","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME07","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME08","DC_SL2",surface: 2);
+			DCY_ReplaceTextures("SLIME05","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME06","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME07","DC_SL2",surface: 1);
+			DCY_ReplaceTextures("SLIME08","DC_SL2",surface: 1);
+			//Boss brain
+			DCY_ReplaceTextures("DBRAIN1","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN2","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN3","ET_DBRN",surface: 2);
+			DCY_ReplaceTextures("DBRAIN4","ET_DBRN",surface: 2);
+		}
+		else
+		{
+			//lava
+			DCY_ReplaceTextures("DC_LFLL1","LFALL1",surface: 2);
+			DCY_ReplaceTextures("DC_LAV","LAVA1",surface: 2);
+			DCY_ReplaceTextures("DC_LAV","LAVA1",surface: 1);
+			//water
+			DCY_ReplaceTextures("DC_WFLL1","WFALL1",surface: 2);
+			DCY_ReplaceTextures("DC_WAT","FWATER1",surface: 2);
+			DCY_ReplaceTextures("DC_WAT","FWATER1",surface: 1);
+			//blood
+			DCY_ReplaceTextures("DC_BFLL1","BFALL1",surface: 2);
+			DCY_ReplaceTextures("DC_BLD","BLOOD1",surface: 2);
+			DCY_ReplaceTextures("DC_BLD","BLOOD1",surface: 1);
+			//acid
+			DCY_ReplaceTextures("DC_SFLL1","SFALL1",surface: 2);
+			DCY_ReplaceTextures("DC_NKG","NUKAGE1",surface: 2);
+			DCY_ReplaceTextures("DC_NKG","NUKAGE1",surface: 1);
+			//slime 1
+			DCY_ReplaceTextures("DC_SLM","SLIME01",surface: 2);
+			DCY_ReplaceTextures("DC_SLM","SLIME01",surface: 1);
+			//slime 2
+			DCY_ReplaceTextures("DC_SL2","SLIME05",surface: 2);
+			DCY_ReplaceTextures("DC_SL2","SLIME05",surface: 1);
+			//Boss brain
+			DCY_ReplaceTextures("ET_DBRN","DBRAIN1",surface: 2);
+		}
+	}
+}

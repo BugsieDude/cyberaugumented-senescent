@@ -27,6 +27,8 @@ Class DCY_Ultracerest : DCY_Impe //stronk
   DamageFactor "Cosmical", 0.5;
   DamageFactor "Neonic", 0.35;
   PainChance 15;
+  DropItem "Megasphere";
+  DropItem "DCY_Palisade";
   Species "AssemblyoftheUnseen";
   SeeSound "Ultracerest/Sight";
   ActiveSound "Ultracerest/Active";
