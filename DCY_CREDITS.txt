@@ -72,7 +72,7 @@ KDiZD - Z-Exec sprites (along with frankenspriting from id and Rogue Entertainme
 Vader - Malwrath Sprites
 Rottking - Perserver Sprites
 zrrion the insect - Lightning arc effect sprites
-Melvinflynt (Pierre Ramirez) - Abyssal Exarch, Vizier, Sacker, etc. (Doom X) sprites [I miss you, Doom X.]
+Pierre Ramiez (pram9k@gmail.com) - Abyssal Exarch, Vizier, Lightning Phase, etc. (Doom X) sprites [I miss you, Doom X.]
 Reaper Doom - Sacker (Elite Imp Edits) sprites
 High Councilor - Monster Sprites (Maltreat, Lemures, Arachnoaversion, Qualm, Inciter, etc.)
 DustedPandemonic - War (Destructive Earl) Sprites
