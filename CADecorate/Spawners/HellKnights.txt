@@ -1,10 +1,10 @@
 ACTOR DCY_Warriors : DCY_Spawner Replaces HellKnight
 {
-  DropItem "DCY_KnightHell", 0, 800
-  DropItem "DCY_Malloc", 0, 200
-  DropItem "DCY_FluorescentChevalier", 10, 108
-  DropItem "DCY_CalamityTsar", 7, 90
-  DropItem "DCY_Wastrel", 15, 40
-  DropItem "DCY_Abater", 15, 20
-  DropItem "DCY_Larrikin", 23, 20
+  DropItem "DCY_KnightHell", 0, 255
+  DropItem "DCY_Malloc", 0, 60
+  DropItem "DCY_FluorescentChevalier", 10, 60
+  DropItem "DCY_CalamityTsar", 7, 60
+  DropItem "DCY_Wastrel", 15, 20
+  DropItem "DCY_Abater", 15, 30
+  DropItem "DCY_Larrikin", 23, 10
 }

@@ -53,7 +53,21 @@ Class DCY_Manes : DCY_Impe
 	NSH1 AAABBBCCCDDD 10 DCY_Look();
 	Loop;
   Look:
-	NSH1 AAABBBCCCDDD 3 DCY_LookingForPlayer();
+	NSH1 AAABBBCCCDDD 3
+	{
+		DCY_LookingForPlayer();
+		if (!random(0, 20)) SetStateLabel("Hide");
+	}
+	Loop;
+  Hide:
+	TNT1 A 5
+	{
+		for (int i = 20; i > 0; i--)
+			A_Wander();
+			
+		DCY_LookingForPlayer();
+		if (!random(0, 30)) SetStateLabel("Look");
+	}
 	Loop;
   Alert:
 	"####" "#" 0

@@ -136,7 +136,7 @@ Class DCY_LightningPhase : DCY_Impe
 	{
 		A_FaceTarget(2.9, 2.9);
 		if (DCY_EffectDistance(sfxdistance))
-			A_SpawnItemEx("DCY_LightningPhaseElec", 0, 20, 32, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("DCY_LightningPhaseElec", 7, 25, 32, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
 	}
 	LMEI G 7
 	{
@@ -190,7 +190,7 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
 {
   Default
   {
-  Damage 6;
+  Damage 4;
   Speed 15.5;
   FastSpeed 18.5;
   Scale 1.3;
@@ -230,10 +230,11 @@ Class DCY_LightningPhaseDischarge : DCY_FastProjectile
 {
   Default
   {
-  Damage 15;
+  Damage 2;
   Scale 0.5;
   Speed 40;
   +NEVERFAST
+  +RIPPER
   -SEEKERMISSILE
   SeeSound "LIGT001";
   DeathSound "LIGT002";
@@ -343,7 +344,7 @@ Class DCY_LightningPhaseTrail2 : DCY_LightningPhaseBallTrail
 		A_SetScale(Scale.X-0.006, Scale.Y-0.006);
 		A_FadeOut(0.005);
 		roll = frandom(0, 360);
-		A_Explode(1, 50, damagetype: "Electric");
+		A_Explode(randompick(2, 3), 50, damagetype: "Electric");
 		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
 	}
 	Wait;
@@ -355,6 +356,7 @@ Class DCY_LightningPhaseElec : DCY_LightningPhaseBallTrail
   Default
   {
   Translation "0:255=%[0.00,0.00,0.00]:[0.45,2.00,0.45]";
+  Alpha 1.0;
   }
   
   override void PostBeginPlay()

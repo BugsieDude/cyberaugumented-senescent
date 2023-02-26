@@ -337,11 +337,11 @@ B1OGIMP4 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode4.ogg
 B1OGIMP5 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode5.ogg"
 B1OGIMP6 "Sounds/Weapons/Slot 7/Amnesia Photon Blaster/dcy_bfg_tiny_explode6.ogg"
 
-NeonicWand/Switch "Sounds/Weapons/Slot 6/Caduceus/switch.ogg"
-Lazer/Fire "Sounds/Weapons/Slot 6/Caduceus/ray.ogg"
-Lazer/Fire2 "Sounds/Weapons/Slot 6/Caduceus/ripper.ogg"
-NeonicBall/Death "Sounds/Weapons/Slot 6/Caduceus/orb_impact.ogg"
-NeonicBall/Fire "Sounds/Weapons/Slot 6/Caduceus/orb.ogg"
+NeonicWand/Switch "Sounds/Weapons/Slot 6/Caduceus/dcy_caduceus_switch.ogg"
+Lazer/Fire "Sounds/Weapons/Slot 6/Caduceus/dcy_caduceus_ray.ogg"
+Lazer/Fire2 "Sounds/Weapons/Slot 6/Caduceus/dcy_caduceus_ripper.ogg"
+NeonicBall/Death "Sounds/Weapons/Slot 6/Caduceus/dcy_caduceus_orb_impact.ogg"
+NeonicBall/Fire "Sounds/Weapons/Slot 6/Caduceus/dcy_caduceus_orb.ogg"
 NeonicLaser/Fire "Sounds/Weapons/Slot 8/Dismantler/dcy_dismantler_impact.wav"
 
 Eradicator/Charge "Sounds/Weapons/Misc/dcy_eradicator_charge.ogg"

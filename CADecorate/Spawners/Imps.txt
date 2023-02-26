@@ -1,26 +1,32 @@
 ACTOR DCY_Impo : DCY_Spawner Replaces DoomImp
 {
-  DropItem "DCY_Dastard", 0, 2200
-  DropItem "DCY_Painsend", 17, 750
-  DropItem "DCY_Violator", 0, 850
-  DropItem "DCY_Pryer", 0, 1000
-  DropItem "DCY_Serpent", 8, 440
-  DropItem "DCY_Perserver", 14, 430
-  DropItem "DCY_LiquidatorTypeImp", 14, 100
-  DropItem "DCY_SubzeroUmbrage", 20, 120
-  DropItem "DCY_Castrator", 25, 110
-  DropItem "DCY_RegulusImp", 25, 80
-  DropItem "DCY_Malignant", 25, 100
-  DropItem "DCY_Terminalist", 14, 90
-  DropItem "DCY_LightningPhase", 10, 70
-  DropItem "DCY_Caviler", 12, 56
-  DropItem "DCY_Pathogen", 12, 44
-  DropItem "DCY_AbyssalSycophant", 10, 150
-  DropItem "DCY_Anathema", 15, 35
-  DropItem "DCY_Manes", 11, 19
-  DropItem "DCY_HellRazer", 10, 27
-  DropItem "DCY_Curator", 20, 2
-  DropItem "DCY_Eavesdropper", 17, 1
-  DropItem "DCY_ExoImp", 25, 1
-  DropItem "DCY_Ultracerest", 50, 1
+  DropItem "DCY_Dastard", 0, 255
+  DropItem "DCY_Painsend", 17, 50
+  DropItem "DCY_Violator", 0, 100
+  DropItem "DCY_Pryer", 0, 100
+  DropItem "DCY_Serpent", 8, 30
+  DropItem "DCY_Perserver", 14, 30
+  DropItem "DCY_LiquidatorTypeImp", 14, 6
+  DropItem "DCY_SubzeroUmbrage", 20, 3
+  DropItem "DCY_Castrator", 25, 5
+  DropItem "DCY_RegulusImp", 25, 5
+  DropItem "DCY_Malignant", 25, 4
+  DropItem "DCY_Terminalist", 14, 7
+  DropItem "DCY_LightningPhase", 10, 7
+  DropItem "DCY_Caviler", 12, 7
+  DropItem "DCY_Pathogen", 12, 7
+  DropItem "DCY_AbyssalSycophant", 10, 3
+  DropItem "DCY_Anathema", 15, 3
+  DropItem "DCY_Manes", 11, 2
+  DropItem "DCY_HellRazer", 10, 6
+  DropItem "DCY_BossImp", 20, 1
+}
+
+ACTOR DCY_BossImp : DCY_Spawner
+{
+  DropItem "DCY_Dastard", 0, 255
+  DropItem "DCY_Curator", 20, 50
+  DropItem "DCY_Eavesdropper", 17, 60
+  DropItem "DCY_ExoImp", 25, 50
+  DropItem "DCY_Ultracerest", 50, 10
 }

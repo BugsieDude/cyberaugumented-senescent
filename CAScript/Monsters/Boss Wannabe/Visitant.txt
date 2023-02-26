@@ -118,13 +118,14 @@ Class DCY_Visitant : DCY_CacoParent
 		A_CustomRailgun(0, 0, "", "", RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT|RGF_NORANDOMPUFFZ, 1, sparsity: 40, spawnclass: "DCY_GehennaTrack");
 		A_FaceTarget();
 	}
+	TNT1 AAAAA 2 A_FaceTarget(1.5, 1.5);
 	TNT1 A 20
 	{
-		A_FaceTarget();
+		A_FaceTarget(1.5, 1.5);
 		A_Stop();
 		A_StartSound("LightningBewm", attenuation: 0.5);
 		A_QuakeEx(3, 3, 3, 20, 0, 1000, "", QF_SCALEDOWN|QF_3D);
-		A_SpawnProjectile("DCY_VisitantBolt", 30);
+		A_SpawnProjectile("DCY_VisitantBolt", 30, 0, 0, CMF_AIMDIRECTION, pitch);
 	}
 	TNT1 A 1 A_Stop();
 	Goto See;

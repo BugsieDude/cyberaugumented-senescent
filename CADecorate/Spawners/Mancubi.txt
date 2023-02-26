@@ -1,7 +1,7 @@
 ACTOR DCY_Blubber : DCY_Spawner Replaces Fatso
 {
-  DropItem "DCY_SkinnyFat", 0, 1200
-  DropItem "DCY_RadiationCorpulence", 1, 920
-  DropItem "DCY_Disrelish", 16, 500
-  //DropItem "DCY_Xenabus", 20, 350
+  DropItem "DCY_SkinnyFat", 0, 255
+  DropItem "DCY_RadiationCorpulence", 1, 100
+  DropItem "DCY_Disrelish", 16, 15
+  //DropItem "DCY_Xenabus", 20, 10
 }

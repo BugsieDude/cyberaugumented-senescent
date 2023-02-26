@@ -1,17 +1,18 @@
 ACTOR DCY_TheTyrant : DCY_Spawner Replaces Cyberdemon
 {
-  DropItem "DCY_Trounce", 0, 600
-  DropItem "DCY_Ruination", 0, 200
-  DropItem "DCY_NavyTerminator", 15, 150
-  DropItem "DCY_Vamchnorm", 25, 100
-  DropItem "DCY_Arbiter", 30, 80
-  //DropItem "DCY_Ultraspeller", 50, 1
-  DropItem "DCY_ChoricoNepheloma", 45, 2
-  //DropItem "DCY_MultidimensionalSpawner", 70, 1
+  DropItem "DCY_Trounce", 0, 255
+  DropItem "DCY_Ruination", 0, 255
+  DropItem "DCY_NavyTerminator", 15, 50
+  DropItem "DCY_Vamchnorm", 25, 10
+  DropItem "DCY_Arbiter", 30, 10
+  DropItem "DCY_ChoricoNepheloma", 45, 1
+  DropItem "DCY_BossCyber", 70, 1
 }
 
-ACTOR DCY_MultidimensionalSpawner : RandomSpawner
+ACTOR DCY_BossCyber : DCY_Spawner
 {
-  DropItem "DCY_Arbiter", 256, 128
-  DropItem "DCY_MultidimensionalCaster", 256, 80
+  DropItem "DCY_Arbiter", 0, 128
+  DropItem "DCY_ChoricoNepheloma", 45, 50
+  //DropItem "DCY_Ultraspeller", 50, 10
+  //DropItem "DCY_MultidimensionalCaster", 100, 1
 }

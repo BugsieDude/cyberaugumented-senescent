@@ -13,15 +13,27 @@ OB_MONTELEFRAG = "$o was in a telefragging catharsis."
 //N/A
 
 //Quit Messages
-QUITMSG = "?";
-QUITMSG1 = "Ya gonna have some penalty on demon killin'. Don't go to your tea party or coffee break yet, pally."; 
-QUITMSG2 = "Wait, don't quit! Some demonic and occult fellas try to rob a bank!";
-QUITMSG3 = "Relish your very precious minutes.";
-QUITMSG4 = "Please stay, marine.";
-QUITMSG5 = "Have a nice snack. I'll be waiting.";
-QUITMSG6 = "Don't you wanna go save your own world? ..Nay?";
-QUITMSG7 = "GLORY TO MY ASS";
-QUITMSG8 = "GLORY TO MY ASS";
+DCY_QUITMSG = "?";
+DCY_QUITMSG1 = "Ya gonna have some penalty on demon killin'. Don't go to your tea party or coffee break yet, pally."; 
+DCY_QUITMSG2 = "Wait, don't quit! Some demonic and occult fellas try to rob a bank!";
+DCY_QUITMSG3 = "Relish your very precious minutes.";
+DCY_QUITMSG4 = "Please stay, marine.";
+DCY_QUITMSG5 = "Have a nice snack. I'll be waiting. ^-^";
+DCY_QUITMSG6 = "Howdy.";
+DCY_QUITMSG7 = "Okay, you can get out. Is deathmatching still possible? Because I'll be watching ya til' ya get back.";
+DCY_QUITMSG8 = "You have no choice! Get your ass back in there.";
+DCY_QUITMSG9 = "I don't have any idea what to say.";
+DCY_QUITMSG10 = "Welcome to your existential crisis. Are you sure you want to question your life choices?";
+DCY_QUITMSG11 = "Might slap your balls real hard.";
+DCY_QUITMSG12 = "You know what they say... all hell energy toasts chaos.";
+DCY_QUITMSG13 = "The slop!";
+DCY_QUITMSG14 = "Bro just rampaged and left.";
+DCY_QUITMSG15 = "SO MUCH BLOOD!";
+DCY_QUITMSG16 = "Wait, but you said you'll rip and tear! Get it?...";
+DCY_QUITMSG17 = "You ever feel like you just woke up at 3 AM and this happens?";
+DCY_QUITMSG18 = "Yea of course, do your own little infinitesimal job.";
+DCY_QUITMSG19 = "A robot goes to a bar. The horse promptly shits on the fl";
+DCY_QUITMSG20 = "Call me \c[z3]the Curator\c- because I'm going to fucking GET you without noticing me";
 
 //Tooltips
 TIP_CYBERAUGUMENTEDDASHINGMENU = "The configurations for the player's mechanics. Typically this mod used to be a DOOM Eternal inspired mod before it started to become unique.";
@@ -29,7 +41,7 @@ TIP_CYBERAUGUMENTEDVISUAL = "The configurations for other visual aspects, includ
 TIP_SV_ALLOWDOUBLEJUMP = "Enables/Disables double jumping.";
 TIP_SV_ALLOWDASH = "Enables/Disables dashing.";
 TIP_SV_DASHCOOLDOWN = "Dash Cooldown in tics. The default value is 35.";
-TIP_CL_ALLOWDASHSOUND = "Turning this on emits dashing noises.";
+TIP_CL_ALLOWDASHSOUND = "Turning this on emits the player's dashing noises.";
 TIP_CL_ALLOWDJUMPSOUND = "Double jumping noises to give you a DOOM 2016 experience.";
 TIP_CL_DASHSOUNDTYPE = "For some reason we included two types of dashing and double jumping sounds.";
 TIP_CL_DJUMPSOUNDTYPE = "For some reason we included two types of dashing and double jumping sounds.";

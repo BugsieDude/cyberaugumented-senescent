@@ -37,7 +37,7 @@ Class DCY_Spawner : RandomSpawner //Progression system heavily inspired by Pande
 			
 		// Take a random number...
 		n = random[randomspawn](0, n-1);
-			
+		
 		// And iterate in the array up to the random number chosen.
 		while (n > -1 && di != null)
 		{
@@ -57,7 +57,7 @@ Class DCY_Spawner : RandomSpawner //Progression system heavily inspired by Pande
 			else
 				di = di.Next;
 		}
-			
+		
 		if (di == null) return 'Unknown';
 		else if (random[randomspawn]() <= 255)
 			return di.Name;

@@ -1,6 +1,6 @@
 ACTOR DCY_GroupsAndKeepers : DCY_Spawner Replaces PainElemental
 {
-  DropItem "DCY_Befouler", 0, 700
-  DropItem "DCY_Kaiser", 16, 100
-  DropItem "DCY_Vague", 30, 35
+  DropItem "DCY_Befouler", 0, 255
+  DropItem "DCY_Kaiser", 16, 10
+  DropItem "DCY_Vague", 30, 5
 }
