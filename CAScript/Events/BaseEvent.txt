@@ -136,7 +136,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "Good luck passing through this place in order to complete your mission.", (240, 176), (480, 360), color: Font.CR_UNTRANSLATED, time: (2, 5, 1), id: 10002);
 	}
 	
-	if (level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
+	if (dcy_wolfensteincutscene && level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
 	{
 		DCY_notHudMessageHandler.PlainMsg("DCY_NONE", "AAAAAAAA\nAAAAAAAAA\nAAAAAAAA", (80,50), (160,100), time: (0, 2.25, 1), id: 10000);
 		level.setFrozen(true);
@@ -145,7 +145,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   void A_CutsceneCheck()
   {
-	if (level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
+	if (dcy_wolfensteincutscene && level.levelname == "Wolfenstein" && (level.mapname == "MAP31" || level.mapname == "MOC31"))
 	{
 		if ((level.time % 60) == 10)
 		{

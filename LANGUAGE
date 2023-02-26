@@ -62,3 +62,6 @@ TIP_DCY_TRACKER = "Upon killing all monsters, collecting all items, and finding 
 TIP_DCY_COMPLETIONIST = "Filling up a level stat will give you a special reward, especially when completing the level.";
 TIP_CL_DCY_HUD_LEVEL = "Shows how much you have progressed in a simple numeric way.";
 TIP_DCY_LIQUIDS = "Changes the way how liquids are shown.";
+TIP_DCY_WOLFENSTEINCUTSCENE = "Emits a cool-ass cutscene reminiscent to the Wolfenstein 3D game.";
+TIP_DCY_WOLFENSTEINSPAWNS = "Enables custom monsters that replaces the Wolfenstein SS Guards.";
+TIP_DCY_KEENSPAWNS = "Commander Keen is more different while on.";

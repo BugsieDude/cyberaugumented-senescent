@@ -76,6 +76,8 @@ OptionMenu "DCYModOptionsMenu"
 	Option "Completionist Rewards", "dcy_completionist", "YesNo"
 	Option "Enable Progression", "sv_dcy_progressivespawns", "YesNo"
 	Slider "Progression Multiplier", "sv_dcy_progression", 0.000, 2.000, 0.01
+	Option "SS Guard Replacement", "dcy_wolfensteinspawns", "YesNo"
+	Option "Keen Replacement", "dcy_keenspawns", "YesNo"
 	
 }
 
@@ -109,6 +111,7 @@ OptionMenu "CyberaugumentedVisual"
 	Option "Map Name on HUD", "cl_dcy_mapname", "EnableDisable2"
 	Option "Progression Level on HUD", "cl_dcy_hud_level", "EnableDisable2"
 	Option "Liquid Prospect", "dcy_liquids", "LiquidChanger"
+	Option "Get Psyched!", "dcy_wolfensteincutscene", "DCY_GPOption"
 }
 
 OptionValue "DashSoundType"
@@ -128,4 +131,10 @@ OptionValue "LiquidChanger"
 	0, "Vanilla Liquids"
 	1, "Full-on Overhaul"
 	2, "Liquids only"
+}
+
+OptionValue "DCY_GPOption"
+{
+	0, "I'm exhausted."
+	1, "Oh yeah!!"
 }

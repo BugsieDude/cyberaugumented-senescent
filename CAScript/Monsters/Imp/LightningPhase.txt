@@ -2,7 +2,7 @@ Class DCY_LightningPhase : DCY_Impe
 {
   Default
   {
-  Health 145;
+  Health 200;
   Speed 9;
   +MISSILEEVENMORE;
   +QUICKTORETALIATE;

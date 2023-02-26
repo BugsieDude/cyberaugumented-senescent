@@ -375,3 +375,6 @@ Consul/Charge "Sounds/Projectiles/dcy_darkioncharge.ogg"
 Consul/ChargedFire "Sounds/Projectiles/dcy_darkion_chargedfire.ogg"
 
 EOD/Miniball "Sounds/Projectiles/dcy_eod_miniball.ogg"
+
+DCY/TarImpact "Sounds/Projectiles/dcy_tar_impact.ogg"
+DCY/ChargedLaser "Sounds/Projectiles/dcy_charged_laser.ogg"

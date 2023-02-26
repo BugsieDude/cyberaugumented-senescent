@@ -1025,21 +1025,21 @@ Class DCY_ABarrelofExplosives : ExplosiveBarrel
     Loop;
   Death:
 	_B1R ABC 2;
-    _BXP A 2 Bright;
-    _BXP B 2 Bright A_Scream();
-    _BXP C 3 Bright;
-    _BXP D 3 Bright
+    _BXP A 2;
+    _BXP B 2 A_Scream();
+    _BXP C 3;
+    _BXP D 3
 	{
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20, 20), frandom(-20, 20), frandom(10, 30), flags: SXF_NOCHECKPOSITION);
 		A_Explode();
 		A_QuakeEx(2, 2, 2, 40, 0, 400, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 800);
 	}
-    NBKL DEFGHIJKLM 2 Bright
+    NBKL DEFGHIJKLM 2
 	{
 		A_SetRenderStyle(1.0, STYLE_ADD);
 		A_SetScale(frandompick(-0.85, 0.85), 0.85);
 	}
-    TNT1 A 1050 Bright A_BarrelDestroy();
+    TNT1 A 1050 A_BarrelDestroy();
     TNT1 A 5
 	{
 		A_SetScale(0.9, 0.9);

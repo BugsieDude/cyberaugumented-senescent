@@ -316,6 +316,7 @@ Class DCY_DarkeningVulgarShot : DCY_Projectile
   Alpha 0;
   Scale 2.0;
   SeeSound "M0NSSHOT";
+  DeathSound "DCY/TarImpact";
   RenderStyle "Subtract";
   Translation "0:255=%[0.00,0.00,0.00]:[0.70,1.37,0.67]";
   Damage 6;

@@ -31,7 +31,13 @@ user bool cl_dcy_mapname = true;
 user bool cl_dcy_hud_level = true;
 user bool cl_dcy_alarmsound = true;
 
+user bool dcy_readsound = true;
+
 server bool dcy_tracker = true;
 server bool dcy_completionist = true;
 
 server int dcy_liquids = 1;
+
+server bool dcy_wolfensteinspawns = true;
+server bool dcy_keenspawns = true;
+server bool dcy_wolfensteincutscene = true;

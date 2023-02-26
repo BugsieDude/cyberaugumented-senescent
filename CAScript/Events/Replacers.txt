@@ -1,0 +1,13 @@
+extend class CyberaugumentedEventHandler
+{
+  override void CheckReplacement(ReplaceEvent e)
+  {
+	if(!sv_dcy_progressivespawns) 
+    {    
+		switch(e.Replacee.GetClassName())
+		{
+			case 'DCY_RareImp2' : e.Replacement = 'DCY_Dastard'; break;
+		}
+	}
+  }
+}

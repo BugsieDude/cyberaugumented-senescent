@@ -1,12 +1,12 @@
 Version "4.10.0"
 
-//Menu
-#include "CAScript/Menus/Tooltips.txt"
-#include "CAScript/Menus/Intermission.txt"
-
 //ZForms Menus
 #include "CAScript/ZForms/Include.txt"
 #include "CAScript/ZForms/WIP.txt"
+
+//Menu
+#include "CAScript/Menus/Tooltips.txt"
+#include "CAScript/Menus/Intermission.txt"
 
 //The Player
 #include "CAScript/Player/NewPlayer.txt"
@@ -31,6 +31,7 @@ Version "4.10.0"
 #include "CAScript/Events/Completionist.txt"
 #include "CAScript/Events/Texture.txt"
 #include "CAScript/Events/Anti.txt"
+#include "CAScript/Events/Replacers.txt"
 
 //Items and Ammo
 #include "CAScript/Items/ItemBase.txt"

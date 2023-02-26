@@ -6,6 +6,7 @@ misc/secret "Sounds/Game/dcy_secret.ogg"
 PIANPIAN "Sounds/Game/dcy_piano.ogg"
 misc/hellotherer "Sounds/Game/dcy_firsttime.ogg"
 misc/pausegame "Sounds/Game/dcy_pause.ogg"
+misc/dcygameinfo "Sounds/Game/dcy_info.ogg"
 
 misc/gamefreeze1 "Sounds/Menu/dcy_gamefreeze1.ogg"
 misc/gamefreeze2 "Sounds/Menu/dcy_gamefreeze2.ogg"
