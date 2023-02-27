@@ -144,7 +144,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   }
 }
 
-Class DCY_SubzeroUmbrageBall : DCY_ViolationBall
+Class DCY_SubzeroUmbrageBall : DCY_ImpFireball
 {
   Default
   {

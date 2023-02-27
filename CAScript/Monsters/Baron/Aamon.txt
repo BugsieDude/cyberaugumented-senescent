@@ -99,9 +99,9 @@ Class DCY_Aamon : DCY_HeckBaron
 	}
 	Goto Fireballs;
   Fireballs:
-	30SS EF 2 A_FaceTarget();
+	30SS EF 3 A_FaceTarget();
 	30SS G 3 A_AamonFireball(6);
-	30SS XY 2 A_FaceTarget();
+	30SS XY 3 A_FaceTarget();
 	30SS Z 3 A_AamonFireball(6);
 	Loop;
   Melee:

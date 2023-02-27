@@ -182,7 +182,7 @@ Class DCY_AComet : DCY_GComet
   +NEVERFAST
   Scale 0.76;
   SeeSound "TORPMISL";
-  DeathSound "";
+  DeathSound "Comet/Explode";
   }
   
   States
@@ -201,7 +201,7 @@ Class DCY_AComet : DCY_GComet
 		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_SCALEDOWN, falloff: 400);
 		A_SetTranslucent(1.0, 1);
 		
-		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Biggie", flags: SXF_NOCHECKPOSITION);
 		for (int i = 3; i > 0; i--)
 			A_SpawnItemEx("DCY_Explosion_1", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
 	}

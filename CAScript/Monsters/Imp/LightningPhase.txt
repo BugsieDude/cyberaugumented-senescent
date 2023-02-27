@@ -26,8 +26,33 @@ Class DCY_LightningPhase : DCY_Impe
   
   int phased;
   
+  void A_LightningPhaseTrail()
+  {
+	if (!level.isFrozen() && DCY_EffectDistance(sfxdistance))
+	{
+		let trail = Spawn("DCY_ProjectileBaseTrail", (pos.x, pos.y, pos.z + 6));
+		
+		if (trail)
+		{
+			trail.frame = frame;
+			trail.scale = scale;
+			trail.angle = angle;
+			trail.translation = translation;
+			trail.sprite = GetSpriteIndex("3Y_3");
+		}
+	}
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (phased && health > 0 && !isFrozen()) A_LightningPhaseTrail();
+  }
+  
   States
   {
+  LoadSprites:
+	3Y_3 ABCD 0;
   Spawn:
     LMEI A 10 DCY_Look();
 	Loop;
@@ -99,7 +124,7 @@ Class DCY_LightningPhase : DCY_Impe
 	Goto NormalMissile;
   Phase:
     LMEI E 0;
-	LMEI E 1 A_StartSound("dune/active", CHAN_5);
+	LMEI E 1 A_StartSound("LightningPhase/Teleport", CHAN_5);
 	LMEI E 5 A_FaceTarget();
 	LMEI EEEEEEEEE 1 A_FadeOut(0.1, 0);
 	TNT1 A 0 { phased = 1; }
@@ -114,7 +139,7 @@ Class DCY_LightningPhase : DCY_Impe
 	Goto Unphase;
   Unphase:
     LMEI E 0;
-	LMEI E 1 A_StartSound("neophaseimp/teleport", CHAN_5);
+	LMEI E 1 A_StartSound("LightningPhase/Teleport", CHAN_5);
 	LMEI E 1 A_FaceTarget();
 	LMEI EEEEEEEEE 1 A_FadeIn(0.1, 0);
 	TNT1 A 0 { phased = 0; }
@@ -199,7 +224,7 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
   +NOEXTREMEDEATH
   Translation "0:255=%[0.00,0.00,0.00]:[0.45,2.00,0.45]";
   Obituary "%o was all safe until a Lightning Phase sneaked upon %h.";
-  SeeSound "BALL002";
+  SeeSound "BALL001";
   DeathSound "FIR4IMPC";
   }
   States

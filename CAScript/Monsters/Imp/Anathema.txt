@@ -117,6 +117,8 @@ Class DCY_AnathemaProjectile : DCY_ImpFireball
   Scale 1.1;
   +NOEXTREMEDEATH
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,0.00]";
+  SeeSound "Painsend/Fireball";
+  DeathSound "Painsend/FireExplode";
   }
   States
   {

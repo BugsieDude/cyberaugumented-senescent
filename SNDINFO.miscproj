@@ -53,3 +53,5 @@ dcyvomitblood2 "Sounds/DCY SFX/dcy_blood_vomit2.ogg"
 dcyvomitblood3 "Sounds/DCY SFX/dcy_blood_vomit3.ogg"
 
 ExplosiveDash "Sounds/Projectiles/dcy_hexodenican_dash.ogg"
+
+LightningPhase/Teleport "Sounds/DCY SFX/dcy_lightningphase_teleport.ogg"

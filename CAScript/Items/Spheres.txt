@@ -276,7 +276,7 @@ Class DCY_UltrapissInvulnerability : DCY_Powerup Replaces InvulnerabilitySphere
 	if (DCY_EffectDistance(2000) && !level.isFrozen())
 	{
 		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.5), startalphaf: 0.15, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
-		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(1, 2), 0, frandom(60, -60), frandom(-60, 60), 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, 0.5), startalphaf: 1, sizestep: -0.025);
+		if (!(level.time % 2)) A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(1, 2), 0, frandom(60, -60), frandom(-60, 60), 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, 0.5), startalphaf: 1, sizestep: -0.025);
 	}
   }
   
