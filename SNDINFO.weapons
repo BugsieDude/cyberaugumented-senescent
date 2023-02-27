@@ -256,7 +256,7 @@ CARCATKX "Sounds/Projectiles/dcy_carcass_rings_impact.ogg"
 SP1DJUMP "Sounds/Projectiles/dcy_eod_comets.ogg"
 EODCOMET "Sounds/Projectiles/dcy_eod_comet.ogg"
 
-VERYPOWR "Sounds/Inventory/dcy_verytex_powerup.ogg"
+VERYPOWR "Sounds/Inventory/dcy_verytex_power.ogg"
 V3RYLASR "Sounds/Projectiles/dcy_verytex_beam.ogg"
 V3RYLAS2 "Sounds/Projectiles/dcy_verytex_laser.ogg"
 V3RYHURT "Sounds/Projectiles/dcy_sacker_impact.ogg"

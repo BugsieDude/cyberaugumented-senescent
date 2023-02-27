@@ -378,3 +378,8 @@ EOD/Miniball "Sounds/Projectiles/dcy_eod_miniball.ogg"
 
 DCY/TarImpact "Sounds/Projectiles/dcy_tar_impact.ogg"
 DCY/ChargedLaser "Sounds/Projectiles/dcy_charged_laser.ogg"
+
+Deluder/Plasma "Sounds/Projectiles/dcy_deluder_plasma.ogg"
+$random DCY/Lotus { DCY/Lotus1 DCY/Lotus2 }
+DCY/Lotus1 "Sounds/Projectiles/dcy_lotuslike_attack.ogg"
+DCY/Lotus2 "Sounds/Projectiles/dcy_lotuslike_attack2.ogg"

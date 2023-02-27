@@ -279,7 +279,7 @@ Class DCY_VesticalShield : ArmorBonus
   }
 }
 
-Class DCY_Berserk : Berserk
+Class DCY_Berserk : DCY_Powerup
 {
   Default
   {
@@ -287,39 +287,54 @@ Class DCY_Berserk : Berserk
   Inventory.PickupMessage "\c[b6]Power overload corrupts your mind.\c-";
   Inventory.PickupSound "Berserk/Pickup";
   RenderStyle "Add";
-  Translation "0:255=%[0.00,0.00,0.00]:[1.41,0.43,0.43]";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.50,0.00]";
   +FLOATBOB
+  DCY_Powerup.EffectColor1 "ff4800";
+  DCY_Powerup.LightRadius 70;
+  DCY_Powerup.AmbientNoise "Berserk/IdleNoise";
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (DCY_EffectDistance(1500) && !level.isFrozen())
+	{
+		A_SpawnItemEx("DCY_LemuresAura", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), (!random(0, 1)) ? 0 : frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME, 20);
+		A_SpawnItemEx("DCY_Arc", frandom(-self.radius, self.radius), frandom(-self.radius, self.radius), frandom(0, self.height) + 17, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 170);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10) + 25, frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), (!random(0, 1)) ? 0 : frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, 180);
+	}
+	
+	alpha = frandom(1.4, 3);
   }
   
   States
   {
   Spawn:
-	BSKR AAABBBCCCDDD 1 A_SpawnItemEx("DCY_MegasphereAura", random(-1, 1), random(-1, 1), random(24, 28), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	BSKR AAABBBCCCDDD 1;
 	Loop;
-  Pickup:
-	TNT1 A 0 A_Jump(30, "DeItem");
-	Goto PickupReady;
-  DeItem:
-	TNT1 A 0
+  }
+  
+  override bool Use(bool pickup)
+  {
+	Owner.GiveBody(100, 200);
+	Owner.A_SetBlend("White", 1.0, 25, "Orange");
+	Owner.A_QuakeEx(4, 4, 4, 40, 0, 2000, flags: QF_SCALEDOWN, rollintensity: 2.0, rollwave: 0.141);
+	
+	if (!random(0, 20)) A_StartSound("RIPANDTEAR", CHAN_6);
+	
+	Owner.A_GiveInventory("DCY_BerserkStrength");
+	Owner.A_GiveInventory("DCY_BerserkInvulnerability");
+	Owner.A_GiveInventory("DCY_BerserkDamage");
+	Owner.A_GiveInventory("DCY_BerserkSpeed");
+		
+	for (int i = 0; i < 360; i += 12)
 	{
-		A_StartSound("RIPANDTEAR", CHAN_6);
-		A_StartSound("RIPANDTEAR", CHAN_7);
+		Owner.A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 60, random(12, 16), i, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 36, frandom(-0.1, 0.1) + 3, frandom(-0.1, 0.1), frandom(0.5, 1.5), accelx: -0.1, accelz: 0.025, startalphaf: 0.5, fadestepf: 0.05, sizestep: -0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		Owner.A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 100, 70, i, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 36, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.4, fadestepf: 0.015, sizestep: 0.05, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
-	Goto PickupReady;
-  PickupReady:
-	TNT1 A 50
-	{
-		A_GiveInventory("DCY_BerserkStrength");
-		A_GiveInventory("DCY_BerserkInvulnerability");
-		A_GiveInventory("DCY_BerserkDamage");
-		A_GiveInventory("DCY_BerserkSpeed");
-		A_SetBlend("White", 1.0, 25, "Red");
-		A_QuakeEx(4, 4, 4, 40, 0, 2000, flags: QF_SCALEDOWN, rollintensity: 2.0, rollwave: 0.141);
-		A_SetMugshotState("BERSERK");
-		A_StartSound("Berserk/Pickup", CHAN_5);
-		HealThing(200, 0);
-	}
-    Stop;
+	
+	return true;
   }
 }
 
@@ -329,22 +344,22 @@ Class DCY_BerserkSpeed : PowerSpeed
   
   Default 
   {
-  Powerup.Duration -30; 
-  Powerup.Color "FF 00 00", 0.25; 
-  Speed 1.25;
+  Powerup.Duration -15; 
+  Powerup.Color "FF 44 00", 0.15; 
+  Speed 1.05;
   }
   
   override void DoEffect()
   {
 	Super.DoEffect();
 	time = EffectTics;
-	PowerTimer("Berserk/Warning", "Berserk/End", "ba2727", "ba2727", true);
+	PowerTimer("Berserk/Warning", "Berserk/End", "ff4800", "ff4800", true);
   }
 }
 
-Class DCY_BerserkStrength : PowerStrength { Default { Powerup.Duration -30; Powerup.Color "FF 00 00", 0.25; } }
-Class DCY_BerserkDamage : PowerDamage { Default { DamageFactor "Normal", 2; Powerup.Duration -30; } }
-Class DCY_BerserkInvulnerability : PowerInvulnerable { Default { Powerup.Duration -30; } }
+Class DCY_BerserkStrength : PowerStrength { Default { Powerup.Duration -15; } }
+Class DCY_BerserkDamage : PowerDamage { Default { DamageFactor "Normal", 1.5; Powerup.Duration -15; } }
+Class DCY_BerserkInvulnerability : PowerProtection { Default { Powerup.Duration -15; DamageFactor 0.5; } }
 
 Class DCY_Photocoagulator : CustomInventory
 {

@@ -2,15 +2,15 @@ Class DCY_Anathema : DCY_Impe
 {
   Default
   {
-  Translation "9:79=%[0.00,0.00,0.00]:[0.61,0.46,0.40]", "128:159=%[0.00,0.00,0.00]:[0.40,0.31,0.27]", "232:239=%[0.00,0.00,0.00]:[0.40,0.31,0.27]", "160:167=%[0.00,0.00,0.00]:[1.46,0.00,0.00]", "208:231=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "248:249=%[0.00,0.00,0.00]:[2.00,0.00,0.00]", "80:111=[255,255,255]:[0,0,0]";
-  Health 333;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.53,0.29,0.29]", "80:111=[255,255,255]:[0,0,0]", "4:4=[255,255,255]:[255,255,255]", "160:167=%[0.50,0.00,0.00]:[2.00,1.01,0.00]", "208:235=%[0.50,0.00,0.00]:[2.00,1.01,0.00]", "168:191=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
+  Health 300;
   Tag "\c[Red]Anathema\c-";
   SeeSound "sacker/sight";
   ActiveSound "sacker/active";
   PainSound "sacker/pain";
   DeathSound "sacker/death";
   +MISSILEEVENMORE
-  DamageType "Anathemic";
+  DamageType "Fire";
   Obituary "The anathema's cluster ripped %o apart.";
   }
   
@@ -48,15 +48,47 @@ Class DCY_Anathema : DCY_Impe
 	}
 	Goto See;
   Missile:
-	SAIM AEF 7 A_FaceTarget();
-	SAIM G 7
+	SAIM A 0 A_Jump(60, "Comet");
+	SAIM A 7 A_FaceTarget();
+	SAIM EEEEEEEEEEEEEEEEEEEEEE 1
 	{
-		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, -12);
-		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, 0);
-		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, 12);
+		A_SpawnParticleEx(0xff8c00, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 23, 0, frandom(-2.5, 2.5), 25 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
 		A_FaceTarget();
 	}
-	SAIM F 6;
+	SAIM F 4 A_FaceTarget();
+	SAIM G 0 A_Jump(128, "Quad");
+	SAIM GGGGG 7
+	{
+		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, frandom(-2, 2), CMF_OFFSETPITCH, pitch + frandom(-2, 2));
+		A_FaceTarget();
+	}
+	SAIM F 6 A_FaceTarget();
+	Goto See;
+  Quad:
+	SAIM G 0
+	{
+		for (int i = -20; i < 21; i += 10)
+			A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, i + frandom(-2, 2), CMF_OFFSETPITCH, pitch + frandom(-2, 2));
+		A_FaceTarget();
+	}
+	SAIM FAA 6 A_FaceTarget();
+	Goto See;
+  Comet:
+	SAIM A 10 A_FaceTarget();
+	SAIM A 7 { A_StartSound(SeeSound, CHAN_VOICE); A_FaceTarget(); }
+	SAIM EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+	{
+		A_SpawnParticleEx(0xff8c00, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 36, 0, frandom(-2.5, 2.5), 25 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+		A_SpawnParticleEx(0xffffff, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5), 25 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+		A_FaceTarget();
+	}
+	SAIM F 4 A_FaceTarget();
+	SAIM G 0
+	{
+		A_SpawnProjectile("DCY_AnathemaComet", 34);
+		A_FaceTarget();
+	}
+	SAIM FAAAA 6 A_FaceTarget();
 	Goto See;
   Pain:
 	SAIM H 4 { bNoDropOff = false; }
@@ -75,70 +107,88 @@ Class DCY_Anathema : DCY_Impe
   }
 }
 
-Class DCY_AnathemaProjectile : DoomImpBall
+Class DCY_AnathemaProjectile : DCY_ImpFireball
 {
   Default
   {
-  Damage 1;
-  Speed 8;
-  FastSpeed 18;
-  SeeSound "MagicProjectile/Shot";
-  DeathSound "PlasmaOrb";
+  Damage 4;
+  Speed 15;
+  FastSpeed 25;
   Scale 1.1;
-  +ROLLSPRITE
   +NOEXTREMEDEATH
-  +SEEKERMISSILE
-  +BRIGHT
-  DamageType "Anathemic";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,0.00]";
   }
   States
   {
   Spawn:
-	SUE2 A 0 NoDelay A_SetRoll(Roll+frandom(0.00, 360.00));
-	SUE2 AAAABBBB 1
+	FBS1 AABBCC 1
 	{
-		A_SeekerMissile(1, 1, SMF_PRECISE);
-		A_SetRoll(Roll+10, SPF_INTERPOLATE);
-		A_SpawnItemEx("DCY_AnathemaAura", xvel: -1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL|SXF_TRANSFERSPRITEFRAME);
-		A_Weave(2, 3, 4, 1);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
+		A_SpawnFlames("ff8c00", 13, 30, 0, false, frandom(-1.5, 1.5), thrust: 3);
 	}
-	Goto Spawn+1;
-  Death:
-	SUE2 FGHIJKLM 3;
-	Stop;
+	Loop;
   }
 }
 
-Class DCY_AnathemaAura : Actor
+Class DCY_AnathemaComet : DCY_GeneralComet
 {
   Default
   {
-  Radius 0;
-  Height 0;
-  RenderStyle "Add";
-  Alpha 0.85;
-  Scale 1.05;
-  +NOCLIP
-  +BRIGHT
-  +NOGRAVITY
-  +ROLLSPRITE
-  +NOINTERACTION
+  DamageType "Fire";
+  Speed 15;
+  FastSpeed 25;
+  Translation "0:255=%[0.27,0.00,0.00]:[2.00,1.38,0.76]";
+  +EXTREMEDEATH
+  Scale 0.65;
   }
+  
   States
   {
   Spawn:
-	SUE2 "#" 1
+    CGMT AABBCC 1 Bright
 	{
-		If(Alpha <= 0.000000001 || Scale.X <= 0.000000001)
-		{
-			Return ResolveState("Null");
-		}
-
-		A_SetRoll(Roll+10, SPF_INTERPOLATE);
-		A_SetScale(Scale.X-0.02, Scale.Y-0.02);
-		A_FadeOut(0.075, 0);
-		Return ResolveState(null);
+		A_SpawnFlames("ffffff", 20, 10, 0, false, thrust: 6);
+		A_SpawnFlames("ff8c00", 30, 30, 0, false, thrust: 6);
 	}
-	Loop;
+    Loop;
+  Death:
+	CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_Explode(60, 90, XF_NOTMISSILE, 1);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_QuakeEx(3, 3, 3, 40, 0, 200, "none", QF_SCALEDOWN, falloff: 400);
+	}
+    CGMT D 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION);
+		
+		Spawn("DCY_NapalmBigFire", pos);
+		
+		for (int i = 5; i > 0; i--)
+		{
+			let ember = Spawn("DCY_NapalmEmber", (pos.x, pos.y, pos.z));
+			
+			if (ember)
+			{
+				ember.vel.x = frandom(-7, 7);
+				ember.vel.y = frandom(-7, 7);
+				ember.vel.z = frandom(1, 10);
+			}
+		}
+	}
+    CGMT EEFF 1 Bright
+	{
+		A_FadeOut(0.15, 0);
+		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
+	}
+	CGMT GGHHII 1 Bright A_SetScale(Scale.X+0.25, Scale.Y+0.25);
+	TNT1 A 25;
+    Stop;
   }
 }

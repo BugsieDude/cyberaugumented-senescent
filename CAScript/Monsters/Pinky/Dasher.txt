@@ -140,25 +140,28 @@ Class DCY_Dasher : DCY_PinkyParent
   Death:
     U1X_ I 1;
 	U1X_ I 9 A_Scream();
-	U1X_ J 7 A_NoBlocking();
+	U1X_ J 7
+	{
+		A_FaceTarget();
+		let arm = Spawn("DCY_DasherArm", self.pos + (0, 0, 20));
+		if (arm) arm.Vel3DFromAngle(random(5, 7), self.angle - 90, self.pitch - 50);
+		A_NoBlocking();
+	}
 	U1X_ KLM 7;
 	U1X_ N -1;
 	Stop;
   Death.Holy:
+  Death.Fire:
   XDeath:
     U1X_ I 1;
 	U1X_ I 9 A_StartSound("Dasher/Howl", CHAN_VOICE);
-	U1X_ J 7 A_NoBlocking();
-	U1X_ KLM 7;
-	U1X_ N -1;
-	Stop;
-  Death.Fire:
-	U1X_ H 1;
-	U1X_ H 10 A_StartSound("Dasher/Howl", CHAN_VOICE);
-	U1X_ HHHHHHHHHHHHHHHIIIIIIIIIIIIIII 1 A_SpawnItemEx("DCY_ArchvileFlame3", random(-28, 18), random(-28, 28), random(20, 40), 0, 0, 0, random(0, 360), SXF_NOCHECKPOSITION, 30);
-	U1X_ I 1;
-	U1X_ I 9 A_StartSound("Dasher/Howl", CHAN_VOICE);
-	U1X_ J 7 A_NoBlocking();
+	U1X_ J 7
+	{
+		A_FaceTarget();
+		let arm = Spawn("DCY_DasherArm", self.pos + (0, 0, 20));
+		if (arm) arm.Vel3DFromAngle(random(5, 7), self.angle - 90, self.pitch - 50);
+		A_NoBlocking();
+	}
 	U1X_ KLM 7;
 	U1X_ N -1;
 	Stop;
@@ -188,6 +191,24 @@ Class DCY_DasherLunge : FastProjectile
 	Stop;
   Death:
     NULL A 1;
+	Stop;
+  }
+}
+
+Class DCY_DasherArm : DCY_GoreBase
+{  
+  Default
+  {
+  +ROLLCENTER
+  }
+  
+  States
+  {
+  Spawn:
+	U1X_ O 1 { roll += xroll; }
+	Loop;
+  Death:
+	U1X_ W -1 { vel.x = 0; vel.y = 0; roll = 0; }
 	Stop;
   }
 }

@@ -509,3 +509,58 @@ Class DCY_LavaSplashBaseSmall : Actor
     Stop;
   }
 }
+
+//Smoke
+Class DCY_SmokeSplashBase1 : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 1.0;
+  +NOCLIP
+  +DONTSPLASH
+  +NOGRAVITY
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+    TNT1 F 0 NoDelay
+	{
+		for (int i = 6; i > 0; i--)
+			A_SpawnParticleEx(0x333333, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 90, 60, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0, 0.25), startalphaf: 0.25, fadestepf: 0.005, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+	}
+    Stop;
+  }
+}
+
+Class DCY_SmokeSplashBaseSmall : Actor
+{
+  Default
+  {
+  Radius 1;
+  Height 1;
+  Mass 1;
+  Alpha .6;
+  Scale 0.7;
+  +DONTSPLASH
+  +NOGRAVITY
+  +NOCLIP
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 F 0 NoDelay
+    {
+		for (int i = 3; i > 0; i--)
+			A_SpawnParticleEx(0x333333, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 90, 60, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.3, 1), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0, 0.25), startalphaf: 0.25, fadestepf: 0.005, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+	}
+    Stop;
+  }
+}

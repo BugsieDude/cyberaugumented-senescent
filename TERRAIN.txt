@@ -81,6 +81,24 @@ splash 	Lava
  sound		world/lavasizzle
  NoAlert
 }
+
+splash 	Smoke
+{
+ smallclass 	DCY_smokesplashbasesmall
+ smallclip		12
+ smallsound	world/lavasizzlesmall
+
+
+ baseclass		DCY_smokesplashbase1
+ //chunkclass	lavasmoke2
+ chunkxvelshift	8
+ chunkyvelshift	8
+ chunkzvelshift	8
+ chunkbasezvel	2
+ sound		world/lavasizzle
+ NoAlert
+}
+
 //********** Terrain **********
 
 terrain	 nukage_t
@@ -150,6 +168,13 @@ terrain Lav3
 	liquid
 }
 
+terrain Smoke
+{
+	splash			Smoke
+	footclip		-3
+	liquid
+}
+
 terrain Blood
 {
 	splash			Blood
@@ -208,16 +233,16 @@ floor SLIME05 Slime
 floor SLIME06 Slime
 floor SLIME07 Slime
 floor SLIME08 Slime
-floor SLIME09 Lav3
-floor SLIME10 Lav3
-floor SLIME11 Lav3
-floor SLIME12 Lav3
-floor RROCK01 Lav3
-floor RROCK02 Lav3
-floor RROCK05 Lav3
-floor RROCK06 Lav3
-floor RROCK07 Lav3
-floor RROCK08 Lav3
+floor SLIME09 Smoke
+floor SLIME10 Smoke
+floor SLIME11 Smoke
+floor SLIME12 Smoke
+floor RROCK01 Smoke
+floor RROCK02 Smoke
+floor RROCK05 Smoke
+floor RROCK06 Smoke
+floor RROCK07 Smoke
+floor RROCK08 Smoke
 
 floor DC_BLD Blood
 floor DC_WAT Water

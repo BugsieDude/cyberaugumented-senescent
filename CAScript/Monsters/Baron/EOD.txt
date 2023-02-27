@@ -297,15 +297,6 @@ Class DCY_EOD : DCY_HeckBaron
   }
 }
 
-Class DCY_EodTest : DCY_EOD
-{
-  States
-  {
-  Missile:
-	Goto Miniballs;
-  }
-}
-
 Class DCY_EODComet : DCY_GeneralComet
 {
   Default

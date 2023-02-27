@@ -75,6 +75,8 @@ Rehabiliation/IdleNoise "Sounds/Inventory/dcy_rehabiliation_loop.ogg"
 UncoSphere/IdleNoise "Sounds/Inventory/dcy_uncosphere_loop.ogg"
 $volume UncoSphere/IdleNoise 0.75
 Supremacy/IdleNoise "Sounds/Inventory/dcy_supremacy_idle.ogg"
+Raze/IdleNoise "Sounds/Inventory/dcy_raze_loop.ogg"
+Berserk/IdleNoise "Sounds/Inventory/dcy_berserk_idle.ogg"
 
 //me luv item noises :)
 POWERGET "Sounds/Inventory/dcy_exo.ogg"

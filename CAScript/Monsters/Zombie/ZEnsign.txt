@@ -3,8 +3,8 @@ Class DCY_ZEnsign : DCY_Zombe
   Default
   {
   Health 300;
-  Speed 9;
-  FastSpeed 13;
+  Speed 7;
+  FastSpeed 11;
   DropItem "Shotgun";
   DropItem "DCY_Palisade", 150;
   DropItem "Medikit", 150;
@@ -16,6 +16,8 @@ Class DCY_ZEnsign : DCY_Zombe
   +NOTARGET;
   +DONTGIB;
   +NODROPOFF;
+  +ROLLSPRITE;
+  +ROLLCENTER;
   SeeSound "ZEnsign/Sight";
   ActiveSound "ZEnsign/Active";
   PainSound "ZEnsign/Pain";
@@ -60,11 +62,8 @@ Class DCY_ZEnsign : DCY_Zombe
   {
 	A_Chase();
 	
-	if (random(0, 30) == 0)
-	{
-		A_Dodging(10);
-		A_Hop(random(4, 5));
-	}
+	if (!random(0, 40) && target)
+		SetStateLabel("Dodge");
   }
   
   state A_EnsignChoose(stateLabel s1, stateLabel s2, stateLabel s3)
@@ -134,6 +133,17 @@ Class DCY_ZEnsign : DCY_Zombe
   See:
     #### AABBCCDD 2 { A_Recoil(-0.1); A_EnsignChase(); }
 	Loop;
+  Dodge:
+	U_DR # 0
+	{
+		A_FaceTarget();
+		frame = randompick(0, 1);
+		A_Hop(random(4, 5));
+		Vel3DFromAngle(18, Angle*128/256+((!frame) ? 64 : 192), 0);
+	}
+	U_DR ################# 1 { roll += (!frame) ? -22 : 22; }
+	U_DR # 0 { roll = 0; A_FaceTarget(); A_EnsignSprite(); if (target) SetStateLabel("Missile"); }
+	Goto See;
   Missile:
     #### # 1
 	{
@@ -279,7 +289,7 @@ Class DCY_ZEnsign : DCY_Zombe
 	}
 	Goto See;
   Pain:
-    #### G 4;
+    #### G 4 { roll = 0; A_EnsignSprite(); }
 	#### G 4
 	{
 		if (random(0, 5) == 1)
@@ -297,11 +307,12 @@ Class DCY_ZEnsign : DCY_Zombe
   Death:
 	#### # 0
 	{
+		roll = 0;
 		switch (random(0, 3))
 		{
 			case 0: Return ResolveState("Death1"); break;
 			case 1: Return ResolveState("Death2"); break;
-			case 2: Return ResolveState("NormalDeath"); break;
+			case 2: Return ResolveState("NormalDeath"); A_EnsignSprite(); break;
 			case 3: Return ResolveState("Death3"); break;
 		}
 		
@@ -336,6 +347,9 @@ Class DCY_ZEnsign : DCY_Zombe
 	U_D2 DE 5;
 	U_D2 F -1;
 	Stop;
+  XDeath:
+	#### # 0 { roll = 0; }
+	Goto Super::XDeath;
   Raise:
 	#### # 0 { A_EnsignSprite(); A_SetScale(1, 1); }
     #### KJIH 5;

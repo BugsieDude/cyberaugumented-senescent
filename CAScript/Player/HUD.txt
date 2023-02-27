@@ -232,6 +232,7 @@ Class DCyb_HUD : BaseStatusBar
   {
 	let temp1 = CyberaugumentedEventHandler(EventHandler.Find("CyberaugumentedEventHandler")).temp1;
 	let lvl = CY_GetCVar("cl_dcy_hud_level");
+	let lvl2 = CY_GetCVar("sv_dcy_progressivespawns");
 	let g = CyberaugumentedEventHandler(EventHandler.Find("CyberaugumentedEventHandler")).plvl;
 	
 	//Spaghetti Code ffs
@@ -273,11 +274,11 @@ Class DCyb_HUD : BaseStatusBar
 	vector2 apos = (32 + xx, -83 + yy);
 	int temp = 0;
 	
-	DrawImage((lvl) ? "CHUDT3M2" : "CHUDT3MP", apos, DI_ITEM_LEFT_TOP);
+	DrawImage((lvl && lvl2) ? "CHUDT3M2" : "CHUDT3MP", apos, DI_ITEM_LEFT_TOP);
 	DrawString(dcyb_font, FormatNumber(temp1, -273, 9999), (apos.x + 33, apos.y + 2.5), flags: DI_TEXT_ALIGN_RIGHT);
 	DrawString(dcyb_font, tn, (apos.x + 4, apos.y + 17.5), flags: DI_TEXT_ALIGN_LEFT, Font.CR_UNTRANSLATED);
 	
-	if (lvl && g) DrawString(dcyb_font, "\c[p7]"..FormatNumber(g, 0, 9999), (apos.x + 78, apos.y + 3), flags: DI_TEXT_ALIGN_LEFT);
+	if (lvl && lvl2 && g) DrawString(dcyb_font, "\c[p7]"..FormatNumber(g, 0, 9999), (apos.x + 78, apos.y + 3), flags: DI_TEXT_ALIGN_LEFT);
   }
   
   virtual void CA_DrawDestination()

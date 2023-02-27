@@ -2,7 +2,7 @@ Class DCY_Painsend : DCY_Impe
 {
   Default
   {
-  Health 135;
+  Health 99;
   Tag "Painsend";
   BloodType "AndroidNeonFluid";
   BloodColor "Orange";

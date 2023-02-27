@@ -38,13 +38,12 @@ Class DCY_UnknownEye : Actor
   {
 	"You feel a cold touch.",
 	"Are you okay?",
-	"You are nothing, even less than nothing; you're sick.",
+	"Get yourself out of there.",
 	"Welcome to your own special hell.",
 	"The voices.",
-	"Make it stop.",
+	"Hell.",
 	"Kill.",
-	"Hahahaha...",
-	"War is hell. Hell is war.",
+	"The hopes are preceding while you're still there.",
 	"Infernal fires are uprising.",
 	"Impending doom will approach soon.",
 	"Will things EVER stay the same? ...again?"

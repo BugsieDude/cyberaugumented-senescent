@@ -29,11 +29,12 @@ DCY_QUITMSG12 = "You know what they say... all hell energy toasts chaos.";
 DCY_QUITMSG13 = "The slop!";
 DCY_QUITMSG14 = "Bro just rampaged and left.";
 DCY_QUITMSG15 = "SO MUCH BLOOD!";
-DCY_QUITMSG16 = "Wait, but you said you'll rip and tear! Get it?...";
+DCY_QUITMSG16 = "They are stalking.";
 DCY_QUITMSG17 = "You ever feel like you just woke up at 3 AM and this happens?";
 DCY_QUITMSG18 = "Yea of course, do your own little infinitesimal job.";
-DCY_QUITMSG19 = "A robot goes to a bar. The horse promptly shits on the fl";
+DCY_QUITMSG19 = "A robot goes to a bar. The horse promptly shits on the floor and leaves.";
 DCY_QUITMSG20 = "Call me \c[z3]the Curator\c- because I'm going to fucking GET you without noticing me";
+DCY_QUITMSG21 = "The eyes of darkness are lurking you whenever you're a layabout.";
 
 //Tooltips
 TIP_CYBERAUGUMENTEDDASHINGMENU = "The configurations for the player's mechanics. Typically this mod used to be a DOOM Eternal inspired mod before it started to become unique.";
@@ -60,7 +61,7 @@ TIP_SV_DCY_PROGRESSIVESPAWNS = "Enables the progression system. Collecting weapo
 TIP_SV_DCY_PROGRESSION = "The multiplication meter for the progression system. The lower, the higher the progression will be. The higher, the slower.";
 TIP_DCY_TRACKER = "Upon killing all monsters, collecting all items, and finding all secrets, you will be announced that you have filled the emptiness of the level stats.";
 TIP_DCY_COMPLETIONIST = "Filling up a level stat will give you a special reward, especially when completing the level.";
-TIP_CL_DCY_HUD_LEVEL = "Shows how much you have progressed in a simple numeric way.";
+TIP_CL_DCY_HUD_LEVEL = "Shows how much you have progressed in a simple numeric way. ...Unless you have your progression system off.";
 TIP_DCY_LIQUIDS = "Changes the way how liquids are shown.";
 TIP_DCY_WOLFENSTEINCUTSCENE = "Emits a cool-ass cutscene reminiscent to the Wolfenstein 3D game.";
 TIP_DCY_WOLFENSTEINSPAWNS = "Enables custom monsters that replaces the Wolfenstein SS Guards.";

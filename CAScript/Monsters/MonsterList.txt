@@ -31,7 +31,6 @@
 #include "CAScript/Monsters/Shotgunner/Consul.txt"
 #include "CAScript/Monsters/Pinky/Dasher.txt"
 #include "CAScript/Monsters/Revenant/Gloom.txt"
-#include "CAScript/Monsters/Pinky/AAAAAAAAAAAA.txt"
 #include "CAScript/Monsters/Zombie/ZEnsign.txt"
 #include "CAScript/Monsters/Chaingunner/Commandant.txt"
 #include "CAScript/Monsters/Chaingunner/Mech.txt"

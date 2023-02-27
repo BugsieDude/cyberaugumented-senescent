@@ -149,7 +149,13 @@ Class DCY_Alphomency : DCY_PinkeII
 		A_UnHideThing();
 		bGhost = false;
 	}
-	UU8_ H 8 A_Scream();
+	UU8_ H 8
+	{
+		A_FaceTarget();
+		let arm = Spawn("DCY_AlphomencyArm", self.pos + (0, 0, 20));
+		if (arm) { arm.Vel3DFromAngle(random(5, 7), self.angle - 90, self.pitch - 50); arm.translation = translation; }
+		A_Scream();
+	}
 	UU8_ I 7 A_NoBlocking();
 	UU8_ JKLM 7;
 	UU8_ N -1;
@@ -212,6 +218,19 @@ Class DCY_AlphomencyProjectile : DoomImpBall
 		for (int i = 6; i > -1; i--) A_SpawnItemEx("DCY_BloodParticleX", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(15, -15), frandom(-15, 15), frandom(1, 15), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 30);
 		A_SetRoll(frandom(0.00, 360.00));
 	}
+	Stop;
+  }
+}
+
+Class DCY_AlphomencyArm : DCY_DasherArm
+{
+  States
+  {
+  Spawn:
+	UU8_ O 1 { roll += xroll; }
+	Loop;
+  Death:
+	UU8_ W -1 { vel.x = 0; vel.y = 0; roll = 0; }
 	Stop;
   }
 }
