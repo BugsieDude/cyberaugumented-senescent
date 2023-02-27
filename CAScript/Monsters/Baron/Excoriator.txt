@@ -182,7 +182,7 @@ Class DCY_AComet : DCY_GComet
   +NEVERFAST
   Scale 0.76;
   SeeSound "TORPMISL";
-  DeathSound "Comet/Explode";
+  DeathSound "DCYComet/Explode";
   }
   
   States

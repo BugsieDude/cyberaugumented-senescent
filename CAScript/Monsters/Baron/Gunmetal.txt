@@ -296,7 +296,7 @@ Class DCY_GComet : DCY_Projectile
   Height 12;
   Speed 20;
   Damage 10;
-  Scale 1.2;
+  Scale 1.05;
   Projectile;
   +THRUSPECIES;
   SeeSound "TORPMISL";
@@ -321,12 +321,12 @@ Class DCY_GComet : DCY_Projectile
 		
 		for (int i = random(6, 9); i > 0; i--)
 		{
-			let ember = Spawn("DCY_GEmber", (pos.x, pos.y, pos.z));
+			let ember = Spawn("DCY_GEmber", pos + (frandom(-12, 12), frandom(-12, 12), 0));
 			
 			if (ember)
 			{
-				ember.vel.x = frandom(-16, 16);
-				ember.vel.y = frandom(-16, 16);
+				ember.vel.x = frandom(-10, 10);
+				ember.vel.y = frandom(-10, 10);
 				ember.vel.z = frandom(1, 15);
 			}
 		}
