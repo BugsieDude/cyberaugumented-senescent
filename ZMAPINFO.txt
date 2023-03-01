@@ -12,7 +12,7 @@ gameinfo
 	dimamount = 0.6
 	cursorpic = "DCYC0RSU"
 	statscreen_single = "DCY_Intermission"
-	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "CyberaugumentedStartupHandler"
+	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "DCY_Interceptor", "CyberaugumentedStartupHandler"
 	StatusBarClass = "DCyb_HUD"
 	BackpackType = "DCY_Backpack"
 	playerclasses = "CyberaugumentedProtagonist"

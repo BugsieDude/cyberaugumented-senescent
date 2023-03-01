@@ -1,0 +1,35 @@
+class DCY_Interceptor : StaticEventHandler
+{
+  bool death;
+  bool playonce;
+  
+  override void WorldUnloaded(WorldEvent evt)
+  {
+	for (int i = 0; i < MAXPLAYERS; i++)
+	{
+		if (playeringame[i] && players[i].playerstate == PST_DEAD)
+		{
+			players[i].resurrect();
+			let p = players[i].mo;
+			if (p)
+			{
+				p.GiveDefaultInventory();
+				p.TakeInventory("DCY_TheBFG9000", 1);
+				p.TakeInventory("DCY_TheBFG10000", 1);
+				p.TakeInventory("DCY_SiriusCrisis", 1);
+				p.TakeInventory("DCY_VeneratedTruncheon", 1);
+				p.TakeInventory("DCY_Deracinator", 1);
+				p.TakeInventory("DCY_Epitome", 1);
+			}
+			death = true;
+			let g = DCY_Variables.Get();
+			if (g && g.dcylevel && sv_dcy_progressivespawns) g.dcylevel = abs(int(g.dcylevel / 2));
+		}
+	}
+  }
+  
+  override void WorldLoaded(WorldEvent evt)
+  {
+	if (death && !playonce) { S_StartSound("dcy/midi", 231, CHANF_UI); playonce = true; }
+  }
+}

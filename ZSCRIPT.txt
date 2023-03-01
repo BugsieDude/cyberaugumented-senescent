@@ -32,6 +32,7 @@ Version "4.10.0"
 #include "CAScript/Events/Texture.txt"
 #include "CAScript/Events/Anti.txt"
 #include "CAScript/Events/Replacers.txt"
+#include "CAScript/Events/DeathExit.txt"
 
 //Items and Ammo
 #include "CAScript/Items/ItemBase.txt"

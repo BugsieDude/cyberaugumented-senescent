@@ -89,19 +89,19 @@ Class DCY_TresherDoot : DCY_Rev
 		A_StartSound("angydoot/grunt", CHAN_VOICE, 0, 1.0, 0.75);
 		A_FaceTarget();
 	}
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
-	SKE2 H 3 Bright A_TresherShot();
+	SKE2 H 3 A_TresherShot();
 	SKE2 G 3 A_FaceTarget();
 	SKE2 G 5 A_FaceTarget();
 	SKE2 I 16;
