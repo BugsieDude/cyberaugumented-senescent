@@ -2,7 +2,7 @@ Class DCY_Auteur : DCY_VileParent
 {
   Default
   {
-  Health 800;
+  Health 700;
   Tag "Auteur";
   Obituary "Due to the Auteur, %o is now a pile of nothingness.";
   Scale 1.2;
@@ -78,7 +78,7 @@ Class DCY_Auteur : DCY_VileParent
   Vile:
     A_1_ B 5 { A_FaceTarget(); A_StartSound("Auteur/Idle", CHAN_VOICE); }
     A_1_ B 1 A_VileTarget("DCY_AuteurVile");
-    A_1_ BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCC 1 A_FaceTarget();
+    A_1_ BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCC 1 A_FaceTarget();
     A_1_ D 9 A_VileAttack();
     A_1_ A 20;
     Goto See;
@@ -231,7 +231,7 @@ Class DCY_AuteurVile : ArchvileFire
 	if (level.isFrozen()) return;
 	timer++;
 	
-	if (timer > 65)
+	if (timer > 80)
 	{
 		for (float i = 0; i < 5; i += 0.25)
 		{

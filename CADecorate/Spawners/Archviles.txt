@@ -1,7 +1,6 @@
 ACTOR DCY_MadMartian : DCY_Spawner Replaces Archvile
 {
-  DropItem "DCY_ALIEN", 0, 866
-  DropItem "DCY_Auteur", 8, 270
+  DropItem "DCY_Auteur", 0, 866
   DropItem "DCY_Apollyon", 10, 228
   DropItem "DCY_Hexodenican", 18, 40
   DropItem "DCY_FulminationVirtuoso", 25, 9
