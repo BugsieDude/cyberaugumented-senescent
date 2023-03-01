@@ -1,52 +1,3 @@
-Class DCY_CSphereAura : DCY_Effect
-{
-  float fade;
-  Property FadeTime: fade;
-  
-  Default
-  {
-  Radius 0;
-  Height 0;
-  RenderStyle "Add";
-  Alpha 0.6;
-  Scale 0.999;
-  +NOCLIP
-  +NOINTERACTION
-  +THRUACTORS
-  +THRUGHOST
-  +BRIGHT
-  DCY_CSphereAura.FadeTime 0.1;
-  }
-  
-  States
-  {
-  Spawn:
-	EF1_ A 0;
-	Goto Idle;
-  Idle:
-	"####" "#" 1
-	{
-		If(Scale.X <= 0.00000000000001 || Alpha <= 0.00000000000001)
-			Destroy();
-		
-		A_SetScale(Scale.X-0.1, Scale.Y-0.1);
-		A_ChangeVelocity(0, 0, random(1, 2));
-		A_FadeOut(fade, 0);
-	}
-	Loop;
-  }
-}
-
-Class DCY_SoulsphereAura : DCY_CSphereAura { States { Spawn: EF1_ K 0; Goto Idle; } }
-Class DCY_MegasphereAura : DCY_CSphereAura { Default { Alpha 0.325; DCY_CSphereAura.FadeTime 0.065; } States { Spawn: EF1_ T 0; Goto Idle; } }
-Class DCY_UncoAura : DCY_CSphereAura { States { Spawn: EF1_ L 0; Goto Idle; } }
-Class DCY_InvulSphereAura : DCY_CSphereAura { Default { Alpha 0.325; DCY_CSphereAura.FadeTime 0.065; } States { Spawn: EF1_ U 0; Goto Idle; } }
-Class DCY_RadSphereAura : DCY_CSphereAura { Default { Alpha 0.225; DCY_CSphereAura.FadeTime 0.035; } States { Spawn: EF1_ U 0; Goto Idle; } }
-Class DCY_CrosscutAura : DCY_CSphereAura { Default { Alpha 0.325; Scale 0.654321; DCY_CSphereAura.FadeTime 0.055; } States { Spawn: EF1_ B 0; Goto Idle; } }
-Class DCY_RehabiliationAura : DCY_CSphereAura { Default { Alpha 0.225; DCY_CSphereAura.FadeTime 0.065; } States { Spawn: EF1_ V 0; Goto Idle; } }
-Class DCY_SupremacyAura : DCY_CSphereAura { Default { Alpha 0.255; Scale 0.654321; DCY_CSphereAura.FadeTime 0.055; } States { Spawn: EF1_ W 0; Goto Idle; } }
-Class DCY_ProspectAura : DCY_CSphereAura { Default { Alpha 0.225; DCY_CSphereAura.FadeTime 0.055; } States { Spawn: EF1_ X 0; Goto Idle; } }
-
 Class DCY_SphereRing : Actor
 {
   Default
@@ -160,10 +111,5 @@ Class DCY_RingThing : Actor
   }
 }
 
-Class DCY_SoulsphereRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_SoulsphereRing"; } }
-Class DCY_MegasphereRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_MegasphereRing"; } }
-Class DCY_UncoRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_UncoRing"; } }
-Class DCY_RehabiliationRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_RehabiliationRing"; } }
-Class DCY_SupremacyRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_SupremacyRing"; } }
 Class DCY_ProspectRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_ProspectRing"; } }
 Class DCY_PhotocoagulatorRingThing : DCY_RingThing { Default { DCY_RingThing.RingT "DCY_PhotocoagulatorRing"; } }

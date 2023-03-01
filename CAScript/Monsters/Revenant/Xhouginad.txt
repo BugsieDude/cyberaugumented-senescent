@@ -14,12 +14,11 @@ Class DCY_Xhouginad : DCY_Rev
   +MISSILEEVENMORE
   +QUICKTORETALIATE
   +NOTARGET
-  +BRIGHT
   +DONTHARMSPECIES
   +NOINFIGHTING
   +DONTHARMCLASS
   BloodType "DCY_SpiritBlood";
-  BloodColor "Cyan";
+  BloodColor "1655a8";
   Tag "\c[Sapphire]Remainder Mechaprototype - Xhouginad\c-";
   SeeSound "DarkDroid/Sight";
   ActiveSound "DarkDroid/Active";
@@ -157,7 +156,7 @@ Class DCY_BigAssFluorescentOrb : DCY_FluorescentOrb
 
 Class DCY_FluorescentAuraBig : DCY_FluorescentOrbT { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.28,0.63,1.85]"; Scale 2.5; } }
 
-Class DCY_XEclipse : PlasmaBall
+Class DCY_XEclipse : DCY_RehauledPlasma
 {
   Default
   {
@@ -169,15 +168,25 @@ Class DCY_XEclipse : PlasmaBall
   DamageType "Fluorescent";
   SeeSound "PsiPistol/SmallLaser";
   Translation "0:255=%[0.00,0.00,0.50]:[1.31,2.00,2.00]";
+  DCY_RehauledPlasma.AuraColor "1655a8";
   }
   
   States
   {
   Spawn:
-	P38J AABBCCDD 1 A_Weave(5, 5, 0.45, 0.45);
+	P38J AABBCCDD 1
+	{
+		A_Weave(5, 5, 0.45, 0.45);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames(ac, 25, 20, 0, false, frandom(-2.5, 2.5), ember: false);
+	}
 	Loop;
   Death:
-	DK9T DEFGHIJKLM 2;
+	FVUL C 6
+	{
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticleEx(ac, TexMan.CheckForTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 4), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(3.5, 6.4), accelz: -0.85);
+	}
+	FVUL DEF 6;
 	Stop;
   }
 }

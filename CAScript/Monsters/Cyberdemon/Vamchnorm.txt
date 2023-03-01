@@ -38,8 +38,8 @@ Class DCY_Vamchnorm : DCY_Cybie
 	CARD AB 2 DCY_Look();
 	Loop;
   Look:
-	CARD AB 2;
-	"####" A 1 A_CheckSight("Look");
+	CARD AB 3 DCY_LookingForPlayer();
+	"####" A 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();

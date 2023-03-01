@@ -46,14 +46,16 @@ Class DCY_Arbiter : DCY_NavyTerminator
   
   void A_ArbiterVoice(double att, int max)
   {
-	if (voiceline == 0)
-		A_StartSound("Arbiter/Attack1", CHAN_VOICE, attenuation: att);
-	if (voiceline == 3)
-		A_StartSound("Arbiter/Attack2", CHAN_VOICE, attenuation: att);
-	if (voiceline == 6)
-		A_StartSound("Arbiter/Attack3", CHAN_VOICE, attenuation: att);
-		
-	voiceline = random(0, max);
+	sound snd;
+	
+	switch (random(0, max))
+	{
+		case 1: snd = "Arbiter/Attack1"; break;
+		case 3: snd = "Arbiter/Attack2"; break;
+		case 6: snd = "Arbiter/Attack3"; break;
+	}
+	
+	A_StartSound(snd, CHAN_VOICE, attenuation: att);
   }
   
   bool soundplayed;

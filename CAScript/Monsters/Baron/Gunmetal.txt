@@ -292,8 +292,8 @@ Class DCY_GComet : DCY_Projectile
 {
   Default
   {
-  Radius 8;
-  Height 12;
+  Radius 15;
+  Height 15;
   Speed 20;
   Damage 10;
   Scale 1.05;
@@ -321,7 +321,7 @@ Class DCY_GComet : DCY_Projectile
 		
 		for (int i = random(6, 9); i > 0; i--)
 		{
-			let ember = Spawn("DCY_GEmber", pos + (frandom(-12, 12), frandom(-12, 12), 0));
+			let ember = Spawn("DCY_GEmber", (pos.x, pos.y, pos.z));
 			
 			if (ember)
 			{

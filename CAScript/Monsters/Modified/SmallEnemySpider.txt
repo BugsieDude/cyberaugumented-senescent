@@ -24,7 +24,10 @@ Class DCY_ArachnoParent : DCYMonster
 	BSPI A 10 DCY_Look();
 	Loop;
   Look:
-	"####" A 10 A_Chase(null, null, CHF_DONTMOVE|CHF_NOPLAYACTIVE);
+	BSPI A 3 A_BabyMetal();
+	BSPI ABBCC 3 DCY_LookingForPlayer();
+	BSPI D 3 A_BabyMetal();
+	BSPI DEEFF 3 DCY_LookingForPlayer();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
@@ -78,7 +81,10 @@ Class DCY_SmallEnemySpider : DCY_ArachnoParent
 	PSPI A 10 DCY_Look();
 	Loop;
   Look:
-	"####" A 10 A_Chase(null, null, CHF_DONTMOVE|CHF_NOPLAYACTIVE);
+	PSPI A 3 A_BabyMetal();
+	PSPI ABBCC 3 DCY_LookingForPlayer();
+	PSPI D 3 A_BabyMetal();
+	PSPI DEEFF 3 DCY_LookingForPlayer();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:

@@ -35,7 +35,7 @@ Special thanks to...
 
 Agent_Ash - For helping me with ZScript
 Boondorl and the entire ZDoom server - Helping me making this mod a reality
-Deimos Anomaly - The main idea of dynamic spawners and the temperature system.
+Deimos Anomaly - The main idea of dynamic spawners and the temperature system. (Going to be implemented in a later update)
 Visceral - For supporting this mod
 
 You - For downloading and trying out Cyberaugumented.
@@ -57,7 +57,7 @@ Dolphman - Lightning Vulgar sprites
 Rare Ltd. - Interface & Enviroment sounds (Killer Instinct)
 FromSoftware - Bloodborne Sounds
 Activision Blizzard - Diablo Sounds
-Overlord (Mew) - Cydestroyer, Hellfire Cyberdemon, and Cerebral Commander sprites
+Overlord (Mew) - Cydestroyer and Cerebral Commander sprites
 Bridgeburner (Aka. Eriance) - Mindmaster, Dastard, Vulgars, Infernis, Hexodenican, Wretched, Espouser, etc. sprites
 DoomedArchvile - Alacritous Guy Sprites
 HorrorMovieGuy/HorrorMovieRei - Monster sprites
@@ -72,10 +72,9 @@ KDiZD - Z-Exec sprites (along with frankenspriting from id and Rogue Entertainme
 Vader - Malwrath Sprites
 Rottking - Perserver Sprites
 zrrion the insect - Lightning arc effect sprites
-Pierre Ramiez (pram9k@gmail.com) - Abyssal Exarch, Vizier, Lightning Phase, etc. (Doom X) sprites [I miss you, Doom X.]
-Reaper Doom - Sacker (Elite Imp Edits) sprites
+Pierre Ramiez (pram9k@gmail.com) - Abyssal Exarch, Vizier, Lightning Phase, etc. (Doom X) sprites
 High Councilor - Monster Sprites (Maltreat, Lemures, Arachnoaversion, Qualm, Inciter, etc.)
-DustedPandemonic - War (Destructive Earl) Sprites
+DustedPandemonic - War (Destructive Earl) Sprites, inspiration for the Progression system
 Captain Toenail - Ion Arachnotron and Aracgunner sprites
 General Roasterock - Acrobat sprites
 Realm667 Community - Majority of stuff
@@ -101,7 +100,7 @@ Xegethra/Amaranthus616 - Black Metal Baron/Peril Sprites
 SNK Corp. - (Metal Slug) Sprites for Water Splashes + Alpha Mission 2 Startup Sound
 BloodyAcid - Sprites
 Craneo - Sprites
-Digital Extremes - Sounds
+Digital Extremes - Sounds and (Dark Sector) Announcement Sounds
 Epic Games - (Unreal Tournament, Gears of War) Sounds
 Jukem - Weapon sprites
 Team D-13 - Sounds
@@ -115,7 +114,7 @@ PyroScourge - Thor Sprites
 Vivendi Games - Sounds
 JoyMasher - Archon Explosion sounds
 Ryemanni - Upheaval Laser sounds (Rayman Redemption)
-CWolf - Upheavalbringer/Archdictator sprites
+CWolf - Archdictator sprites
 Cherno - Sprites
 Player Incognito - Sirius Crisis sounds
 Backbone Entertainment - Sounds
@@ -169,7 +168,6 @@ Agaures - EOD Sprites
 Turtle Rock Studios (Back 4 Blood) - Sounds
 Red Hook Studios (Darkest Dungeon) - Sounds
 splosions - Befouler sprites
-Digital Extremes - Announcement Sounds
 Saber Interactive - Sounds
 Fallout - Sounds
 Uboa - Sprites
@@ -193,15 +191,19 @@ RiboNucleic Asshat - Liquids
 3saster - Liquid Replacer
 NMK, UPL - Secret Sound
 Looking Glass Studios (System Shock 1 & 2) - Sounds
+Oplexitie - Sprites
+CD Projekt (The Witcher 3) - Sounds
+Remedy Entertainment (Control) - Sounds
+GSC Game World (S.T.A.L.K.E.R) - Sounds
+Kinnerokhn - Sprites
+The Blue Savior - Being a inspiration for this mod's dark theme
+Airtight (Dark Void) - Announcement Sounds
+Blue Shadow (ncHud) - Inspiration for the hud
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help
 
 ================================================================================
-MUSIC AND FANFARES
+MUSIC
 ================================================================================
 TITLEMAP - 
-
-================================================================================
-VOICE ACTORS
-================================================================================

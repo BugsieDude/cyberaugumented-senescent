@@ -311,7 +311,7 @@ $random PsiPistol/Laser { LAZEHR LAZEHR2 }
 LAZEHR "Sounds/Projectiles/dcy_fluorescent_orb1.ogg"
 LAZEHR2 "Sounds/Projectiles/dcy_fluorescent_orb2.ogg"
 PsiPistol/LargeLaser "Sounds/Projectiles/dcy_fluorescent_orb_large.ogg"
-PsiPistol/SmallLaser "Sounds/Projectiles/dcy_tiny_spinner.ogg"
+PsiPistol/SmallLaser "Sounds/Projectiles/dcy_small_spinner.ogg"
 $limit PsiPistol/SmallLaser 0
 
 //Other Explosionz

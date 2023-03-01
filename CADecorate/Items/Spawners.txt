@@ -73,8 +73,8 @@ ACTOR DCY_PartialBlurReplacementShitThingy : RandomSpawner Replaces BlurSphere
   DropItem "DCY_Palisade", 256, 155
   DropItem "DCY_Crosscut", 256, 100
   DropItem "DCY_Deterrence", 256, 90
-  DropItem "DCY_RazeSpherule", 256, 75
+  DropItem "DCY_RazeHexahedron", 256, 75
   DropItem "DCY_Prospect", 256, 70
   DropItem "DCY_Barricade", 256, 65
-  DropItem "DCY_VesticalAbettance", 256, 30
+  DropItem "DCY_VesticalAbettance", 256, 70
 }

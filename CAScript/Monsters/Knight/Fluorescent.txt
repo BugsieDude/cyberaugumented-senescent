@@ -56,9 +56,9 @@ Class DCY_FluorescentChevalier : DCY_KnightHell
     PYRO MN 10 A_FaceTarget();
 	PYRO O 7
 	{
-		A_SpawnProjectile("DCY_FBall", 30, 0, 0);
-		A_SpawnProjectile("DCY_FBall", 30, 0, 10);
-		A_SpawnProjectile("DCY_FBall", 30, 0, -10);
+		A_FaceTarget();
+		for (int i = -10; i < 11; i += 10)
+			A_SpawnProjectile("DCY_FBall", 30, 0, i);
 	}
 	PYRO P 7;
 	Goto See;

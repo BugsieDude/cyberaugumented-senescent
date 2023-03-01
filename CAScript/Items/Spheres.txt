@@ -373,6 +373,8 @@ Class DCY_HazardProtection : PowerIronFeet
 
 Class DCY_Crosscut : CustomInventory
 {
+  Mixin DCY_Effects;
+  
   Default
   {
   Inventory.Amount 1;
@@ -387,13 +389,25 @@ Class DCY_Crosscut : CustomInventory
   RenderStyle "Add";
   Scale 1.25;
   Tag "Crosscut - Portable Drain for 60 seconds.";
-  Inventory.Icon "CRCTE0";
+  Inventory.Icon "CRCTZ0";
+  StencilColor "401a0d";
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (DCY_EffectDistance(1000) && !level.isFrozen() && sprite == GetSpriteIndex("CRCT"))
+	{
+		A_SpawnParticleEx(0x401a0d, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 120, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.15, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		A_SpawnItemEx("DCY_HexodenicanTrail", flags: SXF_TRANSFERSTENCILCOL|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+	}
   }
   
   States
   {
   Spawn:
-	CRCT AABBCCDDCCBBAA 1 Bright A_SpawnItemEx("DCY_CrosscutAura", random(-1, 1), random(-1, 1), random(24, 28), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION);
+	CRCT AAAAABBBBBCCCCDDDEEEFFGGGHHHIIIIJJJJKKKKKLLLLLLLLLKKKKJJJIIIIHHHGGGFFEEEDDDCCCCBBBBBAAAA 1 Bright;
 	Loop;
   Use:
 	TNT1 A 32
@@ -424,41 +438,104 @@ Class DCY_CrosscutPower : PowerDrain
   }
 }
 
-Class DCY_RazeSpherule : CustomInventory
+Class DCY_RazeHexahedron : DCY_Powerup
 { 
   Default
   {
-  Inventory.PickupMessage "\c[Purple]Suddently you feel fantasy RPG buffs.\c- (4x Damage)";
+  Inventory.PickupMessage "\c[Purple]Suddently you feel psyched!\c- (4x Damage)";
   Inventory.PickupSound "Raze/Pickup";
-  +INVENTORY.ALWAYSPICKUP
-  +VISIBILITYPULSE
-  Inventory.PickupFlash "DCY_UncoRingThing";
+  +BRIGHT
+  -FLOATBOB
+  Scale 1.5;
+  Alpha 1.0;
   RenderStyle "Add";
-  Tag "Raze Spherule";
+  Tag "Raze Hexahedron";
+  DCY_Powerup.AmbientNoise "Raze/IdleNoise";
+  DCY_Powerup.EffectColor1 "2f0087";
+  DCY_Powerup.LightRadius 70;
+  Alpha 0;
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	//Special floating method
+	let x1 = sin(MsTimeF() * 0.15);
+	let y1 = sin(MSTimeF() * 0.08);
+	let z1 = sin(MSTimeF() * 0.12);
+	
+	if (DCY_EffectSight())
+	{
+		let sprit = Spawn("DCY_RazeHexahedronTrail", pos + (x1 * 10, y1 * 10, z1 * 10));
+		if (sprit) { sprit.scale = scale; sprit.frame = frame; sprit.sprite = sprite; }
+	}
+	
+	if (level.isFrozen()) return;
+		
+	if (DCY_EffectDistance(1500))
+	{
+		if (!(getAge() % 130))
+		{
+			A_SpawnItemEx("DCY_RazeSpheruleCircle");
+			A_SpawnItemEx("DCY_RazeSpheruleCircle2");
+		}
+		
+		let trail = Spawn("DCY_RazeHexahedronTrail2", pos + (x1 * 10, y1 * 10, z1 * 10));
+		if (trail) { trail.frame = frame; trail.sprite = sprite; trail.scale = scale; }
+		
+		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 100, 0, frandom(20, -20) + (10 * x1), frandom(-20, 20) + (10 * y1), frandom(-20, 20) + (10 * z1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.5), startalphaf: 0.15, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		if (!(level.time % 5)) A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 60, frandom(1, 3), 0, frandom(50, -20) + (10 * x1), frandom(-50, 50) + (10 * y1), 0, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, 0.5), startalphaf: 1, sizestep: -0.025);
+	}
   }
   
   States
   {
   Spawn:
-	RAZ_ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("DCY_UncoAura", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(29.0, 31.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(2.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
-    RAZ_ A 1 Bright
-	{
-		A_SpawnItemEx("DCY_UncoAura", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(29.0, 31.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(2.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_RazeSpheruleCircle");
-		A_SpawnItemEx("DCY_RazeSpheruleCircle2");
-	}
+	RZA_ ABCDEFGIJ 4;
     Loop;
-  Pickup:
-	TNT1 A 1
+  }
+  
+  override bool Use(bool pickup)
+  {
+	Owner.A_SetBlend("White", 0.85, 30, "Purple");
+	Owner.A_QuakeEx(2, 2, 2, 40, 0, 300, "none", QF_SCALEDOWN, 0, 0, 0, 600);
+	Owner.A_GiveInventory("DCY_QuadDamagePower", 1);
+	
+	for (int i = 0; i < 360; i += 8)
 	{
-		A_QuakeEx(2, 2, 2, 40, 0, 300, "none", QF_SCALEDOWN, 0, 0, 0, 600);
-		A_SetBlend("White", 0.85, 30, "Purple");
-		A_SetMugshotState("Grin");
-		A_GiveInventory("DCY_QuadDamagePower", 1);
+		Owner.A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 60, random(12, 16), i, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 36, frandom(-0.1, 0.1) + 3, frandom(-0.1, 0.1), frandom(0.5, 1.5), accelx: -0.1, accelz: 0.025, startalphaf: 0.5, fadestepf: 0.05, sizestep: -0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		Owner.A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 100, 70, i, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 36, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.4, fadestepf: 0.015, sizestep: 0.05, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
-    Stop;
+	
+	return true;
   }
 }
+
+Class DCY_RazeHexahedronTrail : Actor
+{
+  Default
+  {
+  Alpha 1;
+  RenderStyle "Add";
+  +NOINTERACTION
+  +NOTIMEFREEZE
+  }
+  
+  override void Tick()
+  {
+	if (getAge() > 0.5) destroy();
+  }
+  
+  States
+  {
+  Spawn:
+	#### # 1;
+	Loop;
+  }
+}
+
+Class DCY_RazeHexahedronTrail2 : DCY_PhasicRazerTrail { Default { StencilColor "2f0087"; } }
 
 Class DCY_RazeSpheruleCircle : DCY_Effect
 {
@@ -466,7 +543,7 @@ Class DCY_RazeSpheruleCircle : DCY_Effect
   {
   Radius 0;
   Height 0;
-  Translation "0:255=%[0.00,0.00,0.00]:[1.31,0.00,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.25,0.00,0.50]";
   +FLATSPRITE;
   +FLOORHUGGER;
   +BRIGHT;
@@ -480,9 +557,8 @@ Class DCY_RazeSpheruleCircle : DCY_Effect
   Spawn:
 	SPE2 A 0 NoDelay
 	{
-		A_ChangeVelocity(0, 0, -200000000, CVF_REPLACE);
+		vel.z -= 1000000;
 		A_SetRoll(frandom(0.00, 360.00));
-		A_SetTranslation("0:255=%[0.00,0.00,0.00]:[1.31,0.00,2.00]");
 	}
 	SPE2 ABCDE 1 A_FadeIn(0.2, 0);
 	SPE2 FGHIJKLMNOPQRSTUVWXYZ 1;
@@ -503,9 +579,8 @@ Class DCY_RazeSpheruleCircle2 : DCY_RazeSpheruleCircle
   Spawn:
 	SPE2 A 0 NoDelay
 	{
-		A_ChangeVelocity(0, 0, -200000000, CVF_REPLACE);
+		vel.z -= 1000000;
 		A_SetRoll(frandom(0.00, 360.00));
-		A_SetTranslation("0:255=%[0.00,0.00,0.00]:[1.31,0.00,2.00]");
 	}
 	SPE2 ABCDE 1 A_FadeIn(0.1, 0);
 	SPE2 FGHIJKLMNOPQRSTUVWXYZ 1;
@@ -521,7 +596,7 @@ Class DCY_QuadDamagePower : PowerDamage
   Default
   {
   DamageFactor "Normal", 4;
-  Powerup.Color "50 00 50", 0.4;
+  Powerup.Color "50 00 50", 0.125;
   }
   
   override void DoEffect()
@@ -727,6 +802,8 @@ Class DCY_SupremacyPickupFlash : Actor
 
 Class DCY_Prospect : CustomInventory
 {
+  Mixin DCY_Effects;
+  
   Default
   {
   Inventory.Amount 1;
@@ -739,23 +816,38 @@ Class DCY_Prospect : CustomInventory
   Inventory.PickupSound "SPELL10";
   Inventory.UseSound "SPELL16";
   RenderStyle "Add";
-  Translation "0:255=%[0.00,0.00,0.50]:[2.00,1.01,1.01]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.52,0.55,1.01]";
   Scale 1.1;
   Tag "Prospect - Invulnerability with some other aspects.";
   Inventory.Icon "_407E0";
   }
   
+  override void Tick()
+  {
+	if (level.isFrozen()) return;
+	super.Tick();
+	
+	if (DCY_EffectDistance(900) && sprite == GetSpriteIndex("_407"))
+	{
+		A_SpawnItemEx("DCY_ProjectileBaseTrail", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+		A_SpawnParticleEx(0x5832a8, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 70, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.5, 1.5), accelz: 0.025, startalphaf: 0.15, fadestepf: 0.0025, sizestep: -0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		
+		if ((level.time % random(1, 4)) == 0)
+			A_SpawnParticleEx(0x5832a8, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 60, random(3, 6), frandom(0, 360), frandom(-30.0, 30.0), frandom(-30.0, 30.0), frandom(-30, 30), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.05, 0.2), startalphaf: 0.4, fadestepf: 0, sizestep: -0.15);
+	}
+  }
+  
   States
   {
   Spawn:
-	_407 AAABBBCCCDDD 1 Bright A_SpawnItemEx("DCY_ProspectAura", random(-1, 1), random(-1, 1), random(24, 28), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION);
+	_407 ABCD 6 Bright;
 	Loop;
   Use:
 	TNT1 A 32
 	{
 		A_SpawnItemEx("DCY_ProspectRingThing", 0, 0, 30, 0, 0, 0, angle, SXF_NOCHECKPOSITION);
 		A_QuakeEx(2, 2, 2, 22, 0, 200, "none", QF_SCALEDOWN);
-		A_SetBlend("CB B9 EE", 0.75, 25, "Red");
+		A_SetBlend("884dff", 0.75, 25, "0600b8");
 		A_GiveInventory("DCY_SoundPower", 1);
 		A_GiveInventory("DCY_ProspectPower", 1);
 		A_GiveInventory("DCY_ReflectivePower", 1);
@@ -765,6 +857,6 @@ Class DCY_Prospect : CustomInventory
   }
 }
 
-Class DCY_ProspectPower : PowerInvulnerable { Default { Powerup.Duration -7; Powerup.Color "65 10 90", 0.075; } }
+Class DCY_ProspectPower : PowerInvulnerable { Default { Powerup.Duration -7; Powerup.Color "0600b8", 0.075; } }
 Class DCY_SoundPower : PowerProtection { Default { Powerup.Duration -7; ActiveSound "SPELL04"; +PIERCEARMOR; DeathSound "SPELL02"; DamageFactor "Normal", 1.0; -DONTBLAST -DONTMORPH -DONTRIP -DONTSQUASH -NOPAIN -NORADIUSDMG -NOTELEOTHER } }
 Class DCY_ReflectivePower : PowerReflection { Default { Powerup.Duration -7; } }

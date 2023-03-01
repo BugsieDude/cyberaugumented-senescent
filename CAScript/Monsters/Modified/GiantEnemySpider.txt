@@ -40,8 +40,11 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	SPID A 10 DCY_Look();
 	Loop;
   Look:
-	"####" A 2;
-	"####" A 1 A_CheckSight("Look");
+	#### A 3 A_MetalII();
+	#### ABBCC 3 A_Chase();
+	#### D 3 A_MetalII();
+	#### DEEFF 3 A_Chase();
+	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
