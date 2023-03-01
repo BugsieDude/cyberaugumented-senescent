@@ -24,8 +24,11 @@ Class DCY_Espouser : DCY_VileParent
   {
 	super.tick();
 	
+	if (DCY_EffectSight())
+	{
 	if (!InStateSequence(CurState, ResolveState("Dash")))
 		A_SetRenderStyle(1, STYLE_NORMAL);
+	}
   }
   
   int dash;
@@ -166,7 +169,7 @@ Class DCY_Espouser : DCY_VileParent
 		
 		for (int i = 0; i < 360; i += 75)
 		{
-			let spirit = Spawn("DCY_EspouserServer", pos + (0, 0, floorz + 1));
+			let spirit = Spawn("DCY_EspouserServer", pos + (0, 0, pos.z));
 			if (spirit)
 			{
 				spirit.A_ChangeVelocity(frandom(20.0, -20.0), frandom(20.0, -20.0), frandom(1, 5));
@@ -194,8 +197,48 @@ Class DCY_Espouser : DCY_VileParent
 	HR1E P 7 A_SetFloorClip();
 	HR1E Q 6 { bNoGravity = false; A_Fall(); A_Scream(); }
 	HR1E RSTUVW 5;
-	HR1E X -1;
+	HR1E X 60;
+	HR1E X 80
+	{	
+		A_StartSound("PENTASUM", CHAN_BODY, attenuation: 0.10);
+		for (int i = -40; i < 41; i += 80)
+		{
+			let spirit = Spawn("DCY_ServerDeath", pos + (-i, i, 0));
+			if (spirit)
+			{
+				spirit.master = self;
+				spirit.bThruActors = true;
+				spirit.bThruSpecies = true;
+				
+				if (bFriendly == true)
+					spirit.bFriendly = true;
+			}
+		}
+	}
+	HR1E X 1
+	{
+		let espouser = Spawn("DCY_EspouserFall", pos);
+		if (espouser) { espouser.vel.z -= 0.5; espouser.scale = scale; }
+	}
 	Stop;
+  }
+}
+
+Class DCY_EspouserFall : Actor
+{
+  Default
+  {
+  +NOINTERACTION;
+  -SOLID;
+  Radius 0;
+  Height 0;
+  }
+  
+  States
+  {
+  Spawn:
+	HR1E X 1 A_FadeOut(0.005);
+	Wait;
   }
 }
 
@@ -204,8 +247,8 @@ Class DCY_EspouserFire : DCY_MeatballElecball
   Default
   {
   DamageType "Occult";
-  Scale 0.5;
-  Translation "0:255=%[0.06,0.06,0.06]:[1.31,1.31,1.31]";
+  Scale 0.6;
+  Translation "0:255=%[0.14,0.14,0.14]:[2.00,2.00,2.00]";
   Damage 2;
   Speed 15;
   FastSpeed 25;
@@ -215,10 +258,10 @@ Class DCY_EspouserFire : DCY_MeatballElecball
   States
   {
   Spawn:
-	FHED AABBCCDD 1 A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
+	FHED AABBCCDD 1 A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
 	Loop;
   Death:
-	RIP1 DCEFGH 3;
+	_334 GHIJKLM 2;
 	Stop;
   }
 }
@@ -230,6 +273,7 @@ Class DCY_EspouserSoul : DCY_MeatballElecball
   +SEEKERMISSILE
   Radius 7;
   Height 7;
+  Translation "0:255=%[0.14,0.14,0.14]:[2.00,2.00,2.00]";
   DamageType "Occult";
   SeeSound "Espouser/Missile";
   Speed 23;
@@ -243,11 +287,11 @@ Class DCY_EspouserSoul : DCY_MeatballElecball
 	{
 		A_Weave(random(1, -1), random(1, -1), random(1, -1), random(1, -1));
 		A_SeekerMissile(0, 1);
-		A_SpawnItemEx("DCY_Smonk", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(1, -1), frandom(1, -1), frandom(1, -1), frandom(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
 	}
 	Loop;
   Death:
-	SPRQ ABCDEFG 2;
+	SPRQ ABCDEFG 2 A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
 	Stop;
   }
 }
@@ -272,12 +316,10 @@ Class DCY_EspouserBall : DCY_EspouserSoul
   Spawn:
 	S0U2 ABCDE 1
 	{
-		A_SpawnItemEx("DCY_Smonk", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(1, -1), frandom(1, -1), frandom(1, -1), frandom(0, 360), SXF_TRANSFERSCALE|SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_RZSpirit", frandom(-30, 30), frandom(-30, 30), frandom(-30, 30), zvel: frandom(2, 4), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, failchance: 200);
 		
-		smissile = random(0, 1);
-		
-		if (smissile)
-			A_SpawnProjectile("DCY_EspouserSoul", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-20, 20));
+		A_SpawnFlames("aaaaaa", 35, 70, 0, false, frandom(-2.5, 2.5));
+		if (!random(0, 1)) A_SpawnProjectile("DCY_EspouserSoul", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-20, 20));
 	}
 	Loop;
   Death:
@@ -290,7 +332,7 @@ Class DCY_EspouserBall : DCY_EspouserSoul
 		
 		A_QuakeEx(3, 3, 3, 50, 0, 600, "", QF_SCALEDOWN, rollintensity: 0.5, rollwave: 1);
 		
-		A_SpawnItemEx("DCY_MonochromaticExplosion", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_MonochromaticExplosionBiggie", flags: SXF_NOCHECKPOSITION);
 	}
 	S0UX ABCDEFGHI 3;
 	TNT1 A 20;
@@ -315,7 +357,8 @@ Class DCY_EspouserShriekingSoul : DCY_EspouserSoul
 	{
 		A_Weave(random(-6, 6), random(-6, 6), random(1, 3), random(1, 3));
 		A_ChangeVelocity(0, frandom(-2, 2), frandom(-2, 2), CVF_RELATIVE);
-		A_SpawnItemEx("DCY_RocketSmonk", flags: SXF_NOCHECKPOSITION);
+		A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
+		A_SpawnItemEx("DCY_RZSpirit", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), zvel: frandom(2, 4), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, failchance: 250);
 	}
 	Loop;
   }
@@ -341,6 +384,7 @@ Class DCY_EspouserServer : DCY_Impe
   PainSound "Manes/Pain";
   DeathSound "Manes/Death";
   -COUNTKILL
+  StencilColor "aaaaaa";
   }
   
   protected bool dief;
@@ -355,7 +399,7 @@ Class DCY_EspouserServer : DCY_Impe
 	}
 	
 	if (!level.isFrozen() && health > 0)
-		A_SpawnItemEx("DCY_ProjectileBaseTrail", 0, 0, 0, frandom(-8, 8), frandom(-8, 8), frandom(0, 8), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_SpawnItemEx("DCY_HexodenicanTrail2", 0, 0, 0, frandom(-2, -2), frandom(-2, -2), frandom(-2, -2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
   }
   
   States
@@ -388,8 +432,9 @@ Class DCY_EspouserServer : DCY_Impe
 	DHUI EFGHIJK 3 A_FaceTarget();
 	DHUI LLLLLLLL 3
 	{
-		A_SpawnProjectile("DCY_ServerBall", 30, 0, frandom(-5.0, 5.0));
-		A_FaceTarget();
+		A_CustomMeleeAttack(3 * random(3, 5), "");
+		A_Recoil(-5);
+		A_FaceTarget(3, 3);
 	}
 	DHUI M 3;
 	Goto See;
@@ -413,30 +458,39 @@ Class DCY_EspouserServer : DCY_Impe
   }
 }
 
-Class DCY_ServerBall : DCY_ExoBall
+Class DCY_ServerDeath : DCY_EspouserServer
 {
   Default
   {
-  Scale 0.75;
-  Speed 20;
-  Damage 3;
-  DamageType "Occult";
-  SeeSound "Espouser/Melee";
-  DeathSound "";
-  +NEVERFAST
-  -NOTIMEFREEZE
-  Translation "0:255=%[0.06,0.06,0.06]:[1.31,1.31,1.31]";
+  Health 0;
+  -ISMONSTER
+  -SHOOTABLE
+  -SOLID
+  +NOINTERACTION
+  +NOPAIN
+  +PAINLESS
+  Radius 0;
+  Height 0;
+  }
+  
+  override void Tick()
+  {
+	Actor.tick();
+	
+	if (!level.isFrozen())
+		A_SpawnItemEx("DCY_HexodenicanTrail2", 0, 0, 0, frandom(-2, -2), frandom(-2, -2), frandom(-2, -2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
   }
   
   States
   {
-  Spawn: 
-	BAL7 A 1 Bright
-	{
-		A_SpawnItemEx("DCY_ViolationBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_Weave(3, 3, 0.35, 0.35);
-	}
-	Loop;
+  Spawn:
+	DHUI A 50 NoDelay
+	{ if (master) A_Face(master); }
+	DHUI EFGHIJK 3;
+	DHUI LLLLLLLLLLLLLLLLLLLLLLL 2;
+	DHUI A 30;
+	DHUI A 1 A_FadeOut();
+	Goto Spawn+32;
   }
 }
 

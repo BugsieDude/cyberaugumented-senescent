@@ -114,13 +114,22 @@ Class DCY_RemainderRocket : DCY_HomingMissile
 	TMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, 0.85, pitch: 1.4);
 	TMIS A 2 Bright
 	{
-		if (!home && (!(level.time % 20)) && (tracer && distance3D(tracer) < 400))
+		int timer = 0;
+		
+		if (!home && (!(level.time % 15)) && (tracer && distance3D(tracer) < 400))
 		{
 			A_StartSound("AirbusterLaser", CHAN_BODY);
 			A_ScaleVelocity(0.8);
 			for (int i = 2; i > 0; i--) A_SeekerMissile(999, 999, SMF_LOOK|SMF_PRECISE);
 			home = true;
 		}
+		
+		if (home && timer < 20)
+		{
+			timer++;
+			A_Tracer2(6.25);
+		}
+		
 		A_SpawnItemEx("DCY_FluorescentJetFlareSmall", flags: SXF_NOCHECKPOSITION);
 		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("1f53ff", 25, 30, 0, true, frandom(-2.5, 2.5), allsmoke: true);
 	}
