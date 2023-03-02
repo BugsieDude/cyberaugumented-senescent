@@ -124,7 +124,7 @@ Class DCY_RemainderRocket : DCY_HomingMissile
 			home = true;
 		}
 		
-		if (home && timer < 20)
+		if (home && timer < 10)
 		{
 			timer++;
 			A_Tracer2(6.25);

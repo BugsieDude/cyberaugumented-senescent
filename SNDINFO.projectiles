@@ -362,7 +362,6 @@ $random DCYLavaImpact { LAVAIMP1 LAVAIMP2 }
 LAVAIMP1 "Sounds/Projectiles/dcy_lavaball_impact.ogg"
 LAVAIMP2 "Sounds/Projectiles/dcy_lavaball_impact2.ogg"
 
-DCYGhostProjectile "Sounds/Projectiles/dcy_ghost_scream.wav"
 BLERGH "Sounds/DCY SFX/dcy_corrosive_vomit.ogg"
 
 DCYGrenadeTick "Sounds/Projectiles/dcy_grenade_tick.wav"
@@ -370,6 +369,9 @@ DCYTheristisLoop "Sounds/Projectiles/dcy_emptiness_soul.ogg"
 
 DCYDeadlyBreath "Sounds/Projectiles/dcy_deadlybreath.ogg"
 AirbusterLaser "Sounds/Projectiles/dcy_airbuster_laser.ogg"
+
+DCYTorpedo "Sounds/Projectiles/dcy_torpedo.ogg"
+DCYSeekerLaser "Sounds/Projectiles/dcy_seekerlaser.ogg"
 
 Consul/Charge "Sounds/Projectiles/dcy_darkioncharge.ogg"
 Consul/ChargedFire "Sounds/Projectiles/dcy_darkion_chargedfire.ogg"
