@@ -1128,12 +1128,12 @@ Monsoon/Pain "Sounds/DCY Monsters/Monsoon/dcy_monsoon_pain.wav"
 Monsoon/Death "Sounds/DCY Monsters/Monsoon/dcy_monsoon_death.wav"
 Monsoon/ThunderLoop "Sounds/Projectiles/dcy_monsoon_thunderloop.ogg"
 
-$random Repealler/Sight { REPLSIT1 REPLSIT2 }
-REPLSIT1 "Sounds/DCY Monsters/Repealler/dcy_repealler_sight1.ogg"
-REPLSIT2 "Sounds/DCY Monsters/Repealler/dcy_repealler_sight2.ogg"
-Repealler/Active "Sounds/DCY Monsters/Repealler/dcy_repealler_idle.ogg"
-Repealler/Pain "Sounds/DCY Monsters/Repealler/dcy_repealler_pain.ogg"
-Repealler/Death "Sounds/DCY Monsters/Repealler/dcy_repealler_death.ogg"
+$random Repealer/Sight { REPLSIT1 REPLSIT2 }
+REPLSIT1 "Sounds/DCY Monsters/Repealer/dcy_repealer_sight1.ogg"
+REPLSIT2 "Sounds/DCY Monsters/Repealer/dcy_repealer_sight2.ogg"
+Repealer/Active "Sounds/DCY Monsters/Repealer/dcy_repealer_idle.ogg"
+Repealer/Pain "Sounds/DCY Monsters/Repealer/dcy_repealer_pain.ogg"
+Repealer/Death "Sounds/DCY Monsters/Repealer/dcy_repealer_death.ogg"
 
 Espouser/Sight "Sounds/DCY Monsters/Espouser/dcy_espouser_sight.ogg"
 Espouser/Active "Sounds/DCY Monsters/Espouser/dcy_espouser_idle.ogg"

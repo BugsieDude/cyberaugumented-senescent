@@ -131,7 +131,7 @@ Class DCY_Utrotrion : DCY_BaronParent
   }
 }
 
-Class DCY_UtrotrionBall : BaronBall
+Class DCY_UtrotrionBall : DCY_BaronFireball
 {
   Default
   {
@@ -148,7 +148,14 @@ Class DCY_UtrotrionBall : BaronBall
   Spawn:
 	BAL7 AB 1
 	{
-		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			let splosion = Spawn("DCY_ExplosiveBallT", pos);
+			if (splosion) { splosion.translation = translation; splosion.scale *= 0.25; }
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+			A_SpawnFlames("004cff", 14, 40);
+		}
+		
 		A_Weave(3, 0, 1.5, 0);
 	}
 	Loop;

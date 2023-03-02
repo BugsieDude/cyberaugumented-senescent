@@ -5,7 +5,7 @@ ACTOR DCY_BuffBruiser : DCY_Spawner Replaces BaronofHell
   DropItem "DCY_Abater", 8, 35
   DropItem "DCY_PrimerialEmir", 15, 50
   DropItem "DCY_Peril", 18, 10
-  DropItem "DCY_Repealler", 20, 10
+  DropItem "DCY_Repealer", 20, 10
   DropItem "DCY_Excoriator", 24, 6
   DropItem "DCY_GehennaChasseur", 20, 6
   DropItem "DCY_WastelandInfiltrator", 25, 6

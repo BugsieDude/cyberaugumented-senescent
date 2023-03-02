@@ -34,8 +34,7 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 	Loop;
   Melee:
   Missile:
-	LHS_ E 0 A_Jump(90, "Spread", "Triple");
-	LHS_ E 0 A_Jump(87, "Wave", "Quad");
+	LHS_ E 0 A_Jump(67, "Wave");
 	LHS_ EF 8 A_FaceTarget();
 	LHS_ G 8
 	{
@@ -45,26 +44,6 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 	LHS_ F 8 A_FaceTarget();
 	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, 0);
 	LHS_ G 8;
-	Goto See;
-  Triple:
-    LHS_ EF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-2, 2));
-	LHS_ GF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-2, 2));
-	LHS_ GF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-2, 2));
-	LHS_ G 12;
-	Goto See;
-  Quad:
-    LHS_ EF 9 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-4, 4));
-	LHS_ GF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-4, 4));
-	LHS_ GF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-4, 4));
-	LHS_ GF 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, random(-4, 4));
-	LHS_ G 15;
 	Goto See;
   Spread:
     LHS_ EF 10 A_FaceTarget();
