@@ -12,6 +12,7 @@ Class DCY_ZombeParent : DCYMonster
   PainSound "grunt2/pain";
   DeathSound "grunt2/death";
   ActiveSound "grunt/active";
+  DCYMonster.BurnSound "grunt2/burn";
   Obituary "$OB_ZOMBIE";
   Tag "$FN_ZOMBIE";
   DropItem "Clip";
@@ -92,18 +93,6 @@ Class DCY_ZombeParent : DCYMonster
 	POSS JK 4;
 	POSS L -1;
 	Stop;
-  Death.Fire:
-    TNT1 A 0;
-	TNT1 A 0 A_StartSound("grunt/burn", CHAN_VOICE);
-	TNT1 A 0 A_NoBlocking();
-	TNT1 A 0 A_Fall();
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
-	{
-		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-	}
-	FUUU V -1;
-	Stop;
   XDeath:
 	POSP M 6;
     POSS N 4 A_XScream();
@@ -135,6 +124,7 @@ Class DCY_ShotgunZombe : DCYMonster
   PainSound "shotguy/pain";
   DeathSound "shotguy/death";
   ActiveSound "shotguy/active";
+  DCYMonster.BurnSound "shotguy/burn";
   Obituary "%o has annoyed a hell sergeant.";
   DropItem "DCY_CombatShotgun";
   Tag "Hell Sergeant";
@@ -198,18 +188,6 @@ Class DCY_ShotgunZombe : DCYMonster
 	SRG_ JK 4;
 	SRG_ L -1;
 	Stop;
-  Death.Fire:
-    TNT1 A 0;
-	TNT1 A 0 A_StartSound("shotguy/burn", CHAN_VOICE);
-	TNT1 A 0 A_NoBlocking();
-	TNT1 A 0 A_Fall();
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
-	{
-		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-	}
-	FUUU V -1;
-	Stop;
   XDeath:
 	SRG_ M 6;
     SRG_ N 4 A_XScream();
@@ -239,6 +217,7 @@ Class DCY_Plutonia : DCYMonster
   DeathSound "chainguy/death";
   ActiveSound "chainguy/active";
   AttackSound "chainguy/attack";
+  DCYMonster.BurnSound "chainguy/burn";
   Obituary "%o has been ripped off by the Hell Besieger.";
   Tag "Hell Besieger";
   Dropitem "DCY_CyberRifle";
@@ -301,18 +280,6 @@ Class DCY_Plutonia : DCYMonster
     RE1_ RSTUV 4;
     RE1_ W -1;
     Stop;
-  Death.Fire:
-    TNT1 A 0;
-	TNT1 A 0 A_StartSound("chainguy/burn", CHAN_VOICE);
-	TNT1 A 0 A_NoBlocking();
-	TNT1 A 0 A_Fall();
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
-	{
-		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-	}
-	FUUU V -1;
-	Stop;
   Raise:
 	RE1_ L 6;
     RE1_ KJI 6;

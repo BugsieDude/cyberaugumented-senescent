@@ -2,7 +2,7 @@ Class DCY_MultidimensionalCaster : DCY_Cybie //Strong boi
 { //To have a Voice Actor (WIP)
   Default
   {
-  Health 14000;
+  Health 10000;
   Tag "\c[p7]Multidimensional Caster\c-";
   Radius 25;
   Height 75;

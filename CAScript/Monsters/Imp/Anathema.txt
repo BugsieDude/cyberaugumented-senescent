@@ -79,7 +79,7 @@ Class DCY_Anathema : DCY_Impe
 	SAIM GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 	{
 		A_SpawnParticleEx(0xff8c00, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 36, 0, frandom(-2.5, 2.5) + 15, frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
-		A_SpawnParticleEx(0xffffff, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5) + 15, random(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+		A_SpawnParticleEx(0xffffff, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 18, 0, frandom(-2.5, 2.5) + 15, frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 36, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
 		A_FaceTarget();
 	}
 	SAIM F 4 A_FaceTarget();

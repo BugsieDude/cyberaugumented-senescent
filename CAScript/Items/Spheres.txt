@@ -241,7 +241,6 @@ Class DCY_UncoShield : BasicArmorPickup
   +INVENTORY.AUTOACTIVATE;
   +INVENTORY.ALWAYSPICKUP;
   DamageFactor "Normal", 0.75;
-  Inventory.Icon "PDFS[0";
   Armor.SavePercent 250;
   Armor.SaveAmount 400;
   }

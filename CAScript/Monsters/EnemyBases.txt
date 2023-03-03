@@ -1,3 +1,45 @@
+Class DCY_GuyOnFire : DCYMonster
+{
+  class<Actor> og;
+  
+  Default
+  {
+  -ISMONSTER
+  -COUNTKILL
+  -SHOOTABLE
+  +NONSHOOTABLE
+  +NOBLOOD
+  -SOLID
+  }
+  
+  States
+  {
+  Spawn:
+	FUUU ABCDEFGHIJKLMNOPQRSTU 3 Bright
+	{
+		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
+	}
+	FUUU V -1;
+	Stop;
+  Raise:
+	FUUU UTSRQPONMLKJIHGFEDCBA 3 Bright;
+	FUUU A 0 Bright
+	{
+		if (og)
+		{
+			Actor r = Spawn(og, pos);
+			if (r)
+			{
+				r.CopyFriendliness(self, true);
+				r.angle = angle;
+			}
+		}	
+	}
+	Stop;
+  }
+}
+
 CLASS DCYMonster : Actor abstract
 {
   mixin DCY_Effects;
@@ -105,7 +147,7 @@ CLASS DCYMonster : Actor abstract
 		
   static void ThingAnnounce(String message, String sound, String mColor)
   {
-	if (cyberaugumented_noenemyannouncements || level.mapname == "TITLEMAP")
+	if (cyberaugumented_noenemyannouncements || level.mapname == "TITLEMAP" || gamestate == GS_TITLELEVEL)
 		return;
 		
 	console.printf("\c".."["..mColor.."]"..message.."\c-");
@@ -125,6 +167,19 @@ CLASS DCYMonster : Actor abstract
 		if (bBOSSDEATH) A_BossDeath2();
 		
 		A_RemoveChildren(1, RMVF_EVERYTHING);
+	}
+	Stop;
+  Death.Fire:
+	#### # 0
+	{
+		if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners" || species == "Imps")
+		{
+			A_StartSound((brns) ? brns : DeathSound, CHAN_VOICE);
+			DCY_GuyOnFire a = DCY_GuyOnFire(Spawn("DCY_GuyOnFire", pos));
+			if (a) a.og = GetClassName();
+		}
+		else
+			SetStateLabel("Death");
 	}
 	Stop;
   }
