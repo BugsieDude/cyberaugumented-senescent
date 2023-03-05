@@ -6,15 +6,18 @@ Class DCY_GuyOnFire : DCYMonster
   {
   -ISMONSTER
   -COUNTKILL
-  -SHOOTABLE
   +NONSHOOTABLE
   +NOBLOOD
   -SOLID
+  Height 56;
+  Radius 20;
   }
   
   States
   {
   Spawn:
+	FUUU A 0 NoDelay { A_NoBlocking(); A_Die(); }
+  Death:
 	FUUU ABCDEFGHIJKLMNOPQRSTU 3 Bright
 	{
 		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
@@ -23,7 +26,7 @@ Class DCY_GuyOnFire : DCYMonster
 	FUUU V -1;
 	Stop;
   Raise:
-	FUUU UTSRQPONMLKJIHGFEDCBA 3 Bright;
+	FUUU UTRPNLJHFDBA 3 Bright;
 	FUUU A 0 Bright
 	{
 		if (og)

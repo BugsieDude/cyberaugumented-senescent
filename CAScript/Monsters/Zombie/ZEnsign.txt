@@ -62,7 +62,7 @@ Class DCY_ZEnsign : DCY_Zombe
   {
 	A_Chase();
 	
-	if (!random(0, 40) && target)
+	if (!random(0, 40) && target && CheckSight(target))
 		SetStateLabel("Dodge");
   }
   

@@ -1,7 +1,7 @@
 ACTOR DCY_SpookySkeletonWithRocketLaunchers : DCY_Spawner Replaces Revenant
 {
-  DropItem "DCY_Remainder", 6, 255
   DropItem "DCY_GloomKnight", 0, 255
+  DropItem "DCY_Remainder", 6, 200
   DropItem "DCY_WarWire", 20, 5
   DropItem "DCY_Chimera", 15, 13
   DropItem "DCY_SoulCrusher", 18, 10

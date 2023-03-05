@@ -199,6 +199,7 @@ Kinnerokhn - Sprites
 The Blue Savior - Being a inspiration for this mod's dark theme
 Airtight (Dark Void) - Announcement Sounds
 Blue Shadow (ncHud) - Inspiration for the hud
+Doom 3 Phobos - Arachnotron Sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help
