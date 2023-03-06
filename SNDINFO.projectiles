@@ -385,3 +385,23 @@ Deluder/Plasma "Sounds/Projectiles/dcy_deluder_plasma.ogg"
 $random DCY/Lotus { DCY/Lotus1 DCY/Lotus2 }
 DCY/Lotus1 "Sounds/Projectiles/dcy_lotuslike_attack.ogg"
 DCY/Lotus2 "Sounds/Projectiles/dcy_lotuslike_attack2.ogg"
+
+$random FC/Ball { FC/Ball1 FC/Ball2 FC/Ball3 }
+FC/Ball1 "Sounds/Projectiles/dcy_fluorescent_ball1.ogg"
+FC/Ball2 "Sounds/Projectiles/dcy_fluorescent_ball2.ogg"
+FC/Ball3 "Sounds/Projectiles/dcy_fluorescent_ball3.ogg"
+$random FC/BallImpact { FC/BallImpact1 FC/BallImpact2 }
+FC/BallImpact1 "Sounds/Projectiles/dcy_fluorescent_impact.ogg"
+FC/BallImpact2 "Sounds/Projectiles/dcy_fluorescent_impact2.ogg"
+FC/Charge "Sounds/Projectiles/dcy_fluorescent_charge.ogg"
+GroundFireWave "Sounds/Projectiles/dcy_groundfirewave.ogg"
+$random FC/Dash { FCDash1 FCDash2 }
+FCDash1 "Sounds/Projectiles/dcy_fluorescent_dash.ogg"
+FCDash2 "Sounds/Projectiles/dcy_fluorescent_dash2.ogg"
+
+EmirWave "Sounds/DCY Monsters/Emir/dcy_emir_floor.ogg"
+EmirExplode "Sounds/DCY Monsters/Emir/dcy_emir_explode.ogg"
+$random EmirCharge { EmirCharge1 EmirCharge2 }
+EmirCharge1 "Sounds/DCY Monsters/Emir/dcy_emir_charge.ogg"
+EmirCharge2 "Sounds/DCY Monsters/Emir/dcy_emir_charge2.ogg"
+EmirBall "Sounds/DCY Monsters/Emir/dcy_emir_ball.ogg"
