@@ -64,7 +64,7 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 		A_SpawnParticleEx(0xfc037f, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 35, 0, 5 + frandom(-2.5, 2.5), 35 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -2.325);
 		A_FaceTarget();
 	}
-	LHS_ EF 9 A_FaceTarget();
+	LHS_ EF 9 A_FaceTarget(2, 2);
 	LHS_ G 10
 	{
 		A_StartSound("EmirExplode", CHAN_7);
@@ -124,7 +124,7 @@ Class DCY_EBall : DCY_BaronFireball
   }
 }
 
-Class DCY_EWave : CacodemonBall
+Class DCY_EWave : DCY_MeatballElecball
 {
   Default
   {
@@ -137,7 +137,7 @@ Class DCY_EWave : CacodemonBall
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,1.01]";
   Scale 1.0;
   Alpha 1.0;
-  SeeSound "";
+  SeeSound "EmirFloor";
   DeathSound "";
   +BRIGHT
   +FLOORHUGGER
@@ -160,4 +160,4 @@ Class DCY_EWave : CacodemonBall
   }
 }
 
-Class DCY_EWaveFire : DCY_FAura1 { Default { DamageType "EmirWave"; Scale 1.55; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,1.01]"; } }
+Class DCY_EWaveFire : DCY_FAura1 { Default { DamageType "EmirWave"; Scale 1.4; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,1.01]"; } }

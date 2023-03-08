@@ -23,12 +23,12 @@ class DCY_Interceptor : StaticEventHandler
 			let p = players[i].mo;
 			if (p)
 			{
+				death = true;
 				p.GiveDefaultInventory();
 				
 				for (int i = 0; i < bigguns.Size() - 1; i++)
 					p.TakeInventory(bigguns[i], 1);
 			}
-			death = true;
 			let g = DCY_Variables.Get();
 			if (g && g.dcylevel && sv_dcy_progressivespawns) g.dcylevel = abs(int(g.dcylevel / 2));
 		}

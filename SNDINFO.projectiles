@@ -401,6 +401,7 @@ FCDash2 "Sounds/Projectiles/dcy_fluorescent_dash2.ogg"
 
 EmirWave "Sounds/DCY Monsters/Emir/dcy_emir_floor.ogg"
 EmirExplode "Sounds/DCY Monsters/Emir/dcy_emir_explode.ogg"
+EmirFloor "Sounds/DCY Monsters/Emir/dcy_emir_floor.ogg"
 $random EmirCharge { EmirCharge1 EmirCharge2 }
 EmirCharge1 "Sounds/DCY Monsters/Emir/dcy_emir_charge.ogg"
 EmirCharge2 "Sounds/DCY Monsters/Emir/dcy_emir_charge2.ogg"
