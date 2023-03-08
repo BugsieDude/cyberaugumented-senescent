@@ -70,7 +70,10 @@ Class DCY_Sullied : DCY_SkullParent
 	}
   Melee:
   Missile:
-	FALN E 1 A_JumpIf(Distance3D(target) < 256, "FireThrower");
+	FALN E 1
+	{
+		if (!random(0, 2) && (target && Distance3D(target) < 256)) SetStateLabel("FireThrower");
+	}
 	FALN E 7 A_FaceTarget();
 	FALN FFF 7 A_Sullied();
 	FALN E 14 A_FaceTarget();

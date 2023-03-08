@@ -9,11 +9,11 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
   Height 56;
   Mass 450;
   PainChance 40;
-  Tag "\c[d4]Bedeviled\c-";
-  SeeSound "sentinel/sight";
-  ActiveSound "sentinel/active";
-  PainSound "";
-  DeathSound "scout/death";
+  Tag "\c[d4]Preventive\c-";
+  SeeSound "preventive/sight";
+  ActiveSound "preventive/active";
+  PainSound "preventive/pain";
+  DeathSound "preventive/death";
   Obituary "%o got vaporized.";
   DropItem "Cell";
   DropItem "DCY_Cyberrifle";

@@ -138,7 +138,7 @@ Class DCY_Combatant : DCY_Zombe
   Raise:
 	RR3_ NM 4;
 	RR3_ LKJIH 3;
-	RR3_ H 0 A_SetScale(Scale.X, Scale.Y);
+	RR3_ H 0 A_Restore();
 	Goto See;
   }
 }

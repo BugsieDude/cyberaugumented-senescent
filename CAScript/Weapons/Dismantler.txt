@@ -53,46 +53,9 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
 	TNT1 A 0 A_Lower();
 	Wait;
   Ready:
-    LTBR BCDE 2 A_WeaponReady(WRF_ALLOWRELOAD);
+    LTBR BCDE 2 A_WeaponReady();
 	Loop;
-  Reload:
-	LTBR B 0
-	{
-		A_SetBlend("White", 0.5, 10);
-		A_StartSound("VeneratedTruncheon/Switch", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.75);
-		if(invoker.venerated == 0)
-			Return ResolveState("Reload2");
-		else if(invoker.venerated == 1)
-			Return ResolveState("Reload1");
-		Return ResolveState("Null");
-	}
-	Goto Reload2;
-  Reload1:
-	LTBR B 0
-	{
-		invoker.venerated = 0;
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Venerated Beam", (240, 150), (480, 360), color: Font.CR_WHITE, time: (0.3, 2, 1), speed: 0.25, strength: 1.0, frequency: 1.0, id: 78);
-	}
-	LTBR BONMMN 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOFIRE|WRF_NOSWITCH);
-	Goto Ready;
-  Reload2:
-	LTBR B 0
-	{
-		invoker.venerated = 1;
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", "Divine Sun", (240, 150), (480, 360), color: Font.CR_WHITE, time: (0.3, 2, 1), speed: 0.25, strength: 1.0, frequency: 1.0, id: 78);
-	}
-	LTBR BONMMN 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOFIRE|WRF_NOSWITCH);
-	Goto Ready;
   Fire:
-	LTBR B 0
-	{
-		if(invoker.venerated == 0)
-			Return ResolveState("Fire1");
-		else if(invoker.venerated == 1)
-			Return ResolveState("Fire2");
-		Return ResolveState("Null");
-	}
-	Goto Fire1;
   Fire1:
 	LTBR F 4 A_StartSound("VeneratedTruncheon/LaserCharge", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.85);
     LTBR GH 4;
@@ -136,22 +99,6 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
     LTBR G 0;
 	LTBR G 0 A_StartSound("VeneratedTruncheon/LaserSpawn", CHAN_WEAPON, CHANF_DEFAULT, 1.0, 0.95);
     LTBR GFEDC 4 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	Goto Ready;
-  Fire2:
-    LTBR F 0;
-    LTBR FGHIJ 4;
-	LTBR K 5
-	{
-		A_SetBlend("White", 0.75, 15);
-		A_Quake(4, 15, 0, 600, "");
-		A_Quake(2, 18, 0, 800, "");
-		A_Quake(1, 21, 0, 1000, "");
-		A_GunFlash();
-		A_StartSound("VeneratedTruncheon/Ball/Fire", CHAN_5, CHANF_DEFAULT, 1.0, 0.45);
-		A_FireProjectile("DCY_VeneratedSpheroid", 0, 0);
-		invoker.DepleteAmmo(Invoker.AltFire, true);
-	}
-	LTBR KLMNOR 5;
 	Goto Ready;
   Flash:
     TNT1 A 0;

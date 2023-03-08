@@ -101,7 +101,7 @@ Class DCY_ZombeParent : DCYMonster
     POSS U -1;
     Stop;
   Raise:
-	POSS K 5 A_SetScale(1, 1);
+	POSS K 5 A_Restore();
     POSS JIH 5;
     Goto See;
   }
@@ -196,7 +196,7 @@ Class DCY_ShotgunZombe : DCYMonster
     SRG_ U -1;
     Stop;
   Raise:
-	SRG_ K 5 A_SetScale(1, 1);
+	SRG_ K 5 A_Restore();
     SRG_ JIH 5;
     Goto See;
   }
@@ -283,7 +283,7 @@ Class DCY_Plutonia : DCYMonster
   Raise:
 	RE1_ L 6;
     RE1_ KJI 6;
-	RE1_ H 6 A_SetScale(1, 1);
+	RE1_ H 6 A_Restore();
     Goto See;
   }
 }

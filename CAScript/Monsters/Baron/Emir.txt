@@ -41,9 +41,9 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 		A_SpawnProjectile("DCY_EBall", 34, 0, 10);
 		A_SpawnProjectile("DCY_EBall", 34, 0, -10);
 	}
-	LHS_ F 8 A_FaceTarget();
-	LHS_ G 0 A_SpawnProjectile("DCY_EBall", 34, 0, 0);
-	LHS_ G 8;
+	LHS_ Y 8 A_FaceTarget();
+	LHS_ Z 0 A_SpawnProjectile("DCY_EBall", 34, 0, 0);
+	LHS_ Z 8;
 	Goto See;
   Spread:
     LHS_ EF 10 A_FaceTarget();
@@ -68,8 +68,8 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 	LHS_ G 10
 	{
 		A_StartSound("EmirExplode", CHAN_7);
-		for (int i = -40; i < 41; i += 20)
-			A_SpawnProjectile("DCY_EWave", 1 + abs(i / 5), i, i / 3, CMF_AIMDIRECTION|CMF_SAVEPITCH|CMF_OFFSETPITCH, 0);
+		for (int i = -80; i < 81; i += 40)
+			A_SpawnProjectile("DCY_EWave", 1, i, -i / 3, CMF_AIMDIRECTION|CMF_SAVEPITCH|CMF_OFFSETPITCH, 0);
 	}
 	Goto See;
   Pain:

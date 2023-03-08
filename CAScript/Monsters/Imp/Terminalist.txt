@@ -134,12 +134,21 @@ Class DCY_Terminalist : DCY_Impe
 	CIMP H 3 A_Pain();
 	Goto See;
   Death:
-    CIMP I 7;
+    CIMP I 7 {
+		if (random(0, 1)) SetStateLabel("Death2");
+	}
     CIMP J 6 A_Scream();
-    CIMP K 4;
-    CIMP L 4 A_NoBlocking();
+    CIMP K 5;
+    CIMP L 5 A_NoBlocking();
     CIMP M -1;
     Stop;
+  Death2:
+	C2MP A 7;
+	C2MP B 6 A_Scream();
+	C2MP C 6 A_NoBlocking();
+	C2MP D 6;
+	C2MP E -1;
+	Stop;
   XDeath:
     CIMP N 5;
     CIMP O 4 A_XScream();

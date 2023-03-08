@@ -5,7 +5,7 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
   Health 1000;
   Tag "\c[Ultramarine]Arche Spiritwalker\c-";
   StencilColor "Purple";
-  DamageFactor 0.65;
+  DamageFactor 0.7;
   Species "Arche";
   SeeSound "Arche/Sight";
   ActiveSound "Arche/Active";
@@ -93,7 +93,7 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
 		{	
 			A_ArcheTrail(frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 2.0));
 			
-			for (int i = 3; i > 0; i--)
+			for (int i = 2; i > 0; i--)
 				A_Chase();
 		}
 		
@@ -217,7 +217,7 @@ Class DCY_ArcheBullet : DCY_PhasicRazerLaser
   Default
   {
   Translation "0:255=%[0.00,0.00,0.00]:[0.68,0.49,1.79]";
-  Speed 90;
+  Speed 60;
   SeeSound "BOSSMGUN";
   DamageType "Arche";
   +NEVERFAST
@@ -420,7 +420,7 @@ Class DCY_ArcheBallThrust : DCY_ArcheBall
   Default
   {
   Scale 1.0;
-  Speed 20;
+  Speed 14;
   }
   
   States
@@ -433,7 +433,7 @@ Class DCY_ArcheBallThrust : DCY_ArcheBall
 	}
 	PR0S AB 1
 	{
-		A_Tracer2(2);
+		A_Tracer2(1.25);
 		A_SpawnItemEx("DCY_FluorescentSparkle", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_ArcheBallTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}

@@ -10,6 +10,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
   ActiveSound "UpgradedMechaZombie/Sight";
   PainSound "UpgradedMechaZombie/Pain";
   DeathSound "UpgradedMechaZombie/Death";
+  DCYMonster.BurnSound "UpgradedMechaZombie/BurnDeath";
   Species "BIONIC";
   DropItem "PlasmaRifle", 20;
   DropItem "Cell", 180;
@@ -133,19 +134,6 @@ Class DCY_BionicZombie : DCY_ZombeParent
 	UCYQ P 1 A_NoBlocking();
 	UCYQ QRST 6;
 	UCYQ U -1;
-	Stop;
-  Death.Fire:
-    TNT1 A 0;
-	TNT1 A 0 A_StartSound("UpgradedMechaZombie/BurnDeath", CHAN_VOICE);
-	TNT1 A 0
-	{
-		A_NoBlocking();
-		A_KillChildren("DED");
-		shield = 0;
-	}
-	TNT1 A 0 A_Fall();
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright;
-	FUUU V -1;
 	Stop;
   Ice:
 	UCYQ "#" 5

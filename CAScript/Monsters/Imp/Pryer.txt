@@ -89,7 +89,7 @@ Class DCY_Pryer : DCY_Impe
   Raise:
 	XX5_ PO 4;
 	XX5_ NMLKJIH 3;
-	XX5_ H 0 A_SetScale(1);
+	XX5_ H 0 A_Restore();
 	Goto See;
   }
 }

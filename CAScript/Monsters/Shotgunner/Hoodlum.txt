@@ -98,7 +98,7 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
   Raise:
     H00D KJ 6;
 	H00D IH 5;
-	H00D H 0 A_SetScale(Scale.x, Scale.y);
+	H00D H 0 A_Restore();
     Goto See;
   }
 }

@@ -405,3 +405,4 @@ $random EmirCharge { EmirCharge1 EmirCharge2 }
 EmirCharge1 "Sounds/DCY Monsters/Emir/dcy_emir_charge.ogg"
 EmirCharge2 "Sounds/DCY Monsters/Emir/dcy_emir_charge2.ogg"
 EmirBall "Sounds/DCY Monsters/Emir/dcy_emir_ball.ogg"
+$limit EmirBall 0

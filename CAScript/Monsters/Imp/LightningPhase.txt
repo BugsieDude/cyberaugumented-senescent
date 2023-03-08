@@ -245,8 +245,8 @@ Class DCY_LightningPhaseBall : DCY_ImpFireball
 	}
 	Loop;
   Death:
-	LMBB C 3 Bright A_SpawnParticleEx(0x008028, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.124, sizestep: 3.25);
-	LMBB DEFG 3 Bright;
+	LMBB C 7 Bright A_SpawnParticleEx(0x008028, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.124, sizestep: 3.25);
+	LMBB DEFG 7 Bright;
 	Stop;
   }
 }

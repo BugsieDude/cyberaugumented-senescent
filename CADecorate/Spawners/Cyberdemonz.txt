@@ -1,7 +1,7 @@
 ACTOR DCY_TheTyrant : DCY_Spawner Replaces Cyberdemon
 {
   DropItem "DCY_Trounce", 0, 255
-  DropItem "DCY_Ruination", 0, 255
+  DropItem "DCY_Ruination", 0, 200
   DropItem "DCY_NavyTerminator", 15, 50
   DropItem "DCY_Vamchnorm", 25, 10
   DropItem "DCY_Arbiter", 30, 10

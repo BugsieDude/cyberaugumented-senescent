@@ -48,6 +48,7 @@ Class DCY_Malloc : DCY_KnightHell
 	BRUS AAABBBCCCDDD 3 A_Chase();
 	Loop;
   Missile:
+	BRUS E 0 A_Jump(200, "Ball");
 	BRUS E 20
 	{
 		missile = 0;
@@ -62,7 +63,11 @@ Class DCY_Malloc : DCY_KnightHell
 		A_FaceTarget();
 		missile++;
 	}
-    Goto Missile+1;
+    Goto Missile+2;
+  Ball:
+	BRUS GH 8 A_FaceTarget();
+	BRUS I 10 A_SpawnProjectile("DCY_PainsendFireball", 35);
+	Goto See;
   Melee:
     BRUS GH 6 A_FaceTarget();
 	BRUS I 6 A_CustomMeleeAttack(15, "baron/melee");
@@ -74,10 +79,14 @@ Class DCY_Malloc : DCY_KnightHell
   Death:
 	BRUS K 0
 	{
-		if (random(0, 2) == 0)
-			SetStateLabel("Death2");
-		if (random(0, 2) == 1)
-			SetStateLabel("Death3");
+		switch (random(0, 2))
+		{
+			case 0: return ResolveState("Death2"); break;
+			case 1: return ResolveState("Death3"); break;
+			case 2: return ResolveState(null); break;
+		}
+		
+		return ResolveState(null);
 	}
 	Goto Death1;
   Death1:

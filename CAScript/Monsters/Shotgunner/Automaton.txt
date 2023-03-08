@@ -136,7 +136,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 	Wait;
   Raise:
 	AJLS LKJIH 5;
-	AJLS H 0 A_SetScale(Scale.X, Scale.Y);
+	AJLS H 0 A_Restore();
 	Goto See;
   }
 }

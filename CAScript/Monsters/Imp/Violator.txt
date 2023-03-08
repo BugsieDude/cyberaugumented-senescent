@@ -161,7 +161,7 @@ Class DCY_Violator : DCY_Dastard
 	VI0_ M 0;
 	VI0_ M 3 { bCountkill = false; }
     VI0_ LKHJI 4;
-	VI0_ H 4 A_SetScale(1, 1);
+	VI0_ H 4 A_Restore();
     Goto See;
   }
 }

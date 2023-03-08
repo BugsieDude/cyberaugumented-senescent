@@ -179,7 +179,7 @@ Class DCY_HellRazer : DCY_Impe
 	Goto Raise1;
   Raise1:
     PRZR MLKJI 8;
-	TNT1 A 0 { fdeath = 0; A_SetScale(Scale.X, Scale.Y); }
+	TNT1 A 0 { fdeath = 0; A_Restore(); }
 	Goto See;
   Raise2:
     PRZR RQPON 8;

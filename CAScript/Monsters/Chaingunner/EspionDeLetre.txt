@@ -142,7 +142,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 	{
 		seen = true;
 		emission = false;
-		A_SetScale(Scale.x, Scale.y);
+		A_Restore();
 	}
 	Goto See;
   }

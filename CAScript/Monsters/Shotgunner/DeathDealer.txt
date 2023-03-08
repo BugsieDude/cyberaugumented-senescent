@@ -97,7 +97,7 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
     Stop;
   Raise:
 	BF_T KJIH 5;
-	BF_T A 5 A_SetScale(1, Scale.y);
+	BF_T A 5 A_Restore();
 	Goto See;
   }
 }

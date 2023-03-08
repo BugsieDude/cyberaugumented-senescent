@@ -157,6 +157,11 @@ CLASS DCYMonster : Actor abstract
 	if(sound) S_StartSound(sound, CHAN_5, CHANF_DEFAULT);
   }
   
+  void A_Restore()
+  {
+	A_SetScale(abs(Scale.X), Scale.Y);
+  }
+  
   States
   {
   Death.Massacre:
