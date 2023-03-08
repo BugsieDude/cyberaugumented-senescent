@@ -5,6 +5,7 @@ Class DCY_Razortherion : DCY_CacoParent
   Speed 15;
   FastSpeed 21;
   Health 1250;
+  PainChance 40;
   BloodColor "Green";
   +MISSILEMORE
   +MISSILEEVENMORE

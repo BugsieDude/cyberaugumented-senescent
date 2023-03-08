@@ -1450,6 +1450,12 @@ Serpent/Death2 "Sounds/DCY Monsters/Serpent/dcy_serpent_death2.ogg"
 Serpent/Death3 "Sounds/DCY Monsters/Serpent/dcy_serpent_death3.ogg"
 Serpent/Death4 "Sounds/DCY Monsters/Serpent/dcy_serpent_death4.ogg"
 Serpent/Death5 "Sounds/DCY Monsters/Serpent/dcy_serpent_death5.ogg"
+$random Serpent/Melee { Serpent/Melee1 Serpent/Melee2 Serpent/Melee3 Serpent/Melee4 Serpent/Melee5 }
+Serpent/Melee1 "Sounds/DCY Monsters/Serpent/dcy_serpent_melee1.ogg"
+Serpent/Melee2 "Sounds/DCY Monsters/Serpent/dcy_serpent_melee2.ogg"
+Serpent/Melee3 "Sounds/DCY Monsters/Serpent/dcy_serpent_melee3.ogg"
+Serpent/Melee4 "Sounds/DCY Monsters/Serpent/dcy_serpent_melee4.ogg"
+Serpent/Melee5 "Sounds/DCY Monsters/Serpent/dcy_serpent_melee5.ogg"
 
 AcidBall/Shoot "Sounds/Projectiles/dcy_acidball.ogg"
 AcidBall/Death "Sounds/Projectiles/dcy_acid_impact.ogg"
