@@ -9,8 +9,8 @@ Class DCY_KranioThanatou : DCY_Rev
   ActiveSound "D4Revenant/Idle";
   PainSound "D4Revenant/Pain";
   DeathSound "D4Revenant/Death";
-  Speed 15;
-  FastSpeed 20;
+  Speed 12;
+  FastSpeed 15;
   Tag "\c[j5]Kranio Thanatou\c-";
   +MISSILEMORE
   +DONTHARMSPECIES
@@ -32,10 +32,9 @@ Class DCY_KranioThanatou : DCY_Rev
   {
 	A_Chase();
 	
-	if (random(0, 68) == 0)
-		dash = true;
+	if (random(0, 200) == 0) dash = true;
 		
-	if (dash == true)
+	if (dash)
 	{
 		tics = 1;
 		A_SpawnItemEx("DCY_GFTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
@@ -44,9 +43,9 @@ Class DCY_KranioThanatou : DCY_Rev
 			dash = false;
 	}
 	
-	if (random(0, 65) == 0)
+	if (random(0, 165) == 0)
 		A_Dodging(10);
-	if (random(0, 65) == 3 && vel.z == 0)
+	if (random(0, 165) == 3 && vel.z == 0)
 	{
 		A_Dodging(5);
 		A_Hop(7);
@@ -59,17 +58,19 @@ Class DCY_KranioThanatou : DCY_Rev
 	KRAV A 10 DCY_Look();
 	Loop;
   Look:
-	#### AABBCCDDEEFF 2 DCY_LookingForPlayer();
+	#### AABBCCDDEEFF 3 DCY_LookingForPlayer();
 	#### # 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	#### J 10 DCY_AlertSound();
 	Goto See;
   See:
-	KRAV AABBCCDDEEFF 2 A_KranioChase();
+	KRAV AABBCCDDEEFF 3 A_KranioChase();
 	Loop;
   Melee:
-	KRAV A 10 A_FaceTarget();
+	KRAV G 5 A_SkelWhoosh();
+	KEAV H 5 A_FaceTarget();
+	KRAV I 6 A_SkelFist();
 	Goto See;
   Missile:
 	KRAV A 10 A_FaceTarget();
@@ -85,7 +86,7 @@ Class DCY_KranioThanatou : DCY_Rev
 			}
 		}
 		
-		if (random(0, 2) == 0)
+		if (!random(0, 2))
 		{
 			A_Hop(10);
 			A_Dodging(7);

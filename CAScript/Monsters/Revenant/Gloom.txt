@@ -38,11 +38,11 @@ Class DCY_GloomKnight : DCY_Rev
 	Goto Melee1;
   Melee1:
     GK38 EF 6 A_Facetarget();
-	GK38 G 6 A_CustomMeleeAttack(15, "hknight/melee");
+	GK38 G 6 A_CustomMeleeAttack(random[SkelFist](1, 10) * 6, "hknight/melee");
 	Goto See;
   Melee2:
     GK38 HI 6 A_Facetarget();
-	GK38 J 6 A_CustomMeleeAttack(15, "hknight/melee");
+	GK38 J 6 A_CustomMeleeAttack(random[SkelFist](1, 10) * 6, "hknight/melee");
 	Goto See;
   Missile:
     GK38 EF 6 A_FaceTarget();
@@ -96,7 +96,7 @@ Class DCY_GAxe : DCY_WAxe
 		
 		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
-		A_Tracer2(2);
+		if (!(level.maptime & 3)) A_Tracer2(16.875);
 	}
 	Loop;
   }
