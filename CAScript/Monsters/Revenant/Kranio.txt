@@ -14,6 +14,8 @@ Class DCY_KranioThanatou : DCY_Rev
   Tag "\c[j5]Kranio Thanatou\c-";
   +MISSILEMORE
   +DONTHARMSPECIES
+  Obituary "%o embraced Kranio Thanatou's insanity.";
+  HitObituary "%o's bones are now burnt to a crisp.";
   }
   
   double direction;

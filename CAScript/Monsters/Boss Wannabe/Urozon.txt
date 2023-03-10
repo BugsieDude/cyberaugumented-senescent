@@ -333,7 +333,8 @@ Class DCY_UrozonFirethrower : DCY_SulliedFirethrower
   +MTHRUSPECIES
   +NOCLIP
   +NOTIMEFREEZE
-  DamageFunction (5);
+  DamageFunction (3);
+  Renderstyle "Add";
   DamageType "Fire";
   Speed 20.5;
   Scale 0.3;

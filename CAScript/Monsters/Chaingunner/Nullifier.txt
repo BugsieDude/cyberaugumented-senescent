@@ -61,7 +61,7 @@ Class DCY_Nullifier : DCY_Plutonia
 		tics = (bufftimer > 0) ? 2 : 5;
 		A_FaceTarget();
 	}
-	RPZ2 FFGG 2
+	RPZ2 FFG 2
 	{
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_NullifierRing", 32);
@@ -119,7 +119,7 @@ Class DCY_NullifierRing : DCY_RehauledPlasma
   Radius 7;
   Height 7;
   Scale 0.7;
-  Damage 6;
+  Damage 5;
   SeeSound "CARCATK";
   DeathSound "CARCATKX";
   Translation "0:255=%[0.37,0.00,0.00]:[2.00,1.63,1.01]";

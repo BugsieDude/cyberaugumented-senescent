@@ -904,10 +904,11 @@ SUP2ACT10 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle10.ogg"
 SUP2ACT11 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle11.ogg"
 SUP2ACT12 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle12.ogg"
 SUP2ACT13 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_idle13.ogg"
-$random ZEnsign/Pain { SUP2PAIN SUP2PAI2 SUP2PAI3 SUP2ACT1 }
+$random ZEnsign/Pain { SUP2PAIN SUP2PAI2 SUP2PAI3 SUP2ACT1 SUP2PAIN SUP2PAI2 SUP2PAI3 SUP2ACT1 SUP2PAI4 }
 SUP2PAIN "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain1.ogg"
 SUP2PAI2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain2.ogg"
 SUP2PAI3 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain3.ogg"
+SUP2PAI4 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_pain4.ogg"
 $random ZEnsign/Death { SUP2DTH1 SUP2DTH2 SUP2DTH3 SUP2DTH4 SUP2DTH5 SUP2DTH6 SUP2DTH7 }
 SUP2DTH1 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death1.ogg"
 SUP2DTH2 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death2.ogg"

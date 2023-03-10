@@ -27,8 +27,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
 	static const string messages[] =
 	{
 		"%o felt the frostbite of an Subzero Umbrage.",
-		"%o got the cold breath.",
-		"The weather temperature is quite cold today thanks to that bitchass Subzero Umbrage."
+		"%o got the cold breath."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];

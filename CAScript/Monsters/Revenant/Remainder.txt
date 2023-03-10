@@ -114,8 +114,6 @@ Class DCY_RemainderRocket : DCY_HomingMissile
 	TMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, 0.85, pitch: 1.4);
 	TMIS A 2 Bright
 	{
-		int timer = 0;
-		
 		if (!home && (!(level.time % 15)) && (tracer && distance3D(tracer) < 400))
 		{
 			A_StartSound("AirbusterLaser", CHAN_BODY);
@@ -124,7 +122,7 @@ Class DCY_RemainderRocket : DCY_HomingMissile
 			home = true;
 		}
 		
-		if (home && timer < 10)
+		if (home && timer < 20)
 		{
 			timer++;
 			A_Tracer2(6.25);

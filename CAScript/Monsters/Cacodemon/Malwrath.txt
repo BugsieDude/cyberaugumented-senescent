@@ -14,8 +14,8 @@ Class DCY_Malwrath : DCY_FlyingMeatballOutOfTouch
   PainSound "Malwrath/Pain";
   DeathSound "Malwrath/Death";
   +QUICKTORETALIATE
-  Speed 4;
-  FastSpeed 7;
+  Speed 6;
+  FastSpeed 9;
   }
   
   States
@@ -83,7 +83,7 @@ Class DCY_Malwrath : DCY_FlyingMeatballOutOfTouch
   }
 }
 
-Class DCY_MalwrathBall : DCY_PainsendFireball
+Class DCY_MalwrathBall : DCY_MeatballElecball
 {
   Default
   {
@@ -108,7 +108,7 @@ Class DCY_MalwrathBall : DCY_PainsendFireball
 	{
 		A_Weave(1, 1, 1, 1);
 		A_SetRoll(frandom(0.00, 360.00));
-		
+		A_SpawnFlames("cc5f00", 30, 25, 0, false, thrust: 2.25);
 		if (!(level.time % 15))
 		{
 			t *= -1;
@@ -116,14 +116,10 @@ Class DCY_MalwrathBall : DCY_PainsendFireball
 			vel.y += frandom(0, 3) * t;
 			if (!random(0, 1)) vel.z += frandom(0, 3) * t;
 		}
-		
-		A_SpawnItemEx("DCY_LightningPhaseBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		if (DCY_EffectDistance(sfxdistance))
-			A_SpawnFlames("f58d42", 15, 15, 0, false, thrust: 2.25);
 	}
 	Loop;
   Death:
-	LMBB C 3 Bright A_SpawnParticleEx(0xf58d42, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT, 40, 40, frandom(0, 360), fadestepf: 0.12, sizestep: 4.25);
+	LMBB C 3 Bright;
 	LMBB DEFG 3 Bright;
 	Stop;
   }
