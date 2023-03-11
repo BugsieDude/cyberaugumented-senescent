@@ -61,14 +61,14 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 	}
 	LHS_ EEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
 	{
-		A_SpawnParticleEx(0xfc037f, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 35, 0, 5 + frandom(-2.5, 2.5), 35 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -2.325);
+		A_SpawnParticleEx(0xfc037f, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 55, 0, 5 + frandom(-2.5, 2.5), 35 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -2.325);
 		A_FaceTarget();
 	}
 	LHS_ EF 9 A_FaceTarget(2, 2);
 	LHS_ G 10
 	{
 		A_StartSound("EmirExplode", CHAN_7);
-		for (int i = -80; i < 81; i += 40)
+		for (int i = -50; i < 51; i += 50)
 			A_SpawnProjectile("DCY_EWave", 1, i, -i / 3, CMF_AIMDIRECTION|CMF_SAVEPITCH|CMF_OFFSETPITCH, 0);
 	}
 	Goto See;

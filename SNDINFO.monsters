@@ -1355,12 +1355,24 @@ $rolloff DSPING01 500 3000
 DSPING02 "Sounds/DCY SFX/dcy_ping2.ogg"
 $rolloff DSPING02 500 3000
 
-Malloc/Sight "Sounds/DCY Monsters/Malloc/dcy_malloc_sight.ogg"
-Malloc/Active "Sounds/DCY Monsters/Malloc/dcy_malloc_idle.ogg"
-Malloc/Pain "Sounds/DCY Monsters/Malloc/dcy_malloc_pain.ogg"
-$random Malloc/Death { MALDC1 MALDC2 }
+$random Malloc/Sight { Malloc/Sight1 Malloc/Sight2 Malloc/Sight3 }
+Malloc/Sight1 "Sounds/DCY Monsters/Malloc/dcy_malloc_sight1.ogg"
+Malloc/Sight1 "Sounds/DCY Monsters/Malloc/dcy_malloc_sight2.ogg"
+Malloc/Sight1 "Sounds/DCY Monsters/Malloc/dcy_malloc_sight3.ogg"
+$random Malloc/Active { Malloc/Active1 Malloc/Active2 }
+Malloc/Active1 "Sounds/DCY Monsters/Malloc/dcy_malloc_idle1.ogg"
+Malloc/Active2 "Sounds/DCY Monsters/Malloc/dcy_malloc_idle2.ogg"
+$random Malloc/attack { Malloc/attack1 Malloc/attack2 }
+Malloc/attack1 "Sounds/DCY Monsters/Malloc/dcy_malloc_attack1.ogg"
+Malloc/attack2 "Sounds/DCY Monsters/Malloc/dcy_malloc_attack2.ogg"
+$random Malloc/Pain { Malloc/Pain1 Malloc/Pain2 }
+Malloc/Pain1 "Sounds/DCY Monsters/Malloc/dcy_malloc_pain1.ogg"
+Malloc/Pain2 "Sounds/DCY Monsters/Malloc/dcy_malloc_pain2.ogg"
+Malloc/Pain3 "Sounds/DCY Monsters/Malloc/dcy_malloc_pain3.ogg"
+$random Malloc/Death { MALDC1 MALDC2 MALDC3 }
 MALDC1 "Sounds/DCY Monsters/Malloc/dcy_malloc_death1.ogg"
 MALDC2 "Sounds/DCY Monsters/Malloc/dcy_malloc_death2.ogg"
+MALDC3 "Sounds/DCY Monsters/Malloc/dcy_malloc_death3.ogg"
 Hellrazer/ChargedShot "Sounds/Projectiles/dcy_hellrazer_charged_shot.ogg"
 
 InfernoGallant/Ball "Sounds/Projectiles/dcy_gallant_ball.wav"

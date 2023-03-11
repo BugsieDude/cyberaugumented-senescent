@@ -354,8 +354,8 @@ Class DCY_UltracerestLaser : DCY_KaiserLaser
   DeathSound "";
   Translation "0:255=%[0.00,0.00,0.00]:[0.46,0.76,1.82]";
   Damage 5;
-  Speed 50;
-  FastSpeed 60;
+  Speed 35;
+  FastSpeed 45;
   Scale 0.6;
   }
 }

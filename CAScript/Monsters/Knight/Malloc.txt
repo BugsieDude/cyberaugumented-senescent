@@ -65,8 +65,13 @@ Class DCY_Malloc : DCY_KnightHell
 	}
     Goto Missile+2;
   Ball:
-	BRUS GH 8 A_FaceTarget();
-	BRUS I 10 A_SpawnProjectile("DCY_PainsendFireball", 35);
+	BRUS GGGGGGGGGGGGGGGG 1
+	{
+		A_SpawnParticleEx(0xfc4903, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 45, 0, 5 + frandom(-2.5, 2.5), -35 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 56, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -2.325);
+		A_FaceTarget();
+	}
+	BRUS H 8 A_FaceTarget();
+	BRUS I 10 A_SpawnProjectile("DCY_MallocFireball", 35);
 	Goto See;
   Melee:
     BRUS GH 6 A_FaceTarget();
@@ -135,3 +140,30 @@ Class DCY_Malloc : DCY_KnightHell
 }
 
 Class DCY_MallocMissile : DCY_CyberMicroMissile { Default { Damage 5; SeeSound "skeleton/attack"; } }
+Class DCY_MallocFireball : DCY_BaronFireball
+{
+  Default
+  {
+  DamageType "Fire";
+  Speed 12;
+  FastSpeed 22;
+  }
+  
+  States
+  {
+  Spawn:
+	BAL7 AABB 1
+	{
+		A_SpawnFlames("fc4903", 15, 40, 0, false, frandom(-1.5, 1.5), thrust: 4);
+		A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
+	}
+	Loop;
+  Death:
+	BAL7 CCCDDDEEE 1
+	{
+		A_FadeOut(0.1, 0);
+		A_SetScale(Scale.X+0.1, Scale.Y+0.1);
+	}
+	Stop;
+  }
+}

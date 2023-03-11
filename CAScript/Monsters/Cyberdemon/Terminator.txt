@@ -28,6 +28,13 @@ Class DCY_NavyTerminator : DCY_Cybie
   int nmissile;
   int voiceline;
   
+  void A_TerminatorVoiceline(int max)
+  {
+	if (voiceline == 0) A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
+	if (voiceline == 3) A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
+	voiceline = random(0, max);
+  }
+  
   States
   {
   Spawn:
@@ -56,12 +63,7 @@ Class DCY_NavyTerminator : DCY_Cybie
   Minigun:
 	NVRM G 30
 	{
-		if (voiceline == 0)
-			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
-		if (voiceline == 3)
-			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
-			
-		voiceline = random(0, 7);
+		A_TerminatorVoiceline(7);
 		A_FaceTarget();
 	}
 	NVRM HI 5
@@ -92,13 +94,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 	{
 		nmissile = 0;
 		A_FaceTarget();
-		
-		if (voiceline == 0)
-			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
-		if (voiceline == 3)
-			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
-			
-		voiceline = random(0, 18);
+		A_TerminatorVoiceline(18);
 	}
 	NVRM F 2
 	{
@@ -118,13 +114,7 @@ Class DCY_NavyTerminator : DCY_Cybie
   BallofStar:
 	NVRM J 30
 	{
-		if (voiceline == 0)
-			A_StartSound("TerminatorBase/Attack1", CHAN_VOICE);
-		if (voiceline == 3)
-			A_StartSound("TerminatorBase/Attack2", CHAN_VOICE);
-			
-		voiceline = random(0, 10);
-		
+		A_TerminatorVoiceline(10);
 		A_FaceTarget();
 	}
 	NVRM K 3
@@ -214,10 +204,10 @@ Class DCY_NavyBallofStar : CacodemonBall
 		A_SpawnItemEx("DCY_NavyBallTrail", flags: SXF_NOCHECKPOSITION);
 		
 		if (timer > 30 && timer < 50)
-			A_ScaleVelocity(1.15);
+			A_ScaleVelocity(1.05);
 		
 		if (timer < 30)
-			A_SeekerMissile(random(5, 10), random(10, 16));
+			A_SeekerMissile(random(2, 7), random(4, 9));
 		
 		timer++;
 	}

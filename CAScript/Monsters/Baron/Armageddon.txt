@@ -2,7 +2,7 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
 {
   Default
   {
-  Health 2150;
+  Health 1800;
   Tag "\c[Sapphire]Armageddon Predominator\c-";
   Obituary "%o felt what it was like to be in a state of frostbite.";
   HitObituary "%o got the cold breath by the Armageddon Predominator.";
@@ -148,7 +148,7 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
 	LHS_ E 1 A_SpawnItemEx("DCY_AsteroidReady", 0, 0, 130, flags: SXF_SETMASTER);
 	Goto AsteroidCharge;
   AsteroidCharge:
-    TNT1 A 0 A_JumpIf(Health < 1200, "MiniCometsforfack");
+    TNT1 A 0 A_JumpIf(Health < 800, "MiniCometsforfack");
 	LHS_ E 3
 	{
 		if (asteroid >= 4)
