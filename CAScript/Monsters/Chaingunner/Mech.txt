@@ -38,17 +38,22 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
   Melee:
   Missile:
 	LS20 E 8 A_FaceTarget();
-	LS20 F 4
+	LS20 F 8
 	{
 		A_StartSound("Underline/Fire", CHAN_WEAPON);
 		
-		for (int i = 3; i > 0; i--)
+		for (int i = 4; i > 0; i--)
 			A_SpawnProjectile("DCY_Zombie2Tracer", 45, -10, frandom(-1.1, 1.1), CMF_TRACKOWNER|CMF_OFFSETPITCH, random(-1, 1));
 		
 		A_FaceTarget(3, 3);
 	}
-	LS20 E 5 A_FaceTarget();
-	LS20 E 0 A_CheckSight("See");
+	LS20 E 8 A_FaceTarget();
+	LS20 E 0
+	{
+		if (target && target.health <= 0) SetStateLabel("See");
+		if (target && !CheckSight(target)) SetStateLabel("See");
+		return resolvestate(null);
+	}
 	Goto Missile+1;
   Pain:
 	LS20 G 4 A_Pain();

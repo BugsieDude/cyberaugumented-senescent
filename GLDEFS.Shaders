@@ -45,3 +45,20 @@ HardwareShader Flat DC_LAV
     Texture colormap "Shaders/Procedural Liquids/lavamap.png"
     Speed 0.95
 }
+
+HardwareShader Flat DC_WFLL1 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_WFLL2 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_WFLL3 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_WFLL4 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_SFLL1 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_SFLL2 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_SFLL3 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_SFLL4 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_BFLL1 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_BFLL2 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_BFLL3 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_BFLL4 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_LFLL1 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_LFLL2 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_LFLL3 { Shader "Shaders/nashscroll.fp" 330 }
+HardwareShader Flat DC_LFLL4 { Shader "Shaders/nashscroll.fp" 330 }

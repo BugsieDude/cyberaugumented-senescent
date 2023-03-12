@@ -72,16 +72,16 @@ pic DC_BFLL3 tics 4
 pic DC_BFLL4 tics 4
 
 texture DC_LFLL1
-pic DC_LFLL1 tics 4
-pic DC_LFLL2 tics 4
-pic DC_LFLL3 tics 4
-pic DC_LFLL4 tics 4
+pic DC_LFLL1 tics 12
+pic DC_LFLL2 tics 12
+pic DC_LFLL3 tics 12
+pic DC_LFLL4 tics 12
 
 texture DC_SFLL1
-pic DC_SFLL1 tics 4
-pic DC_SFLL2 tics 4
-pic DC_SFLL3 tics 4
-pic DC_SFLL4 tics 4
+pic DC_SFLL1 tics 8
+pic DC_SFLL2 tics 8
+pic DC_SFLL3 tics 8
+pic DC_SFLL4 tics 8
 
 texture SKYHELF
 pic SKYHF1 tics 1

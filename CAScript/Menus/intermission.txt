@@ -173,8 +173,13 @@ Class DCY_Intermission : StatusScreen
   
   override void Ticker()
   {
-	bcnt++;  
-	
+	bcnt++;
+	A_GeneralIntermission();
+	bg.updateAnimatedBack();
+  }
+  
+  void A_GeneralIntermission()
+  {
 	if (bcnt == 1) S_ChangeMusic("");
 	if (bcnt == 10) { S_StartSound("dcy/allover", 67, CHANF_UI); }
 	if (bcnt == 90) StartMusic();
@@ -213,8 +218,6 @@ Class DCY_Intermission : StatusScreen
 		
 	if (bcnt > 65 && alphastats < 1) { alphastats += 0.1 - assmooth; assmooth += 0.00525; }
 	if (alphamap < 1 && moveback) { alphamap += 0.1 - amsmooth; ; amsmooth += 0.00525; }
-	
-	bg.updateAnimatedBack();
 	
 	switch (CurState)
 	{

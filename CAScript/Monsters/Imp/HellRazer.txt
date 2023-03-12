@@ -53,7 +53,8 @@ Class DCY_HellRazer : DCY_Impe
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
-	"####" E 10 DCY_AlertSound();
+	"####" # 0 DCY_AlertSound();
+	"####" YZYZYZ random(3, 5);
 	Goto See;
   See:
     PRZR AABBCCDD 4

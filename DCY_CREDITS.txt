@@ -7,18 +7,18 @@ to tell me!
 DISCLAIMERS
 ================================================================================
 
-Please do not edit my mod and release it to the whole world showing your
-'original' mod or addon. This is called theft. If you'd like to add things from
-my mod, please ask me. If you want to add stuff that is not made by me, feel
-free to do. Please do not repost my mod at any time.
+If you'd like to add things from my mod, please ask me, otherwise you're basically
+stealing things I made for my project without permission. If you want to add stuff
+that is not made by me, feel free to do, but always credit the people or person
+who made them.
 
 ================================================================================
-CONTRIBUTOR TEAM + CREATOR
+THE TEAM
 ================================================================================
 
-Bugsie - The CREATOR of Cyberaugumented. Good. Good. That's me... Damn it, xd
-sulflix - A big contributor for Cyberaugumented, and the idea of the Argent Chainsaw.
-tsran - Cool ass monster spriter and bug fixer. (Urozon, etc.)
+Bugsie
+sulflix (thanks for the argent chainsaw)
+tsran (thanks for bug fixing)
 
 ================================================================================
 BETATESTERS
@@ -33,12 +33,12 @@ Visceral
 Special thanks to...
 ================================================================================
 
-Agent_Ash - For helping me with ZScript
+Agent_Ash - For helping me and introducing me to ZScript
 Boondorl and the entire ZDoom server - Helping me making this mod a reality
 Deimos Anomaly - The main idea of dynamic spawners and the temperature system. (Going to be implemented in a later update)
-Visceral - For supporting this mod
+Visceral - For supporting this mod and coming up with interesting ideas
 
-You - For downloading and trying out Cyberaugumented.
+You - For trying this mod.
 
 ================================================================================
 CREATORS OF RESOURCES USED IN THIS MOD
@@ -121,7 +121,7 @@ Backbone Entertainment - Sounds
 Techland (Dying Light) - Sounds
 Tarsier Studios (Little Nightmares) - Sounds
 ipxsnds.wad - Enviromental sounds
-Marisa Kirisame (:3) - notHudMessage
+Marisa Kirisame - notHudMessage
 Major Cooke - notHudMessge
 Trent Reznor - Sounds
 REV - LIQUIIIIIIIIIIIID
@@ -196,10 +196,12 @@ CD Projekt (The Witcher 3) - Sounds
 Remedy Entertainment (Control) - Sounds
 GSC Game World (S.T.A.L.K.E.R) - Sounds
 Kinnerokhn - Sprites
-The Blue Savior - Being a inspiration for this mod's dark theme
+The Blue Savior - Being an inspiration for this mod's dark theme
+A_D_M_E_R_A_L - Being an inspiration for this mod's aesthetic
 Airtight (Dark Void) - Announcement Sounds
 Blue Shadow (ncHud) - Inspiration for the hud
 Doom 3 Phobos - Arachnotron Sounds
+Agent_Ash - Double scroll shader
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

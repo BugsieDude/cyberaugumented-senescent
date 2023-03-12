@@ -100,7 +100,7 @@ Class DCY_Larrikin : DCY_KnightHell
 	EI83 A 10
 	{
 		A_Hop(5);
-		A_Recoil(20);
+		A_Recoil(14);
 	}
 	Goto See;
   Pain:

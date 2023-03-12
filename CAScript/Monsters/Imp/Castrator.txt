@@ -63,15 +63,15 @@ Class DCY_Castrator : DCY_Impe
     TNT1 A 0 A_Jump(80, "Alert");
 	Goto NormalMissile;
   NormalMissile:
-	DRKF E 5 Bright A_FaceTarget();
-    DRKF FFFFFFFFFFF 3 Bright
+	DRKF E 5 A_FaceTarget();
+    DRKF FFFFFFFFFFF 3
 	{
 		A_FaceTarget();
 
 		for (int i = -20; i < 21; i += 40)
 			A_SpawnItemEx("DCY_ElecTrailBaseCast", frandom(-5, 5), i + frandom(-5, 5), 36 + frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
 	}
-	DRKF G 5 Bright
+	DRKF G 5
 	{
 		A_FaceTarget();
 		

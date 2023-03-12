@@ -134,10 +134,10 @@ Class DCY_ShotgunZombe : DCYMonster
   States
   {
   Spawn:
-    SRG_ A 10 DCY_Look();
+    C0L1 A 10 DCY_Look();
 	Loop;
   Look:
-	SRG_ AABBCCDD 4
+	C0L1 AABBCCDD 4
 	{
 		DCY_LookingForPlayer();
 		
@@ -147,19 +147,19 @@ Class DCY_ShotgunZombe : DCYMonster
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Stand:
-	SRG_ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
+	C0L1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, "Alert", CHF_NOPLAYACTIVE|CHF_DONTMOVE);
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	SRG_ AABBCCDD 3 A_Chase();
+	C0L1 AABBCCDD 3 A_Chase();
 	Loop;
   Missile:
-	SRG_ E 0 A_JumpIfCloser(280, "BackUp");
-	SRG_ E 10 A_FaceTarget();
-	SRG_ F 4 Bright
+	C0L1 E 0 A_JumpIfCloser(280, "BackUp");
+	C0L1 E 10 A_FaceTarget();
+	C0L1 F 4 Bright
 	{
 		A_StartSound("Shotgun/Fire", CHAN_WEAPON, 0, 1.0);
 		
@@ -168,29 +168,40 @@ Class DCY_ShotgunZombe : DCYMonster
 		
 		A_FaceTarget();
 	}
-	SRG_ E 20;
+	C0L1 E 20;
 	Goto See;
   BackUp:
-	SRG_ AABBCCDDAABBCCDD 2
+	C0L1 AABBCCDDAABBCCDD 2
 	{
 		A_FaceTarget();
 		A_Recoil(-1);
 	}
 	Goto Missile+1;
   Pain:
-	SRG_ G 4;
-	SRG_ G 4 A_Pain();
+	C0L1 G 4;
+	C0L1 G 4 A_Pain();
 	Goto See;
   Death:
-	SRG_ H 3 A_Flip();
-	SRG_ H 3 A_Scream();
-	SRG_ I 5 A_Fall();
-	SRG_ JK 4;
-	SRG_ L -1;
+	C0L1 H 3
+	{
+		if (!random(0, 1)) SetStateLabeL("Death2");
+		A_Flip();
+	}
+	C0L1 H 3 A_Scream();
+	C0L1 I 5 A_Fall();
+	C0L1 JKLM 4;
+	C0L1 N -1;
+	Stop;
+  Death2:
+	C0L2 A 6 A_Flip();
+	C0L2 B 6 A_Scream();
+	C0L2 C 6 A_Fall();
+	C0L2 D 6;
+	C0L2 E -1;
 	Stop;
   XDeath:
-	SRG_ M 6;
-    SRG_ N 4 A_XScream();
+	C0L2 F 6;
+    C0L2 G 4 A_XScream();
     SRG_ O 4 A_NoBlocking();
     SRG_ PQRST 4;
     SRG_ U -1;

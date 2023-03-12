@@ -12,7 +12,7 @@ ACTOR DCY_Impo : DCY_Spawner Replaces DoomImp
   DropItem "DCY_RareImp", 0, 7
   DropItem "DCY_RareImp2", 59, 3
   DropItem "DCY_Terminalist", 14, 5
-  DropItem "DCY_LightningPhase", 10, 4
+  DropItem "DCY_LightningPhase", 10, 5
   DropItem "DCY_HellRazer", 10, 3
 }
 
