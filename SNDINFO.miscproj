@@ -44,9 +44,6 @@ ShieldBroke2 "Sounds/DCY SFX/dcy_generic_shieldbreak2.ogg"
 ShieldBroke3 "Sounds/DCY SFX/dcy_generic_shieldbreak3.ogg"
 ShieldBroke4 "Sounds/DCY SFX/dcy_generic_shieldbreak4.ogg"
 
-DCY/Paradox "Sounds/DCY SFX/dcy_paradox.ogg"
-DCY/Eerie3 "Sounds/DCY SFX/dcy_eerie3.ogg"
-
 $random dcyvomitblood { dcyvomitblood1 dcyvomitblood2 dcyvomitblood3 }
 dcyvomitblood1 "Sounds/DCY SFX/dcy_blood_vomit1.ogg"
 dcyvomitblood2 "Sounds/DCY SFX/dcy_blood_vomit2.ogg"

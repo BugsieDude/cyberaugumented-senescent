@@ -1648,7 +1648,9 @@ Congress/Howl "Sounds/DCY Monsters/Sycophant/dcy_sycophant_howl.ogg"
 Congress/Death "Sounds/DCY Monsters/Sycophant/dcy_sycophant_death.ogg"
 Congress/Attack "Sounds/DCY Monsters/Sycophant/dcy_sycophant_attack.ogg"
 
-dune/active "Sounds/DCY SFX/dcy_enemy_phase.ogg"
+$random dune/active { da1 da2 }
+da1 "Sounds/DCY SFX/dcy_enemy_phase.ogg"
+da2 "Sounds/DCY SFX/dcy_enemy_phase2.ogg"
 dune/bounce "Sounds/Projectiles/dcy_grenade_bounce.wav"
 
 GoreNest/Scream "Sounds/DCY SFX/dcy_gorenest_scream.ogg"

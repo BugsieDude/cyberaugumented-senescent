@@ -147,6 +147,7 @@ Class DCY_MallocFireball : DCY_BaronFireball
   DamageType "Fire";
   Speed 12;
   FastSpeed 22;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.61,0.00]";
   }
   
   States
