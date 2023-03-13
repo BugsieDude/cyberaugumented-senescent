@@ -407,13 +407,13 @@ Class DCY_AversionTrail : DCY_ExoTrail
   Spawn:
 	TNT1 A 1;
 	TBB2 "#" 1;
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("e7b8ff"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("cf91ff"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("b86bff"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("812de0"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("400fa3"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("1e065c"); }
-	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("0d0326"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("ffa6ac"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("ff8088"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("ff5762"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("ff1940"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("960c18"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("630000"); }
+	"####" "#" 1 { A_FadeOut(0.01, 1); SetShade("200000"); }
 	Stop;
   }
 }

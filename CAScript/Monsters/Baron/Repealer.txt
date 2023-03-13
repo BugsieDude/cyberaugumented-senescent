@@ -360,8 +360,8 @@ Class DCY_RepealerLaser : DCY_FastProjectile
   Spawn:
 	TNT1 A 1
 	{
-		if (getAge() < 10) A_SeekerMissile(15, 15, SMF_PRECISE);
-		if (getAge() > 10 && getAge() < 20) A_ScaleVelocity(1.4);
+		if (getAge() < 10) A_SeekerMissile(10, 10, SMF_PRECISE);
+		if (getAge() > 10 && getAge() < 20) A_ScaleVelocity(1.3);
 	}
 	Loop;
   Death:

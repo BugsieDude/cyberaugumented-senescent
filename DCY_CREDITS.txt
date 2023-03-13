@@ -202,6 +202,7 @@ Airtight (Dark Void) - Announcement Sounds
 Blue Shadow (ncHud) - Inspiration for the hud
 Doom 3 Phobos - Arachnotron Sounds
 Agent_Ash - Double scroll shader
+"GAU-8 Gatling Gun in Action" (on Youtube) - Arachnoaversion minigun sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

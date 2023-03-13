@@ -66,7 +66,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 		A_TerminatorVoiceline(7);
 		A_FaceTarget();
 	}
-	NVRM HI 5
+	NVRM HI random(6, 7)
 	{
 		A_FaceTarget();
 		A_StartSound("Android/Laser", CHAN_WEAPON, 0, 1.0, 0.75);
