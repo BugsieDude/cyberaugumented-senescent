@@ -134,6 +134,7 @@
 #include "CAScript/Monsters/Chaingunner/Theristis.txt"
 #include "CAScript/Monsters/Cacodemon/Perditiongazer.txt"
 #include "CAScript/Monsters/Archvile/Auteur.txt"
+#include "CAScript/Monsters/Atmospheric/Intone.txt"
 #include "CAScript/Monsters/Marauder.txt"
 #include "CAScript/Monsters/Boss Wannabe/Curator.txt"
 #include "CAScript/Monsters/Boss Wannabe/Eavesdropper.txt"

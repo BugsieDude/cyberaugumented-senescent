@@ -12,11 +12,6 @@ Class DCY_Violator : DCY_Dastard
   Obituary "%o was persecuted by a Violator.";
   }
   
-  void A_ViolatorStatic()
-  {
-	A_SetTranslucent(randompick(0, 1), 2);
-  }
-  
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
   {
 	static const string messages[] =

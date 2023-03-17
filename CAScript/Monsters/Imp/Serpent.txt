@@ -4,7 +4,7 @@ Class DCY_Serpent : DCY_Impe
   {
   Health 88;
   Tag "Serpent";
-  Obituary "%o was burned by a Serpent's acid.";
+  Obituary "%o got liquified by a Serpent.";
   HitObituary "%o got slashed by a Serpent.";
   DamageType "Acid";
   SeeSound "Serpent/Sight";

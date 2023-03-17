@@ -1227,3 +1227,16 @@ Model DCY_SiriusBFGSphere2
   AngleOffset 0.00
   FrameIndex PKCH A 0 0 
 }
+
+Model DCY_IntoneRing
+{
+  Path "CAModels" 
+  Model 0 "IntoneRing.md3"
+  Skin 0 "intone_ring.png"
+  Scale 1.0 1.0 1.0
+  Offset 0.00 0.00 0.00 
+  AngleOffset 0.00
+  USEACTORROLL
+  USEACTORPITCH
+  FrameIndex BAL1 A 0 0 
+}
