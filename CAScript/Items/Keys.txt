@@ -1,0 +1,62 @@
+Class DCY_KeyBase : Key abstract
+{
+  Mixin DCY_Progression;
+  
+  string nme, type, clr; sound snd; class<Key> s;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	s = species;
+	
+	switch(s.GetClassName())
+	{
+		case 'RedCard': sprite = GetSpriteIndex("E2S_"); clr = "i7"; snd = "dcyredcard"; type = "Disk"; nme = "Carmine"; break;
+		case 'RedSkull': sprite = GetSpriteIndex("0TS_"); clr = "i7"; snd = "dcyredskull"; type = "Soul"; nme = "Mahogany"; break;
+		case 'BlueCard': sprite = GetSpriteIndex("EKS_"); clr = "l5"; snd = "dcybluecard"; type = "Disk"; nme = "Cerulean"; break;
+		case 'BlueSkull': sprite = GetSpriteIndex("0T1_"); clr = "l5"; snd = "dcyblueskull"; type = "Soul"; nme = "Denim"; break;
+		case 'YellowCard': sprite = GetSpriteIndex("E1S_"); clr = "p1"; snd = "dcyyellowcard"; type = "Disk"; nme = "Cerulean"; break;
+		case 'YellowSkull': sprite = GetSpriteIndex("0T2_"); clr = "p1"; snd = "dcyyellowskull"; type = "Soul"; nme = "Denim"; break;
+	}
+  }
+  
+  override bool TryPickup(in out Actor toucher)
+  {
+	s = species;
+	
+	if (toucher.FindInventory(s)) return false;
+	else
+	{
+		for(int i=0;i<MAXPLAYERS;i++)
+			if(playeringame[i]&&players[i].mo)
+				players[i].mo.A_GiveInventory(s);
+			
+		toucher.S_StartSound(snd, 1280, CHANF_UI);
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", type.." Transfer: ".."\c["..clr.."]"..nme, (240, 135), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.1, 3, 0.1), id: 2222);
+		DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80, 1500), (160, 4000), time: (0.1, 3, 0.1), id: 2223);
+	}
+	
+	GoAwayAndDie();
+	return true;
+  }
+	
+  Default { Inventory.PickupSound ""; -INVENTORY.PICKUPFLASH; +INVENTORY.QUIET; }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	#### ABCB 5;
+	Goto Spawn+1;
+  LoadSprites:
+	EKS_ ABC 0; E1S_ ABC 0; E2S_ ABC 0;
+	0TS_ ABC 0; 0T1_ ABC 0; 0T2_ ABC 0;
+  }
+}
+
+Class DCY_RKey : DCY_KeyBase Replaces RedCard { Default { Species "RedCard"; } }
+Class DCY_BKey : DCY_KeyBase Replaces BlueCard { Default { Species "BlueCard"; } }
+Class DCY_YKey : DCY_KeyBase Replaces YellowCard { Default { Species "YellowCard"; } }
+Class DCY_RCranium : DCY_KeyBase Replaces RedSkull { Default { Species "RedSkull"; } }
+Class DCY_BCranium : DCY_KeyBase Replaces BlueSkull { Default { Species "BlueSkull"; } }
+Class DCY_YCranium : DCY_KeyBase Replaces YellowSkull { Default { Species "YellowSkull"; } }

@@ -161,11 +161,9 @@ Class DCY_Espouser : DCY_VileParent
 		A_StartSound("PENTASUM", CHAN_BODY, attenuation: 0.45);
 		A_SpawnItemEx("DCY_ServerPentagram", 0, 0, 1, flags: SXF_NOCHECKPOSITION);
 	}
-	HR1E KLM 8 A_FaceTarget();
-	HR1E M 10
+	HR1E Z 40
 	{
 		A_FaceTarget();
-		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, FloorZ + 30, flags: SXF_NOCHECKPOSITION);
 		
 		for (int i = 0; i < 360; i += 75)
 		{
@@ -374,6 +372,8 @@ Class DCY_EspouserServer : DCY_Impe
   +NEVERFAST
   +GHOST
   +NOINFIGHTING
+  -SHOOTABLE
+  +NOPAIN
   DamageFactor "Occult", 0.00;
   Species "Ghostly";
   Scale 1.1;
@@ -405,13 +405,20 @@ Class DCY_EspouserServer : DCY_Impe
   States
   {
   Spawn:
+	TNT1 A 1 { if (vel.z == 0) SetStateLabel("Rise"); bNOPAIN = false; bSHOOTABLE = true; }
+	Loop;
+  Rise:
+	DHUI WVUTSRQPON 3;
+	Goto Idle;
+  Idle:
+  Look:
 	DHUI A 10 A_Look();
 	Loop;
   See:
 	DHUI AAABBBCCCDDD 3
 	{
 		A_Chase();
-		Return A_Jump(5, "Teleport");
+		Return A_Jump(1, "Teleport");
 	}
 	Loop;
   Teleport:
@@ -424,7 +431,7 @@ Class DCY_EspouserServer : DCY_Impe
 	DHUI A 10
 	{
 		A_FaceTarget();
-		Return A_Jump(90, "See");
+		Return A_Jump(120, "See");
 	}
 	Loop;
   Melee:

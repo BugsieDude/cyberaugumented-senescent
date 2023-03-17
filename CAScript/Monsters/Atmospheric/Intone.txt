@@ -1,4 +1,4 @@
-Class DCY_Intone : DCYMonster
+Class DCY_Intone : DCY_SkullParent
 {
   Default
   {
@@ -7,6 +7,8 @@ Class DCY_Intone : DCYMonster
   +ROLLSPRITE
   +ROLLCENTER
   +NOGRAVITY
+  +PAINLESS
+  +NOPAIN
   +SLIDESONWALLS
   +FLOAT
   Speed 5;
@@ -26,8 +28,8 @@ Class DCY_Intone : DCYMonster
 		if ((level.time % random(2, 10)) == 0)
 			A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 180, random(3, 6), frandom(0, 360), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10, 10) + 25, frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.9, fadestepf: 0, sizestep: -0.045);
 		
-		if (!(getAge() % 3)) A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 80, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.4, fadestepf: 0.015, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
-		if (!(getAge() % random(2, 4))) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.05, fadestepf: 0.0035, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		if (!(getAge() % 3)) A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 80, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.5, fadestepf: 0.0175, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		if (!(getAge() % random(2, 4))) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.1, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
   }
   
@@ -67,7 +69,7 @@ Class DCY_IntoneRing : Actor
   {
   Scale 2.5;
   RenderStyle "Add";
-  Alpha 0.1;
+  Alpha 0.2;
   +NOINTERACTION
   +ROLLSPRITE
   -SOLID
@@ -85,6 +87,7 @@ Class DCY_IntoneRing : Actor
 	anglething = frandom(-5, 5);
 	the = 5 * randompick(-1, 1);
 	scale.x = scale.y = frandom(2, 2.6);
+	scale.y /= 1.05;
   }
   
   override void Tick()
@@ -95,8 +98,8 @@ Class DCY_IntoneRing : Actor
 	anglething += frandom(-0.1, 0.1);
 	pitchthing += frandom(-0.1, 0.1);
 	roll += rollthing;
-	angle += the + anglething;
-	pitchthing += pitchthing;
+	angle += (the + anglething);
+	pitch += pitchthing;
 	if (master) Warp(master, 0, 0, master.height / 2, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 	if (!master) Destroy();
   }

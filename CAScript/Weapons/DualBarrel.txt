@@ -20,7 +20,7 @@ Class DCY_SuperShotty : DCY_Weapon Replaces SuperShotgun
 	for (int i = 7; i > 0; i--)
     {
 		for (int i = -4; i < 5; i += 8)
-			A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosiveSSGTracer" : "DCY_SSGTracer", frandom(-3.25, 3.25), 0, -4, pitch: frandom(-3.0, 3.0));
+			A_FireProjectile(CheckInventory("DCY_PhotocoagulatorPower", 1, AAPTR_DEFAULT) ? "DCY_ExplosiveSSGTracer" : "DCY_SSGTracer", Random2[FireSG2]() * (11.25 / 256), 0, -4, pitch: Random2[FireSG2]() * (7.097 / 256));
 	}
 	
 	A_QuakeEx(1, 1, 1, 30, 0, 90, "none", QF_SCALEDOWN, falloff: 180);
@@ -53,13 +53,13 @@ Class DCY_SuperShotty : DCY_Weapon Replaces SuperShotgun
 	_SSG CDE 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	_SSG FGH 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	_SSG I 0 A_JumpIfNoAmmo("Ready");
-	_SSG IJKLM 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
-	_SSG N 1
+	_SSG IJKLM 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG N 2
 	{
 		A_StartSound("SuperShotgun/Reload", CHAN_WEAPON, CHANF_OVERLAP, 0.5);
 		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	}
-	_SSG OP 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	_SSG OP 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	_SSG QRSTUVWXYZ 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	_S2G ABC 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	_S2G C 0 A_Refire();

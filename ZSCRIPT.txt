@@ -41,6 +41,7 @@ Version "4.10.0"
 #include "CAScript/Items/PowerupBase.txt"
 #include "CAScript/Items/Spheres.txt"
 #include "CAScript/Items/Other.txt"
+#include "CAScript/Items/Keys.txt"
 
 //Effects
 #include "CAScript/Others/OtherTrails.txt"

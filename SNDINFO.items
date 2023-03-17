@@ -42,6 +42,14 @@ tornado/speen2 "Sounds/Projectiles/dcy_tornado2.ogg"
 dcy/crosscut/use "Sounds/Inventory/dcy_crosscut.ogg"
 dcy/crosscut/up "Sounds/Inventory/dcy_crosscut_up.ogg"
 
+//Planetside 2 Key Sounds(?)
+dcyredcard "Sounds/Inventory/keys/dcy_redcard.ogg"
+dcybluecard "Sounds/Inventory/keys/dcy_bluecard.ogg"
+dcyyellowcard "Sounds/Inventory/keys/dcy_yellowcard.ogg"
+dcyredskull "Sounds/Inventory/keys/dcy_redskull.ogg"
+dcyblueskull "Sounds/Inventory/keys/dcy_blueskull.ogg"
+dcyyellowskull "Sounds/Inventory/keys/dcy_yellowskull.ogg"
+
 //Health & Armor
 GreenArmor/Pickup "Sounds/Inventory/dcy_greenarmor.ogg"
 BlueArmor/Pickup "Sounds/Inventory/dcy_bluearmor.ogg"
