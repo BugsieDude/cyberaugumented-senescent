@@ -11,17 +11,24 @@ Class DCY_Intone : DCY_SkullParent
   +NOPAIN
   +SLIDESONWALLS
   +FLOAT
+  Mass 100;
   Speed 5;
   FloatSpeed 3;
   Height 50;
   StencilColor "Red";
+  SeeSound "";
+  PainSound "";
+  ActiveSound "";
+  DeathSound "";
   }
+  
+  float fspeed;
   
   override void Tick()
   {
 	if (level.isFrozen()) return;
 	super.Tick();
-	if (!(getAge() % 6)) frame = (ceil(frame + 0.1)) % 16;
+	if (!(getAge() % fspeed)) frame = (ceil(frame + 0.1)) % 16;
 	roll = (2.45 * sin(MSTimeF() * 0.1));
 	if (DCY_EffectDistance(sfxdistance))
 	{
@@ -29,27 +36,38 @@ Class DCY_Intone : DCY_SkullParent
 			A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 180, random(3, 6), frandom(0, 360), frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10, 10) + 25, frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.9, fadestepf: 0, sizestep: -0.045);
 		
 		if (!(getAge() % 3)) A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 80, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.5, fadestepf: 0.0175, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
-		if (!(getAge() % random(2, 4))) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.1, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.1, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
+	if (health > 0) A_StartSound("Intone/Hum", 120, CHANF_LOOPING, attenuation: 0.4);
   }
   
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
 	for (int i = 2; i > 0; i--) actor ring = spawn("DCY_IntoneRing", pos).master = self;
+	fspeed = 6;
   }
   
   void A_IntoneHover()
   {
 	vel.x += frandom(-0.1, 0.1) * ((target && distance3D(target) > 300) ? 3 : 1);
 	vel.y += frandom(-0.1, 0.1) * ((target && distance3D(target) > 300) ? 3 : 1);
-	vel.z += frandom(-0.1, 0.1) * ((target && distance3D(target) > 300) ? 3 : 1);
-	if (!(getAge() % 2)) self.A_Recoil(((target && distance3D(target) < 100) ? frandom(0.5, -0.125) :
-	(frandom(-0.5, 0.125) * ((target && distance3D(target) > 400) ? frandom(2.00, 2.50) : frandom(0.5, 1)))));
+	vel.z += frandom(-0.1, 0.1) * ((target && distance2D(target) > 300) ? 3 : 1);
+	if (!(getAge() % 2)) self.A_Recoil(((target && distance2D(target) < 100) ? frandom(0.5, -0.125) :
+	(frandom(-0.5, 0.125) * ((target && distance2D(target) > 400) ? frandom(2.00, 2.50) : frandom(0.5, 1)))));
 	vel.x /= 1.05;
 	vel.y /= 1.05;
 	vel.z /= 1.05;
 	A_FaceTarget();
+	
+	if (target)
+	{
+		if (distance3D(target) < 140)
+		{
+			target.pitch += frandom(-.05, .05);
+			target.angle += frandom(-.05, .05);
+		}
+	}
   }
   
   States
@@ -60,8 +78,35 @@ Class DCY_Intone : DCY_SkullParent
   Look:
 	1NT1 # 1 A_IntoneHover();
 	Loop;
+  Death:
+	1NT1 # 10
+	{
+		bNOGRAVITY = false;
+		bFLOAT = false;
+		gravity = .75;
+		vel.z += frandom(4, 8);
+		vel.x += frandom(-5, 5);
+		vel.y += frandom(-5, 5);
+		fspeed = 2;
+	}
+	1NT1 # 1
+	{
+		if (vel.z == 0)
+		{
+			for (int i = random(8, 14); i > 0; i--)
+				A_SpawnProjectile("DCY_IntoneDischarge", frandom(-30, 30), frandom(-30, 30), frandom(0, 360), CMF_AIMDIRECTION|CMF_OFFSETPITCH, frandom(0, -40));
+			A_SpawnItemEx("DCY_WretchedExplosion", flags: SXF_NOCHECKPOSITION);
+			A_Explode(300, 150);
+			A_StartSound("Intone/Explode", CHAN_BODY);
+			A_StopSound(120);
+			Destroy();
+		}
+	}
+	Goto Death+1;
   }
 }
+
+Class DCY_IntoneDischarge : DCY_LightningPhaseDischarge { Default { Damage 2; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.10,0.15]"; SeeSound ""; DeathSound ""; } }
 
 Class DCY_IntoneRing : Actor
 {

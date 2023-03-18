@@ -228,20 +228,27 @@ HSSGPAI4 "Sounds/DCY Monsters/Hoodlum/dcy_strogg_soldier_pain4.ogg"
 HSSGPAI5 "Sounds/DCY Monsters/Hoodlum/dcy_strogg_soldier_pain5.ogg"
 HSSGPAI6 "Sounds/DCY Monsters/Hoodlum/dcy_strogg_soldier_pain6.ogg"
 
-Sacker/Sight "Sounds/DCY Monsters/Sacker/dcy_sacker_sight.ogg"
+$random Sacker/Sight { Sacker/Sight1 Sacker/Sight2 }
+Sacker/Sight1 "Sounds/DCY Monsters/Sacker/dcy_sacker_sight.ogg"
+Sacker/Sight2 "Sounds/DCY Monsters/Sacker/dcy_sacker_sight2.ogg"
 Sacker/Active "Sounds/DCY Monsters/Sacker/dcy_sacker_idle.ogg"
-$random Sacker/Pain { Sacker/Pain1 Sacker/Pain2 Sacker/Pain3 Sacker/Pain4 Sacker/Pain5 }
+$random Sacker/Pain { Sacker/Pain1 Sacker/Pain2 Sacker/Pain3 Sacker/Pain4 Sacker/Pain5 Sacker/Pain6 Sacker/Pain7 Sacker/Pain8 }
 Sacker/Pain1 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain1.ogg"
 Sacker/Pain2 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain2.ogg"
 Sacker/Pain3 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain3.ogg"
 Sacker/Pain4 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain4.ogg"
 Sacker/Pain5 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain5.ogg"
-$random Sacker/Death { Sacker/Death1 Sacker/Death2 Sacker/Death3 Sacker/Death4 Sacker/Death5 }
+Sacker/Pain6 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain6.ogg"
+Sacker/Pain7 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain7.ogg"
+Sacker/Pain8 "Sounds/DCY Monsters/Sacker/dcy_sacker_pain8.ogg"
+$random Sacker/Death { Sacker/Death1 Sacker/Death2 Sacker/Death3 Sacker/Death4 Sacker/Death5 Sacker/Death6 Sacker/Death7 }
 Sacker/Death1 "Sounds/DCY Monsters/Sacker/dcy_sacker_death1.ogg"
 Sacker/Death2 "Sounds/DCY Monsters/Sacker/dcy_sacker_death2.ogg"
 Sacker/Death3 "Sounds/DCY Monsters/Sacker/dcy_sacker_death3.ogg"
 Sacker/Death4 "Sounds/DCY Monsters/Sacker/dcy_sacker_death4.ogg"
 Sacker/Death5 "Sounds/DCY Monsters/Sacker/dcy_sacker_death5.ogg"
+Sacker/Death6 "Sounds/DCY Monsters/Sacker/dcy_sacker_death6.ogg"
+Sacker/Death7 "Sounds/DCY Monsters/Sacker/dcy_sacker_death7.ogg"
 
 $random L4DSmoker/Sight { SM0KSIT1 SM0KSIT2 SM0KSIT3 SM0KSIT4 SM0KSIT5 SM0KSIT6 }
 SM0KSIT1 "Sounds/DCY Monsters/Liquidator/sight1.ogg"
@@ -3037,3 +3044,6 @@ preventive/sight11 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight11.WAV"
 preventive/sight12 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight12.WAV"
 preventive/sight13 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight13.WAV"
 preventive/sight14 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight14.WAV"
+
+Intone/Hum "Sounds/DCY Monsters/Intone/dcy_intone_hum.ogg"
+Intone/Explode "Sounds/DCY Monsters/Intone/dcy_intone_explode.ogg"
