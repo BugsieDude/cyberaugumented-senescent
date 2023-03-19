@@ -197,6 +197,7 @@ Class DCY_ManesBallBig : DCY_ManesBall
   +SEEKERMISSILE
   Damage 6;
   Scale 0.575;
+  SeeSound "SkullFireDCY";
   DeathSound "ArgentBall";
   }
   

@@ -147,4 +147,3 @@
 #include "CAScript/Monsters/Boss Wannabe/Visitant.txt"
 #include "CAScript/Monsters/Boss Wannabe/Chorico.txt"
 #include "CAScript/Monsters/Boss Wannabe/Spiritwalker.txt"
-#include "CAScript/Monsters/Boss Wannabe/MW.txt"

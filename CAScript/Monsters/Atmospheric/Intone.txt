@@ -7,11 +7,12 @@ Class DCY_Intone : DCY_SkullParent
   +ROLLSPRITE
   +ROLLCENTER
   +NOGRAVITY
+  -COUNTKILL
   +PAINLESS
   +NOPAIN
   +SLIDESONWALLS
   +FLOAT
-  Mass 100;
+  Mass 170;
   Speed 5;
   FloatSpeed 3;
   Height 50;
@@ -20,6 +21,7 @@ Class DCY_Intone : DCY_SkullParent
   PainSound "";
   ActiveSound "";
   DeathSound "";
+  Species "Ambient";
   }
   
   float fspeed;
@@ -38,7 +40,7 @@ Class DCY_Intone : DCY_SkullParent
 		if (!(getAge() % 3)) A_SpawnParticleEx(0x610000, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 80, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.5, fadestepf: 0.0175, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 100, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20) + 25, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: 0.1, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
-	if (health > 0) A_StartSound("Intone/Hum", 120, CHANF_LOOPING, attenuation: 0.4);
+	if (health > 0) for (int i = 1; i > -1; i--) A_StartSound("Intone/Hum", 120 + i, CHANF_LOOPING, attenuation: 0.4 + i);
   }
   
   override void PostBeginPlay()
@@ -98,7 +100,7 @@ Class DCY_Intone : DCY_SkullParent
 			A_SpawnItemEx("DCY_WretchedExplosion", flags: SXF_NOCHECKPOSITION);
 			A_Explode(300, 150);
 			A_StartSound("Intone/Explode", CHAN_BODY);
-			A_StopSound(120);
+			for (int i = 1 ; i > -1; i--) A_StopSound(120 + i);
 			Destroy();
 		}
 	}
@@ -106,7 +108,16 @@ Class DCY_Intone : DCY_SkullParent
   }
 }
 
-Class DCY_IntoneDischarge : DCY_LightningPhaseDischarge { Default { Damage 2; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.10,0.15]"; SeeSound ""; DeathSound ""; } }
+Class DCY_IntoneDischarge : DCY_LightningPhaseDischarge { Default { Damage 2; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.10,0.15]"; SeeSound ""; DeathSound ""; -NOGRAVITY }
+override void tick()
+{  
+	if (level.isFrozen()) return;
+	super.tick();
+	if (getAge() > 10) Destroy();
+	vel.x += frandom(-200, 200);
+	vel.y += frandom(-200, 200);
+	vel.z += frandom(-20, 20);
+} }
 
 Class DCY_IntoneRing : Actor
 {

@@ -15,8 +15,8 @@ Class DCY_KeyBase : Key abstract
 		case 'RedSkull': sprite = GetSpriteIndex("0TS_"); clr = "i7"; snd = "dcyredskull"; type = "Soul"; nme = "Mahogany"; break;
 		case 'BlueCard': sprite = GetSpriteIndex("EKS_"); clr = "l5"; snd = "dcybluecard"; type = "Disk"; nme = "Cerulean"; break;
 		case 'BlueSkull': sprite = GetSpriteIndex("0T1_"); clr = "l5"; snd = "dcyblueskull"; type = "Soul"; nme = "Denim"; break;
-		case 'YellowCard': sprite = GetSpriteIndex("E1S_"); clr = "p1"; snd = "dcyyellowcard"; type = "Disk"; nme = "Cerulean"; break;
-		case 'YellowSkull': sprite = GetSpriteIndex("0T2_"); clr = "p1"; snd = "dcyyellowskull"; type = "Soul"; nme = "Denim"; break;
+		case 'YellowCard': sprite = GetSpriteIndex("E1S_"); clr = "p1"; snd = "dcyyellowcard"; type = "Disk"; nme = "Flaxen"; break;
+		case 'YellowSkull': sprite = GetSpriteIndex("0T2_"); clr = "p1"; snd = "dcyyellowskull"; type = "Soul"; nme = "Aurelian"; break;
 	}
   }
   
@@ -40,7 +40,7 @@ Class DCY_KeyBase : Key abstract
 	return true;
   }
 	
-  Default { Inventory.PickupSound ""; -INVENTORY.PICKUPFLASH; +INVENTORY.QUIET; }
+  Default { Inventory.PickupSound ""; +INVENTORY.QUIET; }
   
   States
   {

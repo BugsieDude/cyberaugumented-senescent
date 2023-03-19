@@ -86,17 +86,25 @@ Class DCY_GAxe : DCY_WAxe
   StencilColor "00258a";
   DamageType "Poison";
   }
+  
+  int timer;
+  
   States
   {
   Spawn:
 	XXP_ AAABBBCCC 1
 	{
 		if ((level.time % 9) == 0)
-			A_StartSound("hknight/axewhoosh");
+			A_StartSound("hknight/axewhoosh", volume: 0.75);
 		
+		if (DCY_EffectDistance(sfxdistance))
+		{
 		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
-		if (!(level.maptime & 3)) A_Tracer2(16.875);
+		}
+		
+		if (!(level.maptime & 3)) if (timer < 70) A_Tracer2(16.875); else A_Tracer2(6.875);
+		if (timer < 70) timer++;
 	}
 	Loop;
   }

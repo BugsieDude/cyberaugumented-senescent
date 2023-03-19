@@ -55,20 +55,20 @@ Class DCY_SkinnyFat : DCYMonster
     _JUG H 7
 	{
 		A_FaceTarget();
-		A_SpawnProjectile("FatShot", 30, -13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+		A_SpawnProjectile("DCY_LeFatFireball", 30, -13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
 	}
 	_JUG I 7 A_FaceTarget();
 	_JUG H 7
 	{
 		A_FaceTarget();
-		A_SpawnProjectile("FatShot", 30, 13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+		A_SpawnProjectile("DCY_LeFatFireball", 30, 13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
 	}
 	_JUG I 7 A_FaceTarget();
 	_JUG H 7
 	{
 		A_FaceTarget();
-		A_SpawnProjectile("FatShot", 30, 13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
-		A_SpawnProjectile("FatShot", 30, -13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
+		A_SpawnProjectile("DCY_LeFatFireball", 30, 13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
+		A_SpawnProjectile("DCY_LeFatFireball", 30, -13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
 	}
     _JUG HIGG 7 A_FaceTarget();
     Goto See;

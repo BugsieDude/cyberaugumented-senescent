@@ -153,8 +153,7 @@ Class DCY_Ultracerest : DCY_Impe //stronk
 	ANDV A 5 A_FaceTarget();
 	Goto See;
   PowerBallIKThisIsAStupidJokeHelpPls:
-    ANDV F 10 A_FaceTarget();
-	ANDV E 10 A_FaceTarget();
+    ANDV FE 10 A_FaceTarget();
 	ANDV E 1
 	{
 		A_StartSound("ULCRCHRG", CHAN_WEAPON, attenuation: 0.5);
@@ -269,7 +268,7 @@ Class DCY_UltracerestRocket : DCY_OverhauledRocket
 {
   Default
   {
-  DamageFunction 8;
+  DamageFunction 7;
   SeeSound "ROBOMISL";
   DeathSound "UCKABEWM";
   Speed 19;
@@ -290,7 +289,7 @@ Class DCY_UltracerestRocket : DCY_OverhauledRocket
 	TNT1 A 1;
 	TNT1 A 1
 	{
-		A_Explode(random(1, 20), 100, XF_NOTMISSILE, 0);
+		A_Explode(30, 100);
 		A_SpawnItemEx("DCY_AndroidExplosion");
 	}
 	Stop;

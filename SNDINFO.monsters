@@ -400,9 +400,12 @@ ARWLACT "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_idle.ogg"
 ARWLPAI "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_pain.ogg"
 ARWLDTH "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_death.ogg"
 
-$random Misc/DemonicGibberish { DSMADNES DSMADNE2 }
+$random Misc/DemonicGibberish { DSMADNES DSMADNE2 DSMADNE3 DSMADNE4 DSMADNE5 }
 DSMADNES "Sounds/DCY SFX/dcy_madness1.ogg"
 DSMADNE2 "Sounds/DCY SFX/dcy_madness2.ogg"
+DSMADNE3 "Sounds/DCY SFX/dcy_madness3.ogg"
+DSMADNE4 "Sounds/DCY SFX/dcy_madness4.ogg"
+DSMADNE5 "Sounds/DCY SFX/dcy_madness5.ogg"
 
 SPI2SIT "Sounds/DCY Monsters/Ion/dcy_ionspider_sight.wav"
 SPI2ACT "Sounds/DCY Monsters/Ion/dcy_ionspider_idle.wav"
@@ -445,13 +448,18 @@ VPartisan/Active "Sounds/DCY Monsters/Verdict Partisan/dcy_partisan_hum.ogg"
 VPartisan/Pain "Sounds/DCY Monsters/Verdict Partisan/dcy_partisan_pain.ogg"
 VPartisan/Death "Sounds/DCY Monsters/Verdict Partisan/dcy_partisan_death.ogg"
 
-$random Exarch/Sound { EXARSND1 EXARSND2 EXARSND3 }
+$random Exarch/Sight { EXARSIT1 EXARSIT2 }
+EXARSIT1 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_sight1.ogg"
+EXARSIT2 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_sight2.ogg"
+$random Exarch/Sound { EXARSND1 EXARSND2 EXARSND3 EXARSND4 }
 EXARSND1 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_chant1.ogg"
 EXARSND2 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_chant2.ogg"
 EXARSND3 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_chant3.ogg"
+EXARSND4 "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_chant4.ogg"
 Exarch/Attack "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_attack.ogg"
 Exarch/Pain "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_pain.ogg"
 Exarch/Death "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_death.ogg"
+Exarch/Dash "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_dash.ogg"
 
 $random TerminalImp/Sight { tis1 tis2 tis3 tis4 tis5 tis6 tis7 tis8 tia8 tia6 }
 tis1 "Sounds/DCY Monsters/Terminalist/dcy_terminalist_sight1.ogg"
@@ -1725,9 +1733,11 @@ CYNDTH1 "Sounds/DCY Monsters/Caviler/dcy_shocktrooper_death1.ogg"
 CYNDTH2 "Sounds/DCY Monsters/Caviler/dcy_shocktrooper_death2.ogg"
 CYNDTH3 "Sounds/DCY Monsters/Caviler/dcy_shocktrooper_death3.ogg"
 
-$random DCYBruiser/Sight { GMBSIG GMBSIG2 }
+$random DCYBruiser/Sight { GMBSIG GMBSIG2 GMBSIG3 GMBSIG4 }
 GMBSIG "Sounds/DCY Monsters/Bruiser/dcy_bruiser_sight1.ogg"
 GMBSIG2 "Sounds/DCY Monsters/Bruiser/dcy_bruiser_sight2.ogg"
+GMBSIG3 "Sounds/DCY Monsters/Bruiser/dcy_bruiser_sight3.ogg"
+GMBSIG4 "Sounds/DCY Monsters/Bruiser/dcy_bruiser_sight4.ogg"
 $random DCYBruiser/Death { GMBDTH GMBDTH2 }
 GMBDTH "Sounds/DCY Monsters/Bruiser/dcy_bruiser_death1.ogg"
 GMBDTH2 "Sounds/DCY Monsters/Bruiser/dcy_bruiser_death2.ogg"

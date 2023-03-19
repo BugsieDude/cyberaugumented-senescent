@@ -12,8 +12,6 @@ Class DCY_HellRazer : DCY_Impe
   DeathSound "MechaZombie/Death";
   Tag "\c[Red]Hellrazer\c-";
   DropItem "Chaingun", 192;
-  DropItem "DCY_Emphasis", 37;
-  DropItem "DCY_Palisade", 50;
   Obituary "%o got razed.";
   DropItem "Cell", 150;
   BloodType "AndroidNeonFluid", "AndroidNeonFluid";
@@ -42,6 +40,8 @@ Class DCY_HellRazer : DCY_Impe
   int laser;
   int missile;
   int fdeath;
+  bool ang2;
+  int ang;
   
   States
   {
@@ -66,21 +66,14 @@ Class DCY_HellRazer : DCY_Impe
   Missile:
     TNT1 A 0
 	{
-		If(target && Distance3D(target) < 200)
-			Return ResolveState("CloseMissile");
+		if (target && distance3D(target) > 256)
+			Return A_Jump(80, "Charged", "Seeker", "NormalMissile");
+		If ((target && Distance3D(target) < 200) && (!random(0, 3)))
+			SetStateLabel("RazerBeam");
 		
 		Return ResolveState(null);
 	}
 	Goto NormalMissile;
-  CloseMissile:
-	TNT1 A 0
-	{
-		if (target && distance3D(target) > 450)
-			Return A_Jump(80, "Railgun", "NormalMissile");
-		else
-			Return A_Jump(80, "NormalMissile");
-	}
-	Goto RazerBeam;
   Melee:
   RazerBeam:
     TNT1 A 0
@@ -133,19 +126,57 @@ Class DCY_HellRazer : DCY_Impe
 		A_FaceTarget();
 	}
 	Goto NormalMissile+7;
-  Railgun:
+  Seeker:
     TNT1 A 0
 	{
+		missile = 0;
 		A_FaceTarget();
-		A_StartSound("DSWTH", CHAN_WEAPON, 0, 1.0, 0.45);
+		A_StartSound("DSWTH", CHAN_WEAPON, 0, 1.0, 0.9);
 	}
-    PRZR EEEEEEEEEEEEEEEEEE 1 A_FaceTarget(0.80, 0.80);
+    PRZR EEEEEEEEEEEEEEEEEE 1 A_FaceTarget();
+	Goto SeekerL;
+  SeekerL:
+	PRZR F 5
+	{
+		A_SpawnProjectile("DCY_WretchedBall", 32, 0, frandom(-8, 8), CMF_OFFSETPITCH, frandom(-4, 4));
+		A_FaceTarget();
+		missile++;
+	}
+	PRZR E 10;
+	Goto See;
+  Charged:
+    TNT1 A 0
+	{
+		missile = 0;
+		ang2 = randompick(0, 1);
+		A_FaceTarget();
+		A_StartSound("D4Zombie/Charge", CHAN_WEAPON, 0, 1.0, 0.75);
+	}
+    PRZR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+	{
+		A_FaceTarget(1.80, 1.80);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0x941313, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 40, 0, frandom(40, 60), frandom(-20, 20), frandom(-10, 10) + 31, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: 0.725);
+	}
+	Goto ChargeLoop;
+  ChargeLoop:
 	PRZR F 10
 	{
-		A_StartSound("D4RAILGF", CHAN_6, 0, 1.0, 0.75);
-		A_CustomRailgun(128, flags: RGF_SILENT|RGF_FULLBRIGHT, sparsity: 30, spawnclass: "DCY_RazerLaser");
+		A_StartSound("Consul/ChargedFire", CHAN_WEAPON);
+		A_StartSound("Hellrazer/ChargedShot", CHAN_5, attenuation: 0.75);
+		ang -= 30;
+		A_SpawnProjectile("DCY_ConsulCharged", 32, 0, frandom(-3, 3) + ((ang2) ? abs(ang) - 60 : ang + 60));
+		missile++;
 	}
-	Goto See;
+	PRZR E 15
+	{
+		if (missile >= 3)
+		{
+			missile == 0;
+			SetStateLabel("See");
+		}
+		A_FaceTarget();
+	}
+	Loop;
   Pain:
     TNT1 A 0 A_StopSound(CHAN_7);
 	PRZR G 4;
@@ -174,8 +205,8 @@ Class DCY_HellRazer : DCY_Impe
   Raise:
     PRZR M 0
 	{
-		if (fdeath = 1) SetStateLabel("Raise1");
-		if (fdeath = 2) SetStateLabel("Raise2");
+		if (fdeath == 1) SetStateLabel("Raise1");
+		if (fdeath == 2) SetStateLabel("Raise2");
 	}
 	Goto Raise1;
   Raise1:

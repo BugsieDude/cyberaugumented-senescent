@@ -17,16 +17,13 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
   Species "Z-Exec";
   DropItem "DCY_Palisade", 50;
   DropItem "DCY_Deterrence", 50;
-  DropItem "DCY_Photocoagulator", 50;
   Tag "\c[l7]Z-Exec\c-";
   Obituary "%o got gunned down by the Z-Spec Ops Exec.";
   SeeSound "Exec/Sight";
   ActiveSound "Exec/Active";
   PainSound "Exec/Pain";
   DeathSound "";
-  DropItem "BlurSphere", 100;
-  DropItem "BlurSphere", 10;
-  DropItem "DCY_Palisade", 100;
+  DropItem "BlurSphere", 50;
   DropItem "DCY_UltramodernEnergy";
   }
   
@@ -142,6 +139,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	ZSEC EEEEE 2 A_FaceTarget();
 	ZSEC F 4
 	{	
+		A_StartSound("DCYRifleGrenade", CHAN_WEAPON);
 		let grenade = Spawn((issmoke) ? "DCY_EnemySmokeGrenade" : "DCY_EnemyGrenade", pos + (0,0,32));
 		if (grenade)
 		{
@@ -226,7 +224,7 @@ Class DCY_EnemySmokeGrenade : DCY_GoreBase
 		if (timer == 80)
 		{
 			exploded = true;
-			//A_StartSound("DCYSmoke", CHAN_WEAPON);
+			A_StartSound("DCYSmokeGrenade", CHAN_WEAPON);
 			SetStateLabel("UnleashTheSmoke");
 		}
 	}
@@ -242,7 +240,7 @@ Class DCY_EnemySmokeGrenade : DCY_GoreBase
 	Stop;
   UnleashTheSmoke:
 	SM0K X 1 Bright;
-	SM0K XXXXXXXXXXXXXX 4
+	SM0K XXXXXXXXXXXXXXXXXXXX random(2, 4)
 	{
 		for (int i = random(1, 2); i > 0; i--)
 		{
@@ -289,7 +287,7 @@ Class DCY_GrenadeSmoke : Actor
 	super.Tick();
 	if (timer < 40)
 	{
-		if (timer > 1) A_SetScale(Scale.X + 3 * (0.9 / timer));
+		if (timer > 1) A_SetScale(Scale.X + 4 * (0.9 / timer));
 		if (alpha < 0.4) alpha += 0.05;
 	}
 	else
@@ -305,8 +303,8 @@ Class DCY_GrenadeSmoke : Actor
   States
   {
   Spawn:
-	SM0K Z 1;
-	Loop;
+	SM0K Z -1;
+	Stop;
   }
 }
 

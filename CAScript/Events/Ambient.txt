@@ -1,0 +1,14 @@
+extend actor CyberaugumentedEventHandler
+{
+  protected void IntoneSpawner()
+  {
+	if (random(0, 1000) > 1) return;
+	if (gameState == GS_TITLELEVEL || deathmatch || e.IsReopen) return;
+	
+	array<Line> l;
+	array<Sector> s;
+	
+	actor a;
+	ThinkIterator ti = ThingIterator.Create("Actor");
+  }
+}

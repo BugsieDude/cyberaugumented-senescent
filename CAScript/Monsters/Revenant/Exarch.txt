@@ -6,12 +6,11 @@ Class DCY_AbyssalExarch : DCY_Rev
   Translation "80:111=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "1:3=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "5:12=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "168:191=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "16:47=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "160:167=%[0.00,0.00,0.00]:[0.35,0.35,0.35]", "192:207=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "4:4=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "208:235=%[0.00,0.00,0.00]:[0.02,0.47,2.00]", "48:79=%[0.00,0.00,0.00]:[0.00,0.41,1.81]", "128:159=%[0.00,0.00,0.00]:[0.00,0.35,1.50]", "13:15=%[0.00,0.00,0.00]:[0.00,0.35,1.50]", "236:239=%[0.00,0.00,0.00]:[0.27,0.27,0.27]";
   Tag "\c[w9]Abyssal Exarch\c-";
   BloodColor "Blue";
-  Speed 15;
-  FastSpeed 20;
+  Speed 9;
+  FastSpeed 10;
   +MISSILEEVENMORE
   +NOINFIGHTING
-  +BRIGHT
-  SeeSound "Exarch/Sound";
+  SeeSound "Exarch/Sight";
   ActiveSound "Exarch/Sound";
   PainSound "Exarch/Pain";
   DeathSound "Exarch/Death";
@@ -23,11 +22,14 @@ Class DCY_AbyssalExarch : DCY_Rev
   
   override void Tick()
   {
+	if (level.isFrozen()) return;
 	Super.Tick();
 	
-	if (!(level.time % 3)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
 	if (!dead)
+	{
+		if (!(level.time % 3)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20) - 10, frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.00185, sizestep: 1.525);
 		A_SpawnItemEx("DCY_ExarchGhost", -1, zofs: 5, xvel: -0.5, yvel: frandom(-2.75, 2.75), zvel: frandom(0, 2.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 140);
+	}
   }
   
   States
@@ -54,26 +56,23 @@ Class DCY_AbyssalExarch : DCY_Rev
 			A_Chase();
 		
 		A_SpawnItemEx("DCY_ExarchGhost", zofs: 5, xvel: frandom(-3.75, 3.75), yvel: frandom(-3.75, 3.75), zvel: frandom(0, 3.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 140);
-		Return A_Jump(20, "See");
+		A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20) - 10, frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.003, sizestep: 1.525);
+		if (!random(0, 20)) SetStateLabel("See");
 	}
 	Loop;
   Melee:
   Missile:
 	DDAN E 0
 	{
-		if (health < 750 && !cloned)
-			Return A_Jump(50, "Clone");
-			
-		If (target && Distance3D(target) < 400)
-			Return A_Jump(100, "HoeSpotted");
-		
-		Return ResolveState("MissileContinue");
+		if (health < 750 && !cloned) return A_Jump(50, "Clone");
+		If (target && Distance3D(target) < 400) return A_Jump(40, "HoeSpotted");
+		return ResolveState("MissileContinue");
 	}
 	Goto MissileContinue;
   Fuck:
 	DDAN A 1
 	{
-		speeder = random(48, 100);
+		speeder = random(10, 30);
 		A_StartSound("Misc/DemonicGibberish", CHAN_7, CHANF_OVERLAP, attenuation: 0.5);
 	}
 	DDAN ABCD 1
@@ -84,7 +83,7 @@ Class DCY_AbyssalExarch : DCY_Rev
 			SetStateLabel("MissileContinue");
 		}
 		
-		for (int i = 10; i > 0; i--)
+		for (int i = 20; i > 0; i--)
 		{
 			A_Wander();
 			A_Chase(null, null, CHF_NOPLAYACTIVE);
@@ -102,9 +101,11 @@ Class DCY_AbyssalExarch : DCY_Rev
 		
 		A_StartSound("Exarch/Attack", CHAN_VOICE, attenuation: 0.65);
 		A_FaceTarget();
+		bNOPAIN = true;
 	}
 	DDAN HH 10
 	{
+		cloned == true;
 		let rev = Spawn("DCY_AbyssalExarchClone", pos + (randompick(-30, -30), randompick(-30, -30), 0));
 		if (rev)
 		{
@@ -119,7 +120,7 @@ Class DCY_AbyssalExarch : DCY_Rev
 				rev.bFriendly = true;
 		}
 	}
-	DDAN H 1 { cloned == true; }
+	DDAN H 1 { bNOPAIN == false; }
 	Goto See;
   MissileContinue:
 	DDAN E 10 A_FaceTarget();
@@ -133,13 +134,15 @@ Class DCY_AbyssalExarch : DCY_Rev
   HoeSpotted:
 	DDAN HHHHHHHHHHH 1
 	{
+		for (int i = 3; i > 0; i--) A_StartSound("Exarch/Dash", CHAN_5, CHANF_OVERLAP, 0.6, pitch: frandom(0.9, 1.7));
 		A_Recoil(-7);
 		A_SpawnItemEx("DCY_GTrail", flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	DDAN H 1 A_Stop();
 	Goto MissileContinue;
   Pain:
-	DDAN H 4 A_Jump(30, "Cloak", "Fuck");
+	DDAN H 1;
+	DDAN H 3 A_Jump(30, "Cloak", "Fuck");
 	DDAN I 4 A_Pain();
 	Goto See;
   Cloak:
@@ -180,26 +183,19 @@ Class DCY_AbyssalExarchClone : DCY_AbyssalExarch
   -BOSS
   SeeSound "";
   DeathSound "";
+  Damagefactor 1.3;
   }
-  
-  int fading;
   
   override void Tick()
   {
-	Super.Tick();
-	
-	fading++;
-	
-	if (fading > 200 && !dead)
-	{
-		alpha -= 0.1;
-		
-		if (Alpha < 0)
-			Destroy();
-	}
+	if (level.isFrozen()) return;
+	DCY_Rev.Tick();
 	
 	if (!dead)
-		A_SpawnItemEx("DCY_ExarchGhost", zofs: 5, xvel: frandom(-2.75, 2.75), yvel: frandom(-2.75, 2.75), zvel: frandom(0, 2.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 140);
+	{
+		if (!(level.time % 3)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20) - 10, frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.00185, sizestep: 1.525);
+		A_SpawnItemEx("DCY_ExarchGhost", -1, zofs: 5, xvel: -0.5, yvel: frandom(-2.75, 2.75), zvel: frandom(0, 2.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 140);
+	}
   }
   
   States

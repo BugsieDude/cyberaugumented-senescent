@@ -9,7 +9,6 @@ Class DCY_Repealer : DCY_BaronParent
   PainSound "Repealer/Pain";
   DeathSound "Repealer/Death";
   BloodColor "Yellow";
-  DropItem "DCY_Emphasis", 160;
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   Tag "\c[y4]Repealer\c-";
   DamageFactor "Electric", 0.00;

@@ -19,6 +19,26 @@ Class DCY_CacoParent : DCYMonster
 	Species "Cacodemons";
   }
   
+  void A_HeadAttack()
+  {
+	let targ = target;
+	if (targ)
+	{
+		if (CheckMeleeRange())
+		{
+			int damage = random[pr_headattack](1, 6) * 10;
+			A_StartSound (AttackSound, CHAN_WEAPON);
+			int newdam = target.DamageMobj (self, self, damage, "Melee");
+			targ.TraceBleed (newdam > 0 ? newdam : damage, self);
+		}
+		else
+		{
+			// just replacing the fucking ball
+			SpawnMissile (targ, "DCY_MeatballElecball");
+		}
+	}
+  }
+	
   States
   {
   Spawn:

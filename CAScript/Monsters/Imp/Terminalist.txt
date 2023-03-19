@@ -12,7 +12,6 @@ Class DCY_Terminalist : DCY_Impe
   PainSound "TerminalImp/Pain";
   DeathSound "TerminalImp/Death";
   AttackSound "imp/melee";
-  DropItem "DCY_Emphasis", 40;
   MeleeDamage 8;
   +MISSILEMORE
   DamageFactor "Plasma", 0.9;

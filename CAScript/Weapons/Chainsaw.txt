@@ -1,8 +1,8 @@
-Class DCY_ChainsawGoBZZZZZZZZZZZZZZZZ : DCY_Weapon
+Class DCY_PowerSaw : DCY_Weapon Replaces Chainsaw
 {
   Default
   {
-	  Inventory.PickupMessage "You got the Power Saw! ...You're going to cut the bushes right? Right?";
+	  Inventory.PickupMessage "You got the Power Saw! ...You're going to cut the bushes, right?";
 	  Weapon.UpSound "Chainsaw/Draw";
 	  Weapon.ReadySound "";
 	  Weapon.SelectionOrder 2200;
@@ -67,75 +67,5 @@ Class DCY_ChainsawGoBZZZZZZZZZZZZZZZZ : DCY_Weapon
 	SAW_ H 1 A_StartSound("Chainsaw/Stop", CHAN_WEAPON);
 	SAW_ IJ 2 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
 	Goto Ready;
-  }
-}
-
-Class DCY_ArgentChainsaw : DCY_ChainsawGoBZZZZZZZZZZZZZZZZ //Um.
-{
-  Default
-  {
-	Inventory.PickupMessage "What the fuck is this???";
-	Tag "UAC Prototype-42B Argent Chainsaw";
-	Weapon.ReadySound "";
-	Weapon.UpSound "CrucibleChainsaw/Up";
-	Inventory.PickupSound "CrucibleChainsaw/Up";
-	Obituary "%o was never seen again.";
-	+EXTREMEDEATH;
-	DamageType "Crucible";
-  }
-  
-  action void A_CrucibleSaw()
-  {
-	A_WeaponOffset(frandom(-3.6, 3.6), frandom(32.5, 38.3));
-	A_Saw("", "Chainsaw/Blood", random(10, 40), "DCY_CrucibleChainsawPuff", SF_NORANDOMPUFFZ);
-	A_StartSound("CrucibleChainsaw/Loop", CHAN_6, CHANF_LOOPING, 0.75);
-	A_QuakeEx(3, 3, 3, 20, 0, 100, "none", QF_SCALEDOWN);
-  }
-	
-  States
-  {
-  Spawn:
-	CRUH YZ 1 Bright;
-	Loop;
-  Select:
-	CRUH ABCD 1 Bright A_Raise(12);
-	Loop;
-  Deselect:
-	CRUH A 1 Bright
-	{
-		A_StopSound(CHAN_WEAPON);
-		A_StopSound(CHAN_6);
-		A_Lower(12);
-	}
-	CRUH BCDA 1 Bright
-	{
-		A_StopSound(CHAN_6);
-		A_Lower(12);
-	}
-	Goto Deselect+1;
-  Ready:
-	CRUH ABCD 1 Bright
-	{
-		A_WeaponOffset(frandom(-1.5, 1.5), frandom(32.5, 34.5));
-		A_WeaponReady();
-		A_StartSound("CrucibleChainsaw/Ready", CHAN_6, CHANF_LOOPING, 0.75);
-	}
-	Loop;
-  Fire:
-	CRUH C 1 Bright A_StartSound("CrucibleChainsaw/Start", CHAN_6, volume: 0.75);
-	CRUH DE 1 Bright;
-	Goto Hold;
-  Hold:
-	CRUH EF 1 Bright A_CrucibleSaw();
-	CRUH F 0 A_Refire("Hold");
-	CRUH B 1 Bright A_StopSound(CHAN_6);
-	CRUH A 1 Bright A_StartSound("CrucibleChainsaw/Stop", CHAN_WEAPON, volume: 0.75);
-	Goto Ready;
-  }
-  
-  override Inventory CreateCopy(Actor other)
-  {
-	DCY_IncreaseLevel(19);
-	return Super.CreateCopy(other);
   }
 }

@@ -407,3 +407,16 @@ EmirCharge1 "Sounds/DCY Monsters/Emir/dcy_emir_charge.ogg"
 EmirCharge2 "Sounds/DCY Monsters/Emir/dcy_emir_charge2.ogg"
 EmirBall "Sounds/DCY Monsters/Emir/dcy_emir_ball.ogg"
 $limit EmirBall 0
+
+$random SkullFireDCY { SFD1 SFD2 SFD3 SFD4 SFD5 SFD6 }
+SFD1 "Sounds/Projectiles/dcy_skull_fire1.ogg"
+SFD2 "Sounds/Projectiles/dcy_skull_fire2.ogg"
+SFD3 "Sounds/Projectiles/dcy_skull_fire3.ogg"
+SFD4 "Sounds/Projectiles/dcy_skull_fire4.ogg"
+SFD5 "Sounds/Projectiles/dcy_skull_fire5.ogg"
+SFD6 "Sounds/Projectiles/dcy_skull_fire6.ogg"
+
+D4Zombie/Charge "Sounds/Projectiles/dcy_razer_ballcharge.ogg"
+
+DCYRifleGrenade "Sounds/Projectiles/dcy_grenadelauncher_gun.ogg"
+DCYSmokeGrenade "Sounds/Projectiles/dcy_smoke_grenade.ogg"

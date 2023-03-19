@@ -17,8 +17,6 @@ Class DCY_Convector : DCY_ArachnoParent
   ActiveSound "Convector/Hover";
   PainSound "Convector/Pain";
   DeathSound "Convector/Death";
-  DropItem "DCY_Emphasis", 160;
-  DropItem "DCY_Photocoagulator", 160;
   }
   
   int ballcount;

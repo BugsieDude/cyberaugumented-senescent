@@ -47,6 +47,7 @@ CREATORS OF RESOURCES USED IN THIS MOD
 id Software - Sounds
 Midway Software - (PSX Doom) Sounds
 Bethesda Software & id Software - DOOM (2016) and DOOM Eternal, Widescreen assets
+Skulltag - Sprites
 MicroProse - Monster sounds
 Rondo of Blood | Dracula X (Konami) - Projectile effect sprites
 Raven Software - Monster Sprites, sounds (Hexen II and Heretic II)
@@ -93,7 +94,6 @@ Sergei/TSF/Sonik.O.Fan - Weapon sprites
 Relic Entertainment - Sounds
 Official Ultimate Apocalypse Mod Team - Sounds
 Dissy EX - Creator of the Reimagined sounds series
-Wereknight - Former spriter
 MUGEN - Cool ass effect sprites
 VICE - (Hell Razer & Soul Crusher) Sprites
 Xegethra/Amaranthus616 - Black Metal Baron/Peril Sprites
@@ -206,6 +206,11 @@ Agent_Ash - Double scroll shader
 Marrub - Inspiration for the pause screen and others
 SuperCupcakeTactics - Key sprites
 reas - Sounds
+People Can Fly - Sounds
+Finalizer - Sprites
+Vegeta - Sprites
+Freesound (freesound.org) - Sounds
+OpenGameArt (opengameart.org) - sounds
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help

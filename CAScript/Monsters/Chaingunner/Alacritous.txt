@@ -15,7 +15,6 @@ Class DCY_AlacritousGuy : DCY_Plutonia
   PainSound "Rattail/Pain";
   DeathSound "Rattail/Death";
   DropItem "Chaingun";
-  DropItem "DCY_Photocoagulator", 45;
   DropItem "DCY_BlueArmorThing", 100;
   }
   

@@ -1,9 +1,4 @@
-ACTOR DCY_FuckingChainsw : RandomSpawner Replaces Chainsaw
-{
-DropItem "DCY_ChainsawGoBZZZZZZZZZZZZZZZZ", 256, 100
-}
-
-ACTOR DCY_BoomChekChek : RandomSpawner Replaces Shotgun
+ACTOR DCY_Shotty : RandomSpawner Replaces Shotgun
 {
 DropItem "DCY_CombatShotgun", 256, 100
 DropItem "DCY_UnderlineShotgun", 256, 50
@@ -15,18 +10,18 @@ DropItem "DCY_CuethemetalslugannounceersayingRocketLauncher", 256, 100
 DropItem "DCY_ShitGrenadeThrowItBackPrivate", 256, 80
 }
 
-ACTOR DCY_LASERAAAAAAAAAAAA : RandomSpawner Replaces PlasmaRifle
+ACTOR DCY_Disintegration : RandomSpawner Replaces PlasmaRifle
 {
 DropItem "DCY_RehauledPlasmaRifle", 256, 100
 DropItem "DCY_BallistaManefista", 256, 30
 DropItem "DCY_NeonicWand", 256, 18
 }
 
-ACTOR DCY_bfgdivisionbfg10000intensifies : RandomSpawner Replaces BFG9000
+ACTOR DCY_RealityBreakers : RandomSpawner Replaces BFG9000
 {
 DropItem "DCY_TheBFG9000", 256, 100
 DropItem "DCY_TheBFG10000", 256, 60
 DropItem "DCY_SiriusCrisis", 256, 30
-DropItem "DCY_Deracinator", 256, 8
-DropItem "DCY_VeneratedTruncheon", 256, 8
+//DropItem "DCY_Deracinator", 256, 8
+DropItem "DCY_VeneratedTruncheon", 256, 1
 }

@@ -222,6 +222,7 @@ Class DCY_AuteurVile : ArchvileFire
   Alpha 0;
   Obituary "$OB_VILE";
   Translation "0:255=%[0.00,0.00,0.00]:[0.02,0.50,1.79]";
+  +DONTSPLASH
   }
   
   static const string ParticleColors[] = { "4ad5ff", "149dff", "0048ff" };

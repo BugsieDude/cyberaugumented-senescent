@@ -13,7 +13,7 @@ Class DCY_BurstPistol : DCY_Weapon
 	  Weapon.AmmoType2 "Clip";
 	  Weapon.AmmoType1 "Clip";
 	  Obituary "$OB_MPPISTOL";
-	  Inventory.PickupMessage "You got back your... Burst Pistol? Thanks, console.";
+	  Inventory.PickupMessage "You got back your Burst Pistol";
 	  +WEAPON.WIMPY_WEAPON;
 	  +WEAPON.NOAUTOFIRE;
   }

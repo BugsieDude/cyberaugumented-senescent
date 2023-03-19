@@ -71,11 +71,9 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
     BSP2 Q 2 Bright
 	{
 		A_FaceTarget();
+		A_CheckSight("See");
 		
-		if (!target)
-			SetStateLabel("See");
-		
-		A_MonsterRefire(30, "See");
+		if (!target || target.Health <= 0) SetStateLabel("See");
 	}
 	Goto Missile+1;
   Pain:

@@ -8,7 +8,7 @@ ACTOR DCY_MadMartian : DCY_Spawner Replaces Archvile
   DropItem "DCY_Voidcaster", 30, 11
   DropItem "DCY_Lemures", 25, 11
   DropItem "DCY_Espouser", 28, 20
-  DropItem "DCY_Prestidigitator", 45, 6
+  //DropItem "DCY_Prestidigitator", 45, 6
   DropItem "DCY_Emptiness", 15, 1
   DropItem "DCY_Emptiness", 35, 1
 }

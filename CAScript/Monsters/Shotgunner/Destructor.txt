@@ -142,10 +142,10 @@ Class DCY_DestructorMissile : DCY_ImpFireball
   Damage 7;
   Radius 10;
   Height 10;
-  Scale 0.8;
+  Scale 0.75;
   Speed 20.5;
   FastSpeed 30.5;
-  SeeSound "ArgentBall";
+  SeeSound "SkullFireDCY";
   DeathSound "ArgentImpact";
   MissileHeight 6;
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.60,0.60]";

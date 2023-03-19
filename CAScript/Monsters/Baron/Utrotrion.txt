@@ -13,10 +13,10 @@ Class DCY_Utrotrion : DCY_BaronParent
   ActiveSound "Utrotrion/Active";
   PainSound "Utrotrion/Pain";
   DeathSound "Utrotrion/Death";
-  DropItem "DCY_Palisade", 80;
-  DropItem "DCY_Crosscut", 80;
-  DropItem "DCY_Deterrence", 80;
-  DropItem "Blursphere", 80;
+  DropItem "DCY_Palisade", 60;
+  DropItem "DCY_Crosscut", 60;
+  DropItem "DCY_Deterrence", 60;
+  DropItem "Blursphere", 20;
   DamageFactor "Arcane", 0.00;
   DamageType "Arcane";
   Obituary "%o got tyrannized upon Utrotrion.";

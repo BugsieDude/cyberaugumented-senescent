@@ -236,8 +236,11 @@ Class DCY_ImpFireball : DCY_Projectile Replaces DoomImpBall
   Spawn:
     FBS1 AABBCC 1
 	{
-		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
-		A_SpawnFlames("ff7e3d", 20, 40, 0, true, frandom(-1.5, 1.5));
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
+			A_SpawnFlames("ff7e3d", 20, 40, 0, true, frandom(-1.5, 1.5));
+		}
 	}
 	Loop;
   Death:

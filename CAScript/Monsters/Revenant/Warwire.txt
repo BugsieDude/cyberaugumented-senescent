@@ -311,7 +311,7 @@ Class DCY_WRay : DCY_MechaZombiePlasma
 
 Class DCY_WFlame : DCY_ImpBigFlame { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]"; Scale 2.0; } }
 
-Class DCY_WAxe : KnightAxe
+Class DCY_WAxe : DCY_ImpFireball
 {
   Default
   {

@@ -26,7 +26,6 @@ Class DCY_ArmageddonPredominator : DCY_BaronParent
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   DamageType "ArmageddonPredominator";
   DamageFactor "ArmageddonPredominator", 0.000;
-  DropItem "DCY_Emphasis", 100;
   Speed 8;
   FastSpeed 16;
   DCYMonster.WalkFlames "DCY_LightBlueWalkFlames";

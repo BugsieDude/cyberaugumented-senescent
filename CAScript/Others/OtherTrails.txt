@@ -108,7 +108,7 @@ Class DCY_CuratorExplosion : DCY_CuratorExplosion2
 Class DCY_VariegationTrail : DCY_HexodenicanTrail { Default { StencilColor "Gray"; } }
 
 Class DCY_CrusaderRush : DCY_HexodenicanTrail { Default { StencilColor "Red"; } }
-Class DCY_ExarchGhost : DCY_HexodenicanTrail { Default { StencilColor "263561"; } }
+Class DCY_ExarchGhost : DCY_HexodenicanTrail2 { Default { StencilColor "3467eb"; } }
 Class DCY_NullifierRush : DCY_HexodenicanTrail { Default { StencilColor "Orange"; } }
 
 Class DCY_TresherTrail : DCY_Effect

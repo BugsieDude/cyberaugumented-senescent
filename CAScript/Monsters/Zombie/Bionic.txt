@@ -12,7 +12,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
   DeathSound "UpgradedMechaZombie/Death";
   DCYMonster.BurnSound "UpgradedMechaZombie/BurnDeath";
   Species "BIONIC";
-  DropItem "PlasmaRifle", 20;
+  DropItem "PlasmaRifle", 1;
   DropItem "Cell", 180;
   DropItem "Clip";
   DropItem "BlurSphere", 20;

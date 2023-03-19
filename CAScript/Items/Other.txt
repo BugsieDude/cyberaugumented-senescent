@@ -129,7 +129,7 @@ Class DCY_Barricade : CustomInventory
   Inventory.MaxAmount 3;
   Inventory.InterHubAmount 3;
   Scale 1.25;
-  Tag "Barricade - Portable Infinite Ammo for 20 seconds.";
+  Tag "Barricade - Portable Infinite Ammo for 12 seconds.";
   Inventory.Icon "ERKOF0";
   +FLOATBOB
   +INVENTORY.INVBAR
@@ -160,7 +160,7 @@ Class DCY_BarricadePower : PowerInfiniteAmmo
   DamageFactor "Normal", 0.925;
   Powerup.Strength 15;
   Powerup.Color "e7 37 58", 0.15;
-  Powerup.Duration -20;
+  Powerup.Duration -12;
   }
   
   override void DoEffect()
@@ -361,7 +361,7 @@ Class DCY_BerserkStrength : PowerStrength { Default { Powerup.Duration -15; } }
 Class DCY_BerserkDamage : PowerDamage { Default { DamageFactor "Normal", 1.5; Powerup.Duration -15; } }
 Class DCY_BerserkInvulnerability : PowerProtection { Default { Powerup.Duration -15; DamageFactor 0.5; } }
 
-Class DCY_Photocoagulator : CustomInventory
+/*Class DCY_Photocoagulator : CustomInventory
 {
   Default
   {
@@ -392,7 +392,7 @@ Class DCY_Photocoagulator : CustomInventory
 	}
 	Stop;
   }
-}
+}*/
 
 Class DCY_PhotocoagulatorPower : PowerWeaponLevel2
 {
@@ -411,7 +411,7 @@ Class DCY_PhotocoagulatorPower : PowerWeaponLevel2
   }
 }
 
-Class DCY_Emphasis : CustomInventory
+/*Class DCY_Emphasis : CustomInventory
 {
   Default
   {
@@ -441,7 +441,7 @@ Class DCY_Emphasis : CustomInventory
 	}
 	Stop;
   }
-}
+}*/
 
 Class DCY_EmphasisPower : PowerWeaponLevel2
 {

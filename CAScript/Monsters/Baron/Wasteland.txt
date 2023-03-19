@@ -26,7 +26,6 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   Tag "\c[Fire]FIRE-STORMER\c- ''Codeword - \c[z3]Wasteland \c[x1]Infiltrator\c-''";
   Obituary "%o got outsmarted by the Firestormer... in a infernal way.";
   HitObituary "It's the Firestormer's melee flaming move! And %o is dead.";
-  DropItem "DCY_Photocoagulator", 100;
   DCYMonster.WalkFlames "DCY_WalkFlames";
   }
   
