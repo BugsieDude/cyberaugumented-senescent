@@ -420,3 +420,7 @@ D4Zombie/Charge "Sounds/Projectiles/dcy_razer_ballcharge.ogg"
 
 DCYRifleGrenade "Sounds/Projectiles/dcy_grenadelauncher_gun.ogg"
 DCYSmokeGrenade "Sounds/Projectiles/dcy_smoke_grenade.ogg"
+
+DCYMaykrBeam "Sounds/DCY SFX/dcy_maykr_beam.ogg"
+DCYMaykrBeamLoop "Sounds/DCY SFX/dcy_maykr_beam_loop.ogg"
+DCYMaykrBeamEnd "Sounds/DCY SFX/dcy_maykr_beam_end.ogg"

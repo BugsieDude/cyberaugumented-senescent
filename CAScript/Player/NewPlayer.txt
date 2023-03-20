@@ -220,9 +220,9 @@ Class CyberaugumentedProtagonist : DoomPlayer
 				dashSound = CVar.GetCVar("cl_dashsoundtype", player);
 			
 			if (dashSound.GetInt())
-				A_StartSound("DASH2", CHAN_AUTO);
+				A_StartSound("DASH2", CHAN_AUTO, 0.75);
 			else
-				A_StartSound("DASH1", CHAN_AUTO);
+				A_StartSound("DASH1", CHAN_AUTO, 0.75);
 		}
 	
 		dashCoolDown = sv_dashcooldown;
@@ -282,19 +282,19 @@ Class CyberaugumentedProtagonist : DoomPlayer
   Player.StartItem "MegasphereHealth", 100;
   //Player.StartItem "DCY_RehauledPlasmaRifle";
   Player.StartItem "Clip", 50;
-  Player.WeaponSlot 1, "DCY_HahahaPunchPunch", "DCY_ChainsawGoBZZZZZZZZZZZZZZZZ", "DCY_ArgentChainsaw";
+  Player.WeaponSlot 1, "DCY_HahahaPunchPunch", "DCY_PowerSaw";
   Player.WeaponSlot 2, "DCY_BurstPistol", "DCY_Razorwind";
   Player.WeaponSlot 3, "DCY_CombatShotgun", "DCY_UnderlineShotgun", "DCY_SuperShotty";
   Player.WeaponSlot 4, "DCY_CyberRifle", "DCY_Minigun";
   Player.WeaponSlot 5, "DCY_CuethemetalslugannounceersayingRocketLauncher", "DCY_ShitGrenadeThrowItBackPrivate";
   Player.WeaponSlot 6, "DCY_RehauledPlasmaRifle", "DCY_BallistaManefista", "DCY_NeonicWand";
   Player.WeaponSlot 7, "DCY_TheBFG9000", "DCY_TheBFG10000", "DCY_SiriusCrisis";
-  Player.WeaponSlot 8, "DCY_Epitome", "DCY_Deracinator" "DCY_VeneratedTruncheon";
+  Player.WeaponSlot 8, "DCY_VeneratedTruncheon";
   Player.WeaponSlot 9, "DCY_EternalVoid", "DCY_TheCinerealOrdnance";
   Player.WeaponSlot 0, "";
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   PainSound "slayer/pain";
-  Player.AirCapacity 0; //Because its helmet regulates overflowing?
+  Player.AirCapacity 0; //Because lore-wise its helmet regulates overflowing?
   }
   
   States

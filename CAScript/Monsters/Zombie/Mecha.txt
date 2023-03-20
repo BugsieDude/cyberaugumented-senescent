@@ -79,7 +79,7 @@ Class DCY_Huntsman : DCY_ZombeParent
     RFTR E 15 A_FaceTarget();
 	RFTR FFF 3 
 	{
-		A_SpawnProjectile("DCY_ZombieTracer", 33, -3, frandom(-1.0, 1.0));
+		A_SpawnProjectile("DCY_ZombieTracer", 33, 3, frandom(-1.0, 1.0));
 		A_StartSound("PIS3FIR", CHAN_WEAPON);
 		Return A_MonsterRefire(128, "See");
 	}

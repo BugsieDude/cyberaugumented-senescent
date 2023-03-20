@@ -7,14 +7,6 @@ CLASS CyberaugumentedEventHandler : EventHandler
   //Cutscene Stuff
   bool cutscene;
   
-  /*override void WorldThingDied(WorldEvent e)
-  {
-	if (e.Thing.bIsMonster && e.DamageSource && e.DamageSource.Player && e.Thing.Target)
-	{
-	e.Thing.Spawn("HealthBonus", (pos.x, pos.y, (e.Thing.Height / 2)));
-	}
-  }*/
-  
   static double lerp (double a, double b, double t) {
 	return a + ((b - a) * t);
   }

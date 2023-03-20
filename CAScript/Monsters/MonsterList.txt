@@ -39,7 +39,6 @@
 #include "CAScript/Monsters/Imp/Subzero.txt"
 #include "CAScript/Monsters/Imp/Castrator.txt"
 #include "CAScript/Monsters/Imp/Regulus.txt"
-#include "CAScript/Monsters/Revenant/Verdict.txt"
 #include "CAScript/Monsters/Baron/Emir.txt"
 #include "CAScript/Monsters/Knight/Fluorescent.txt"
 #include "CAScript/Monsters/Zombie/Transmuter.txt"

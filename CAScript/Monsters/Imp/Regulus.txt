@@ -22,7 +22,6 @@ Class DCY_RegulusImp : DCY_Impe
   Tag "\c[y9]Varmint\c-";
   +FLOAT
   +NOGRAVITY
-  +NOTELEFRAG
   +QUICKTORETALIATE
   +DONTHARMCLASS
   }

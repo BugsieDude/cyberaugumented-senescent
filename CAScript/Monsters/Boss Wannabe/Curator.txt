@@ -202,7 +202,7 @@ Class DCY_Curator : DCY_Violator //Not a boss, but something else
   }
 }
 
-Class DCY_CuratorBall : DCY_ViolationBall
+Class DCY_CuratorBall : DCY_ViolationFire
 {
   Default
   {

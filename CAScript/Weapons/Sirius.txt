@@ -114,8 +114,8 @@ Class DCY_SiriusCrisis : DCY_Weapon
 		A_WeaponOffset(0, 32, WOF_INTERPOLATE);
 		A_SiriusBlast();
 	}
-	SRB0 HIJKL 3 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
-	SRB0 MNO 3 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
+	SRB0 HIJKL 3 Bright;
+	SRB0 MNO 3 Bright;
 	SRB0 AAAAABBBCCBB 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY);
 	Goto Ready;
   Flash:

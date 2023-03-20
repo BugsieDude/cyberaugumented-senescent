@@ -289,7 +289,7 @@ ULCRCHRG "Sounds/Projectiles/dcy_ultracerest_charge.wav"
 ULCRCHR2 "Sounds/Projectiles/dcy_ultracerest_charge2.ogg"
 ULCRFIRE "Sounds/Projectiles/dcy_ultracerest_charged_shot.ogg"
 
-ROBOMISL "Sounds/Projectiles/dcy_superdarius2_missile.ogg" //Sounds from Super Darius II
+ROBOMISL "Sounds/Projectiles/dcy_superdarius2_missile.ogg"
 ROBOMIS2 "Sounds/Projectiles/dcy_gate_missile.ogg"
 ROBOBOMB "Sounds/Projectiles/dcy_repealler_rocket.ogg"
 ROBOBEAM "Sounds/Projectiles/dcy_seeker_laser.ogg"

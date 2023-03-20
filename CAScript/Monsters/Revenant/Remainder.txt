@@ -10,6 +10,7 @@ Class DCY_Remainder : DCY_Rev
   BloodColor "Blue";
   BloodType "AndroidNeonFluid";
   StencilColor "1f53ff";
+  Obituary "%o bathed in the souls of the Remainder";
   Translation "16:47=[96,96,96]:[0,0,0]", "80:111=[192,192,192]:[0,0,0]", "4:4=[216,216,216]:[192,192,192]", "112:127=%[0.00,0.00,0.00]:[0.00,0.80,2.00]", "160:254=%[0.00,0.00,0.00]:[0.00,0.80,2.00]", "168:191=[96,96,96]:[0,0,0]", "224:224=[216,216,216]:[192,192,192]", "208:208=[216,216,216]:[192,192,192]", "255:255=%[0.00,0.00,0.00]:[0.57,0.57,0.57]";
   Health 310;
   }
@@ -169,7 +170,7 @@ Class DCY_RemainderFireball : DCY_ImpFireball
   Spawn:
 	C3AL AB 1
 	{
-		A_Tracer2(3.25);
+		if (tracer && CheckSight(tracer)) A_Tracer2(3.25);
 		A_SpawnParticleEx(0x1f53ff, Texman.CheckforTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(1.5, 7.4), accelz: -0.55);
 		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
 		A_SpawnFlames("1f53ff", 40, 40, allsmoke: true);

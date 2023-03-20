@@ -75,7 +75,7 @@ Class DCY_GloomKnight : DCY_Rev
   }
 }
 
-Class DCY_GAxe : DCY_WAxe
+Class DCY_GAxe : DCY_ImpFireball
 {
   Default
   {
@@ -83,6 +83,8 @@ Class DCY_GAxe : DCY_WAxe
   Damage 6;
   Speed 12;
   FastSpeed 18;
+  +SEEKERMISSILE;
+  +BRIGHT;
   StencilColor "00258a";
   DamageType "Poison";
   }

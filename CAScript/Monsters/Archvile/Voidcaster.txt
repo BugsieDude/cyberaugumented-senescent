@@ -357,7 +357,7 @@ Class DCY_VoidcasterAbyss : ArchvileFire
   }
 }
 
-Class DCY_VoidcasterSpherule : CacodemonBall
+Class DCY_VoidcasterSpherule : DCY_MeatballElecball
 {
   Default
   {
@@ -381,7 +381,9 @@ Class DCY_VoidcasterSpherule : CacodemonBall
   States
   {
   Spawn:
-	P_FX AB 1 A_SpawnItemEx("DCY_ViolationBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	P_FX AB 1 {
+		if (DCY_EffectDistance(900)) A_SpawnParticleEx(0x1d2399, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 45, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.025, sizestep: 0.55);
+	}
 	Loop;
   Death:
 	P_FX A 1

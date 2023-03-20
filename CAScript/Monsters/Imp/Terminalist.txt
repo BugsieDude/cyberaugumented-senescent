@@ -169,7 +169,7 @@ Class DCY_TLaser : DCY_FastProjectile
   Obituary "That laser disintegrated %o molecule by molecule.";
   DamageType "Disintegration";
   Speed 45;
-  Damage 4;
+  Damage 10;
   SeeSound "R3LASR3";
   DeathSound "R3MINIEX";
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.37,0.37]";
@@ -190,11 +190,7 @@ Class DCY_TLaser : DCY_FastProjectile
     Loop;
   Death:
 	TNT1 A 1;
-    TNT1 A 5
-	{
-		A_Explode(2, 17, 0, 0);
-		A_SpawnItemEx("DCY_AndroidExplosionSmall", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	}
+    TNT1 A 5 A_SpawnItemEx("DCY_AndroidExplosionSmall", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	Stop;
   }
 }

@@ -32,13 +32,10 @@ Class DCY_ZEnsign : DCY_Zombe
   int oldspeed;
   int grenadecooldown;
   
-  void A_ZEnsignASG()
+  void A_ZEnsignSMG()
   {
-	A_StartSound("Underline/Fire", CHAN_WEAPON);
-	
-	for (int i = 5; i > 0; i--)
-		A_SpawnProjectile("DCY_Zombie2Tracer", 30, 3, frandom(-1.1, 1.1), CMF_TRACKOWNER|CMF_OFFSETPITCH, random(-1, 1));
-	
+	A_StartSound("Rifle/Fire", CHAN_WEAPON);
+	A_SpawnProjectile("DCY_ZombieTracer", 33, 3, frandom(-2.0, 2.0));
 	A_FaceTarget();
   }
   
@@ -225,8 +222,8 @@ Class DCY_ZEnsign : DCY_Zombe
 		missile = random(9, 10);
 		A_FaceTarget();
 	}
-	#### F 2 { missile--; A_ZEnsignASG(); }
-	#### E 7
+	#### F 2 { missile--; A_ZEnsignSMG(); }
+	#### E 1
 	{
 		if (random(0, 8) == 1 && vel.z == 0)
 		{
@@ -246,7 +243,11 @@ Class DCY_ZEnsign : DCY_Zombe
 	}
 	Goto Missile2+1;
   Missile3:
-	#### A 10 A_FaceTarget();
+	#### A 10
+	{
+		if (!random(0, 1)) SetStateLabel("Plasma");
+		A_FaceTarget();
+	}
 	#### E 0
 	{
 		A_StartSound("DSWTH", CHAN_WEAPON, 0, 1.0, 0.45);
@@ -274,6 +275,31 @@ Class DCY_ZEnsign : DCY_Zombe
 			SetStateLabel("GiveRandomToken");
 	}
 	Goto See;
+  Plasma:
+	#### E 10
+	{
+		missile = random(7, 15);
+		A_FaceTarget();
+	}
+	#### F 2
+	{
+		missile--;
+		A_SpawnProjectile("DCY_HellRazerPlasma", 33, 3, frandom(-5, 5));
+		A_FaceTarget();
+	}
+	#### E 2
+	{
+		A_FaceTarget();
+		
+		if (missile <= 0)
+		{
+			if (random(0, 2) == 1)
+				SetStateLabel("GiveRandomToken");
+			
+			SetStateLabel("See");
+		}
+	}
+	Goto Plasma+1;
   GiveRandomToken:
     #### # 1
 	{

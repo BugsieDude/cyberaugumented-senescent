@@ -460,6 +460,7 @@ Exarch/Attack "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_attack.ogg"
 Exarch/Pain "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_pain.ogg"
 Exarch/Death "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_death.ogg"
 Exarch/Dash "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_dash.ogg"
+Exarch/Cloak "Sounds/DCY Monsters/Abyssal Exarch/dcy_exarch_cloak.ogg"
 
 $random TerminalImp/Sight { tis1 tis2 tis3 tis4 tis5 tis6 tis7 tis8 tia8 tia6 }
 tis1 "Sounds/DCY Monsters/Terminalist/dcy_terminalist_sight1.ogg"
@@ -1666,7 +1667,10 @@ Congress/Attack "Sounds/DCY Monsters/Sycophant/dcy_sycophant_attack.ogg"
 $random dune/active { da1 da2 }
 da1 "Sounds/DCY SFX/dcy_enemy_phase.ogg"
 da2 "Sounds/DCY SFX/dcy_enemy_phase2.ogg"
-dune/bounce "Sounds/Projectiles/dcy_grenade_bounce.wav"
+$random dune/bounce { db1 db2 db3 }
+db1 "Sounds/Projectiles/dcy_grenade_bounce1.ogg"
+db2 "Sounds/Projectiles/dcy_grenade_bounce2.ogg"
+db3 "Sounds/Projectiles/dcy_grenade_bounce3.ogg"
 
 GoreNest/Scream "Sounds/DCY SFX/dcy_gorenest_scream.ogg"
 GoreNest/Scream2 "Sounds/DCY SFX/dcy_gorenest_short_scream.ogg"
@@ -2907,6 +2911,8 @@ Vague/Pain4 "Sounds/DCY Monsters/Vague/dcy_vague_pain4.ogg"
 $random Vague/Death { Vague/Death1 Vague/Death2 }
 Vague/Death1 "Sounds/DCY Monsters/Vague/dcy_vague_death.ogg"
 Vague/Death2 "Sounds/DCY Monsters/Vague/dcy_vague_death2.ogg"
+DCYDistortedCrow "Sounds/DCY Monsters/Vague/dcy_distortedcrow.ogg"
+DCYDistortedCrow2 "Sounds/DCY Monsters/Vague/dcy_sentinel_vague.ogg"
 
 $random DCYCombatant/Sight { DCYCombatant/Sight1 DCYCombatant/Sight2 DCYCombatant/Sight3 DCYCombatant/Sight4 DCYCombatant/Sight5 }
 DCYCombatant/Sight1 "Sounds/DCY Monsters/Combatant/dcy_combatant_see1.ogg"

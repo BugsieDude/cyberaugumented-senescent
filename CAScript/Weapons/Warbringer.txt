@@ -48,11 +48,7 @@ Class DCY_Cyberrifle : DCY_Weapon
 	RFL_ C 1 Bright A_RifleF();
 	RFL_ D 1 Bright;
 	RFL_ E 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	RFL_ F 1
-	{
-		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-		A_WeaponOffset(0, 32, WOF_INTERPOLATE);
-	}
+	RFL_ F 1 A_WeaponOffset(0, 32, WOF_INTERPOLATE);
 	RFL_ G 1
 	{
 		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);

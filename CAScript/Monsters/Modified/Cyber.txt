@@ -129,6 +129,8 @@ Class DCY_CyberMicromissile : DCY_OverhauledRocket
   Spawn:
 	SMOL A 1
 	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
 		let flare = Spawn("DCY_RocketFlare", (pos.x + frandom(-2, 2), pos.y + frandom(-2, 2), pos.z + frandom(-2, 2)));
 		
 		if (flare)
@@ -137,6 +139,7 @@ Class DCY_CyberMicromissile : DCY_OverhauledRocket
 		}
 		
 		A_SpawnItemEx("DCY_ImpFlame1", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), failchance: 180);
+		}
 	}
 	Loop;
   Death:

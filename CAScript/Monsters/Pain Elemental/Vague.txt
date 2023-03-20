@@ -8,7 +8,7 @@ Class DCY_Vague : DCY_Befouler
   ActiveSound "Vague/Active";
   PainSound "Vague/Pain";
   DeathSound "Vague/Death";
-  Scale 0.85;
+  Scale 0.825;
   Speed 10.55555;
   FastSpeed 12.5;
   DamageType "Vague";
@@ -19,9 +19,18 @@ Class DCY_Vague : DCY_Befouler
   +DONTHARMCLASS
   +QUICKTORETALIATE
   BloodColor "Purple";
+  Obituary "%o felt like a rotten, disintegrating fruit.";
+  HitObituary "%o does not exist.";
   }
   
   bool awaken;
+  int soulcooldown;
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (soulcooldown > 0) soulcooldown--;
+  }
   
   States
   {
@@ -40,7 +49,7 @@ Class DCY_Vague : DCY_Befouler
 	V_GI A 0
 	{
 		if (random(0, 1) == 0)
-			SetStateLabel("RoarAtPlayer");
+			SetStateLabel("ScreamAtPlayer");
 		else
 			DCY_AlertSound();
 		
@@ -64,7 +73,7 @@ Class DCY_Vague : DCY_Befouler
 		bNoPain = true;
 	}
 	TNT1 AAA 10;
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
 	{
 		A_Wander();
 		A_Chase(null, null, CHF_NOPLAYACTIVE);
@@ -85,20 +94,64 @@ Class DCY_Vague : DCY_Befouler
 	Goto See;
   Missile:
 	V_GI D 0
-	{
-		if (target && distance3D(target) < 300)
-			Return A_Jump(80, "ScreamAtPlayer");
-		else
-			Return A_Jump(60, "ScreamAtPlayer");
+	{	
+		switch (random(0, 2))
+		{
+			case 0: Return ResolveState("Balls"); break;
+			case 1: Return ResolveState("Elec"); break;
+			case 2: Return ResolveState("Souls"); break;
+		}
+		
+		Return ResolveState(null);
 	}
-	V_GI D 10 { A_FaceTarget(); A_StartSound("Vague/Pain", CHAN_VOICE); }
-	V_GI E 10 A_FaceTarget();
-	V_GI EEE 4
+	Goto Balls;
+  Balls:
+	V_GI G 10
+	{
+		A_FaceTarget();
+		A_StartSound("Vague/Pain", CHAN_VOICE);
+		Return A_Jump((target && distance3D(target) < 300) ? 80 : 60, "ScreamAtPlayer");
+	}
+	V_GI H 10 A_FaceTarget();
+	V_GI III 4
 	{
 		A_SpawnProjectile("DCY_VagueBall", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
 		A_SpawnProjectile("DCY_VagueBall", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
 		A_StartSound("ROBOSPIT");
 		A_FaceTarget();
+	}
+	V_GI H 10;
+	Goto See;
+  Souls:
+	V_GI D 8
+	{
+		if (soulcooldown > 0) SetStateLabeL("Balls");
+		A_FaceTarget();
+		A_StartSound("Vague/Pain", CHAN_VOICE);
+	}
+	V_GI E 8 A_FaceTarget();
+	V_GI F 8
+	{
+		A_SpawnProjectile("DCY_VagueSentinel", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_StartSound("EternalPainElemental/Spit", pitch: 0.6);
+		A_FaceTarget();
+		soulcooldown = 500;
+	}
+	V_GI D 10;
+	Goto See;
+  Elec:
+	V_GI JJJJJJ 4 A_FaceTarget();
+	V_GI KKKK random(10, 20)
+	{
+		A_SpawnProjectile("DCY_VagueLightning", 70, -30, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_SpawnProjectile("DCY_VagueLightning", 15, -30, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_SpawnProjectile("DCY_VagueLightning", 70, 30, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_SpawnProjectile("DCY_VagueLightning", 15, 30, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_SpawnProjectile("DCY_VagueLightning", 50, -40, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_SpawnProjectile("DCY_VagueLightning", 50, 40, frandom(-5.6, 5.6), CMF_OFFSETPITCH, pitch + frandom(-5.6, 5.6));
+		A_StartSound("ROBOEXPL", CHAN_WEAPON, pitch: 1.21);
+		A_FaceTarget();
+		if (target && !CheckSight(target)) SetStateLabel("See");
 	}
 	V_GI D 10;
 	Goto See;
@@ -126,7 +179,14 @@ Class DCY_Vague : DCY_Befouler
 	V_GI L 1;
 	V_GI L 10 A_Scream();
 	V_GI MNO 4;
-	V_GI P 3 A_NoBlocking();
+	V_GI P 3
+	{
+		A_StartSound("V3RYSMSH", CHAN_BODY, attenuation: 0.65, pitch: 0.6312, starttime: 0.1);
+		for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_VagueExplosion", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20) + 40, flags: SXF_NOCHECKPOSITION);
+		for (int i = 14; i > 0; i--) A_SpawnProjectile("DCY_VagueLightning2", 30, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-10, -60));
+		if (!random(0, 1)) A_SpawnProjectile("DCY_VagueSentinel", 40, 0, frandom(-20.5, 20.5), CMF_OFFSETPITCH, frandom(-2.0, 2.0));
+		A_NoBlocking();
+	}
 	V_GI QRSTUV 2;
 	Stop;
   }
@@ -295,9 +355,10 @@ Class DCY_VagueFlare : Actor
 {
   Default
   {
+  Translation "0:255=%[0.00,0.00,0.00]:[1.79,0.57,2.00]";
   RenderStyle "Add";
   Alpha 1.0;
-  Scale 0.02;
+  Scale 0.012;
   +BRIGHT
   +NOCLIP
   +NOINTERACTION
@@ -308,26 +369,141 @@ Class DCY_VagueFlare : Actor
 	FLR_ AAAAA 1
 	{
 		A_FadeOut(0.045, 0);
-		A_SetScale(Scale.X+0.4, Scale.Y+0.4);
+		A_SetScale(Scale.X+0.2, Scale.Y+0.2);
+		A_SpawnParticleEx(0x22105c, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 290, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.015, sizestep: 0.55);
 	}
 	FLR_ AAA 1
 	{
 		A_FadeOut(0.045, 0);
-		A_SetScale(Scale.X+0.10, Scale.Y+0.10);
+		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
 	}
 	FLR_ AAAAAAAAA 1
 	{
 		A_FadeOut(0.085, 0);
-		A_SetScale(Scale.X+0.05, Scale.Y+0.05);
+		A_SetScale(Scale.X+0.025, Scale.Y+0.025);
 	}
 	Stop;
   }
 }
 
-Class DCY_VagueFire : DoomImpBall
+Class DCY_VagueLightning : DCY_LightningVulgarShot
 {
   Default
   {
-  Translation "0:255=%[0.00,0.00,0.00]:[1.72,1.25,2.00]";
+  Speed 20;
+  +NEVERFAST
+  RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.79,0.57,2.00]";
+  Damage 4;
+  Scale 0.85;
+  +BRIGHT
+  }
+  
+  States
+  {
+  Spawn:
+	P_FX AAABBB 1
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnParticleEx(0x33008a, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 45, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.02, sizestep: 0.35);
+			A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 220);
+			A_SpawnItemEx("DCY_ElecTrailBase", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+			if ((level.time % random(1, 8)) == 0) A_SpawnParticleEx(0x33008a, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 100, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.015);	
+		}
+		
+		A_Weave(1, 1, 1, 1);
+	}
+	Loop;
+  Death:
+	P_FX CDEFGH 2 { bNOGRAVITY = true; A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), flags: SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION); }
+	Stop;
   }
 }
+
+Class DCY_VagueLightning2 : DCY_VagueLightning { Default { -NOGRAVITY } }
+
+Class DCY_VagueSentinel : DCY_Projectile
+{
+  Default
+  {
+  +SHOOTABLE
+  -NOBLOCKMAP
+  +SEEKERMISSILE
+  +NOBLOOD
+  Radius 20;
+  Height 56;
+  Damage (50);
+  Translation "0:255=%[0.00,0.00,0.20]:[1.51,0.50,2.00]";
+  +THRUSPECIES
+  +MTHRUSPECIES
+  +BRIGHT
+  RenderStyle "Add";
+  Scale .9;
+  BounceType "Hexen";
+  Tag "Sentinel";
+  Health 100;
+  BounceFactor 1.0;
+  Speed 8;
+  FastSpeed 10;
+  }
+  
+  int timer;
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (level.isFrozen()) return;
+	A_SpawnParticleEx(0x381e63, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 75, 0, zoff: 20, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.02, sizestep: 0.35);
+	A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, 220);
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	seek = 1;
+	A_StartSound("DCYDistortedCrow", 21, CHANF_LOOPING, volume: 0.5, startTime: frandom(0, 1));
+	A_StartSound("DCYDistortedCrow2", 22, CHANF_LOOPING, volume: 0.5, startTime: frandom(0, 1));
+  }
+  
+  bool seek;
+  
+  States
+  {
+  Spawn:
+	A8S8 EFGH 5;
+	Goto Formed;
+  Formed:
+	A8S8 ABCD 3
+	{
+		vel.z += frandom(-1, 1);
+		vel.y += frandom(-1, 1);
+		vel.x += frandom(-1, 1);
+		
+		if (!(getAge() % 40)) seek = !seek; 
+		if (tracer && CheckSight(tracer))
+			if (seek) A_SeekerMissile(60, 60, SMF_LOOK|SMF_PRECISE); else A_Tracer2(30);
+		
+		if (!(getAge() % random(20, 80)))
+		{
+			vel.x += frandom(-4, 4);
+			vel.y += frandom(-4, 4);
+			vel.z += frandom(-4, 4);
+		}
+		
+		vel /= 1.1;
+	}
+	Loop;
+  Death:
+	A8S8 I 6
+	{
+		A_StopSounds(21, 22);
+		A_SpawnItemEx("DCY_WretchedExplosion", flags: SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_TRANSFERTRANSLATION);
+	}
+	A8S8 JKL 6;
+	Stop;
+  }
+}
+
+Class DCY_VagueExplosion : DCY_AndroidExplosionBiggie { Default { Translation "0:255=%[0.00,0.00,0.20]:[1.51,0.50,2.00]"; } }

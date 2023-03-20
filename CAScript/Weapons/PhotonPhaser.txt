@@ -49,7 +49,8 @@ Class DCY_TheBFG9000 : DCY_Weapon Replaces BFG9000
 	BFG_ EFGHIA 2 Bright;
 	BFF_ BCDEFGHI 2 Bright A_WeaponOffset(frandom(1.75, -1.75), frandom(32.75, 32.15), WOF_INTERPOLATE);
 	BIG_ A 1 Bright A_BFG();
-	BIG_ BCDEFGHIJ 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
+	BIG_ BCDEFGHIJ 1 Bright;
+	BIG_ J 0 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
 	BIG_ J 0 Bright A_Refire();
 	Goto Ready;
   Flash:
