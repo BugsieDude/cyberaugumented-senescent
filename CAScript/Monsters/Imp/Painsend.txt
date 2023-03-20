@@ -97,9 +97,9 @@ Class DCY_Painsend : DCY_Impe
 		A_FaceTarget();
 		ang = randompick(-20, 20);
 		bool hopping = random(0, 2);
-		if (hopping && (vel.z == 0))
+		if (hopping)
 		{
-			A_Hop(frandom(5, 15));
+			A_Hop(11);
 			A_Dodging(15);
 		}
 	}

@@ -169,8 +169,9 @@ Class DCY_PerditionGazerSB : DCY_PerditionGazerBall
 	P_FX AAAABBBB 1
 	{
 		roll += 10;
+		A_SpawnItemEx("DCY_ElecTrailBase", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
 		A_SpawnItemEx("DCY_LightningPhaseBallTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERROLL);
-		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 80);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 250);
 	}
 	Loop;
   Death:

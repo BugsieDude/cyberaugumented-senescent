@@ -3063,3 +3063,8 @@ preventive/sight14 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight14.WAV"
 
 Intone/Hum "Sounds/DCY Monsters/Intone/dcy_intone_hum.ogg"
 Intone/Explode "Sounds/DCY Monsters/Intone/dcy_intone_explode.ogg"
+
+DCYMatriarch/Sight "Sounds/DCY Monsters/Matriarch/dcy_matriarch_sight.ogg"
+DCYMatriarch/Idle "Sounds/DCY Monsters/Matriarch/dcy_matriarch_idle.ogg"
+DCYMatriarch/Pain "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain.ogg"
+DCYMatriarch/Death "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death.ogg"

@@ -104,6 +104,8 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 	if (lasercooldown > 0) lasercooldown--;
   }
   
+  bool ang;
+  
   States
   {
   Spawn:
@@ -165,22 +167,32 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 		if (lasercooldown > 0) SetStateLabel("See");
 		else
 		{
-			switch (random(0, 30))
+			switch (random(0, 29))
 			{
 				case 1: Return ResolveState("Minigun"); break;
-				case 30: Return ResolveState("OrbitalLaser"); break;
+				case 29: Return ResolveState("OrbitalLaser"); break;
 			}
-			switch (random(0, 15))
+			switch (random(0, 13))
 			{
 				case 1: Return ResolveState("Minigun"); break;
-				case 14: Return ResolveState("Pentagram"); break;
-				case 15: Return ResolveState("Laser"); break;
+				case 12: Return ResolveState("Pentagram"); break;
+				case 13: Return ResolveState("Laser"); break;
 			}
 		}
 		
-		Return ResolveState(null);
+		Return A_Jump(80, "Torpedos");
 	}
 	Goto Minigun;
+  Torpedos:
+	CH0R ABAB 4 A_FaceTarget();
+	CH1R A 10 { ang = randompick(0, 1); A_FaceTarget(); }
+	CH1R AAAA 14
+	{
+		ang = (!ang) ? true : false;
+		A_SpawnProjectile("DCY_CTorpedo", 75, 0, (ang) ? -80 : 80, CMF_OFFSETPITCH, 0);
+		A_FaceTarget();
+	}
+	Goto See;
   Minigun:
 	CH0R G 1 A_FaceTarget();
 	CH0R G 30
@@ -195,7 +207,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 		A_StartSound("PIS2FIRE", CHAN_WEAPON, attenuation: 0.45);
 		Return A_MonsterRefire(80, "See");
 	}
-	Goto Missile+3;
+	Goto Minigun+2;
   Laser:
 	CH0R G 1 A_FaceTarget();
 	CH0R G 40
@@ -458,3 +470,34 @@ Class DCY_ChoricoArc : DCY_Arc { Default { Scale 1.2; Translation "0:255=%[0.00,
 Class DCY_ChoricoJet : DCY_Explosion_1_Smaller { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; } } 
 Class DCY_NephelomaTele : DCY_RZTele { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; +NOTIMEFREEZE } } 
 Class DCY_NephelomaLaserPuff : DCY_Explosion_1_Medium { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.22,0.80,2.00]"; +NOTIMEFREEZE; +NOBLOCKMAP; +ALLOWPARTICLES; +ALWAYSPUFF; } }
+Class DCY_CNFlare : DCY_ArbiterFlare { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.00,1.01]"; +ROLLSPRITE +WALLSPRITE } }
+
+Class DCY_CTorpedo : DCY_ArbiterTorpedo
+{
+  Default
+  {
+  Speed 5;
+  +SEEKERMISSILE
+  Translation "0:255=%[0.00,0.00,0.00]:[0.60,0.60,0.60]", "168:191=%[0.07,0.00,0.43]:[1.01,0.00,2.00]", "16:47=%[0.05,0.00,0.27]:[1.02,0.00,2.00]", "208:235=%[0.00,0.00,0.00]:[1.01,0.00,2.00]", "248:249=%[0.00,0.00,0.00]:[1.02,0.00,2.00]";
+  }
+  
+  States
+  {
+  Spawn:
+	64MS A 1
+	{
+		A_SpawnItemEx("DCY_CNFlare");
+		if (getAge() > 20 && getAge() < 50) { A_Tracer2(10); vel.x *= 3; vel.y *= 3; }
+		if (getAge() == 15) { vel.x *= 3; vel.y *= 3; }
+	}
+	Loop;
+  Death:
+	TNT1 A 7
+	{
+		A_SetRenderStyle(1, STYLE_ADD);
+		A_SpawnItemEx("DCY_VagueExplosion", flags: SXF_NOCHECKPOSITION);
+		A_Explode(100, 200);
+	}
+	Stop;
+  }
+}

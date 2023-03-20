@@ -197,7 +197,7 @@ Remedy Entertainment (Control) - Sounds
 GSC Game World (S.T.A.L.K.E.R) - Sounds
 Kinnerokhn - Sprites
 The Blue Savior - Being an inspiration for this mod's dark theme
-A_D_M_E_R_A_L - Being an inspiration for this mod's aesthetic
+A_D_M_E_R_A_L - Being an inspiration for this mod's aesthetic, Mastermind sprites
 Airtight (Dark Void) - Announcement Sounds
 Blue Shadow (ncHud) - Inspiration for the hud
 Doom 3 Phobos - Arachnotron Sounds
