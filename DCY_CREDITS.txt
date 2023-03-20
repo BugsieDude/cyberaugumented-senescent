@@ -211,9 +211,10 @@ Finalizer - Sprites
 Vegeta - Sprites
 Freesound (freesound.org) - Sounds
 OpenGameArt (opengameart.org) - sounds
+Jimmy - Sprites
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
-help
+help (I'd just credit Skulltag)
 
 ================================================================================
 MUSIC

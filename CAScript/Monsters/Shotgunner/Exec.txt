@@ -59,6 +59,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
   {
 	super.Tick();
 	
+	if (DCY_EffectRange(3000))
 	if (InStateSequence(CurState, ResolveState("See")) && waiting < 400)
 		waiting += 1;
   }
@@ -110,7 +111,10 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	ZSEC E 1
 	{
 		if (waiting >= 399)
+		{
+			waiting = 0;
 			A_StartSound("Exec/Spot", CHAN_VOICE);
+		}
 		
 		bFRIGHTENED = false;
 		A_ExecDecide();
