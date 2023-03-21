@@ -91,13 +91,10 @@ Class DCY_Serpent : DCY_Impe
 	SERP PQRST 5;
 	SERP U -1;
 	Stop;
-  Death.Massacre:
-    SERP N 1;
-	SERP N 6 A_XScream();
-	SERP O 7 A_NoBlocking();
-	SERP PQRST 5;
-	SERP U -1;
-	Stop;
+  Raise:
+    SERP LJ 8;
+    SERP KIH 6;
+    Goto See;
   }
 }
 

@@ -222,12 +222,13 @@ $limit skeleton/seeker 0
 
 ElectricBall/Sight "Sounds/Projectiles/dcy_electricball_shot.ogg"
 ElectricBall/Death "Sounds/Projectiles/dcy_electricball_death.ogg"
+ElectricBall/Charge "Sounds/Projectiles/dcy_monsoon_charge.ogg"
 
 DSSUPPLS "Sounds/Projectiles/dcy_goliath_plasma.ogg"
 RBGSH0T "Sounds/Projectiles/dcy_randombullshit_go.ogg"
 
 STRKBALL "Sounds/DCY Monsters/Fallen Angel/dcy_fallenangel_seeker.ogg"
-FLAMTHRW "Sounds/DCY Monsters/dcy_darius_flamethrower.ogg"
+FLAMTHRW "Sounds/Projectiles/dcy_darius_flamethrower.ogg"
 
 MAGI2SHT "Sounds/Projectiles/dcy_inscrutable_shot.wav"
 MAGISHT1 "Sounds/Projectiles/dcy_phantom_seeker.wav"

@@ -106,7 +106,7 @@ Class DCY_GunmetalInfiltratorBallTrail : DCY_Effect
   }
 }
 
-Class DCY_FatThrower : Actor
+Class DCY_FatThrower : DCY_Projectile
 {
   Default
   {
@@ -119,6 +119,7 @@ Class DCY_FatThrower : Actor
   Alpha 0.1;
   DamageType "Fire";
   RenderStyle "Add";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.50,0.31,0.00]";
   Projectile;
   +NEVERFAST;
   +RIPPER;
@@ -129,11 +130,12 @@ Class DCY_FatThrower : Actor
   Spawn:
 	EXP_ AABCDEFGHIJKLM 1 Bright
 	{
-		A_Explode(2, 30, 0, 1);
-		A_SpawnItemEx("DCY_ImpBigFlame", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		for (int i = 3; i > 0; i--)
+		A_Explode(4, 30, 0, 1);
+		if (DCY_EffectDistance(sfxdistance))
 		{
-			A_SpawnItemEx("DCY_ThrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			A_SpawnFlames("c24d0e", 25, 80, 0, true, frandom(-2.5, 2.5));
+			A_SpawnItemEx("DCY_ImpBigFlame", random(-5, 5), random(-5, 5), random(-5, 5), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_ThrowerEffect", random(-2, 2), random(-2, 2), random(-2, 2), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		}
 	}
 	Goto Death;

@@ -244,7 +244,7 @@ Class DCY_EOD : DCY_HeckBaron
 		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		A_StartSound("DCYEOD/Tracer", CHAN_VOICE, attenuation: 0.5);
 	}
-	DOR_ MN 10 A_FaceTarget();
+	DOR_ MN 16 A_FaceTarget();
 	DOR_ O 8
 	{
 		for (int i = 4; i > 0; i--)
@@ -260,7 +260,7 @@ Class DCY_EOD : DCY_HeckBaron
 		A_SpawnItemEx("DCY_EODTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		A_StartSound("DCYEOD/Floor", CHAN_VOICE, attenuation: 0.5);
 	}
-	DOR_ MN 15 A_FaceTarget();
+	DOR_ MN 17 A_FaceTarget();
 	DOR_ O 10
 	{
 		for (int i = 0; i < 360; i += 45)

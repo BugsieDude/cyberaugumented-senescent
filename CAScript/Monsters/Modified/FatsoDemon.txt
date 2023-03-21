@@ -18,13 +18,17 @@ Class DCY_SkinnyFat : DCYMonster
 	Obituary "%o is now charred meat due to the Juggernaut.";
 	Tag "Juggernaut";
 	Species "Mancubi";
+	MeleeRange 90;
   }
   
   void A_FatThrower()
   {
-	for (int i = -13; i < 14; i += 26) A_SpawnProjectile("DCY_FatThrower", 30, -13);
+	for (int i = -18; i < 19; i += 36) A_SpawnProjectile("DCY_FatThrower", 30, i);
 	A_FaceTarget();
   }
+  
+  int ang;
+  int missile;
   
   States
   {
@@ -41,9 +45,30 @@ Class DCY_SkinnyFat : DCYMonster
   See:
 	_JUG AABBCCDDEEFF 4 A_Chase();
 	Loop;
+  Melee:
+	_JUG G 5 { bNOPAIN = true; A_StartSound("Juggernaut/Attack", CHAN_VOICE); A_FaceTarget(); }
+	_JUG G 1 A_Hop(10);
+	_JUG G 1
+	{
+		if (pos.z == floorz)
+		{
+			A_QuakeEx(1, 1, 4, 50, 0, 300, QF_SCALEDOWN|QF_3D);
+			A_Explode(10 * random(2, 15), 128, XF_NOTMISSILE);
+			A_StartSound("EarthPound", pitch: 0.8);
+			A_RadiusThrust(3500, 130, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE);
+			A_RadiusThrust(100, 130, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE|RTF_THRUSTZ);
+			SetStateLabel("Cooldown");
+		}
+	}
+	Goto Melee+2;
+  Cooldown:
+	_JUG I 20;
+	Goto See;
   Missile:
     _JUG G 0;
 	_JUG G 0 A_JumpIf(target && distance3D(target) < 256, "FLAMETHROWERATK");
+	Goto Fireballs;
+  Fireballs:
     _JUG G 20
 	{
 		if (target)
@@ -51,26 +76,28 @@ Class DCY_SkinnyFat : DCYMonster
 			A_StartSound("Juggernaut/Attack", CHAN_VOICE);
 			A_FaceTarget();
 		}
+		ang = randompick(-1, 1);
+		missile = randompick(2, 2, 2, 4, 4, 6);
 	}
     _JUG H 7
 	{
-		A_FaceTarget();
-		A_SpawnProjectile("DCY_LeFatFireball", 30, -13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+		if (missile <= 0) SetStateLabel("Firedone");
+		else
+		{
+			A_FaceTarget();
+			ang = !ang;
+			A_SpawnProjectile("DCY_LeFatFireball", 30, (ang) ? -18 : 18, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+		}
 	}
-	_JUG I 7 A_FaceTarget();
-	_JUG H 7
+	_JUG I 7
 	{
+		missile--;
 		A_FaceTarget();
-		A_SpawnProjectile("DCY_LeFatFireball", 30, 13, frandom(-11.25, 11.25) / 2, CMF_TRACKOWNER);
+		if (missile <= 0) SetStateLabel("Firedone");
 	}
-	_JUG I 7 A_FaceTarget();
-	_JUG H 7
-	{
-		A_FaceTarget();
-		A_SpawnProjectile("DCY_LeFatFireball", 30, 13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
-		A_SpawnProjectile("DCY_LeFatFireball", 30, -13, frandom(-11.25, 11.25) / 4, CMF_TRACKOWNER);
-	}
-    _JUG HIGG 7 A_FaceTarget();
+	Goto Fireballs+1;
+  Firedone:
+    _JUG IIIGG 7 A_FaceTarget();
     Goto See;
   FLAMETHROWERATK:
     _JUG G 1

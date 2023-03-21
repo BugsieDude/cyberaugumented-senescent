@@ -388,6 +388,7 @@ Class DCY_MaraudersShield : Actor
   +PAINLESS
   +NOCLIP
   +BRIGHT
+  DeathSound "Advent/Close";
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
   }
   
@@ -402,6 +403,12 @@ Class DCY_MaraudersShield : Actor
   {
 	Super.Tick();
 	A_Warp(AAPTR_MASTER, 10, 0, 2, 0, WARPF_INTERPOLATE);
+  }
+  
+  override void postBeginPlay()
+  {
+	super.PostBeginPlay();
+	A_StartSound("Advent/Open", CHAN_VOICE);
   }
   
   int timer;

@@ -17,10 +17,10 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
   Species "Decedent";
   Speed 12;
   FastSpeed 14;
-  SeeSound "HoodGuy/Sight";
-  ActiveSound "HoodGuy/Active";
-  PainSound "HoodGuy/Pain";
-  DeathSound "HoodGuy/Death";
+  SeeSound "Bigwig/Sight";
+  ActiveSound "Bigwig/Active";
+  PainSound "Bigwig/Pain";
+  DeathSound "Bigwig/Death";
   AttackSound "";
   DropItem "RocketAmmo";
   DropItem "DCY_UltramodernEnergy", 45;
@@ -80,7 +80,7 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
 			Return ResolveState("MissileContinue");
 		
 		buildinasentry += 1;
-		A_StartSound("HoodGuy/Sight", CHAN_VOICE, 0, 1, 0.8);
+		A_StartSound(SeeSound, CHAN_VOICE, 0, 1, 0.8);
 		Return ResolveState(null);
 	}
 	UGEP E 10 A_FaceTarget();

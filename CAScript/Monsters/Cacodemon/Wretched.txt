@@ -115,7 +115,6 @@ Class DCY_Wretched : DCY_CacoParent
 		Return A_Jump(60, "MissileContinue");
 	}
 	SCD8 HHHHHHHHIIIIIII 1 A_FaceTarget();
-	SCD8 J 0 A_StartSound("FLAMTHRW", CHAN_WEAPON);
 	SCD8 JJJJJJJIIIIII 2
 	{
 		A_SpawnProjectile("DCY_WretchedFlame", 24, 0, random(-1, 1));

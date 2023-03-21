@@ -113,15 +113,6 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
 	}
 	FUUU V -1;
 	Stop;
-  Death.Massacre:
-	RIMP N 1;
-    RIMP N 5 A_XScream();
-    RIMP O 3 A_Explode(80,100);
-	RIMP P 3;
-    RIMP Q 3 A_NoBlocking();
-    RIMP RST 3;
-    RIMP U -1;
-    Stop;
   Raise:
     RIMP ML 8;
     RIMP KJI 6;

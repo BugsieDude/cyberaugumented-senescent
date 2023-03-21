@@ -220,9 +220,9 @@ Class CyberaugumentedProtagonist : DoomPlayer
 				dashSound = CVar.GetCVar("cl_dashsoundtype", player);
 			
 			if (dashSound.GetInt())
-				A_StartSound("DASH2", CHAN_AUTO, 0.75);
+				A_StartSound("DASH2", CHAN_AUTO, volume: 0.75);
 			else
-				A_StartSound("DASH1", CHAN_AUTO, 0.75);
+				A_StartSound("DASH1", CHAN_AUTO, volume: 0.75);
 		}
 	
 		dashCoolDown = sv_dashcooldown;

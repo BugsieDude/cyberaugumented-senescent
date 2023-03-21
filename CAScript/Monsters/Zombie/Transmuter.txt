@@ -16,10 +16,10 @@ Class DCY_Transmuter : DCY_ShotgunZombe
   +NEVERRESPAWN
   +DONTHARMCLASS
   BloodType "AndroidNeonFluid", "AndroidNeonFluid";
-  SeeSound "commandant/sight";
-  PainSound "commandant/pain";
-  DeathSound "commandant/death";
-  ActiveSound "commandant/active";
+  SeeSound "transmuter/sight";
+  PainSound "transmuter/pain";
+  DeathSound "transmuter/death";
+  ActiveSound "transmuter/active";
   DropItem "RocketAmmo";
   DropItem "RocketBox", 128;
   }
