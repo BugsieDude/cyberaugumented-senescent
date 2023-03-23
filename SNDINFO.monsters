@@ -3103,7 +3103,7 @@ Transmuter/Sight1 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_sight1.ogg"
 Transmuter/Sight2 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_sight2.ogg"
 Transmuter/Sight3 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_sight3.ogg"
 Transmuter/Sight4 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_sight4.ogg"
-$random Transmuter/Idle { Transmuter/Idle1 Transmuter/Idle2 Transmuter/Idle3 Transmuter/Idle4 Transmuter/Idle5 Transmuter/Idle6 Transmuter/Idle7 }
+$random Transmuter/Active { Transmuter/Idle1 Transmuter/Idle2 Transmuter/Idle3 Transmuter/Idle4 Transmuter/Idle5 Transmuter/Idle6 Transmuter/Idle7 }
 Transmuter/idle1 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_idle1.ogg"
 Transmuter/idle2 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_idle2.ogg"
 Transmuter/idle3 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_idle3.ogg"
@@ -3123,3 +3123,30 @@ Transmuter/death2 "Sounds/DCY Monsters/Transmuter/dcy_transmuter_death2.ogg"
 
 DCYHex/Lightning "Sounds/Projectiles/dcy_hex_lightningball.ogg"
 ysteleport "Sounds/Projectiles/dcy_ys_teleport.ogg"
+
+$random IoS/Sight { IoS/Sight1 IoS/Sight2 IoS/Sight3 IoS/Sight4 IoS/Sight5 }
+IoS/Sight1 "Sounds/DCY SFX/IoS/dcy_iconofsin_sight1.ogg"
+IoS/Sight2 "Sounds/DCY SFX/IoS/dcy_iconofsin_sight2.ogg"
+IoS/Sight3 "Sounds/DCY SFX/IoS/dcy_iconofsin_sight3.ogg"
+IoS/Sight4 "Sounds/DCY SFX/IoS/dcy_iconofsin_sight4.ogg"
+IoS/Sight5 "Sounds/DCY SFX/IoS/dcy_iconofsin_sight5.ogg"
+$random IoS/spit { IoS/spit1 IoS/spit2 IoS/spit3 IoS/spit4 }
+IoS/spit1 "Sounds/DCY SFX/IoS/dcy_iconofsin_cube1.ogg"
+IoS/spit2 "Sounds/DCY SFX/IoS/dcy_iconofsin_cube2.ogg"
+IoS/spit3 "Sounds/DCY SFX/IoS/dcy_iconofsin_cube3.ogg"
+IoS/spit4 "Sounds/DCY SFX/IoS/dcy_iconofsin_cube4.ogg"
+IoS/cube "Sounds/DCY SFX/IoS/dcy_iconofsin_cube.ogg"
+$random IoS/Spawn { IoS/Spawn1 IoS/Spawn2 IoS/Spawn3 IoS/Spawn4 IoS/Spawn5 }
+IoS/spawn1 "Sounds/DCY SFX/IoS/dcy_iconofsin_spawn1.ogg"
+IoS/spawn2 "Sounds/DCY SFX/IoS/dcy_iconofsin_spawn2.ogg"
+IoS/spawn3 "Sounds/DCY SFX/IoS/dcy_iconofsin_spawn3.ogg"
+IoS/spawn4 "Sounds/DCY SFX/IoS/dcy_iconofsin_spawn4.ogg"
+IoS/spawn5 "Sounds/DCY SFX/IoS/dcy_iconofsin_spawn5.ogg"
+$random IoS/pain { IoS/pain1 IoS/pain2 IoS/pain3 IoS/pain4 }
+IoS/pain1 "Sounds/DCY SFX/IoS/dcy_iconofsin_pain1.ogg"
+IoS/pain2 "Sounds/DCY SFX/IoS/dcy_iconofsin_pain2.ogg"
+IoS/pain3 "Sounds/DCY SFX/IoS/dcy_iconofsin_pain3.ogg"
+IoS/pain4 "Sounds/DCY SFX/IoS/dcy_iconofsin_pain4.ogg"
+$random IoS/death { IoS/death1 IoS/death2 }
+IoS/death1 "Sounds/DCY SFX/IoS/dcy_iconofsin_death.ogg"
+IoS/death2 "Sounds/DCY SFX/IoS/dcy_iconofsin_death2.ogg"

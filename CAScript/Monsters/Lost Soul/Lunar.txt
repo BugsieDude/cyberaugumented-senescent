@@ -28,6 +28,29 @@ Class DCY_LunarChiller : DCY_CacoParent
   Translation "192:195=[255,255,255]:[128,255,255]", "196:198=[81,255,255]:[0,128,255]", "199:204=[0,124,249]:[0,0,160]";
   }
   
+  override void Tick()
+  {
+	if (!level.isfrozen() && DCY_EffectDistance(sfxdistance) && tics != -1)
+	{
+		if (!(level.time % 2)) A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.0035, sizestep: 1.525);
+		A_SpawnItemEx("DCY_ManesTrail", xvel: frandom(-1, 1), yvel: frandom(-1, 1), zvel: frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		A_SpawnItemEx("DCY_ProjectileBaseTrail", 0.1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		let shadow = spawn("DCY_ManesTrail2", pos);
+		if (shadow)
+		{
+			shadow.vel.x = frandom(-0.5, 0.5);
+			shadow.vel.y = frandom(-0.5, 0.5);
+			shadow.vel.z = frandom(-0.5, 0.5);
+			shadow.scale = scale;
+			shadow.frame = frame;
+			shadow.sprite = GetSpriteIndex("LCHL");
+			shadow.angle = angle;
+		}
+	}
+	
+	Super.Tick();
+  }
+  
   States
   {
   Spawn:

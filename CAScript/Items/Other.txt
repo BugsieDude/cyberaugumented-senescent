@@ -321,8 +321,6 @@ Class DCY_Berserk : DCY_Powerup
 	Owner.A_SetBlend("White", 1.0, 25, "Orange");
 	Owner.A_QuakeEx(4, 4, 4, 40, 0, 2000, flags: QF_SCALEDOWN, rollintensity: 2.0, rollwave: 0.141);
 	
-	if (!random(0, 20)) A_StartSound("RIPANDTEAR", CHAN_6);
-	
 	Owner.A_GiveInventory("DCY_BerserkStrength");
 	Owner.A_GiveInventory("DCY_BerserkInvulnerability");
 	Owner.A_GiveInventory("DCY_BerserkDamage");

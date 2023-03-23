@@ -15,7 +15,6 @@ SAMRRIS1 "Sounds/DCY SFX/dcy_samur_rise1.ogg"
 SPELL01 "Sounds/DCY SFX/dcy_coolsound_01.ogg"
 SPELL02 "Sounds/Inventory/dcy_prospect_expire.ogg"
 SPELL05 "Sounds/Inventory/dcy_abettance_up.ogg"
-SPELL06 "Sounds/Inventory/dcy_photocoagulator_use.ogg"
 SPELL07 "Sounds/DCY SFX/dcy_healing.ogg"
 SPELL10 "Sounds/Inventory/dcy_prospect_up.ogg"
 SPELL11 "Sounds/DCY SFX/dcy_randomassspell.ogg"
@@ -23,7 +22,6 @@ SPELL12 "Sounds/DCY SFX/dcy_randomassspell2.ogg"
 SPELL15 "Sounds/DCY SFX/dcy_retrodrip.ogg"
 SPELL16 "Sounds/Inventory/dcy_prospect_activate.ogg"
 SPELL17 "Sounds/DCY SFX/dcy_starfall.ogg"
-PHTCPKUP "Sounds/Inventory/dcy_photocoagulator_pickup.ogg"
 
 SupraSpell/Activate "Sounds/DCY SFX/dcy_unleash.ogg"
 
@@ -70,8 +68,6 @@ RadiationSphere/PickedUp "Sounds/Inventory/dcy_hazard_suit.ogg"
 Berserk/PickUp "Sounds/Inventory/dcy_berserk.ogg"
 Berserk/Warning "Sounds/Inventory/dcy_berserk_warn.ogg"
 Berserk/End "Sounds/Inventory/dcy_berserk_end.ogg"
-
-RIPANDTEAR "Sounds/Inventory/dcy_berserk_ripandtear.ogg"
 
 //idle noises
 SoulSphere/IdleNoise "Sounds/Inventory/dcy_soulsphere_idle.ogg"
@@ -123,16 +119,9 @@ CROSWARN "Sounds/Inventory/dcy_crosscut_warn.ogg"
 CROSEND "Sounds/Inventory/dcy_crosscut_end.ogg"
 PALIWARN "Sounds/Inventory/dcy_palisade_warn.wav"
 PALIEND "Sounds/Inventory/dcy_palisade_end.wav"
-PHTCWARN "Sounds/Inventory/dcy_photocoagulator_warn.ogg"
-PHTCEND "Sounds/Inventory/dcy_photocoagulator_end.ogg"
-EPHAWARN "Sounds/Inventory/dcy_emphasis_warn.ogg"
-EPHAEND "Sounds/Inventory/dcy_emphasis_end.ogg"
 
 CSALVA1 "Sounds/Inventory/dcy_salvation_up.ogg"
 CSALVA2 "Sounds/Inventory/dcy_salvation.ogg"
-
-Emphasis/Up "Sounds/Inventory/dcy_emphasis.ogg"
-Emphasis/Use "Sounds/Inventory/dcy_emphasis_use.ogg"
 
 DARKSKIL "Sounds/Inventory/dcy_darkness2.ogg"
 SUPRBUFF "Sounds/Inventory/dcy_song.ogg"

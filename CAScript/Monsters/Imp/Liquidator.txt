@@ -17,6 +17,7 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
   ActiveSound "L4DSmoker/Active";
   PainSound "L4DSmoker/Pain";
   DeathSound "L4DSmoker/Death";
+  DCYMonster.BurnSound "L4DSmoker/Burn";
   Mass 200;
   }
   
@@ -101,18 +102,6 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
     RIMP RST 3;
     RIMP U -1;
     Stop;
-  Death.Fire:
-    TNT1 A 0;
-	TNT1 A 0 A_StartSound("L4DSmoker/Burn", CHAN_VOICE);
-	TNT1 A 0 A_NoBlocking();
-	TNT1 A 0 A_Fall();
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright
-	{
-		A_SpawnItemEx("DCY_ImpBigFlame", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-		A_SpawnItemEx("DCY_ImpFlame1", random(-12, 12), random(-12, 12), random(10, 45), 0, 0, random(2, 6), 0, SXF_NOCHECKPOSITION, failchance: 100);
-	}
-	FUUU V -1;
-	Stop;
   Raise:
     RIMP ML 8;
     RIMP KJI 6;

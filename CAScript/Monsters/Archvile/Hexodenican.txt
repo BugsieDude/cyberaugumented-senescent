@@ -263,10 +263,10 @@ Class DCY_HexBall : DCY_MeatballElecball
 			A_SpawnParticleEx(0x0a3300, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 70, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.7, fadestepf: 0.015, sizestep: 0.55);
 		}
 		
-		if (!(getAge() % 8) && (tracer && CheckSight(tracer) && distance2D(tracer) < 450))
+		if (!(getAge() % 8) && (tracer && CheckSight(tracer) && distance2D(tracer) < 500))
 		{
 			A_FaceTracer();
-			A_SpawnProjectile("DCY_HexBolt", 0, flags: CMF_TRACKOWNER|CMF_AIMDIRECTION);
+			A_SpawnProjectile("DCY_HexBolt", 0, flags: CMF_TRACKOWNER|CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch);
 		}
 	}
 	Loop;

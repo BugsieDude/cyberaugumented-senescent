@@ -164,7 +164,8 @@ Class DCY_HellRazer : DCY_Impe
 		A_StartSound("Consul/ChargedFire", CHAN_WEAPON);
 		A_StartSound("Hellrazer/ChargedShot", CHAN_5, attenuation: 0.75);
 		ang -= 30;
-		A_SpawnProjectile("DCY_ConsulCharged", 32, 0, frandom(-3, 3) + ((ang2) ? abs(ang) - 60 : ang + 60));
+		angle = ((ang2) ? abs(ang) - 60 : ang + 60);
+		A_SpawnProjectile("DCY_ConsulCharged", 32, 0, frandom(-3, 3), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch);
 		missile++;
 	}
 	PRZR E 15
