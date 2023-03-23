@@ -15,6 +15,7 @@ Class DCY_SkinnyFat : DCYMonster
 	PainSound "juggernaut/pain";
 	DeathSound "juggernaut/death";
 	ActiveSound "juggernaut/active";
+	AttackSound "juggernaut/attack";
 	Obituary "%o is now charred meat due to the Juggernaut.";
 	Tag "Juggernaut";
 	Species "Mancubi";
@@ -46,9 +47,9 @@ Class DCY_SkinnyFat : DCYMonster
 	_JUG AABBCCDDEEFF 4 A_Chase();
 	Loop;
   Melee:
-	_JUG G 5 { bNOPAIN = true; A_StartSound("Juggernaut/Attack", CHAN_VOICE); A_FaceTarget(); }
-	_JUG G 1 A_Hop(10);
-	_JUG G 1
+	#### J 15 { bNOPAIN = true; A_StartSound(AttackSound, CHAN_VOICE); A_FaceTarget(); }
+	#### G 1 A_Hop(10);
+	#### G 1
 	{
 		if (pos.z == floorz)
 		{

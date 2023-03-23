@@ -18,11 +18,18 @@ Class DCY_Disrelish : DCY_SkinnyFat
   States
   {
   Spawn:
-	FOFO A 10 A_Look();
+	FOFO A 10 DCY_Look();
 	Loop;
+  Look:
+	FOFO AAABBBCCCDDDEEEFFF 3 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	FOFO G 20 DCY_AlertSound();
+	Goto See;
   See:
-	FOFO AAABBBCCCDDDEEEFFF 2 A_Chase();
+	FOFO AAABBBCCCDDDEEEFFF 3 A_Chase();
 	Loop;
+  Melee:
   Missile:
 	FOFO G 20
 	{

@@ -29,8 +29,14 @@ Class DCY_RadiationCorpulence : DCY_SkinnyFat
   States
   {
   Spawn:
-	B01_ A 10 A_Look();
+	B01_ A 10 DCY_Look();
 	Loop;
+  Look:
+	B01_ AABBCCDDEEFF 4 DCY_LookingForPlayer();
+	Loop;
+  Alert:
+	B01_ G 20 DCY_AlertSound();
+	Goto See;
   See:
 	B01_ AABBCCDDEEFF 4 A_Chase();
 	Loop;
