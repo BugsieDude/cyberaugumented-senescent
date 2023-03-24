@@ -63,7 +63,7 @@ Class DCY_SkinnyFat : DCYMonster
 	}
 	Goto Melee+2;
   Cooldown:
-	_JUG I 20;
+	#### I 20;
 	Goto See;
   Missile:
     _JUG G 0;

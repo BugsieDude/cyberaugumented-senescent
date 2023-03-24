@@ -364,8 +364,8 @@ Class DCyb_HUD : BaseStatusBar
 	
 	if ((CPlayer.health > 0) && (CPlayer.health < 10) && CY_GetCVar("cl_dcy_alarmsound"))
 	{
-		if ((level.time % 36) == 0)
-			S_StartSound("slayer/lowhealth", 14, volume: 0.75);
+		if ((level.time % (36 * i_timescale)) == 0)
+			S_StartSound("slayer/lowhealth", 14, volume: 0.5);
 	}
 			
 	if (!CY_GetCVar("cl_hudshake")) { xx = 0; yy = 0; }
