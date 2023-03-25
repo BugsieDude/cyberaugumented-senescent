@@ -3064,10 +3064,22 @@ preventive/sight14 "Sounds/DCY Monsters/Preventive/dcy_preventive_sight14.WAV"
 Intone/Hum "Sounds/DCY Monsters/Intone/dcy_intone_hum.ogg"
 Intone/Explode "Sounds/DCY Monsters/Intone/dcy_intone_explode.ogg"
 
-DCYMatriarch/Sight "Sounds/DCY Monsters/Matriarch/dcy_matriarch_sight.ogg"
+$random DCYMatriarch/Sight { DCYMatriarch/Sight1 DCYMatriarch/Sight2 DCYMatriarch/Sight3 }
+DCYMatriarch/Sight1 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_sight1.ogg"
+DCYMatriarch/Sight2 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_sight2.ogg"
+DCYMatriarch/Sight3 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_sight3.ogg"
 DCYMatriarch/Idle "Sounds/DCY Monsters/Matriarch/dcy_matriarch_idle.ogg"
-DCYMatriarch/Pain "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain.ogg"
-DCYMatriarch/Death "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death.ogg"
+$random DCYMatriarch/Pain { DCYMatriarch/Pain1 DCYMatriarch/Pain2 DCYMatriarch/Pain3 DCYMatriarch/Pain4 DCYMatriarch/Pain5 }
+DCYMatriarch/Pain1 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain1.ogg"
+DCYMatriarch/Pain2 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain2.ogg"
+DCYMatriarch/Pain3 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain3.ogg"
+DCYMatriarch/Pain4 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain4.ogg"
+DCYMatriarch/Pain5 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_pain5.ogg"
+$random DCYMatriarch/Death { DCYMatriarch/Death1 DCYMatriarch/Death2 DCYMatriarch/Death3 DCYMatriarch/Death4 }
+DCYMatriarch/Death1 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death1.ogg"
+DCYMatriarch/Death2 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death2.ogg"
+DCYMatriarch/Death3 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death3.ogg"
+DCYMatriarch/Death4 "Sounds/DCY Monsters/Matriarch/dcy_matriarch_death4.ogg"
 
 Advent/Open "Sounds/DCY Monsters/Advent/dcy_advent_core_open.ogg"
 Advent/Close "Sounds/DCY Monsters/Advent/dcy_advent_core_close.ogg"

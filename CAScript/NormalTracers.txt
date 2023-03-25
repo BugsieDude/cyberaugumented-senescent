@@ -12,6 +12,7 @@ Class DCY_TracerPlayer : DCY_FastProjectile
   +RANDOMIZE;
   +FORCEXYBILLBOARD;
   +NOEXTREMEDEATH;
+  +NOTIMEFREEZE
   +BLOODSPLATTER;
   +THRUGHOST;
   +NOSPLASHALERT;
@@ -106,6 +107,7 @@ Class DCY_SSGTracer : DCY_TracerPlayer { Default { DamageFunction (7 * random[Fi
 Class DCY_DeathbringerTracer : DCY_TracerPlayer { Default { DamageFunction (random(1, 10) * 5); } }
 Class DCY_DeagleTracer : DCY_TracerPlayer { Default { DamageFunction (random(1, 5) * 10); } }
 
+Class DCY_ExplosiveTracer : DCY_TracerPlayer { Default { DCY_TracerPlayer.IsExplosive true; } }
 Class DCY_ExplosivePistolTracer : DCY_PistolTracer { Default { DCY_TracerPlayer.IsExplosive true; } }
 Class DCY_ExplosiveRifleTracer : DCY_RifleTracer { Default { DCY_TracerPlayer.IsExplosive true; } }
 Class DCY_ExplosiveSSGTracer : DCY_SSGTracer { Default { DCY_TracerPlayer.IsExplosive true; } }
@@ -116,11 +118,12 @@ Class DCY_EnemyTracer : DCY_TracerPlayer
 {
   Default
   {
-  Speed 80;
+  Speed 55;
   DamageFunction 3;
   +RANDOMIZE;
   DamageType "Bullet";
   Decal "BulletChip";
+  -NOTIMEFREEZE
   }
   States
   {

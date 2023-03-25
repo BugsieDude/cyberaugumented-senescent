@@ -10,6 +10,12 @@ DropItem "DCY_CuethemetalslugannounceersayingRocketLauncher", 256, 100
 DropItem "DCY_ShitGrenadeThrowItBackPrivate", 256, 80
 }
 
+ACTOR DCY_Yatata : RandomSpawner Replaces Chaingun
+{
+DropItem "DCY_CyberRifle", 256, 100
+DropItem "DCY_Minigun", 256, 50
+}
+
 ACTOR DCY_Disintegration : RandomSpawner Replaces PlasmaRifle
 {
 DropItem "DCY_RehauledPlasmaRifle", 256, 100

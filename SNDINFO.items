@@ -148,3 +148,5 @@ dcy/shotgunpickup2 "Sounds/Weapons/dcy_pickup_supershotgun.wav"
 dcy/riflepickup "Sounds/Weapons/dcy_pickup_rifle.wav"
 dcy/rocketpickup "Sounds/Weapons/dcy_pickup_launcher.wav"
 dcy/plasmariflepickup "Sounds/Weapons/dcy_pickup_plasma.wav"
+
+dcy/visor "Sounds/Inventory/dcy_visor.ogg"

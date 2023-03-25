@@ -4,6 +4,7 @@ Class DCY_Infrared : Infrared Replaces Infrared
   {
   Inventory.PickupMessage "Right now, you're wearing the Light Amplification Visor. Night vision is real.";
   Tag "Global Vision NG-80 Triple Eyed Visor";
+  Inventory.PickupSound "dcy/visor";
   }
   
   States
