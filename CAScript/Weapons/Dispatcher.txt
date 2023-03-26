@@ -93,7 +93,7 @@ Class DCY_RehauledPlasmaRifle : DCY_Weapon Replaces PlasmaRifle
 	TNT1 A 0 A_Lower();
 	Wait;
   Ready:
-	PLG_ A 1 A_WeaponReady(WRF_ALLOWZOOM);
+	PLG_ A 1 A_WeaponReady(); //A_WeaponReady(WRF_ALLOWZOOM);
 	Loop;
   Fire:
 	PLG_ BCD 1
