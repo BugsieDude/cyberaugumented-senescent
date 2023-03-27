@@ -18,7 +18,7 @@ Class DCY_SuperShotty : DCY_Weapon Replaces SuperShotgun
 	invoker.DepleteAmmo(invoker.bAltFire, true);
 	
 	for (int i = -4; i < 5; i += 8)
-		A_FireBullets(11, 7, 10, 12, "DCY_Effect", FBF_NORANDOM, 8192, "DCY_TracerPlayer", 0, spawnofs_xy: i);
+		A_FireBullets(11, 7, 10, 11, "DCY_Effect", FBF_NORANDOM, 8192, "DCY_TracerPlayer", 0, spawnofs_xy: i);
 	
 	A_QuakeEx(1, 1, 1, 30, 0, 90, "none", QF_SCALEDOWN, falloff: 180);
 	A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE);

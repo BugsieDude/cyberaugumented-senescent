@@ -68,7 +68,7 @@ Class DCY_Espouser : DCY_VileParent
 		A_SetRenderStyle(1, STYLE_ADD);
 		
 		for (int i = 15; i > 0; i--)
-			if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_Smonk", frandom(-25, 25), frandom(-25, 25), frandom(-25, 25) + 30, frandom(10, -10), frandom(10, -10), frandom(10, -10), frandom(0, 360), SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+			if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 187, 0, zoff: 20, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0035, sizestep: -0.5);
 	}
 	HR2E P 1
 	{
@@ -84,15 +84,15 @@ Class DCY_Espouser : DCY_VileParent
 				A_FaceTarget(1.5, 1.5);
 			
 			for (int i = 15; i > 0; i--)
-				if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_Smonk", frandom(-25, 25), frandom(-25, 25), frandom(-25, 25) + 30, frandom(10, -10), frandom(10, -10), frandom(10, -10), frandom(0, 360), SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
-			
+				if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 187, 0, zoff: 20, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0035, sizestep: -0.5);
+	
 			SetStateLabel("See");
 		}
 		
 		for (int i = 2; i > 0; i--)
 		{
 			A_Recoil(-0.5);
-			if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_Smonk", frandom(-25, 25), frandom(-25, 25), frandom(-25, 25) + 30, flags: SXF_TRANSFERSCALE|SXF_NOCHECKPOSITION);
+			if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 87, 0, zoff: 20, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0035, sizestep: -0.5);
 		}
 		
 		dash++;

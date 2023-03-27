@@ -1,0 +1,105 @@
+Class DCY_MessageBox : MessageBoxMenu
+{
+	textureId slightly_art;
+	int n;
+	float x1, y1;
+	
+	override void Init(Menu parent, String message, int messagemode, bool playsound, Name cmd, voidptr native_handler)
+	{
+		n = random(1, 21);
+		message = StringTable.Localize(string.Format("$DCY_QUITMSG"..n));
+		super.init(parent, message, messagemode, playsound, cmd, native_handler);
+		
+		slightly_art = Texman.CheckForTexture("graphics/quit/msg_dcy_quitmsg"..n..".png");
+	}
+	
+	override void Ticker()
+	{
+		super.Ticker();
+		x1 = sin(gametic * 0.35) / 0.75;
+		y1 = sin(gametic * 0.20) / 0.75;
+	}
+	
+	override void Drawer()
+	{
+		int i;
+		double y = destheight / 1.45;
+		double y2 = destheight / 2;
+		let fontheight = textFont.GetHeight() * NotifyFontScale;
+
+		int c = mMessage.Count();
+		y -= c * fontHeight / 2;
+
+		screen.DrawTexture(TexMan.CheckForTexture("Graphics/DCY_NON3.png"), true, -160, 100 - 35, DTA_ScaleX, 2000, DTA_ScaleY, 0.35, DTA_320x200, true);
+		screen.DrawTexture(slightly_art, true, 256 + x1, 144 - y1, DTA_VirtualWidth, 512, DTA_VirtualHeight, 288, DTA_KeepRatio, true);
+		
+		for (i = 0; i < c; i++)
+		{
+			screen.DrawText (textFont, Font.CR_UNTRANSLATED, destWidth/2 - mMessage.StringWidth(i)*NotifyFontScale/2, y, mMessage.StringAt(i), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, 
+				DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
+			y += fontheight;
+		}
+
+		if (mMessageMode == 0)
+		{
+			y += fontheight;
+			mMouseY = int(y);
+			screen.DrawText(textFont, messageSelection == 0? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 3.7, destheight / 2, Stringtable.Localize("$DCY_QUIT"), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
+			screen.DrawText(textFont, messageSelection == 1? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 1.45, destheight / 2, Stringtable.Localize("$DCY_STAY"), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
+		}
+	}
+	
+	override bool MenuEvent(int mkey, bool fromcontroller)
+	{
+		if (mMessageMode == 0)
+		{
+			if (mkey == MKEY_Up || mkey == MKEY_Down || mkey == MKEY_Right || mkey == MKEY_Left)
+			{
+				MenuSound("menu/cursor");
+				messageSelection = !messageSelection;
+				return true;
+			}
+			else if (mkey == MKEY_Enter)
+			{
+				// 0 is yes, 1 is no
+				HandleResult(!messageSelection);
+				return true;
+			}
+			else if (mkey == MKEY_Back)
+			{
+				HandleResult(false);
+				return true;
+			}
+			return false;
+		}
+		else
+		{
+			Close();
+			CloseSound();
+			return true;
+		}
+	}
+	
+	override bool MouseEvent(int type, int x, int y)
+	{
+		if (mMessageMode == 1)
+		{
+			if (type == MOUSE_Click) MenuEvent(MKEY_Enter, true);
+			return false;
+		}
+		else
+		{
+			int sel = -1;
+			int fh = textFont.GetHeight() + 1;
+
+			// convert x/y from screen to virtual coordinates, according to CleanX/Yfac use in DrawTexture
+			x = x * destWidth / screen.GetWidth();
+			y = y * destHeight / screen.GetHeight();
+
+			if (x >= mMouseLeft && x <= mMouseRight && y >= mMouseY && y < mMouseY + 2 * fh) sel = y >= mMouseY + fh;
+			messageSelection = sel;
+			if (type == MOUSE_Release) return MenuEvent(MKEY_Enter, true);
+			return true;
+		}
+	}
+}

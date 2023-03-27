@@ -184,3 +184,30 @@ pic SKYHF97 tics 1
 pic SKYHF98 tics 1
 pic SKYHF99 tics 1
 pic SKYHF100 tics 1
+
+texture "Graphics/Quit/MSG_DCY_QUITMSG16.png"
+pic "Graphics/Quit/MSG_DCY_QUITMSG16.png" tics 6
+pic "Graphics/Quit/MSG_DCY_QUITMSG16B.png" tics 6
+
+texture "Graphics/Quit/MSG_DCY_QUITMSG8.png"
+pic "Graphics/Quit/MSG_DCY_QUITMSG8.png" tics 5
+pic "Graphics/Quit/MSG_DCY_QUITMSG8B.png" tics 5
+pic "Graphics/Quit/MSG_DCY_QUITMSG8C.png" tics 5
+pic "Graphics/Quit/MSG_DCY_QUITMSG8B.png" tics 5
+
+texture "Graphics/Quit/MSG_DCY_QUITMSG7.png"
+pic "Graphics/Quit/MSG_DCY_QUITMSG7.png" tics 2
+pic "Graphics/Quit/MSG_DCY_QUITMSG7B.png" tics 2
+pic "Graphics/Quit/MSG_DCY_QUITMSG7C.png" tics 2
+
+texture "Graphics/Quit/MSG_DCY_QUITMSG13.png"
+pic "Graphics/Quit/MSG_DCY_QUITMSG13.png" tics 8
+pic "Graphics/Quit/MSG_DCY_QUITMSG13B.png" tics 8
+pic "Graphics/Quit/MSG_DCY_QUITMSG13C.png" tics 8
+pic "Graphics/Quit/MSG_DCY_QUITMSG13D.png" tics 8
+
+texture "Graphics/Quit/MSG_DCY_QUITMSG21.png"
+pic "Graphics/Quit/MSG_DCY_QUITMSG21.png" tics 4
+pic "Graphics/Quit/MSG_DCY_QUITMSG21B.png" tics 4
+pic "Graphics/Quit/MSG_DCY_QUITMSG21C.png" tics 4
+pic "Graphics/Quit/MSG_DCY_QUITMSG21B.png" tics 4

@@ -5,6 +5,7 @@ Version "4.10.0"
 #include "CAScript/ZForms/WIP.txt"
 
 //Menu
+#include "CAScript/Menus/MessageMenu.txt"
 #include "CAScript/Menus/Tooltips.txt"
 #include "CAScript/Menus/Intermission.txt"
 
