@@ -27,7 +27,7 @@ Class DCyb_HUD : BaseStatusBar
   
   enum DCyb_BarStates
   {
-	barlow,
+	barlow = 110,
 	barnormal,
 	barover,
 	barinvul
@@ -56,7 +56,7 @@ Class DCyb_HUD : BaseStatusBar
     fnt = "SMALLFONT";
 	dcyb_font2 = HUDFont.Create(fnt, fnt.GetCharWidth("0"), true);
 
-    dcyb_diparms = InventoryBarState.Create(dcyb_font, boxgfx : "CHUDITEM", selgfx : "CHUDITEH", leftgfx : "CHUDARR1", rightgfx : "CHUDARL1");
+    dcyb_diparms = InventoryBarState.Create(dcyb_font, boxgfx: "CHUDITEM", selgfx: "CHUDITEH", leftgfx: "CHUDARR1", rightgfx: "CHUDARL1");
 	
 	DCyb_HUDSet();
   }

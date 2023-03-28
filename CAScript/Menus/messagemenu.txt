@@ -2,15 +2,25 @@ Class DCY_MessageBox : MessageBoxMenu
 {
 	textureId slightly_art;
 	int n;
-	float x1, y1;
+	float x1, y1, boxsize;
+	BrokenLines msg;
+	bool isQuitScreen;
 	
 	override void Init(Menu parent, String message, int messagemode, bool playsound, Name cmd, voidptr native_handler)
 	{
-		n = random(1, 21);
-		message = StringTable.Localize(string.Format("$DCY_QUITMSG"..n));
 		super.init(parent, message, messagemode, playsound, cmd, native_handler);
 		
-		slightly_art = Texman.CheckForTexture("graphics/quit/msg_dcy_quitmsg"..n..".png");
+		if (message == "lmfao")
+		{
+			isQuitScreen = true;
+			n = random(1, 21);
+			slightly_art = Texman.CheckForTexture("graphics/quit/msg_dcy_quitmsg"..n..".png");
+			msg = textFont.BreakLines(StringTable.Localize(string.Format("$DCY_QUITMSG"..n)), int(300/NotifyFontScale));
+		}
+		else
+		{
+			msg = textFont.BreakLines(message, int(300/NotifyFontScale));
+		}
 	}
 	
 	override void Ticker()
@@ -22,24 +32,30 @@ Class DCY_MessageBox : MessageBoxMenu
 	
 	override void Drawer()
 	{
+		if (isQuitScreen) DCY_Quit();
+		else MessageBoxMenu.drawer();
+	}
+	
+	protected void DCY_Quit()
+	{
 		int i;
 		double y = destheight / 1.45;
 		double y2 = destheight / 2;
 		let fontheight = textFont.GetHeight() * NotifyFontScale;
-
-		int c = mMessage.Count();
+		
+		int c = msg.Count();
 		y -= c * fontHeight / 2;
 
 		screen.DrawTexture(TexMan.CheckForTexture("Graphics/DCY_NON3.png"), true, -160, 100 - 35, DTA_ScaleX, 2000, DTA_ScaleY, 0.35, DTA_320x200, true);
 		screen.DrawTexture(slightly_art, true, 256 + x1, 144 - y1, DTA_VirtualWidth, 512, DTA_VirtualHeight, 288, DTA_KeepRatio, true);
-		
+			
 		for (i = 0; i < c; i++)
 		{
-			screen.DrawText (textFont, Font.CR_UNTRANSLATED, destWidth/2 - mMessage.StringWidth(i)*NotifyFontScale/2, y, mMessage.StringAt(i), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, 
+			screen.DrawText (textFont, Font.CR_UNTRANSLATED, destWidth/2 - msg.StringWidth(i)*NotifyFontScale/2, y, msg.StringAt(i), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, 
 				DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
 			y += fontheight;
 		}
-
+			
 		if (mMessageMode == 0)
 		{
 			y += fontheight;
@@ -49,7 +65,7 @@ Class DCY_MessageBox : MessageBoxMenu
 		}
 	}
 	
-	override bool MenuEvent(int mkey, bool fromcontroller)
+	override bool MenuEvent(int mkey, bool fromcontroller) //literally from gzdoom.pk3, i just added the right and left keys
 	{
 		if (mMessageMode == 0)
 		{
@@ -80,7 +96,7 @@ Class DCY_MessageBox : MessageBoxMenu
 		}
 	}
 	
-	override bool MouseEvent(int type, int x, int y)
+	override bool MouseEvent(int type, int x, int y) //made it simpler
 	{
 		if (mMessageMode == 1)
 		{
@@ -92,7 +108,6 @@ Class DCY_MessageBox : MessageBoxMenu
 			int sel = -1;
 			int fh = textFont.GetHeight() + 1;
 
-			// convert x/y from screen to virtual coordinates, according to CleanX/Yfac use in DrawTexture
 			x = x * destWidth / screen.GetWidth();
 			y = y * destHeight / screen.GetHeight();
 

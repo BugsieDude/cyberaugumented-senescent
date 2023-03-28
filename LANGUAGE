@@ -13,7 +13,7 @@ OB_MONTELEFRAG = "$o was in a telefragging catharsis."
 //N/A
 
 //Quit Messages
-DCY_QUITMSG = "?";
+DCY_QUITMSG = "21";
 DCY_QUITMSG1 = "Yo, there's a big ass horde of idiots trying to slap my ass, don't leave."; 
 DCY_QUITMSG2 = "Wait, don't quit! Some demonic and occult fellas try to rob a bank!";
 DCY_QUITMSG3 = "Relish your very precious minutes.";

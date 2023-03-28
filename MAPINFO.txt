@@ -19,7 +19,7 @@ gameinfo
 	playerclasses = "CyberaugumentedProtagonist"
 	Border = 8, 8, "VANTABTR", "VANTABT", "VANTABTL", "VANTABR", "VANTABL", "VANTABBR", "VANTABB", "VANTABBL"
 	BorderFlat = "VANTAHUD"
-	quitmessages = "$DCY_QUITMSG1","$DCY_QUITMSG2","$DCY_QUITMSG3","$DCY_QUITMSG4","$DCY_QUITMSG5","$DCY_QUITMSG6","$DCY_QUITMSG7"
+	quitmessages = "lmfao"
 }
 
 clearskills

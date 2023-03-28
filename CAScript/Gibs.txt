@@ -1,0 +1,28 @@
+Class DCY_GoreBase : Actor
+{
+  Default
+  {
+  Scale 1.0;
+  BounceType "Doom";
+  Speed 8;
+  BounceFactor 0.5;
+  Radius 8;
+  Height 8;
+  Gravity 0.65;
+  Projectile;
+  -NOGRAVITY
+  +THRUACTORS
+  +BOUNCEONFLOORS
+  +BOUNCEONWALLS
+  +ROLLSPRITE
+  +CANNOTPUSH
+  +MOVEWITHSECTOR
+  }
+  
+  int xroll;
+  
+  override void PostBeginPlay()
+  {
+	xroll = randompick(-3, 3, -7, 7);
+  }
+}

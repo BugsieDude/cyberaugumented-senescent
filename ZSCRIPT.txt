@@ -48,6 +48,7 @@ Version "4.10.0"
 #include "CAScript/Others/OtherTrails.txt"
 #include "CAScript/JetFlares.txt"
 #include "CAScript/BloodTypes.txt"
+#include "CAScript/Gibs.txt"
 
 //Monsters
 #include "CAScript/Monsters/EnemyBases.txt"
