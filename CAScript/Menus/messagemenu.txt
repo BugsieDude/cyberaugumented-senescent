@@ -2,9 +2,11 @@ Class DCY_MessageBox : MessageBoxMenu
 {
 	textureId slightly_art;
 	int n;
-	float x1, y1, boxsize;
+	float x1, y1;
 	BrokenLines msg;
-	bool isQuitScreen;
+	bool isQuitScreen, isSkill;
+	vector2 boxsize;
+	string my, mn;
 	
 	override void Init(Menu parent, String message, int messagemode, bool playsound, Name cmd, voidptr native_handler)
 	{
@@ -16,6 +18,17 @@ Class DCY_MessageBox : MessageBoxMenu
 			n = random(1, 21);
 			slightly_art = Texman.CheckForTexture("graphics/quit/msg_dcy_quitmsg"..n..".png");
 			msg = textFont.BreakLines(StringTable.Localize(string.Format("$DCY_QUITMSG"..n)), int(300/NotifyFontScale));
+			my = Stringtable.Localize("$DCY_QUIT");
+			mn = Stringtable.Localize("$DCY_STAY");
+		}
+		else if (message == Stringtable.Localize("$ENDGAME"))
+		{
+			isQuitScreen = true;
+			n = random(1, 3);
+			slightly_art = Texman.CheckForTexture("graphics/quit/msg_quitgame.png");
+			msg = textFont.BreakLines(StringTable.Localize(string.Format("$DCY_ENDMSG"..n)), int(300/NotifyFontScale));
+			my = Stringtable.Localize("$DCY_QUIT2");
+			mn = Stringtable.Localize("$DCY_STAY");
 		}
 		else
 		{
@@ -55,14 +68,16 @@ Class DCY_MessageBox : MessageBoxMenu
 				DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
 			y += fontheight;
 		}
-			
-		if (mMessageMode == 0)
-		{
-			y += fontheight;
-			mMouseY = int(y);
-			screen.DrawText(textFont, messageSelection == 0? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 3.7, destheight / 2, Stringtable.Localize("$DCY_QUIT"), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
-			screen.DrawText(textFont, messageSelection == 1? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 1.45, destheight / 2, Stringtable.Localize("$DCY_STAY"), DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
-		}
+		
+		y += fontheight;
+		mMouseY = int(y);
+		screen.DrawText(textFont, messageSelection == 0? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 3.7, destheight / 2, my, DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
+		screen.DrawText(textFont, messageSelection == 1? OptionMenuSettings.mFontColorSelection : OptionMenuSettings.mFontColor, destWidth / 1.45, destheight / 2, mn, DTA_VirtualWidth, destWidth, DTA_VirtualHeight, destHeight, DTA_KeepRatio, true, DTA_ScaleX, NotifyFontScale, DTA_ScaleY, NotifyFontScale);
+	}
+	
+	protected void DCY_Box()
+	{
+		screen.DrawTexture(TexMan.CheckForTexture("Graphics/DCY_NON3.png"), true, -160, 100 - 35, DTA_ScaleX, 2000, DTA_ScaleY, 0.35, DTA_320x200, true);
 	}
 	
 	override bool MenuEvent(int mkey, bool fromcontroller) //literally from gzdoom.pk3, i just added the right and left keys

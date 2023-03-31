@@ -38,6 +38,8 @@ server bool dcy_completionist = true;
 
 server int dcy_liquids = 1;
 
+server bool dcy_ios = true;
 server bool dcy_wolfensteinspawns = true;
 server bool dcy_keenspawns = true;
+
 server bool dcy_wolfensteincutscene = true;

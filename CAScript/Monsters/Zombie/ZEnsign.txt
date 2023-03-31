@@ -9,7 +9,7 @@ Class DCY_ZEnsign : DCY_Zombe
   DropItem "DCY_Palisade", 150;
   DropItem "Medikit", 150;
   DropItem "Chaingun", 128;
-  DropItem "PlasmaRifle", 10;
+  DropItem "PlasmaRifle", 1;
   +QUICKTORETALIATE;
   +NEVERRESPAWN;
   +NOTARGET;

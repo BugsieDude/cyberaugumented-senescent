@@ -4,7 +4,8 @@
 STARTUP1 = "\cnLet's kick ass.\c-";
 
 //Other
-SWSTRING = "This is the shareware version of Doom...";
+MSGOFF = "Nothing to be seen.";
+MSGON = "Logs begin to appear.";
 SECRETMESSAGE = "\c[j1]Secret found.";
 OB_MPTELEFRAG = "$o was in a telefragging catharsis."
 OB_MONTELEFRAG = "$o was in a telefragging catharsis."
@@ -36,7 +37,13 @@ DCY_QUITMSG19 = "I will promtply shit actual fast food if you get out.";
 DCY_QUITMSG20 = "Call me \c[z3]the Curator\c- because I'm going to fucking GET you without noticing me";
 DCY_QUITMSG21 = "Why the funny face?";
 
+DCY_ENDMSG = "3";
+DCY_ENDMSG1 = "You sure you want to quit this game?"; 
+DCY_ENDMSG2 = "You did well!";
+DCY_ENDMSG3 = "Thanks.";
+
 DCY_QUIT = "Quit";
+DCY_QUIT2 = "End";
 DCY_STAY = "Stay";
 
 //Keys

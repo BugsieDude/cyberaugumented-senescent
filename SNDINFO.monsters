@@ -1496,18 +1496,46 @@ CasterDecay/Sight "Sounds/DCY Monsters/Decay/dcy_caster_moan.ogg"
 CasterDecay/Pain "Sounds/DCY Monsters/Decay/dcy_caster_pain.ogg"
 CasterDecay/Death "Sounds/DCY Monsters/Decay/dcy_caster_death.ogg"
 
-$random Malwrath/Sight { MWS1 MWS2 MWS3 }
+$random Malwrath/Sight { MWS1 MWS2 MWS3 MWS4 MWS5 MWS6 MWS7 MWS8 }
 MWS1 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight1.ogg"
 MWS2 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight2.ogg"
 MWS3 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight3.ogg"
-Malwrath/Active "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum.ogg"
-$random Malwrath/Pain { MWP1 MWP2 }
+MWS4 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight4.ogg"
+MWS5 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight5.ogg"
+MWS6 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight6.ogg"
+MWS7 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight7.ogg"
+MWS8 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_sight8.ogg"
+$random Malwrath/Active { MWA1 MWA2 MWA3 MWA4 MWA5 MWA6 MWA7 }
+MWA1 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum.ogg"
+MWA2 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum2.ogg"
+MWA3 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum3.ogg"
+MWA4 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum4.ogg"
+MWA5 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum5.ogg"
+MWA6 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum6.ogg"
+MWA7 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_hum7.ogg"
+$random Malwrath/Pain { MWP1 MWP2 MWP3 MWP4 MWP5 MWP6 MWP7 MWP8 MWP9 MWP10 }
 MWP1 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain1.ogg"
 MWP2 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain2.ogg"
-$random Malwrath/Death { MWD1 MWD2 }
+MWP3 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain3.ogg"
+MWP4 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain4.ogg"
+MWP5 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain5.ogg"
+MWP6 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain6.ogg"
+MWP7 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain7.ogg"
+MWP8 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain8.ogg"
+MWP9 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain9.ogg"
+MWP10 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_pain10.ogg"
+$random Malwrath/Death { MWD1 MWD2 MWD3 MWD4 MWD5 MWD6 MWD7 }
 MWD1 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death1.ogg"
 MWD2 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death2.ogg"
+MWD3 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death3.ogg"
+MWD4 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death4.ogg"
+MWD5 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death5.ogg"
+MWD6 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death6.ogg"
+MWD7 "Sounds/DCY Monsters/Malwrath/dcy_malwrath_death7.ogg"
 Malwrath/Ball "Sounds/DCY Monsters/Malwrath/dcy_malwrath_ball.ogg"
+Malwrath/BallX "Sounds/DCY Monsters/Malwrath/dcy_malwrath_ballx.ogg"
+Malwrath/HomingBall "Sounds/DCY Monsters/Malwrath/dcy_malwrath_homing.ogg"
+Malwrath/HomingBallSeek "Sounds/DCY Monsters/Malwrath/dcy_malwrath_home.ogg"
 
 $random Larrikin/Sight { B3LPSIT1 B3LPSIT2 }
 B3LPSIT1 "Sounds/DCY Monsters/Larrikin/dcy_larrikin_sight.ogg"

@@ -107,6 +107,8 @@ Class DCY_Hexodenican : DCY_VileParent
 		bSHOOTABLE = false;
 		bINVULNERABLE = true;
 		bSOLID = false;
+		bSLIDESONWALLS = true;
+		A_HideThing();
 		angle = frandom(0, 360);
 		A_SetSpeed(15);
 	}
@@ -130,6 +132,8 @@ Class DCY_Hexodenican : DCY_VileParent
 			bSOLID = true;
 			bSHOOTABLE = true;
 			bINVULNERABLE = false;
+			BSLIDESONWALLS = false;
+			A_UnHideThing();
 			A_SetSpeed(10);
 			SetStateLabel("See");
 		}

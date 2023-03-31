@@ -218,6 +218,8 @@ Funcom - Sounds
 Running with Scissors (Postal) - Sounds
 ShotgunBastard - Sounds
 Bitter Heretic (Lagi) - Sprites
+Data East - Quit Background
+SEGA - Quit Background
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help (I'd just credit Skulltag)

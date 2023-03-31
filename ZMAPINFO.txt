@@ -1,0 +1,178 @@
+gameinfo
+{
+	menufontcolor_title = "j1" 
+	menufontcolor_label = "l5"
+	menufontcolor_value = "f0"
+	menufontcolor_action = "a4"
+	menufontcolor_header = "w3" 
+	menufontcolor_highlight = "w1"
+	menufontcolor_selection = "c1"
+	infopage = "DCYINFO1", "DCYINFO2"
+	dimcolor = "Black"
+	dimamount = 0.6
+	cursorpic = "DCYC0RSU"
+	statscreen_single = "DCY_Intermission"
+	messageboxclass = "DCY_MessageBox"
+	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "DCY_Interceptor", "CyberaugumentedStartupHandler"
+	StatusBarClass = "DCyb_HUD"
+	BackpackType = "DCY_Backpack"
+	playerclasses = "CyberaugumentedProtagonist"
+	Endoom = "DCY_BYEBYE.bin"
+	Border = 8, 8, "VANTABTR", "VANTABT", "VANTABTL", "VANTABR", "VANTABL", "VANTABBR", "VANTABB", "VANTABBL"
+	BorderFlat = "VANTAHUD"
+	quitmessages = "lmfao"
+	PickupColor = "34ebc9"
+	HelpMenuClass = "ReadThisMenu"
+}
+
+clearskills
+
+//Easy Difficulties
+skill DCY_Ez
+{
+ AutoUseHealth
+ AmmoFactor = 2
+ DamageFactor = 0.5
+ TextColor = "l7"
+ EasyBossBrain
+ SpawnFilter = 2
+ Name = "Tiny Sightseer"
+ Key = "i"
+}
+
+//Easy Difficulty
+skill DCY_Normal
+{
+ TextColor = "l5"
+ SpawnFilter = 3
+ Name = "Just The Begining"
+ Key = "h"
+}
+
+//U-V Difficulty
+skill DCY_UV
+{
+ TextColor = "p7"
+ SpawnFilter = 4
+ Name = "Ravaging Carnage"
+ Key = "u"
+ DefaultSkill
+}
+
+//Nightmare Difficulty
+skill DCY_Insane
+{
+ AmmoFactor = 2
+ ACSReturn = 4
+ TextColor = "w9"
+ FastMonsters
+ RespawnTime = 12
+ SpawnFilter = 5
+ Name = "Pure Disruption"
+ MustConfirm = "Just like DOOM's nightmare. Maybe this is too meta."
+ Key = "n"
+}
+
+//Hard Difficulty
+skill DCY_Deadly
+{
+ TextColor = "j8"
+ SpawnFilter = 6
+ Name = "OVER TURNED"
+ NoInfighting
+ MustConfirm = "Monsters cannot infight now. Have fun."
+}
+
+//Harder Difficulty
+skill HOLYFUCK
+{
+ TextColor = "v6"
+ AmmoFactor = 2
+ ACSReturn = 4
+ FastMonsters
+ SpawnFilter = 7
+ RespawnTime = .5
+ monsterHealth = .5
+ NoInfighting
+ Name = "Demise Incarnate"
+ MustConfirm = "Here comes the danger zone."
+}
+
+//New Cast Call
+Intermission Doom2Cast //replaces the standard cast call
+{
+	Cast //first enemy
+	{
+		CastClass = "DCY_Zombe" //class name
+		CastName = "Familliar Foe" //name that shows
+		AttackSound = "Missile", 1, "grunt/attack" //attack state ("Missile") + sound ("grunt/attack") and when to play it (1)
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_AutomatonSupervisor"
+		CastName = "Possessed Androids"
+		AttackSound = "Laser", 2, "AUTOLASR"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Manes"
+		CastName = "Occult"
+		AttackSound = "Breath", 1, "manes/pain"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Fusillade"
+		CastName = "Conflagration"
+		AttackSound = "Missile", 3, "BLERGH"
+		AttackSound = "Melee", 3, "Fusillade/Melee"
+	}
+	Cast //second enemy
+	{
+		CastClass = "DCY_Contaminated"
+		CastName = "Bloodlust"
+		AttackSound = "Vomit", 3, "dcyvomitblood"
+	}
+	Cast
+	{
+		CastClass = "DCY_Wretched"
+		CastName = "Phantasmic"
+	}
+	Cast
+	{
+		CastClass = "DCY_GloomKnight"
+		CastName = "Malignance"
+	}
+	Cast
+	{
+		CastClass = "DCY_Tagati"
+		CastName = "Disarray"
+	}
+	Cast
+	{
+		CastClass = "DCY_Chrysalis"
+		CastName = "Avarice"
+		AttackSound = "Missile", 1, "Chrysalis/Laser"
+	}
+	Cast
+	{
+		CastClass = "DCY_Inscrutable"
+		CastName = "Abyss"
+	}
+	Cast
+	{
+		CastClass = "DCY_Overdemoniac"
+		CastName = "Argent Infused"
+	}
+	Cast
+	{
+		CastClass = "DCY_TheristisPsichisl"
+		CastName = "Mindfuck"
+	}
+	Cast
+	{
+		CastClass = "DCY_DestructiveEarl"
+		CastName = "War and Destruction"
+	}
+	//and so on
+	Link = Doom2Cast	//then restart it
+}

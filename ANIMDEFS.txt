@@ -211,3 +211,7 @@ pic "Graphics/Quit/MSG_DCY_QUITMSG21.png" tics 4
 pic "Graphics/Quit/MSG_DCY_QUITMSG21B.png" tics 4
 pic "Graphics/Quit/MSG_DCY_QUITMSG21C.png" tics 4
 pic "Graphics/Quit/MSG_DCY_QUITMSG21B.png" tics 4
+
+texture "Graphics/Quit/MSG_QUITGAME.png"
+pic "Graphics/Quit/MSG_QUITGAME.png" tics 10
+pic "Graphics/Quit/MSG_QUITGAMEB.png" tics 10

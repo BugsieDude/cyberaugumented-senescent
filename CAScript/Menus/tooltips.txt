@@ -62,7 +62,7 @@ Class DCY_OptionMenu : OptionMenu
 		// draw at the bottom unless the selected option could be covered by the tooltip
 		int ypos = Screen.GetHeight()-height;
 		if ( cy > ypos ) ypos = 0;
-		Screen.Dim("Black",.75,0,ypos,Screen.GetWidth(),height);
+		Screen.Dim("Black",.7,0,ypos,Screen.GetWidth(),height);
 		ypos += 2*CleanYFac_1;
 		for ( int i=0; i<ttlines.Count(); i++ )
 		{

@@ -180,9 +180,12 @@ Class DCY_Intermission : StatusScreen
   
   void A_GeneralIntermission()
   {
-	if (bcnt == 1) S_ChangeMusic("");
-	if (bcnt == 10) { S_StartSound("dcy/allover", 67, CHANF_UI); }
-	if (bcnt == 90) StartMusic();
+	switch (bcnt)
+	{
+		case 1: S_ChangeMusic(""); break;
+		case 10: S_StartSound("dcy/allover", 67, CHANF_UI); break;
+		case 90: StartMusic(); break;
+	}
 	
 	alphafade -= 0.085;
 	
