@@ -92,7 +92,7 @@ Class DCY_Caviler : DCY_Impe
     Stop;
   XDeath:
     V3LG O 5;
-    V3LG P 5 A_XScream();
+    V3LG P 5 DCY_Gibs();
     V3LG Q 5;
     V3LG R 5 A_NoBlocking();
     V3LG STU 5;

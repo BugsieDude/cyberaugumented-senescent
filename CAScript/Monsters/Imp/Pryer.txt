@@ -15,6 +15,7 @@ Class DCY_Pryer : DCY_Impe
   DeathSound "Pryer/Death";
   BloodType "AndroidNeonFluid";
   BloodColor "Orange";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   States
   {
@@ -81,6 +82,7 @@ Class DCY_Pryer : DCY_Impe
 	XX5_ I 6
 	{
 		A_NoBlocking();
+		DCY_Gibs();
 		A_Scream();
 	}
 	XX5_ JKLMNO 5;

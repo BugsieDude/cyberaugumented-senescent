@@ -375,7 +375,7 @@ Class DCY_ZEnsign : DCY_Zombe
   XDeath:
 	#### # 0 { roll = 0; }
 	U_DV M 6;
-	U_DV N 5 A_XScream();
+	U_DV N 5 DCY_Gibs();
 	U_DV O 5 A_NoBlocking();
 	U_DV PQRST 4;
 	U_DV U -1;

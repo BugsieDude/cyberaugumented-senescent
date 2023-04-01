@@ -16,6 +16,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
   +DONTHARMCLASS
   PainChance 70;
   DropItem "Cellpack";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   bool bigplasma;
@@ -132,7 +133,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 	Stop;
   XDeath:
 	DBGE O 1;
-	DBGE O 4 { seen = false; A_NoBlocking(); A_StartSound("Android/Gib", CHAN_VOICE); }
+	DBGE O 4 { seen = false; A_NoBlocking(); A_StartSound("Android/Gib", CHAN_VOICE); DCY_Gibs(false); }
 	DBGE PQRSTUV 4;
 	DBGE W -1;
 	Stop;

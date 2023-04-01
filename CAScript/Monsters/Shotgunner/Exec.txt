@@ -194,7 +194,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
     SPOS N 4
 	{
 		A_KillChildren("Normal", KILS_FOILINVUL, "DCY_Z_ExecDrone", "Z-Exec");
-		A_StartSound("Android/Gib", CHAN_VOICE);
+		DCY_Gibs();
 	}
     SPOS O 4 A_NoBlocking();
     SPOS PQRST 3;

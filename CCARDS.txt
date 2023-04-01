@@ -1,3 +1,2 @@
 excludemap TEST
-excludeactor DCY_MultidimensionalCaster
 excludeactor DCY_Intone

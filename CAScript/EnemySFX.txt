@@ -21,7 +21,7 @@ Class DCY_GeneralComet : DCY_Projectile
   Spawn:
     CGMT AABBCC 1 Bright
 	{
-		A_SpawnFlames("ffffff", 20, 20, 0, false, thrust: 6);
+		A_SpawnFlames("eeeeee", 20, 20, 0, false, thrust: 6);
 		A_SpawnItemEx("DCY_CometTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
     Loop;

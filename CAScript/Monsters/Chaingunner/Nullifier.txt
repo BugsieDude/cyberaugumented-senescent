@@ -100,7 +100,7 @@ Class DCY_Nullifier : DCY_Plutonia
 	Goto See;
   XDeath:
 	RPZ2 O 1;
-	RPZ2 O 5 A_XScream();
+	RPZ2 O 5 DCY_Gibs();
 	RPZ2 P 4 A_NoBlocking();
 	RPZ2 QRSTUV 3;
 	RPZ2 W -1;

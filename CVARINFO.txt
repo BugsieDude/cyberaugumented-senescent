@@ -43,3 +43,5 @@ server bool dcy_wolfensteinspawns = true;
 server bool dcy_keenspawns = true;
 
 server bool dcy_wolfensteincutscene = true;
+
+server bool dcy_gibbing = true;

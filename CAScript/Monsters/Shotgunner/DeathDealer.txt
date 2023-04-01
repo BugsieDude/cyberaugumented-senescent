@@ -23,6 +23,8 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
   DropItem "DCY_UltramodernEnergy", 196;
   DropItem "DCY_UltramodernEnergy", 196;
   BloodColor "ffc400";
+  BloodType "AndroidNeonFluid";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   States
   {
@@ -88,7 +90,6 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
 	Goto See;
   Death:
   Death.Fire:
-  XDeath:
 	BF_T H 5 A_SetScale(frandompick(Scale.x, -Scale.x), Scale.y);
     BF_T I 4 A_Scream();
     BF_T J 4 A_NoBlocking();

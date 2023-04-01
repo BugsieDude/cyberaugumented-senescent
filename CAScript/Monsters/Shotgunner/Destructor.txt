@@ -125,7 +125,7 @@ Class DCY_Destructor : DCY_ShotgunZombe
 	Stop;
   XDeath:
     UUU_ O 1;
-	UUU_ O 1 A_XScream();
+	UUU_ O 1 DCY_Gibs();
 	UUU_ O 5 A_Fall();
 	UUU_ PQRSTUV 5;
 	UUU_ W -1;

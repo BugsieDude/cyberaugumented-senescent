@@ -134,7 +134,6 @@ Class DCY_ShadowCrusader : DCY_Plutonia
 	}
 	Goto See;
   Death:
-  XDeath:
 	PSGC G 4 A_Reappear();
 	PSGC H 5 A_Scream();
 	PSGC IJ 5;

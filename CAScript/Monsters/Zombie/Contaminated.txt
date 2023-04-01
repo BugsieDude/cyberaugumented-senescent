@@ -85,7 +85,7 @@ Class DCY_Contaminated : DCY_Zombe
     Stop;
   XDeath:
 	P0Z_ M 1;
-    P0Z_ M 5 A_XScream();
+    P0Z_ M 5 DCY_Gibs();
 	P0Z_ N 4 A_NoBlocking();
 	P0Z_ OPQRST 4;
 	P0Z_ U -1;

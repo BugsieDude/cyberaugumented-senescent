@@ -22,6 +22,7 @@ Class DCY_Transmuter : DCY_ShotgunZombe
   ActiveSound "transmuter/active";
   DropItem "RocketAmmo";
   DropItem "RocketBox", 128;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   int torpedos;
@@ -141,7 +142,7 @@ Class DCY_Transmuter : DCY_ShotgunZombe
 	Stop;
   XDeath:
     RZ22 M 1;
-	RZ22 M 3 A_StartSound("Android/Gib", CHAN_VOICE);
+	RZ22 M 3 { DCY_Gibs(false); A_StartSound("Android/Gib", CHAN_VOICE); }
 	RZ22 M 1 A_NoBlocking();
 	RZ22 NOPQRSTU 5;
 	RZ22 U -1;

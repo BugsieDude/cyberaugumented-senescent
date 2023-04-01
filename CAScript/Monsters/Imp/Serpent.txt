@@ -86,7 +86,7 @@ Class DCY_Serpent : DCY_Impe
 	Stop;
   XDeath:
     SERP N 1;
-	SERP N 6 A_XScream();
+	SERP N 6 DCY_Gibs();
 	SERP O 7 A_NoBlocking();
 	SERP PQRST 5;
 	SERP U -1;

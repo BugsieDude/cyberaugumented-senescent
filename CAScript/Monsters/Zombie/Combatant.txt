@@ -130,7 +130,7 @@ Class DCY_Combatant : DCY_Zombe
 	RR3_ N 4
 	{
 		A_NoBlocking();
-		A_XScream();
+		DCY_Gibs();
 	}
 	RR3_ OPQRS 4;
 	RR3_ T -1;

@@ -16,6 +16,7 @@ Class DCY_Rattail : DCY_Plutonia
   DropItem "Pistol";
   DropItem "Chaingun";
   +DONTHARMSPECIES
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   int missile;

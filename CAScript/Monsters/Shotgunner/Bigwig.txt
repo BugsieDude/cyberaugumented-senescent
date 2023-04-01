@@ -25,6 +25,7 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
   DropItem "RocketAmmo";
   DropItem "DCY_UltramodernEnergy", 45;
   DropItem "Pistol";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   int buildinasentry;
@@ -100,7 +101,7 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
 	Stop;
   XDeath:
 	UGEP M 1;
-	UGEP M 6 { A_StartSound("Android/Gib", CHAN_VOICE); A_NoBlocking(); }
+	UGEP M 6 { A_StartSound("Android/Gib", CHAN_VOICE); DCY_Gibs(false); A_NoBlocking(); }
 	UGEP NOPQRST 5;
 	UGEP U -1;
 	Stop;

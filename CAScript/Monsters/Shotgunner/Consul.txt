@@ -20,6 +20,7 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   BloodColor "01 01 01";
   SeeSound "DarkConsul/Sight";
   DeathSound "DarkConsul/Death";
+  DCYMonster.BurnSound "DarkConsul/Death";
   HowlSound "DarkConsul/Pain";
   AttackSound "DarkConsul/Active";
   PainSound "DarkConsul/Pain";
@@ -115,20 +116,10 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
 	Stop;
   XDeath:
     Y9IM I 2 A_StopSound(CHAN_WEAPON);
-	Y9IM I 1 A_XScream();
+	Y9IM I 1 DCY_Gibs();
     Y9IM I 2 A_NoBlocking();
 	Y9IM JKLMNOP 5;
 	Y9IM Q -1;
-	Stop;
-  Death.Fire:
-	TNT1 A 0
-	{
-		A_StopSound(CHAN_WEAPON);
-		A_Scream();
-		A_NoBlocking();
-	}
-    FUUU ABCEFGHIJKLMNOPQRSTU 3 Bright;
-	FUUU V -1;
 	Stop;
   Raise:
     Y9IM GFEDCBA 5;

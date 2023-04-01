@@ -23,6 +23,7 @@ Class DCY_LightningPhase : DCY_Impe
   Scale 1.07;
   MeleeDamage 6;
   PainChance 100;
+  BloodColor "852121";
   }
   
   int phased;
@@ -202,7 +203,7 @@ Class DCY_LightningPhase : DCY_Impe
 	Stop;
   XDeath:
 	LMEG A 5;
-	LMEG B 5 A_XScream();
+	LMEG B 5 DCY_Gibs();
 	LMEG C 5 A_NoBlocking();
 	LMEG DEFG 5;
 	LMEG H -1;

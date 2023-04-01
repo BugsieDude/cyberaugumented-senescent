@@ -90,7 +90,7 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
     Stop;
   XDeath:
     H00D M 5;
-    H00D N 5 A_XScream();
+    H00D N 5 DCY_Gibs();
     H00D O 4 A_NoBlocking();
     H00D PQ 4;
     H00D R -1;

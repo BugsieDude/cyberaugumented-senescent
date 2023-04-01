@@ -92,7 +92,7 @@ Class DCY_LiquidatorTypeImp : DCY_Impe
 	RIMP N 5
 	{
 		A_SpawnItemEx("DCY_Explosion_1", zofs: 30, flags: SXF_NOCHECKPOSITION);
-		A_XScream();
+		DCY_Gibs();
 	}
 	//RIMP O 0 A_custommissile("DCY_LiquidatorArm2",30,-10,270)
 	//RIMP O 0 A_custommissile("DCY_LiquidatorArm",30,10,93)

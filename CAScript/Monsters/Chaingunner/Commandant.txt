@@ -20,6 +20,7 @@ Class DCY_Commandant : DCY_Plutonia
   DropItem "Stimpack";
   DropItem "Clipbox";
   Mass 385;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   States
@@ -89,7 +90,6 @@ Class DCY_Commandant : DCY_Plutonia
 	}
 	Goto See;
   Death:
-  XDeath:
 	UU2_ H 0
 	{
 		if ((random(0, 1) == 1) && (damagetype != "Massacre"))

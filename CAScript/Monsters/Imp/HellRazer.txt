@@ -10,6 +10,7 @@ Class DCY_HellRazer : DCY_Impe
   PainSound "MechaZombie/Pain";
   HowlSound "MechaZombie/Pain";
   DeathSound "MechaZombie/Death";
+  DCYMonster.BurnSound "MechaZombie/Death";
   Tag "\c[Red]Hellrazer\c-";
   DropItem "Chaingun", 192;
   Obituary "%o got razed.";
@@ -23,6 +24,7 @@ Class DCY_HellRazer : DCY_Impe
   +DONTOVERLAP
   +DONTHARMCLASS
   +NOINFIGHTING
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -184,8 +186,6 @@ Class DCY_HellRazer : DCY_Impe
     PRZR G 4 A_Pain();
 	Goto See;
   Death:
-  XDeath:
-  Death.Fire:
 	TNT1 A 0 A_StopSound(CHAN_7);
     TNT1 A 0 A_Jump(256, "Death1", "Death2");
 	Goto Death1;

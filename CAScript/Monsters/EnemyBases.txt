@@ -54,6 +54,7 @@ CLASS DCYMonster : Actor abstract
     +FLOORCLIP;
 	+ROLLCENTER;
 	DCYMonster.TagColor "j";
+	DCYMonster.GibType "DCY_Giblets";
 	Tag "Monster";
 	TeleFogSourceType "DCY_EnemySourceTeleport";
 	TeleFogDestType "DCY_EnemyTeleport";
@@ -64,6 +65,7 @@ CLASS DCYMonster : Actor abstract
   bool boss;
   Sound brns;
   string tcol;
+  class<Actor> gib;
   transient TextureID particlefire;
   
   string wf;
@@ -71,6 +73,7 @@ CLASS DCYMonster : Actor abstract
   
   property BurnSound: brns;
   property TagColor: tcol;
+  property GibType: gib;
   
   override void tick()
   {
@@ -147,7 +150,13 @@ CLASS DCYMonster : Actor abstract
 		if (!random(0, 1)) A_SpawnParticleEx(0x0f52ba, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 120, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0025, sizestep: 1.525);
 	}
   }
-		
+  
+  void DCY_Gibs(bool playsnd = true)
+  {
+	if (playsnd) A_XScream();
+	A_SpawnItemEx(gib, xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_ABSOLUTEVELOCITY|SXF_USEBLOODCOLOR);
+  }
+  
   static void ThingAnnounce(String message, String sound, String mColor)
   {
 	if (cyberaugumented_noenemyannouncements || level.mapname == "TITLEMAP" || gamestate == GS_TITLELEVEL)
@@ -174,7 +183,7 @@ CLASS DCYMonster : Actor abstract
   {
 	A_SetScale(abs(Scale.X), Scale.Y);
   }
-  
+	
   States
   {
   Death.Massacre:

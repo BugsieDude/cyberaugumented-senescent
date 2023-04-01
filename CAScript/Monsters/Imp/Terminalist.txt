@@ -150,7 +150,7 @@ Class DCY_Terminalist : DCY_Impe
 	Stop;
   XDeath:
     CIMP N 5;
-    CIMP O 4 A_XScream();
+    CIMP O 4 DCY_Gibs();
     CIMP P 4;
     CIMP Q 4 A_NoBlocking();
     CIMP RST 4;

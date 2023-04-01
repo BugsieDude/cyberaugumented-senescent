@@ -68,13 +68,7 @@ Class DCY_AlacritousGuy : DCY_Plutonia
 	UCD3 G -1;
 	Stop;
   XDeath:
-	TNT1 A 0 A_XScream();
-	UCD2 A 6 A_NoBlocking();
-	UCD2 BCDEF 6;
-	UCD2 F -1;
-	Stop;
-  Death.Massacre:
-    TNT1 A 0 A_XScream();
+	TNT1 A 0 DCY_Gibs();
 	UCD2 A 6 A_NoBlocking();
 	UCD2 BCDEF 6;
 	UCD2 F -1;

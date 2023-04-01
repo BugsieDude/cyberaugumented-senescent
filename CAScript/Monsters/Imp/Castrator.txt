@@ -100,7 +100,7 @@ Class DCY_Castrator : DCY_Impe
     Stop;
   XDeath:
     DRKF Q 5;
-    DRKF R 5 A_XScream();
+    DRKF R 5 DCY_Gibs();
     DRKF S 5 A_NoBlocking();
     DRKF TUVW 5;
     DRKF X -1;

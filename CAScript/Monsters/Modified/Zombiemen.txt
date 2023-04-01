@@ -95,7 +95,7 @@ Class DCY_ZombeParent : DCYMonster
 	Stop;
   XDeath:
 	POSP M 6;
-    POSS N 4 A_XScream();
+    POSS N 4 DCY_Gibs();
     POSS O 4 A_NoBlocking();
     POSS PQRST 4;
     POSS U -1;
@@ -201,7 +201,7 @@ Class DCY_ShotgunZombe : DCYMonster
 	Stop;
   XDeath:
 	C0L2 F 6;
-    C0L2 G 4 A_XScream();
+    C0L2 G 4 DCY_Gibs();
     SRG_ O 4 A_NoBlocking();
     SRG_ PQRST 4;
     SRG_ U -1;
@@ -286,7 +286,7 @@ Class DCY_Plutonia : DCYMonster
 	Stop;
   XDeath:
 	RE1_ O 6;
-    RE1_ P 4 A_XScream();
+    RE1_ P 4 DCY_Gibs();
     RE1_ Q 4 A_NoBlocking();
     RE1_ RSTUV 4;
     RE1_ W -1;

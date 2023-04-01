@@ -13,6 +13,7 @@ Class DCY_Malignant : DCY_Impe
   DeathSound "Malignant/Death";
   BloodType "AndroidNeonFluid";
   BloodColor "Green";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   States
@@ -100,7 +101,7 @@ Class DCY_Malignant : DCY_Impe
 	Stop;
   XDeath:
 	JAAS H 6;
-	JAAS I 6 A_Scream();
+	JAAS I 6 { for (int i = 2; i > 0; i--) DCY_Gibs(false); A_Scream(); }
 	JAAS J 5 A_NoBlocking();
 	JAAS KLMNO 5;
 	JAAS P -1;

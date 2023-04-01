@@ -14,7 +14,8 @@ Class DCY_Perserver : DCY_Impe
   Speed 10.2555555;
   FastSpeed 13.5555555;
   DropItem "DCY_UltramodernEnergy", 25;
-  Obituary "%o got outsmarted by a Perserver demon, that just kicked ass.";
+  Obituary "%o got outsmarted by a Perserver.";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   States
@@ -66,7 +67,7 @@ Class DCY_Perserver : DCY_Impe
     Stop;
   XDeath:
     SDDM O 5;
-    SDDM P 5 A_StartSound("Android/Gib", CHAN_VOICE);
+    SDDM P 5 { DCY_Gibs(false); A_StartSound("Android/Gib", CHAN_VOICE); }
     SDDM Q 4 A_NoBlocking();
     SDDM RSTUV 3;
     SDDM W -1;

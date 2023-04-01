@@ -18,6 +18,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
   DropItem "BlurSphere", 20;
   BloodType "AndroidNeonFluid";
   BloodColor "2ba0ff";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -130,7 +131,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
 		shield = 0;
 		A_KillChildren("DED");
 	}
-	UCYQ P 3 A_StartSound("Android/Gib", CHAN_VOICE);
+	UCYQ P 3 { DCY_Gibs(false); A_StartSound("Android/Gib", CHAN_VOICE); }
 	UCYQ P 1 A_NoBlocking();
 	UCYQ QRST 6;
 	UCYQ U -1;

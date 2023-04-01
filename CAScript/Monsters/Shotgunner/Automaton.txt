@@ -21,6 +21,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
   +MISSILEMORE;
   +QUICKTORETALIATE;
   DropItem "Pistol";
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   bool deploydroid;
@@ -122,7 +123,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 	Stop;
   XDeath:
 	AJLS M 1;
-	AJLS M 6 { A_StartSound("Android/Gib", CHAN_VOICE); A_NoBlocking(); }
+	AJLS M 6 { A_StartSound("Android/Gib", CHAN_VOICE); DCY_Gibs(false); A_NoBlocking(); }
 	AJLS N 6 A_KillChildren();
 	AJLS OPQRST 5;
 	AJLS U -1;

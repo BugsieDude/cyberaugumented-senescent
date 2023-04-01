@@ -22,7 +22,9 @@ Warp/Spacial "Sounds/DCY SFX/dcy_warp2.ogg"
 dcy/flashback "Sounds/Announcements/dcy_flashback.ogg"
 dcy/deadlydejavu "Sounds/Announcements/dcy_flashback_chillax.ogg"
 dcy/decimalerror "Sounds/Announcements/dcy_havoc_map.ogg"
-dcy/midi "Sounds/Announcements/dcy_midi.ogg"
+$random dcy/midi { dcy/wu dcy/mid }
+dcy/mid "Sounds/Announcements/dcy_midi.ogg"
+dcy/wu "Sounds/Announcements/dcy_wakeup.ogg"
 
 //yay you did something
 Announce/Complete "Sounds/Announcements/dcy_complete.ogg"
