@@ -56,6 +56,7 @@ Class DCY_SkinnyFat : DCYMonster
 			A_QuakeEx(1, 1, 4, 50, 0, 300, QF_SCALEDOWN|QF_3D);
 			A_Explode(10 * random(2, 15), 128, XF_NOTMISSILE);
 			A_StartSound("EarthPound", pitch: 0.8);
+			A_PoundEffect(150);
 			A_RadiusThrust(3500, 130, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE);
 			A_RadiusThrust(100, 130, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE|RTF_THRUSTZ);
 			SetStateLabel("Cooldown");

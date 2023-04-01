@@ -104,7 +104,7 @@ Class DCY_BaronParent : DCYMonster
 	{
 		vel.x = vel.x / 6;
 		vel.y = vel.y / 6;
-		
+		A_PoundEffect();
 		A_StartSound("Earthpound", CHAN_BODY);
 		A_QuakeEx(3, 3, 3, 50, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 500);
 		A_Explode(50, 150, XF_NOTMISSILE, damagetype: "Bruiser");
@@ -214,7 +214,7 @@ Class DCY_KnightHell : DCY_BaronParent
 	{
 		vel.x = vel.x / 6;
 		vel.y = vel.y / 6;
-		
+		A_PoundEffect();
 		A_StartSound("Earthpound", CHAN_BODY);
 		A_QuakeEx(3, 3, 3, 50, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 500);
 		A_Explode(25, 150, XF_NOTMISSILE, damagetype: "Bruiser");

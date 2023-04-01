@@ -95,7 +95,7 @@ Class DCY_BurningBarrel : BurningBarrel Replaces BurningBarrel
 	{
 		if ((level.time % 2) == 0)
 			for (int i = random(1, 2); i > 0; i--)
-				A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 40, 40, 0, frandom(-4, 4), frandom(-4, 4), 25, frandom(-0.1, 0.1), 0.5 - frandom(-0.1, 0.1), frandom(0.9, 1.25), accelz: 0.065, startalphaf: 1.0, fadestepf: 0.025, sizestep: -1.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+				A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 40, 40, 0, frandom(-4, 4), frandom(-4, 4), 25, frandom(-0.1, 0.1), 0.5 - frandom(-0.1, 0.1), frandom(0.9, 1.25), accelz: 0.065, startalphaf: 1.0, fadestepf: 0.025, sizestep: -1.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		
 		if ((level.time % random(3, 9)) == 0)
 			A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 65, random(3, 6), 0, frandom(-10, 10), frandom(-10, 10), 25 + frandom(-0.35, 0.35), frandom(-0.1, 0.1), 0.5 - frandom(-0.1, 0.1), frandom(0.05, 0.2), frandom(-0.1, 0.1), frandom(0.1, 0.1), frandom(0.1, 0.2), fadestepf: 0, sizestep: -0.115);

@@ -902,7 +902,7 @@ Class DCY_BigAssLightning : Actor
   RenderStyle "Add";
   Projectile;
   Speed 0;
-  DamageType "Lunacy";
+  DamageType "Lightning";
   +FORCEYBILLBOARD;
   +BRIGHT;
   +FLOORHUGGER;

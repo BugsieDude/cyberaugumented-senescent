@@ -177,5 +177,14 @@ Class DCY_MalwrathSeeker : DCY_MalwrathBall
 		}
 	}
 	Loop;
+  Death:
+	NBKL A 1
+	{
+		A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 70, 2, fadestepf: -12, sizestep: 20);
+		for (int i = 0; i < 360; i += 45) A_SpawnItemEx("DCY_Explosion_1", xvel: 10, angle: i, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_RadiusThrust(4000, 110, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE);
+		A_RadiusThrust(70, 110, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE|RTF_THRUSTZ);
+	}
+	Stop;
   }
 }

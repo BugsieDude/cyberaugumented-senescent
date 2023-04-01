@@ -173,7 +173,7 @@ Class DCY_Aamon : DCY_HeckBaron
 		A_StartSound("Earthpound", CHAN_6, attenuation: 0.5, pitch: 0.8);
 		A_StartSound("Misc/BigSmash", CHAN_5, volume: 0.5, attenuation: 0.5);
 		A_Explode(256, 178, XF_NOTMISSILE);
-		
+		A_PoundEffect(150);
 		for (int i = 0; i < 360; i += 45)
 			A_SpawnProjectile("DCY_AamonPoundFire", 15, 0, i, CMF_AIMDIRECTION, -50);
 		
@@ -242,7 +242,7 @@ Class DCY_AamonFireBall : DCY_ImpFireball
   States
   {
   Spawn:
-	BAL1 AB 1 A_SpawnItemEx("DCY_MastermindJetFlareSmall", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	BAL7 AABB 1 A_SpawnFlames("ff7e3d", 30, 36, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2);
 	Loop;
   }
 }

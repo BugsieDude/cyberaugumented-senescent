@@ -116,6 +116,7 @@ Class DCY_Monsoon : DCY_CacoParent
 	8RVV J 6;
 	8RVV K 6
 	{
+		A_SpawnItemEx("DCY_MonsoonLightning");
 		A_SpawnItemEx("DCY_VamchnormExplode", flags: SXF_NOCHECKPOSITION);
 		A_StartSound("Archon/Explode", CHAN_6, attenuation: 0.85);
 		A_NoBlocking();
@@ -128,13 +129,42 @@ Class DCY_Monsoon : DCY_CacoParent
   }
 }
 
-Class DCY_MonsoonElec : CacodemonBall
+Class DCY_MonsoonLightning : DCY_BigAssLightning
+{
+  Default
+  {
+  XScale 1.76;
+  }
+  
+  States
+  {
+  Spawn:
+	LIG1 A 1;
+	LIG1 A 3
+	{
+		actor l = Spawn("DCY_BigAssLightningStrike", pos);
+		if (l) l.scale *= 0.35;
+		A_StartSound("Lightning/Strike", CHAN_BODY, CHANF_DEFAULT, attenuation: 0.1, pitch: random(1, 2));
+		A_StartSound("Lightning/StrikeClose", CHAN_WEAPON, CHANF_DEFAULT, attenuation: 0.75, pitch: 2);
+		A_QuakeEx(5, 5, 5, 100, 0, 1000, "", QF_SCALEDOWN, falloff: 2000);
+		A_Explode(222, 120, XF_NOTMISSILE);
+	}
+	LIG1 ABCDEFG 3
+	{
+		A_SetScale(frandompick(-1.5, 2.5), 5.0);
+		A_SpawnItemEx("DCY_BigAssLightningTrail", 0, 0, 0, frandom(-2.0, 2.0), frandom(12.0, 2.0), flags: SXF_TRANSFERSCALE);
+	}
+	Stop;
+  }
+}
+
+Class DCY_MonsoonElec : DCY_MeatballElecball
 {
   Default
   {
   Speed 20;
   FastSpeed 30;
-  Translation "0:255=%[0.00,0.14,0.34]:[0.64,1.39,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.57,1.07,2.00]";
   DamageType "Electric";
   SeeSound "ElectricBall/Sight";
   DeathSound "ElectricBall/Death";
@@ -167,10 +197,10 @@ Class DCY_MonsoonElec : CacodemonBall
   }
 }
 
-Class DCY_MonsoonTrailE : DCY_ElecTrailBase { Default { Translation "0:255=%[0.00,0.14,0.34]:[0.64,1.39,2.00]"; } }
-Class DCY_MonsoonTrailED : DCY_ElecDeathBase { Default { Translation "0:255=%[0.00,0.14,0.34]:[0.64,1.39,2.00]"; } }
+Class DCY_MonsoonTrailE : DCY_ElecTrailBase { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.57,1.07,2.00]"; } }
+Class DCY_MonsoonTrailED : DCY_ElecDeathBase { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.57,1.07,2.00]"; } }
 
-Class DCY_MonsoonLaser : FastProjectile
+Class DCY_MonsoonLaser : DCY_FastProjectile
 {
   Default
   {
@@ -205,7 +235,7 @@ Class DCY_MonsoonLaser : FastProjectile
   }
 }
 
-Class DCY_MonsoonLaserTrail : Actor
+Class DCY_MonsoonLaserTrail : DCY_Effect
 {
   Default
   {
@@ -219,7 +249,7 @@ Class DCY_MonsoonLaserTrail : Actor
   RenderStyle "Add";
   Alpha 1.0;
   Scale 0.5;
-  Translation "0:255=%[0.00,0.14,0.34]:[0.64,1.39,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.57,1.07,2.00]";
   }
 
   States
@@ -237,7 +267,7 @@ Class DCY_MonsoonLaserTrail : Actor
   }
 }
 
-Class DCY_MonsoonThunder : CacodemonBall
+Class DCY_MonsoonThunder : DCY_MeatballElecball
 {
   override void Tick()
   {
@@ -256,7 +286,7 @@ Class DCY_MonsoonThunder : CacodemonBall
 	SeeSound "";
 	DeathSound "";
 	DamageType "Electric";
-	Translation "0:255=%[0.00,0.14,0.34]:[0.64,1.39,2.00]";
+	Translation "0:255=%[0.00,0.00,0.00]:[0.57,1.07,2.00]";
   }
   
   int timer;
@@ -280,7 +310,7 @@ Class DCY_MonsoonThunder : CacodemonBall
 		timer++;
 		
 		A_Explode(5, 32, damagetype: "Electric");
-		A_SpawnItemEx("DCY_MonsoonTTrail", frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME, failchance: 50);
+		A_SpawnItemEx("DCY_ProjectileBaseTrail", frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION, failchance: 50);
 		A_SpawnItemEx("DCY_MonsoonTrailED", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION, failchance: 150);
 		A_SpawnItemEx("DCY_MonsoonTrailED", frandom(-1, 1), frandom(-1, 1), CeilingZ + frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION, failchance: 150);
 		A_SetScale(randompick(Scale.X, -Scale.X), Scale.Y);
@@ -290,5 +320,3 @@ Class DCY_MonsoonThunder : CacodemonBall
 	Stop;
   }
 }
-
-Class DCY_MonsoonTTrail : DCY_ProjectileBaseTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.52,0.61,1.32]"; } }
