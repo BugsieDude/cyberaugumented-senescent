@@ -55,7 +55,7 @@ CLASS DCYMonster : Actor abstract
 	+ROLLCENTER;
 	DCYMonster.TagColor "j";
 	Tag "Monster";
-	TeleFogSourceType "DCY_EnemyTeleport";
+	TeleFogSourceType "DCY_EnemySourceTeleport";
 	TeleFogDestType "DCY_EnemyTeleport";
 	DamageFactor "SpawnerDeath", 0;
   }

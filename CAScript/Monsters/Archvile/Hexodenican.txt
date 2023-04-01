@@ -175,6 +175,7 @@ Class DCY_Hexodenican : DCY_VileParent
 	{
 		bool s;
 		actor e;
+		A_StartSound("DCYHex/Lightning", CHAN_WEAPON);
 		[s, e] = A_SpawnItemEx("DCY_HexBall", 10, 0, 40, 10, flags: SXF_SETTRACER);
 		if (s && e != null) e.tracer = self.target;
 		A_FaceTarget();

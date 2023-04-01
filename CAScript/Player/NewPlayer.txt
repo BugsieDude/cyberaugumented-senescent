@@ -294,6 +294,8 @@ Class CyberaugumentedProtagonist : DoomPlayer
   Player.WeaponSlot 0, "";
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   PainSound "slayer/pain";
+  TeleFogSourceType "DCY_PlayerSourceTeleport";
+  TeleFogDestType "DCY_PlayerTeleport";
   Player.AirCapacity 0; //Because lore-wise its helmet regulates overflowing?
   }
   

@@ -168,37 +168,9 @@ Class DCY_PainsendFireball : DCY_ImpFireball
   Spawn:
     BAL1 AABB 1
 	{
-		A_SpawnItemEx("DCY_MastermindJetFlareSmall", zvel: 0.25, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 30);
+		A_SpawnFlames("ff7e3d", 30, 26, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2);
 		A_SpawnItemEx("DCY_ImpFlame1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), zvel: 0.25, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE, failchance: 70);
 	}
 	Loop;
-  }
-}
-
-Class DCY_PainsendFireballFast : DCY_PainsendFireball { Default { Speed 15; FastSpeed 25; } }
-
-Class DCY_PainsendWeavingball : DCY_PainsendFireball
-{
-  Default
-  {
-  Speed 10;
-  Fastspeed 15;
-  Damage 2;
-  +SEEKERMISSILE;
-  }
-  
-  States
-  {
-  Spawn:
-	BAL3 AABBCCDD 1
-	{
-		A_SeekerMissile(1, 2, SMF_LOOK);
-		A_Weave(2, 2, 1, 1);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE, failchance: 150);
-	}
-	Loop;
-  Death:
-	BAL3 EEFFGG 1 A_FadeOut(0.2, 0);
-	Stop;
   }
 }
