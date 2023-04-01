@@ -20,7 +20,7 @@ Class DCY_Cybie : DCYMonster
 	ActiveSound "cyber/active";
 	Obituary "$OB_CYBORG";
 	Tag "$FN_CYBER";
-	TeleFogSourceType "DCY_CyberTeleport";
+	TeleFogSourceType "DCY_CyberSourceTeleport";
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Cyberdemons";
   }

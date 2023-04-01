@@ -22,7 +22,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	DeathSound "DCYMatriarch/Death";
 	ActiveSound "DCYMatriarch/Idle";
 	Obituary "%o feared the Matriarch's all-demonic might.";
-	TeleFogSourceType "DCY_CyberTeleport";
+	TeleFogSourceType "DCY_CyberSourceTeleport";
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Spider Masterminds";
   }
