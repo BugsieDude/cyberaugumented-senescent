@@ -21,6 +21,13 @@ $random misc/smallgibbed { D4SGORE1 D4SGORE2 D4SGORE3 }
 D4SGORE1 "Sounds/Gore/dcy_d4_small_gore_1.ogg"
 D4SGORE2 "Sounds/Gore/dcy_d4_small_gore_2.ogg"
 D4SGORE3 "Sounds/Gore/dcy_d4_small_gore_3.ogg"
+$random misc/bubblegore { D4BGORE1 D4BGORE2 D4BGORE3 D4BGORE4 D4BGORE5 D4BGORE6 D4BGORE7 }
+D4BGORE1 "Sounds/Gore/dcy_d4_bubbling_gore_1.ogg"
+D4BGORE2 "Sounds/Gore/dcy_d4_bubbling_gore_2.ogg"
+D4BGORE3 "Sounds/Gore/dcy_d4_bubbling_gore_3.ogg"
+D4BGORE4 "Sounds/Gore/dcy_d4_bubbling_gore_4.ogg"
+D4BGORE5 "Sounds/Gore/dcy_d4_bubbling_gore_5.ogg"
+D4BGORE6 "Sounds/Gore/dcy_d4_bubbling_gore_6.ogg"
 
 //Voices
 grunt/burn "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_burn.ogg"

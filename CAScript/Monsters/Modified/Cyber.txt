@@ -23,6 +23,7 @@ Class DCY_Cybie : DCYMonster
 	TeleFogSourceType "DCY_CyberSourceTeleport";
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Cyberdemons";
+	DCYMonster.GibType "DCY_FatGiblets";
   }
   
   void A_Cyberstep(bool step)
@@ -97,9 +98,11 @@ Class DCY_Cybie : DCYMonster
 		
 		if (damagetype != "Massacre")
 		{
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-20, 20), random(-20, 20), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			for (int i = 3; i > 0; i--)
+			{
+				DCY_Gibs(false);
+				A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			}
 		}
 	}
 	CYBR LMNOPPPPPPPPPPPPPPP 6;

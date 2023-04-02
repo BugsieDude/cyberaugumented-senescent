@@ -51,7 +51,7 @@ Class DCY_SuperShotgunSoldier : DCY_ShotgunZombe
 			for (int i = 2; i > 0; i--)
 			{
 				A_SpawnItemEx("De_Blood_Splat", frandom(-4, 4), frandom(-4, 4), frandom(-4, 4) + 60, vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 20);
-				A_SpawnItemEx("DCY_AndroidGib", frandom(-4, 4), frandom(-4, 4), frandom(-4, 4) + 60, vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
+				A_SpawnItemEx("DCY_Gib", frandom(-4, 4), frandom(-4, 4), frandom(-4, 4) + 60, vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
 			}
 		}
 		A_ScreamAndUnblock();

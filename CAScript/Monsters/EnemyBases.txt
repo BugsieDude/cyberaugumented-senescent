@@ -154,7 +154,31 @@ CLASS DCYMonster : Actor abstract
   void DCY_Gibs(bool playsnd = true)
   {
 	if (playsnd) A_XScream();
+	if (!dcy_gibbing || !DCY_EffectDistance(2000)) return;
 	A_SpawnItemEx(gib, xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_ABSOLUTEVELOCITY|SXF_USEBLOODCOLOR);
+  }
+  
+  void DCY_ArachnoExplosion(class<Actor> type = "DCY_Explosion_1", sound snd = "misc/bubblegore", int style = STYLE_NORMAL)
+  {
+	if (dcy_gibbing) A_StartSound(snd, 12);
+	if (!DCY_EffectDistance(2000) || !dcy_gibbing) return;
+	for (int i = random(3, 10); i > 0; i--)
+	{
+		let bld = Spawn("De_Blood_BigSplat", pos + (frandom(-20, 20), frandom(-20, 20), frandom(-20, 20)));
+		if (bld)
+		{
+			bld.scale *= 2.5;
+			bld.vel.x += frandom(-5, 5);
+			bld.vel.y += frandom(-5, 5);
+			bld.vel.z += frandom(1, 6.5);
+			bld.gravity /= 6;
+			bld.translation = self.bloodtranslation;
+			bld.A_SetRenderStyle(1, style);
+			if (style == STYLE_ADD) bld.bBRIGHT = true;
+		}
+	}
+	for (int i = 3; i > 0; i--) A_SpawnItemEx(type, frandom(-20, 20), frandom(-20, 20), frandom(10, 40), frandom(-2, 2), frandom(-2, 2), frandom(-0.1, 6), flags: SXF_NOCHECKPOSITION);
+	DCY_Gibs(false);
   }
   
   static void ThingAnnounce(String message, String sound, String mColor)

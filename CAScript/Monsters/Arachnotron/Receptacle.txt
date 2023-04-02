@@ -115,7 +115,7 @@ Class DCY_Receptacle : DCY_ArachnoParent
 	Goto See+1;
   Death:
 	1R1C J 20 A_Scream();
-	1R1C K 7 A_NoBlocking();
+	1R1C K 7 { DCY_ArachnoExplosion(); A_NoBlocking(); }
 	1R1C LMNO 7;
 	1R1C P -1 A_BossDeath2;
 	Stop;

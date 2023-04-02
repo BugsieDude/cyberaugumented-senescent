@@ -13,6 +13,7 @@ Class DCY_Disrelish : DCY_SkinnyFat
   Tag "Disrelish";
   PainChance 50;
   +QUICKTORETALIATE
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   States
@@ -68,7 +69,7 @@ Class DCY_Disrelish : DCY_SkinnyFat
     FOFO J 4 A_Pain();
     Goto See;
   Death:
-    FOFO K 6;
+    FOFO K 6 DCY_Gibs(false);
     FOFO L 6 A_Scream();
     FOFO M 5 A_NoBlocking();
     FOFO NOPQRS 5;

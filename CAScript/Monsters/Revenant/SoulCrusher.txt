@@ -125,7 +125,11 @@ Class DCY_SoulCrusher : DCY_Rev
 		A_SpawnItemEx("DCY_BlueVoidExplosions", 0, 0, 0, random(-10, 10), random(-10, 10), random(-5, 15), random(-180, 180), SXF_NOCHECKPOSITION);
 		A_StartSound("AOI/Explode", CHAN_BODY, 0, 1, 0.4);
 	}
-	XX3_ IIIII 0 A_SpawnItemEx("DCY_BlueVoidExplosions", 0, 0, 0, random(-15, 15), random(-15, 15), random(-15, 25), random(-180, 180), SXF_NOCHECKPOSITION);
+	XX3_ I 0
+	{
+		DCY_Gibs(false);
+		for (int i = 5; i > 0; i--) A_SpawnItemEx("DCY_BlueVoidExplosions", 0, 0, 0, random(-15, 15), random(-15, 15), random(-15, 25), random(-180, 180), SXF_NOCHECKPOSITION);
+	}
 	XX3_ J 5 A_NoBlocking();
 	XX3_ KLMN 5;
 	XX3_ N -1;

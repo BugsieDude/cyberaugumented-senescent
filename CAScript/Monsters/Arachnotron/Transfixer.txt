@@ -1,3 +1,5 @@
+Class DCY_TFExplosion : DCY_AndroidExplosion { Default { Translation "0:255=%[0.00,0.00,0.20]:[1.51,0.50,2.00]"; } }
+
 Class DCY_Transfixer : DCY_ArachnoParent
 {
   Default
@@ -155,7 +157,7 @@ Class DCY_Transfixer : DCY_ArachnoParent
   Death:
 	PBDO I 4;
 	PBDO I 10 A_Scream();
-	PBDO J 6 A_NoBlocking();
+	PBDO J 6 { DCY_ArachnoExplosion("DCY_TFExplosion"); A_NoBlocking(); }
 	PBDO KLMNO 5;
 	PBDO P -1;
 	Stop;

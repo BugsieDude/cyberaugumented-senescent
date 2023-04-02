@@ -71,7 +71,7 @@ Class DCY_RadiationCorpulence : DCY_SkinnyFat
 	Goto See;
   Death:
 	B01_ K 1;
-	B01_ K 10 A_Scream();
+	B01_ K 10 { DCY_Gibs(false); A_Scream(); }
 	B01_ LM 6;
 	B01_ N 1 A_NoBlocking();
 	B01_ NOPQRS 5;

@@ -203,8 +203,10 @@ $alias intermission/pastcoopstats intermission/paststats
 $alias intermission/pastdmstats intermission/paststats
 
 //Terrain
-blood dsgloop
-bloodsmall dsgloop
+blood "Sounds/Terrain/dcy_blood_splash.wav"
+bloodsmall "Sounds/Terrain/dcy_blood_splash.wav"
+$volume blood 0.5
+$volume bloodsmall 0.5
 world/drip			dsempty
 $random "world/watersplash" {dssplash splas1 splas2 splas3 splas4 splas5 splas6 splas7 splas8 splas9 splas10}
 dssplash "Sounds/Terrain/dcy_splash1.ogg"

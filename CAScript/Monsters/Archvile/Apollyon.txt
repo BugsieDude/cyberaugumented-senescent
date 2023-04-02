@@ -103,7 +103,7 @@ Class DCY_Apollyon : DCY_VileParent
     A_PB Q 5 A_Pain();
     Goto See;
   Death:
-    A_PB Q 7;
+    A_PB Q 7 DCY_Gibs(false);
     A_PB R 7 A_Scream();
     A_PB S 7 A_NoBlocking();
     A_PB TUVW 7;

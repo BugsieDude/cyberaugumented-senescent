@@ -21,6 +21,7 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
   PainChance 50;
   Speed 9;
   FastSpeed 14;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   void A_TracPlasma()
@@ -89,6 +90,7 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
 	{
 		A_SpawnItemEx("DCY_Explosion_1_Biggie", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
 		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.5);
+		for (int i = 2; i > 0; i--) DCY_ArachnoExplosion(style: STYLE_ADD);
 		A_NoBlocking();
 	}
     BSP2 KLMNO 7;

@@ -312,7 +312,7 @@ Class DCY_Marauder : DCY_Plutonia
 	Stop;
   XDeath:
 	MAUD O 6;
-    MAUD P 4 A_XScream();
+    MAUD P 4 DCY_Gibs();
     MAUD Q 4 A_NoBlocking();
     MAUD RS 4;
     MAUD T -1 A_BossDeath();

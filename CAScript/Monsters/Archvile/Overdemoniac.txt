@@ -24,6 +24,7 @@ Class DCY_Overdemoniac : DCY_VileParent
   Speed 7;
   FastSpeed 17;
   DamageFactor "Ice", 0.5;
+  DCYMonster.GibType "DCY_FatGiblets";
   }
   
   int phasecooldown;
@@ -170,7 +171,7 @@ Class DCY_Overdemoniac : DCY_VileParent
 	DSJ1 R 20 A_Pain();
 	DSJ1 S 6
 	{
-		for (int i = 2; i > 0; i--) A_SpawnItemEx("DCY_WretchedExplosion", zofs: 30);
+		for (int i = 2; i > 0; i--) { DCY_Gibs(false); A_SpawnItemEx("DCY_WretchedExplosion", zofs: 30); }
 		A_ScreamAndUnblock();
 	}
 	DSJ1 TUVWXYZ 5;

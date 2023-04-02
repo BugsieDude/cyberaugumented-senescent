@@ -20,6 +20,7 @@ Class DCY_SkinnyFat : DCYMonster
 	Tag "Juggernaut";
 	Species "Mancubi";
 	MeleeRange 90;
+	DCYMonster.GibType "DCY_FatGiblets";
   }
   
   void A_FatThrower()
@@ -122,7 +123,7 @@ Class DCY_SkinnyFat : DCYMonster
   Death:
 	_JUG K 6;
 	_JUG L 6 A_Scream();
-	_JUG M 6 A_NoBlocking();
+	_JUG M 6 { DCY_Gibs(false); A_NoBlocking(); }
 	_JUG NOPQRS 6;
 	_JUG T -1 A_BossDeath2;
 	Stop;

@@ -20,6 +20,7 @@ Class DCY_Befouler : DCYMonster
 	Species "Pain Elementals";
 	BloodColor "Orange";
 	BloodType "AndroidNeonFluid";
+	DCYMonster.GibType "DCY_GibletsAdd";
   }
   States
   {
@@ -102,6 +103,7 @@ Class DCY_Befouler : DCYMonster
 			A_Scream();
 	}
 	DAJK HI 6;
+	DAJK J 0 DCY_Gibs(false);
 	DAJK JJKK 3 A_SpawnItemEx("DCY_Explosion_1", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(10.0, 15.0), flags: SXF_NOCHECKPOSITION);
 	DAJK L 6 A_PainDie("DCY_FlamingCranium");
 	DAJK M 6;

@@ -103,3 +103,4 @@ TIP_DCY_LIQUIDS = "Changes the way how liquids are shown.";
 TIP_DCY_WOLFENSTEINCUTSCENE = "Emits a cool-ass cutscene reminiscent to the Wolfenstein 3D game.";
 TIP_DCY_WOLFENSTEINSPAWNS = "Enables custom monsters that replaces the Wolfenstein SS Guards.";
 TIP_DCY_KEENSPAWNS = "Commander Keen is more different while on.";
+TIP_DCY_GIBBING = "Basically regulates gore and gibbing effects.";

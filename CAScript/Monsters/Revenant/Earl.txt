@@ -15,6 +15,7 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
   +BOSS
   PainChance 30;
   PainThreshold 500;
+  DCYMonster.GibType "DCY_FatGiblets";
   }
   
   int missilecount;
@@ -124,6 +125,7 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
 	E3RL K 6 A_NoBlocking();
 	E3RL LMNO 5
 	{
+		DCY_Gibs(false);
 		for (int i = random(1, 2); i > 0; i--)
 			A_SpawnItemEx("DCY_Explosion_1", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
 	}

@@ -25,6 +25,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	TeleFogSourceType "DCY_CyberSourceTeleport";
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Spider Masterminds";
+	DCYMonster.GibType "DCY_FatGiblets";
   }
   
   void A_MetalII()
@@ -80,6 +81,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	{
 		if (damagetype != "Massacre")
 		{
+			if (!random(0, 1)) DCY_Gibs(false);
 			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
 			A_SpawnItemEx("DCY_Explosion_1", random(-20, 20), random(-20, 20), random(30, 70));
 		}
@@ -88,10 +90,9 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	{
 		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.5);
 		if (damagetype != "Massacre")
-		{
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
-			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
+			for (int i = 3; i > 0; i--) {
+				DCY_Gibs(false);
+				A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-40, 40), random(-40, 40), random(20, 40), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION);
 		}
 	}
 	ME__ OPQRSSSSSSSSSSSS 6;

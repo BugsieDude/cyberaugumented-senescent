@@ -115,7 +115,8 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 		A_NoBlocking();
 		A_StartSound("SPI2PAIN", CHAN_VOICE, CHANF_DEFAULT, 1.0, ATTN_NONE, frandom(0.8, 0.75));
 	}
-	CSPI JKLMNO 9;
+	CSPI J 9 DCY_ArachnoExplosion("DCY_AndroidExplosion");
+	CSPI KLMNO 9;
 	CSPI P -1 A_BossDeath2();
 	Stop;
   Raise:

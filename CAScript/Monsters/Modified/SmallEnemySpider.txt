@@ -17,6 +17,7 @@ Class DCY_ArachnoParent : DCYMonster
   Obituary "$OB_BABY";
   Tag "$FN_ARACH";
   Species "Arachno";
+  DCYMonster.GibType "DCY_FatGiblets";
   }
   States
   {
@@ -52,7 +53,7 @@ Class DCY_ArachnoParent : DCYMonster
 	Goto See+1;
   Death:
 	BSPI J 20 A_Scream();
-	BSPI K 7 A_NoBlocking();
+	BSPI K 7 { DCY_ArachnoExplosion(); A_NoBlocking(); }
 	BSPI LMNO 7;
 	BSPI P -1 A_BossDeath2;
 	Stop;
@@ -109,7 +110,7 @@ Class DCY_SmallEnemySpider : DCY_ArachnoParent
 	Goto See+1;
   Death:
 	PSPI J 20 A_Scream();
-	PSPI K 7 A_NoBlocking();
+	PSPI K 7 { DCY_ArachnoExplosion(); A_NoBlocking(); }
 	PSPI LMNO 7;
 	PSPI P -1 A_BossDeath2;
 	Stop;

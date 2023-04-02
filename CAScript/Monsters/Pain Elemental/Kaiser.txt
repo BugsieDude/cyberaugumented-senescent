@@ -20,6 +20,7 @@ Class DCY_Kaiser : DCY_Befouler
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   BloodColor "2ba0ff";
   DamageFactor "Plasma", 0.85;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   States
@@ -97,6 +98,7 @@ Class DCY_Kaiser : DCY_Befouler
 		for (int i = 0; i < 360; i += 45)
 			A_SpawnProjectile("DCY_KaiserLaser", 26, 0, i, CMF_AIMDIRECTION);
 		
+		DCY_Gibs(false);
 		A_SpawnItemEx("DCY_AndroidExplosionBiggie", zofs: 20);
 		A_DualPainAttack("DCY_KaiserTurret");
 	}

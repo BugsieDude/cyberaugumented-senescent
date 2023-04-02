@@ -68,7 +68,11 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
 	LS20 L -1;
 	Stop;
   XDeath:
-	LS20 Q 5 A_Scream();
+	LS20 Q 5
+	{
+		A_SpawnItemEx("DCY_Explosion_1", zofs: 30, flags: SXF_NOCHECKPOSITION);
+		A_Scream();
+	}
 	LS20 Q 0 A_Fall;
 	LS20 RS 4;
 	LS20 T 4 A_StartSound("weapons/rocklx", CHAN_BODY);

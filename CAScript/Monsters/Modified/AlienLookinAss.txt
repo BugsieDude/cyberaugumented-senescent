@@ -23,6 +23,7 @@ Class DCY_VileParent : DCYMonster
 	DamageFactor "ArchvileDMG", 0.00;
 	DamageType "ArchvileDMG";
 	Species "Archviles";
+	DCYMonster.GibType "DCY_ShorterGiblets";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

@@ -23,6 +23,7 @@ Class DCY_NavyTerminator : DCY_Cybie
   +NEVERFAST
   +NOBLOODDECALS
   Speed 12;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   int nmissile;
@@ -140,8 +141,7 @@ Class DCY_NavyTerminator : DCY_Cybie
 		
 		if (damagetype != "Massacre")
 		{
-			for (int i = 4; i > 0; i--)
-				A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
+			for (int i = 4; i > 0; i--) A_SpawnItemEx("DCY_AndroidExplosionBiggie", random(-15, 15), random(-15, 15), random(20, 50), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
 			
 			A_SpawnItemEx("DCY_AndroidExplosion", random(-20, 20), random(-20, 20), random(15, 60), frandom(-1.1, 1.1), frandom(-1.1, 1.1), frandom(-1.1, 1.1), random(0, 360), SXF_NOCHECKPOSITION);
 		

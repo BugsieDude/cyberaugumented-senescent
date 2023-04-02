@@ -112,7 +112,8 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 		A_NoBlocking();
 		A_Scream();
 	}
-	CSP3 JKLMNO 9;
+	CSP3 J 9 DCY_ArachnoExplosion();
+	CSP3 KLMNO 9;
 	CSP3 P -1 A_BossDeath2();
 	Stop;
   XDeath:
@@ -124,7 +125,8 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 		A_Scream();
 		A_StartSound("BGSpider/Scream", CHAN_VOICE, CHANF_OVERLAP, 1.0, 0.35);
 	}
-	CSP3 JKLMNO 9;
+	CSP3 J 9 DCY_ArachnoExplosion();
+	CSP3 KLMNO 9;
 	CSP3 P -1 A_BossDeath2();
 	Stop;
   Raise:

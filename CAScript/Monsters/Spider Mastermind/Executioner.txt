@@ -23,6 +23,7 @@ Class DCY_Executioner : DCY_TheGiantEnemySpider
   +MISSILEMORE
   +DONTFALL
   FloatSpeed 5;
+  DCYMonster.GibType "DCY_GibletsAdd";
   }
   
   int missile;
@@ -105,8 +106,10 @@ Class DCY_Executioner : DCY_TheGiantEnemySpider
 	{
 		if (damagetype != "Massacre")
 		{
-			for (int i = 3; i > 0; i--)
+			for (int i = 3; i > 0; i--) {
+				DCY_Gibs(false);
 				A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
+			}
 		}
 	}
 	I8HJ LM 4;

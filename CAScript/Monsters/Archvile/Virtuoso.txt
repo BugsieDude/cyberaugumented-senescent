@@ -11,7 +11,8 @@ Class DCY_FulminationVirtuoso : DCY_VileParent
   Speed 8;
   FastSpeed 8;
   Scale 0.945;
-  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodType "DCY_ElecDeathBase", "DCY_ElecDeathBase", "DCY_ElecDeathBase";
+  BloodColor "2c3f66";
   Tag "\c[l7]Fulmination Virtuoso\c-";
   Obituary "%o has been decimated by a Fulmination Virtuoso... Kind of surprised to see a demon like that.";
   SeeSound "virtuoso/sight";
