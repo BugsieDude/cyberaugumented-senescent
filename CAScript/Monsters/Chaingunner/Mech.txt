@@ -18,6 +18,7 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
   DropItem "Cell";
   DropItem "DCY_Cyberrifle";
   GibHealth 100;
+  DCYMonster.GibType "DCY_MechaGiblets";
   }
   
   States
@@ -71,6 +72,7 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
 	LS20 Q 5
 	{
 		A_SpawnItemEx("DCY_Explosion_1", zofs: 30, flags: SXF_NOCHECKPOSITION);
+		DCY_Gibs(false);
 		A_Scream();
 	}
 	LS20 Q 0 A_Fall;

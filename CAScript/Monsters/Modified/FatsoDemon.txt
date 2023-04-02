@@ -20,7 +20,7 @@ Class DCY_SkinnyFat : DCYMonster
 	Tag "Juggernaut";
 	Species "Mancubi";
 	MeleeRange 90;
-	DCYMonster.GibType "DCY_FatGiblets";
+	DCYMonster.GibType "DCY_ShorterGiblets";
   }
   
   void A_FatThrower()

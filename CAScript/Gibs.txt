@@ -321,3 +321,18 @@ Class DCY_FatGiblets : DCY_Giblets
 		Stop;
 	}
 }
+
+Class DCY_MechaGiblets : DCY_Giblets
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay
+		{
+			for (int i = random(8, 11); i > 0; i--)
+				A_SpawnItemEx("DCY_MetallicJunk", frandom(-40, 40), frandom(-40, 40), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY, 50);
+		}
+		TNT1 AAAAAAAA 2 A_SpawnItemEx("DCY_MetallicJunk", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 15), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY, 20);
+		Stop;
+	}
+}

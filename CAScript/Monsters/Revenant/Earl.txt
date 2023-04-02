@@ -15,7 +15,7 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
   +BOSS
   PainChance 30;
   PainThreshold 500;
-  DCYMonster.GibType "DCY_FatGiblets";
+  DCYMonster.GibType "DCY_MechaGiblets";
   }
   
   int missilecount;
