@@ -20,7 +20,7 @@ Class DCY_Befouler : DCYMonster
 	Species "Pain Elementals";
 	BloodColor "Orange";
 	BloodType "AndroidNeonFluid";
-	DCYMonster.GibType "DCY_GibletsAdd";
+	DCYMonster.GibType "DCY_GibletsLava";
   }
   States
   {

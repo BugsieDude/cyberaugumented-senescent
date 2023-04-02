@@ -18,6 +18,7 @@ Class DCY_Castrator : DCY_Impe
   DeathSound "Unwilling/Death";
   BloodColor "66 22 00";
   BloodType "AndroidNeonFluid";
+  DCYMonster.GibType "DCY_GibletsLava";
   +NOTARGET
   +DONTHARMCLASS
   +MISSILEEVENMORE

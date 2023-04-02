@@ -24,7 +24,7 @@ Class DCY_Overdemoniac : DCY_VileParent
   Speed 7;
   FastSpeed 17;
   DamageFactor "Ice", 0.5;
-  DCYMonster.GibType "DCY_FatGiblets";
+  DCYMonster.GibType "DCY_GibletsLava";
   }
   
   int phasecooldown;

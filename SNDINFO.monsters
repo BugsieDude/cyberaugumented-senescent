@@ -1139,10 +1139,15 @@ gcd22 "Sounds/DCY Monsters/Gatecrasher/dcy_hk_death22.ogg"
 gcd23 "Sounds/DCY Monsters/Gatecrasher/dcy_hk_death23.ogg"
 gcd24 "Sounds/DCY Monsters/Gatecrasher/dcy_hk_death24.ogg"
 
-SKnight/Sight "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_sight.ogg"
-$random SKnight/Active { FLKIDLE FLKIDLE2 }
+$random SKnight/Sight { FLKSIT1 FLKSIT2 FLKSIT3 }
+FLKSIT1 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_sight.ogg"
+FLKSIT2 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_sight2.ogg"
+FLKSIT3 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_sight3.ogg"
+$random SKnight/Active { FLKIDLE FLKIDLE2 FLKIDLE3 FLKIDLE4 }
 FLKIDLE "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_idle1.ogg"
 FLKIDLE2 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_idle2.ogg"
+FLKIDLE3 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_idle3.ogg"
+FLKIDLE4 "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_idle4.ogg"
 SKnight/Pain "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_pain.ogg"
 SKnight/Death "Sounds/DCY Monsters/Soul Chevalier/dcy_chevalier_death.ogg"
 

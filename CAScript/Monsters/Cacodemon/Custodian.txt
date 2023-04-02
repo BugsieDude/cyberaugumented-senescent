@@ -18,6 +18,7 @@ Class DCY_HellCustodian : DCY_FlyingMeatballOutOfTouch
   DamageType "Fire";
   Speed 8;
   FastSpeed 12;
+  DCYMonster.GibType "DCY_GibletsLava";
   }
   
   States
@@ -80,17 +81,10 @@ Class DCY_HellCustodian : DCY_FlyingMeatballOutOfTouch
 	HELE I 6 A_NoBlocking();
 	HELE J 1
 	{
+		DCY_Gibs(false);
 		A_SpawnItemEx("DCY_Explosion_1_Biggie", 0, 0, 35, 0, 0, 0, 0, SXF_NOCHECKPOSITION);
 		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.5);
 	}
-	HELE JKLMNOPQRSTUV 3;
-	HELE V -1;
-	Stop;
-  Death.Massacre:
-	HELE H 10;
-	HELE H 10 A_Scream();
-	HELE I 6 A_NoBlocking();
-	HELE J 1;
 	HELE JKLMNOPQRSTUV 3;
 	HELE V -1;
 	Stop;

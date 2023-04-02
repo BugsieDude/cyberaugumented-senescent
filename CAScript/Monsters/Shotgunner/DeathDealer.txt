@@ -24,7 +24,7 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
   DropItem "DCY_UltramodernEnergy", 196;
   BloodColor "ffc400";
   BloodType "AndroidNeonFluid";
-  DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.GibType "DCY_GibletsLava";
   }
   States
   {

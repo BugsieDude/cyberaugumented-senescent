@@ -232,7 +232,7 @@ Class DCY_Hexodenican : DCY_VileParent
 	H3X_ M 1;
 	H3X_ M 1 A_Scream();
 	H3X_ MMMMMMMMMMMMMMMMMMMM 2 A_SpawnItemEx("DCY_HexodenicanTrail", zofs: 6, zvel: 6, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	H3X_ UVWX 5;
+	H3X_ UVWX 5 DCY_Gibs(false);
 	H3X_ YZ 4 A_NoBlocking();
 	H4X_ ABC 2;
 	H4X_ C -1;
