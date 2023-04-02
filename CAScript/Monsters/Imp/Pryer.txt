@@ -14,7 +14,7 @@ Class DCY_Pryer : DCY_Impe
   PainSound "Pryer/Pain";
   DeathSound "Pryer/Death";
   BloodType "AndroidNeonFluid";
-  BloodColor "Orange";
+  BloodColor "ad3002";
   DCYMonster.GibType "DCY_GibletsLava";
   }
   States

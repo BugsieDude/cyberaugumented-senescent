@@ -41,7 +41,7 @@ Class DCY_Gib : DCY_GoreBase
   {
 	super.Tick();
 	
-	if (DCY_EffectDistance(2000) && vel.x != 0 && !(getAge() % random(1, 3)))
+	if (DCY_EffectDistance(2000) && vel.x != 0 && !(getAge() % random(1, 6)))
 	{
 		let b = spawn("De_Blood_BigSplat", pos);
 		if (b)
@@ -51,7 +51,7 @@ Class DCY_Gib : DCY_GoreBase
 		}
 	}
 	
-	if (vel.z == 0 && (GetAge() > 2000))
+	if (vel.z == 0 && (GetAge() > dcy_gibtime))
 	{
 		A_FadeOut(0.005);
 		if (alpha <= 0) Destroy();
@@ -95,7 +95,7 @@ Class DCY_LavaGib : DCY_Gib
 		}
 	}
 	
-	if (vel.z == 0 && (GetAge() > 2000))
+	if (vel.z == 0 && (GetAge() > dcy_gibtime))
 	{
 		A_FadeOut(0.005);
 		if (alpha <= 0) Destroy();
@@ -126,7 +126,7 @@ Class DCY_AndroidGib : DCY_Gib
 		}
 	}
 	
-	if (vel.z == 0 && (GetAge() > 2000))
+	if (vel.z == 0 && (GetAge() > dcy_gibtime))
 	{
 		A_FadeOut(0.005);
 		if (alpha <= 0) Destroy();
@@ -159,6 +159,16 @@ Class DCY_MetallicJunk : DCY_GoreBase
 	super.PostBeginPlay();
 	frame = random(0, 19);
 	scale.x *= randompick(-1, 1);
+  }
+  
+  override void Tick()
+  {
+	super.Tick();
+	if (vel.z == 0 && (GetAge() > dcy_gibtime))
+	{
+		A_FadeOut(0.005);
+		if (alpha <= 0) Destroy();
+	}
   }
   
   States
@@ -207,7 +217,7 @@ Class DCY_Giblets : DCY_Effect
 	Spawn:
 		TNT1 A 0 NoDelay
 		{
-			for (int i = random(10, 16); i > 0; i--)
+			for (int i = random(6, 14); i > 0; i--)
 			{
 				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, failchance: 140);
 				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 150);
@@ -232,7 +242,7 @@ Class DCY_GibletsAdd : DCY_Giblets
 	Spawn:
 		TNT1 A 0 NoDelay
 		{
-			for (int i = random(10, 16); i > 0; i--)
+			for (int i = random(6, 14); i > 0; i--)
 			{
 				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 140);
 				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 150);
@@ -257,7 +267,7 @@ Class DCY_GibletsLava : DCY_Giblets
 	Spawn:
 		TNT1 A 0 NoDelay
 		{
-			for (int i = random(10, 16); i > 0; i--)
+			for (int i = random(6, 14); i > 0; i--)
 			{
 				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 140);
 				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 150);
@@ -305,7 +315,7 @@ Class DCY_FatGiblets : DCY_Giblets
 	Spawn:
 		TNT1 A 0 NoDelay
 		{
-			for (int i = random(8, 11); i > 0; i--)
+			for (int i = random(8, 16); i > 0; i--)
 			{
 				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, failchance: 140);
 				A_SpawnItemEx("De_Blood_Splat", frandom(-40, 40), frandom(-40, 40), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 150);

@@ -112,6 +112,7 @@ OptionMenu "CyberaugumentedVisual"
 	Option "Progression Level on HUD", "cl_dcy_hud_level", "EnableDisable2"
 	Option "Liquid Prospect", "dcy_liquids", "LiquidChanger"
 	Option "Let there be bloodshed", "dcy_gibbing", "EnableDisable2"
+	Slider "Gib Fading Time", "dcy_gibtime", 20, 2000, 1
 	StaticText ""
 	Option "Get Psyched!", "dcy_wolfensteincutscene", "DCY_GPOption"
 }

@@ -137,8 +137,8 @@ Class DCY_SiriusLaser : DCY_TracerPlayer
 	Scale .6;
 	Translation "0:255=%[0.00,0.00,0.00]:[1.06,1.66,1.83]";
 	DeathSound "";
-	+BRIGHT;
-	+FORCERADIUSDMG;
+	+BRIGHT
+	+FORCERADIUSDMG
   }
   
   States
@@ -150,6 +150,8 @@ Class DCY_SiriusLaser : DCY_TracerPlayer
   XDeath:
 	TNT1 A 10
 	{
+		bEXTREMEDEATH = true;
+		bNOEXTREMEDEATH = false;
 		let ring = Spawn("DCY_OverdemoniacPuff", pos);
 		
 		if (ring)

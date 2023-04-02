@@ -45,3 +45,4 @@ server bool dcy_keenspawns = true;
 server bool dcy_wolfensteincutscene = true;
 
 server bool dcy_gibbing = true;
+server int dcy_gibtime = 2000;

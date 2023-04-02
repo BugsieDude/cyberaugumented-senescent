@@ -164,7 +164,7 @@ CLASS DCYMonster : Actor abstract
 	if (!DCY_EffectDistance(2000) || !dcy_gibbing) return;
 	for (int i = random(3, 10); i > 0; i--)
 	{
-		let bld = Spawn("De_Blood_BigSplat", pos + (frandom(-20, 20), frandom(-20, 20), frandom(-20, 20)));
+		let bld = Spawn("De_Blood_BigSplat", pos + (frandom(-20, 20), frandom(-20, 20), frandom(-20, 20) + 40));
 		if (bld)
 		{
 			bld.scale *= 2.5;
@@ -177,7 +177,7 @@ CLASS DCYMonster : Actor abstract
 			if (style == STYLE_ADD) bld.bBRIGHT = true;
 		}
 	}
-	for (int i = 3; i > 0; i--) A_SpawnItemEx(type, frandom(-20, 20), frandom(-20, 20), frandom(10, 40), frandom(-2, 2), frandom(-2, 2), frandom(-0.1, 6), flags: SXF_NOCHECKPOSITION);
+	for (int i = 3; i > 0; i--) A_SpawnItemEx(type, frandom(-20, 20), frandom(-20, 20), frandom(10, 40) + 25, frandom(-2, 2), frandom(-2, 2), frandom(-0.1, 6), flags: SXF_NOCHECKPOSITION);
 	DCY_Gibs(false);
   }
   

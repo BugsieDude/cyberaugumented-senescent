@@ -5,7 +5,7 @@ Class DCY_Painsend : DCY_Impe
   Health 99;
   Tag "Painsend";
   BloodType "AndroidNeonFluid";
-  BloodColor "Orange";
+  BloodColor "ad3002";
   Obituary "%o was castrated by a Painsend.";
   HitObituary "%o was torn apart by a Painsend.";
   MeleeSound "Imp/Melee";

@@ -18,7 +18,7 @@ Class DCY_Befouler : DCYMonster
 	ActiveSound "EternalPainElemental/Active";
 	Tag "Befouler";
 	Species "Pain Elementals";
-	BloodColor "Orange";
+	BloodColor "ad3002";
 	BloodType "AndroidNeonFluid";
 	DCYMonster.GibType "DCY_GibletsLava";
   }

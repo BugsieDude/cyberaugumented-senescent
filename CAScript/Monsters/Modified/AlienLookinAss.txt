@@ -147,11 +147,10 @@ Class DCY_ArchvileBlaze : ArchvileFire Replaces ArchvileFire
 		fx = 200;
 		A_StartFire();
 	}
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
 	{
 		A_Fire();
-		A_SpawnItemEx("DCY_ImpFlame1", random(-20, 20), random(-20, 20), random(-2, 20), 0, 0, random(5, 12), 0, SXF_NOCHECKPOSITION, 120);
-		A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 40, 50, 0, frandom(-4, 4), frandom(-4, 4), 25, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.9, 1.25), accelz: 0.065, startalphaf: 1.0, fadestepf: 0.025, sizestep: -1.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+		A_SpawnParticleEx(0xff6830, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 40, 70, 0, frandom(-14, 14), frandom(-14, 14), 1, frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(3, 5.25), startalphaf: 1.0, fadestepf: 0.025, sizestep: -4, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 
 		if (fx == 150 || fx == 10) A_FireCrackle();
 		fx -= 5;

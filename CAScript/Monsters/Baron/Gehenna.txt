@@ -17,7 +17,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   FloatSpeed 9;
   FastSpeed 13;
   Speed 9;
-  BloodColor "Orange";
+  BloodColor "ad3002";
   BloodType "AndroidNeonFluid";
   }
   

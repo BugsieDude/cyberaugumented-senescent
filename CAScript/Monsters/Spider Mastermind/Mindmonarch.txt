@@ -65,6 +65,7 @@ Class DCY_Mindmonarch : DCY_TheGiantEnemySpider
 	{
 		A_NoBlocking();
 		DCY_Gibs(false);
+		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.5);
 		
 		if (damagetype != "Massacre")
 			A_SpawnItemEx("DCY_Explosion_1_Obliteration", frandom(-40, 40), frandom(-40, 40), frandom(10, 55), flags: SXF_NOCHECKPOSITION);

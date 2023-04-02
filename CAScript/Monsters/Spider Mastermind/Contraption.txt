@@ -105,12 +105,14 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
   ActiveSound "COH/Active";
   PainSound "COH/Pain";
   DeathSound "COH/Die";
+  DCYMonster.GibType "DCY_MechaGiblets";
   }
   
   override void Tick()
   {
 	super.tick();
 	
+	if (!master && health > 0) Destroy();
 	if (health > 0)
 		Warp(Master, 0, 0, 6, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE|WARPF_USECALLERANGLE);
   }
@@ -198,8 +200,12 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
 	C0N_ F 6;
 	C0N_ G 6
 	{
+		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.5);
 		for (int i = 3; i > 0; i--)
+		{
+			DCY_Gibs(false);
 			A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+		}
 	}
 	C0N_ HIJK 6 A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(20, 80), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
 	C0N_ L 6 A_NoBlocking();

@@ -6,6 +6,7 @@ Class DCY_Excoriator : DCY_BaronParent
   Tag "\c[x1]Excoriator\c-";
   Translation "80:111=[255,255,255]:[0,0,0]", "1:15=%[0.00,0.00,0.00]:[0.09,0.09,0.09]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "160:255=%[0.37,0.00,0.00]:[1.99,0.59,0.00]", "16:79=%[0.00,0.00,0.00]:[2.00,0.80,0.00]";  BloodColor "Orange";
   BloodType "AndroidNeonFluid";
+  BloodColor "ad3002";
   Speed 6;
   FastSpeed 12;
   DamageType "Fire";

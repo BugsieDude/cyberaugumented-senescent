@@ -11,7 +11,7 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   Mass 1000;
   Meleedamage 15;
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
-  BloodColor "7D 9D 59";
+  BloodColor "ad3002";
   SeeSound "wastelandinfiltrator/sight";
   PainSound "wastelandinfiltrator/pain";
   DeathSound "wastelandinfiltrator/death";
@@ -27,6 +27,7 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   Obituary "%o got outsmarted by the Firestormer... in a infernal way.";
   HitObituary "It's the Firestormer's melee flaming move! And %o is dead.";
   DCYMonster.WalkFlames "DCY_WalkFlames";
+  DCYMonster.GibType "DCY_GibletsLava";
   }
   
   void A_WastelandShotty()
@@ -142,6 +143,7 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 	ZRCY K 7;
 	ZRCY K 2
 	{
+		DCY_Gibs(false);
 		A_StartSound("Archon/Explode", CHAN_BODY, attenuation: 0.45);
 		A_SpawnItemEx("DCY_Explosion_1_Biggie", zofs: 25, flags: SXF_NOCHECKPOSITION);
 		A_NoBlocking();

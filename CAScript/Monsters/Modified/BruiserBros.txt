@@ -22,6 +22,21 @@ Class DCY_BaronParent : DCYMonster
   
   bool down;
   
+  void A_BruiserJump()
+  {
+	int jumpheight;
+	int recoilrate;
+	
+	if (target)
+	{
+		recoilrate = (target.pos.z < self.pos.z - 10) ? -10 : -(Distance3D(target) / 10);
+		jumpheight = (target.pos.z < self.pos.z - 10) ? 10 : ((target.pos.z - self.pos.z) / 9.5) + 10;
+	}
+	
+  	A_Recoil((recoilrate < -16) ? -16 : recoilrate);
+	A_Hop((jumpheight > 16) ? 16 : jumpheight);
+  }
+  
   States
   {
   Spawn:
@@ -83,11 +98,10 @@ Class DCY_BaronParent : DCYMonster
 	Goto See;
   GRANDSLAM:
 	B1SS R 6 A_FaceTarget();
-	B1SS QP 4 A_FaceTarget();
+	B1SS QP 6 A_FaceTarget();
 	B0SS P 1
 	{
-		A_Recoil(-16);
-		A_Hop(16);
+		A_BruiserJump();
 		A_FaceTarget();
 	}
 	B0SS P 1
@@ -193,11 +207,10 @@ Class DCY_KnightHell : DCY_BaronParent
 	Goto See;
   GRANDSLAM:
 	SS0B R 10 A_FaceTarget();
-	SS0B Q 4 A_FaceTarget();
+	SS0B QP 6 A_FaceTarget();
 	SS0B P 1
 	{
-		A_Recoil(-15);
-		A_Hop(13);
+		A_BruiserJump();
 		A_FaceTarget();
 	}
 	SS0B P 1
@@ -217,7 +230,7 @@ Class DCY_KnightHell : DCY_BaronParent
 		A_PoundEffect();
 		A_StartSound("Earthpound", CHAN_BODY);
 		A_QuakeEx(3, 3, 3, 50, 0, 300, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 500);
-		A_Explode(25, 150, XF_NOTMISSILE, damagetype: "Bruiser");
+		A_Explode(35, 100, XF_NOTMISSILE, damagetype: "Bruiser");
 		
 		down = false;
 	}
