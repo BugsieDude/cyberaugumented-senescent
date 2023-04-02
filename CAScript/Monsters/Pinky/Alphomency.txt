@@ -198,7 +198,7 @@ Class DCY_AlphomencyProjectile : DoomImpBall
 		A_SpawnItemEx("DCY_BloodParticleX", frandom(-5.0, 5.0), frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(-2, 2), frandom(-2, 2), frandom(2, 2), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 90);
 		for (int i = 3; i > 0; i--)
 		{
-			let bled = Spawn("De_Blood_Trail", pos + (frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0)));
+			let bled = Spawn((!random(0, 1)) ? "De_Blood_Splat" : "De_Blood_BigSplat", pos + (frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0)));
 			if (bled)
 			{
 				bled.vel.x *= vel.x / 4;
@@ -214,9 +214,21 @@ Class DCY_AlphomencyProjectile : DoomImpBall
   Death:
 	BAL3 A 1
 	{
-		for (int i = 12; i > -1; i--) A_SpawnItemEx("De_Blood_Trail", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(15, -15), frandom(-15, 15), frandom(1, 15), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 24);
-		for (int i = 6; i > -1; i--) A_SpawnItemEx("DCY_BloodParticleX", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(15, -15), frandom(-15, 15), frandom(1, 15), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 30);
-		A_SetRoll(frandom(0.00, 360.00));
+		for (int i = random(5, 10); i > 0; i--)
+		{
+			let bld = Spawn("De_Blood_BigSplat", pos + (frandom(-20, 20), frandom(-20, 20), frandom(-20, 20)));
+			if (bld)
+			{
+				bld.scale *= 1.5;
+				bld.vel.x += frandom(-3, 3);
+				bld.vel.y += frandom(-3, 3);
+				bld.vel.z += frandom(1, 3.5);
+				bld.gravity /= 2;
+				bld.translation = self.translation;
+			}
+		}
+		
+		for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_BloodMist", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 90);
 	}
 	Stop;
   }

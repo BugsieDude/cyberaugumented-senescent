@@ -133,6 +133,7 @@ Class DCY_BloodMist : DCY_Effect
 	Alpha 0.01;
 	Scale 1;
 	RenderStyle "Translucent";
+	+NOGRAVITY
   }
   
   override void PostBeginPlay()
