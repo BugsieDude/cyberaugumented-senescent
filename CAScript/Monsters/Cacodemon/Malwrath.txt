@@ -168,8 +168,8 @@ Class DCY_MalwrathSeeker : DCY_MalwrathBall
 		{
 			for (int i = 2; i > 0; i--) A_SeekerMissile(9999, 9999, SMF_PRECISE|SMF_LOOK);
 			A_StartSound("Malwrath/HomingBallSeek", CHAN_BODY);
-			A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 70, 2, fadestepf: -7, sizestep: 10);
-			A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 70, 2, fadestepf: -12, sizestep: 30);
+			A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 30, 2, sizestep: 30);
+			A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 30, 2, sizestep: 10);
 			for (int i = random(10, 20); i > 0; i--) A_SpawnParticleEx(0x03669c, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 50, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4), fadestepf: 0, sizestep: -0.175);	
 			count++;
 			vel.x *= 1.25;
