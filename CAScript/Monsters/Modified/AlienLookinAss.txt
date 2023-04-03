@@ -129,7 +129,7 @@ Class DCY_ArchvileFlameWall : DCY_MeatballElecball
   }
 }
 
-Class DCY_ArchvileBlaze : ArchvileFire Replaces ArchvileFire
+Class DCY_ArchvileBlaze : ArchvileFire
 {
   Default
   {

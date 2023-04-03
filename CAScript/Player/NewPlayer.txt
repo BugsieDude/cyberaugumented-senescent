@@ -278,7 +278,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
   DamageFactor "Ballista", 0.00;
   DamageFactor "Marines", 0.00;
   Player.StartItem "DCY_BurstPistol";
-  Player.StartItem "DCY_HahahaPunchPunch";
+  Player.StartItem "DCY_ThrowHands";
   Player.StartItem "MegasphereHealth", 100;
   //Player.StartItem "DCY_RehauledPlasmaRifle";
   Player.StartItem "Clip", 50;

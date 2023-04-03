@@ -10,7 +10,7 @@ Class DCY_Vandal : DCY_Plutonia
   ActiveSound "Vandal/Active";
   PainSound "Vandal/Pain";
   DeathSound "Vandal/Death";
-  DropItem "DCY_ShitGrenadeThrowItBackPrivate", 100;
+  DropItem "DCY_Grenades", 100;
   DropItem "Chaingun";
   Health 195;
   }

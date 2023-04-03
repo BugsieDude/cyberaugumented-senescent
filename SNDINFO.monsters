@@ -1,7 +1,7 @@
 //Gibbing
 Android/Gib "Sounds/Gore/dcy_android_gib.wav"
 
-$random misc/gibbed { D4GORE1 D4GORE2 D4GORE3 D4GORE4 D4GORE5 D4GORE6 D4GORE7 }
+$random misc/biggibbed { D4GORE1 D4GORE2 D4GORE3 D4GORE4 D4GORE5 D4GORE6 D4GORE7 }
 D4GORE1 "Sounds/Gore/dcy_d4_gore_1.ogg"
 D4GORE2 "Sounds/Gore/dcy_d4_gore_2.ogg"
 D4GORE3 "Sounds/Gore/dcy_d4_gore_3.ogg"

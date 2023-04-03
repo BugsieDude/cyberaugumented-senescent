@@ -46,6 +46,7 @@ extend class CyberaugumentedEventHandler
 			case 'PlasmaBall' : e.Replacement = 'DCY_RehauledPlasma'; break;
 			case 'BFGBall' : e.Replacement = 'DCY_BFGSpheroid'; break;
 			case 'ArachnotronPlasma' : e.Replacement = 'DCY_ArachPlasma'; break;
+			case 'ArchvileFire' : e.Replacement = 'DCY_ArchvileBlaze'; break;
 			
 			//Monster gore
 			case 'DeadZombieman' : e.Replacement = 'DCY_Deadass1'; break;

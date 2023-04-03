@@ -255,3 +255,8 @@ $limit DCYTorch 0
 $limit DCYBurningBarrel 0
 
 DCYExplodingBarrel "Sounds/Replacements/dcy_barrel_explode.ogg"
+
+dcy/freeze "Sounds/Replacements/dcy_icedeath.wav"
+dcy/icebreak "Sounds/Replacements/dcy_icedeath_break.wav"
+$alias misc/freeze dcy/freeze
+$alias misc/icebreak dcy/icebreak
