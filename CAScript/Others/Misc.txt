@@ -1033,6 +1033,7 @@ Class DCY_ABarrelofExplosives : ExplosiveBarrel
     _BXP C 3;
     _BXP D 3
 	{
+		A_StartSound("Explod", CHAN_BODY);
 		A_SpawnItemEx("DCY_Explosion_1", frandom(-20, 20), frandom(-20, 20), frandom(10, 30), flags: SXF_NOCHECKPOSITION);
 		A_Explode();
 		A_QuakeEx(2, 2, 2, 40, 0, 400, "none", QF_RELATIVE|QF_SCALEDOWN, falloff: 800);

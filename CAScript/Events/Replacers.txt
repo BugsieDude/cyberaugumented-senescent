@@ -101,6 +101,16 @@ extend class CyberaugumentedEventHandler
 		case 'PlasmaRifle' :e.Replacement = 'DCY_Disintegration'; break;
 		case 'BFG9000' : e.Replacement = 'DCY_RealityBreakers'; break;
 		
+		case 'Backpack' : e.Replacement = 'DCY_Backpack'; break;
+		case 'Clip' : e.Replacement = 'DCY_Clip'; break;
+		case 'Clipbox' : e.Replacement = 'DCY_ClipBox'; break;
+		case 'Shell' : e.Replacement = 'DCY_Shell'; break;
+		case 'Shellbox' : e.Replacement = 'DCY_ShellBox'; break;
+		case 'RocketAmmo' : e.Replacement = 'DCY_RocketA'; break;
+		case 'Rocketbox' : e.Replacement = 'DCY_Rocketbox'; break;
+		case 'Cell' : e.Replacement = 'DCY_Cell'; break;
+		case 'Cellpack' : e.Replacement = 'DCY_Cellpack'; break;
+		
 		//items
 		case 'HealthBonus' : e.Replacement = 'DCY_Helth'; break;
 		case 'Stimpack' : e.Replacement = 'DCY_Steempack'; break;

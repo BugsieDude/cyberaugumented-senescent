@@ -1,5 +1,4 @@
-//Backpacks
-Class DCY_Backpack : Backpack Replaces Backpack
+Class DCY_Backpack : Backpack
 {
   Mixin DCY_Progression;
   
@@ -18,7 +17,7 @@ Class DCY_Backpack : Backpack Replaces Backpack
   }
 }
 
-Class DCY_Clip : Clip Replaces Clip
+Class DCY_Clip : Clip
 {
   Default
   {
@@ -42,7 +41,7 @@ Class DCY_Clip : Clip Replaces Clip
   }
 }
 
-Class DCY_ClipBox : ClipBox Replaces ClipBox
+Class DCY_ClipBox : ClipBox
 {
   Default
   {
@@ -66,7 +65,7 @@ Class DCY_ClipBox : ClipBox Replaces ClipBox
   }
 }
 
-Class DCY_Shell : Shell Replaces Shell
+Class DCY_Shell : Shell
 {
   Default
   {
@@ -90,7 +89,7 @@ Class DCY_Shell : Shell Replaces Shell
   }
 }
 
-Class DCY_Shellbox : ShellBox Replaces ShellBox
+Class DCY_Shellbox : ShellBox
 {
   Default
   {
@@ -114,7 +113,7 @@ Class DCY_Shellbox : ShellBox Replaces ShellBox
   }
 }
 
-Class DCY_RocketA : RocketAmmo Replaces RocketAmmo
+Class DCY_RocketA : RocketAmmo
 {
   Default
   {
@@ -138,7 +137,7 @@ Class DCY_RocketA : RocketAmmo Replaces RocketAmmo
   }
 }
 
-Class DCY_RocketBox : RocketBox Replaces RocketBox
+Class DCY_RocketBox : RocketBox
 {
   Default
   {
@@ -162,7 +161,7 @@ Class DCY_RocketBox : RocketBox Replaces RocketBox
   }
 }
 
-Class DCY_Cell : Cell Replaces Cell
+Class DCY_Cell : Cell
 {
   Default
   {
@@ -186,7 +185,7 @@ Class DCY_Cell : Cell Replaces Cell
   }
 }
 
-Class DCY_Cellpack : Cellpack Replaces Cellpack
+Class DCY_Cellpack : Cellpack
 {
   Default
   {
