@@ -19,6 +19,13 @@ Class DCY_ArachnoParent : DCYMonster
   Species "Arachno";
   DCYMonster.GibType "DCY_FatGiblets";
   }
+  
+  void A_BabyMetal()
+  {
+	A_StartSound("dcyarachno/walk", CHAN_BODY, CHANF_DEFAULT, 1, ATTN_IDLE);
+	A_Chase();
+  }
+	
   States
   {
   Spawn:

@@ -30,50 +30,49 @@ D4BGORE5 "Sounds/Gore/dcy_d4_bubbling_gore_5.ogg"
 D4BGORE6 "Sounds/Gore/dcy_d4_bubbling_gore_6.ogg"
 
 //Voices
-grunt/burn "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_burn.ogg"
-$random grunt2/sight { XSPOSIT1 XSPOSIT2 XSPOSIT3 }
+dcygrunt/burn "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_burn.ogg"
+$random dcygrunt/sight { XSPOSIT1 XSPOSIT2 XSPOSIT3 }
 XSPOSIT1 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_sight1.ogg"
 XSPOSIT2 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_sight2.ogg"
 XSPOSIT3 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_sight3.ogg"
-grunt2/pain "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_pain.ogg"
-$random grunt2/Death { XSPODTH1 XSPODTH2 XSPODTH3 }
+dcygrunt/pain "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_pain.ogg"
+dcygrunt/idle "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_idle.wav"
+$random dcygrunt/Death { XSPODTH1 XSPODTH2 XSPODTH3 }
 XSPODTH1 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_death1.ogg"
 XSPODTH2 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_death2.ogg"
 XSPODTH3 "Sounds/DCY Monsters/Hell Soldier/dcy_soldier_death3.ogg"
 
-$random shotguy/sight { shotguy/sight1 shotguy/sight2 shotguy/sight3 shotguy/sight4 shotguy/sight5 shotguy/sight6 }
-$random shotguy/pain { shotguy/pain1 shotguy/pain2 shotguy/pain2 shotguy/pain2 shotguy/pain2 }
-$random shotguy/death { shotguy/death1 shotguy/death2 shotguy/death3 }
-shotguy/sight1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight1.ogg"
-shotguy/sight2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight2.ogg"
-shotguy/sight3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight3.ogg"
-shotguy/sight4 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight4.ogg"
-shotguy/sight5 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight5.ogg"
-shotguy/sight6 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight6.ogg"
-shotguy/active "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_idle.ogg"
-shotguy/pain "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_pain.ogg"
-shotguy/death1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death1.ogg"
-shotguy/death2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death2.ogg"
-shotguy/death3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death3.ogg"
-$random shotguy/burn { shotguy/burn1 shotguy/burn2 shotguy/burn3 }
-shotguy/burn1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn1.ogg"
-shotguy/burn2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn2.ogg"
-shotguy/burn3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn3.ogg"
+$random dcyshotguy/sight { dcyshotguy/sight1 dcyshotguy/sight2 dcyshotguy/sight3 dcyshotguy/sight4 dcyshotguy/sight5 dcyshotguy/sight6 }
+$random dcyshotguy/pain { dcyshotguy/pain1 dcyshotguy/pain2 dcyshotguy/pain2 dcyshotguy/pain2 dcyshotguy/pain2 }
+$random dcyshotguy/death { dcyshotguy/death1 dcyshotguy/death2 dcyshotguy/death3 }
+dcyshotguy/sight1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight1.ogg"
+dcyshotguy/sight2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight2.ogg"
+dcyshotguy/sight3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight3.ogg"
+dcyshotguy/sight4 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight4.ogg"
+dcyshotguy/sight5 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight5.ogg"
+dcyshotguy/sight6 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_sight6.ogg"
+dcyshotguy/active "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_idle.ogg"
+dcyshotguy/pain "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_pain.ogg"
+dcyshotguy/death1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death1.ogg"
+dcyshotguy/death2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death2.ogg"
+dcyshotguy/death3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_death3.ogg"
+$random dcyshotguy/burn { dcyshotguy/burn1 dcyshotguy/burn2 dcyshotguy/burn3 }
+dcyshotguy/burn1 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn1.ogg"
+dcyshotguy/burn2 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn2.ogg"
+dcyshotguy/burn3 "Sounds/DCY Monsters/Hell Sergeant/dcy_sergeant_burn3.ogg"
 
-$random chainguy/sight { CGSIGHT CGSIGHT2 CGSIGHT3 CGSIGHT4 CGSIGHT5 }
+$random dcychainguy/sight { CGSIGHT CGSIGHT2 CGSIGHT3 CGSIGHT4 CGSIGHT5 }
 CGSIGHT "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_sight1.ogg"
 CGSIGHT2 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_sight2.ogg"
 CGSIGHT3 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_sight3.ogg"
 CGSIGHT4 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_sight4.ogg"
 CGSIGHT5 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_sight5.ogg"
-chainguy/active "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_idle.ogg"
-chainguy/pain "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_pain.ogg"
-$random chainguy/death { CGDTH1 CGDTH2 }
+dcychainguy/active "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_idle.ogg"
+dcychainguy/pain "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_pain.ogg"
+$random dcychainguy/death { CGDTH1 CGDTH2 }
 CGDTH1 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_death1.ogg"
 CGDTH2 "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_death2.ogg"
-chainguy/burn "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_burn.ogg"
-
-caco/pain "Sounds/Replacements/dcy_cacodemon_pain.wav"
+dcychainguy/burn "Sounds/DCY Monsters/Hell Commando/dcy_rifle_zombie_burn.ogg"
 
 $random dastard/sight { dcy_dsit1 dcy_dsit2 dcy_dsit3 dcy_dsit4 dcy_dsit5 dcy_dsit6 dcy_dsit7 }
 dcy_dsit1 "Sounds/DCY Monsters/Dastard/dcy_dastard_sight1.ogg"
@@ -113,7 +112,7 @@ SSGZPAI5 "Sounds/DCY Monsters/SSG Soldier/dcy_ssgsoldier_pain5.ogg"
 SSGZPAI6 "Sounds/DCY Monsters/SSG Soldier/dcy_ssgsoldier_pain6.ogg"
 SSGZPAI7 "Sounds/DCY Monsters/SSG Soldier/dcy_ssgsoldier_pain7.ogg"
 
-$random vile/death { VILDTH1 VILDTH2 VILDTH3 VILDTH4 VILDTH5 VILDTH6 VILDTH7 VILDTH8 VILDTH9 }
+$random dcyvile/death { VILDTH1 VILDTH2 VILDTH3 VILDTH4 VILDTH5 VILDTH6 VILDTH7 VILDTH8 VILDTH9 }
 VILDTH1 "Sounds/DCY Monsters/Vile/dcy_vile_death1.ogg"
 VILDTH2 "Sounds/DCY Monsters/Vile/dcy_vile_death2.ogg"
 VILDTH3 "Sounds/DCY Monsters/Vile/dcy_vile_death3.ogg"
@@ -123,7 +122,7 @@ VILDTH6 "Sounds/DCY Monsters/Vile/dcy_vile_death6.ogg"
 VILDTH7 "Sounds/DCY Monsters/Vile/dcy_vile_death7.ogg"
 VILDTH8 "Sounds/DCY Monsters/Vile/dcy_vile_death8.ogg"
 VILDTH9 "Sounds/DCY Monsters/Vile/dcy_vile_death9.ogg"
-$random vile/pain { VILPAI1 VILPAI2 VILPAI3 VILPAI4 VILPAI5 VILPAI6 VILPAI7 VILPAI8 VILPAI9 VILPAI10 }
+$random dcyvile/pain { VILPAI1 VILPAI2 VILPAI3 VILPAI4 VILPAI5 VILPAI6 VILPAI7 VILPAI8 VILPAI9 VILPAI10 }
 VILPAI1 "Sounds/DCY Monsters/Vile/dcy_vile_pain1.ogg"
 VILPAI2 "Sounds/DCY Monsters/Vile/dcy_vile_pain2.ogg"
 VILPAI3 "Sounds/DCY Monsters/Vile/dcy_vile_pain3.ogg"
@@ -134,7 +133,7 @@ VILPAI7 "Sounds/DCY Monsters/Vile/dcy_vile_pain7.ogg"
 VILPAI8 "Sounds/DCY Monsters/Vile/dcy_vile_pain8.ogg"
 VILPAI9 "Sounds/DCY Monsters/Vile/dcy_vile_pain9.ogg"
 VILPAI10 "Sounds/DCY Monsters/Vile/dcy_vile_pain10.ogg"
-$random vile/sight { VILSIT1 VILSIT2 VILSIT3 VILSIT4 VILSIT5 VILSIT6 VILSIT7 VILSIT8 VILSIT9 VILSIT10 VILSIT11 VILSIT12 VILSIT13 VILSIT14 VILSIT15 VILSIT16 VILSIT17 }
+$random dcyvile/sight { VILSIT1 VILSIT2 VILSIT3 VILSIT4 VILSIT5 VILSIT6 VILSIT7 VILSIT8 VILSIT9 VILSIT10 VILSIT11 VILSIT12 VILSIT13 VILSIT14 VILSIT15 VILSIT16 VILSIT17 }
 VILSIT1 "Sounds/DCY Monsters/Vile/dcy_vile_sight1.ogg"
 VILSIT2 "Sounds/DCY Monsters/Vile/dcy_vile_sight2.ogg"
 VILSIT3 "Sounds/DCY Monsters/Vile/dcy_vile_sight3.ogg"
@@ -152,7 +151,7 @@ VILSIT14 "Sounds/DCY Monsters/Vile/dcy_vile_sight14.ogg"
 VILSIT15 "Sounds/DCY Monsters/Vile/dcy_vile_sight15.ogg"
 VILSIT16 "Sounds/DCY Monsters/Vile/dcy_vile_sight16.ogg"
 VILSIT17 "Sounds/DCY Monsters/Vile/dcy_vile_sight17.ogg"
-$random vile/active { VILACT1 VILACT2 VILACT3 VILACT4 VILACT5 VILACT6 VILACT7 VILACT8 VILACT9 VILACT10 VILACT11 VILACT12 VILACT13 VILACT14 VILACT15 VILACT16 VILACT17 VILACT18 VILACT19 VILACT20 VILACT21 VILACT22 VILACT23 }
+$random dcyvile/active { VILACT1 VILACT2 VILACT3 VILACT4 VILACT5 VILACT6 VILACT7 VILACT8 VILACT9 VILACT10 VILACT11 VILACT12 VILACT13 VILACT14 VILACT15 VILACT16 VILACT17 VILACT18 VILACT19 VILACT20 VILACT21 VILACT22 VILACT23 }
 VILACT1 "Sounds/DCY Monsters/Vile/dcy_vile_idle1.ogg"
 VILACT2 "Sounds/DCY Monsters/Vile/dcy_vile_idle2.ogg"
 VILACT3 "Sounds/DCY Monsters/Vile/dcy_vile_idle3.ogg"
@@ -176,7 +175,7 @@ VILACT20 "Sounds/DCY Monsters/Vile/dcy_vile_idle20.ogg"
 VILACT21 "Sounds/DCY Monsters/Vile/dcy_vile_idle21.ogg"
 VILACT22 "Sounds/DCY Monsters/Vile/dcy_vile_idle22.ogg"
 VILACT23 "Sounds/DCY Monsters/Vile/dcy_vile_idle23.ogg"
-vile/raise "Sounds/DCY Monsters/Vile/dcy_vile_raise_enemy.ogg"
+dcyvile/raise "Sounds/DCY Monsters/Vile/dcy_vile_raise_enemy.ogg"
 
 HX/Sight "Sounds/DCY Monsters/Hexodenican/dcy_hexodenican_sight.ogg"
 HX/Active "Sounds/DCY Monsters/Hexodenican/dcy_hexodenican_active.ogg"
@@ -2887,6 +2886,8 @@ DCYArachnophobia/death2 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_dea
 DCYArachnophobia/death3 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_death3.ogg"
 DCYArachnophobia/death4 "Sounds/DCY Monsters/Arachnophobia/dcy_arachnophobia_death4.ogg"
 
+DCYLost/Active "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_idle.ogg"
+DCYLost/Pain "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_pain.ogg"
 $random DCYLost/Scream { DCYLost/Scream1 DCYLost/Scream2 DCYLost/Scream3 DCYLost/Scream4 DCYLost/Scream5 DCYLost/Scream6 }
 DCYLost/Scream1 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream1.ogg"
 DCYLost/Scream2 "Sounds/DCY Monsters/Tormented Psyche/dcy_lostsoul_scream2.ogg"

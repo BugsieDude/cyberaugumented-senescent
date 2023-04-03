@@ -77,14 +77,14 @@ Class DCY_TorchBase : Actor
   }
 }
 
-Class DCY_RedTorch : DCY_TorchBase Replaces RedTorch { Default { DCY_TorchBase.TorchSprite "TRED"; DCY_TorchBase.FireColor "eb5534"; } }
-Class DCY_BlueTorch : DCY_TorchBase Replaces BlueTorch { Default { DCY_TorchBase.TorchSprite "TBLU"; DCY_TorchBase.FireColor "2b4eed"; } }
-Class DCY_GreenTorch : DCY_TorchBase Replaces GreenTorch { Default { DCY_TorchBase.TorchSprite "TGRN"; DCY_TorchBase.FireColor "72ed2b"; } }
-Class DCY_ShortRedTorch : DCY_TorchBase Replaces ShortRedTorch { Default { DCY_TorchBase.TorchSprite "SMRT"; DCY_TorchBase.FireColor "eb5534"; DCY_TorchBase.smallTorch true; } }
-Class DCY_ShortBlueTorch : DCY_TorchBase Replaces ShortBlueTorch { Default { DCY_TorchBase.TorchSprite "SMBT"; DCY_TorchBase.FireColor "2b4eed"; DCY_TorchBase.smallTorch true; } }
-Class DCY_ShortGreenTorch : DCY_TorchBase Replaces ShortGreenTorch { Default { DCY_TorchBase.TorchSprite "SMGT"; DCY_TorchBase.FireColor "72ed2b"; DCY_TorchBase.smallTorch true; } }
+Class DCY_RedTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "TRED"; DCY_TorchBase.FireColor "eb5534"; } }
+Class DCY_BlueTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "TBLU"; DCY_TorchBase.FireColor "2b4eed"; } }
+Class DCY_GreenTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "TGRN"; DCY_TorchBase.FireColor "72ed2b"; } }
+Class DCY_ShortRedTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "SMRT"; DCY_TorchBase.FireColor "eb5534"; DCY_TorchBase.smallTorch true; } }
+Class DCY_ShortBlueTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "SMBT"; DCY_TorchBase.FireColor "2b4eed"; DCY_TorchBase.smallTorch true; } }
+Class DCY_ShortGreenTorch : DCY_TorchBase { Default { DCY_TorchBase.TorchSprite "SMGT"; DCY_TorchBase.FireColor "72ed2b"; DCY_TorchBase.smallTorch true; } }
 
-Class DCY_BurningBarrel : BurningBarrel Replaces BurningBarrel
+Class DCY_BurningBarrel : BurningBarrel
 {
   Mixin DCY_Effects;
   

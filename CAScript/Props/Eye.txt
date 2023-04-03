@@ -1,4 +1,4 @@
-Class DCY_EvilEye : EvilEye Replaces EvilEye
+Class DCY_EvilEye : EvilEye
 {
   override void PostBeginPlay()
   {

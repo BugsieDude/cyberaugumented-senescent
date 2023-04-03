@@ -1,4 +1,4 @@
-Class DCY_HahahaPunchPunch : DCY_Weapon Replaces Fist
+Class DCY_ThrowHands : DCY_Weapon
 {
   Default
   {
@@ -44,7 +44,7 @@ Class DCY_HahahaPunchPunch : DCY_Weapon Replaces Fist
   Fire2:
 	F1ST J 0;
 	F1ST J 1 A_StartSound("Fist/Woosh", CHAN_5);
-	F1ST K 1 A_CustomPunch(20 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F1ST K 1 A_CustomPunch(10 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
 	F1ST LM 1;
 	F1ST FGHI 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH|WRF_NOBOB);
 	Goto Ready;
@@ -62,7 +62,7 @@ Class DCY_HahahaPunchPunch : DCY_Weapon Replaces Fist
   AltFire2:
 	F2ST J 0;
 	F2ST J 1 A_StartSound("Fist/Woosh", CHAN_5);
-	F2ST K 1 A_CustomPunch(20 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
+	F2ST K 1 A_CustomPunch(10 * random(1, 10), TRUE, pufftype: "DCY_FistPuff", range: 70, meleesound: "Fist/PunchEntity");
 	F2ST LM 1;
 	F2ST FGHI 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH|WRF_NOBOB);
 	Goto Ready;

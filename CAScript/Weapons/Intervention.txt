@@ -1,4 +1,4 @@
-Class DCY_ShitGrenadeThrowItBackPrivate : DCY_Weapon
+Class DCY_Grenades : DCY_Weapon
 {
   Default
   {

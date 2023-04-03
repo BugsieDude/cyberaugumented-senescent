@@ -1,4 +1,4 @@
-Class DCY_CuethemetalslugannounceersayingRocketLauncher : DCY_Weapon Replaces RocketLauncher
+Class DCY_Legionnaire : DCY_Weapon
 {
   Default
   {

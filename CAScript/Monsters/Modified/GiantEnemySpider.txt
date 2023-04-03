@@ -17,7 +17,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	+DONTMORPH
 	+BOSSDEATH
 	SeeSound "DCYMatriarch/Sight";
-	AttackSound "spider/attack";
+	AttackSound "";
 	PainSound "DCYMatriarch/Pain";
 	DeathSound "DCYMatriarch/Death";
 	ActiveSound "DCYMatriarch/Idle";
@@ -31,7 +31,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
   void A_MetalII()
   {
 	A_QuakeEx(0, 0, 1, 200, 0, 25, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
-	A_StartSound("spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.7, 0.8));
+	A_StartSound("dcyspider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.7, 0.8));
   }
   
   States

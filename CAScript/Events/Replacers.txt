@@ -2,12 +2,157 @@ extend class CyberaugumentedEventHandler
 {
   override void CheckReplacement(ReplaceEvent e)
   {
+	let m = e.Replacee.GetClassName();
+	
 	if(!sv_dcy_progressivespawns) 
     {    
-		switch(e.Replacee.GetClassName())
+		switch(m)
 		{
 			case 'DCY_RareImp2' : e.Replacement = 'DCY_Dastard'; break;
 		}
+	}
+	
+	if (dcy_monsters)
+	{
+		switch(m)
+		{
+			//Main monsters
+			case 'ZombieMan' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_UndeadGuys' : 'DCY_Zombe'; break;
+			case 'ShotgunGuy' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_Shotgunners' : 'DCY_ShotgunZombe'; break;
+			case 'ChaingunGuy' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_PlutoniaExperiment' : 'DCY_Plutonia'; break;
+			case 'DoomImp' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_Impo' : 'DCY_Dastard'; break;
+			case 'LostSoul' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_GhostRider' : 'DCY_FlamingCranium'; break;
+			case 'Demon' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_DemonPigs' : 'DCY_Pinke'; break;
+			case 'Spectre' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_CrazyStealth' : 'DCY_PinkeII'; break;
+			case 'Fatso' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_Blubber' : 'DCY_SkinnyFat'; break;
+			case 'Arachnotron' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_LittleSpedor' : 'DCY_SmallEnemySpider'; break;
+			case 'PainElemental' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_GroupsAndKeepers' : 'DCY_Befouler'; break;
+			case 'Cacodemon' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_RedMeatball' : 'DCY_FlyingMeatballOutOfTouch'; break;
+			case 'Archvile' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_MadMartian' : 'DCY_Auteur'; break;
+			case 'Revenant' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_SpookySkeletonWithRocketLaunchers' : 'DCY_GloomKnight'; break;
+			case 'HellKnight' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_Warriors' : 'DCY_KnightHell'; break;
+			case 'BaronOfHell' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_BuffBruiser' : 'DCY_HeckBaron'; break;
+			case 'Cyberdemon' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_TheTyrant' : 'DCY_NavyTerminator'; break;
+			case 'SpiderMastermind' : e.Replacement = (!dcy_vanillaspawns) ? 'DCY_Spooder' : 'DCY_TheGiantEnemySpider'; break;
+			
+			//Unto the projectiles
+			case 'DoomImpBall' : e.Replacement = 'DCY_ImpFireball'; break;
+			case 'FatShot' : e.Replacement = 'DCY_LeFatFireball'; break;
+			case 'BaronBall' : e.Replacement = 'DCY_BaronFireball'; break;
+			case 'SpawnShot' : e.Replacement = 'DCY_SpawnShot'; break;
+			case 'CacodemonBall' : e.Replacement = 'DCY_MeatballElecball'; break;
+			case 'RevenantTracer' : e.Replacement = 'DCY_HomingMissile'; break;
+			case 'Rocket' : e.Replacement = 'DCY_OverhauledRocket'; break;
+			case 'PlasmaBall' : e.Replacement = 'DCY_RehauledPlasma'; break;
+			case 'BFGBall' : e.Replacement = 'DCY_BFGSpheroid'; break;
+			case 'ArachnotronPlasma' : e.Replacement = 'DCY_ArachPlasma'; break;
+			
+			//Monster gore
+			case 'DeadZombieman' : e.Replacement = 'DCY_Deadass1'; break;
+			case 'DeadShotgunGuy' : e.Replacement = 'DCY_Deadass2'; break;
+			case 'DeadDoomImp' : e.Replacement = 'DCY_Deadass3'; break;
+			case 'DeadDemon' : e.Replacement = 'DCY_Deadass4'; break;
+			case 'DeadCacodemon' : e.Replacement = 'DCY_Deadass5'; break;
+		}
+	}
+	
+	if (dcy_ios && dcy_monsters)
+	{
+		switch(m)
+		{
+			case 'BossBrain' : e.Replacement = 'DCY_IoSBrain'; break;
+			case 'BossEye' : e.Replacement = 'DCY_IoSEye'; break;
+		}
+	}
+			
+	if (dcy_props)
+	{
+		switch (m)
+		{
+			//General Props
+			case 'RedTorch' : e.Replacement = 'DCY_RedTorch'; break;
+			case 'GreenTorch' : e.Replacement = 'DCY_GreenTorch'; break;
+			case 'BlueTorch' : e.Replacement = 'DCY_BlueTorch'; break;
+			case 'ShortRedTorch' : e.Replacement = 'DCY_ShortRedTorch'; break;
+			case 'ShortGreenTorch' : e.Replacement = 'DCY_ShortGreenTorch'; break;
+			case 'ShortBlueTorch' : e.Replacement = 'DCY_ShortBlueTorch'; break;
+			case 'BurningBarrel' : e.Replacement = 'DCY_BurningBarrel'; break;
+			case 'ExplosiveBarrel' : e.Replacement = 'DCY_ABarrelofExplosives'; break;
+			case 'EvilEye' : e.Replacement = 'DCY_EvilEye'; break;
+			
+			//And gore
+			case 'Meat3' : e.Replacement = 'DCY_Meat3'; break;
+			case 'LiveStick' : e.Replacement = 'DCY_Impaled'; break;
+			case 'DeadStick' : e.Replacement = 'DCY_Impaled2'; break;
+			case 'DeadMarine' : case 'GibbedMarine' : e.Replacement = 'DCY_Deadass'; break;
+		}
+	}
+	
+	switch (m)
+	{
+		//weps
+		case 'Fist' : e.Replacement = 'DCY_ThrowHands'; break;
+		case 'Chainsaw' : e.Replacement = 'DCY_PowerSaw'; break;
+		case 'Pistol' : e.Replacement = 'DCY_Razorwind'; break;
+		case 'Shotgun' : e.Replacement = 'DCY_Shotty'; break;
+		case 'SuperShotgun' : e.Replacement = 'DCY_SuperShotty'; break;
+		case 'Chaingun' : e.Replacement = 'DCY_Yatata'; break;	
+		case 'RocketLauncher' : e.Replacement = 'DCY_ExplodinTime'; break;
+		case 'PlasmaRifle' :e.Replacement = 'DCY_Disintegration'; break;
+		case 'BFG9000' : e.Replacement = 'DCY_RealityBreakers'; break;
+		
+		//items
+		case 'HealthBonus' : e.Replacement = 'DCY_Helth'; break;
+		case 'Stimpack' : e.Replacement = 'DCY_Steempack'; break;
+		case 'Medikit' : e.Replacement = 'DCY_ThatOneMediKit'; break;
+		case 'ArmorBonus' : e.Replacement = 'DCY_Canister'; break;
+		case 'GreenArmor' : e.Replacement = 'DCY_GreenArmorThing'; break;
+		case 'BlueArmor' : e.Replacement = 'DCY_MarineArmorThing'; break;
+		
+		case 'Soulsphere' : e.Replacement = 'DCY_Supercharged'; break;
+		case 'Megasphere' : e.Replacement = 'DCY_Megaspheres'; break;
+		case 'BlurSphere' : e.Replacement = 'DCY_PartialBlurReplacementShitThingy'; break;
+		case 'BlurSphere' : e.Replacement = 'DCY_PartialBlurReplacementShitThingy'; break;
+		case 'Infrared' : e.Replacement = 'DCY_Infrared'; break;
+		case 'RadSuit' : e.Replacement = 'DCY_RadiationSymbol'; break;
+		case 'Berserk' : e.Replacement = 'DCY_Berserk'; break;
+		case 'InvulnerabilitySphere' : e.Replacement = 'DCY_UltrapissInvulnerability'; break;
+		case 'AllMap' : e.Replacement = 'DCY_AllMap'; break;
+		
+		case 'RedCard' : e.Replacement = 'DCY_RKey'; break;
+		case 'RedSkull' : e.Replacement = 'DCY_RCranium'; break;
+		case 'BlueCard' : e.Replacement = 'DCY_BKey'; break;
+		case 'BlueSkull' : e.Replacement = 'DCY_BCranium'; break;
+		case 'YellowCard' : e.Replacement = 'DCY_YKey'; break;
+		case 'YellowSkull' : e.Replacement = 'DCY_YCranium'; break;
+	}
+  }
+  
+  override void CheckReplacee(ReplacedEvent e)
+  {
+	if(!dcy_monsters) return;
+	name m = e.Replacement.GetClassName();
+	switch(m)
+	{
+		case 'DCY_UndeadGuys' : if(dcy_zombieman) e.Replacee = 'Zombieman'; break;
+		case 'DCY_Shotgunners' : if(dcy_shotgunner) e.Replacee = 'ShotgunGuy'; break;
+		case 'DCY_PlutoniaExperiment' : if(dcy_chaingunner) e.Replacee = 'ChaingunGuy'; break;
+		case 'DCY_Impo'	: if(dcy_imp) e.Replacee = 'DoomImp'; break;
+		case 'DCY_DemonPigs' : if(dcy_demon) e.Replacee = 'Demon'; break;
+		case 'DCY_CrazyStealth' : if(dcy_spectre) e.Replacee = 'Spectre'; break;
+		case 'DCY_RedMeatball' : if(dcy_caco) e.Replacee = 'Cacodemon'; break;
+		case 'DCY_GroupsAndKeepers' : if(dcy_pain) e.Replacee = 'PainElemental'; break;
+		case 'DCY_GhostRider' : if(dcy_soul) e.Replacee = 'LostSoul'; break;
+		case 'DCY_SpookySkeletonWithRocketLaunchers' : if(dcy_revenant) e.Replacee = 'Revenant'; break;
+		case 'DCY_Blubber' : if(dcy_fatso) e.Replacee = 'Fatso'; break;
+		case 'DCY_LittleSpedor' : if(dcy_arachno) e.Replacee = 'Arachnotron'; break;
+		case 'DCY_BuffBruiser' : if(dcy_baron) e.Replacee = 'BaronOfHell'; break;
+		case 'DCY_Warriors' : if(dcy_knight) e.Replacee = 'HellKnight'; break;
+		case 'DCY_MadMartian' : if(dcy_vile) e.Replacee = 'Archvile'; break;
+		case 'DCY_TheTyrant' : if(dcy_cyber) e.Replacee = 'Cyberdemon'; break;
+		case 'DCY_Spooder' : if(dcy_mastermind) e.Replacee = 'SpiderMastermind'; break;
+		case 'DCY_IoSBrain' : if(dcy_ios2) e.Replacee = 'BossBrain'; break;
+		case 'DCY_SpawnShot' : if(dcy_ios2) e.Replacee = 'SpawnShot'; break;
 	}
   }
 }

@@ -1,4 +1,4 @@
-Class DCY_Infrared : Infrared Replaces Infrared
+Class DCY_Infrared : Infrared
 {
   Default
   {
@@ -15,7 +15,7 @@ Class DCY_Infrared : Infrared Replaces Infrared
   }
 }
 
-Class DCY_Palisade : CustomInventory Replaces BlurSphere
+Class DCY_Palisade : CustomInventory
 {
   Default
   {

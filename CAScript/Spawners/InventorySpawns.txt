@@ -1,0 +1,81 @@
+Class DCY_Shotty : DCY_Spawner
+{
+	Default {
+	DropItem "DCY_CombatShotgun", 0, 100;
+	DropItem "DCY_UnderlineShotgun", 5, 50; }
+}
+
+Class DCY_ExplodinTime : DCY_Spawner
+{
+	Default {
+	DropItem "DCY_Legionnaire", 0, 100;
+	DropItem "DCY_Grenades", 0, 80; }
+}
+
+Class DCY_Yatata : DCY_Spawner
+{
+	Default {
+	DropItem "DCY_CyberRifle", 0, 100;
+	DropItem "DCY_Minigun", 5, 50; }
+}
+
+Class DCY_Disintegration : DCY_Spawner
+{
+	Default {
+	DropItem "DCY_RehauledPlasmaRifle", 0, 100;
+	DropItem "DCY_BallistaManefista", 10, 30;
+	DropItem "DCY_NeonicWand", 10, 10; }
+}
+
+Class DCY_RealityBreakers : DCY_Spawner
+{
+	Default {
+	DropItem "DCY_TheBFG9000", 0, 100;
+	DropItem "DCY_TheBFG10000", 5, 60;
+	DropItem "DCY_SiriusCrisis", 10, 30;
+	DropItem "DCY_VeneratedTruncheon", 20, 1; }
+}
+
+//Items
+Class DCY_MarineArmorThing : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_BlueArmorThing", 0, 150;
+  DropItem "DCY_HiResArmorThing", 0, 60;
+  }
+}
+
+Class DCY_Supercharged : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_UltrapissSoulSphere", 0, 150;
+  DropItem "DCY_Rehabiliation", 5, 100;
+  DropItem "DCY_Supremacy", 10, 40;
+  }
+}
+
+Class DCY_Megaspheres : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_UltrapissMegasphere", 0, 150;
+  DropItem "DCY_UncoSphere", 8, 50;
+  DropItem "DCY_VesticalAbettance", 5, 100;
+  }
+}
+
+Class DCY_PartialBlurReplacementShitThingy : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Palisade", 0, 155;
+  DropItem "DCY_Crosscut", 0, 100;
+  DropItem "DCY_Deterrence", 0, 90;
+  DropItem "DCY_RazeHexahedron", 10, 75;
+  DropItem "DCY_Prospect", 5, 70;
+  DropItem "DCY_Barricade", 5, 65;
+  DropItem "DCY_VesticalAbettance", 0, 70;
+  }
+}

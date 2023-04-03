@@ -1,4 +1,4 @@
-Class DCY_TheBFG9000 : DCY_Weapon Replaces BFG9000
+Class DCY_TheBFG9000 : DCY_Weapon
 {
   Default
   {
@@ -14,14 +14,18 @@ Class DCY_TheBFG9000 : DCY_Weapon Replaces BFG9000
 	Weapon.UpSound "BFG10000Proto/UP";
 	Inventory.PickupSound "BFG10000Proto/UP";
   }
-
+  
   action void A_BFG()
   {
+	if (player == null) return;
+	
 	A_QuakeEx(3, 3, 3, 34, 0, 200, "", QF_SCALEDOWN, falloff: 400);
-	A_FireProjectile("DCY_BFGSpheroid", 0, 0);
-	invoker.DepleteAmmo(invoker.bAltFire, true);
-	A_GunFlash();
 	A_StartSound("DCYBFGX/FIRE", CHAN_6, CHANF_DEFAULT, 0.65, ATTN_IDLE);
+	
+	Weapon weap = player.ReadyWeapon;
+	if (weap != null && invoker == weap && stateinfo != null && stateinfo.mStateType == STATE_Psprite)
+		if (!weap.DepleteAmmo (weap.bAltFire, true, deh.BFGCells)) return;
+	SpawnPlayerMissile("DCY_BFGSpheroid", angle, nofreeaim:sv_nobfgaim);
   }
   
   States

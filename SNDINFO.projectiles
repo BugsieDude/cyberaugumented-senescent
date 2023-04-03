@@ -4,44 +4,44 @@ impc2 "Sounds/Projectiles/dcy_dastard_charge2.ogg"
 impc3 "Sounds/Projectiles/dcy_dastard_charge3.ogg"
 impc4 "Sounds/Projectiles/dcy_dastard_charge4.ogg"
 impc5 "Sounds/Projectiles/dcy_dastard_charge5.ogg"
-imp/attack "Sounds/Projectiles/dcy_dastard_fire.ogg"
-$random imp/shotx { impx1 impx2 impx3 impx4 }
+dcyimp/attack "Sounds/Projectiles/dcy_dastard_fire.ogg"
+$random dcyimp/shotx { impx1 impx2 impx3 impx4 }
 impx1 "Sounds/Projectiles/dcy_dastard_fire_impact1.ogg"
 impx2 "Sounds/Projectiles/dcy_dastard_fire_impact2.ogg"
 impx3 "Sounds/Projectiles/dcy_dastard_fire_impact3.ogg"
 impx4 "Sounds/Projectiles/dcy_dastard_fire_impact4.ogg"
 
-$random caco/attack { cacof1 cacof2 }
+$random dcycaco/attack { cacof1 cacof2 }
 cacof1 "Sounds/DCY SFX/dcy_cacofire1.ogg"
 cacof2 "Sounds/DCY SFX/dcy_cacofire2.ogg"
-$alias caco/shotx imp/shotx
+$alias dcycaco/shotx imp/shotx
 
-$alias baron/attack imp/attack
-$alias baron/shotx imp/shotx
+$alias dcybaron/attack dcyimp/attack
+$alias dcybaron/shotx dcyimp/shotx
 
-$random fatso/attack { fatm1 fatm2 fatm3 }
+$random dcyfatso/attack { fatm1 fatm2 fatm3 }
 fatm1 "Sounds/DCY SFX/dcy_fatso_fire1.ogg"
 fatm2 "Sounds/DCY SFX/dcy_fatso_fire2.ogg"
 fatm3 "Sounds/DCY SFX/dcy_fatso_fire3.ogg"
-$alias fatso/shotx imp/shotx
+$alias dcyfatso/shotx dcyimp/shotx
 
-$random skeleton/attack { revm1 revm2 revm3 revm4 }
+$random dcyskeleton/attack { revm1 revm2 revm3 revm4 }
 revm1 "Sounds/DCY SFX/dcy_rev_rocket1.ogg"
 revm2 "Sounds/DCY SFX/dcy_rev_rocket2.ogg"
 revm3 "Sounds/DCY SFX/dcy_rev_rocket3.ogg"
 revm4 "Sounds/DCY SFX/dcy_rev_rocket4.ogg"
 
-$random cyber/hoof { cystep1 cystep2 cystep3 }
+$random dcycyber/hoof { cystep1 cystep2 cystep3 }
 cystep1 "Sounds/DCY SFX/dcy_cyberdemon_step1.ogg"
 cystep2 "Sounds/DCY SFX/dcy_cyberdemon_step2.ogg"
 cystep3 "Sounds/DCY SFX/dcy_cyberdemon_step3.ogg"
 
-$random spider/walk { mastwalk1 mastwalk2 mastwalk3 }
+$random dcyspider/walk { mastwalk1 mastwalk2 mastwalk3 }
 mastwalk1 "Sounds/DCY SFX/dcy_mastermind_step1.ogg"
 mastwalk2 "Sounds/DCY SFX/dcy_mastermind_step2.ogg"
 mastwalk3 "Sounds/DCY SFX/dcy_mastermind_step3.ogg"
 
-$random baby/walk { babywalk1 babywalk2 babywalk3 }
+$random dcyarachno/walk { babywalk1 babywalk2 babywalk3 }
 babywalk1 "Sounds/DCY SFX/dcy_aracno_walk1.ogg"
 babywalk2 "Sounds/DCY SFX/dcy_aracno_walk2.ogg"
 babywalk3 "Sounds/DCY SFX/dcy_aracno_walk3.ogg"

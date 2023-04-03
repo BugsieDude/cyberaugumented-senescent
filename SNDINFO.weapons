@@ -59,7 +59,7 @@ Minigun/EmphasisLoop "Sounds/Weapons/Slot 4/Nightfall/dcy_nightfall_plasmawave.o
 
 weapons/plasmaf2 "Sounds/Weapons/Slot 6/Dissipator/dcy_plasma_fire.ogg"
 $limit weapons/plasmaf2 0
-weapons/plasmaf "Sounds/Weapons/Slot 6/Dissipator/dcy_plasma.ogg"
+dcy/plasmaf "Sounds/Weapons/Slot 6/Dissipator/dcy_plasma.ogg"
 $random Plasma/HeatBlast { HEATBLST HEATBLS2 HEATBLS3 }
 HEATBLST "Sounds/Weapons/Slot 6/Dissipator/dcy_dissipator_heat_blast1.ogg"
 HEATBLS2 "Sounds/Weapons/Slot 6/Dissipator/dcy_dissipator_heat_blast2.ogg"
@@ -146,7 +146,7 @@ BULHIT3 "Sounds/Projectiles/dcy_bullet_hit3.ogg"
 BULHIT4 "Sounds/Projectiles/dcy_bullet_hit4.ogg"
 BULHIT5 "Sounds/Projectiles/dcy_bullet_hit5.ogg"
 
-$random Shotgun/Fire { SHOTFIR1 SHOTFIR2 SHOTFIR3 SHOTFIR4 }
+$random DCYShotgun/Fire { SHOTFIR1 SHOTFIR2 SHOTFIR3 SHOTFIR4 }
 SHOTFIR1 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun1.ogg"
 SHOTFIR2 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun2.ogg"
 SHOTFIR3 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun3.ogg"
@@ -154,14 +154,13 @@ SHOTFIR4 "Sounds/Weapons/Slot 3/Combat SG/dcy_combatsg_shotgun4.ogg"
 
 RocketLauncher/Kaboom "Sounds/Weapons/Slot 5/Legionnaire/dcy_legionnaire_rocket_fire.ogg"
 Grenade/Launch "Sounds/Weapons/Slot 5/Intervention/dcy_intervention_grenade_fire.ogg"
-$alias weapons/rocklf RocketLauncher/Kaboom
 
-$random SuperShotgun/Fire { SSGFIRE1 SSGFIRE2 SSGFIRE3 SSGFIRE4 }
+$random DCYSuperShotgun/Fire { SSGFIRE1 SSGFIRE2 SSGFIRE3 SSGFIRE4 }
 SSGFIRE1 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_fire1.ogg"
 SSGFIRE2 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_fire2.ogg"
 SSGFIRE3 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_fire3.ogg"
 SSGFIRE4 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_fire4.ogg"
-$random SuperShotgun/Reload { SSGRELD1 SSGRELD2 }
+$random DCYSuperShotgun/Reload { SSGRELD1 SSGRELD2 }
 SSGRELD1 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_reload1.ogg"
 SSGRELD2 "Sounds/Weapons/Slot 3/Double Barrel/dcy_ssg_reload2.ogg"
 
@@ -178,10 +177,6 @@ $random BigExplod { BIGBOOM1 BIGBOOM2 BIGBOOM3 }
 BIGBOOM1 "Sounds/DCY SFX/dcy_large_explosion1.ogg"
 BIGBOOM2 "Sounds/DCY SFX/dcy_large_explosion2.ogg"
 BIGBOOM3 "Sounds/DCY SFX/dcy_large_explosion3.ogg"
-
-$alias world/barrelx Explod
-$alias weapons/rocklx Explod
-$alias skeleton/tracex Explod
 
 misc/ring_pkup "Sounds/Inventory/dcy_palisade.ogg"
 HOLYSTF1 "Sounds/Weapons/Slot 8/dcy_choir.wav"

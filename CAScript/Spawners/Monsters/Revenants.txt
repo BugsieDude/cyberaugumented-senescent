@@ -1,0 +1,26 @@
+Class DCY_SpookySkeletonWithRocketLaunchers : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_GloomKnight", 0, 255;
+  DropItem "DCY_Remainder", 6, 200;
+  DropItem "DCY_WarWire", 20, 10;
+  DropItem "DCY_Chimera", 15, 13;
+  DropItem "DCY_SoulCrusher", 18, 10;
+  DropItem "DCY_TresherDoot", 20, 7;
+  DropItem "DCY_KranioThanatou", 18, 5;
+  DropItem "DCY_Xhouginad", 30, 3;
+  DropItem "DCY_BossRev", 23, 1;
+  }
+}
+
+Class DCY_BossRev : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Remainder", 0, 255;
+  DropItem "DCY_Crusader", 30, 60;
+  DropItem "DCY_AbyssalExarch",  40, 70;
+  DropItem "DCY_DestructiveEarl", 23, 60;
+  }
+}

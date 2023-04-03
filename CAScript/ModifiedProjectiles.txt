@@ -212,7 +212,7 @@ Class DCY_ImpBigFlame : DCY_ImpFlame1
   }
 }
 
-Class DCY_ImpFireball : DCY_Projectile Replaces DoomImpBall
+Class DCY_ImpFireball : DCY_Projectile
 {
   Default
   {
@@ -224,8 +224,8 @@ Class DCY_ImpFireball : DCY_Projectile Replaces DoomImpBall
   +RANDOMIZE
   +ZDOOMTRANS
   RenderStyle "Add";
-  SeeSound "imp/attack";
-  DeathSound "imp/shotx";
+  SeeSound "dcyimp/attack";
+  DeathSound "dcyimp/shotx";
   Alpha 1.0;
   +BRIGHT;
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.91,0.00]";
@@ -254,7 +254,7 @@ Class DCY_ImpFireball : DCY_Projectile Replaces DoomImpBall
   }
 }
 
-Class DCY_LeFatFireball : DCY_Projectile Replaces FatShot
+Class DCY_LeFatFireball : DCY_Projectile
 {
   Default
   {
@@ -268,8 +268,8 @@ Class DCY_LeFatFireball : DCY_Projectile Replaces FatShot
   +RANDOMIZE
   +ZDOOMTRANS
   RenderStyle "Add";
-  SeeSound "fatso/attack";
-  DeathSound "fatso/shotx";
+  SeeSound "dcyfatso/attack";
+  DeathSound "dcyfatso/shotx";
   }
   
   States
@@ -297,7 +297,7 @@ Class DCY_LeFatFireball : DCY_Projectile Replaces FatShot
   }
 }
 
-Class DCY_MeatballElecball : DCY_Projectile Replaces CacodemonBall
+Class DCY_MeatballElecball : DCY_Projectile
 {
   Default
   {
@@ -312,8 +312,8 @@ Class DCY_MeatballElecball : DCY_Projectile Replaces CacodemonBall
   +RANDOMIZE
   +ZDOOMTRANS
   RenderStyle "Add";
-  SeeSound "caco/attack";
-  DeathSound "caco/shotx";
+  SeeSound "dcycaco/attack";
+  DeathSound "dcycaco/shotx";
   }
   
   States
@@ -362,7 +362,7 @@ Class DCY_MeatballElecballTrail : DCY_Effect
   }
 }
 
-Class DCY_HomingMissile : DCY_Projectile Replaces RevenantTracer
+Class DCY_HomingMissile : DCY_Projectile
 {
   Default
   {
@@ -379,8 +379,8 @@ Class DCY_HomingMissile : DCY_Projectile Replaces RevenantTracer
   Speed 10;
   +RANDOMIZE
   +ZDOOMTRANS
-  SeeSound "skeleton/attack";
-  DeathSound "skeleton/tracex";
+  SeeSound "dcyskeleton/attack";
+  DeathSound "Explod";
   }
   
   static const string ParticleColors[] = { "ffffff", "ffd77a", "ff983d", "5e5a5a" };
@@ -448,7 +448,7 @@ Class DCY_ExplosiveBallT : Actor
   }
 }
 
-Class DCY_BaronFireball : DCY_Projectile Replaces BaronBall
+Class DCY_BaronFireball : DCY_Projectile
 {
   Default
   {
@@ -464,8 +464,8 @@ Class DCY_BaronFireball : DCY_Projectile Replaces BaronBall
   +RANDOMIZE
   +ZDOOMTRANS
   RenderStyle "Add";
-  SeeSound "baron/attack";
-  DeathSound "baron/shotx";
+  SeeSound "dcybaron/attack";
+  DeathSound "dcybaron/shotx";
   Decal "BaronScorch";
   }
   States
@@ -495,7 +495,7 @@ Class DCY_BaronFireball : DCY_Projectile Replaces BaronBall
   }
 }
 
-Class DCY_OverhauledRocket : DCY_Projectile Replaces Rocket
+Class DCY_OverhauledRocket : DCY_Projectile
 {
   Default
   {
@@ -504,8 +504,8 @@ Class DCY_OverhauledRocket : DCY_Projectile Replaces Rocket
   Damage 20;
   +RANDOMIZE
   +DEHEXPLOSION
-  SeeSound "weapons/rocklf";
-  DeathSound "weapons/rocklx";
+  SeeSound "RocketLauncher/Kaboom";
+  DeathSound "Explod";
   Obituary "$OB_MPROCKET";
   RenderStyle "Normal";
   Scale 1.2;
@@ -678,7 +678,7 @@ Class DCY_XBallTrail2 : DCY_XBallTrail
   }
 }
 
-Class DCY_RehauledPlasma : DCY_FastProjectile Replaces PlasmaBall
+Class DCY_RehauledPlasma : DCY_FastProjectile
 {
   string ac;
   property AuraColor : ac;
@@ -763,7 +763,7 @@ Class DCY_PlasmaTrail : DCY_Effect
   }
 }
 
-Class DCY_ArachPlasma : DCY_RehauledPlasma Replaces ArachnotronPlasma
+Class DCY_ArachPlasma : DCY_RehauledPlasma
 {
   Default
   {
@@ -913,7 +913,7 @@ Class DCY_TrigLaser : DCY_RehauledPlasma
 Class DCY_TrigLaser2 : DCY_TrigLaser { Default { DCY_TrigLaser.WeavingNum -4; } }
 Class DCY_TrigLaser3 : DCY_TrigLaser { Default { DCY_TrigLaser.WeavingNum 0; } }
 
-Class DCY_BFGSpheroid : DCY_Projectile Replaces BFGBall
+Class DCY_BFGSpheroid : DCY_Projectile
 {
   Default
   {

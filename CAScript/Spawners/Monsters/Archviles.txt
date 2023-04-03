@@ -1,0 +1,17 @@
+Class DCY_MadMartian : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Auteur", 0, 866;
+  DropItem "DCY_Apollyon", 10, 228;
+  DropItem "DCY_Hexodenican", 18, 40;
+  DropItem "DCY_FulminationVirtuoso", 25, 9;
+  DropItem "DCY_Overdemoniac", 45, 9;
+  DropItem "DCY_Voidcaster", 30, 11;
+  DropItem "DCY_Lemures", 25, 11;
+  DropItem "DCY_Espouser", 28, 20;
+  //DropItem "DCY_Prestidigitator", 45, 6;
+  DropItem "DCY_Emptiness", 15, 1;
+  DropItem "DCY_Emptiness", 55, 1;
+  }
+}

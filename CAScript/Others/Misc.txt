@@ -152,7 +152,7 @@ Class DCY_RocketSmonk : DCY_Smonk
 }
 
 //Bullet Puffs
-Class DCY_RemasteredBulletPuff : BulletPuff Replaces BulletPuff
+Class DCY_RemasteredBulletPuff : BulletPuff
 {
   Default
   {
@@ -1005,6 +1005,7 @@ Class DCY_ABarrelofExplosives : ExplosiveBarrel
   Default
   {
   Tag "Explosive Barrel";
+  DeathSound "DCYExplodingBarrel";
   }
   
   States

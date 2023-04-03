@@ -22,7 +22,7 @@ Class DCY_BallistaManefista : DCY_Weapon
 	A_QuakeEx(3, 3, 3, 50, 0, 150, "none", QF_SCALEDOWN, falloff: 250);
 	A_StartSound("Ballista/Fire", CHAN_WEAPON, CHANF_OVERLAP);
 	invoker.DepleteAmmo(invoker.bAltFire, true);
-	A_RailAttack(450, 0, 0, flags: RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, pufftype: "DCY_BallistaPuff", sparsity: 64, spawnclass: "DCY_BallistaTrail");
+	A_RailAttack(250, 0, 0, flags: RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, pufftype: "DCY_BallistaPuff", sparsity: 64, spawnclass: "DCY_BallistaTrail");
 	A_GunFlash();
   }
   

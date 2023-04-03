@@ -1,0 +1,26 @@
+Class DCY_LittleSpedor : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_SmallEnemySpider", 0, 1500;
+  DropItem "DCY_Receptacle", 0, 950;
+  DropItem "DCY_Tracnomechatron", 10, 300;
+  DropItem "DCY_IonArachnotron", 10, 200;
+  DropItem "DCY_Tripartite", 8, 300;
+  DropItem "DCY_BattlemindGeomancer", 18, 140;
+  DropItem "DCY_FluorescentSentinel", 18, 80;
+  DropItem "DCY_Transfixer", 25, 80;
+  DropItem "DCY_Goliath", 35, 20;
+  DropItem "DCY_Convector", 45, 10;
+  DropItem "DCY_BossArach", 20, 1;
+  }
+}
+
+Class DCY_BossArach : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_SmallEnemySpider", 0, 100;
+  DropItem "DCY_Arachnoaversion", 20, 40;
+  }
+}

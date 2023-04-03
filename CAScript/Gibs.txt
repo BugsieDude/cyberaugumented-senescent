@@ -23,7 +23,7 @@ Class DCY_GoreBase : Actor
   
   override void PostBeginPlay()
   {
-	xroll = randompick(-3, 3, -7, 7);
+	xroll = random(3, 10) * randompick(-1, 1);
   }
 }
 
@@ -212,123 +212,89 @@ Class DCY_BloodMist : DCY_Effect
 
 Class DCY_Giblets : DCY_Effect
 {
+	int mn, mx, gtime, tick;
+	double rg;
+	class<Actor> gibtype;
+	
+	override void PostBeginPlay()
+	{
+		mn = 6;
+		mx = 14;
+		gtime = 10;
+		tick = 1;
+		rg = 10;
+		gibtype = "DCY_Gib";
+	}
+	
 	States
 	{
 	Spawn:
-		TNT1 A 0 NoDelay
+		TNT1 A 0 NoDelay;
+		TNT1 A 0
 		{
-			for (int i = random(6, 14); i > 0; i--)
+			for (int i = random(mn, mx); i > 0; i--)
 			{
-				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, failchance: 140);
-				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 150);
-				A_SpawnItemEx("De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, 15);
-				A_SpawnItemEx("DCY_Gib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
+				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 140);
+				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-rg, rg), (vel.y / 4) + frandom(-rg, rg), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 150);
+				A_SpawnItemEx("De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-rg, rg), (vel.y / 4) + frandom(-rg, rg), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE, 15);
+				A_SpawnItemEx(gibtype, frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-rg, rg), (vel.y / 4) + frandom(-rg, rg), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
 			}
 		}
-		TNT1 AAAAAAAAAA 1
+		TNT1 A 1
 		{
-			A_SpawnItemEx("DCY_Gib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-			A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
+			tics = tick;
+			gtime--;
+			if (gtime <= 0) Destroy();
+			A_SpawnItemEx(random(0, 1) ? "De_Blood_Splat" : "De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 20);
+			A_SpawnItemEx(gibtype, frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
 		}
-		Stop;
+		Goto Spawn+2;
 	}
 }
 
 Class DCY_GibletsAdd : DCY_Giblets
 {
 	Default { RenderStyle "Add"; }
-	States
+	
+	override void PostBeginPlay()
 	{
-	Spawn:
-		TNT1 A 0 NoDelay
-		{
-			for (int i = random(6, 14); i > 0; i--)
-			{
-				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 140);
-				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 150);
-				A_SpawnItemEx("De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE, 15);
-				A_SpawnItemEx("DCY_AndroidGib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
-			}
-		}
-		TNT1 AAAAAAAAAA 1
-		{
-			A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 20);
-			A_SpawnItemEx("DCY_AndroidGib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-		}
-		Stop;
+		super.PostBeginPlay();
+		gibtype = "DCY_AndroidGib";
 	}
 }
 
-Class DCY_GibletsLava : DCY_Giblets
+Class DCY_GibletsLava : DCY_GibletsAdd
 {
-	Default { RenderStyle "Add"; }
-	States
+	override void PostBeginPlay()
 	{
-	Spawn:
-		TNT1 A 0 NoDelay
-		{
-			for (int i = random(6, 14); i > 0; i--)
-			{
-				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, failchance: 140);
-				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 150);
-				A_SpawnItemEx("De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE, 15);
-				A_SpawnItemEx("DCY_LavaGib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
-			}
-		}
-		TNT1 AAAAAAAAAA 1
-		{
-			A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE, 20);
-			A_SpawnItemEx("DCY_LavaGib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-		}
-		Stop;
+		super.PostBeginPlay();
+		gibtype = "DCY_LavaGib";
 	}
 }
 
 Class DCY_ShorterGiblets : DCY_Giblets
 {
-	States
+	override void PostBeginPlay()
 	{
-	Spawn:
-		TNT1 A 0 NoDelay
-		{
-			for (int i = random(5, 8); i > 0; i--)
-			{
-				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, failchance: 140);
-				A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-5, 5), (vel.y / 4) + frandom(-5, 5), (vel.z / 4) + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 150);
-				A_SpawnItemEx("De_Blood_BigSplat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-5, 5), (vel.y / 4) + frandom(-5, 5), (vel.z / 4) + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, 15);
-				A_SpawnItemEx("DCY_Gib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), (vel.x / 4) + frandom(-5, 5), (vel.y / 4) + frandom(-5, 5), (vel.z / 4) + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
-			}
-		}
-		TNT1 AAAA 2
-		{
-			A_SpawnItemEx("DCY_Gib", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-			A_SpawnItemEx("De_Blood_Splat", frandom(-10, 10), frandom(-10, 10), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 5), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-		}
-		Stop;
+		super.PostBeginPlay();
+		mn = 5;
+		mx = 8;
+		gtime = 4;
+		rg = 5;
+		tick = 2;
 	}
 }
 
 Class DCY_FatGiblets : DCY_Giblets
 {
-	States
+	override void PostBeginPlay()
 	{
-	Spawn:
-		TNT1 A 0 NoDelay
-		{
-			for (int i = random(8, 16); i > 0; i--)
-			{
-				A_SpawnItemEx("DCY_BloodMist", xvel: (vel.x / 7) + frandom(-1, 1), yvel: (vel.y / 7) + frandom(-1, 1), zvel: (vel.z / 7) + frandom(-1, 1), angle: frandom(0, 360), flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, failchance: 140);
-				A_SpawnItemEx("De_Blood_Splat", frandom(-40, 40), frandom(-40, 40), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 150);
-				A_SpawnItemEx("De_Blood_BigSplat", frandom(-40, 40), frandom(-40, 40), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE, 15);
-				A_SpawnItemEx("DCY_Gib", frandom(-40, 40), frandom(-40, 40), frandom(5, 60), (vel.x / 4) + frandom(-12, 12), (vel.y / 4) + frandom(-12, 12), (vel.z / 4) + frandom(1, 12), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 50);
-			}
-		}
-		TNT1 AAAAAAAA 2
-		{
-			A_SpawnItemEx("DCY_Gib", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 15), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-			A_SpawnItemEx("De_Blood_Splat", frandom(-25, 25), frandom(-25, 25), frandom(5, 60), vel.x * 1.5 + frandom(-5, 5), vel.y * 1.5 + frandom(-5, 5), vel.z * 1.5 + frandom(1, 15), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY|SXF_TRANSFERTRANSLATION, 20);
-		}
-		Stop;
+		super.PostBeginPlay();
+		mn = 8;
+		mx = 17;
+		gtime = 8;
+		rg = 12;
+		tick = 2;
 	}
 }
 

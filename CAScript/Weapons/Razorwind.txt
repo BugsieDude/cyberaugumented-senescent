@@ -1,4 +1,4 @@
-Class DCY_Razorwind : DCY_Weapon Replaces Pistol
+Class DCY_Razorwind : DCY_Weapon
 {
   Default
   {

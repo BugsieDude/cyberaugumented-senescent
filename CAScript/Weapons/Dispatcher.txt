@@ -1,4 +1,4 @@
-Class DCY_RehauledPlasmaRifle : DCY_Weapon Replaces PlasmaRifle
+Class DCY_RehauledPlasmaRifle : DCY_Weapon
 {
   Default
   {
@@ -15,71 +15,21 @@ Class DCY_RehauledPlasmaRifle : DCY_Weapon Replaces PlasmaRifle
   
   action void A_Plasmatic()
   {
-	invoker.DepleteAmmo(invoker.bAltFire, true);
+	if (player == null) return;
 	
-	if (invoker.modnum == 2)
+	Weapon weap = player.ReadyWeapon;
+	if (weap != null && invoker == weap && stateinfo != null && stateinfo.mStateType == STATE_Psprite)
 	{
-		A_StartSound("Rifle/LaserAlt", CHAN_WEAPON, 0, 0.75, ATTN_NORM);
-		A_WeaponOffset(frandom(-4.0, 4.0), frandom(31.0, 35.0), WOF_INTERPOLATE);	
-		let missile = A_FireProjectile("DCY_CleavingLaser", 0, 0);    
-        
-        if (missile)
-            missile.vel += vel / 2;
-			
-		A_GunFlash();
+		if (!weap.DepleteAmmo (weap.bAltFire, true, 1)) return;
+		
+		State flash = weap.FindState('Flash');
+		if (flash != null) player.SetSafeFlash(weap, flash, random[FirePlasma]()&1);
+		
 	}
-	if (invoker.modnum == 1)
-	{
-		A_StartSound("RPLSFIR", CHAN_WEAPON, 0, 0.75, ATTN_NORM, frandom(0.9755, 1.0175));
-		A_WeaponOffset(frandom(-5.0, 5.0), frandom(31.0, 37.0), WOF_INTERPOLATE);
-		A_FireProjectile("DCY_EmissionTracer", frandom(-0.55, 0.55), 0);
-		A_GunFlash();
-	}
-	if (invoker.modnum == 0 && countinv("DCY_EmphasisPower"))
-	{
-		invoker.DepleteAmmo(invoker.bAltFire, true);
-		A_StartSound("Rifle/Laser2", CHAN_WEAPON, 0, 0.75, ATTN_NORM);
-		A_WeaponOffset(frandom(-5.0, 5.0), frandom(31.0, 37.0), WOF_INTERPOLATE);
-		A_FireProjectile("DCY_TrigLaser", 0, 0);
-		A_FireProjectile("DCY_TrigLaser2", 0, 0);
-		A_FireProjectile("DCY_TrigLaser3", 0, 0);
-		A_GunFlash();
-	}
-	If(invoker.modnum == 0 && !countinv("DCY_EmphasisPower"))
-	{
-		A_StartSound("weapons/plasmaf", CHAN_WEAPON, 0, 0.4, ATTN_NORM, frandom(0.9955, 1.0155));
-		A_WeaponOffset(frandom(-2.0, 2.0), frandom(31.0, 34.0), WOF_INTERPOLATE);
-		A_FireProjectile("DCY_RehauledPlasma", frandom(-0.3, 0.3), 0);
-		A_GunFlash();
-	}
+		
+	SpawnPlayerMissile("DCY_RehauledPlasma");
   }
   
-  action void A_PlasmaMod()
-  {
-	if (invoker.modnum > 1)
-		invoker.modnum = 0;
-	else
-		invoker.modnum += 1;
-  }
-  
-  action void A_PlasmaModSound()
-  {
-	If(invoker.modnum == 0)
-		A_StartSound("RPLSSELC", CHAN_6, CHANF_DEFAULT, 1.0);
-	Else
-		A_StartSound("RPLSDESL", CHAN_6, CHANF_DEFAULT, 1.0);
-  }
-  
-  int modnum;
-  
-  action void A_PlasmaRefire()
-  {
-	if(!countinv("DCY_EmphasisPower"))
-		A_Refire("FireLoop");
-	else
-		A_Refire("GreenFireLoop");
-  }
-	
   States
   {
   Spawn:
@@ -93,84 +43,18 @@ Class DCY_RehauledPlasmaRifle : DCY_Weapon Replaces PlasmaRifle
 	TNT1 A 0 A_Lower();
 	Wait;
   Ready:
-	PLG_ A 1 A_WeaponReady(); //A_WeaponReady(WRF_ALLOWZOOM);
+	PLG_ A 1 A_WeaponReady();
 	Loop;
   Fire:
-	PLG_ BCD 1
-	{
-		If(invoker.modnum == 1)
-			Return ResolveState("RedFire");
-		If(invoker.modnum == 2)
-			Return ResolveState("YellowFire");
-		If(invoker.modnum == 0 && countinv("DCY_EmphasisPower"))
-			Return ResolveState("GreenFire");
-			
-		Return ResolveState(null);
-	}
+	PLG_ BCD 1;
 	Goto FireLoop;
   FireLoop:
-	PLG_ E 0;
 	PLG_ E 1 Bright A_Plasmatic();
 	PLG_ FG 1 Bright A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	PLG_ E 0 A_PlasmaRefire();
+	PLG_ E 0 A_Refire("FireLoop");
 	Goto FireDone;
   FireDone:
-	PLG_ HI 1 Bright A_PlasmaRefire();
-	Goto Ready;
-  RedFire:
-	PLG_ BCJ 1;
-	Goto RedFireLoop;
-  RedFireLoop:
-	PLG_ K 0;
-	PLG_ K 1 Bright A_Plasmatic();
-	PLG_ LMNJ 1 Bright
-	{
-		A_WeaponOffset(frandom(-1.0, 1.0), frandom(31.0, 32.0), WOF_INTERPOLATE);
-		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	}
-	PLG_ J 0 A_Refire("RedFireLoop");
-	Goto RedFireDone;
-  RedFireDone:
-	PLG_ NO 1 Bright A_Refire("RedFireLoop");
-	Goto Ready;
-  YellowFire:
-	PLG_ BCP 1;
-	Goto YellowFireLoop;
-  YellowFireLoop:
-	PLG_ Q 0;
-	PLG_ Q 1 Bright A_Plasmatic();
-	PLG_ RSTU 1 Bright
-	{
-		A_WeaponOffset(frandom(-2.0, 2.0), frandom(30.0, 33.0), WOF_INTERPOLATE);
-		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	}
-	PLG_ Q 0 A_Refire("YellowFireLoop");
-	Goto YellowFireDone;
-  YellowFireDone:
-	PLG_ TU 1 Bright A_Refire("YellowFireLoop");
-	Goto Ready;
-  GreenFire:
-	PLG_ BCD 1;
-	Goto GreenFireLoop;
-  GreenFireLoop:
-	PLG_ E 0;
-	PLG_ E 1 Bright A_Plasmatic();
-	PLG_ FGHVCD 1 Bright
-	{
-		A_WeaponOffset(frandom(-2.0, 2.0), frandom(31.0, 34.0), WOF_INTERPOLATE);
-		A_WeaponReady(WRF_NOPRIMARY|WRF_NOSECONDARY|WRF_NOBOB);
-	}
-	PLG_ D 0 A_PlasmaRefire();
-	Goto GreenFireDone;
-  GreenFireDone:
-	PLG_ BA 1 Bright A_PlasmaRefire();
-	Goto Ready;
-  Zoom:
-	PLG_ A 1;
-	PLG_ U 1 A_PlasmaModSound();
-	PLG_ UUUUTTTTTTTTTTTTUUUU 1 A_WeaponOffset(frandom(-1.2, 1.2), frandom(31.2, 32.2), WOF_INTERPOLATE);
-	PLG_ U 1 A_WeaponOffset(0, 32);
-	PLG_ U 1 A_PlasmaMod();
+	PLG_ HI 1 Bright A_Refire("FireLoop");
 	Goto Ready;
   Flash:
 	TNT1 A 2 Bright A_Light1();

@@ -7,12 +7,11 @@ Class DCY_ZombeParent : DCYMonster
   Height 56;
   Speed 8;
   PainChance 200;
-  SeeSound "grunt2/sight";
-  AttackSound "grunt/attack";
-  PainSound "grunt2/pain";
-  DeathSound "grunt2/death";
-  ActiveSound "grunt/active";
-  DCYMonster.BurnSound "grunt2/burn";
+  SeeSound "dcygrunt/sight";
+  PainSound "dcygrunt/pain";
+  DeathSound "dcygrunt/death";
+  ActiveSound "dcygrunt/active";
+  DCYMonster.BurnSound "dcygrunt/burn";
   Obituary "$OB_ZOMBIE";
   Tag "$FN_ZOMBIE";
   DropItem "Clip";
@@ -119,12 +118,11 @@ Class DCY_ShotgunZombe : DCYMonster
   Mass 100;
   Speed 8;
   PainChance 170;
-  SeeSound "shotguy/sight";
-  AttackSound "shotguy/attack";
-  PainSound "shotguy/pain";
-  DeathSound "shotguy/death";
-  ActiveSound "shotguy/active";
-  DCYMonster.BurnSound "shotguy/burn";
+  SeeSound "dcyshotguy/sight";
+  PainSound "dcyshotguy/pain";
+  DeathSound "dcyshotguy/death";
+  ActiveSound "dcyshotguy/active";
+  DCYMonster.BurnSound "dcyshotguy/burn";
   Obituary "%o has annoyed a hell sergeant.";
   DropItem "DCY_CombatShotgun";
   Tag "Hell Sergeant";
@@ -161,7 +159,7 @@ Class DCY_ShotgunZombe : DCYMonster
 	C0L1 E 10 A_FaceTarget();
 	C0L1 F 4 Bright
 	{
-		A_StartSound("Shotgun/Fire", CHAN_WEAPON, 0, 1.0);
+		A_StartSound("DCYShotgun/Fire", CHAN_WEAPON, 0, 1.0);
 		
 		for (int i = 7; i > 0; i--)
 			A_SpawnProjectile("DCY_Zombie2Tracer", 32, -2, frandom(-4.0, 4.0), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-2.5, 2.5));
@@ -223,12 +221,11 @@ Class DCY_Plutonia : DCYMonster
   Mass 100;
   Speed 8;
   PainChance 170;
-  SeeSound "chainguy/sight";
-  PainSound "chainguy/pain";
-  DeathSound "chainguy/death";
-  ActiveSound "chainguy/active";
-  AttackSound "chainguy/attack";
-  DCYMonster.BurnSound "chainguy/burn";
+  SeeSound "dcychainguy/sight";
+  PainSound "dcychainguy/pain";
+  DeathSound "dcychainguy/death";
+  ActiveSound "dcychainguy/active";
+  DCYMonster.BurnSound "dcychainguy/burn";
   Obituary "%o has been ripped off by the Hell Besieger.";
   Tag "Hell Besieger";
   Dropitem "DCY_CyberRifle";

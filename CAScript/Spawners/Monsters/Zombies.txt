@@ -1,0 +1,12 @@
+Class DCY_UndeadGuys : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Zombe", 0, 255;
+  DropItem "DCY_Combatant", 0, 100;
+  DropItem "DCY_Huntsman", 4, 100;
+  DropItem "DCY_Contaminated", 9, 10;
+  DropItem "DCY_DarkIonConsul", 13, 10;
+  DropItem "DCY_Transmuter", 17, 5;
+  }
+}

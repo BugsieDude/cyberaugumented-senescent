@@ -4,8 +4,8 @@ server noarchive bool cyberaugumented_announcestart = false;
 server bool sv_allowdash = true;
 server bool sv_allowdoublejump = true;
 
-server bool sv_dcy_progressivespawns = true;
-server float sv_dcy_progression = 1.500;
+nosave server bool sv_dcy_progressivespawns = true;
+nosave server float sv_dcy_progression = 1.500;
 
 server float sv_dashpower = 32;
 server int sv_dashpowerup = 8;
@@ -38,11 +38,36 @@ server bool dcy_completionist = true;
 
 server int dcy_liquids = 1;
 
-server bool dcy_ios = true;
-server bool dcy_wolfensteinspawns = true;
-server bool dcy_keenspawns = true;
+nosave server bool dcy_ios = true;
+nosave server bool dcy_wolfensteinspawns = true;
+nosave server bool dcy_keenspawns = true;
+nosave server bool dcy_vanillaspawns = false;
 
 server bool dcy_wolfensteincutscene = true;
 
 server bool dcy_gibbing = true;
 server int dcy_gibtime = 2000;
+
+//Replacements
+nosave server bool dcy_monsters = true;
+nosave server bool dcy_props = true;
+
+nosave server int dcy_zombieman = 1;
+nosave server int dcy_shotgunner = 1;
+nosave server int dcy_chaingunner = 1;
+nosave server int dcy_imp = 1;
+nosave server int dcy_soul = 1;
+nosave server int dcy_demon = 1;
+nosave server int dcy_spectre = 1;
+nosave server int dcy_caco = 1;
+nosave server int dcy_pain = 1;
+nosave server int dcy_revenant = 1;
+nosave server int dcy_fatso = 1;
+nosave server int dcy_arachno = 1;
+nosave server int dcy_knight = 1;
+nosave server int dcy_baron = 1;
+nosave server int dcy_vile = 1;
+nosave server int dcy_cyber = 1;
+nosave server int dcy_mastermind = 1;
+nosave server int dcy_nazi = 1;
+nosave server int dcy_ios2 = 1;

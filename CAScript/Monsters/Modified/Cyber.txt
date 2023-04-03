@@ -29,7 +29,7 @@ Class DCY_Cybie : DCYMonster
   void A_Cyberstep(bool step)
   {
 	A_QuakeEx(0, 0, 1, 125, 0, 100, "none", QF_SCALEDOWN|QF_RELATIVE, falloff: 200);
-	A_StartSound((step) ? "cyber/hoof" : "spider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
+	A_StartSound((step) ? "dcycyber/hoof" : "dcyspider/walk", CHAN_BODY, 0, 1.0, ATTN_NORM, frandom(0.9, 1.0));
   }
 	
   int missile;

@@ -1,0 +1,9 @@
+Class DCY_Blubber : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_SkinnyFat", 0, 255;
+  DropItem "DCY_RadiationCorpulence", 1, 100;
+  DropItem "DCY_Disrelish", 16, 15;
+  }
+}

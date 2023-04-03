@@ -85,3 +85,22 @@ Version "4.10.0"
 
 //The status bar
 #include "CAScript/Player/HUD.txt"
+
+//Spawners
+#include "CAScript/Spawners/InventorySpawns.txt"
+#include "CAScript/Spawners/Monsters/Zombies.txt"
+#include "CAScript/Spawners/Monsters/Shotgunners.txt"
+#include "CAScript/Spawners/Monsters/Chaingunners.txt"
+#include "CAScript/Spawners/Monsters/Imps.txt"
+#include "CAScript/Spawners/Monsters/Pinkies.txt"
+#include "CAScript/Spawners/Monsters/LostSouls.txt"
+#include "CAScript/Spawners/Monsters/Cacodemons.txt"
+#include "CAScript/Spawners/Monsters/PainElementals.txt"
+#include "CAScript/Spawners/Monsters/Arachnotrons.txt"
+#include "CAScript/Spawners/Monsters/HellKnights.txt"
+#include "CAScript/Spawners/Monsters/BaronsOfHell.txt"
+#include "CAScript/Spawners/Monsters/Revenants.txt"
+#include "CAScript/Spawners/Monsters/Mancubi.txt"
+#include "CAScript/Spawners/Monsters/Archviles.txt"
+#include "CAScript/Spawners/Monsters/Cyberdemonz.txt"
+#include "CAScript/Spawners/Monsters/TheGiantEnemySpider.txt"

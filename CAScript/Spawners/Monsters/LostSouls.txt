@@ -1,0 +1,10 @@
+Class DCY_GhostRider : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_FlamingCranium", 0, 255;
+  DropItem "DCY_Sullied", 8, 10;
+  DropItem "DCY_LunarChiller", 16, 4;
+  DropItem "DCY_Manes", 11, 2;
+  }
+}

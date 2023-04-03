@@ -254,6 +254,4 @@ DCYBurningBarrel "Sounds/Enviroment/dcy_burning_barrel.ogg"
 $limit DCYTorch 0
 $limit DCYBurningBarrel 0
 
-//Kamikazi
-Kamikazi/Idle "Sounds/DCY SFX/dcy_ss_kamikazi_idle.wav"
-Kamikazi/Scream "Sounds/DCY SFX/dcy_ss_kamikazi_scream.wav"
+DCYExplodingBarrel "Sounds/Replacements/dcy_barrel_explode.ogg"

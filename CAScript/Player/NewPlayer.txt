@@ -20,7 +20,7 @@ Class CyberaugumentedProtagonist : DoomPlayer
     int dmg = super.DamageMobj(inflictor, source, damage, mod, flags, angle);
 	
 	//Sound is based off the amount of damage the player takes
-    if (dmg > 200)
+    if (dmg > 150)
         painsound = "slayer/painmassive";
 	else if (dmg > 90)
         painsound = "slayer/painhuge";
@@ -282,11 +282,11 @@ Class CyberaugumentedProtagonist : DoomPlayer
   Player.StartItem "MegasphereHealth", 100;
   //Player.StartItem "DCY_RehauledPlasmaRifle";
   Player.StartItem "Clip", 50;
-  Player.WeaponSlot 1, "DCY_HahahaPunchPunch", "DCY_PowerSaw";
+  Player.WeaponSlot 1, "DCY_ThrowHands", "DCY_PowerSaw";
   Player.WeaponSlot 2, "DCY_BurstPistol", "DCY_Razorwind";
   Player.WeaponSlot 3, "DCY_CombatShotgun", "DCY_UnderlineShotgun", "DCY_SuperShotty";
   Player.WeaponSlot 4, "DCY_CyberRifle", "DCY_Minigun";
-  Player.WeaponSlot 5, "DCY_CuethemetalslugannounceersayingRocketLauncher", "DCY_ShitGrenadeThrowItBackPrivate";
+  Player.WeaponSlot 5, "DCY_Legionnaire", "DCY_Grenades";
   Player.WeaponSlot 6, "DCY_RehauledPlasmaRifle", "DCY_BallistaManefista", "DCY_NeonicWand";
   Player.WeaponSlot 7, "DCY_TheBFG9000", "DCY_TheBFG10000", "DCY_SiriusCrisis";
   Player.WeaponSlot 8, "DCY_VeneratedTruncheon";

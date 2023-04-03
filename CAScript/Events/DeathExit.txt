@@ -10,7 +10,9 @@ class DCY_Interceptor : StaticEventHandler
 	"DCY_SiriusCrisis",
 	"DCY_VeneratedTruncheon",
 	"DCY_Deracinator",
-	"DCY_Epitome"
+	"DCY_Epitome",
+	"DCY_EternalVoid",
+	"DCY_TheCinerealOrdnance"
   };
   
   override void WorldUnloaded(WorldEvent evt)

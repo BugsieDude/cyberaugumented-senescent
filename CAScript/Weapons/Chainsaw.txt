@@ -1,4 +1,4 @@
-Class DCY_PowerSaw : DCY_Weapon Replaces Chainsaw
+Class DCY_PowerSaw : DCY_Weapon
 {
   Default
   {
@@ -58,7 +58,7 @@ Class DCY_PowerSaw : DCY_Weapon Replaces Chainsaw
   Hold:
 	SAW_ F 1
 	{
-		A_Saw("", "Chainsaw/Blood", random(1, 2), "DCY_ChainsawPuff", SF_NORANDOMPUFFZ);
+		A_Saw("", "Chainsaw/Blood", random(1, 3), "DCY_ChainsawPuff", SF_NORANDOMPUFFZ);
 		A_Chainsaw();
 	}
 	SAW_ G 1 A_Chainsaw();

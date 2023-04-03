@@ -1,4 +1,4 @@
-Class DCY_CombatShotgun : DCY_Weapon Replaces Shotgun
+Class DCY_CombatShotgun : DCY_Weapon
 {
   Default
   {
@@ -14,7 +14,7 @@ Class DCY_CombatShotgun : DCY_Weapon Replaces Shotgun
   
   action void A_ShotgunFire()
   {
-	A_StartSound("Shotgun/Fire", CHAN_WEAPON, CHANF_OVERLAP);
+	A_StartSound("DCYShotgun/Fire", CHAN_WEAPON, CHANF_OVERLAP);
 	invoker.DepleteAmmo(invoker.bAltFire, true);
 	A_GunFlash();
 	A_FireBullets(4, 3, 7, 12, "DCY_Effect", FBF_NORANDOM, 8192, "DCY_TracerPlayer", 0);

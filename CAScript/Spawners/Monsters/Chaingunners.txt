@@ -1,0 +1,39 @@
+Class DCY_PlutoniaExperiment : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Plutonia", 0, 255;
+  DropItem "DCY_HuntsmanX", 0, 255;
+  DropItem "DCY_HellPrototypeMech", 0, 100;
+  DropItem "DCY_BionicZombie", 7, 15;
+  DropItem "DCY_DecedentBigwig", 15, 10;
+  DropItem "DCY_Umbra", 13, 8;
+  DropItem "DCY_Transmuter", 15, 10;
+  DropItem "DCY_Commandant", 5, 25;
+  DropItem "DCY_Nullifier", 20, 10;
+  DropItem "DCY_Nullifier", 40, 3;
+  DropItem "DCY_AlacritousGuy", 25, 6;
+  DropItem "DCY_AutomatonSupervisor", 15, 10;
+  DropItem "DCY_Rattail", 15, 10;
+  DropItem "DCY_Vandal", 17, 8;
+  DropItem "DCY_HellRazer", 7, 25;
+  DropItem "DCY_EspionDeLetre", 30, 4;
+  DropItem "DCY_ShadowCrusader", 30, 4;
+  DropItem "DCY_ZEnsign", 21, 8;
+  DropItem "DCY_Tagati", 23, 3;
+  DropItem "DCY_TheristisPsichisl", 45, 2;
+  DropItem "DCY_Z_Exec", 30, 3;
+  DropItem "DCY_DeathDealer", 30, 3;
+  DropItem "DCY_BossChain", 20, 1;
+  }
+}
+
+Class DCY_BossChain : DCY_Spawner
+{
+  Default
+  {
+  DropItem "DCY_Plutonia", 0, 100;
+  DropItem "DCY_Marauder", 20, 1;
+  DropItem "DCY_Marauder", 100, 1;
+  }
+}

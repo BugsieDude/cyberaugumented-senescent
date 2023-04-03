@@ -54,9 +54,9 @@ Class DCY_KeyBase : Key abstract
   }
 }
 
-Class DCY_RKey : DCY_KeyBase Replaces RedCard { Default { Species "RedCard"; } }
-Class DCY_BKey : DCY_KeyBase Replaces BlueCard { Default { Species "BlueCard"; } }
-Class DCY_YKey : DCY_KeyBase Replaces YellowCard { Default { Species "YellowCard"; } }
-Class DCY_RCranium : DCY_KeyBase Replaces RedSkull { Default { Species "RedSkull"; } }
-Class DCY_BCranium : DCY_KeyBase Replaces BlueSkull { Default { Species "BlueSkull"; } }
-Class DCY_YCranium : DCY_KeyBase Replaces YellowSkull { Default { Species "YellowSkull"; } }
+Class DCY_RKey : DCY_KeyBase { Default { Species "RedCard"; } }
+Class DCY_BKey : DCY_KeyBase { Default { Species "BlueCard"; } }
+Class DCY_YKey : DCY_KeyBase { Default { Species "YellowCard"; } }
+Class DCY_RCranium : DCY_KeyBase { Default { Species "RedSkull"; } }
+Class DCY_BCranium : DCY_KeyBase { Default { Species "BlueSkull"; } }
+Class DCY_YCranium : DCY_KeyBase { Default { Species "YellowSkull"; } }
