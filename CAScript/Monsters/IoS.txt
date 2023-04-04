@@ -1,4 +1,4 @@
-Class DCY_IoSEye : BossEye Replaces BossEye
+Class DCY_IoSEye : BossEye
 {
 	Mixin DCY_Effects;
 	
@@ -59,7 +59,7 @@ Class DCY_IoSEye : BossEye Replaces BossEye
 	}
 }
 
-Class DCY_IoSBrain : BossBrain replaces BossBrain
+Class DCY_IoSBrain : BossBrain
 {
   bool ded;
   
@@ -129,7 +129,7 @@ Class DCY_IoSBrain : BossBrain replaces BossBrain
   }
 }
 
-Class DCY_SpawnShot : SpawnShot Replaces SpawnShot
+Class DCY_SpawnShot : SpawnShot
 { 
   Mixin DCY_Effects;
   

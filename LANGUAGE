@@ -105,3 +105,7 @@ TIP_DCY_WOLFENSTEINSPAWNS = "Enables custom monsters that replaces the Wolfenste
 TIP_DCY_KEENSPAWNS = "Commander Keen is more different while on.";
 TIP_DCY_GIBBING = "Basically regulates gore and gibbing effects.";
 TIP_DCY_GIBTIME = "The number of tics before gibs erase themselves for peformance.";
+TIP_DCY_IOS = "The Icon of Sin styles: Cyberaugumented (Specifically) and Vanilla. For your DEHACKED needs such as Eviternity.";
+TIP_DCY_VANILLASPAWNS = "So basically, when the game's too unfair or if you'd like the vanilla experience but still like the Cyberaugumented aesthetics, go ahead and enable this option.";
+TIP_DCY_MONSTERS = "Disabling this would make the game's monsters give you the TRUE vanilla experience.";
+TIP_DCY_PROPS = "Decorations would turn to its vanilla state when off.";

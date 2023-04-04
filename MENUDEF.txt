@@ -53,6 +53,24 @@ OptionValue "EnableDisable2"
   1, "On"
 }
 
+OptionValue "YesNoIOS"
+{
+  0, "Vanilla"
+  1, "Cyberaugumented"
+}
+
+OptionValue "EnemySpawnYN"
+{
+  0, "Normal"
+  1, "Vanilla Tier"
+}
+
+OptionValue "AestheticYN"
+{
+  0, "Vanilla!!"
+  1, "DCY Aesthetics"
+}
+
 AddOptionMenu "OptionsMenu"
 {
 	StaticText " "
@@ -78,6 +96,10 @@ OptionMenu "DCYModOptionsMenu"
 	Slider "Progression Multiplier", "sv_dcy_progression", 0.000, 2.000, 0.01
 	Option "SS Guard Replacement", "dcy_wolfensteinspawns", "YesNo"
 	Option "Keen Replacement", "dcy_keenspawns", "YesNo"
+	Option "Icon of Sin", "dcy_ios", "YesNoIOS"
+	Option "Revert to Vanilla", "dcy_monsters", "AestheticYN"
+	Option "Decorating Hellscape", "dcy_props", "YesNoIOS"
+	Option "All enemies' spawn type", "dcy_vanillaspawns", "EnemySpawnYN"
 	
 }
 

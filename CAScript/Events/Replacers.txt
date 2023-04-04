@@ -141,29 +141,39 @@ extend class CyberaugumentedEventHandler
   
   override void CheckReplacee(ReplacedEvent e)
   {
-	if(!dcy_monsters) return;
 	name m = e.Replacement.GetClassName();
-	switch(m)
+	
+	if (dcy_monsters)
 	{
-		case 'DCY_UndeadGuys' : if(dcy_zombieman) e.Replacee = 'Zombieman'; break;
-		case 'DCY_Shotgunners' : if(dcy_shotgunner) e.Replacee = 'ShotgunGuy'; break;
-		case 'DCY_PlutoniaExperiment' : if(dcy_chaingunner) e.Replacee = 'ChaingunGuy'; break;
-		case 'DCY_Impo'	: if(dcy_imp) e.Replacee = 'DoomImp'; break;
-		case 'DCY_DemonPigs' : if(dcy_demon) e.Replacee = 'Demon'; break;
-		case 'DCY_CrazyStealth' : if(dcy_spectre) e.Replacee = 'Spectre'; break;
-		case 'DCY_RedMeatball' : if(dcy_caco) e.Replacee = 'Cacodemon'; break;
-		case 'DCY_GroupsAndKeepers' : if(dcy_pain) e.Replacee = 'PainElemental'; break;
-		case 'DCY_GhostRider' : if(dcy_soul) e.Replacee = 'LostSoul'; break;
-		case 'DCY_SpookySkeletonWithRocketLaunchers' : if(dcy_revenant) e.Replacee = 'Revenant'; break;
-		case 'DCY_Blubber' : if(dcy_fatso) e.Replacee = 'Fatso'; break;
-		case 'DCY_LittleSpedor' : if(dcy_arachno) e.Replacee = 'Arachnotron'; break;
-		case 'DCY_BuffBruiser' : if(dcy_baron) e.Replacee = 'BaronOfHell'; break;
-		case 'DCY_Warriors' : if(dcy_knight) e.Replacee = 'HellKnight'; break;
-		case 'DCY_MadMartian' : if(dcy_vile) e.Replacee = 'Archvile'; break;
-		case 'DCY_TheTyrant' : if(dcy_cyber) e.Replacee = 'Cyberdemon'; break;
-		case 'DCY_Spooder' : if(dcy_mastermind) e.Replacee = 'SpiderMastermind'; break;
-		case 'DCY_IoSBrain' : if(dcy_ios2) e.Replacee = 'BossBrain'; break;
-		case 'DCY_SpawnShot' : if(dcy_ios2) e.Replacee = 'SpawnShot'; break;
+		switch(m)
+		{
+			case 'DCY_UndeadGuys' : if(dcy_zombieman) e.Replacee = 'Zombieman'; break;
+			case 'DCY_Shotgunners' : if(dcy_shotgunner) e.Replacee = 'ShotgunGuy'; break;
+			case 'DCY_PlutoniaExperiment' : if(dcy_chaingunner) e.Replacee = 'ChaingunGuy'; break;
+			case 'DCY_Impo'	: if(dcy_imp) e.Replacee = 'DoomImp'; break;
+			case 'DCY_DemonPigs' : if(dcy_pinky) e.Replacee = 'Demon'; break;
+			case 'DCY_CrazyStealth' : if(dcy_spectre) e.Replacee = 'Spectre'; break;
+			case 'DCY_RedMeatball' : if(dcy_caco) e.Replacee = 'Cacodemon'; break;
+			case 'DCY_GroupsAndKeepers' : if(dcy_pain) e.Replacee = 'PainElemental'; break;
+			case 'DCY_GhostRider' : if(dcy_soul) e.Replacee = 'LostSoul'; break;
+			case 'DCY_SpookySkeletonWithRocketLaunchers' : if(dcy_revenant) e.Replacee = 'Revenant'; break;
+			case 'DCY_Blubber' : if(dcy_fatso) e.Replacee = 'Fatso'; break;
+			case 'DCY_LittleSpedor' : if(dcy_arachno) e.Replacee = 'Arachnotron'; break;
+			case 'DCY_BuffBruiser' : if(dcy_baron) e.Replacee = 'BaronOfHell'; break;
+			case 'DCY_Warriors' : if(dcy_knight) e.Replacee = 'HellKnight'; break;
+			case 'DCY_MadMartian' : if(dcy_vile) e.Replacee = 'Archvile'; break;
+			case 'DCY_TheTyrant' : if(dcy_cyber) e.Replacee = 'Cyberdemon'; break;
+			case 'DCY_Spooder' : if(dcy_mastermind) e.Replacee = 'SpiderMastermind'; break;
+		}
+	}
+	
+	if (dcy_ios)
+	{
+		switch(m)
+		{
+			case 'DCY_IoSBrain' : if(dcy_ios2 && dcy_ios) e.Replacee = 'BossBrain'; break;
+			case 'DCY_SpawnShot' : if(dcy_ios2 && dcy_ios) e.Replacee = 'SpawnShot'; break;
+		}
 	}
   }
 }
