@@ -1224,7 +1224,7 @@ Class DCY_HellRazerPlasma : DCY_RehauledPlasma
   Alpha 1.0;
   Scale 1.1;
   Speed 20;
-  FastSpeed 30;
+  FastSpeed 25;
   }
   
   States
@@ -1308,7 +1308,7 @@ Class DCY_UmbraPlasma : DCY_HellRazerPlasma
   Translation "0:255=%[0.00,0.00,0.00]:[0.86,0.74,1.57]";
   Speed 15;
   Damage 4;
-  FastSpeed 23;
+  FastSpeed 20;
   }
   
   States
@@ -1318,7 +1318,7 @@ Class DCY_UmbraPlasma : DCY_HellRazerPlasma
 	{
 		A_SetRoll(Roll + 10);
 		
-		A_Tracer2(1);
+		if (!(level.Time % 10)) A_Tracer2(20);
 		
 		for (int i = 2; i > 0; i--)
 			A_SpawnItemEx("DCY_UmbraTrail", frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERROLL);

@@ -26,7 +26,8 @@ Class DCY_RehauledPlasmaRifle : DCY_Weapon
 		if (flash != null) player.SetSafeFlash(weap, flash, random[FirePlasma]()&1);
 		
 	}
-		
+	
+	A_WeaponOffset(frandom(-2.5, 2.5), frandom(31, 36), WOF_INTERPOLATE);
 	SpawnPlayerMissile("DCY_RehauledPlasma");
   }
   
