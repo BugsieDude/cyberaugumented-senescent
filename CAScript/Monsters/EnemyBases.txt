@@ -70,6 +70,8 @@ CLASS DCYMonster : Actor abstract
   
   string wf;
   property WalkFlames : wf;
+  sound ft;
+  property FootstepSound : ft;
   
   property BurnSound: brns;
   property TagColor: tcol;
@@ -87,6 +89,7 @@ CLASS DCYMonster : Actor abstract
   {
 	super.PostBeginPlay();
 	sfxdistance = 1500;
+	warningdistance = 4000;
   }
   
   int ProgressionLevel()
@@ -104,6 +107,12 @@ CLASS DCYMonster : Actor abstract
   {
 	A_BossDeath();
 	//A_KillMaster("SpawnerDeath");
+  }
+  
+  void DCY_Footstep()
+  {
+	if (ft == "") return;
+	if (DCY_EffectDistance(sfxdistance)) A_StartSound(ft, 30);
   }
   
   void A_WalkFlame()

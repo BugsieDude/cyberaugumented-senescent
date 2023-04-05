@@ -6,6 +6,7 @@ Class DCY_ContraptionOfHell : DCY_TheGiantEnemySpider
   -SHOOTABLE
   -COUNTKILL
   +INVULNERABLE
+  +NODROPOFF
   -BRIGHT
   +NODAMAGE
   Radius 64;

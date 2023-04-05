@@ -1,0 +1,13 @@
+Class DCY_Odium : DCY_SkinnyFat
+{
+  Default
+  {
+  Health 800;
+  Scale 1.1;
+  BloodType "AndroidNeonFluid";
+  BloodColor "Cyan";
+  DCYMonster.GibType "DCY_GibletsLava";
+  Tag "\c[n0]Odium\c-";
+  Obituary "%o faced the Odium's hatred.";
+  }
+}
