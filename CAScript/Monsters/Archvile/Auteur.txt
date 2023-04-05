@@ -150,7 +150,7 @@ Class DCY_AuteurFire : DCY_NapalmFire
   States
   {
   Spawn:
-	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.5, 1.9)); A_SetScale(frandom(1.55, 2.0) * randompick(-1, 1), frandom(1.0, 1.6)); }
+	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOPBIG", CHAN_BODY, CHANF_LOOPING, vol, pitch: frandom(1.5, 1.9)); A_SetScale(frandom(1.55, 2.0) * randompick(-1, 1), frandom(1.0, 1.6)); }
 	123E "##########" 1 A_FadeIn(0.1);
 	123E "#" 1
 	{
@@ -160,7 +160,7 @@ Class DCY_AuteurFire : DCY_NapalmFire
 		if ((level.time % 3) == 0)
 		{
 			fireloop++;
-			A_Explode(5, 80);
+			A_Explode(5, 60, 0);
 		}
 		
 		if ((level.time % random(2, 5)) == 0)
@@ -168,7 +168,12 @@ Class DCY_AuteurFire : DCY_NapalmFire
 	}
 	Goto Spawn+11;
   Gone:
-	123E "##########" 1 A_FadeOut(0.1);
+	123E "##########" 1
+	{
+		A_SoundVolume(CHAN_BODY, vol);
+		vol -= 0.1;
+		A_FadeOut(0.1);
+	}
 	Stop;
   }
 }

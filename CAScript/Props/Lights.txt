@@ -52,7 +52,7 @@ Class DCY_TorchBase : Actor
   {
 	super.tick();
 	
-	if (DCY_EffectDistance(2000))
+	if (DCY_EffectDistance(2000) || DCY_EffectRange(400))
 		A_Blaze();
 
 	if (waterlevel > 0)

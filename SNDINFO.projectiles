@@ -425,3 +425,8 @@ DCYSmokeGrenade "Sounds/Projectiles/dcy_smoke_grenade.ogg"
 DCYMaykrBeam "Sounds/DCY SFX/dcy_maykr_beam.ogg"
 DCYMaykrBeamLoop "Sounds/DCY SFX/dcy_maykr_beam_loop.ogg"
 DCYMaykrBeamEnd "Sounds/DCY SFX/dcy_maykr_beam_end.ogg"
+
+FIR3LOOP "Sounds/DCY SFX/dcy_fire_loop.ogg"
+FIR3LOOPBIG "Sounds/DCY SFX/dcy_fireloopb.ogg"
+$limit fir3loop 8
+$limit fir3loopbig 8

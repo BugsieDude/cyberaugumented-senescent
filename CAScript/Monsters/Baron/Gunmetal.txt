@@ -240,7 +240,7 @@ Class DCY_GEmber : DCY_NapalmEmber
 		if (waterlevel > 0)
 			Destroy();
 		
-		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, 35, random(9, 13), frandom(0, 360), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.325);
+		A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], Texman.CheckForTexture("Graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(9, 13), frandom(0, 360), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.325);
 	}
 	Loop;
   Death:
@@ -268,7 +268,7 @@ Class DCY_GFire : DCY_NapalmFire
   States
   {
   Spawn:
-	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(0.5, 0.8) * randompick(-1, 1), frandom(0.5, 0.8)); }
+	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, vol, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(0.5, 0.8) * randompick(-1, 1), frandom(0.5, 0.8)); }
 	123E "##########" 1 A_FadeIn(0.1);
 	123E "#" 1
 	{

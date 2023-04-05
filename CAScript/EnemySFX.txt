@@ -9,6 +9,7 @@ Class DCY_GeneralComet : DCY_Projectile
   Scale 0.85;
   RenderStyle "Normal";
   Alpha 1.0;
+  +ROLLSPRITE
   +NEVERFAST
   +EXTREMEDEATH
   Projectile;
@@ -16,13 +17,25 @@ Class DCY_GeneralComet : DCY_Projectile
   DeathSound "DCYComet/Explode";
   Decal "Scorch";
   }
+  
+  float r;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	r = frandom(0.8, 4.0) * randompick(1, -1);
+  }
+  
   States
   {
   Spawn:
     CGMT AABBCC 1 Bright
 	{
-		A_SpawnFlames("eeeeee", 20, 20, 0, false, thrust: 6);
-		A_SpawnItemEx("DCY_CometTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		if ((level.time % random(1, 5)) == 0)
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 50, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 1), startalphaf: 0.25, fadestepf: 0.0014, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		
+		roll += r;
+		A_SpawnItemEx("DCY_CometTrail", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), vel.x / 4, vel.y / 4, vel.z / 4, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
 	}
     Loop;
   Death:
@@ -38,9 +51,7 @@ Class DCY_GeneralComet : DCY_Projectile
 		A_FadeOut(0.15, 0);
 		A_SetScale(Scale.X+0.15, Scale.Y+0.15);
 		A_SetTranslucent(1.0, 1);
-		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_MonochromaticExplosion", 0, 0, 0, random(-5, 5), random(-5, 5), random(-5, 5), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
     CGMT EEFF 1 Bright
 	{
@@ -72,12 +83,14 @@ Class DCY_CometTrail : DCY_Effect
   {
   Spawn:
 	FRTG A 0 NoDelay A_SetRoll(frandom(0, 360));
-	FRTG ABCDEFGHI 2
+	NBKL AABBCC 1
 	{
 		A_SetScale(Scale.X-0.01, Scale.Y-0.01);
-		A_FadeOut(0.035, 0);
+		A_FadeOut(0.0175, 0);
+		
+		if (alpha < 0) Destroy();
 	}
-	Stop;
+	Loop;
   }
 }
 

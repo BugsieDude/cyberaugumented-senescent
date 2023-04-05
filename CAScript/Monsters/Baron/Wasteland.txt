@@ -91,8 +91,8 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
 	ZRCY J 5
 	{
 		A_SpawnProjectile("DCY_WastelandComet", 30);
-		A_SpawnProjectile("DCY_WastelandComet", 30, 0, randompick(-10, 10));
-		A_SpawnProjectile("DCY_WastelandComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, randompick(30, 20));
+		A_SpawnProjectile("DCY_WastelandComet", 30, 0, randompick(-10, 10), CMF_OFFSETPITCH, pitch + frandom(-2, 2));
+		A_SpawnProjectile("DCY_WastelandComet", 30, 0, 0, CMF_OFFSETPITCH|CMF_TRACKOWNER, randompick(-2, -8));
 	}
 	ZRCY I 5 A_FaceTarget();
 	Goto See;
@@ -234,7 +234,7 @@ Class DCY_WastelandComet : DCY_GeneralComet
   DamageType "Fire";
   Speed 25;
   FastSpeed 34;
-  Translation "0:255=%[0.50,0.00,0.00]:[2.00,2.00,1.01]";
+  Translation "0:255=%[0.24,0.00,0.00]:[2.00,1.22,0.35]";
   +SEEKERMISSILE
   }
   
@@ -243,9 +243,13 @@ Class DCY_WastelandComet : DCY_GeneralComet
   Spawn:
     CGMT AABBCC 1 Bright
 	{
-		A_Weave(1, 1, 2, 2);
-		A_SpawnItemEx("DCY_CometTrail", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_SeekerMissile(1, 1, SMF_PRECISE);
+		if ((level.time % random(1, 5)) == 0)
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, 50, 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 1), startalphaf: 0.25, fadestepf: 0.0014, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		
+		A_Tracer2(3);
+		
+		roll += r;
+		A_SpawnItemEx("DCY_CometTrail", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), vel.x / 4, vel.y / 4, vel.z / 4, flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
 	}
     Loop;
   Death:

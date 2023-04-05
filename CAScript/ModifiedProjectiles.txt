@@ -475,10 +475,11 @@ Class DCY_BaronFireball : DCY_Projectile
 	{
 		if (DCY_EffectDistance(sfxdistance))
 		{
-			let splosion = Spawn("DCY_ExplosiveBallT", pos);
-			if (splosion) { splosion.translation = translation; splosion.scale *= 0.25; }
+			let splosion = Spawn("DCY_ExplosiveBallT", pos + (frandom(-2, 2), frandom(-2, 2), frandom(-2, 2)));
+			if (splosion) { splosion.translation = translation; splosion.scale *= 0.2; splosion.vel.x = vel.x / 2.5;
+			splosion.vel.y = vel.y / 2.5; splosion.vel.z = vel.z / 2.5; }
 			A_SpawnItemEx("DCY_BaronKnightFlame", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 120);
-			A_SpawnFlames("10ff10", 40, 50, 0, false);
+			A_SpawnFlames("52ff42", 10, 50, 0);
 		}
 	}
 	Loop;
@@ -1505,7 +1506,7 @@ Class DCY_NapalmEmber : Actor
 		if (waterlevel > 0)
 			Destroy();
 		
-		A_SpawnParticle(ParticleColors[random(0, ParticleColors.Size() - 1)], SPF_FULLBRIGHT, 35, random(9, 13), frandom(0, 360), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.325);
+		A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], Texman.CheckForTexture("Graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(9, 13), frandom(0, 360), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), sizestep: -0.325);
 	}
 	Loop;
   Death:
@@ -1535,9 +1536,18 @@ Class DCY_NapalmFire : Actor
   Alpha 0.0;
   +THRUACTORS
   +DONTSPLASH
+  +NODAMAGETHRUST
+  +NOEXPLODEFLOOR
   +BRIGHT
+  Gravity .5;
   DCY_NapalmFire.FireDuration 85;
   Translation "0:255=%[0.09,0.00,0.00]:[1.72,0.79,0.28]";
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	vol = 1;
   }
   
   override void Tick()
@@ -1559,13 +1569,14 @@ Class DCY_NapalmFire : Actor
   
   int fireloop;
   float zframe;
+  float vol;
   
   static const string ParticleColors[] = { "b5441b", "4a1d15", "995522" };
   
   States
   {
   Spawn:
-	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(0.5, 0.8) * randompick(-1, 1), frandom(0.5, 0.8)); }
+	123E "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, vol, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(0.5, 0.8) * randompick(-1, 1), frandom(0.5, 0.8)); }
 	123E "##########" 1 A_FadeIn(0.1);
 	123E "#" 1
 	{
@@ -1575,7 +1586,7 @@ Class DCY_NapalmFire : Actor
 		if ((level.time % 3) == 0)
 		{
 			fireloop++;
-			A_Explode(3, 25);
+			A_Explode(3, 16, 0);
 		}
 		
 		if ((level.time % random(2, 5)) == 0)
@@ -1583,7 +1594,12 @@ Class DCY_NapalmFire : Actor
 	}
 	Goto Spawn+11;
   Gone:
-	123E "##########" 1 A_FadeOut(0.1);
+	123E "##########" 1
+	{
+		A_SoundVolume(CHAN_BODY, vol);
+		vol -= 0.1;
+		A_FadeOut(0.1);
+	}
 	Stop;
   }
 }
@@ -1608,7 +1624,7 @@ Class DCY_NapalmBigFire : DCY_NapalmFire
   States
   {
   Spawn:
-	E123 "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOP", CHAN_BODY, CHANF_LOOPING, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(1.2, 1) * randompick(-1, 1), frandom(1, 1.2)); }
+	E123 "#" 0 NoDelay { fireloop = random(0, 20); A_StartSound("FIR3LOOPBIG", CHAN_BODY, CHANF_LOOPING, vol, pitch: frandom(1.1, 0.9)); A_SetScale(frandom(1.2, 1) * randompick(-1, 1), frandom(1, 1.2)); }
 	E123 "##########" 1 { alpha += 0.1; }
 	E123 "#" 1
 	{
@@ -1618,14 +1634,19 @@ Class DCY_NapalmBigFire : DCY_NapalmFire
 		if ((level.time % 3) == 0)
 		{
 			fireloop++;
-			A_Explode(6, 45);
+			A_Explode(6, 35, 0);
 		}
 		
 		A_SpawnParticleEx(ParticleColors[random(0, ParticleColors.Size() - 1)], TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 35, random(8, 14), frandom(0, 360), frandom(-23.0, 23.0), frandom(-23.0, 23.0), frandom(12.0, 32.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 0.35), accelz: 0.2, fadestepf: 0, sizestep: -0.45);
 	}
 	Goto Spawn+11;
   Gone:
-	E123 "##########" 1 { alpha -= 0.1; }
+	E123 "##########" 1
+	{
+		A_SoundVolume(CHAN_BODY, vol);
+		vol -= 0.1;
+		alpha -= 0.1;
+	}
 	Stop;
   }
 }
@@ -1646,13 +1667,13 @@ Class DCY_Vomit : DCY_FatThrower
   States
   {
   Spawn:
-	TNT1 A 1 Bright A_SpawnItemEx("De_Blood_Trail", random(-1, 1), random(-1, 1), random(-1, 1), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 A 1 Bright A_SpawnItemEx((!random(0, 1)) ? "De_Blood" : "De_Blood_Splat", random(-1, 1), random(-1, 1), random(-1, 1), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	Loop;
   Death:
 	TNT1 A 1
 	{
 		for (int i = 5; i > 0; i--)
-			A_SpawnItemEx("De_Blood", random(-5,5), random(-5,5), random(-5,5), xvel: frandom(1, 5), zvel: frandom(2, 6), angle: frandom(0, 360), flags: SXF_TRANSFERTRANSLATION);
+			A_SpawnItemEx("De_Blood_BigSplat", random(-5,5), random(-5,5), random(-5,5), xvel: frandom(1, 5), zvel: frandom(2, 6), angle: frandom(0, 360), flags: SXF_TRANSFERTRANSLATION);
 	}
 	Stop;
   }
