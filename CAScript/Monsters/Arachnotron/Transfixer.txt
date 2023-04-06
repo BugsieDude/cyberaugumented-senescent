@@ -25,15 +25,10 @@ Class DCY_Transfixer : DCY_ArachnoParent
   {
 	if (rushing == true)
 	{
-		if (fleeing > 0)
+		for (int i = 2; i > 0; i--)
 		{
-			for (int i = 2; i > 0; i--)
-				A_Chase(null, null);
-		}
-		else
-		{
-			for (int i = 2; i > 0; i--)
-				A_Chase();
+			if (fleeing > 0) A_Chase(null, null);
+			else A_Chase();
 		}
 		
 		if (DCY_EffectDistance(sfxdistance))

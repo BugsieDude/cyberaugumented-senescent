@@ -27,7 +27,15 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
     LHS_ AAABBBCCCDDD 3 DCY_LookingForPlayer();
 	Loop;
   Alert:
-	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
+	"####" "#" 0 { if (!random(0, 1)) SetStateLabel("Roar"); A_StartSound(SeeSound, CHAN_VOICE); }
+	Goto See;
+  Roar:
+	LHS_ P 4
+	{
+		DCY_AlertSound();
+		A_FaceTarget();
+	}
+	LHS_ QPRPQPRPQ 4 A_FaceTarget();
 	Goto See;
   See:
     LHS_ AAABBBCCCDDD 3 A_Chase();

@@ -133,7 +133,7 @@ Class DCY_Convector : DCY_ArachnoParent
 	HFBT C 8
 	{
 		tics = (ballcount > 7) ? 5 : 8;
-		A_StartSound("fatso/attack", CHAN_WEAPON, attenuation: 0.5, pitch: 0.75);
+		A_StartSound("dcyfatso/attack", CHAN_WEAPON, attenuation: 0.5, pitch: 0.75);
 		A_SpawnProjectile("DCY_ConvectorBall", 20, 0, frandom(-4, 4), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-4, 4));
 		A_FaceTarget();
 		ballcount--;

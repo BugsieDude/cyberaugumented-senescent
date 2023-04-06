@@ -1910,11 +1910,12 @@ p4p19 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_pain19.ogg"
 p4p20 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_pain20.ogg"
 p4p21 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_pain21.ogg"
 p4p22 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_pain22.ogg"
-$random MechaZombie/Sight {POS4SIT1 POS4SIT2 POS4SIT3 POS4SIT4}
+$random MechaZombie/Sight {POS4SIT1 POS4SIT2 POS4SIT3 POS4SIT4 POS4SIT5}
 POS4SIT1 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_sight1.ogg"
 POS4SIT2 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_sight2.ogg"
 POS4SIT3 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_sight3.ogg"
 POS4SIT4 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_sight4.ogg"
+POS4SIT5 "Sounds/DCY Monsters/Mechanoid/dcy_d4_possessed_sight5.ogg"
 
 $random UpgradedMechaZombie/Attack { ACYZATK1 ACYZATK2 ACYZATK3 ACYZATK4 ACYZATK5 ACYZATK6 ACYZATK7 }
 ACYZATK1 "Sounds/DCY Monsters/Bionic Zombie/dcy_de_possessed_attack1.ogg"

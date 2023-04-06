@@ -190,7 +190,7 @@ Class DCY_FusilladeBall : DCY_ImpFireball
 	BAL3 AAAABBBBCCCCDDDD 1
 	{
 		A_SetRoll(Roll+10);
-		A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
+		A_SpawnParticleEx(0xad3002, TexMan.CheckForTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
 		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
 	}
 	Loop;
@@ -198,7 +198,7 @@ Class DCY_FusilladeBall : DCY_ImpFireball
 	C3AL A 1
 	{
 		for (int i = 20; i > 0; i--)
-			A_SpawnParticle(0xffdc9c, SPF_FULLBRIGHT, random(20, 40), random(6, 9), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
+			A_SpawnParticleEx(0xad3002, TexMan.CheckForTexture("Graphics/Particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT, random(20, 40), random(1, 3), frandom(0, 360), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-9.5, 9.5), frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(1.5, 7.4), accelz: -0.55);
 		
 		A_Explode(30, 150, damagetype: "Lava");
 		A_SpawnItemEx("DCY_Explosion_1");

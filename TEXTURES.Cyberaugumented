@@ -607,7 +607,7 @@ Sprite "PIS_C0", 320, 168
 	XScale 0.950
 	YScale 0.950
 	Offset 8, -6
-	Patch "PISFB0", 113, 45
+	Patch "P_ZXB0", 113, 45
 	{
 		Style Add
 	}
@@ -619,7 +619,7 @@ Sprite "PIS_D0", 320, 168
 	XScale 0.900
 	YScale 0.900
 	Offset 16, 0
-	Patch "PISFC0", 112, 39
+	Patch "P_ZXC0", 112, 39
 	{
 		Style Add
 	}
