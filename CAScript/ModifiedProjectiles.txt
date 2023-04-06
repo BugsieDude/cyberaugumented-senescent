@@ -11,6 +11,7 @@ Mixin Class DCY_Projectiles
   Default
   {
   Projectile;
+  +FORCEXYBILLBOARD
   }
   
   action void A_SpawnFlames(string fcolor = "ffffff", float ftimer = 20, float fsize = 40, float faccel = 0,

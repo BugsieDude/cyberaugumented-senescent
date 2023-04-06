@@ -99,11 +99,7 @@ Class DCY_BaronParent : DCYMonster
   GRANDSLAM:
 	B1SS R 6 A_FaceTarget();
 	B1SS QP 6 A_FaceTarget();
-	B0SS P 1
-	{
-		A_BruiserJump();
-		A_FaceTarget();
-	}
+	B0SS P 1 A_BruiserJump();
 	B0SS P 1
 	{
 		if (vel.z == 0 && down)
@@ -207,7 +203,7 @@ Class DCY_KnightHell : DCY_BaronParent
 	Goto See;
   GRANDSLAM:
 	SS0B R 10 A_FaceTarget();
-	SS0B QP 6 A_FaceTarget();
+	SS0B QP 8 A_FaceTarget();
 	SS0B P 1
 	{
 		A_BruiserJump();
