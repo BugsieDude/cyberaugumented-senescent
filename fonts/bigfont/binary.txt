@@ -1,0 +1,367 @@
+_____________________________
+Binary  Created by Brian Kent
+ØØØØØØØØØØØØØØØØØØØØØØØØØØØØØ
+Thanks for Downloading Binary.
+
+>>> This text file is best viewed with Notepad (with Fixedsys) <<<
+
+______________________________
+§§ INCLUDED TRUE TYPE FONTS §§
+- Binary       [binaryt.ttf]
+- Binary X     [binaryx.ttf]
+- Binary 01s   [bin01st.ttf]
+- Binary X 01s [binx01s.ttf]
+- Binary CHR   [binchrt.ttf]
+- Binary X CHR [binxchr.ttf]
+
+NOTE: 'binaryt.ttf', 'bin01st.ttf' and binchrt.ttf may not work
+properly on older computers, so I included non-hinted 'X' versions
+('binaryx.ttf' 'binx01s.ttf' and binxchr.ttf) that should work.
+
+When using the TTF version, try using it with anti-aliasing off.
+
+___________________________
+§§ INCLUDED BITMAP FONTS §§
+- Binary       [binary.fon] [26pt]
+- Binary 01s   [bin01s.fon] [7pt]
+- Binary CHR   [binchr.fon] [11pt]
+
+  'binary.fon', 'bin01s.fon' and 'binchr.fon' are Windows Bitmap Fonts.
+These fonts are best used at the point sizes listed above.  To use
+them at larger point sizes (for images), try using a graphics program
+like Photoshop, Paint Shop Pro, or the Paint program that comes with
+Windows.  Type out your text at the recommended point size, then
+resize the image.   Set the color mode to 256 or 2 colors so the edges
+don't get blured when resizing, then after you have the text to the
+size that you want, then change back to a higher color mode and edit
+the image.
+
+  For programs that don't show Bitmap Fonts in the Font Selector, you
+may be able to get the fonts to work by typing one of the following
+font names:
+binary -brk-
+binary 01s -brk-
+binary chr -brk-
+
+_________________________
+>>> FONT DESCRIPTIONS <<<
+ØØØØØØØØØØØØØØØØØØØØØØØØØ
+ªªª Binary (binaryt.ttf, binaryx.ttf and binary.fon)
+Each character in this font has 3 sections
+1] TOP - Displays the Character of the font (ABC123, ect...)
+2] MIDDLE - Displays the Binary Value of the character.  In the font,
+Dots are ZEROS '0' and Lines are ONES '1'.
+3] BOTTOM - Displays the HEX Value of the character.
+
+EXAMPLE:
+________
+|      |
+|  Z   |  <- CHARACTER
+|______|
+01011010  <- BINARY VALUE
+|ØØØØØØ|
+|  5A  |  <- HEX VALUE
+|______|
+
+
+ªªª Binary 01s (bin01st.ttf, binx01s.ttf and bin01s.fon)
+Each character in this font is the Binary Value of the characters
+(just 0s and 1s).  In the font, Dots are ZEROS '0' and Lines are
+ONES '1'.
+
+EXAMPLE:
+010000100110100101101110011000010111001001111001
+This spells out  Binary
+
+
+ªªª Binary CHR (binchrt.ttf, binxchr.ttf and binchr.fon)
+This font has all of the characters without the Binary and HEX Values.
+
+___________
+>>> KEY <<<
+ØØØØØØØØØØØ
+_______________________________
+BINARY   -CHARACTER- HEX - ALT#
+ØØØØØØØØØØØØØØØØØØØØØØØØØØØØØØØ
+00100000 - [SPACE] - 20  - 0032
+00100001 -    !    - 21  - 0033
+00100010 -    "    - 22  - 0034
+00100011 -    #    - 23  - 0035
+00100100 -    $    - 24  - 0036
+00100101 -    %    - 25  - 0037
+00100110 -    &    - 26  - 0038
+00100111 -    '    - 27  - 0039
+00101000 -    (    - 28  - 0040
+00101001 -    )    - 29  - 0041
+00101010 -    *    - 2A  - 0042
+00101011 -    +    - 2B  - 0043
+00101100 -    ,    - 2C  - 0044
+00101101 -    -    - 2D  - 0045
+00101110 -    .    - 2E  - 0046
+00101111 -    /    - 2F  - 0047
+00110000 -    0    - 30  - 0048
+00110001 -    1    - 31  - 0049
+00110010 -    2    - 32  - 0050
+00110011 -    3    - 33  - 0051
+00110100 -    4    - 34  - 0052
+00110101 -    5    - 35  - 0053
+00110110 -    6    - 36  - 0054
+00110111 -    7    - 37  - 0055
+00111000 -    8    - 38  - 0056
+00111001 -    9    - 39  - 0057
+00111010 -    :    - 3A  - 0058
+00111011 -    ;    - 3B  - 0059
+00111100 -    <    - 3C  - 0060
+00111101 -    =    - 3D  - 0061
+00111110 -    >    - 3E  - 0062
+00111111 -    ?    - 3F  - 0063
+01000000 -    @    - 40  - 0064
+01000001 -    A    - 41  - 0065
+01000010 -    B    - 42  - 0066
+01000011 -    C    - 43  - 0067
+01000100 -    D    - 44  - 0068
+01000101 -    E    - 45  - 0069
+01000110 -    F    - 46  - 0070
+01000111 -    G    - 47  - 0071
+01001000 -    H    - 48  - 0072
+01001001 -    I    - 49  - 0073
+01001010 -    J    - 4A  - 0074
+01001011 -    K    - 4B  - 0075
+01001100 -    L    - 4C  - 0076
+01001101 -    M    - 4D  - 0077
+01001110 -    N    - 4E  - 0078
+01001111 -    O    - 4F  - 0079
+01010000 -    P    - 50  - 0080
+01010001 -    Q    - 51  - 0081
+01010010 -    R    - 52  - 0082
+01010011 -    S    - 53  - 0083
+01010100 -    T    - 54  - 0084
+01010101 -    U    - 55  - 0085
+01010110 -    V    - 56  - 0086
+01010111 -    W    - 57  - 0087
+01011000 -    X    - 58  - 0088
+01011001 -    Y    - 59  - 0089
+01011010 -    Z    - 5A  - 0090
+01011011 -    [    - 5B  - 0091
+01011100 -    \    - 5C  - 0092
+01011101 -    ]    - 5D  - 0093
+01011110 -    ^    - 5E  - 0094
+01011111 -    _    - 5F  - 0095
+01100000 -    `    - 60  - 0096
+01100001 -    a    - 61  - 0097
+01100010 -    b    - 62  - 0098
+01100011 -    c    - 63  - 0099
+01100100 -    d    - 64  - 0100
+01100101 -    e    - 65  - 0101
+01100110 -    f    - 66  - 0102
+01100111 -    g    - 67  - 0103
+01101000 -    h    - 68  - 0104
+01101001 -    i    - 69  - 0105
+01101010 -    j    - 6A  - 0106
+01101011 -    k    - 6B  - 0107
+01101100 -    l    - 6C  - 0108
+01101101 -    m    - 6D  - 0109
+01101110 -    n    - 6E  - 0110
+01101111 -    o    - 6F  - 0111
+01110000 -    p    - 70  - 0112
+01110001 -    q    - 71  - 0113
+01110010 -    r    - 72  - 0114
+01110011 -    s    - 73  - 0115
+01110100 -    t    - 74  - 0116
+01110101 -    u    - 75  - 0117
+01110110 -    v    - 76  - 0118
+01110111 -    w    - 77  - 0119
+01111000 -    x    - 78  - 0120
+01111001 -    y    - 79  - 0121
+01111010 -    z    - 7A  - 0122
+01111011 -    {    - 7B  - 0123
+01111100 -    |    - 7C  - 0124
+01111101 -    }    - 7D  - 0125
+01111110 -    ~    - 7E  - 0126
+01111111 -        - 7F  - 0127
+10000000 -    Ä    - 80  - 0128
+10000001 -    Å    - 81  - 0129
+10000010 -    Ç    - 82  - 0130
+10000011 -    É    - 83  - 0131
+10000100 -    Ñ    - 84  - 0132
+10000101 -    Ö    - 85  - 0133
+10000110 -    Ü    - 86  - 0134
+10000111 -    á    - 87  - 0135
+10001000 -    à    - 88  - 0136
+10001001 -    â    - 89  - 0137
+10001010 -    ä    - 8A  - 0138
+10001011 -    ã    - 8B  - 0139
+10001100 -    å    - 8C  - 0140
+10001101 -    ç    - 8D  - 0141
+10001110 -    é    - 8E  - 0142
+10001111 -    è    - 8F  - 0143
+10010000 -    ê    - 90  - 0144
+10010001 -    ë    - 91  - 0145
+10010010 -    í    - 92  - 0146
+10010011 -    ì    - 93  - 0147
+10010100 -    î    - 94  - 0148
+10010101 -    ï    - 95  - 0149
+10010110 -    ñ    - 96  - 0150
+10010111 -    ó    - 97  - 0151
+10011000 -    ò    - 98  - 0152
+10011001 -    ô    - 99  - 0153
+10011010 -    ö    - 9A  - 0154
+10011011 -    õ    - 9B  - 0155
+10011100 -    ú    - 9C  - 0156
+10011101 -    ù    - 9D  - 0157
+10011110 -    û    - 9E  - 0158
+10011111 -    ü    - 9F  - 0159
+10100000 -    †    - A0  - 0160
+10100001 -    °    - A1  - 0161
+10100010 -    ¢    - A2  - 0162
+10100011 -    £    - A3  - 0163
+10100100 -    §    - A4  - 0164
+10100101 -    •    - A5  - 0165
+10100110 -    ¶    - A6  - 0166
+10100111 -    ß    - A7  - 0167
+10101000 -    ®    - A8  - 0168
+10101001 -    ©    - A9  - 0169
+10101010 -    ™    - AA  - 0170
+10101011 -    ´    - AB  - 0171
+10101100 -    ¨    - AC  - 0172
+10101101 -    ≠    - AD  - 0173
+10101110 -    Æ    - AE  - 0174
+10101111 -    Ø    - AF  - 0175
+10110000 -    ∞    - B0  - 0176
+10110001 -    ±    - B1  - 0177
+10110010 -    ≤    - B2  - 0178
+10110011 -    ≥    - B3  - 0179
+10110100 -    ¥    - B4  - 0180
+10110101 -    µ    - B5  - 0181
+10110110 -    ∂    - B6  - 0182
+10110111 -    ∑    - B7  - 0183
+10111000 -    ∏    - B8  - 0184
+10111001 -    π    - B9  - 0185
+10111010 -    ∫    - BA  - 0186
+10111011 -    ª    - BB  - 0187
+10111100 -    º    - BC  - 0188
+10111101 -    Ω    - BD  - 0189
+10111110 -    æ    - BE  - 0190
+10111111 -    ø    - BF  - 0191
+11000000 -    ¿    - C0  - 0192
+11000001 -    ¡    - C1  - 0193
+11000010 -    ¬    - C2  - 0194
+11000011 -    √    - C3  - 0195
+11000100 -    ƒ    - C4  - 0196
+11000101 -    ≈    - C5  - 0197
+11000110 -    ∆    - C6  - 0198
+11000111 -    «    - C7  - 0199
+11001000 -    »    - C8  - 0200
+11001001 -    …    - C9  - 0201
+11001010 -         - CA  - 0202
+11001011 -    À    - CB  - 0203
+11001100 -    Ã    - CC  - 0204
+11001101 -    Õ    - CD  - 0205
+11001110 -    Œ    - CE  - 0206
+11001111 -    œ    - CF  - 0207
+11010000 -    –    - D0  - 0208
+11010001 -    —    - D1  - 0209
+11010010 -    “    - D2  - 0210
+11010011 -    ”    - D3  - 0211
+11010100 -    ‘    - D4  - 0212
+11010101 -    ’    - D5  - 0213
+11010110 -    ÷    - D6  - 0214
+11010111 -    ◊    - D7  - 0215
+11011000 -    ÿ    - D8  - 0216
+11011001 -    Ÿ    - D9  - 0217
+11011010 -    ⁄    - DA  - 0218
+11011011 -    €    - DB  - 0219
+11011100 -    ‹    - DC  - 0220
+11011101 -    ›    - DD  - 0221
+11011110 -    ﬁ    - DE  - 0222
+11011111 -    ﬂ    - DF  - 0223
+11100000 -    ‡    - E0  - 0224
+11100001 -    ·    - E1  - 0225
+11100010 -    ‚    - E2  - 0226
+11100011 -    „    - E3  - 0227
+11100100 -    ‰    - E4  - 0228
+11100101 -    Â    - E5  - 0229
+11100110 -    Ê    - E6  - 0230
+11100111 -    Á    - E7  - 0231
+11101000 -    Ë    - E8  - 0232
+11101001 -    È    - E9  - 0233
+11101010 -    Í    - EA  - 0234
+11101011 -    Î    - EB  - 0235
+11101100 -    Ï    - EC  - 0236
+11101101 -    Ì    - ED  - 0237
+11101110 -    Ó    - EE  - 0238
+11101111 -    Ô    - EF  - 0239
+11110000 -        - F0  - 0240
+11110001 -    Ò    - F1  - 0241
+11110010 -    Ú    - F2  - 0242
+11110011 -    Û    - F3  - 0243
+11110100 -    Ù    - F4  - 0244
+11110101 -    ı    - F5  - 0245
+11110110 -    ˆ    - F6  - 0246
+11110111 -    ˜    - F7  - 0247
+11111000 -    ¯    - F8  - 0248
+11111001 -    ˘    - F9  - 0249
+11111010 -    ˙    - FA  - 0250
+11111011 -    ˚    - FB  - 0251
+11111100 -    ¸    - FC  - 0252
+11111101 -    ˝    - FD  - 0253
+11111110 -    ˛    - FE  - 0254
+11111111 -    ˇ    - FF  - 0255
+
+To use the ALT#, press and hold the ALT key then on the Number Pad
+type in the 4 numbers.  When you release the ALT key the character
+will appear.
+
+
+
+If you have any questions or comments, you can e-mail me at
+kentpw@norwich.net
+
+You can visit my Homepage <∆NIGMA GAMES & FONTS> at
+http://www.aenigmafonts.com/
+
+________________
+INSTALLING FONTS
+ØØØØØØØØØØØØØØØØ
+  There's a couple of ways to install Fonts. The 'easy' way to
+install fonts is to just Unzip/place the font file [.ttf] into your
+Windows\Fonts directory (I always use this method). If you're unable
+to do it the 'easy' way, then try to do it this way (for Windows
+95/98/NT):
+
+1] Unzip the Font(s) to a folder (or somewhere, just remember where
+you unzipped it) on your Computer.
+
+2] Next, click on the START button, then select SETTINGS then
+CONTROL PANEL.
+
+3] When the Control Panel Window pops up, Double Click on FONTS.
+
+4] When the FONTS window pops up, select File then Install New Font...
+
+5] A Add Fonts window will pop up, just go to the folder that you
+unzipped the Font(s) to, select the Font(s) and then click on OK.
+Now the Font(s) are installed.
+
+  Now you can use the Font(s) in programs the utilize Fonts.  Make
+sure that you install the font(s) first, then open up your apps
+(so the app will recognize the font).    Sometimes you'll have to
+wait until you computer 'auto-refreshes' for programs to recognize
+fonts (Windows is sometimes slow to do that).  You can refresh your
+computer quicker by going into Windows Explorer -or- My Computer and
+press F5 (or in the menubar select VIEW then REFRESH).
+
+
+__________
+DISCLAIMER
+ØØØØØØØØØØ
+-The font(s) in this zip file were created by me (Brian Kent).  All
+of my Fonts are Freeware, you can use them any way you want to
+(Personal use, Commercial use, or whatever).
+
+-If you have a Font related site and would like to offer my fonts on
+your site, go right ahead. All I ask is that you keep this text file
+intact with the Font.
+
+-You may not Sell or Distribute my Fonts for profit or alter them in
+any way without asking me first.  [e-mail -  kentpw@norwich.net]
