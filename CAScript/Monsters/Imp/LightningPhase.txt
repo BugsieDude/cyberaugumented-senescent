@@ -27,6 +27,7 @@ Class DCY_LightningPhase : DCY_Impe
   }
   
   int phased;
+  bool atkp;
   
   void A_LightningPhaseTrail()
   {
@@ -51,6 +52,13 @@ Class DCY_LightningPhase : DCY_Impe
 	if (phased && health > 0 && !isFrozen()) A_LightningPhaseTrail();
   }
   
+  void A_PhasedChase()
+  {
+	A_Chase(null, null, CHF_NOPLAYACTIVE);
+	
+	if (target && distance3D(target) < 128) { atkp = true; SetStateLabel("Unphase"); }
+  }
+  
   States
   {
   LoadSprites:
@@ -70,8 +78,6 @@ Class DCY_LightningPhase : DCY_Impe
 	{ 
 		if (phased)
 			SetStateLabel("SeePhased");
-		
-		phased == 0;
 	}
     LMEI AABBCCDD 3 A_Chase();
 	Goto See+1;
@@ -119,35 +125,45 @@ Class DCY_LightningPhase : DCY_Impe
 		If(target && Distance3D(target) < 200)
 			SetStateLabel("Lunge");
 		
+		if (!random(0, 5)) SetStateLabel("Bouncer");
 		if (!random(0, 10)) SetStateLabel("Discharge");
 		A_FaceTarget();
 		Return A_Jump(60, "Phase");
 	}
 	Goto NormalMissile;
+  Bouncer:
+	LMEI A 10 A_FaceTarget();
+	LMEI A 0 A_StartSound(ActiveSound, CHAN_VOICE);
+	LMEI EEEEEEEEEEEFFF 2
+	{
+		A_FaceTarget();
+		if (DCY_EffectDistance(sfxdistance))
+			A_SpawnItemEx("DCY_HexElec", 7, 25, 32, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
+	}
+	LMEI G 10
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_LightningPhaseBouncer", 32, 0, 0, CMF_OFFSETPITCH, pitch - 15);
+	}
+	Goto See;
   Phase:
-    LMEI E 0;
 	LMEI E 1 A_StartSound("LightningPhase/Teleport", CHAN_5);
 	LMEI E 5 A_FaceTarget();
 	LMEI EEEEEEEEE 1 A_FadeOut(0.1, 0);
 	TNT1 A 0 { phased = 1; }
 	Goto SeePhased;
   SeePhased:
-    LMEI E 0;
-	LMEI AAAABBBBCCCCDDDD 1 A_Chase(null, null, CHF_NOPLAYACTIVE);
-	LMEI AAAABBBBCCCCDDDD 1 A_Chase(null, null, CHF_NOPLAYACTIVE);
+	LMEI AAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 A_PhasedChase();
 	TNT1 A 0 A_Jump(50, "Unphase");
-	LMEI AAAABBBBCCCCDDDD 1 A_Chase(null, null, CHF_NOPLAYACTIVE);
-	LMEI AAAABBBBCCCCDDDD 1 A_Chase(null, null, CHF_NOPLAYACTIVE);
+	LMEI AAAABBBBCCCCDDDDAAAABBBBCCCCDDDD 1 A_PhasedChase();
 	Goto Unphase;
   Unphase:
-    LMEI E 0;
 	LMEI E 1 A_StartSound("LightningPhase/Teleport", CHAN_5);
 	LMEI E 1 A_FaceTarget();
 	LMEI EEEEEEEEE 1 A_FadeIn(0.1, 0);
-	TNT1 A 0 { phased = 0; }
+	TNT1 A 0 { phased = 0; if (atkp) SetStateLabel("Lunge"); }
 	Goto See;
   NormalMissile:
-	LMEI E 0 A_FaceTarget();
 	LMEI EF 7 A_FaceTarget();
 	LMEI GGG 13
 	{
@@ -397,6 +413,86 @@ Class DCY_LightningPhaseElec : DCY_LightningPhaseBallTrail
   {
   Spawn:
 	P_FX CDEFGH 2;
+	Stop;
+  }
+}
+
+Class DCY_LightningPhaseBouncer : DCY_LightningPhaseBall
+{
+  Default
+  {
+  BounceCount 4;
+  BounceType "Hexen";
+  BounceSound "LightningPulse/Fire";
+  SeeSound "LightningPulse/Fire";
+  DeathSound "LightningBewm";
+  BounceFactor 0.8;
+  Gravity 0.2;
+  Damage 7;
+  Scale 1.2;
+  -NOGRAVITY
+  +SEEKERMISSILE
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	A_StartSound("LightningPulse/ProjectileLoop", 10, CHANF_LOOPING);
+  }
+  
+  int t;
+  bool d;
+  
+  States
+  {
+  Spawn:
+	BL48 AABB 1
+	{
+		
+		A_SpawnItemEx("DCY_ElecTrailBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Arc", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 200);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), flags: SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 50);
+		
+		if (tracer && CheckSight(tracer) && distance2D(tracer) < 100)
+		{
+			if (t < 40)
+			{
+				bNOGRAVITY = true;
+				vel *= 0.01;
+				bouncecount = 0;
+				bouncefactor = 0;
+				d = true;
+			}
+		}
+		
+		if (d)
+		{
+			switch (t)
+			{
+				case 30: A_StartSound("SPELL17", starttime: 0.5);
+				case 45: A_ScaleVelocity(10); break;
+				case 50: for (int i = 2; i > 0; i--) A_SeekerMissile(999, 999, SMF_PRECISE|SMF_LOOK);
+				bBOUNCEONWALLS = false;
+				bBOUNCEONFLOORS = false;
+				bBOUNCEONCEILINGS = false;
+				A_SpawnItemEx("DCY_OverdemoniacRing", xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_ABSOLUTEVELOCITY|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION); break;
+			}
+			
+			if (t > 45 && t < 55)
+				A_ScaleVelocity(1.2);
+			
+			t++;
+		}
+	}
+	Loop;
+  Death:
+    TNT1 A 10
+    {
+		A_Explode(20, 100);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = 7; i > 0; i--) A_SpawnItemEx("DCY_ElecDeathbase", 0, 0, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	}
 	Stop;
   }
 }

@@ -357,40 +357,14 @@ Class DCY_OverdemoniacBeam : DCY_EnemyTracer
   MissileType "DCY_OverdemoniacBeamTrail";
   MissileHeight 6;
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.75,0.75]";
+  DCY_FastProjectile.CSX true;
+  DCY_FastProjectile.CSY true;
+  DCY_FastProjectile.CT true;
+  DCY_FastProjectile.CV true;
+  DCY_FastProjectile.CR true;
   }
   
   int timer;
-  
-  override void Effect()
-  {
-	class<Actor> trail = MissileName;
-	if (trail != null)
-	{
-		double hitz = pos.z - 8;
-		
-		if (hitz < floorz)
-			hitz = floorz;
-			
-		// Do not clip this offset to the floor.
-		hitz += MissileHeight;
-		
-		Actor act = Spawn (trail, (pos.xy, hitz), ALLOW_REPLACE);
-		if (act != null)
-		{
-			if (bGetOwner && target != null)
-				act.target = target;
-			else
-				act.target = self;
-				
-			act.angle = angle;
-			act.pitch = pitch;
-			act.roll = roll;
-			act.scale.x = scale.x;
-			act.scale.y = scale.y;
-			act.vel = vel;
-		}
-	}
-  }
   
   States
   {

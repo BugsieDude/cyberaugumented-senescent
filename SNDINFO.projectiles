@@ -295,7 +295,7 @@ dcy/intimidating "Sounds/Projectiles/dcy_intimidating.ogg"
 MagicProjectile/Shot "Sounds/Projectiles/dcy_anathema_orb.ogg"
 MagicProjectile/Death "Sounds/Projectiles/dcy_anathema_impact.ogg"
 
-LightningBewm "Sounds/Projectiles/dcy_lightningexplosion.ogg"
+LightningBewm "Sounds/Projectiles/dcy_lightning_explosion.ogg"
 GL1SSBRK "Sounds/Projectiles/dcy_chorico_shatter.wav"
 
 $random RevenantJet/Start { D4RVJET1 D4RVJET2 D4RVJET3 }
