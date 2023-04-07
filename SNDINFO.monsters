@@ -520,7 +520,7 @@ $random LightningPhase/Sight {LTPHSIT1 LTPHSIT2 LTPHSIT3}
 LTPHSIT1 "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_roar1.ogg"
 LTPHSIT2 "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_roar2.ogg"
 LTPHSIT3 "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_roar3.ogg"
-LightningPhase/Active "Sounds/DCY Monsters/Monsters/dcy_lightning_phase_breath.ogg"
+LightningPhase/Active "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_breath.ogg"
 $random LightningPhase/Pain {LTPHPAI1 LTPHPAI2 LTPHPAI3}
 LTPHPAI1 "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_pain1.ogg"
 LTPHPAI2 "Sounds/DCY Monsters/Lightning Phase/dcy_lightning_phase_pain2.ogg"
