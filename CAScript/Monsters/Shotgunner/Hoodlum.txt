@@ -12,7 +12,7 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
   Tag "Hoodlum Soldier";
   DropItem "SuperShotgun";
   DropItem "Shell";
-  Translation "0:0=0:0";
+  Translation "116:127=[0,255,0]:[0,0,0]", "121:121=[0,255,0]:[0,255,0]", "112:116=[0,255,0]:[0,255,0]", "80:111=[255,255,255]:[13,13,13]", "5:8=%[0.00,0.00,0.00]:[0.43,0.43,0.43]", "48:79=%[0.00,0.00,0.00]:[1.11,0.74,0.53]", "16:47=%[0.00,0.00,0.00]:[2.00,0.00,0.00]";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -28,16 +28,17 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
   
   void A_HoodlumChase()
   {
+	bool rushing;
 	A_Chase();
 		
-	if (random(0, 10) == 0)
-		A_Dodging(15);
+	if (random(0, 100) == 0)
+		A_Dodging(10);
 		
-	if (random(0, 5) == 0)
+	if (random(0, 150) == 0) rushing = true;
+	
+	if (rushing)
 	{
-		for (int i = 2; i > 0; i--)
-			A_Chase();
-			
+		A_Chase();	
 		A_SpawnItemEx("DCY_GTrail", zofs: 4, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
   }
@@ -48,20 +49,20 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
 	H00D A 10 DCY_Look();
 	Loop;
   Look:
-	H00D AABBCCDD 2 DCY_LookingForPlayer();
+	H00D AABBCCDD 3 DCY_LookingForPlayer();
 	"####" A 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	H00D AABBCCDD 2 A_HoodlumChase();
+	H00D AABBCCDD random(2, 3) A_HoodlumChase();
 	Loop;
   Missile:
 	H00D E 14
 	{
-		if (random(0, 1) == 1)
-			A_Dodging(20);
+		if (!random(0, 10))
+			A_Dodging(10);
 		
 		A_FaceTarget();
 	}
@@ -71,10 +72,10 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
 			A_SpawnProjectile("DCY_Zombie2Tracer", 33, 0, frandom(-4.5, 4.5), CMF_OFFSETPITCH|CMF_TRACKOWNER, frandom(-3.0, 3.0));
 		
 		A_FaceTarget();
-		A_StartSound("SuperShotgun/Fire", CHAN_WEAPON);
+		A_StartSound("DCYSuperShotgun/Fire", CHAN_WEAPON);
 	}
 	H00D E 5;
-	H00D E 10 A_StartSound("SuperShotgun/Reload", CHAN_WEAPON);
+	H00D E 10 A_StartSound("DCYSuperShotgun/Reload", CHAN_WEAPON, pitch: 1.4);
 	Goto See;
   Pain:
 	H00D G 4;

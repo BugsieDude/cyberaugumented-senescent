@@ -103,7 +103,7 @@ Class DCY_Crusader : DCY_Rev
 		for (int i = 3; i > 0; i--)
 			A_Chase("Melee", null);
 		
-		if (!sv_effectchoker)
+		if (!sv_effectchoker && DCY_EffectDistance(2000))
 			A_SpawnItemEx("DCY_CrusaderRush", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		
 		Return A_Jump(14, "Stahp");
@@ -139,7 +139,7 @@ Class DCY_Crusader : DCY_Rev
 		missile = 0;
 		
 		If(Health < 600)
-			Return A_Jump(120, "BuffingTime");
+			Return A_Jump(120, "BuffCheck");
 		
 		A_RemoveChildren(1, RMVF_EVERYTHING);
 		bNoPain = false;
@@ -264,6 +264,9 @@ Class DCY_Crusader : DCY_Rev
 		A_SpawnItemEx("DCY_CrusaderBuffTrail", zofs: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 		speedbuff += 500;
 	}
+	Goto See;
+  BuffCheck:
+	YYYY E 0 A_CheckProximity("BuffingTime", "DCYMonster", 600, 4, CPXF_ANCESTOR|CPXF_CHECKSIGHT);
 	Goto See;
   BuffingTime:
 	YYYY E 4

@@ -2,7 +2,7 @@ Class DCY_ZEnsign : DCY_Zombe
 {
   Default
   {
-  Health 300;
+  Health 200;
   Speed 6;
   FastSpeed 10;
   DropItem "Shotgun";
@@ -28,9 +28,7 @@ Class DCY_ZEnsign : DCY_Zombe
   }
   
   protected int weaponslot;
-  int missile;
-  int oldspeed;
-  int grenadecooldown;
+  int missile, oldspeed, grenadecooldown, dashlimit;
   
   void A_ZEnsignSMG()
   {
@@ -58,8 +56,14 @@ Class DCY_ZEnsign : DCY_Zombe
   {
 	A_Chase();
 	
-	if (!random(0, 40) && target && CheckSight(target))
-		SetStateLabel("Dodge");
+	if (target && CheckSight(target))
+	{
+		switch(random(0, 50))
+		{
+			case 0: SetStateLabel("Dodge"); break;
+			case 50: SetStateLabel("Dash"); break;
+		}
+	}
   }
   
   state A_EnsignChoose(stateLabel s1, stateLabel s2, stateLabel s3)
@@ -140,6 +144,19 @@ Class DCY_ZEnsign : DCY_Zombe
 	U_DR ################# 1 { roll += (!frame) ? -22 : 22; }
 	U_DR # 0 { roll = 0; A_FaceTarget(); A_EnsignSprite(); if (target) SetStateLabel("Missile"); }
 	Goto See;
+  Dash:
+	#### A 5 { roll = 0; A_EnsignSprite(); dashlimit = randompick(1, 1, 2); A_FaceTarget(); }
+	#### A 1
+	{
+		A_StartSound("ZEnsign/Dash", 12);
+		Vel3DFromAngle(25, angle + (random(0, 8) * 45), BulletSlope());
+		A_Hop(random(0, 7));
+		dashlimit--;
+	}
+	#### AAAAAA 2 A_SpawnItemEx("DCY_GTrail", zofs: 6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERTRANSLATION);
+	#### AAAA 2;
+	#### A 0 {if (dashlimit <= 0) SetStateLabel("See"); else A_FaceTarget();}
+	Goto Dash+1;
   Missile:
     #### # 1
 	{
@@ -207,7 +224,7 @@ Class DCY_ZEnsign : DCY_Zombe
 			A_SpawnProjectile("DCY_ZombieTracer", 30, 3, frandom(-1.5, 1.5), CMF_TRACKOWNER|CMF_OFFSETPITCH, random(-1, 1));
 		
 		A_FaceTarget();
-		A_StartSound("Shotgun/Fire", CHAN_WEAPON);
+		A_StartSound("DCYShotgun/Fire", CHAN_WEAPON);
 	}
 	#### E 15 A_FaceTarget();
 	#### A 0

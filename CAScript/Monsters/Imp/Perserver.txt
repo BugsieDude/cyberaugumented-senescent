@@ -90,8 +90,8 @@ Class DCY_PerserverMissile : DCY_FastProjectile
   FastSpeed 22.5;
   RenderStyle "Add";
   Scale 0.8785;
-  SeeSound "drone/fire";
-  DeathSound "drone/fire";
+  SeeSound "dcydrone/fire";
+  DeathSound "dcydrone/fire";
   Translation "0:255=%[0.00,0.00,0.00]:[0.34,1.17,2.00]";
   Decal "ImpScorch";
   }

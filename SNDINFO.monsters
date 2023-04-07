@@ -573,12 +573,12 @@ Zorg/Pain "Sounds/DCY Monsters/Perserver/dcy_zorg_pain.ogg"
 Zorg/Active "Sounds/DCY Monsters/Perserver/dcy_zorg_idle.ogg"
 Zorg/Death "Sounds/DCY Monsters/Perserver/dcy_zorg_death.ogg"
 
-drone/see "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_sight.ogg"
-drone/idle "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_hum.ogg"
-drone/fire "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_laser.wav"
-$limit drone/fire 0
-drone/painI "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_pain.ogg"
-drone/die "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_death.ogg"
+dcydrone/see "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_sight.ogg"
+dcydrone/idle "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_hum.ogg"
+dcydrone/fire "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_laser.wav"
+$limit dcydrone/fire 0
+dcydrone/painI "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_pain.ogg"
+dcydrone/die "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_drone_death.ogg"
 
 ATurret/Sight "Sounds/DCY Monsters/Decedent Bigwig/dcy_bigwig_turret_alert.wav"
 ATurret/Pain "Sounds/DCY Monsters/Decedent Bigwig/dcy_bigwig_turret_pain.wav"
@@ -939,6 +939,7 @@ SUP2DTH4 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death4.ogg"
 SUP2DTH5 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death5.ogg"
 SUP2DTH6 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death6.ogg"
 SUP2DTH7 "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_death7.ogg"
+ZEnsign/Dash "Sounds/DCY Monsters/Z-Ensign/dcy_zensign_dash.ogg"
 
 ZombieEliteSoldier/Sight "Sounds/DCY Monsters/Automaton Supervisor/dcy_possessed_automaton_sight.ogg"
 $random ZombieEliteSoldier/Active { ZENGACT1 ZENGACT2 ZENGACT3 ZENGACT4 ZENGACT5 ZENGACT6 }

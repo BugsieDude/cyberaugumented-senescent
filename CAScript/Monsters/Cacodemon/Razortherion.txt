@@ -281,8 +281,8 @@ Class DCY_RZBlaster : FastProjectile
   Scale 1.0;
   Alpha 1.0;
   DamageType "RazortherionDamage";
-  SeeSound "drone/fire";
-  DeathSound "drone/fire";
+  SeeSound "dcydrone/fire";
+  DeathSound "dcydrone/fire";
   Decal "RevenantScorch";
   Translation "0:255=%[0.00,0.00,0.00]:[0.61,2.00,0.61]";
   }

@@ -171,11 +171,11 @@ Class DCY_AutomatonDroid : DCY_SkullParent
   DamageFactor "Automaton", 0.000;
   Translation "112:255=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "48:79=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "16:47=%[0.00,0.00,0.00]:[0.00,1.01,2.00]", "80:111=%[0.00,0.00,0.00]:[0.85,0.89,1.16]", "0:15=%[0.00,0.00,0.00]:[0.85,0.89,1.16]";
   Tag "Automator Laser Droid";
-  SeeSound "drone/see";
-  DeathSound "drone/die";
-  ActiveSound "drone/idle";
+  SeeSound "dcydrone/see";
+  DeathSound "dcydrone/die";
+  ActiveSound "dcydrone/idle";
   AttackSound "";
-  PainSound "drone/painI";
+  PainSound "dcydrone/painI";
   DropItem "DCY_UltramodernEnergy", 128;
   DropItem "DCY_UltramodernEnergy", 128;
   Obituary "%o got fucked up by the Automator's laser droid.";
