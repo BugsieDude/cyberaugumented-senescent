@@ -1,4 +1,4 @@
-Class DCY_BigLaserTrail : Actor
+Class DCY_BigLaserTrail : DCY_Effect
 {
   Default
   {
@@ -33,7 +33,7 @@ Class DCY_BigLaserTrail : Actor
   }
 }
 
-Class DCY_BigLaser : FastProjectile
+Class DCY_BigLaser : DCY_FastProjectile
 {
   Default
   {
@@ -44,7 +44,11 @@ Class DCY_BigLaser : FastProjectile
   Damage (3);
   DamageType "Plasma";
   MissileHeight 6;
+  Scale 2.9;
   MissileType "DCY_BigLaserTrail";
+  DCY_FastProjectile.CSX true;
+  DCY_FastProjectile.CSY true;
+  DCY_FastProjectile.CT true;
   }
   
   States
@@ -62,8 +66,5 @@ Class DCY_BigLaser : FastProjectile
   }
 }
 
-Class DCY_MindmasterLaserTrail : DCY_BigLaserTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.81,0.61,1.09]"; } }
-Class DCY_MindmasterLaser : DCY_BigLaser { Default { MissileType "DCY_MindmasterLaserTrail"; } }
-
-Class DCY_MotherLaserTrail : DCY_BigLaserTrail { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.31,1.66,0.91]"; } }
-Class DCY_MotherLaser : DCY_BigLaser { Default { MissileType "DCY_MotherLaserTrail"; Damage (2); } }
+Class DCY_MindmasterLaser : DCY_BigLaser { Default { Translation "0:255=%[0.17,0.00,0.34]:[1.46,0.83,2.00]"; } }
+Class DCY_MotherLaser : DCY_BigLaser { Default { Translation "0:255=%[0.00,0.20,0.00]:[1.24,2.00,0.92]"; Damage (2); } }

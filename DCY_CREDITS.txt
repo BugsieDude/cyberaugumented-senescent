@@ -48,6 +48,8 @@ id Software - Sounds
 Midway Software - (PSX Doom) Sounds
 Bethesda Software & id Software - DOOM (2016) and DOOM Eternal, Widescreen assets
 Skulltag - Sprites
+Chequered Ink - Coder's Crux font
+Ænigma - Binary font
 MicroProse - Monster sounds
 Rondo of Blood | Dracula X (Konami) - Projectile effect sprites
 Raven Software - Monster Sprites, sounds (Hexen II and Heretic II)
@@ -220,7 +222,7 @@ ShotgunBastard - Sounds
 Bitter Heretic (Lagi) - Sprites
 Data East - Quit Background
 SEGA - Quit Background
-
+ 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help (I'd just credit Skulltag)
 

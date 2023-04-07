@@ -53,15 +53,10 @@ Class DCY_NeonicWand : DCY_Weapon
   Reload: //AKA. Switch Modez
 	TNT1 A 0
 	{
+		string s = (!invoker.weaponmode) ? "Neonic Spherule" : "Plasmatic Rays";
 		A_StartSound("NeonicWand/Switch", CHAN_WEAPON);
-		
-		if (invoker.weaponmode >= 1)
-			invoker.weaponmode = 0;
-		else
-			invoker.weaponmode += 1;
-		
-		A_SetBlend("00 77 FF", 0.3, 10);
-		DCY_notHudMessageHandler.WaggleMsg("SMALLFONT", (invoker.weaponmode == 1) ? "Neonic Spherule" : "Plasmatic Rays", (240, 150), (480, 360), color: Font.CR_SAPPHIRE, time: (0.3, 2, 1), speed: 0.35, strength: 0.75, frequency: 6.0, id: 78);
+		invoker.weaponmode = !invoker.weaponmode;
+		console.printf("Changing to:\c[l5] %s", s);
 	}
     C_AD AAAAA 2 Bright A_WeaponOffset(frandom(-2.0, 2.0), frandom(-2.0, 2.0) + 32, WOF_INTERPOLATE);
 	C_AD A 2 Bright A_WeaponOffset(0, 32, WOF_INTERPOLATE);
