@@ -2,10 +2,11 @@ Class DCY_Painsend : DCY_Impe
 {
   Default
   {
-  Health 99;
+  Health 60;
   Tag "Painsend";
   BloodType "AndroidNeonFluid";
-  BloodColor "ad3002";
+  BloodColor "0341fc";
+  StencilColor "0341fc";
   Obituary "%o was castrated by a Painsend.";
   HitObituary "%o was torn apart by a Painsend.";
   MeleeSound "Imp/Melee";
@@ -14,12 +15,49 @@ Class DCY_Painsend : DCY_Impe
   DeathSound "Doom4Imp/Death";
   ActiveSound "Doom4Imp/Active";
   DCYMonster.GibType "DCY_GibletsLava";
-  Translation "48:111=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "128:159=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "1:2=%[0.00,0.00,0.00]:[1.51,0.44,0.44]", "5:12=%[0.00,0.00,0.00]:[0.38,0.38,0.38]", "0:0=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "16:47=%[0.54,0.00,0.00]:[2.00,1.01,0.00]", "168:191=%[0.54,0.00,0.00]:[2.00,1.01,0.00]", "236:239=%[0.54,0.00,0.00]:[0.38,0.38,0.38]";
-  MeleeDamage 5;
+  MeleeRange 99;
   +DONTHARMSPECIES
+  -MISSILEMORE
+  -MISSILEEVENMORE
   }
   
   int ang;
+  int t;
+  
+  void A_PainsendChase()
+  {
+	bool h;
+	
+	if (target)
+	{
+		if (!random(0, 2) && !(getAge() % 10))
+			SetStateLabel("Missile");
+		
+		if (!random(0, 150) && !h && (distance3d(target) > 228 && distance3d(target) < 448)) SetStateLabel("Dissapear");
+		
+		if (CheckSight(target))
+		{
+			if (distance2D(target) < 200) { A_FaceTarget(); A_Recoil(2); }
+			
+			if (!random(0, 10) && distance2D(target) < 100 && vel.z == 0)
+			{
+				h = true;
+				A_Hop(10);
+				A_Recoil(10);
+			}
+			if (!h && target.vel.z != 0) vel.z = (target.vel.z > 10) ? 10 : target.vel.z;
+		}
+		
+		if (distance2d(target) > 350) { A_FaceTarget(); A_Recoil(-1.5); }
+		if (h && vel.z == 0) h = false;
+		if (distance2D(target) > 200 && distance2D(target) < 350) A_Recoil(-0.25);
+	}
+	
+	if (!(getAge() % 5)) A_Chase(flags: CHF_DONTMOVE|CHF_DONTTURN);
+	A_Recoil(-0.25);
+	vel.x += frandom(-2, 2);
+	vel.y += frandom(-2, 2);
+  }
   
   States
   {
@@ -27,19 +65,63 @@ Class DCY_Painsend : DCY_Impe
     1A1_ E 10 DCY_Look();
 	Loop;
   Look:
-	"####" AAABBBCCCDDD 2 DCY_LookingForPlayer();
+	"####" AAABBBCCCDDD 2
+	{
+		A_Recoil(-0.25);
+		vel.x += frandom(-2, 2);
+		vel.y += frandom(-2, 2);
+		DCY_LookingForPlayer();
+	}
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    1A1_ AAABBBCCCDDD 2
-	{
-		A_Recoil(-0.25);
-		A_Chase();
-	}
+    1A1_ AAABBBCCCDDD 2 A_PainsendChase();
 	Loop;
+  Dissapear:
+	1A1_ A 0
+	{
+		bFRIGHTENED = true;
+	}
+	1A1_ AAAAAAAAAA 1 A_FadeOut(0.1);
+	Goto DissapearL;
+  DissapearL:
+	1A1_ A 0
+	{
+		alpha = 1;
+		A_HideThing();
+	}
+	1A1_ AABBCCDD 1
+	{
+		int p;
+		p++;
+		
+		if (p > 100)
+		{
+			A_UnHideThing();
+			bFRIGHTENED = false;
+			SetStateLabel("See");
+		}
+		
+		if (!random(0, 10) && target && CheckSight(target) && distance3d(target) < 128)
+		{
+			A_UnHideThing();
+			bFRIGHTENED = false;
+			A_StartSound(SeeSound, CHAN_VOICE);
+			SetStateLabel("Melee");
+		}
+		
+		switch (random(0, 1))
+		{
+			case 0: A_Chase(null, null, CHF_NOPLAYACTIVE); break;
+			case 1: A_Wander(); break;
+		}
+		
+		if (!(level.time % random(5, 50)) && DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERSTENCILCOL);
+	}
+	Goto DissapearL+1;
   Melee:
     1A1_ E 6 A_FaceTarget();
     1A1_ F 5
@@ -52,14 +134,12 @@ Class DCY_Painsend : DCY_Impe
   Missile:
 	1A1_ E 0
 	{
-		If (Distance3D(target) < 256)
-			if (random(0, 2) == 0)
-				SetStateLabel("Lunge");
+		If (!random(0, 2) && Distance3D(target) < 256)
+			SetStateLabel("Lunge");
 		
 		switch(random(0, 1)) {
-			case 1: Return ResolveState("Couple");
+			case 1: SetStateLabel("Couple"); break;
 		}
-		Return ResolveState(null);
 	}
 	1A1_ E 3
 	{
@@ -69,50 +149,40 @@ Class DCY_Painsend : DCY_Impe
 		
 		A_FaceTarget();
 	}
-	1A1_ FFFFFFFFFFFFFFFFF 1
+	1A1_ EEEEEEEEEEEEEEEEE 1
 	{
 		A_FaceTarget();
 		
 		for (int i = -20; i < 21; i += 40)
-			A_SpawnParticleEx(0xfc8003, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 27, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 31, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
+			A_SpawnParticleEx(0x0341fc, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 27, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 31, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
 	}
 	1A1_ G 5
 	{
 		A_StartSound("Painsend/Fire", CHAN_WEAPON);
-		
-		for (int i = -10; i < 11; i += 20)
-			A_SpawnProjectile("DCY_PainsendFireball", 32, i, random(-1, 1));
+		A_SpawnProjectile("DCY_PainsendFireball", 32);
 	}
 	1A1_ F 6;
 	Goto See;
   Couple:
-	1A1_ EEEEEEEEEEEEEEEEEEEEEEEE 1
+	1A1_ A 20 { A_StartSound(ActiveSound, CHAN_VOICE); ang = randompick(-1, 1); t = 0; }
+	1A1_ F 1
 	{
 		A_FaceTarget();
 		
-		for (int i = -25; i < 26; i += 50)
-			A_SpawnParticleEx(0xfc8003, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 27, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 26, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
-	}
-	1A1_ F 5
-	{
-		A_FaceTarget();
-		ang = randompick(-20, 20);
-		bool hopping = random(0, 2);
-		if (hopping)
+		if (!(t % 10))
 		{
-			A_Hop(11);
-			A_Dodging(15);
+			A_StartSound("Painsend/Fire", CHAN_WEAPON);
+			ang *= -1;
+			A_SpawnProjectile("DCY_PainsendFireballSeeking", 32, ang * 20, random(-30, 60) * ang, CMF_OFFSETPITCH, frandom(-5, -15));
 		}
+		
+		t++;
+		
+		if (t > 50) SetStateLabel("See");
+		for (int i = -25; i < 26; i += 50)
+			A_SpawnParticleEx(0x0341fc, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 27, 0, frandom(-2.5, 2.5), i + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 26, velz: 1.5, accelz: 0.1175, fadestepf: 0, sizestep: -1.325);
 	}
-	1A1_ GGGG 10
-	{
-		A_StartSound("Painsend/Fire", CHAN_WEAPON);
-		A_FaceTarget();
-		ang = !ang;
-		A_SpawnProjectile("DCY_PainsendFireball", 32, ang, random(-1, 1));
-	}
-	1A1_ F 6;
-	Goto See;
+	Goto Couple+1;
   Lunge:
 	1A1_ E 5 A_FaceTarget();
 	1A1_ F 5
@@ -125,18 +195,18 @@ Class DCY_Painsend : DCY_Impe
 	1A1_ GGF 4;
 	Goto Missile+13;
   Pain:
-    1A1_ H 3;
+    1A1_ H 3 A_UnHideThing();
 	1A1_ H 3 A_Pain();
 	Goto See;
   Death:
-    1A1_ I 8;
+    1A1_ I 8 A_UnHideThing();
     1A1_ J 8 A_Scream();
     1A1_ KL 6;
     1A1_ M 6 A_NoBlocking();
     1A1_ M -1;
     Stop;
   XDeath:
-    1A1_ N 5;
+    1A1_ N 5 A_UnHideThing();
     1A1_ O 5 DCY_Gibs();
     1A1_ P 5;
     1A1_ Q 5 A_NoBlocking();
@@ -157,21 +227,49 @@ Class DCY_PainsendFireball : DCY_ImpFireball
   Speed 15;
   FastSpeed 25;
   Damage 6;
-  DamageType "Fire";
   +BRIGHT
   SeeSound "Painsend/Fireball";
   DeathSound "Painsend/FireExplode";
-  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,0.50]";
+  Translation "0:255=%[0.00,0.00,0.24]:[0.94,1.36,2.00]";
   }
   
   States
   {
   Spawn:
-    BAL1 AABB 1
+    FBS1 AABBCC 1
 	{
-		A_SpawnFlames("ff7e3d", 30, 26, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2);
-		A_SpawnItemEx("DCY_ImpFlame1", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), zvel: 0.25, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSCALE, failchance: 70);
+		vel.x += frandom(-0.1, 0.1);
+		vel.y += frandom(-0.1, 0.1);
+		vel.z += frandom(-0.1, 0.1);
+		A_SpawnFlames("1f53ff", 30, 26, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2);
 	}
+	Loop;
+  }
+}
+
+Class DCY_PainsendFireballSeeking : DCY_PainsendFireball
+{
+  Default
+  {
+  +SEEKERMISSILE;
+  Speed 12;
+  +NEVERFAST
+  Damage 4;
+  +THRUGHOST
+  }
+  
+  override void tick()
+  {
+	if (level.isFrozen()) return;
+	super.Tick();
+	if (getAge() > 20 && getAge() < 40)
+		A_SeekerMissile(6, 7);
+  }
+	
+  States
+  {
+  Spawn:
+    BAL1 AABB 1 A_SpawnFlames("1f53ff", 10, 20, 0, true, frandom(-2.5, 2.5), allsmoke: true);
 	Loop;
   }
 }

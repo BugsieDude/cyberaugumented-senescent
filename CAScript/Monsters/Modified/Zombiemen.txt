@@ -88,16 +88,16 @@ Class DCY_ZombeParent : DCYMonster
 	POSP H 0 A_Flip();
 	POSP H 3;
 	POSP H 3 A_Scream();
-	POSS I 5 A_Fall();
-	POSS JK 4;
-	POSS L -1;
+	POSP I 5 A_Fall();
+	POSP JK 4;
+	POSP L -1;
 	Stop;
   XDeath:
 	POSP M 6;
-    POSS N 4 DCY_Gibs();
-    POSS O 4 A_NoBlocking();
-    POSS PQRST 4;
-    POSS U -1;
+    POSP N 4 DCY_Gibs();
+    POSP O 4 A_NoBlocking();
+    POSP PQRST 4;
+    POSP U -1;
     Stop;
   Raise:
 	POSS K 5 A_Restore();
