@@ -29,9 +29,6 @@ Class DCY_Perditiongazer : DCY_CacoParent
 		vel.y = frandom(-2, 2);
 		vel.z = frandom(-2, 2);
 	}
-	
-	if (random(0, 20) == 20)
-		SetStateLabel("LerpDash");
   }
   
   States
