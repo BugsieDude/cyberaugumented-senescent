@@ -3,6 +3,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
   ui int inputtic;
   float temp1;
   int plvl;
+  bool restartmus;
   
   //Cutscene Stuff
   bool cutscene;
@@ -17,6 +18,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   override void NetworkProcess(ConsoleEvent e)
   {
+	let g = DCY_Variables.Get();
+	
 	if(e.name == "dcy_checkprogress")
 	{
 		let g = DCY_Variables.Get();
@@ -32,21 +35,21 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		let g = DCY_Variables.Get();
 		g.dcyLevel--;
 	}
-	
-	if(e.Player >= 0 && PlayerInGame[e.Player] && Players[e.Player].Mo)
-    {
-		if(e.name == "DCY_Dash")
-		{
-			let DashInitiate = CyberaugumentedProtagonist(players[e.player].mo);
-			
-			if (DashInitiate)
-				DashInitiate.CyberDash();
-		}
-	}
   }
   
   override void WorldThingSpawned(WorldEvent e)
   {
+	let x = DCY_Variables.Get();
+	
+	if (x && x.monsterpack)
+	{
+		if (e.thing)
+		{
+			if (e.thing is "DCY_Powerup") e.thing.Destroy();
+			if (e.thing is "DCY_InvItem") e.thing.Destroy();
+		}
+	}
+	
 	//Effect Choker
     if(sv_effectchoker && e.thing && e.thing is "DCY_Effect")
         e.thing.Destroy();
@@ -72,26 +75,45 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   override void NewGame()
   {
-	//DCY_Startup();
+	DCY_Startup();
   }
   
   void DCY_Startup()
   {
 	let c = DCY_Variables.Get();
 	
-	if (!c.gameannounce)
+	if (c && c.gameannounce) return;
+	if (gamestate == GS_TITLELEVEL) return;
+	let enabled = CVar.GetCVar("dcy_intro", players[consoleplayer]);
+	if (enabled.GetBool() && c && !c.gameannounce)
 	{
-		S_StartSound("misc/hellotherer", 10, CHANF_NOPAUSE);
-		DCY_notHudMessageHandler.PlainMsg("CONFONT", level.levelname, (240, 70), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 2, 1), id: 23);
+		enabled.SetBool(false);
+		
+		S_ChangeMusic("");
+		S_StartSound("misc/hellotherer", 10, CHANF_NOPAUSE|CHANF_UI);
+		Menu.SetMenu("dcy_setup");
+		DCY_notHudMessageHandler.PlainMsg("SMALLFONT", "Enjoy your moments...", (240, 70), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 2, 1), id: 23);
 		DCY_notHudMessageHandler.PlainMsg("DCYMAPB", "A", (240, 70), (480, 360), color: Font.CR_UNTRANSLATED, time: (1, 2, 1), id: 24);
 		c.gameannounce = true;
+		restartmus = true;
 	}
   }
   
   override void WorldLoaded(WorldEvent e)
   {
 	let x = DCY_Variables.Get();
-	x.alternateturretsound = randompick(0, 1);
+	
+	if (x)
+	{
+		x.alternateturretsound = randompick(0, 1); //very simple
+		x.monsterpack = true;
+	}
+	
+	foreach (classes:AllActorClasses)
+	{
+		if(classes.GetClassName() == "CyberaugumentedProtagonist")
+			if (x) x.monsterpack = false;
+	}
 	
 	temp1 = 15;
 	
@@ -103,10 +125,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	cutscene = false;
 	let d = DCY_Variables.Get();
 	
-	if (d)
-	{
-		d.dcyLevel++;
-	}
+	if (d) d.dcyLevel++;
   }
   
   protected void DCY_Cutscenes()
@@ -189,6 +208,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 		
 	let d = DCY_Variables.Get();
 	plvl = d.dcylevel;
+	
+	if ((level.time > 20) && restartmus) { S_ChangeMusic("*"); restartmus = false; }
   }
   
   void TempCheck()

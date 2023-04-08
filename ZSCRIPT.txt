@@ -3,6 +3,7 @@ Version "4.10.0"
 //ZForms Menus
 #include "CAScript/ZForms/Include.txt"
 #include "CAScript/ZForms/WIP.txt"
+#include "CAScript/ZForms/Setup.txt"
 
 //Menu
 #include "CAScript/Menus/MessageMenu.txt"
@@ -29,6 +30,7 @@ Version "4.10.0"
 
 //Events
 #include "CAScript/Events/BaseEvent.txt"
+#include "CAScript/Events/PlayerMovements.txt"
 #include "CAScript/Events/Completionist.txt"
 #include "CAScript/Events/Texture.txt"
 #include "CAScript/Events/Anti.txt"

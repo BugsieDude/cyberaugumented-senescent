@@ -3,25 +3,14 @@ Class DCY_Variables : Thinker
   int dcyLevel;
   
   bool gameannounce;
-  
-  bool AllMonsters;
-  bool AllItems;
-  bool AllSecrets;
-  bool CompletionistReward;
-  
-  int numberofminibosses;
-  int numberofsuperbosses;
-  
-  int minibossbeaten;
-  int superbossbeaten;
+  int minibossbeaten, minibosscount, superbossbeaten, superbosscount;
   
   int temperature;
-  bool temperaturehotannounce;
-  bool temperaturecoldannounce;
-  bool temperaturehotxannounce;
-  bool temperaturecoldxannounce;
+  bool temperaturehotannounce, temperaturecoldannounce, temperaturehotxannounce, temperaturecoldxannounce;
   
   bool EffectChoker;
+  
+  bool monsterpack;
   
   bool alternateturretsound;
   

@@ -370,7 +370,7 @@ Class DCY_HazardProtection : PowerIronFeet
   }
 }
 
-Class DCY_Crosscut : CustomInventory
+Class DCY_Crosscut : DCY_InvItem
 {
   Mixin DCY_Effects;
   
@@ -799,7 +799,7 @@ Class DCY_SupremacyPickupFlash : Actor
 }
 
 
-Class DCY_Prospect : CustomInventory
+Class DCY_Prospect : DCY_InvItem
 {
   Mixin DCY_Effects;
   

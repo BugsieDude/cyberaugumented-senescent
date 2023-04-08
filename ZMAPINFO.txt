@@ -13,7 +13,7 @@ gameinfo
 	cursorpic = "DCYC0RSU"
 	statscreen_single = "DCY_Intermission"
 	messageboxclass = "DCY_MessageBox"
-	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "DCY_Interceptor", "CyberaugumentedStartupHandler"
+	addeventhandlers = "DCY_notHudMessageHandler", "CyberaugumentedEventHandler", "DCY_Interceptor", "CyberaugumentedStartupHandler", "PlayerControlsDCY"
 	StatusBarClass = "DCyb_HUD"
 	BackpackType = "DCY_Backpack"
 	playerclasses = "CyberaugumentedProtagonist"
@@ -21,7 +21,7 @@ gameinfo
 	Border = 8, 8, "VANTABTR", "VANTABT", "VANTABTL", "VANTABR", "VANTABL", "VANTABBR", "VANTABB", "VANTABBL"
 	BorderFlat = "VANTAHUD"
 	quitmessages = "lmfao"
-	PickupColor = "34ebc9"
+	PickupColor = "1e48c7"
 	HelpMenuClass = "ReadThisMenu"
 }
 

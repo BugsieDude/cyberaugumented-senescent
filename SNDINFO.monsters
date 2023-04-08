@@ -778,6 +778,20 @@ PAE2SPI5 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit5.ogg"
 PAE2SPI6 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit6.ogg"
 PAE2SPI7 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit7.ogg"
 PAE2SPI8 "Sounds/DCY Monsters/Befouler/dcy_befouler_spit8.ogg"
+$random EternalPainElemental/Toss { PAE2TOS1 PAE2TOS2 PAE2TOS3 PAE2TOS4 }
+PAE2TOS1 "Sounds/Projectiles/dcy_befouler_toss1.ogg"
+PAE2TOS2 "Sounds/Projectiles/dcy_befouler_toss2.ogg"
+PAE2TOS3 "Sounds/Projectiles/dcy_befouler_toss3.ogg"
+PAE2TOS4 "Sounds/Projectiles/dcy_befouler_toss4.ogg"
+$random EternalPainElemental/Dodge { PAE2DOG1 PAE2DOG2 PAE2DOG3 PAE2DOG4 }
+PAE2DOG1 "Sounds/DCY Monsters/Befouler/dcy_befouler_dodge1.ogg"
+PAE2DOG2 "Sounds/DCY Monsters/Befouler/dcy_befouler_dodge2.ogg"
+PAE2DOG3 "Sounds/DCY Monsters/Befouler/dcy_befouler_dodge3.ogg"
+PAE2DOG4 "Sounds/DCY Monsters/Befouler/dcy_befouler_dodge4.ogg"
+$random EternalPainElemental/Exert { PAE2EX1 PAE2EX2 PAE2EX3 }
+PAE2EX1 "Sounds/DCY Monsters/Befouler/dcy_befouler_exertion1.ogg"
+PAE2EX2 "Sounds/DCY Monsters/Befouler/dcy_befouler_exertion2.ogg"
+PAE2EX3 "Sounds/DCY Monsters/Befouler/dcy_befouler_exertion3.ogg"
 
 Kaiser/See "Sounds/DCY Monsters/Kaiser/dcy_kaiser_sight.ogg"
 Kaiser/Active "Sounds/DCY Monsters/Kaiser/dcy_kaiser_idle.ogg"

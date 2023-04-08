@@ -1,0 +1,16 @@
+class PlayerControlsDCY : EventHandler
+{
+  override void NetworkProcess(ConsoleEvent e)
+  {
+	if(e.Player >= 0 && PlayerInGame[e.Player] && Players[e.Player].Mo)
+    {
+		if(e.name == "DCY_Dash")
+		{
+			let DashInitiate = CyberaugumentedProtagonist(players[e.player].mo);
+			
+			if (DashInitiate)
+				DashInitiate.CyberDash();
+		}
+	}
+  }
+}

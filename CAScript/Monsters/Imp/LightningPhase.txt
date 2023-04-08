@@ -469,7 +469,7 @@ Class DCY_LightningPhaseBouncer : DCY_LightningPhaseBall
 		{
 			switch (t)
 			{
-				case 30: A_StartSound("SPELL17", starttime: 0.5);
+				case 30: A_StartSound("SPELL17", starttime: 0.6);
 				case 45: A_ScaleVelocity(10); break;
 				case 50: for (int i = 2; i > 0; i--) A_SeekerMissile(999, 999, SMF_PRECISE|SMF_LOOK);
 				bBOUNCEONWALLS = false;
@@ -489,9 +489,10 @@ Class DCY_LightningPhaseBouncer : DCY_LightningPhaseBall
     TNT1 A 10
     {
 		A_Explode(20, 100);
+		A_StopSound(CHAN_BODY);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		for (int i = 7; i > 0; i--) A_SpawnItemEx("DCY_ElecDeathbase", 0, 0, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		for (int i = random(15, 25); i > 0; i--) A_SpawnItemEx("DCY_ElecDeathbase", 0, 0, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	Stop;
   }

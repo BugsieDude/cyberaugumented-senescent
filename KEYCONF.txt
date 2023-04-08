@@ -1,7 +1,3 @@
-CLEARPLAYERCLASSES
-ADDPLAYERCLASS "CyberaugumentedProtagonist"
-WeaponSection "Cyberaugumented"
-
 addkeysection "Cyberaugumented" DashKeysection
 addmenukey "Dash" DCY_Dash
 alias DCY_Dash "NetEvent DCY_Dash"

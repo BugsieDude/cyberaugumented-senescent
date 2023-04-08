@@ -17,6 +17,7 @@ Class DCY_Painsend : DCY_Impe
   DCYMonster.GibType "DCY_GibletsLava";
   MeleeThreshold 88;
   +DONTHARMSPECIES
+  +SLIDESONWALLS
   -MISSILEMORE
   -MISSILEEVENMORE
   }

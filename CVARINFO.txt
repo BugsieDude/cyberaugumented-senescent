@@ -1,11 +1,11 @@
 server bool cyberaugumented_noenemyannouncements = false;
-server noarchive bool cyberaugumented_announcestart = false;
+server bool dcy_intro = true;
 
 server bool sv_allowdash = true;
 server bool sv_allowdoublejump = true;
 
 nosave server bool sv_dcy_progressivespawns = true;
-nosave server float sv_dcy_progression = 1.500;
+server float sv_dcy_progression = 1.500;
 
 server float sv_dashpower = 32;
 server int sv_dashpowerup = 8;

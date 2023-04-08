@@ -59,10 +59,17 @@ CLASS DCYMonster : Actor abstract
 	TeleFogSourceType "DCY_EnemySourceTeleport";
 	TeleFogDestType "DCY_EnemyTeleport";
 	DamageFactor "SpawnerDeath", 0;
+	DCYMonster.WD 4000;
   }
   
   int warningdistance;
-  bool boss;
+  property WD : warningdistance;
+  
+  private int b;
+  flagdef dcynormalBoss : b, 1;
+  flagdef dcyBoss : b, 2;
+  flagdef dcySuperBoss : b, 3;
+  
   Sound brns;
   string tcol;
   class<Actor> gib;
@@ -89,7 +96,14 @@ CLASS DCYMonster : Actor abstract
   {
 	super.PostBeginPlay();
 	sfxdistance = 1500;
-	warningdistance = 4000;
+	
+	let x = DCY_Variables.Get();
+	
+	if (x)
+	{
+		if (bDCYNORMALBOSS || bDCYBOSS) x.minibosscount++;
+		if (bDCYSUPERBOSS) x.superbosscount++;
+	}
   }
   
   int ProgressionLevel()
@@ -216,6 +230,19 @@ CLASS DCYMonster : Actor abstract
   {
 	A_SetScale(abs(Scale.X), Scale.Y);
   }
+
+  override void Die(Actor source, Actor inflictor, int dmgflags, name MeansOfDeath)
+  {
+	let x = DCY_Variables.Get();
+	
+	if (x)
+	{
+		if (bDCYNORMALBOSS || bDCYBOSS) x.minibossbeaten++;
+		if (bDCYSUPERBOSS) x.superbossbeaten++;
+	}
+	
+	Super.Die(source,inflictor,dmgflags,meansofdeath);
+  }
 	
   States
   {
@@ -224,11 +251,8 @@ CLASS DCYMonster : Actor abstract
 	#### # 0
 	{
 		//Stop all sounds
-		for (int i = 0; i < 8; i++)
-			A_StopSound(i);
-		
+		A_StopSounds(0, 1000);
 		if (bBOSSDEATH) A_BossDeath2();
-		
 		A_RemoveChildren(1, RMVF_EVERYTHING);
 	}
 	Stop;

@@ -73,3 +73,8 @@ Mixin Class CYPowerup
 	}
   }
 }
+
+Class DCY_InvItem : CustomInventory
+{
+  Mixin DCY_Progression;
+}

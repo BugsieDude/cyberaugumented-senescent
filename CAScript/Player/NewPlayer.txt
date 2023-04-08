@@ -1,4 +1,4 @@
-Class CyberaugumentedProtagonist : DoomPlayer
+Class CyberaugumentedProtagonist : PlayerPawn Replaces DoomPlayer
 {
   double ByteAngle, Angle;
   int DashCooldown, JumpCooldown;
@@ -297,6 +297,14 @@ Class CyberaugumentedProtagonist : DoomPlayer
   TeleFogSourceType "DCY_PlayerSourceTeleport";
   TeleFogDestType "DCY_PlayerTeleport";
   Player.AirCapacity 0; //Because lore-wise its helmet regulates overflowing?
+  Player.DisplayName "CXII";
+  Player.CrouchSprite "PLYC";
+  Speed 1;
+  Health 100;
+  Radius 16;
+  Height 56;
+  Mass 100;
+  PainChance 255;
   }
   
   States

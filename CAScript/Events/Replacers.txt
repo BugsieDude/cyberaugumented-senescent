@@ -2,6 +2,7 @@ extend class CyberaugumentedEventHandler
 {
   override void CheckReplacement(ReplaceEvent e)
   {
+	let x = DCY_Variables.Get();
 	let m = e.Replacee.GetClassName();
 	
 	if(!sv_dcy_progressivespawns) 
