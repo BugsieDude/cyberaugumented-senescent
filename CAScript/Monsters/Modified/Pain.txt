@@ -126,8 +126,6 @@ Class DCY_Befouler : DCYMonster
 		if (target && target.health < 50 && !random(0, 4))
 			SetStateLabel("Laugh");
 		
-		if (target && Distance3D(target) < 300 && !random(0, 2)) SetStateLabeL("Flames");
-		
 		switch (random(0, 5))
 		{
 			case 0:
@@ -352,7 +350,7 @@ Class DCY_BefoulerTurret : DCY_FlamingCranium
 	S0_L AAAAAA 2 A_FaceTarget();
 	S0_L B 1
 	{
-		p = frandom(1.5, 1.7);
+		p = frandom(1.1, 1.4);
 		A_StopSound(12);
 		v = 0.7;
 		screamsoundtimer = 128;
