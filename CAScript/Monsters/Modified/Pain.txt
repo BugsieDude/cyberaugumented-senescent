@@ -139,8 +139,6 @@ Class DCY_Befouler : DCYMonster
 		}
 	}
 	Goto See;
-  Flames:
-  `	DAJK 
   Spit:
 	DAJK A 5 A_FaceTarget();
 	DAJK G 0
