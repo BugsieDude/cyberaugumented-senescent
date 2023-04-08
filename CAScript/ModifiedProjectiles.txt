@@ -260,7 +260,7 @@ Class DCY_LeFatFireball : DCY_Projectile
   Default
   {
   Alpha 1.0;
-  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.91,0.00]";
+  Translation "0:255=%[0.28,0.00,0.00]:[2.00,1.06,0.54]";
   +BRIGHT;
   Radius 6;
   Height 8;
@@ -278,12 +278,14 @@ Class DCY_LeFatFireball : DCY_Projectile
   Spawn:
     MANF AABB 1
 	{
-		if (DCY_EffectDistance(sfxdistance))
+		if (DCY_EffectDistance(1000))
 		{
+			let splosion = Spawn("DCY_ExplosiveBallT", pos + (frandom(-2, 2), frandom(-2, 2), frandom(-2, 2)));
+			if (splosion) { splosion.translation = translation; splosion.scale *= 0.3; splosion.vel.x = vel.x / 2.5;
+			splosion.vel.y = vel.y / 2.5; splosion.vel.z = vel.z / 2.5; }
 			A_SpawnItemEx("DCY_ImpBigFlame", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: frandom(1, 2.5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 210);
 			A_SpawnItemEx("DCY_ImpFlame1", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 120);
-			A_SpawnItemEx("DCY_ProjectileBaseTrail", frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(-10.0, 10.0), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME, failchance: 20);
-			A_SpawnFlames("c24d0e", 20, 60, 0, false, thrust: 6);
+			A_SpawnFlames("c24d0e", 20, 60, 0, true, allsmoke: true, thrust: 3);
 		}
 	}
 	Loop;
