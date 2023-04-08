@@ -210,7 +210,7 @@ Class DCY_Befouler : DCYMonster
 	}
 	DAJ2 B 25
 	{
-		A_StartSound("EternalPainElemental/Dodge");
+		A_StartSound("EternalPainElemental/Toss", CHAN_WEAPON, attenuation: .75);
 		A_SpawnProjectile("DCY_BefoulerSoul", 20);
 	}
 	DAJK A 10;
