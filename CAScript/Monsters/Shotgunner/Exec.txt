@@ -83,14 +83,14 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	ZSEC A 10 DCY_Look();
 	Loop;
   Look:
-	ZSEC AABBCCDD 2 DCY_LookingForPlayer();
+	ZSEC AAABBBCCCDDD 2 DCY_LookingForPlayer();
 	"####" A 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	ZSEC AABBCCDD 2
+	ZSEC AAABBBCCCDDD 2
 	{
 		A_Chase();
 		Return A_Jump(50, "Run", "Dodge");
@@ -375,16 +375,14 @@ Class DCY_Z_ExecDrone : DCY_SkullParent
 	HDRN B 1
 	{
 		A_StartSound("LASER001", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_DronePlasma", 4, -12);
-		A_SpawnProjectile("DCY_DronePlasma", 4, 12);
+		for (int i = -12; i < 13; i += 24) A_SpawnProjectile("DCY_TresherL", 4, i);
 		A_FaceTracer();
 	}
 	HDRN BBBCCCDDD 1 A_FaceTracer();
 	HDRN B 1
 	{
 		A_StartSound("LASER001", CHAN_WEAPON);
-		A_SpawnProjectile("DCY_DronePlasma", 4, -12);
-		A_SpawnProjectile("DCY_DronePlasma", 4, 12);
+		for (int i = -12; i < 13; i += 24) A_SpawnProjectile("DCY_TresherL", 4, i);
 		A_FaceTarget();
 	}
 	HDRN BBBCCCDDD 1

@@ -1,14 +1,10 @@
 Version "4.10.0"
 
-//ZForms Menus
-#include "CAScript/ZForms/Include.txt"
-#include "CAScript/ZForms/WIP.txt"
-#include "CAScript/ZForms/Setup.txt"
-
 //Menu
 #include "CAScript/Menus/MessageMenu.txt"
 #include "CAScript/Menus/Tooltips.txt"
 #include "CAScript/Menus/Intermission.txt"
+#include "CAScript/ZForms/WIP.txt"
 
 //The Player
 #include "CAScript/Player/NewPlayer.txt"

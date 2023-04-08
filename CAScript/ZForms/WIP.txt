@@ -1,13 +1,8 @@
-class dcy_something : DCY_ZFGenericMenu
+class dcy_something : GenericMenu
 {
-    override void init(Menu parent)
+    override void Drawer()
 	{
-        Super.init(parent);
-        let baseRes = (320, 200);
-		
-		let image = DCY_ZFImage.create((0, 0), (320, 200), image: "Graphics/ZForms/upstander.png");
-        image.pack(mainFrame);
-		
-		setBaseResolution(baseRes);
+		screen.Dim(0, 1.0, 0,0, screen.GetWidth(), screen.GetHeight());
+        screen.DrawTexture(TexMan.CheckForTexture("Graphics/ZForms/upstander.png"), false, 0, 0, DTA_Fullscreen, true, DTA_KeepRatio, false);
     }
 }

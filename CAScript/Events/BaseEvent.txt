@@ -75,7 +75,7 @@ CLASS CyberaugumentedEventHandler : EventHandler
   
   override void NewGame()
   {
-	DCY_Startup();
+	//DCY_Startup();
   }
   
   void DCY_Startup()

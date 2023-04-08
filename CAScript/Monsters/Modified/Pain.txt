@@ -128,7 +128,6 @@ Class DCY_Befouler : DCYMonster
 		
 		switch (random(0, 5))
 		{
-			case 0:
 			case 1: SetStateLabel("Spit"); atkmode = 0; break;
 			case 2: 
 			case 3: SetStateLabel("Spit"); atkmode = 1; break;
