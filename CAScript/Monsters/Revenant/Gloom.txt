@@ -242,7 +242,7 @@ Class DCY_GAxe : DCY_PainsendFireball
 		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
 		A_SpawnItemEx("DCY_TSoul", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), zvel: 0.1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
-		A_SpawnParticleEx(0x00258a, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 25, 0, velx: (vel.x / 2) + frandom(-0.5, 0.5), vely: (vel.y / 2) + frandom(-0.5, 0.5), velz: (vel.z / 2) + frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.25);
+		A_SpawnParticleEx(0x00258a, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 25, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.25);
 		}
 		
 		if (!(level.maptime & 3)) if (timer < 70) A_Tracer2(16.875); else A_Tracer2(3.875);
