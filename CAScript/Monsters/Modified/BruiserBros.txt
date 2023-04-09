@@ -216,7 +216,7 @@ Class DCY_KnightHell : DCY_BaronParent
 		if (vel.z == 0 && !down)
 			down = true;
 	}
-	Goto GRANDSLAM+3;
+	Goto GRANDSLAM+4;
   SLAM:
 	SS0B S 4;
 	SS0B S 30
