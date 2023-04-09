@@ -1,9 +1,7 @@
-Class DCY_GloomKnight : DCY_Rev
+Class DCY_Psyche : DCY_Rev
 {
   Default
   {
-  Health 350;
-  DamageFactor 0.995;
   Speed 10;
   SeeSound "GKnight/Sight";
   ActiveSound "GKnight/Active";
@@ -11,7 +9,9 @@ Class DCY_GloomKnight : DCY_Rev
   DeathSound "GKnight/Death";
   DropItem "DCY_Eminence", 192;
   Tag "\c[j1]Psyche\c-";
-  +NOBLOOD
+  BloodColor "0330fc";
+  StencilColor "0330fc";
+  BloodType "DCY_SpiritBlood";
   }
   
   States
@@ -27,7 +27,7 @@ Class DCY_GloomKnight : DCY_Rev
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    GK38 AAABBBCCCDDD 2 A_Chase();
+    GK38 AAABBBCCCDDD 3 A_Chase();
 	Loop;
   Melee:
     GK38 A 0
@@ -45,8 +45,63 @@ Class DCY_GloomKnight : DCY_Rev
 	GK38 J 6 A_CustomMeleeAttack(random[SkelFist](1, 10) * 6, "hknight/melee");
 	Goto See;
   Missile:
+	GK38 E 0
+	{
+		switch (random(0, 4))
+		{
+			case 0:
+			case 1:
+			case 2: SetStateLabel("Rocket"); break;
+			case 3: SetStateLabel("DualMissile"); break;
+			case 4: SetStateLabel("PossessedAxes"); break;
+		}
+	}
+	Goto See;
+  Rocket:
+	GK38 C 10 A_FaceTarget();
+	GK38 VVVVVVV 2 A_FaceTarget();
+	GK38 W 10
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_GRocket", 70, -20);
+	}
+	GK38 V 20;
+	Goto See;
+  DualMissile:
+	GK38 C 10 A_FaceTarget();
+	GK38 VVVVVVV 2 A_FaceTarget();
+	GK38 W 5
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_GHoming", 70, -20, -40);
+	}
+	GK38 V 10;
+	GK38 W 5
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_GHoming", 70, -20, 40);
+	}
+	GK38 V 10;
+	GK38 V 20;
+	Goto See;
+  PossessedAxes:
+	GK38 KKKKKKKKKKKKKKKKKKKKK 1
+	{
+		A_FaceTarget();
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnItemEx("DCY_HexodenicanTrail2", xofs: -0.5, zofs: 6, zvel: 2, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+			if (!(level.time % 2)) A_SpawnItemEx("DCY_TSoul", frandom(-radius, radius)  - 5, frandom(-radius, radius), frandom(height / 2, height), zvel: frandom(0.5, 1.5));
+		}
+	}
     GK38 EF 6 A_FaceTarget();
-	GK38 G 6
+	GK38 G 12
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_GAxe", 50, 0, random(-3, 3), 0);
+	}
+	GK38 HI 6 A_FaceTarget();
+	GK38 J 12
 	{
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_GAxe", 50, 0, random(-3, 3), 0);
@@ -75,18 +130,101 @@ Class DCY_GloomKnight : DCY_Rev
   }
 }
 
-Class DCY_GAxe : DCY_ImpFireball
+Class DCY_GRocket : DCY_HomingMissile
 {
   Default
   {
-  Translation "48:79=%[0.00,0.00,0.00]:[1.18,0.61,0.51]", "128:159=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "80:111=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "232:239=%[0.00,0.00,0.00]:[1.19,0.61,0.51]", "112:127=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "160:231=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "248:255=%[0.00,0.00,0.24]:[0.42,0.66,2.00]";
-  Damage 6;
+  Damage 10;
+  Scale 1.4;
+  Speed 5;
+  }
+  
+  States
+  {
+  Spawn:
+	TMIS A 1
+	{
+		if (getAge() < 15) A_ScaleVelocity(1.1);
+		
+		if (DCY_EffectDistance(900))
+		{
+			if ((level.time % random(1, 5)) == 0) A_SpawnParticleEx(0xff3e1f, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 80, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), fadestepf: 0, sizestep: -0.075);	
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 90, random(10, 25), angle,  frandom(-10, -2), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.5, fadestepf: 0.01, sizestep: 0.1, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+			A_SpawnFlames("ff7e3d", 25, 17, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2.5);
+		}
+	}
+	Loop;
+  Death:
+	TNT1 A 5
+	{
+		A_Explode(2, 128);
+		
+		if (DCY_EffectDistance(900))
+		{
+			for (int i = 4; i > 0; i--)
+				A_SpawnItemEx("DCY_Explosion_1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(0.00, 360.0), SXF_NOCHECKPOSITION);
+			
+			A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 180, 90, angle,  frandom(-1, -1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.5, fadestepf: 0.01, sizestep: 2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+		}
+		
+		A_QuakeEx(2, 2, 2, 20, 0, 200, "none", QF_SCALEDOWN, 0, 0, 0, 700);
+	}
+	TNT1 A 20;
+	Stop;
+  }
+}
+
+Class DCY_GHoming : DCY_GRocket
+{
+  Default
+  {
+  Scale 1;
   Speed 12;
+  SeeSound "dcyskeleton/attack";
+  DeathSound "Explod";
+  }
+  
+  States
+  {
+  Spawn:
+	HMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING);
+	HMIS A 2 Bright
+	{
+		if (GetAge() < 20) A_SeekerMissile(7, 8);
+		if (GetAge() > 25 && GetAge() < 30) { vel.x *= 1.1; vel.y *= 1.1; }
+		if (getAge() > 35) A_SeekerMissile(2, 2);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("ff7e3d", 25, 20, 0, true, frandom(-2.5, 2.5), allsmoke: true, thrust: 2.5);
+	}
+	Goto Spawn+1;
+  Death:
+	MISL B 0 Bright;
+  	TNT1 A 1 Bright
+	{
+		A_Scream();
+		A_StopSound(CHAN_6);
+		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
+		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 17;
+	Stop;
+  }
+}
+
+Class DCY_GAxe : DCY_PainsendFireball
+{
+  Default
+  {
+  Translation "48:79=%[0.00,0.00,0.00]:[1.18,0.61,0.51]", "128:159=%[0.00,0.00,0.00]:[0.76,0.76,0.76]", "80:111=%[0.00,0.00,0.00]:[0.23,0.29,0.88]", "232:239=%[0.00,0.00,0.00]:[1.19,0.61,0.51]", "112:127=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "160:231=%[0.00,0.00,0.24]:[0.42,0.66,2.00]", "248:255=%[0.00,0.00,0.24]:[0.42,0.66,2.00]";
+  Damage 8;
+  Speed 14;
   FastSpeed 18;
   +SEEKERMISSILE;
   +BRIGHT;
   StencilColor "00258a";
-  DamageType "Poison";
+  SeeSound "";
+  DeathSound "hknight/hit";
   }
   
   int timer;
@@ -103,11 +241,17 @@ Class DCY_GAxe : DCY_ImpFireball
 		{
 		A_SpawnItemEx("DCY_BaronKnightFlame", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 150);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
+		A_SpawnItemEx("DCY_TSoul", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), zvel: 0.1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
+		A_SpawnParticleEx(0x00258a, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 25, 0, velx: (vel.x / 2) + frandom(-0.5, 0.5), vely: (vel.y / 2) + frandom(-0.5, 0.5), velz: (vel.z / 2) + frandom(-0.5, 0.5), fadestepf: 0.035, sizestep: 0.25);
 		}
 		
-		if (!(level.maptime & 3)) if (timer < 70) A_Tracer2(16.875); else A_Tracer2(6.875);
+		if (!(level.maptime & 3)) if (timer < 70) A_Tracer2(16.875); else A_Tracer2(3.875);
 		if (timer < 70) timer++;
 	}
 	Loop;
+  Death:
+	TNT1 A 1;
+    TNT1 A 5 A_SpawnItemEx("DCY_AndroidExplosionSmall", flags: SXF_NOCHECKPOSITION);
+	Stop;
   }
 }

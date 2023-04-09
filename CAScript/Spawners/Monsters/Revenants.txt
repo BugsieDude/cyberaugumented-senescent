@@ -2,7 +2,7 @@ Class DCY_SpookySkeletonWithRocketLaunchers : DCY_Spawner
 {
   Default
   {
-  DropItem "DCY_GloomKnight", 0, 255;
+  DropItem "DCY_Psyche", 0, 255;
   DropItem "DCY_Remainder", 6, 200;
   DropItem "DCY_WarWire", 20, 10;
   DropItem "DCY_Chimera", 15, 13;
@@ -10,7 +10,7 @@ Class DCY_SpookySkeletonWithRocketLaunchers : DCY_Spawner
   DropItem "DCY_TresherDoot", 20, 7;
   DropItem "DCY_KranioThanatou", 18, 5;
   DropItem "DCY_Xhouginad", 30, 3;
-  DropItem "DCY_BossRev", 23, 1;
+  DropItem "DCY_BossRev", 23, 2;
   }
 }
 
