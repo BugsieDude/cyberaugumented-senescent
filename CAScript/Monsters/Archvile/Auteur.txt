@@ -21,6 +21,15 @@ Class DCY_Auteur : DCY_VileParent
   
   bool xdirection;
   
+  void A_TracerCheck()
+  {
+	if (tracer)
+	{
+		tracer.A_StopSound(10);
+		A_Remove(AAPTR_TRACER, RMVF_EVERYTHING, "DCY_AuteurVile");
+	}
+  }
+  
   States
   {
   Spawn:
@@ -83,11 +92,11 @@ Class DCY_Auteur : DCY_VileParent
     A_1_ A 20;
     Goto See;
   Pain:
-	A_1_ F 4;
+	A_1_ F 4 A_TracerCheck();
 	A_1_ F 4 A_Pain();
 	Goto See;
   Death:
-	A_1_ F 10;
+	A_1_ F 10 A_TracerCheck();
 	A_2_ A 6 A_Scream();
 	A_2_ B 6 A_NoBlocking();
 	A_2_ CDEF 5;

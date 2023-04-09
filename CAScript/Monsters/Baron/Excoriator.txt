@@ -6,6 +6,7 @@ Class DCY_Excoriator : DCY_BaronParent
   Tag "\c[x1]Excoriator\c-";
   Translation "80:111=[255,255,255]:[0,0,0]", "1:15=%[0.00,0.00,0.00]:[0.09,0.09,0.09]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "160:255=%[0.37,0.00,0.00]:[1.99,0.59,0.00]", "16:79=%[0.00,0.00,0.00]:[2.00,0.80,0.00]";  BloodColor "Orange";
   BloodType "AndroidNeonFluid";
+  DCYMonster.GibType "DCY_GibletsLava";
   BloodColor "ad3002";
   Speed 6;
   FastSpeed 12;
@@ -25,7 +26,7 @@ Class DCY_Excoriator : DCY_BaronParent
   void Napalm()
   {
 	A_StartSound("Grenade/Launch", CHAN_WEAPON);
-	A_SpawnProjectile("DCY_WeakNapalm", 30, 12, frandom(-2, 2), CMF_OFFSETPITCH|CMF_TRACKOWNER, -10);
+	A_SpawnProjectile("DCY_Napalm", 30, 12, frandom(-2, 2), CMF_OFFSETPITCH|CMF_TRACKOWNER, -10);
 	A_FaceTarget();
   }
   
@@ -39,7 +40,7 @@ Class DCY_Excoriator : DCY_BaronParent
   {
 	A_FaceTarget();
 	A_StartSound("DNRPGFIR", CHAN_WEAPON);
-	A_SpawnProjectile("DCY_GehennaMissile", 48, 12, frandom(-2.0, 2.0));
+	A_SpawnProjectile("DCY_GRocket", 48, 12, frandom(-2.0, 2.0));
   }
   
   void A_MM()
@@ -78,20 +79,7 @@ Class DCY_Excoriator : DCY_BaronParent
     "####" "#" 0 DCY_AlertSound();
     Goto See;
   See:
-	FR6T AB 2
-	{
-		if (rushing == true)
-		{
-			tics = 1;
-			A_SpawnItemEx("DCY_ProjectileBaseTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERRENDERSTYLE);
-		}
-		else
-			tics = 2;
-		
-		A_Chase();
-			
-		Return A_Jump(1, "Rush");
-	}
+	FR6T AB 2 A_Chase();
 	Loop;
   Rush:
 	FR6T A 0 { return (rushing == 0) ? true : false; }
@@ -125,20 +113,25 @@ Class DCY_Excoriator : DCY_BaronParent
   Rockets:
 	FR6T C 15 A_FaceTarget();
 	FR6T D 5 A_AMissile();
-	FR6T C 4 A_FaceTarget();
+	FR6T C 10 A_FaceTarget();
 	FR6T D 5 A_AMissile();
-	FR6T C 4 A_FaceTarget();
-	FR6T D 5 A_AMissile();
-	FR6T C 4 A_FaceTarget();
+	FR6T C 10 A_FaceTarget();
 	FR6T D 5 A_AMissile();
 	FR6T C 15;
 	Goto See;
   Napalm:
-	FR6T C 15 A_FaceTarget();
+	FR6T E 1 A_StartSound("Excoriator/Attack", CHAN_VOICE);
+	FR6T CC 15 A_FaceTarget();
 	FR6T D 5 Napalm();
 	FR6T C 12;
 	Goto See;
   Comet:
+	FR6T E 1 A_StartSound("Excoriator/Attack", CHAN_VOICE);
+	FR6T EEEEEEEEEEEEEEEEEEEE 1
+	{
+		A_FaceTarget();
+		A_SpawnParticleEx(0xff5219, particlefire, STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 40, 55, 0, 5 + frandom(-2.5, 2.5), -35 + frandom(-2.5, 2.5), frandom(-2.5, 2.5) + 66, velz: 3, fadestepf: 0, sizestep: -4.325);
+	}
 	FR6T EF 6 A_FaceTarget();
 	FR6T G 6 AcroComet();
 	FR6T F 6 A_FaceTarget();
@@ -153,6 +146,7 @@ Class DCY_Excoriator : DCY_BaronParent
 	FR6T JK 5;
 	FR6T L 5
 	{
+		DCY_Gibs(false);
 		A_SpawnItemEx("DCY_Explosion_1_Biggie", zofs: 30, flags: SXF_NOCHECKPOSITION);
 		A_NoBlocking();
 		A_StartSound("Archon/Explode", CHAN_BODY);
