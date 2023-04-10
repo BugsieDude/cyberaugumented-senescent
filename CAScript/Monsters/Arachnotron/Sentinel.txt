@@ -91,11 +91,9 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
 	FL0O A 1
 	{
 		If (Health <= 445)
-			Return ResolveState("OrbsMode3");
+			SetStateLabel("OrbsMode3");
 		If (Health <= 866)
-			Return ResolveState("OrbsMode2");
-		
-		Return ResolveState(null);
+			SetStateLabel("OrbsMode2");
 	}
 	FL0O C 10 A_Orb(8, 0);
 	FL0O D 10 A_Orb(-8, 0);
@@ -155,7 +153,7 @@ Class DCY_FSBeam : DCY_FastProjectile
   Height 10;
   Speed 23.5;
   FastSpeed 25.5;
-  SeeSound "LASER";
+  SeeSound "DCYLASER";
   RenderStyle "Add";
   Alpha 0.85;
   Scale 0.6;

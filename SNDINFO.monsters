@@ -1077,6 +1077,7 @@ Trounce/BodyPound "Sounds/DCY Monsters/Trounce/dcy_trounce_bodyslam.ogg"
 
 PSSpider/Sight "Sounds/DCY Monsters/Executioner/dcy_executioner_sight.wav"
 PSSpider/Death "Sounds/DCY Monsters/Executioner/dcy_executioner_death.wav"
+Executioner/BallSpit "Sounds/DCY SFX/dcy_executioner_thunder.ogg"
 
 PSRevenant/Sight "Sounds/DCY Monsters/Scrag/dcy_scrag_sight.wav"
 PSRevenant/Active "Sounds/DCY Monsters/Scrag/dcy_scrag_idle.wav"
@@ -1268,16 +1269,35 @@ d4spii4 "Sounds/DCY Monsters/Maneuverer/dcy_maneuverer_impact4.ogg"
 Maneuverer/LaserCharge "Sounds/DCY Monsters/Maneuverer/dcy_maneuverer_laser_charge.ogg"
 Maneuverer/Laser "Sounds/DCY Monsters/Maneuverer/dcy_maneuverer_laser.ogg"
 
-MM/Sight "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight.ogg"
-$random MM/Active { MINDACT MINDACT2 }
-MINDACT "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle1.ogg"
-MINDACT2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle2.ogg"
-$random MM/Pain { MINDPAI1 MINDPAI2 MINDPAI3 }
-MINDPAI1 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain1.ogg"
-MINDPAI2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain2.ogg"
-MINDPAI3 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain3.ogg"
-MM/Death "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_death.ogg"
+$random MM/Sight { MINDMONARCHSIT1 MINDMONARCHSIT2 MINDMONARCHSIT3 MINDMONARCHSIT4 MINDMONARCHSIT5 }
+MINDMONARCHSIT1 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight1.ogg"
+MINDMONARCHSIT2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight2.ogg"
+MINDMONARCHSIT3 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight3.ogg"
+MINDMONARCHSIT4 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight4.ogg"
+MINDMONARCHSIT5 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_sight5.ogg"
+$random MM/Active { MINDMONARCHACT MINDMONARCHACT2 MINDMONARCHACT3 MINDMONARCHACT4 MINDMONARCHACT5 MINDMONARCHACT6 }
+MINDMONARCHACT "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle1.ogg"
+MINDMONARCHACT2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle2.ogg"
+MINDMONARCHACT3 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle3.ogg"
+MINDMONARCHACT4 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle4.ogg"
+MINDMONARCHACT5 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle5.ogg"
+MINDMONARCHACT6 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_idle6.ogg"
+$random MM/Pain { MINDMONARCHPAI1 MINDMONARCHPAI2 MINDMONARCHPAI3 MINDMONARCHPAI4 MINDMONARCHPAI5 MINDMONARCHPAI6 }
+MINDMONARCHPAI1 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain1.ogg"
+MINDMONARCHPAI2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain2.ogg"
+MINDMONARCHPAI3 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain3.ogg"
+MINDMONARCHPAI4 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain4.ogg"
+MINDMONARCHPAI5 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain5.ogg"
+MINDMONARCHPAI6 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_pain6.ogg"
+$random MM/Death { MINDMONARCHDTH1 MINDMONARCHDTH2 MINDMONARCHDTH3 MINDMONARCHDTH4 }
+MINDMONARCHDTH1 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_death1.ogg"
+MINDMONARCHDTH2 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_death2.ogg"
+MINDMONARCHDTH3 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_death3.ogg"
+MINDMONARCHDTH4 "Sounds/DCY Monsters/Mindmonarch/dcy_mindmonarch_death4.ogg"
 DCYDictator/Step "Sounds/DCY SFX/dcy_director_walk.ogg"
+MM/Charge "Sounds/DCY SFX/dcy_mindmonarch_charge.ogg"
+
+$volume DCYDictator/Step 0.6
 $random dcy/moltenstep { ddddms1 ddddms2 }
 ddddms1 "Sounds/DCY SFX/dcy_molten_footstep.ogg"
 ddddms2 "Sounds/DCY SFX/dcy_molten_footstep2.ogg"

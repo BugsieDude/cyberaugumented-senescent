@@ -315,7 +315,7 @@ D4RAILGF "Sounds/Projectiles/dcy_razer_railgun.ogg"
 DNRPGFIR "Sounds/Projectiles/dcy_gehenna_whiz.ogg"
 DNROCKET "Sounds/Projectiles/dcy_cyberrocket.ogg"
 
-LASER "Sounds/Projectiles/dcy_generic_laser.ogg"
+DCYLASER "Sounds/Projectiles/dcy_generic_laser.ogg"
 FASTLASR "Sounds/Projectiles/dcy_ion.ogg"
 
 BFG10000Proto/Charge "Sounds/Weapons/Slot 7/Liquidation/dcy_liquidation_charge.ogg"
