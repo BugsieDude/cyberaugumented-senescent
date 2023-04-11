@@ -113,7 +113,7 @@ Class DCY_Executioner : DCY_TheGiantEnemySpider
 		{
 			for (int i = 3; i > 0; i--) {
 				DCY_Gibs(false);
-				A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-85.0, 85.0), frandom(-85.0, 85.0), frandom(15.0, 55.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), random(0, 360), SXF_NOCHECKPOSITION);
 			}
 		}
 	}
@@ -185,7 +185,7 @@ Class DCY_ExecutionerLightning : DCY_MeatballElecball
 				A_QuakeEx(4, 4, 4, 50, 0, 2000, "", QF_RELATIVE|QF_SCALEDOWN);
 				A_RadiusGive("DCY_ExecutionerSlowdownGiver", 450, RGF_PLAYERS|RGF_MONSTERS); break;
 			case 111:
-				A_StartSound("Executioner/BallSpit", CHAN_BODY, attenuation: 0.65); break;
+				A_StartSound("Executioner/BallSpit", CHAN_BODY, attenuation: 0.65, pitch: 1.35); break;
 			case 250: Destroy(); break;
 		}
 		
@@ -305,12 +305,18 @@ Class DCY_ExecutionerSlowdown : PowerSpeed
   Powerup.Duration -3;
   Powerup.Color "4a2d23", 0.05;
   Speed 0.55;
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.61,0.00]";
   }
   
   override void DoEffect()
   {
 	super.DoEffect();
-	if (!(GetAge() % random(3, 6))) A_SpawnItemEx("DCY_ElecTrailBase", frandom(-owner.radius, owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 150);
+	
+	if (!(GetAge() % random(3, 6)))
+	{
+		DCY_Effect thunder = DCY_Effect(Spawn("DCY_ElecDeathBase", owner.pos + (frandom(owner.radius, -owner.radius), frandom(owner.radius, -owner.radius), frandom(0, owner.height))));
+		if (thunder) thunder.translation = self.translation;
+	}
   }
 }
 
