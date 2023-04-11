@@ -180,8 +180,11 @@ Class DCY_ExecutionerLightning : DCY_MeatballElecball
 			case 110:
 				A_RadiusThrust(6000, 600, RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
 				A_RadiusThrust(70, 110, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE|RTF_THRUSTZ);
-				for (int i = 3; i > 0; i--) A_SpawnParticleEx(0xff5219, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 100, 100, startalphaf: 1, fadestepf: 0.1, sizestep: 45);
-				A_QuakeEx(4, 4, 4, 50, 0, 2000, QF_RELATIVE|QF_SCALEDOWN);
+				for (int i = 3; i > 0; i--) A_SpawnParticleEx(0xff5219, TexMan.CheckForTexture("C28YA0"), STYLE_ADD, SPF_FULLBRIGHT, 100, 200, startalphaf: 1, fadestepf: 0.1, sizestep: 145);
+				for (int i = 13; i > 0; i--) A_SpawnParticleEx(0xff5219, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(90, 95), 140, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 1.0, fadestepf: 0.1, sizestep: 100);
+				A_QuakeEx(4, 4, 4, 50, 0, 2000, "", QF_RELATIVE|QF_SCALEDOWN);
+				A_RadiusGive("DCY_ExecutionerSlowdownGiver", 450, RGF_PLAYERS|RGF_MONSTERS); break;
+			case 111:
 				A_StartSound("Executioner/BallSpit", CHAN_BODY, attenuation: 0.65); break;
 			case 250: Destroy(); break;
 		}
@@ -290,7 +293,7 @@ Class DCY_ExecutionerSlowdownGiver : Inventory
   {
 	if (!owner) return false;
 	if (owner is "PlayerPawn" && owner.health > 0) { owner.GiveInventory("DCY_ExecutionerSlowdown", 1); owner.A_StartSound("POWERGET", CHAN_ITEM, volume: .75, pitch: 2.123); }
-	if (owner is "DCYMonster" && owner.bISMONSTER && owner.health > 0 && !(owner is "DCY_Executioner") && !owner.bBOSS) owner.GiveInventory("DCY_ExecutionerSlowdownEnemy", 1);
+	if (owner is "DCYMonster" && owner.bISMONSTER && owner.health > 0 && !(owner is "DCY_Executioner") && !(owner is "PlayerPawn") && !owner.bBOSS) owner.GiveInventory("DCY_ExecutionerSlowdownEnemy", 1);
 	return true;
   }
 }
@@ -322,13 +325,32 @@ Class DCY_ExecutionerSlowdownEnemy : Powerup
   Scale 0.5;
   }
   
+  int oldtic;
+  
+  override void PostBeginPlay()
+  {
+	if (owner) oldtic = owner.tics;
+  }
+  
   override void DoEffect()
   {
 	super.DoEffect();
-	owner.A_SetTics(int(owner.tics / 0.5));
-	if (!(GetAge() % random(3, 6))) A_SpawnItemEx("DCY_ElecTrailBase", frandom(-owner.radius, owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 150);
+	owner.A_SetTics(-1);
+	
+	if (!(GetAge() % random(3, 6)))
+	{
+		DCY_Effect thunder = DCY_Effect(Spawn("DCY_ElecDeathBase", owner.pos + (frandom(owner.radius, -owner.radius), frandom(owner.radius, -owner.radius), frandom(0, owner.height))));
+		if (thunder) thunder.translation = self.translation;
+	}
+	
 	owner.bMISSILEEVENMORE = true;
 	owner.bQUICKTORETALIATE = true;
+	owner.SetStateLabel("Pain");
+  }
+  
+  override void DetachFromOwner()
+  { 
+	if(owner && owner.health > 0) owner.A_SetTics(oldtic);
   }
 }
 
