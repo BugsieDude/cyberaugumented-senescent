@@ -1501,7 +1501,7 @@ AP0LSPL2 "Sounds/DCY Monsters/Apollyon/dcy_apollyon_spell2.ogg"
 AP0LSPL3 "Sounds/DCY Monsters/Apollyon/dcy_apollyon_spell3.ogg"
 $random Apollyon/Attack { AP0LPAI1 AP0LPAI2 AP0LPAI3 AP0LPAI4 }
 $random Apollyon/Death { AP0LPAI5 AP0LPAI6 AP0LPAI7 AP0LPAI8 }
-$random Apollyon/Pain { AP0LPAI1 AP0LPAI2 AP0LPAI3 AP0LPAI4 AP0LPAI5 AP0LPAI6 AP0LPAI7 AP0LPAI8 AP0LPAI9 AP0LPN10 AP0LPN11 AP0LPN12 }
+$random Apollyon/Pain { AP0LPAI5 AP0LPAI6 AP0LPAI7 AP0LPAI8 AP0LPAI9 AP0LPN10 AP0LPN11 AP0LPN12 AP0LPAI9 AP0LPN10 AP0LPN11 AP0LPN12 }
 AP0LPAI1 "Sounds/DCY Monsters/Apollyon/dcy_apollyon_grunt1.ogg"
 AP0LPAI2 "Sounds/DCY Monsters/Apollyon/dcy_apollyon_grunt2.ogg"
 AP0LPAI3 "Sounds/DCY Monsters/Apollyon/dcy_apollyon_grunt3.ogg"

@@ -54,7 +54,7 @@ Class DCY_SkinnyFat : DCYMonster
 	{
 		if (pos.z == floorz)
 		{
-			A_QuakeEx(1, 1, 4, 50, 0, 300, QF_SCALEDOWN|QF_3D);
+			A_QuakeEx(1, 1, 4, 50, 0, 300, "", QF_SCALEDOWN|QF_3D);
 			A_Explode(10 * random(2, 15), 128, XF_NOTMISSILE);
 			A_StartSound("EarthPound", pitch: 0.8);
 			A_PoundEffect(150);
