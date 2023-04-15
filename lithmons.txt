@@ -12,13 +12,13 @@
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_ShotgunZombe";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_SuperShotgunSoldier";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Umbra";
-   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_DecedentBigWig";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_DecedentBigwig";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_BionicZombie";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_AutomatonSupervisor";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Hoodlum";
    scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Destructor";
    scr: 1400 exp: 15  type: zombiesg      filter: "DCY_ZEnsign";
-   scr: 1400 exp: 15  type: zombiesg      filter: "DCY_ZExec";
+   scr: 1400 exp: 15  type: zombiesg      filter: "DCY_Z_Exec";
    scr: 1400 exp: 15  type: zombiesg      filter: "DCY_DeathDealer";
    
    scr: 5000 exp: 50    type: zombiesg    filter: "DCY_ArcheSpiritwalker";
@@ -34,6 +34,7 @@
    scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Vandal";
    scr: 1800 exp: 20  type: zombiecg      filter: "DCY_EspionDeLetre";
    scr: 4000 exp: 40  type: zombiecg      filter: "DCY_Tagati";
+   scr: 1800 exp: 20  type: zombiecg      filter: "DCY_ShadowCrusader";
    scr: 1800 exp: 20  type: zombiecg      filter: "DCY_TheristisPsichisl";
    
    scr: 1200 exp: 5   type: imp           filter: "DCY_Dastard";
@@ -148,7 +149,7 @@
    scr: 9000  exp: 170    type: archvile      filter: "DCY_Apollyon";
    scr: 9000  exp: 170    type: archvile      filter: "DCY_Hexodenican";
    scr: 9000  exp: 170    type: archvile      filter: "DCY_FulminationVirtuoso";
-   scr: 9000  exp: 170    type: archvile      filter: "DCY_Voidcaster";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_VoidCaster";
    scr: 9000  exp: 170    type: archvile      filter: "DCY_Lemures";
    scr: 9000  exp: 170    type: archvile      filter: "DCY_Espouser";
    scr: 15000  exp: 300   type: archvile      filter: "DCY_Overdemoniac";
@@ -163,4 +164,5 @@
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_Executioner";
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_Mindmonarch";
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_ContraptionOfHell";
+   scr: 0 exp: 0    type: mastermind    filter: "DCY_ContraptionUpperBody";
 }
