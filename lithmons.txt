@@ -1,0 +1,166 @@
+/* Cyberaugumented's Roster */
+
+"full"
+{
+   scr: 1000 exp: 5	  type: zombie        filter: "DCY_Zombe";
+   scr: 1000 exp: 5   type: zombie        filter: "DCY_Combatant";
+   scr: 1000 exp: 5   type: zombie        filter: "DCY_Huntsman";
+   scr: 1000 exp: 5   type: zombie        filter: "DCY_Contaminated";
+   scr: 1200 exp: 10  type: zombie        filter: "DCY_DarkIonConsul";
+   scr: 1200 exp: 10  type: zombie        filter: "DCY_Transmuter";
+   
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_ShotgunZombe";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_SuperShotgunSoldier";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Umbra";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_DecedentBigWig";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_BionicZombie";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_AutomatonSupervisor";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Hoodlum";
+   scr: 1200 exp: 10  type: zombiesg      filter: "DCY_Destructor";
+   scr: 1400 exp: 15  type: zombiesg      filter: "DCY_ZEnsign";
+   scr: 1400 exp: 15  type: zombiesg      filter: "DCY_ZExec";
+   scr: 1400 exp: 15  type: zombiesg      filter: "DCY_DeathDealer";
+   
+   scr: 5000 exp: 50    type: zombiesg    filter: "DCY_ArcheSpiritwalker";
+   scr: 5000 exp: 50    type: zombiesg    filter: "DCY_Marauder";
+   
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Plutonia";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_HuntsmanX";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_HellPrototypeMech";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Commandant";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Nullifier";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_AlacritousGuy";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Rattail";
+   scr: 1400 exp: 15  type: zombiecg      filter: "DCY_Vandal";
+   scr: 1800 exp: 20  type: zombiecg      filter: "DCY_EspionDeLetre";
+   scr: 4000 exp: 40  type: zombiecg      filter: "DCY_Tagati";
+   scr: 1800 exp: 20  type: zombiecg      filter: "DCY_TheristisPsichisl";
+   
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Dastard";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Violator";
+   scr: 1200 exp: 10  type: imp           filter: "DCY_LightningPhase";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Pryer";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Painsend";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Serpent";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Perserver";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_LiquidatorTypeImp";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_Castrator";
+   scr: 1200 exp: 10  type: imp      	  filter: "DCY_Malignant";
+   scr: 1400 exp: 15  type: imp      	  filter: "DCY_HellRazer";
+   scr: 1200 exp: 5   type: imp           filter: "DCY_RegulusImp";
+   scr: 1200 exp: 10  type: imp      	  filter: "DCY_Terminalist";
+   scr: 1400 exp: 15  type: imp      	  filter: "DCY_Manes";
+   scr: 1400 exp: 15  type: imp      	  filter: "DCY_SubzeroUmbrage";
+   scr: 1400 exp: 15  type: imp      	  filter: "DCY_AbyssalSycophant";
+   scr: 1400 exp: 15  type: imp      	  filter: "DCY_Anathema";
+   
+   scr: 4000 exp: 40  type: imp           filter: "DCY_Curator";
+   scr: 4000 exp: 40  type: imp           filter: "DCY_Eavesdropper";
+   scr: 4000 exp: 40  type: imp           filter: "DCY_ExoImp";
+   scr: 6000 exp: 80  type: imp           filter: "DCY_Ultracerest";
+   
+   scr: 2000 exp: 10  type: demon         filter: "DCY_Pinke";
+   scr: 2000 exp: 10  type: demon         filter: "DCY_PinkeII";
+   scr: 2100 exp: 10  type: demon         filter: "DCY_Fusillade";
+   scr: 2000 exp: 10  type: demon         filter: "DCY_Dasher";
+   scr: 2100 exp: 10  type: demon         filter: "DCY_Alphomency";
+   scr: 2000 exp: 10  type: demon         filter: "DCY_Maltreat";
+   scr: 2100 exp: 10  type: demon         filter: "DCY_Kranion";
+   scr: 2100 exp: 10  type: demon         filter: "DCY_Tenebrosity";
+   scr: 2000 exp: 10  type: demon         filter: "DCY_BloodshedAssailant";
+   
+   scr: 10000 exp: 100  type: demon       filter: "DCY_Urozon";
+   
+   scr: 500  exp: 5   type: lostsoul      filter: "DCY_FlamingCranium";
+   scr: 500  exp: 5   type: lostsoul      filter: "DCY_Sullied";
+   scr: 500  exp: 5   type: lostsoul      filter: "DCY_LunarChiller";
+   
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_FlyingMeatballOutOfTouch";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Perditiongazer";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Wretched";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Malwrath";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Inscrutable";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Deluder";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_Chrysalis";
+   scr: 4000 exp: 40  type: cacodemon     filter: "DCY_HellCustodian";
+   scr: 5000 exp: 50  type: cacodemon     filter: "DCY_Monsoon";
+   
+   scr: 8000 exp: 90  type: cacodemon     filter: "DCY_Razortherion";
+   scr: 12000 exp: 140  type: cacodemon   filter: "DCY_Visitant";
+   
+   scr: 4100 exp: 40      type: hellknight    filter: "DCY_KnightHell";
+   scr: 4100 exp: 40      type: hellknight    filter: "DCY_Wastrel";
+   scr: 4100 exp: 40      type: hellknight    filter: "DCY_CalamityTsar";
+   scr: 4100 exp: 40      type: hellknight    filter: "DCY_FluorescentChevalier";
+   scr: 4100 exp: 40      type: hellknight    filter: "DCY_Malloc";
+   scr: 5500 exp: 60      type: hellknight    filter: "DCY_Abater";
+   scr: 5500 exp: 60      type: hellknight    filter: "DCY_Larrikin";
+   
+   scr: 7000 exp: 80      type: baron         filter: "DCY_HeckBaron";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_PrimerialEmir";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_PrimeYanorit";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_Peril";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_Repealer";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_Excoriator";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_GehennaChasseur";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_WastelandInfiltrator";
+   scr: 7000 exp: 80      type: baron         filter: "DCY_Utrotrion";
+   scr: 9000 exp: 120      type: baron        filter: "DCY_ArmageddonPredominator";
+   scr: 9000 exp: 120      type: baron        filter: "DCY_EOD";
+   scr: 9000 exp: 120      type: baron        filter: "DCY_Aamon";
+   scr: 14000 exp: 180     type: baron        filter: "DCY_Calignosity";
+   
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_SmallEnemySpider";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Tripartite";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Tracnomechatron";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_IonArachnotron";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_BattlemindGeomancer";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_FluorescentSentinel";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Transfixer";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Goliath";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Convector";
+   scr: 4300 exp: 40      type: arachnotron   filter: "DCY_Receptacle";
+   
+   scr: 14000 exp: 180    type: arachnotron   filter: "DCY_Arachnoaversion";
+   
+   scr: 7000 exp: 140     type: painelemental filter: "DCY_Befouler";
+   scr: 7000 exp: 140     type: painelemental filter: "DCY_Kaiser";
+   scr: 7000 exp: 140     type: painelemental filter: "DCY_Vague";
+   
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_Psyche";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_Remainder";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_Warwire";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_Chimera";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_SoulCrusher";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_TresherDoot";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_KranioThanatou";
+   scr: 4000 exp: 40      type: revenant      filter: "DCY_Xhouginad";
+   scr: 12000 exp: 200     type: revenant      filter: "DCY_Crusader";
+   scr: 9000 exp: 180     type: revenant      filter: "DCY_AbyssalExarch";
+   scr: 10000 exp: 200     type: revenant      filter: "DCY_DestructiveEarl";
+   
+   scr: 4400  exp: 40     type: mancubus      filter: "DCY_SkinnyFat";
+   scr: 4400  exp: 40     type: mancubus      filter: "DCY_RadiationCorpulence";
+   scr: 4400  exp: 40     type: mancubus      filter: "DCY_Disrelish";
+   scr: 4400  exp: 40     type: mancubus      filter: "DCY_Odium";
+   
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Auteur";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Apollyon";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Hexodenican";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_FulminationVirtuoso";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Voidcaster";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Lemures";
+   scr: 9000  exp: 170    type: archvile      filter: "DCY_Espouser";
+   scr: 15000  exp: 300   type: archvile      filter: "DCY_Overdemoniac";
+   scr: 15000  exp: 300   type: archvile      filter: "DCY_Prestidigitator";
+   scr: 28000 exp: 570    type: cyberdemon    filter: "DCY_Emptiness";
+   
+   scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_NavyTerminator";
+   scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_Arbiter";
+   scr: 40000 exp: 660    type: cyberdemon    filter: "DCY_ChoricoNepheloma";
+   
+   scr: 28000 exp: 560    type: mastermind    filter: "DCY_TheGiantEnemySpider";
+   scr: 28000 exp: 560    type: mastermind    filter: "DCY_Executioner";
+   scr: 28000 exp: 560    type: mastermind    filter: "DCY_Mindmonarch";
+   scr: 28000 exp: 560    type: mastermind    filter: "DCY_ContraptionOfHell";
+}
