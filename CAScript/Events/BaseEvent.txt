@@ -43,11 +43,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	
 	if (x && x.monsterpack)
 	{
-		if (e.thing)
-		{
-			if (e.thing is "DCY_Powerup") e.thing.Destroy();
-			if (e.thing is "DCY_InvItem") e.thing.Destroy();
-		}
+		if (e.thing && (e.thing is "DCY_Powerup" || e.thing is "DCY_Eminence" || e.thing is "DCY_UltramodernEnergy" || e.thing is "DCY_InvItem" || e.thing is "DCY_Weapon"))
+			e.thing.Destroy();
 	}
 	
 	//Effect Choker
