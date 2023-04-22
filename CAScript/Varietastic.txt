@@ -18,7 +18,9 @@ Class DCY_Spawner : RandomSpawner //Progression system heavily inspired by Pande
 	{
 		while(di != null)
 		{
-			bool shouldSkip = (di.Name == 'None') || (nomonsters && IsMonster(di));
+			let prob = di.Probability;
+			let lvl = prob * sv_dcy_progression;
+			bool shouldSkip = (di.Name == 'None') || (nomonsters && IsMonster(di)) || ReturnProgressionLevel(0) < lvl;
 			
 			if (!shouldSkip)
 			{
