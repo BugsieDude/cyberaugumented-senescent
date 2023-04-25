@@ -4,6 +4,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   int teleloop;
   int exploding;
   int explodesound;
+  int beamloop;
   
   void A_NephelomaTeleportSetup(bool tof)
   {	
@@ -21,9 +22,9 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   {
 	if(target)
 	{
-	  A_CustomRailgun(27, 0, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_NephelomaLaserPuff", sparsity: 90, spawnclass: "DCY_PhasicRailLaser", spawnofs_z: 25);
+	  A_CustomRailgun(10, -28, "", "", RGF_SILENT|RGF_FULLBRIGHT, 3, 0, "DCY_NephelomaLaserPuff", sparsity: 90, spawnclass: "DCY_PhasicRailLaser", spawnofs_z: 8);
 	  A_QuakeEx(2, 2, 2, 50, 0, 2000, "", QF_SCALEDOWN);
-	  A_FaceTarget();
+	  A_FaceTarget(0.30,0.30);
 	}
   }
   
@@ -209,20 +210,47 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
 	}
 	Goto Minigun+2;
   Laser:
-	CH0R G 1 A_FaceTarget();
-	CH0R G 40
+    TNT1 A 0 { beamloop = 0; }
+	CH0R G 1 
 	{
-		A_FaceTarget();
-		A_StartSound("ChoricoNepheloma/Active", CHAN_VOICE, attenuation: 0);
+	A_FaceTarget();
+	A_StartSound("ChoricoNepheloma/Active", CHAN_VOICE,volume: 0.45, attenuation: 0);
+	A_StartSound("PlasmicLaser/Charge",CHAN_WEAPON,attenuation: 0);
+	}
+	CH0R G 1
+	{
+	    if(beamloop > 85)
+		SetStateLabel("LaserStart");
+		A_SpawnItemEx("DCY_ChoricoChargeTrail", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
+		A_FaceTarget(0.85,0.85);
+		A_SpawnItemEx("DCY_ChoricoArc", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20) + 30, flags: SXF_NOCHECKPOSITION, failchance: 100);
+		beamloop++;
+	}
+	Goto Laser+2;
+  LaserStart:
+	CH0R H 15
+	{
+	    beamloop = 0;
+	    A_FaceTarget();
+		A_StartSound("LaserSegment1",9,attenuation: 0);
 	}
 	CH0R H 1
 	{
 		A_Dodging(randompick(-5, 0, 5));
-		A_StartSound("DREADLSR", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0);
+		A_StartSound("LaserSegment2",10,CHANF_LOOPING, attenuation: 0);
 		A_NephelomaLaser();
 	}
-	CH0R HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_NephelomaLaser();
-	CH0R G 35;
+	CH0R H 1 
+	{
+	if(beamloop > 120)
+	  SetStateLabel("LaserEnd");
+	
+	A_NephelomaLaser();
+	beamloop++;
+	}
+	Goto LaserStart+2;
+   LaserEnd:
+	CH0R G 35 A_StopSound(10);
 	CH0R G 1 A_Stop();
 	Goto See;
   Pentagram:

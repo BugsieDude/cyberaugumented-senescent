@@ -225,7 +225,8 @@ SEGA - Quit Background
 Abysswalker - Sprites
 Binisfox (Stardust Arena) - Sounds
 Raizing - Sounds
- 
+SITER SKAIN (RefleX, Kamui) - Sounds
+
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help (I'd just credit Skulltag)
 

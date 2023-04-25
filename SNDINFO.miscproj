@@ -52,3 +52,7 @@ dcyvomitblood3 "Sounds/DCY SFX/dcy_blood_vomit3.ogg"
 ExplosiveDash "Sounds/Projectiles/dcy_hexodenican_dash.ogg"
 
 LightningPhase/Teleport "Sounds/DCY SFX/dcy_lightningphase_teleport.ogg"
+
+PlasmicLaser/Charge "Sounds/Projectiles/dcy_lasercharge.ogg"
+LaserSegment1 "Sounds/Projectiles/dcy_lasersegment1.ogg"
+LaserSegment2 "Sounds/Projectiles/dcy_lasersegment2.ogg"
