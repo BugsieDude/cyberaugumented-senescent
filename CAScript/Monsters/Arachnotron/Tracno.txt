@@ -69,13 +69,8 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
 		A_FaceTarget();
 		A_SpawnProjectile("DCY_TracPlasma", 22, 13, 0, CMF_OFFSETPITCH, pitch);
 	}
-    BSP2 Q 2 Bright
-	{
-		A_FaceTarget();
-		A_CheckSight("See");
-		
-		if (!target || target.Health <= 0) SetStateLabel("See");
-	}
+  BSP2 Q 2 Bright A_FaceTarget();
+  TNT1 A 0 A_SpidRefire;
 	Goto Missile+1;
   Pain:
     BSP2 I 4;

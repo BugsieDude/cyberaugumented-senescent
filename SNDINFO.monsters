@@ -416,9 +416,9 @@ DSMADNE5 "Sounds/DCY SFX/dcy_madness5.ogg"
 SPI2SIT "Sounds/DCY Monsters/Ion/dcy_ionspider_sight.wav"
 SPI2ACT "Sounds/DCY Monsters/Ion/dcy_ionspider_idle.wav"
 SPI2PAIN "Sounds/DCY Monsters/Ion/dcy_ionspider_pain.wav"
-Ionizer/Charge "Sounds/DCY Monsters/Ion/dcy_ionrailcharge.ogg"
-Ionizer/Beam "Sounds/DCY Monsters/Ion/dcy_ionrailbeam.ogg"
-Ionizer/Crippled "Sounds/DCY Monsters/Ion/dcy_ioncripple.ogg"
+Ionizer/Charge "Sounds/DCY SFX/dcy_ionrailcharge.ogg"
+Ionizer/Beam "Sounds/DCY SFX/dcy_ionrailbeam.ogg"
+Ionizer/Crippled "Sounds/DCY SFX/dcy_ioncripple.ogg"
 
 DEM2SIT "Sounds/DCY Monsters/Bloodshed/dcy_bloodshed_sight.ogg"
 DEM2PAI "Sounds/DCY Monsters/Bloodshed/dcy_bloodshed_pain.ogg"
@@ -690,6 +690,10 @@ SPI3SCR2 "Sounds/DCY Monsters/Tripartite/dcy_tripartite_scream2.ogg"
 SPI3SCR3 "Sounds/DCY Monsters/Tripartite/dcy_tripartite_scream3.ogg"
 SPI3SCR4 "Sounds/DCY Monsters/Tripartite/dcy_tripartite_scream4.ogg"
 SPI3SCR5 "Sounds/DCY Monsters/Tripartite/dcy_tripartite_scream5.ogg"
+
+Tripartite/Attach "Sounds/DCY SFX/dcy_tripartite_attach.ogg"
+Tripartite/Warning "Sounds/DCY SFX/dcy_tripartite_warning.ogg"
+Tripartite/AttachReady "Sounds/DCY SFX/dcy_tripartite_ready.ogg"
 
 $random Prowler/Active { PROWACT1 PROWACT2 PROWACT3 PROWACT4 PROWACT5 PROWACT6 PROWACT7 PROWACT8 PROWACT9 PROWACT10 }
 PROWACT1 "Sounds/DCY Monsters/Prowler/dcy_prowler_gurgle1.ogg"

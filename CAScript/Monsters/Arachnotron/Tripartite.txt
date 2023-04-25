@@ -11,8 +11,9 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
   Translation "48:79=%[0.00,0.00,0.00]:[0.58,0.58,0.58]", "208:223=%[0.00,0.00,0.00]:[2.00,0.54,0.54]", "80:159=%[0.00,0.00,0.00]:[0.58,0.58,0.58]", "16:47=%[0.00,0.00,0.00]:[1.38,0.54,0.26]", "236:239=%[0.00,0.00,0.00]:[0.58,0.58,0.58]", "160:191=%[0.20,0.00,0.00]:[1.95,0.64,0.26]", "13:15=%[0.00,0.00,0.00]:[0.58,0.58,0.58]", "4:4=%[0.00,0.00,0.00]:[0.58,0.58,0.58]";
   GibHealth -1000;
   }
-  
   int attackmode;
+  int runnin;
+  int attackloop;
   
   override void Tick()
   {
@@ -24,6 +25,22 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 		attackmode = 1;
 	else if (health >= 600)
 		attackmode = 0;
+  }
+  
+  void A_TripartiteAttach()
+  {
+   A_SetSpeed(0);
+   bNOPAIN = true;
+   bMISSILEMORE = true;
+   bMISSILEEVENMORE = true;
+  }
+  
+  void A_TripartiteDetach()
+  {
+   A_SetSpeed(12);
+   bNOPAIN = true;
+   bMISSILEMORE = true;
+   bMISSILEEVENMORE = false;
   }
   
   void A_Tripartite()
@@ -88,6 +105,7 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 	CSP3 F 3 A_Chase();
 	Goto See+1;
   Missile:
+    TNT1 A 0 A_Jump(75,"Attaching");
 	CSP3 A 30
 	{
 		A_FaceTarget();
@@ -100,9 +118,118 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 		A_Tripartite();
 		Return A_MonsterRefire(128, "See");
 	}
-	Goto Missile+1;
+	Goto Missile+2;
+  Attaching:
+    TNT1 A 0 { bFRIGHTENED = true; }
+	CSP3 AABB 1 A_Chase(null,null);
+	CSP3 C 2
+	{
+	  if(target && Distance3D(target) > 900)
+	    SetStateLabel("Attach");
+		
+		A_Chase();
+		A_StartSound("Aracgunner/Walk", CHAN_BODY, pitch: 1.25);
+	}
+	CSP3 CDDEE 1 A_Chase(null,null);
+	CSP3 F 2
+	{
+	  if(runnin >= 15)
+	    SetStateLabel("Attach");
+		
+		A_Chase(null,null);
+		A_StartSound("Aracgunner/Walk", CHAN_BODY, pitch: 1.25);
+		runnin++;
+	}
+	CSP3 F 1 A_Chase(null,null); 
+	Loop;
+  Attach:
+    TNT1 A 0 A_StartSound("Tripartite/Attach",11,CHANF_DEFAULT,attenuation: 0.5);
+	CSP3 A 10 
+	{
+	A_FaceTarget();
+	A_TripartiteAttach();
+	bFRIGHTENED = false;
+	}
+  AttachLoop:
+    CSP3 A 5 
+	{
+	A_Chase(null,"AttachMissile");
+	A_FaceTarget();
+	}
+	TNT1 A 0 A_Jump(3,"AttachEnd");
+	TNT1 A 0 A_CheckSight("AttachEnd");
+	Loop;
+  AttachEnd:
+    TNT1 A 0 A_TripartiteDetach();
+	Goto See;
+  AttachMisEnd:
+    CSP3 A 20 
+	{
+	A_FaceTarget();
+	A_StartSound("Tripartite/AttachReady",attenuation: 0.75);
+	}
+	Goto AttachLoop;
+  AttachMissile:
+    CSP3 A 14 
+	{
+	A_FaceTarget();
+	A_StartSound("Tripartite/AttachReady",attenuation: 0.75);
+	}
+    TNT1 A 0 A_Jump(65,"AttachDouble");
+	TNT1 A 0 
+	{
+	if(health < 300 && random(1,5) == 1)
+	 SetStateLabel("AttachTriple");
+	}
+  AttachSingle: //continuous
+    TNT1 A 0 { attackloop = random(20,28); }
+    CSP3 GH 3 Bright
+	{
+	  if(attackloop < 0)
+	   SetStateLabel("AttachMisEnd");
+	A_SpawnProjectile("DCY_TripartiteTracer", 30, 0, frandom(-3.0, 3.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.5, 1.5));
+	A_StartSound("PIS5FIRE", CHAN_6, attenuation: 0.85);
+	attackloop--;
+	A_FaceTarget();
+	}
+	Goto AttachSingle+1;
+  AttachDouble: //burst
+    TNT1 A 0 { attackloop = random(6,8); }
+    CSP3 QRQRQRQRQR 1 Bright
+	{
+	A_SpawnProjectile("DCY_TripartiteTracer", 16, -10, frandom(-3.0, 3.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.5, 1.5));
+	A_SpawnProjectile("DCY_TripartiteTracer", 16, 10, frandom(-3.0, 3.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.5, 1.5));
+	A_StartSound("PIS5FIRE", CHAN_6, attenuation: 0.85);
+	A_FaceTarget();
+	}
+	CSP3 A 15 
+	{
+	  if(attackloop < 0)
+	   SetStateLabel("AttachMisEnd");
+	A_FaceTarget();
+	attackloop--;
+	}
+	Goto AttachDouble+1;
+  AttachTriple: //MAXIMUM FIREPOWERRRRRRRRRRRRR
+   TNT1 A 0 
+   {
+   A_StartSound("Tripartite/Warning",11,CHANF_DEFAULT,attenuation: 0.5);
+   attackloop = 80; 
+   }
+   CSP3 A 20 Bright;
+   CSP3 TU 2 Bright
+   {
+	  if(attackloop < 0)
+	   SetStateLabel("AttachMisEnd");
+	 for (int i = -20; i < 21; i += 40)
+	A_SpawnProjectile("DCY_TripartiteTracer", 16, i, frandom(-3.0, 3.0), CMF_TRACKOWNER|CMF_OFFSETPITCH, frandom(-1.5, 1.5));
+	A_StartSound("PIS5FIRE", CHAN_6, attenuation: 0.85);
+	A_FaceTarget();
+	attackloop--;
+  }
+  Goto AttachTriple+2;
   Pain:
-	CSP3 I 3;
+	CSP3 I 3 { bFRIGHTENED = false; }
 	CSP3 I 4 A_Pain();
 	Goto See;
   Death:
