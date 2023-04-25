@@ -40,19 +40,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 	A_FaceTarget(0.8,0.8);
 	beamcharge++;
   }
-  
-  void A_IonRailBeam()
-  {
-      if(health < 500)
-	    SetStateLabel("Crippled");
-	  if(missile >= 80)
-	   SetStateLabel("CooldownGiver"); 
-	A_FaceTarget(0.4,0.4);
-	A_CustomRailgun(1, 0, 0, 0, RGF_FULLBRIGHT|RGF_SILENT, 0, 0, "DCY_NeonicRing", 0, 0, 0, 0, 80, 0, "DCY_NeonicWandTrail");
-	missile++;
-  }
-  
-  
+   
   void A_IonArachnoDash()
   {
 	A_Chase();
@@ -138,7 +126,16 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
     TNT1 A 0 A_StartSound("Ionizer/Beam",11,CHANF_DEFAULT,attenuation: 0.5);
 	TNT1 A 0 { missile = 0; }
   MissileGo2:
-    CSPI GH 1 Bright A_IonRailBeam();
+    CSPI GH 1 Bright
+	{
+	 if(health < 500)
+	    SetStateLabel("Crippled");
+	  if(missile >= 80)
+	   SetStateLabel("CooldownGiver"); 
+	A_FaceTarget(0.4,0.4);
+	A_CustomRailgun(1, 0, 0, 0, RGF_FULLBRIGHT|RGF_SILENT, 0, 0, "DCY_IonRailRing", 0, 0, 0, 0, 80, 0, "DCY_IonRailTrail");
+	missile++;
+	}
 	Loop;
   CooldownGiver:
     TNT1 A 0 { bNOPAIN = false; }
@@ -262,4 +259,20 @@ Class DCY_IPlasma : DCY_FastProjectile
     BL8R CDE 5;
 	Stop;
   }
+}
+
+Class DCY_IonRailRing : DCY_NeonicRing
+{
+ Default
+ {
+ DamageType "Arachno";
+ }
+}
+
+Class DCY_IonRailTrail : DCY_NeonicWandTrail
+{
+ Default
+ {
+ DamageType "Arachno";
+ }
 }
