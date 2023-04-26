@@ -295,6 +295,8 @@ dcy/intimidating "Sounds/Projectiles/dcy_intimidating.ogg"
 MagicProjectile/Shot "Sounds/Projectiles/dcy_anathema_orb.ogg"
 MagicProjectile/Death "Sounds/Projectiles/dcy_anathema_impact.ogg"
 
+DCY/HomingLaser "Sounds/Projectiles/dcy_hominglaser.ogg"
+
 LightningBewm "Sounds/Projectiles/dcy_lightning_explosion.ogg"
 GL1SSBRK "Sounds/Projectiles/dcy_chorico_shatter.wav"
 
