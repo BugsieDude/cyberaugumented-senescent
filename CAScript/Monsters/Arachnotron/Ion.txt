@@ -118,12 +118,12 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 	bNOPAIN = true;
 	}
     CSPI G 15 A_FaceTarget;
-	TNT1 A 0 A_StartSound("Ionizer/Charge",11,CHANF_DEFAULT,attenuation: 0.5,pitch:frandom(0.95,1.25));
+	TNT1 A 0 A_StartSound("Ionizer/Charge",11,CHANF_DEFAULT,pitch:frandom(0.95,1.25));
   MissileLoop:
     CSPI GH 1 Bright A_IonRailPrepare();
 	Loop;
   MissileGo:
-    TNT1 A 0 A_StartSound("Ionizer/Beam",11,CHANF_DEFAULT,attenuation: 0.5);
+    TNT1 A 0 A_StartSound("Ionizer/Beam",11,CHANF_DEFAULT);
 	TNT1 A 0 { missile = 0; }
   MissileGo2:
     CSPI GH 1 Bright

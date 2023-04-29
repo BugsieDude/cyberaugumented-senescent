@@ -10,10 +10,10 @@ $rolloff Minigun/WindUp 200 2300
 $rolloff Minigun/WindDown 200 2300
 $rolloff SHMPBOOM 300 3000
 $rolloff PLASMA7 300 3500
-$rolloff PIS5FIRE 300 3500
-$rolloff PIS3FIR4 300 3500
-$rolloff PIS3FIR3 300 3500
-$rolloff PIS3FIR2 300 3500
+$rolloff PIS5FIRE 400 3500
+$rolloff PIS3FIR4 400 3500
+$rolloff PIS3FIR3 400 3500
+$rolloff PIS3FIR2 400 3500
 
 //Rockets
 $rolloff DNRPGFIR 300 2200
@@ -22,15 +22,15 @@ $rolloff STF3FIRE 300 2200
 
 //Plasma
 $rolloff Weapons/ZombiePlasma 300 3500
-$rolloff Vandal/Laser 300 3500
-$rolloff Android/LaserX 300 2000
-$rolloff Android/Laser 300 3000
+$rolloff Vandal/Laser 400 3500
+$rolloff Android/LaserX 400 2000
+$rolloff Android/Laser 400 3000
 $rolloff Cyberdemon/RailgunCharge 300 2500
 $rolloff Cyberdemon/RailgunFire 300 3500
 $rolloff DSPLASM4 300 3500
 $rolloff DSWTH 300 2500
 $rolloff CARCATK 300 3000
-$rolloff D4RAILGF 300 3500
+$rolloff D4RAILGF 500 3500
 $rolloff FASTLASR 300 3500
 $rolloff DSSUPPLS 300 3500
 $rolloff RBGSH0T 300 3500
@@ -41,3 +41,11 @@ $rolloff DCYPlasmaShotgun 300 3500
 $rolloff PlasmaLaser 300 3000
 $rolloff PSPLASMA 300 3000
 $rolloff Weapons/BFG10kFire2 300 3500
+$rolloff Ionizer/Charge 700 3000
+$rolloff Ionizer/Beam 700 3000
+$rolloff Ionizer/Crippled 700 2200
+
+//Other
+$rolloff Tripartite/Attach 900 2500
+$rolloff Tripartite/Warning 1100 2200
+$rolloff Tripartite/AttachReady 1000 2000
