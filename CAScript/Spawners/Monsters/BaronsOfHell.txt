@@ -24,6 +24,6 @@ Class DCY_BossBaron : DCY_Spawner
   DropItem "DCY_ArmageddonPredominator", 35, 100;
   DropItem "DCY_EOD", 35, 50;
   DropItem "DCY_Aamon", 45, 40;
-  //DropItem "DCY_Calignosity", 20, 20;
+  DropItem "DCY_Calignosity", 20, 20;
   }
 }

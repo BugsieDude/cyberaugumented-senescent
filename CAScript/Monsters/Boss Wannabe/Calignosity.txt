@@ -26,6 +26,7 @@ Class DCY_Calignosity : DCY_HeckBaron
   +FRIGHTENING
   +NOFEAR
   PainChance 30;
+  Mass 1200;
   }
   
   override void PostBeginPlay()
