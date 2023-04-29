@@ -39,6 +39,15 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
 
 	A_FaceTarget(0.8,0.8);
 	beamcharge++;
+	
+	if (health >= 500)
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnParticleEx(0x4287f5, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 50, 0, frandom(35, 55), frandom(-20, 20), frandom(-20, 20) + 31, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.005, sizestep: 0.725);
+			A_SpawnParticleEx(0x4287f5, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), random(1, 9), 0, frandom(120, 100), frandom(-100, 100), frandom(-20, 20) + 21, accelx: -1, fadestepf: 0.05, sizestep: -0.225);
+		}
+	}
   }
    
   void A_IonArachnoDash()
@@ -120,19 +129,26 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
     CSPI G 15 A_FaceTarget;
 	TNT1 A 0 A_StartSound("Ionizer/Charge",11,CHANF_DEFAULT,pitch:frandom(0.95,1.25));
   MissileLoop:
-    CSPI GH 1 Bright A_IonRailPrepare();
+    CSPI GH 1 A_IonRailPrepare();
 	Loop;
   MissileGo:
     TNT1 A 0 A_StartSound("Ionizer/Beam",11,CHANF_DEFAULT);
 	TNT1 A 0 { missile = 0; }
   MissileGo2:
-    CSPI GH 1 Bright
+    CSPI GH 1
 	{
 	 if(health < 500)
 	    SetStateLabel("Crippled");
 	  if(missile >= 80)
 	   SetStateLabel("CooldownGiver"); 
 	A_FaceTarget(0.4,0.4);
+	
+	if (DCY_EffectDistance(sfxdistance))
+	{
+		A_SpawnParticleEx(0x4287f5, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), 50, 0, frandom(35, 55), frandom(-20, 20), frandom(-20, 20) + 31, frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), accelx: 2, fadestepf: 0.05, sizestep: 0.725);
+		A_SpawnParticleEx(0x4287f5, TexMan.CheckForTexture("graphics/Particles/dcyglowp.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, random(20, 45), random(3, 10), 0, frandom(0, 30), frandom(-20, 20), frandom(-5, 5) + 27, frandom(0, 5), frandom(-4, 4), frandom(-4, 4), accelx: 5, fadestepf: 0.05, sizestep: -0.225);
+	}
+		
 	A_CustomRailgun(1, 0, 0, 0, RGF_FULLBRIGHT|RGF_SILENT, 0, 0, "DCY_IonRailRing", 0, 0, 0, 0, 80, 0, "DCY_IonRailTrail");
 	missile++;
 	}
@@ -183,6 +199,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
     CSPI I 4;
 	TNT1 A 0
 	{
+	A_StopSound(11);
 	if(crippled == true)
 	  SetStateLabel("PanicSee");
 	}
@@ -193,6 +210,7 @@ Class DCY_IonArachnotron : DCY_ArachnoParent
     CSPI I 1;
 	CSPI I 13
 	{
+		A_StopSound(11);
 		A_NoBlocking();
 		A_StartSound("SPI2PAIN", CHAN_VOICE, CHANF_DEFAULT, 1.0, ATTN_NONE, frandom(0.8, 0.75));
 	}

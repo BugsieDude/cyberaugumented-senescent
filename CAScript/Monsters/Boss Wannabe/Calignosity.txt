@@ -31,7 +31,7 @@ Class DCY_Calignosity : DCY_HeckBaron
   override void PostBeginPlay()
   {
 	Super.PostBeginPlay();
-	ThingAnnounce("Cold, brutal annihilation awaits.", "DANGERT", "n0");
+	ThingAnnounce("You know, things are starting to get... cold and catastrophic around here.", "DANGERT", "n0");
   }
   
   void A_CalignosityChase()
@@ -49,8 +49,12 @@ Class DCY_Calignosity : DCY_HeckBaron
   
   void A_CalignosityStep()
   {
+	if (target && checkSight(target))
+	{
     if(random(1,20) == 1)
 	 { calirush = random(45,70); }
+	}
+	
 	if(calirush)
 	 A_SetTics(1);
 	A_StartSound("CYBRFOOT", CHAN_BODY);
@@ -62,6 +66,7 @@ Class DCY_Calignosity : DCY_HeckBaron
   {
 	A_StartSound("B0SSSMSH", CHAN_BODY, attenuation: 0.45);
 	A_QuakeEx(0, 0, 6, 20, 0, 2000, "", flags: QF_SCALEDOWN|QF_3D);
+	A_PoundEffect(80, 200);
 	A_Explode(300, 128, XF_NOTMISSILE, 0, 100, damagetype: "Calignosity");
   }
   
@@ -119,9 +124,15 @@ Class DCY_Calignosity : DCY_HeckBaron
 	P1SS E 10
 	{
 		if (target && distance3D(target) < 350)
+		{
+			A_StartSound("Calignosity/Glide", pitch: 1.2);
 			SetStateLabel("Lunge");
-		 A_SpawnItemEx("DCY_CalignosityTrailX", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		A_CalignosityArm();
+		}
+		else
+		{
+			A_SpawnItemEx("DCY_CalignosityTrailX", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			A_CalignosityArm();
+		}
 	}
 	P1SS EE 10 A_FaceTarget;
 	P1SS G 3
@@ -151,14 +162,14 @@ Class DCY_Calignosity : DCY_HeckBaron
 	  SetStateLabel("See");
 
 	A_FaceTarget();
-	A_StartSound("KaiserDrone/Laser",11,attenuation:0.65);
+	A_StartSound("DCY/ChargedLaser",11,attenuation:0.65);
 	A_SpawnProjectile("DCY_CalignosityBullet",36,12,random(-3,3),CMF_OFFSETPITCH,frandom(-2,2));
 	calimissile++;
 	}
 	P1SS E 4
 	{
 	if(random(1,3) == 1)
-	  A_SetTics(2);
+	  A_SetTics(randompick(2, 8));
 	  
 	A_FaceTarget();
 	}
@@ -215,7 +226,7 @@ Class DCY_Calignosity : DCY_HeckBaron
 		A_SpawnItemEx("DCY_CalignosityTrailX", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		A_Recoil(-4);
 	}
-	P1SS M 10 A_Stop();
+	P1SS M 15 A_Stop();
 	P1SS N 5 A_CalignosityStomp();
 	P1SS ONNN 5;
 	Goto See;
@@ -225,31 +236,66 @@ Class DCY_Calignosity : DCY_HeckBaron
 	Goto See;
   XDeath:
   Death:
-	P1SX A 25 
+	P1SS I 4;
+	P1SS I 4 A_Pain();
+	P1SS AAAA 10
+	{
+		A_FaceTarget();
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-40, 40), frandom(-40, 40), frandom(10, 40), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR, failchance: 100);
+	}
+	P1SS N 1
+	{
+	 A_SpawnItemEx("DCY_CalignosityTrailX", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+  	A_FaceTarget();
+	A_StartSound("Calignosity/Arm",10,attenuation: 0.4,pitch:0.75);
+	calimissile = 0;
+	}
+	P1SS NNNNNNNN 5
+	{
+		A_FaceTarget();
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-40, 40), frandom(-40, 40), frandom(10, 40), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR, failchance: 100);
+	}
+	P1SS N 0
+	{
+		A_StartSound("Calignosity/Orbital",12,attenuation: 0.4);
+		A_StartSound("ROBOEXP2",13,attenuation: 0.4);
+		A_StartSound("ROBORAI2",14,attenuation: 0.8);
+	}
+	P1SX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+		A_FaceTarget();
+		A_QuakeEx(2, 2, 3, 30, 0, 700, "", QF_SCALEDOWN|QF_3D);
+		A_SpawnItemEx("DCY_Explosion_1_Small",0,0,random(5,32),random(-3,3),random(-3,3),random(-3,3),random(0, 360),SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-40, 40), frandom(-40, 40), frandom(10, 40), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR, failchance: 100);
+		A_SpawnItemEx("DCY_CalignosityOrbitalRain", flags: SXF_NOCHECKPOSITION);
+	}
+	Goto DeathL;
+  DeathL:
+	P1SX A 5 
 	{
 	A_ScreamandUnblock();
-	calideath = 80;
+	calideath = 10;
 	}
 	P1SX A 7 Bright
 	{
-	if(calideath < 70)
-	  A_SetTics(5);
-	if(calideath < 40)
-	  A_SetTics(3);
+	tics = frandom(10, 2);
+	
 	if(calideath < 0)
 	  SetStateLabel("DeathEnd");
 	
+	for (int i = random(5, 1); i > 0; i--) A_SpawnItemEx("DCY_ElecDeathBase", frandom(-40, 40), frandom(-40, 40), frandom(10, 40), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR, failchance: 100);
 	A_SpawnItemEx("DCY_CalignosityTrailX",zofs:8,xvel:frandom(-1.5,1.5),yvel:frandom(-1.5,1.5),zvel:frandom(0.8,2.2),flags:SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-	A_SpawnItemEx("DCY_Explosion_1_Small",0,0,random(5,32),random(-3,3),random(-3,3),random(-3,3),random(0, 360),SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+	A_SpawnItemEx("DCY_Explosion_1_Small",frandom(-10, 10), frandom(-10, 10), random(5,32),random(-3,3),random(-3,3),random(-3,3),random(0, 360),SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 	A_StartSound("Calignosity/Damage",pitch:frandom(0.75,1.15));
 	calideath--;
 	}
-	Goto Death+1;
+	Goto DeathL+1;
   DeathEnd:
 	P1SX A 5 Bright;
 	P1SX B 15 Bright;
 	P1SX B 1 Bright
 	{
+		A_SpawnItemEx("DCY_GibletsLava", zofs: 30, xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_USEBLOODCOLOR|SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
 		A_StartSound("BigExplod", CHAN_BODY, attenuation: 0.5);
 		for (int i = 3; i > 0; i--)
 			A_SpawnItemEx("DCY_Explosion_1_Biggie", random(-10, 10), random(-10, 10), random(30, 70), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
@@ -270,7 +316,7 @@ Class DCY_Calignosity : DCY_HeckBaron
 
 Class DCY_CalignosityTrailX : DCY_HexodenicanTrail { Default { StencilColor "Cyan"; } }
 
-Class DCY_CalignosityLaser : CacodemonBall
+Class DCY_CalignosityLaser : DCY_MeatballElecball
 {
   Default
   {
@@ -346,8 +392,12 @@ Class DCY_CalignosityBullet : DCY_UltracerestLaser
 {
  Default
  {
- SeeSound "";
+ SeeSound "DCY/ChargedLaser";
+ DeathSound "";
  DamageType "Calignosity";
+ Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+ DCY_FastProjectile.CT true;
+ Scale 0.65;
  DamageFunction 25;
  }
 }
@@ -359,22 +409,29 @@ Class DCY_CalignosityHowzShell : DCY_HomingMissile
   Radius 8;
   Height 5;
   Speed 35;
-  Translation "64:239=%[0.00,0.00,0.00]:[0.00,2.00,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.00,2.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.46,0.46,0.46]";
   DamageFunction 50;
   Scale 0.80;
   DeathSound "";
-  SeeSound "";
+  SeeSound "ROBOBOMB";
   }
   
   
   States
   {
   Spawn:
-	TMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, 0.85, pitch: 1.4);
+	TMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, 0.85, pitch: 3.4567);
 	TMIS A 2 Bright
 	{
 		A_SpawnItemEx("DCY_CalignosityTrailX", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("32ecff", 25, 30, 0, true, frandom(-2.5, 2.5), allsmoke: true);
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			for (int i = 3; i < 40; i += 15)
+			{
+				A_SpawnParticleEx(0x42eff5, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 10, 25, angle, frandom(-0.1, 0.1) + (i*Vel.x)/-35.0, frandom(-0.1, 0.1) + (i*Vel.y)/-35.0, frandom(-0.1, 0.1) + (i*Vel.z)/-35.0, frandom(-0.1, 0.1) + (Vel.x / 3), frandom(-0.1, 0.1) + (Vel.y / 3), frandom(-0.1, 0.1) + (Vel.z / 3), startalphaf: 1.0, fadestepf: 0.025, sizestep: -2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+				A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 50, 20, angle, frandom(-1, 1) - 3  + (i*Vel.x)/-35.0, frandom(-1, 1) + (i*Vel.y)/-35.0, frandom(-1, 1) + (i*Vel.z)/-35.0, frandom(-.1, .1), frandom(-.1, .1), frandom(-.1, .1), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.01, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+			}
+		}
 	}
 	Goto Spawn+1;
   Death:
@@ -385,6 +442,8 @@ Class DCY_CalignosityHowzShell : DCY_HomingMissile
 		A_StopSound(CHAN_6);
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
+		A_RadiusThrust(3500, 140, RTF_NOIMPACTDAMAGE);
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
@@ -478,7 +537,6 @@ Class DCY_CalignosityOrbitalRain : DCY_Projectile
 	L2ZO BBBBBBBBBBBB 1
 	{
 		A_FadeOut(0.1);
-		A_Warp(AAPTR_MASTER, 0, 70, 70, Angle, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE);
 		A_SetAngle(Angle+13);
 		A_SetScale(Scale.X-0.1, 256.256);
 	}
@@ -506,7 +564,11 @@ Class DCY_CalignosityOrbitalRain2 : DCY_Projectile //aaaAAAAAAAA
 	Goto Death;
   Death:
 	TNT1 A 10 A_Stop();
-	TNT1 A 10 A_SpawnProjectile("DCY_CalignosityOrbitalRain3", -40, random(-10, 10), random(0, 360), CMF_AIMDIRECTION|CMF_SAVEPITCH|CMF_OFFSETPITCH);
+	TNT1 A 10
+	{
+		for (int i = random(1, 5); i > 0; i--)
+			A_SpawnProjectile("DCY_CalignosityOrbitalRain3", -40, random(-10, 10), random(0, 360), CMF_AIMDIRECTION|CMF_SAVEPITCH|CMF_OFFSETPITCH);
+	}
 	Stop;
   }
 }
@@ -518,6 +580,8 @@ Class DCY_CalignosityOrbitalRain3 : DCY_BlueVoidMissileRain //copying state code
  {
  +SOLID;
  Speed 25;
+ Translation "0:255=%[0.00,0.00,0.00]:[0.00,2.00,2.00]";
+ Scale 1.7;
  }
  States
  {
@@ -546,7 +610,7 @@ Class DCY_CalignosityOrbitalRain3 : DCY_BlueVoidMissileRain //copying state code
     TNT1 A 0
 	{
 		A_SpawnItemEx("DCY_FallingCaligTorpedo", zofs: -10, zvel: -30, angle: random(-88, 88), flags: SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_TorpedoAlert", zofs: -10, zvel: -99999, angle: random(-88, 88), flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_TorpedoAlert", zofs: -10, zvel: -99999, angle: random(-88, 88), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
 	}
     Goto Spawn1+1;
   Death:
@@ -560,7 +624,7 @@ Class DCY_FallingCaligTorpedo : DCY_TransmuterTorpedo
 {
  Default
  {
- Translation "64:239=%[0.00,0.00,0.00]:[0.00,2.00,2.00]";
+ Translation "0:255=%[0.00,0.00,0.00]:[0.00,2.00,2.00]", "80:111=%[0.00,0.00,0.00]:[0.46,0.46,0.46]";
  DeathSound "";
  }
  States
@@ -570,25 +634,41 @@ Class DCY_FallingCaligTorpedo : DCY_TransmuterTorpedo
 	{
 		if (DCY_EffectDistance(sfxdistance))
 		{
-			A_SpawnFlames("32ecff", 40, 25, 0, false);
-			if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0x174ee6, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 50, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4), fadestepf: 0, sizestep: -0.175);	
-			A_SpawnItemEx("DCY_CalignosityTrailX", zofs: -5, flags: SXF_NOCHECKPOSITION);
+			for (int i = 3; i < 40; i += 15)
+			{
+				A_SpawnParticleEx(0x42eff5, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 10, 25, angle, frandom(-0.1, 0.1) + (i*Vel.x)/-35.0, frandom(-0.1, 0.1) + (i*Vel.y)/-35.0, frandom(-0.1, 0.1) + (i*Vel.z)/-35.0, frandom(-0.1, 0.1) + (Vel.x / 3), frandom(-0.1, 0.1) + (Vel.y / 3), frandom(-0.1, 0.1) + (Vel.z / 3), startalphaf: 1.0, fadestepf: 0.025, sizestep: -2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+				A_SpawnParticleEx(0x000000, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE|SPF_ROLL, 50, 20, angle, frandom(-1, 1) - 3  + (i*Vel.x)/-35.0, frandom(-1, 1) + (i*Vel.y)/-35.0, frandom(-1, 1) + (i*Vel.z)/-35.0, frandom(-.1, .1), frandom(-.1, .1), frandom(-.1, .1), startalphaf: 0.3, fadestepf: 0.01, sizestep: 0.01, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+			}
 		}
+		
+		if ((level.time % random(1, 9)) == 0) A_SpawnParticleEx(0x174ee6, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 50, random(3, 9), 0, frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(-0.4, 0.4), fadestepf: 0, sizestep: -0.175);	
+		A_SpawnItemEx("DCY_CalignosityTrailX", zofs: -5, flags: SXF_NOCHECKPOSITION);
 	}
 	Loop;
   Death:
 	TMIS B 0 Bright;
-  	TMIS B 0 Bright
+  	TMIS B 6 Bright
 	{
 		A_Scream();
 		A_StopSound(CHAN_6);
+		A_StartSound("Calignosity/Damage",pitch:frandom(0.55,1.15));
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 5, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 5, random(-1, 1), random(-1, 1), random(-1, 1), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
+		A_RadiusThrust(4500, 140, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE);
+		A_RadiusThrust(110, 140, RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE|RTF_THRUSTZ);
+			
+		for (int i = 0; i < 360; i += random(25, 65))
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			A_SpawnParticleEx(0xaaaaaa, TexMan.CheckForTexture("graphics/Particles/dcygas.png"), STYLE_TRANSLUCENT, SPF_RELATIVE, random(90, 95), 60, i, zoff: 5, velx: frandom(1, 3), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), accelz: 0.01, startalphaf: 0.35, fadestepf: 0.0075, sizestep: 1);
+			A_SpawnParticleEx(0x666666, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_RELATIVE, random(90, 95), 60, i, zoff: 5, velx: frandom(1, 3), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), accelz: 0.01, startalphaf: 0.35, fadestepf: 0.0075, sizestep: 1);
+		}
 	}
-	TNT1 A 0 A_StartSound("Calignosity/Damage",pitch:frandom(0.55,1.15));
-	TMIS CD 0 Bright;
+	TMIS CD 6 Bright;
 	Stop;
  }
 }
