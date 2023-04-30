@@ -3,6 +3,7 @@ Class DCY_TheTyrant : DCY_Spawner
   Default
   {
   DropItem "DCY_NavyTerminator", 0, 255;
+  DropItem "DCY_AvernusGuard", 0, 100;
   DropItem "DCY_Arbiter", 30, 10;
   DropItem "DCY_ChoricoNepheloma", 45, 1;
   DropItem "DCY_BossCyber", 0, 1;
