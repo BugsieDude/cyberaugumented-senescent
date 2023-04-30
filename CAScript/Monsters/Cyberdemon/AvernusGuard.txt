@@ -337,7 +337,8 @@ Class DCY_AvernusGuard : DCY_Cybie
 	VSTK ABC 5;
 	VSTK D 5 A_NoBlocking();
 	VSTK E 5;
-	VSTK F -1;
+	VSTK F 50;
+	VSTK F -1 A_BossDeath2();
 	Stop;
   }
 }
