@@ -2705,6 +2705,7 @@ $random ChoricoNepheloma/PentagramLoop { CH0RPENT CH0RPENT CH0RPEN2 CH0RPEN3 }
 CH0RPENT "Sounds/DCY SFX/dcy_ios_pentagram_loop1.ogg"
 CH0RPEN2 "Sounds/DCY SFX/dcy_ios_pentagram_loop2.ogg"
 CH0RPEN3 "Sounds/DCY SFX/dcy_ios_pentagram_loop3.ogg"
+ChoricoNepheloma/Shatter "Sounds/DCY Monsters/Chorico/dcy_chorico_deathsequence.ogg"
 
 Sovran/Sight "Sounds/DCY Monsters/Sovran/dcy_sovran_sight.ogg"
 Sovran/Active "Sounds/DCY Monsters/Sovran/dcy_sovran_growl.ogg"
