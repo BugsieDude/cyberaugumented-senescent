@@ -3,8 +3,9 @@ Class DCY_Spooder : DCY_Spawner
   Default
   {
   DropItem "DCY_TheGiantEnemySpider", 0, 255;
-  DropItem "DCY_Executioner", 10, 40;
-  DropItem "DCY_Mindmonarch", 20, 15;
+  DropItem "DCY_Executioner", 9, 40;
+  DropItem "DCY_Mindmonarch", 12, 15;
+  DropItem "DCY_Discerner", 20, 10;
   DropItem "DCY_ContraptionOfHell", 30, 10;
   //DropItem "DCY_Ultraspeller", 80, 3;
   //DropItem "DCY_OmegaSp00der", 80, 5;

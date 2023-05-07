@@ -382,15 +382,6 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   }
 }
 
-Class DCY_ChoricoTest : DCY_ChoricoNepheloma
-{
-  States
-  {
-  missile:
-	goto Laser;
-  }
-}
-
 Class DCY_ChoricoElec : DCY_ElecDeathBase { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.00,1.01]"; Scale 2.0; } }
 Class DCY_ChoricoExplosion : DCY_Explosion_1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,0.00,1.01]"; Scale 0.45; } }
 

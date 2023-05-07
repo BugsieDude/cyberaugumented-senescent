@@ -56,22 +56,12 @@ Class DCY_Anathema : DCY_Impe
 		A_FaceTarget();
 	}
 	SAIM F 4 A_FaceTarget();
-	SAIM G 0 A_Jump(128, "Quad");
-	SAIM GGGGG 7
+	SAIM GGGGG random(3, 12)
 	{
-		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, frandom(-2, 2), CMF_OFFSETPITCH, pitch + frandom(-2, 2));
+		A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, frandom(-2, 2), CMF_OFFSETPITCH, pitch - 8 + frandom(-2, 2));
 		A_FaceTarget();
 	}
 	SAIM F 6 A_FaceTarget();
-	Goto See;
-  Quad:
-	SAIM G 0
-	{
-		for (int i = -20; i < 21; i += 10)
-			A_SpawnProjectile("DCY_AnathemaProjectile", 34, 0, i + frandom(-2, 2), CMF_OFFSETPITCH, pitch + frandom(-2, 2));
-		A_FaceTarget();
-	}
-	SAIM FAA 6 A_FaceTarget();
 	Goto See;
   Comet:
 	SAIM F 10 A_FaceTarget();
@@ -95,14 +85,26 @@ Class DCY_Anathema : DCY_Impe
 	SAIM H 4 A_Pain();
 	Goto See;
   Death:
-	SAIM H 4;
+	SAIM H 4
+	{
+		if (random(0, 1)) SetStateLabel("Death2");
+		A_Flip();
+	}
 	SAIM I 6 A_ScreamAndUnblock();
 	SAIM J 5;
 	SAIM KLM 4;
 	SAIM M -1;
 	Stop;
-  Raise:
+  Death2:
+	S2IM A 1;
+	S2IM A 7 A_ScreamAndUnblock();
+	S2IM B 8;
+	S2IM CD 7;
+	S2IM E -1;
 	Stop;
+  Raise:
+	SAIM MLKJIH 5;
+	Goto See;
   }
 }
 
@@ -111,9 +113,11 @@ Class DCY_AnathemaProjectile : DCY_ImpFireball
   Default
   {
   Damage 4;
-  Speed 15;
-  FastSpeed 25;
+  Speed 20;
+  FastSpeed 30;
+  -NOGRAVITY
   Scale 1.1;
+  Gravity 0.3;
   +NOEXTREMEDEATH
   Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.01,0.00]";
   SeeSound "Painsend/Fireball";
@@ -122,10 +126,10 @@ Class DCY_AnathemaProjectile : DCY_ImpFireball
   States
   {
   Spawn:
-	FBS1 AABBCC 1
+	NBKL AABBCC 1
 	{
-		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION, failchance: 200);
-		A_SpawnFlames("ff8c00", 13, 30, 0, false, frandom(-1.5, 1.5), thrust: 3);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_ImpFlame1", frandom(-5.0, 5.0), frandom(-5.0, 5.0), frandom(-5.0, 5.0), zvel: 1, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, failchance: 200);
+		A_SpawnFlames("ab3a0a", 13, 30, 0, true, frandom(-1.5, 1.5), allsmoke: true, thrust: 2);
 	}
 	Loop;
   }
@@ -149,7 +153,7 @@ Class DCY_AnathemaComet : DCY_GeneralComet
     CGMT AABBCC 1 Bright
 	{
 		A_SpawnFlames("ffffff", 20, 10, 0, false, thrust: 6);
-		A_SpawnFlames("ff8c00", 30, 30, 0, false, thrust: 6);
+		A_SpawnFlames("ab3a0a", 30, 30, 0, false, thrust: 6);
 	}
     Loop;
   Death:
