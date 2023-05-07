@@ -161,7 +161,7 @@ Class DCY_Discerner : DCY_TheGiantEnemySpider
   Death:
 	D3S_ E 10 A_FaceTarget();
 	D3S_ A 1 A_DiscernerStep(-0.5);
-	D3S_ A 10 {  A_FaceTarget(); A_Scream(); }
+	D3S_ A 10 { A_FaceTarget(); A_ScreamAndUnblock(); }
 	D3S_ FGHHHHHH 8;
 	D3S_ H -1 A_BossDeath2();
 	Stop;

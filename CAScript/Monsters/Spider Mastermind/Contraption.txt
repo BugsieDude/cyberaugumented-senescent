@@ -78,10 +78,10 @@ Class DCY_ContraptionOfHell : DCY_TheGiantEnemySpider
   Missile:
 	CAN_ D 8 A_FaceTarget();
 	CAN_ EFD 8;
-	CAN_ DEFDEFDEF 4 A_Recoil(-6);
+	CAN_ DEFDEFDEF 4 A_Recoil(-4);
 	CAN_ D 8 A_FaceTarget();
 	CAN_ EFD 8;
-	CAN_ DEFDEFDEF 4 A_Recoil(-6);
+	CAN_ DEFDEFDEF 4 A_Recoil(-4);
 	Goto See;
   Pain:
 	CAN_ "#" 4;
