@@ -1076,6 +1076,18 @@ Model DCY_GehennaTrack
   FrameIndex PLSS A 0 0
 }
 
+Model DCY_SoulTrack
+{ 
+  Path "CAModels"
+  Model 0 "tracer.md3"
+  Skin 0 "gehennatrack.png"
+  Scale 0.5 2.0 1.0
+  USEACTORPITCH
+  USEACTORROLL
+  PITCHFROMMOMENTUM
+  FrameIndex PLSS A 0 0
+}
+
 Model DCY_VamchnormTrack
 { 
   Path "CAModels"

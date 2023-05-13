@@ -2,7 +2,7 @@ Class DCY_Trounce : DCY_Cybie
 {
   Default
   {
-  Tag "/c[m4]Trounce/c-";
+  Tag "\c[m4]Trounce\c-";
   BloodColor "Green";
   BloodType "AndroidNeonFluid";
   DCYMonster.GibType "DCY_GibletsLava";

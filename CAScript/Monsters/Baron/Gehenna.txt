@@ -69,7 +69,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
 	HYCY C 1 A_StartSound("DSUHH", CHAN_WEAPON, CHANF_OVERLAP, 1.0, 0.45);
 	HYCY CCCCCCCCCCCCCCCCCCCCCC 1
 	{
-		A_CustomRailgun(0, 0, "", "", RGF_SILENT|RGF_FULLBRIGHT, 2, sparsity: 70, spawnclass: "DCY_GehennaTrack", spawnofs_z: 40);
+		A_CustomRailgun(0, 0, "", "", RGF_SILENT|RGF_FULLBRIGHT|RGF_NOPIERCING, 2, sparsity: 70, spawnclass: "DCY_GehennaTrack", spawnofs_z: 40);
 		A_FaceTarget();
 	}
 	HYCY FCFCFCFCFCFCFCF 3

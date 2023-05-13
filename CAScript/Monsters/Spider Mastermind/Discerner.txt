@@ -118,14 +118,14 @@ Class DCY_Discerner : DCY_TheGiantEnemySpider
 	D3S_ AAAAAAAAAAAAAAAAAAAAAAAAAA 1
 	{
 		if (DCY_EffectDistance(2000))
-			A_SpawnItemEx("DCY_ElecDeathBase", 15, 0, 30, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("DCY_ElecDeathBase", 15, 0, 35, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
 		
 		A_FaceTarget(1.2, 1.2);
 	}
 	D3S_ E 20
 	{
 		A_FaceTarget(1.2, 1.2);
-		A_SpawnProjectile("DCY_DiscernerBall", 30, 0, frandom(-1, 1), CMF_AIMDIRECTION, pitch);
+		A_SpawnProjectile("DCY_DiscernerBall", 35, 0, frandom(-1, 1), CMF_AIMDIRECTION, pitch);
 		A_StartSound("DCYDiscerner/Ball", CHAN_WEAPON, CHANF_OVERLAP, attenuation: 0.5);
 		A_Recoil(10);
 	}

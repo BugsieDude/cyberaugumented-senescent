@@ -56,3 +56,5 @@ LightningPhase/Teleport "Sounds/DCY SFX/dcy_lightningphase_teleport.ogg"
 PlasmicLaser/Charge "Sounds/Projectiles/dcy_lasercharge.ogg"
 LaserSegment1 "Sounds/Projectiles/dcy_lasersegment1.ogg"
 LaserSegment2 "Sounds/Projectiles/dcy_lasersegment2.ogg"
+
+ROBOHURT "Sounds/DCY SFX/dcy_orbitalgrunt.ogg"

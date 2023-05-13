@@ -2268,6 +2268,13 @@ ULRVATK1 "Sounds/DCY Monsters/Soul Crusher/dcy_kf_fleshpound_attack1.ogg"
 ULRVATK2 "Sounds/DCY Monsters/Soul Crusher/dcy_kf_fleshpound_attack2.ogg"
 ULRVATK3 "Sounds/DCY Monsters/Soul Crusher/dcy_kf_fleshpound_attack3.ogg"
 ULRVATK4 "Sounds/DCY Monsters/Soul Crusher/dcy_kf_fleshpound_attack4.ogg"
+roborev/rocketload "Sounds/DCY SFX/dcy_soulcrusher_missileready.ogg"
+roborev/rocketaim "Sounds/DCY SFX/dcy_soulcrusher_missilerail.ogg"
+roborev/rocket "Sounds/DCY SFX/dcy_soulcrusher_missile.ogg"
+roborev/grenadeload "Sounds/DCY SFX/dcy_soulcrusher_grenadecharge.ogg"
+roborev/flamecannon "Sounds/Projectiles/dcy_crusher_flameblast.ogg"
+
+sphericalgrenade/activate "Sounds/Projectiles/dcy_spheregrenade_activate.ogg"
 
 $rolloff roborev/sight 400 2000
 $rolloff roborev/death 400 2000

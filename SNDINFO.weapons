@@ -80,6 +80,7 @@ BALIARF3 "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_arbalest_fire3.ogg"
 BALIARF4 "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_arbalest_fire4.ogg"
 Ballista/Arbalest/Charge "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_arbalest_ready.ogg"
 Ballista/Arbalest/Reload "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_arbalest_reload.ogg"
+Ballista/Arbalest/Detonate "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_arbalest_detonate.ogg"
 $random Ballista/Explode { BALIEXP1 BALIEXP2 BALIEXP3 BALIEXP4 }
 BALIEXP1 "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_explode1.ogg"
 BALIEXP2 "Sounds/Weapons/Slot 6/Meson Ballista/dcy_meson_explode2.ogg"

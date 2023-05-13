@@ -4,7 +4,12 @@ impc2 "Sounds/Projectiles/dcy_dastard_charge2.ogg"
 impc3 "Sounds/Projectiles/dcy_dastard_charge3.ogg"
 impc4 "Sounds/Projectiles/dcy_dastard_charge4.ogg"
 impc5 "Sounds/Projectiles/dcy_dastard_charge5.ogg"
-dcyimp/attack "Sounds/Projectiles/dcy_dastard_fire.ogg"
+$random dcyimp/attack { impfb1 impfb2 impfb3 impfb4 impfb5 }
+impfb1 "Sounds/Projectiles/dcy_dastard_fire1.ogg"
+impfb2 "Sounds/Projectiles/dcy_dastard_fire2.ogg"
+impfb3 "Sounds/Projectiles/dcy_dastard_fire3.ogg"
+impfb4 "Sounds/Projectiles/dcy_dastard_fire4.ogg"
+impfb5 "Sounds/Projectiles/dcy_dastard_fire5.ogg"
 $random dcyimp/shotx { impx1 impx2 impx3 impx4 }
 impx1 "Sounds/Projectiles/dcy_dastard_fire_impact1.ogg"
 impx2 "Sounds/Projectiles/dcy_dastard_fire_impact2.ogg"
@@ -16,8 +21,17 @@ cacof1 "Sounds/DCY SFX/dcy_cacofire1.ogg"
 cacof2 "Sounds/DCY SFX/dcy_cacofire2.ogg"
 $alias dcycaco/shotx imp/shotx
 
-$alias dcybaron/attack dcyimp/attack
-$alias dcybaron/shotx dcyimp/shotx
+$random dcybaron/attack { baronf1 baronf2 baronf3 baronf4 }
+baronf1 "Sounds/Projectiles/dcy_baron_ball1.ogg"
+baronf2 "Sounds/Projectiles/dcy_baron_ball2.ogg"
+baronf3 "Sounds/Projectiles/dcy_baron_ball3.ogg"
+baronf4 "Sounds/Projectiles/dcy_baron_ball4.ogg"
+$random dcybaron/shotx { baronx1 baronx2 baronx3 baronx4 baronx5 }
+baronx1 "Sounds/Projectiles/dcy_baron_ball_impact1.ogg"
+baronx2 "Sounds/Projectiles/dcy_baron_ball_impact2.ogg"
+baronx3 "Sounds/Projectiles/dcy_baron_ball_impact3.ogg"
+baronx4 "Sounds/Projectiles/dcy_baron_ball_impact4.ogg"
+baronx5 "Sounds/Projectiles/dcy_baron_ball_impact5.ogg"
 
 $random dcyfatso/attack { fatm1 fatm2 fatm3 }
 fatm1 "Sounds/DCY SFX/dcy_fatso_fire1.ogg"
