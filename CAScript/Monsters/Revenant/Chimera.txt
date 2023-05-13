@@ -3,14 +3,16 @@ Class DCY_Chimera : DCY_Rev
   Default
   {
   BloodColor "2b50d6";
+  StencilColor "2b50d6";
   BloodType "DCY_ElecDeathBase";
   Translation "0:224=%[0.00,0.00,0.00]:[0.43,0.43,0.43]", "4:4=%[0.00,0.00,0.00]:[2.00,2.00,2.00]", "80:111=[192,192,192]:[10,10,10]", "16:47=%[0.00,0.00,0.18]:[0.37,0.57,1.74]", "168:191=%[0.00,0.24,1.61]:[1.03,1.37,2.00]", "232:239=%[0.00,0.17,0.47]:[0.00,0.59,1.59]";
-  SeeSound "PhantomRev/Scream";
+  SeeSound "PhantomRev/Sight";
   ActiveSound "PhantomRev/Active";
   PainSound "PhantomRev/Pain";
-  DeathSound "LunarChiller/Death";
+  DeathSound "PhantomRev/Scream";
   Speed 8;
   FastSpeed 13;
+  MeleeRange 130;
   Tag "Chimera";
   Obituary "%o's lost %p hearing sensory system.";
   -MISSILEMORE
@@ -21,7 +23,31 @@ Class DCY_Chimera : DCY_Rev
   }
   
   bool rush;
-  bool enraged;
+  double vol, vol2, t, enraged;
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (!enraged)
+	{
+		bMISSILEEVENMORE = false;
+		bMISSILEMORE = false;
+		bQUICKTORETALIATE = false;
+		bNOPAIN = false;
+		A_StopSound(40);
+	}
+	else
+	{
+		if (DCY_EffectDistance(sfxdistance) && health > 0 && !level.isFrozen())
+		{
+			A_SpawnItemEx("DCY_HexodenicanTrail", -1, zofs: 5, zvel: 0.5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSTENCILCOL);
+			if (!random(0, 4)) A_SpawnItemEx("DCY_ElecDeathBase", frandom(-40, 40), frandom(-40, 40), frandom(10, 40), flags: SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR, failchance: 100);
+		}
+		
+		if (!(getAge() % 2)) enraged--;
+	}
+  }
   
   States
   {
@@ -36,25 +62,17 @@ Class DCY_Chimera : DCY_Rev
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	INCA AABBCCDDEEFF 3
+	INCA AABBCCDDEEFF 4
 	{
-		if (rush)
-		{
-			tics = 1;
-			A_SpawnItemEx("DCY_GTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERTRANSLATION);
-		}
-		else
-			tics = 3;
-		
+		if (rush) { A_Recoil(-0.175); A_SpawnItemEx("DCY_HexodenicanTrail2", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSTENCILCOL); }
+		tics = (rush) ? 1 : 4;
 		A_Chase();
 		
-		return A_Jump(10, "Rush");
+		if (!random(0, 50)) { tics = 10; rush = !rush; }
+		if (!random(0, 400)) { SetStateLabel("GoBonkers"); }
+		if (enraged > 0) { A_Recoil(-1); rush = !rush; }
 	}
 	Loop;
-  Rush:
-	INCA A 1;
-	INCA A 10 { rush = !rush; }
-	Goto See;
   Melee:
 	INCA G 6 A_FaceTarget();
 	INCA HHHH 2
@@ -67,8 +85,9 @@ Class DCY_Chimera : DCY_Rev
   Missile:
 	INCA J 0
 	{
-		if (target && distance2D(target) < 260)
-			SetStateLabel("Scream");
+		if (enraged > 0) SetStateLabel("Discharge"); 
+		if (target && distance2D(target) < 260) SetStateLabel("Scream");
+		if (!random(0, 1) && (target && distance3D(target) < 400)) SetStateLabel("Breath");
 	}
 	Goto Souls;
   Souls:
@@ -77,37 +96,173 @@ Class DCY_Chimera : DCY_Rev
 	INCA K 12 { A_FaceTarget(); A_SpawnProjectile("DCY_ManesBallBig", 60, 20); }
 	INCA K 10;
 	Goto See;
+  Discharge:
+	INCA JU 10 A_FaceTarget();
+	INCA U 5
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("DCY_ChimeraDischarge", 60);
+		A_StartSound("DCYThunderStrike", CHAN_WEAPON);
+		A_Recoil(10);
+		vel.z += frandom(1, 2);
+	}
+	INCA K 40;
+	Goto See;
+  Breath:
+	INCA J 10 A_FaceTarget();
+	INCA U 5
+	{
+		vol = 0.01;
+		t = 0;
+		A_FaceTarget();
+		A_StartSound("PhantomRev/Breath", 25, CHANF_LOOPING, vol, 0.75);
+	}
+	INCA V 1
+	{
+		if (vol <= 1) vol += 0.05;
+		
+		if (!(level.time % 2)) A_SpawnProjectile("DCY_ChimeraBreath", 60);
+		A_SoundVolume(25, 0 + vol);
+		A_FaceTarget();
+		
+		t++;
+		if (t > 100) SetStateLabel("Cooldown");
+	}
+	Goto Breath+2;
+  Cooldown:
+	INCA U 1
+	{
+		A_FaceTarget();
+		A_SoundVolume(25, vol);
+		if (vol > 0) vol -= 0.02;
+		else { A_StopSound(25); SetStateLabel("See"); }
+	}
+	Loop;
   Scream:
+	INCA J 0 { if (enraged > 0) SetStateLabel("Discharge"); }
 	INCA J 10 A_FaceTarget();
 	INCA U 1
 	{
 		A_StartSound("PhantomRev/Scream", CHAN_VOICE, attenuation: 0.75);
-		A_QuakeEx(3, 3, 3, 30, 0, 600, "", QF_SCALEDOWN|QF_3D, rollintensity: 3, rollwave: 0.1);
+		A_QuakeEx(2, 2, 2, 30, 0, 600, "", QF_SCALEDOWN|QF_3D, rollintensity: 2, rollwave: 0.1);
 		A_Explode(6, 380, XF_NOTMISSILE);
 	}
 	INCA VVVVVVVVVVVVVVVVV 1
 	{
-		A_QuakeEx(3, 3, 3, 30, 0, 600, "", QF_SCALEDOWN|QF_3D, rollintensity: 3, rollwave: 0.1);
+		A_QuakeEx(2, 2, 2, 30, 0, 600, "", QF_SCALEDOWN|QF_3D, rollintensity: 2, rollwave: 0.1);
 		A_Explode(6, 380, XF_NOTMISSILE);
 	}
 	INCA J 10;
 	Goto See;
+  GetBonkers:
+	INCA I 0 { bNOPAIN = true; A_StartSound("PhantomRev/Scream", CHAN_VOICE); }
+	INCA IHG 5 A_FaceTarget();
+	INCA G 5
+	{
+		A_StartSound("PhantomRev/EnragedLoop", 40, CHANF_LOOPING, attenuation: 0.65);
+		A_FaceTarget();
+		enraged = random(50, 150);
+		bMISSILEEVENMORE = true;
+		bMISSILEMORE = true;
+		bQUICKTORETALIATE = true;
+	}
+	INCA GG 5 A_FaceTarget();
+	Goto See;
   Pain:
-	INCA L 4;
+	INCA L 4 A_StopSound(25);
 	INCA L 4 A_Pain();
+	INCA L 0 A_Jump(20, "GetBonkers");
 	Goto See;
   Death:
-	INCX A 4;
+	INCX A 4 A_StopSounds(25, 45);
 	INCX B 4 A_ScreamAndUnblock();
 	INCX CDEFGHIJ 4
 	{ if (DCY_EffectDistance(sfxdistance)) for (int i = random(2, 3); i > 0; i--) DCY_SoulExplode(); }
 	INCX K -1;
 	Stop;
-  Death.Massacre:
-	INCX A 4;
-	INCX B 4 A_ScreamAndUnblock();
-	INCX CDEFGHIJ 4;
-	INCX K -1;
+  }
+}
+
+Class DCY_ChimeraBreath : DCY_UmbrageBreath
+{
+  Default { DamageType "Normal"; }
+  States
+  {
+  Spawn:
+	TNT1 A 5;
+	Goto Looping;
+  Looping:
+	TNT1 A 1
+	{
+		A_FadeOut(0.0615);
+		if ((GetAge() % 2) == 0) A_Explode(8, 30);
+		vel.x += frandom(-0.3, 0.3);
+		vel.y += frandom(-0.3, 0.3);
+		vel.z += frandom(-0.3, 0.3);
+		A_SpawnParticleEx(0x2b50d6, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 128, 40, velx: frandom(-0.5, 0.5) + 1, vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0045, sizestep: 1.525);
+	}
+	Wait;
+  Death:
+	Stop;
+  }
+}
+
+Class DCY_ChimeraDischarge : DCY_LightningPhaseDischarge
+{
+  Default
+  {
+  Damage 3;
+  Scale 1.2;
+  Speed 45;
+  SeeSound "DCYThunderStrike";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.64,0.94,2.00]";
+  Obituary "%o is nonexistent.";
+  RenderStyle "Add";
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnParticleEx(0x2b50d6, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 128, 50, 0, frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0085, sizestep: 1.525);
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_CastratorSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 200);
+		
+		if (!(getAge() % 4))
+		{
+			vel.x += frandom(-3, 3);
+			vel.y += frandom(-3, 3);
+			vel.z += frandom(-3, 3);
+		}
+	}
+	Loop;
+  Death:
+	TSAR A 1
+	{
+		A_SetRoll(frandom(0, 360));
+		vel.x = 0;
+		vel.y = 0;
+		vel.z = 0;
+		
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnParticle(0x669eff, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
+			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		}
+	}
+	TSAR EFGHIJKLMNO 1
+	{
+		A_Explode(6, 100, damagetype: "lightning");
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
+	TNT1 AAAA 6
+	{
+		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
+		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+	}
 	Stop;
   }
 }

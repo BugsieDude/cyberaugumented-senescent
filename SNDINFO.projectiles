@@ -104,7 +104,7 @@ EXOTURTC "Sounds/DCY SFX/dcy_exo_deploy.ogg"
 PLSORB2 "Sounds/Projectiles/dcy_virtuoso_orb.ogg"
 
 DCYComet/Spawn "Sounds/Projectiles/dcy_comet.wav"
-DCYComet/Explode "Sounds/Projectiles/dcy_comet_impact.wav"
+DCYComet/Explode "Sounds/Projectiles/dcy_comet_impact.ogg"
 $limit DCYComet/Explode 0
 
 Le/Laser "Sounds/Projectiles/dcy_lightlaser.wav"
@@ -122,6 +122,8 @@ PLSBFIRE "Sounds/Projectiles/dcy_virtuoso_explode.ogg"
 SUPERLSR "Sounds/Projectiles/dcy_plasma_fountain.ogg"
 
 M0NSSHOT "Sounds/Projectiles/dcy_tar_ball.ogg"
+
+DCYThunderStrike "Sounds/Projectiles/dcy_thunderstrike.ogg"
 
 DSFLESH "Sounds/Projectiles/dcy_flesh.ogg"
 CYBRLASC "Sounds/DCY SFX/dcy_cyber_lasercharge.ogg"

@@ -10,11 +10,11 @@ Class DCY_AlacritousGuy : DCY_Plutonia
   FastSpeed 8;
   Mass 380;
   PainChance 90;
-  SeeSound "Rattail/Sight";
-  ActiveSound "Rattail/Active";
-  PainSound "Rattail/Pain";
-  DeathSound "Rattail/Death";
-  DCYMonster.BurnSound "Rattail/Death";
+  SeeSound "AlacritousGuy/Sight";
+  ActiveSound "AlacritousGuy/Idle";
+  PainSound "AlacritousGuy/Pain";
+  DeathSound "AlacritousGuy/Death";
+  DCYMonster.BurnSound "AlacritousGuy/Death";
   DropItem "Chaingun";
   DropItem "DCY_BlueArmorThing", 100;
   }

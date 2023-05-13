@@ -589,8 +589,6 @@ atramentousimp/sight1 "Sounds/DCY Monsters/Atramentous/dcy_atramentous_sight1.og
 atramentousimp/sight2 "Sounds/DCY Monsters/Atramentous/dcy_atramentous_sight2.ogg"
 atramentousimp/pain "Sounds/DCY Monsters/Atramentous/dcy_atramentous_pain.ogg"
 atramentousimp/death "Sounds/DCY Monsters/Atramentous/dcy_atramentous_death.ogg"
-atramentousimp/ball "Sounds/Projectiles/Imp/dcy_atramentous_ball.ogg"
-atramentousimp/explode "Sounds/Projectiles/Imp/dcy_atramentous_ballimpact.ogg"
 atramentousimp/teleport "Sounds/DCY Monsters/Atramentous/dcy_atramentous_teleport.ogg"
 
 Zorg/Sight "Sounds/DCY Monsters/Perserver/dcy_zorg_sight.ogg"
@@ -649,9 +647,24 @@ HOPPEXPL "Sounds/DCY SFX/heavy_unit_explode.ogg"
 HOPPLAND "Sounds/DCY Monsters/Receptacle/dcy_receptacle_land.ogg"
 CONVEXPL "Sounds/Projectiles/dcy_convector_explode.ogg"
 
-AlacritousGuy/Sight "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_explosiveminigunner_sight.wav"
-AlacritousGuy/Pain "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_explosiveminigunner_pain.wav"
-AlacritousGuy/Death "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_explosiveminigunner_death.wav"
+$random AlacritousGuy/Sight { AlacritousGuy/Sight1 AlacritousGuy/Sight2 AlacritousGuy/Sight3 AlacritousGuy/Sight4 AlacritousGuy/Sight5 AlacritousGuy/Sight6 }
+AlacritousGuy/Sight1 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight1.ogg"
+AlacritousGuy/Sight2 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight2.ogg"
+AlacritousGuy/Sight3 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight3.ogg"
+AlacritousGuy/Sight4 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight4.ogg"
+AlacritousGuy/Sight5 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight5.ogg"
+AlacritousGuy/Sight6 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_sight6.ogg"
+$random AlacritousGuy/Idle { AlacritousGuy/Idle1 AlacritousGuy/Idle2 AlacritousGuy/Idle3 }
+AlacritousGuy/Idle1 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_idle1.ogg"
+AlacritousGuy/Idle2 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_idle2.ogg"
+AlacritousGuy/Idle3 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_idle3.ogg"
+$random AlacritousGuy/pain { AlacritousGuy/pain1 AlacritousGuy/pain2 AlacritousGuy/pain3 }
+AlacritousGuy/pain1 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_pain1.ogg"
+AlacritousGuy/pain2 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_pain2.ogg"
+AlacritousGuy/pain3 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_pain3.ogg"
+$random AlacritousGuy/death { AlacritousGuy/death1 AlacritousGuy/death2 }
+AlacritousGuy/death1 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_death1.ogg"
+AlacritousGuy/death2 "Sounds/DCY Monsters/Alacritous Hell Soldier/dcy_emg_death2.ogg"
 
 DarkConsul/Sight "Sounds/DCY Monsters/Consul/dcy_consul_chant.ogg"
 $alias DarkConsul/Active DarkConsul/Sight
@@ -1634,13 +1647,20 @@ Larrikin/Death "Sounds/DCY Monsters/Larrikin/dcy_larrikin_death.ogg"
 
 DEATHEXP "Sounds/DCY SFX/dcy_bloodcurling.ogg"
 
-PhantomRev/Scream "Sounds/DCY Monsters/Chimera/SCREAMSOFTHEDAMNED.wav"
-$random PhantomRev/Active { pri1 pri2 pri3 }
+PhantomRev/Scream "Sounds/DCY Monsters/Chimera/dcy_chimera_scream.ogg"
+PhantomRev/ScreamLong "Sounds/DCY Monsters/Chimera/dcy_chimera_scream1.ogg"
+$random PhantomRev/Sight { prs1 prs2 prs3 }
+prs1 "Sounds/DCY Monsters/Chimera/dcy_chimera_sight.ogg"
+prs2 "Sounds/DCY Monsters/Chimera/dcy_chimera_sight2.ogg"
+prs3 "Sounds/DCY Monsters/Chimera/dcy_chimera_sight3.ogg"
+$random PhantomRev/Active { pri1 pri2 pri3 pri4 }
 pri1 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle.ogg"
 pri2 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle2.ogg"
 pri3 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle3.ogg"
+pri4 "Sounds/DCY Monsters/Chimera/dcy_chimera_idle4.ogg"
 PhantomRev/Pain "Sounds/DCY Monsters/Chimera/dcy_chimera_pain.ogg"
-SCREAMSOFTHEDAMNED "Sounds/DCY Monsters/Chimera/dcy_chimera_SCREAMSOFTHEDAMNED.wav"
+PhantomRev/Breath "Sounds/DCY Monsters/Chimera/dcy_chimera_breath.ogg"
+PhantomRev/EnragedLoop "Sounds/DCY Monsters/Chimera/dcy_chimera_enraged.ogg"
 
 $random Unwilling/Attack { UNWLATK1 UNWLATK2 UNWLATK3 }
 UNWLATK1 "Sounds/DCY Monsters/Castrator/dcy_castrator_attack1.ogg"
@@ -2536,6 +2556,7 @@ Remainder/Active4 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle4.ogg"
 Remainder/Active5 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle5.ogg"
 Remainder/Active6 "Sounds/DCY Monsters/Remainder/dcy_remainder_idle6.ogg"
 Remainder/Pain "Sounds/DCY Monsters/Remainder/dcy_remainder_pain.ogg"
+Remainder/Cast "Sounds/DCY Monsters/Remainder/dcy_remainder_cast.ogg"
 Remainder/Death "Sounds/DCY Monsters/Remainder/dcy_remainder_death.ogg"
 Remainder/Phase "Sounds/DCY Monsters/Remainder/dcy_remainder_phase.ogg"
 

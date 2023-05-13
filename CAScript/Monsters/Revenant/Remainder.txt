@@ -73,7 +73,7 @@ Class DCY_Remainder : DCY_Rev
 	R3M_ K 10;
 	Goto See;
   Fireball:
-	R3M_ G 2 A_StartSound("PhantomRev/Pain", CHAN_VOICE);
+	R3M_ G 2 A_StartSound("Remainder/Cast", CHAN_VOICE);
 	R3M_ GGGGGGGGGGGGGGGGGGGG 2
 	{
 		A_FaceTarget();
