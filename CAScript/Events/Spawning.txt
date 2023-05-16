@@ -1,0 +1,55 @@
+extend class CyberaugumentedEventHandler
+{
+	protected void DroneSpawner()
+	{
+		if (level.mapname == "TITLEMAP") return;
+		
+		for (int i = 0; i < level.Sectors.Size(); i++) {
+			Sector curSec = level.Sectors[i];
+
+			if (!curSec.IsSecret()) continue;
+			vector3 c = (curSec.centerspot.x, curSec.centerspot.y, curSec.floorplane.ZAtPoint(curSec.centerspot));
+			if (!level.IsPointInLevel(c))	continue;
+			if (curSec.floorplane.ZAtPoint(curSec.centerspot) == curSec.ceilingplane.ZAtPoint(curSec.centerspot)) continue;
+			
+			vector3 s = GetSectorVec3(curSec); 
+			double secSize = (s.x + s.y) / 2;
+			//console.printf("sector %d size %d",curSec.sectornum,secSize);
+			
+			if (secsize < 80) continue;
+			
+			//spawn the initial droid
+			if (!random(0, 1))
+			{
+				actor droid = actor.spawn("DCY_UpgradeDrone", c);
+				if (!droid) continue;
+			}
+		}
+	}
+	
+	protected void IntoneSpawner()
+	{
+		if (level.mapname == "TEST" || level.mapname == "TITLEMAP") return;
+		
+		for (int i = 0; i < level.Sectors.Size(); i++) {
+			Sector curSec = level.Sectors[i];
+
+			vector3 c = (curSec.centerspot.x, curSec.centerspot.y, curSec.floorplane.ZAtPoint(curSec.centerspot));
+			if (!level.IsPointInLevel(c))	continue;
+			if (curSec.floorplane.ZAtPoint(curSec.centerspot) == curSec.ceilingplane.ZAtPoint(curSec.centerspot)) continue;
+			
+			vector3 s = GetSectorVec3(curSec); 
+			double secSize = (s.x + s.y) / 2;
+			
+			if (secsize < 450) continue;
+			
+			//spawn the initial droid
+			if (!random(0, 740))
+			{
+				console.printf("sector %d size %d",curSec.sectornum,secSize);
+				actor intone = actor.spawn("DCY_Intone", c);
+				if (!intone) continue;
+			}
+		}
+	}
+}

@@ -31,6 +31,7 @@ Version "4.10.0"
 #include "CAScript/Events/Texture.txt"
 #include "CAScript/Events/Anti.txt"
 #include "CAScript/Events/Replacers.txt"
+#include "CAScript/Events/Spawning.txt"
 #include "CAScript/Events/DeathExit.txt"
 
 //Items and Ammo
@@ -41,6 +42,7 @@ Version "4.10.0"
 #include "CAScript/Items/Spheres.txt"
 #include "CAScript/Items/Other.txt"
 #include "CAScript/Items/Keys.txt"
+#include "CAScript/Items/Upgrades.txt"
 
 //Effects
 #include "CAScript/Others/OtherTrails.txt"

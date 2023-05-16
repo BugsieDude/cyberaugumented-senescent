@@ -29,7 +29,7 @@ Class DCY_BossPinky : DCY_Spawner
   Default
   {
   DropItem "DCY_Pinke", 0, 255;
-  DropItem "DCY_Urozon", 25, 30;
+  DropItem "DCY_Urozon", 25, 50;
   }
 }
 
@@ -38,6 +38,6 @@ Class DCY_BossSpectre : DCY_Spawner
   Default
   {
   DropItem "DCY_PinkeII", 0, 255;
-  DropItem "DCY_Urozon", 25, 20;
+  DropItem "DCY_Urozon", 25, 40;
   }
 }

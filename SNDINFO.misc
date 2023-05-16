@@ -7,6 +7,7 @@ PIANPIAN "Sounds/Game/dcy_piano.ogg"
 misc/hellotherer "Sounds/Game/dcy_firsttime.ogg"
 misc/pausegame "Sounds/Game/dcy_pause.ogg"
 misc/dcygameinfo "Sounds/Game/dcy_info.ogg"
+misc/gamemsg "Sounds/Game/dcy_message.ogg"
 
 misc/gamefreeze1 "Sounds/Menu/dcy_gamefreeze1.ogg"
 misc/gamefreeze2 "Sounds/Menu/dcy_gamefreeze2.ogg"
@@ -25,6 +26,7 @@ dcy/decimalerror "Sounds/Announcements/dcy_havoc_map.ogg"
 $random dcy/midi { dcy/wu dcy/mid }
 dcy/mid "Sounds/Announcements/dcy_midi.ogg"
 dcy/wu "Sounds/Announcements/dcy_wakeup.ogg"
+dcy/peace "Sounds/Announcements/dcy_peace.ogg"
 
 //yay you did something
 Announce/Complete "Sounds/Announcements/dcy_complete.ogg"
@@ -51,6 +53,9 @@ DOP3WARN "Sounds/Announcements/Minibosses/dcy_doppelganger.ogg"
 WARNINGM "Sounds/Announcements/Minibosses/dcy_maelstrom.ogg"
 THEFRAID "Sounds/Announcements/Minibosses/dcy_youll_never_know.ogg"
 THEWARN "Sounds/Announcements/Minibosses/dcy_reverend_mother.ogg"
+ABYSSALFEAR "Sounds/Announcements/Minibosses/dcy_abyss.ogg"
+UROZONHASRISEN "Sounds/Announcements/Minibosses/dcy_urozon.ogg"
+EXOIMPCHOIR "Sounds/Announcements/Minibosses/dcy_exoimp.ogg"
 
 //Switches
 SW1TCHA "Sounds/Enviroment/Switches/dcy_switch_a.ogg"
@@ -260,3 +265,18 @@ dcy/freeze "Sounds/Replacements/dcy_icedeath.wav"
 dcy/icebreak "Sounds/Replacements/dcy_icedeath_break.wav"
 $alias misc/freeze dcy/freeze
 $alias misc/icebreak dcy/icebreak
+
+$random DCYDroid/Hello { Droid/Hello1 Droid/Hello2 Droid/Hello3 Droid/Hello4 Droid/Hello5 Droid/Hello6 Droid/Hello7 Droid/Hello8 Droid/Hello9 Droid/Hello10 Droid/Hello11 }
+Droid/Hello1 "Sounds/Inventory/Droid/dcy_droid_hi1.ogg"
+Droid/Hello2 "Sounds/Inventory/Droid/dcy_droid_hi2.ogg"
+Droid/Hello3 "Sounds/Inventory/Droid/dcy_droid_hi3.ogg"
+Droid/Hello4 "Sounds/Inventory/Droid/dcy_droid_hi4.ogg"
+Droid/Hello5 "Sounds/Inventory/Droid/dcy_droid_hi5.ogg"
+Droid/Hello6 "Sounds/Inventory/Droid/dcy_droid_hi6.ogg"
+Droid/Hello7 "Sounds/Inventory/Droid/dcy_droid_hi7.ogg"
+Droid/Hello8 "Sounds/Inventory/Droid/dcy_droid_hi8.ogg"
+Droid/Hello9 "Sounds/Inventory/Droid/dcy_droid_hi9.ogg"
+Droid/Hello10 "Sounds/Inventory/Droid/dcy_droid_hi10.ogg"
+Droid/Hello11 "Sounds/Inventory/Droid/dcy_droid_hi11.ogg"
+
+DCYDroid/Hum "Sounds/Inventory/Droid/dcy_droid_hellohum.ogg"

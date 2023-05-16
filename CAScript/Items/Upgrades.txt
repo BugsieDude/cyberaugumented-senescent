@@ -1,0 +1,82 @@
+Class DCY_UpgradeDrone : Actor
+{
+  Default
+  {
+	Radius 20;
+	Height 56;
+	Tag "LCIV";
+	+INVULNERABLE
+	+NOBLOOD
+	+SOLID
+	+CANPASS
+	+FLOAT
+	+NOGRAVITY
+  }
+  
+  override bool CanCollideWith(Actor other, bool passive)
+  {
+	if(other is 'PlayerPawn') return false;
+	return true;
+  }
+  
+  int bobstate, time;
+  bool firsttime;
+  
+  static const string s[] =
+  {
+	"You still here?",
+	"Yo, do you need coffee or anything?",
+	"I'm procastinating.",
+	"You can wait for the Weapon Module system to be implemeneted.",
+	"Can we chit-chat later?",
+	"I don't know why I came here."
+  };
+  
+  override void Tick()
+  {
+	if (level.isfrozen()) return;
+	
+	super.tick();
+	
+	//float bob alternative
+	double newz = pos.z - BobSin(bobstate) / 9.;
+	bobstate = (bobstate + 1) & 63;
+	newz += BobSin(bobstate) / 10.;
+	SetZ(newz);
+	
+	if (time > 0) time--;
+  }
+  
+  override bool Used(actor user)
+  {
+	A_CallSpecial(Special, Args[0], Args[1], Args[2], Args[3], Args[4]);
+	
+	PlayerInfo p = user.player;
+	PlayerPawn dg = PlayerPawn(user);
+	
+	if (p && p.Mo && p.Mo == user && Distance3D(user) <= p.Mo.UseRange && Distance3D(user) >= Radius && time <= 0)
+	{
+		If (p == User.Player)
+		{
+			time = 150;
+			p.mo.A_StartSound("DCYDroid/Hum", 125, attenuation: ATTN_IDLE);
+			p.mo.A_StartSound("DCYDroid/Hello", 123, volume: 0.5, attenuation: ATTN_IDLE, pitch: frandom(1.5, 3.5));
+			
+			DCY_notHudMessageHandler.PlainMsg("SMALLFONT", (!firsttime) ? "\c".."[".."l5".."]".."Hey, currently I'm not done yet. The weapon system still needs to be made." : "\c".."[".."l5".."]"..s[random(0, s.Size() - 1)], (240, 240), (480, 360), color: Font.CR_UNTRANSLATED, time: (0.1, 3, 0.41), id: 1111);
+			DCY_notHudMessageHandler.PlainMsg("DCY_NON3", "AAAAAAAAAAAA", (80, 2000), (160, 3000), time: (0.1, 3, 0.41), id: 1112);
+			firsttime = true;
+		}
+		
+		return true;
+	}
+	
+	return false;
+  }
+  
+  States
+  {
+  Spawn:
+	FDE_ C 1;
+	Loop;
+  }
+}

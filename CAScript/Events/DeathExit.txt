@@ -1,7 +1,7 @@
 class DCY_Interceptor : StaticEventHandler
 {
   bool death;
-  bool playonce;
+  bool playonce, iy;
   
   static const string bigguns[] =
   {
@@ -17,6 +17,8 @@ class DCY_Interceptor : StaticEventHandler
   
   override void WorldUnloaded(WorldEvent evt)
   {
+	let inter = CVar.GetCVar("dcy_intermissioncut", players[consoleplayer]);
+	
 	for (int i = 0; i < MAXPLAYERS; i++)
 	{
 		if (playeringame[i] && players[i].playerstate == PST_DEAD)
@@ -26,6 +28,7 @@ class DCY_Interceptor : StaticEventHandler
 			if (p)
 			{
 				death = true;
+				iy = false;
 				p.GiveDefaultInventory();
 				
 				for (int i = 0; i < bigguns.Size() - 1; i++)
@@ -34,11 +37,14 @@ class DCY_Interceptor : StaticEventHandler
 			let g = DCY_Variables.Get();
 			if (g && g.dcylevel && sv_dcy_progressivespawns) g.dcylevel = abs(int(g.dcylevel / 2));
 		}
+		
+		if (death && !iy) inter.setInt(1);
 	}
   }
   
   override void WorldLoaded(WorldEvent evt)
   {
-	if (death && !playonce) { S_StartSound("dcy/midi", 231, CHANF_UI); playonce = true; }
+	CVar.GetCVar("dcy_intermissioncut", players[consoleplayer]).setInt(0);
+	if (death && !playonce) { S_StartSound("dcy/midi", 231, CHANF_UI); playonce = true; iy = true; }
   }
 }

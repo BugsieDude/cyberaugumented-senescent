@@ -215,3 +215,7 @@ pic "Graphics/Quit/MSG_DCY_QUITMSG21B.png" tics 4
 texture "Graphics/Quit/MSG_QUITGAME.png"
 pic "Graphics/Quit/MSG_QUITGAME.png" tics 10
 pic "Graphics/Quit/MSG_QUITGAMEB.png" tics 10
+
+texture "Graphics/dcy_elite.png"
+pic "Graphics/dcy_elite.png" tics 2
+pic "Graphics/dcy_elite2.png" tics 2

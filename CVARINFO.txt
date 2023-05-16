@@ -37,6 +37,7 @@ server bool dcy_tracker = true;
 server bool dcy_completionist = true;
 
 server int dcy_liquids = 1;
+noarchive nosave server int dcy_intermissioncut = 0;
 
 nosave server bool dcy_ios = true;
 nosave server bool dcy_wolfensteinspawns = true;

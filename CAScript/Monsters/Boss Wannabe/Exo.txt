@@ -41,6 +41,12 @@ Class DCY_ExoImp : DCY_Impe
 	return messages[Random(0, messages.Size() - 1)];
   }
   
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("An angel has fallen.", "EXOIMPCHOIR", "m8");
+  }
+  
   States
   {
   Spawn:

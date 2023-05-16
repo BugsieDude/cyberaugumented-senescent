@@ -115,6 +115,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	temp1 = 15;
 	
 	DCY_Cutscenes();
+	DroneSpawner();
+	IntoneSpawner();
   }
   
   override void WorldUnloaded(WorldEvent e)
@@ -238,12 +240,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	}
   }
   
-  /*void DCY_TemperatureLevel(sector mySector)
+  vector3 GetSectorVec3(sector mySector)
   {
-	let d = DCY_Variables.Get();
-	
-	double z;
-
 	Vector3 mins = (double.max, double.max, double.max);
 	Vector3 maxs = -mins;
 
@@ -265,15 +263,8 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	  maxs.z = max(maxs.z, ceiling1, ceiling2);
 	}
 	
-	double z;
-	Sector lowest;
-	[z, lowest] = mySector.LowestFloorAt(mySector.centerspot);
-
-	string texName = TexMan.GetName(lowest.GetTexture(Sector.floor));
-	
-	if (texName == "LAVA01")
-		d.temperature += 1;
-  }*/
+	return (maxs - mins);
+  }
 }
 
 Class DCY_Completionist : EventHandler

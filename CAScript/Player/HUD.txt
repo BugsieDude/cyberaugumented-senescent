@@ -50,7 +50,6 @@ Class DCyb_HUD : BaseStatusBar
   {
 	super.Init();
 	
-    SetSize(32, 320, 200);
     Font fnt = "SMALLFONT";
 	dcyb_font = HUDFont.Create(fnt);
     fnt = "SMALLFONT";
@@ -64,21 +63,9 @@ Class DCyb_HUD : BaseStatusBar
   override void Draw (int state, double TicFrac)
   {
 	Super.Draw(state, TicFrac);
-
-	// One-time setup.
-	if (!cy_init)
-	{
-		DCyb_HUDDraw();
-		// Setup is over. Get the list size of the ammo list overrides.
-		hudammosize = hudammolist.Size();
-		cy_init = true;
-	}
-	if(state == HUD_StatusBar)
-	{
-		BeginStatusBar();
-		CA_DrawStatusBar(TicFrac);
-	}
-	else if(state == HUD_Fullscreen)
+	
+	hudammosize = hudammolist.Size();
+	if(state == HUD_StatusBar || state == HUD_Fullscreen)
 	{
 		BeginHUD(resW : CY_RESW, resH : CY_RESH);
 		CA_DrawHUD();

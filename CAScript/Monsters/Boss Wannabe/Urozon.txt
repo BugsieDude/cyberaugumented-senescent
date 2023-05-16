@@ -103,6 +103,12 @@ Class DCY_Urozon : DCY_Pinke
 	}
   }
   
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	ThingAnnounce("To the pits with you.", "UROZONHASRISEN", "Red");
+  }
+  
   States
   {
   Spawn:
