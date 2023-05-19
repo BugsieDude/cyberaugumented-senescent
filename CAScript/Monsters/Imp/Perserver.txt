@@ -9,7 +9,7 @@ Class DCY_Perserver : DCY_Impe
   AttackSound "";
   Health 90;
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
-  BloodColor "2ba0ff";
+  BloodColor "DarkRed";
   Tag "Perserver";
   Speed 10.2555555;
   FastSpeed 13.5555555;
@@ -92,7 +92,7 @@ Class DCY_PerserverMissile : DCY_FastProjectile
   Scale 0.8785;
   SeeSound "dcydrone/fire";
   DeathSound "dcydrone/fire";
-  Translation "0:255=%[0.00,0.00,0.00]:[0.34,1.17,2.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[2.00,1.17,0.34]";
   Decal "ImpScorch";
   }
   States
@@ -100,13 +100,13 @@ Class DCY_PerserverMissile : DCY_FastProjectile
   Spawn:
     THZ4 A 1 Bright
 	{
-		if (random(0, 2) == 0)
+		if (random(0, 8) == 0)
 		{
-			actor plasma = Spawn("DCY_FluorescentSparkle", pos + (frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0)));
-			if (plasma) { plasma.translation = translation; plasma.bNOGRAVITY = true; }
+			actor arc = Spawn("DCY_Arc", pos + (frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0)));
+			if (arc) { arc.translation = translation; arc.scale *= 0.65; }
 		}
 		
-		A_SpawnParticleEx(0x1279ff, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
+		A_SpawnParticleEx(0xbd1e13, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 10, 20, 0, velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), fadestepf: 0.05, sizestep: -2.225);
 	}
 	Loop;
   Death:

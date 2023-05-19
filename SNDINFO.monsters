@@ -423,11 +423,6 @@ Tsar/Active "Sounds/DCY Monsters/Calamity Tzar/dcy_psx_knight_idle.ogg"
 Tsar/Pain "Sounds/DCY Monsters/Calamity Tzar/dcy_psx_knight_pain.ogg"
 Tsar/Death "Sounds/DCY Monsters/Calamity Tzar/dcy_psx_knight_death.ogg"
 
-ARWLSIT "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_scream.ogg"
-ARWLACT "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_idle.ogg"
-ARWLPAI "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_pain.ogg"
-ARWLDTH "Sounds/DCY Monsters/Armageddon Predominator/dcy_predominator_death.ogg"
-
 $random Misc/DemonicGibberish { DSMADNES DSMADNE2 DSMADNE3 DSMADNE4 DSMADNE5 }
 DSMADNES "Sounds/DCY SFX/dcy_madness1.ogg"
 DSMADNE2 "Sounds/DCY SFX/dcy_madness2.ogg"
@@ -3400,3 +3395,22 @@ DCYDiscerner/sight4 "Sounds/DCY Monsters/Discerner/dcy_discerner_sight4.ogg"
 $random DCYDiscerner/stomp { DCYDiscerner/stomp1 DCYDiscerner/stomp2 }
 DCYDiscerner/stomp "Sounds/DCY Monsters/Discerner/dcy_discerner_stomp.ogg"
 DCYDiscerner/stomp2 "Sounds/DCY Monsters/Discerner/dcy_discerner_stomp2.ogg"
+
+$random DCYDivestor/Sight { DCYDivestor/Sight1 DCYDivestor/Sight2 DCYDivestor/Sight3 DCYDivestor/Sight4 DCYDivestor/Sight5 }
+DCYDivestor/Sight1 "Sounds/DCY Monsters/Divestor/dcy_divestor_sight1.ogg"
+DCYDivestor/Sight2 "Sounds/DCY Monsters/Divestor/dcy_divestor_sight2.ogg"
+DCYDivestor/Sight3 "Sounds/DCY Monsters/Divestor/dcy_divestor_sight3.ogg"
+DCYDivestor/Sight4 "Sounds/DCY Monsters/Divestor/dcy_divestor_sight4.ogg"
+DCYDivestor/Sight5 "Sounds/DCY Monsters/Divestor/dcy_divestor_sight5.ogg"
+$random DCYDivestor/Idle { DCYDivestor/Idle1 DCYDivestor/Idle2 }
+DCYDivestor/idle1 "Sounds/DCY Monsters/Divestor/dcy_divestor_idle1.ogg"
+DCYDivestor/idle2 "Sounds/DCY Monsters/Divestor/dcy_divestor_idle2.ogg"
+$random DCYDivestor/attack { DCYDivestor/attack1 DCYDivestor/attack2 DCYDivestor/attack3 }
+DCYDivestor/attack1 "Sounds/DCY Monsters/Divestor/dcy_divestor_attack1.ogg"
+DCYDivestor/attack2 "Sounds/DCY Monsters/Divestor/dcy_divestor_attack2.ogg"
+DCYDivestor/attack3 "Sounds/DCY Monsters/Divestor/dcy_divestor_attack3.ogg"
+$random DCYDivestor/pain { DCYDivestor/pain1 DCYDivestor/pain2 DCYDivestor/pain3 }
+DCYDivestor/pain1 "Sounds/DCY Monsters/Divestor/dcy_divestor_pain1.ogg"
+DCYDivestor/pain2 "Sounds/DCY Monsters/Divestor/dcy_divestor_pain2.ogg"
+DCYDivestor/pain3 "Sounds/DCY Monsters/Divestor/dcy_divestor_pain3.ogg"
+DCYDivestor/Death "Sounds/DCY Monsters/Divestor/dcy_divestor_death.ogg"

@@ -888,6 +888,7 @@ Class DCY_LightCyanWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[
 Class DCY_WhiteWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]"; } }
 Class DCY_VantablackWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.51,1.51,1.51]"; RenderStyle "Subtract"; } }
 Class DCY_JadeWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[1.37,2.00,0.74]"; } }
+Class DCY_SoulWalkFlames : DCY_WalkFlames { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.24,0.66,1.77]"; } }
 
 //Lightnin
 Class DCY_BigAssLightning : Actor

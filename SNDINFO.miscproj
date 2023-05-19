@@ -58,3 +58,7 @@ LaserSegment1 "Sounds/Projectiles/dcy_lasersegment1.ogg"
 LaserSegment2 "Sounds/Projectiles/dcy_lasersegment2.ogg"
 
 ROBOHURT "Sounds/DCY SFX/dcy_orbitalgrunt.ogg"
+
+$random dcy/ordeal { ordeal1 ordeal2 }
+ordeal1 "Sounds/DCY SFX/dcy_ordeal1.ogg"
+ordeal2 "Sounds/DCY SFX/dcy_ordeal2.ogg"

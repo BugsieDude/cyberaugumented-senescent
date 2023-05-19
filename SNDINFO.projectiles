@@ -256,7 +256,7 @@ DSBGLAS2 "Sounds/Projectiles/dcy_soulglass_break.wav"
 DSGLAS1 "Sounds/Projectiles/dcy_glass_prebreak.wav"
 DSGLAS2 "Sounds/Projectiles/dcy_glass_break.wav"
 DSHOLY2 "Sounds/Projectiles/dcy_scream_phantom.wav"
-DSHOLY2A "Sounds/Projectiles/dcy_phantom_hum"
+DSHOLY2A "Sounds/Projectiles/dcy_phantom_hum.wav"
 
 TracerExplode "Sounds/Projectiles/dcy_explosive_tracer.wav"
 

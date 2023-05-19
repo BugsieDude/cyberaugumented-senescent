@@ -1,0 +1,264 @@
+Class DCY_Divestor : DCY_BaronParent
+{
+  Default
+  {
+  Health 1800;
+  Tag "\c[o7]The Divestor\c-";
+  Obituary "%o experienced soul larceny.";
+  HitObituary "%o experienced soul larceny.";
+  Scale 1.1;
+  +QUICKTORETALIATE
+  +NODROPOFF
+  +ALWAYSFAST
+  +NOTARGET
+  +DONTHARMCLASS
+  +DONTHARMSPECIES
+  +NOICEDEATH
+  BloodColor "3242a8";
+  StencilColor "042378";
+  SeeSound "DCYDivestor/Sight";
+  ActiveSound "DCYDivestor/Idle";
+  PainSound "DCYDivestor/Pain";
+  DeathSound "DCYDivestor/Death";
+  BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
+  Speed 8;
+  FastSpeed 16;
+  DCYMonster.WalkFlames "DCY_SoulWalkFlames";
+  MaxTargetRange 500;
+  DamageFactor "FWave", 0.00;
+  }
+  
+  int timer, cooldown;
+  
+  override void Tick()
+  {
+	if (level.isFrozen()) return;
+	super.Tick();
+	if (cooldown > 0) cooldown--;
+  }
+  
+  States
+  {
+  Spawn:
+    D3V_ A 10 DCY_Look();
+	Loop;
+  Look:
+    D3V_ AAA 2 DCY_LookingForPlayer();
+	D3V_ A 0 A_WalkFlame();
+	D3V_ BBB 2 DCY_LookingForPlayer();
+	D3V_ B 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_WalkFlame();
+	}
+	D3V_ CCC 2 DCY_LookingForPlayer();
+	D3V_ C 0 A_WalkFlame();
+	D3V_ DDD 2 DCY_LookingForPlayer();
+	D3V_ D 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_WalkFlame();
+	}
+	"####" "#" 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	D3V_ P 0 DCY_AlertSound();
+	Goto See;
+  See:
+    TNT1 A 0
+	{
+		if (target && checkSight(target) && distance3D(target) > 600 && !random(0, 1) && cooldown <= 0) SetStateLabel("Dashing");
+	}
+    D3V_ AAA 2 A_Chase();
+	D3V_ A 0 A_WalkFlame();
+	D3V_ BBB 2 A_Chase();
+	D3V_ B 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_WalkFlame();
+	}
+	D3V_ CCC 2 A_Chase();
+	D3V_ C 0 A_WalkFlame();
+	D3V_ DDD 2 A_Chase();
+	D3V_ D 0
+	{
+		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
+		A_WalkFlame();
+	}
+	Loop;
+  Melee:
+    D3V_ GH 4 { A_Recoil(-7); A_FaceTarget(); }
+	D3V_ I 4 A_CustomMeleeAttack(15 * random(1, 8), "baron/melee", 0);
+	Goto See;
+  Missile:
+	D3V_ G 0
+	{
+		if (target)
+		{
+			switch(random(0, 1))
+			{
+				case 0: SetStateLabeL("ChevalierWaves"); break;
+				case 1: SetStateLabel("Balls"); break;
+			}
+		}
+	}
+	Goto See;
+  Balls:
+	D3V_ EE 10 A_FaceTarget();
+	D3V_ F 10
+	{
+		for (int i = 30; i > -31; i -= 30)
+		{
+			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch - 5);
+			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch + 5);
+		}
+		
+		for (int i = 40; i > -41; i -= 20)
+			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i);
+		
+		A_FaceTarget();
+	}
+	D3V_ EA 10 A_FaceTarget();
+	Goto See;
+  ChevalierWaves:
+	D3V_ GHI 5 A_FaceTarget();
+	D3V_ I 8
+	{
+		cooldown = 200;
+		
+		A_FaceTarget();
+		for (int i = -40; i < 41; i += 25)
+			A_SpawnProjectile("DCY_DWave", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+	}
+	D3V_ HGHI 5 A_FaceTarget();
+	D3V_ I 8
+	{
+		A_FaceTarget();
+		for (int i = -50; i < 51; i += 25)
+			A_SpawnProjectile("DCY_DWave", 5, 0, i, CMF_AIMDIRECTION|CMF_SAVEPITCH);
+	}
+	Goto See;
+  Dashing:
+	D3V_ GHIA 7 A_FaceTarget();
+	D3V_ I 1
+	{
+		A_StartSound("DCY/Ordeal", 20, attenuation: 0.5);
+		timer = 0;
+		A_FaceTarget();
+		A_SetRenderStyle(0.4, STYLE_AddStencil);
+		bNOPAIN = true;
+		bSHOOTABLE = false;
+		bTHRUACTORS = true;
+	}
+	D3V_ A 1
+	{
+		A_Explode(20, 128, XF_NOTMISSILE);
+		
+		A_Recoil((target && distance3D(target) > 600) ? -5 : -2);
+		
+		if (DCY_EffectDistance(2000))
+		{
+			A_WalkFlame();
+			A_SpawnItemEx("DCY_HexodenicanTrail2", zofs: 6, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERALPHA);
+			A_SpawnParticleEx(0x000733, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.35, fadestepf: 0.0025, sizestep: 1.525);
+		}
+		
+		timer++;
+		if (timer > 50)
+		{
+			bNOPAIN = false;
+			bSHOOTABLE = true;
+			bTHRUACTORS = false;
+			A_SetRenderStyle(1, STYLE_NORMAL);
+			SetStateLabel("Cooldown");
+		}
+	}
+	Goto Dashing+5;
+  Cooldown:
+	D3V_ A 30;
+	Goto See;
+  Pain:
+	D3V_ J 4;
+	D3V_ J 4 A_Pain();
+	Goto See;
+  }
+}
+
+Class DCY_DAura1 : DCY_FAura1
+{
+  Default
+  { 
+  Scale 1.65;
+  Alpha 0.75;
+  Translation "0:255=%[0.00,0.00,0.00]:[0.31,0.76,1.76]";
+  }
+  
+  States
+  {
+  Spawn:
+	FTR3 ABCDEFGIJ 2
+	{
+		A_Explode(2, 20);
+		A_SpawnParticleEx(0x000733, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 80, 0, frandom(-10, 10), frandom(-10, 10), 20 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5) + 1, startalphaf: 0.85, fadestepf: 0.15, sizestep: 0.525);
+		A_SpawnItemEx("DCY_RocketSmonk", frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), zvel: frandom(2, 8), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	}
+	Stop;
+  }
+}
+
+Class DCY_DWave : DCY_FWave
+{
+  Default
+  {
+  Translation "0:255=%[0.00,0.00,0.00]:[0.31,0.76,1.76]";
+  Speed 17;
+  SeeSound "FC/Dash";
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		A_SpawnItemEx("DCY_DAura1");
+		A_Explode(5, 20, XF_NOTMISSILE, 1);
+	}
+	Loop;
+  Death:
+    TNT1 A 2;
+	Stop;
+  }
+}
+
+Class DCY_DivestorBall : DCY_RemainderFireball
+{
+  Default
+  {
+  Damage 5;
+  Scale 0.7;
+  SeeSound "SPIRFIR";
+  DeathSound "SPIRBM1";
+  }
+  
+  States
+  {
+  Spawn:
+	C3AL AB 1
+	{
+		if (tracer && CheckSight(tracer)) A_Tracer2(0.5);
+		A_SpawnParticleEx(0x000733, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 80, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-0.5, 0.5) + 1, frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.45, fadestepf: 0.035, sizestep: 0.525);
+		A_SpawnItemEx("DCY_MastermindJetFlare", frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
+		A_SpawnFlames("1f53ff", 30, 30, allsmoke: true, thrust: 10);
+	}
+	Loop;
+  Death:
+	C3AL A 1
+	{	
+		for (int i = 10; i > 0; i--)
+			A_SpawnParticleEx(0x000733, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 120, 60, 0, frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), frandom(-1.5, 1.5), frandom(-1.5, 1.5), frandom(-0.5, 0.5), startalphaf: 1, fadestepf: 0.05, sizestep: 4.525);
+		
+		A_SpawnItemEx("DCY_Explosion_1", flags: SXF_TRANSFERTRANSLATION);
+	}
+	C3AL BCDE 1;
+	Stop;
+  }
+}
