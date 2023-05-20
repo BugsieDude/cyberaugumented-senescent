@@ -71,6 +71,15 @@ OptionValue "AestheticYN"
   1, "DCY Aesthetics"
 }
 
+OptionValue "Scienceyn"
+{
+  0, "Off"
+  1, "Tag + Scientific Name"
+  2, "Scientific Name only"
+  3, "Tag + Scientific Name (Except for humans)"
+  4, "Scientific Name only (Except for humans)"
+}
+
 AddOptionMenu "OptionsMenu"
 {
 	StaticText " "
@@ -100,6 +109,8 @@ OptionMenu "DCYModOptionsMenu"
 	Option "Revert to Vanilla", "dcy_monsters", "AestheticYN"
 	Option "Decorating Hellscape", "dcy_props", "YesNoIOS"
 	Option "All enemies' spawn type", "dcy_vanillaspawns", "EnemySpawnYN"
+	Option "Former Human Names", "dcy_humanname", "YesNo"
+	Option "Scientific Names for Demons", "dcy_scientificname", "Scienceyn"
 	
 }
 
