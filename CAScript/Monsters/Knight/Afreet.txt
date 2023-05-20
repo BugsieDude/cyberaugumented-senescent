@@ -9,5 +9,6 @@ Class DCY_Afreet : DCY_BaronParent
   Tag "\c[i7]Arnament Afreet\c-";
   Obituary "%o fucked up.";
   HitObituary "%o is now two pieces of sliced meat.";
+  DCYMonster.ScientificName "Brutis naufragium";
   }
 }

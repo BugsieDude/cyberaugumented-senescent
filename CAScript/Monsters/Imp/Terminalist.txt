@@ -1,4 +1,4 @@
-Class DCY_Terminalist : DCY_Impe
+Class DCY_Terminalist : DCY_Violator
 {
   Default
   {

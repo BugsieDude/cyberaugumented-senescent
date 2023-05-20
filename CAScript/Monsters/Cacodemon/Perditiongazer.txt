@@ -13,6 +13,7 @@ Class DCY_Perditiongazer : DCY_CacoParent
   BloodColor "Blue";
   DamageFactor "Electric", 0;
   +DONTHARMCLASS
+  DCYMonster.ScientificName "Tonitrui escam";
   }
   
   void A_PGChase()

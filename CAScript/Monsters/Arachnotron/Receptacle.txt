@@ -12,6 +12,7 @@ Class DCY_Receptacle : DCY_ArachnoParent
   DeathSound "DemonicSpider/Death";
   Tag "Receptacle";
   GibHealth -500;
+  DCYMonster.ScientificName "Diabolicus ignis fatuus";
   }
   
   void A_Receptacle()

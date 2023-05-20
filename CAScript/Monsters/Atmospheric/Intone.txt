@@ -22,6 +22,7 @@ Class DCY_Intone : DCY_SkullParent
   ActiveSound "";
   DeathSound "";
   Species "Ambient";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   float fspeed;

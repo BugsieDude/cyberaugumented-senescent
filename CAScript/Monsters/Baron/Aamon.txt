@@ -22,6 +22,7 @@ Class DCY_Aamon : DCY_HeckBaron
   BloodType "AndroidNeonFluid";
   Obituary "%o embraced the Aamon's gift.";
   HitObituary "%o is now cutted vegetables.";
+  DCYMonster.ScientificName "Furentes bruta";
   }
   
   int loop1;

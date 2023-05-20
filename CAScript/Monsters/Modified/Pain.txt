@@ -24,6 +24,7 @@ Class DCY_Befouler : DCYMonster
 	BloodColor "ad3002";
 	BloodType "AndroidNeonFluid";
 	DCYMonster.GibType "DCY_GibletsLava";
+	DCYMonster.ScientificName "Aptenus tibetisci";
   }
   
   int t, t2, ang, angt;

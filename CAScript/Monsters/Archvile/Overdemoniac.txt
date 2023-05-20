@@ -25,6 +25,7 @@ Class DCY_Overdemoniac : DCY_VileParent
   FastSpeed 17;
   DamageFactor "Ice", 0.5;
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Purissimum dominum argenteum";
   }
   
   int phasecooldown;

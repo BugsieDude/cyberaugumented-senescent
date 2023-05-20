@@ -19,6 +19,7 @@ Class DCY_Tenebrosity : DCY_Pinke
   AttackSound "Tenebrosity/Attack";
   Obituary "%o's corpse vanished in the void of the Tenebrosity.";
   HitObituary "%o's corpse vanished in the void of the Tenebrosity.";
+  DCYMonster.ScientificName "Eres caeruleus";
   }
   
   States

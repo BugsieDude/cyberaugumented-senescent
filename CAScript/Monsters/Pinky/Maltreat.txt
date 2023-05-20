@@ -9,6 +9,7 @@ Class DCY_Maltreat : DCY_PinkyParent
   PainSound "Maltreat/Pain";
   DeathSound "Maltreat/Death";
   AttackSound "Maltreat/Attack";
+  DCYMonster.ScientificName "Ieiunium peend";
   }
   
   States

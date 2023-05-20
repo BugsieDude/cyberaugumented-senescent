@@ -9,6 +9,7 @@ Class DCY_Prestidigitator : DCY_VileParent
   ActiveSound "Prestidigitator/Active";
   PainSound "Prestidigitator/Pain";
   DeathSound "Prestidigitator/Death";
+  DCYMonster.ScientificName "8@?#)A+Z_SF~";
   +BRIGHT
   +MISSILEMORE
   +MISSILEEVENMORE

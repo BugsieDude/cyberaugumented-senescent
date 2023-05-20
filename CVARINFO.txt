@@ -46,6 +46,9 @@ nosave server bool dcy_vanillaspawns = false;
 
 server bool dcy_wolfensteincutscene = true;
 
+server bool dcy_humanname = true;
+server int dcy_scientificname = 0;
+
 server bool dcy_gibbing = true;
 server int dcy_gibtime = 2000;
 

@@ -54,6 +54,7 @@ Class DCY_Hexodenican : DCY_VileParent
   Speed 10;
   +NEVERFAST;
   PainChance 20;
+  DCYMonster.ScientificName "Hei aliena";
   }
   
   int timer;

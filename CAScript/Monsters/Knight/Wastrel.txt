@@ -18,6 +18,7 @@ Class DCY_Wastrel : DCY_KnightHell
   DamageFactor "Fire", 0.00;
   DamageFactor "Ice", 1.2;
   Tag "\c[l4]Wastrel\c-";
+  DCYMonster.ScientificName "Ignis serpentis";
   }
   
   States

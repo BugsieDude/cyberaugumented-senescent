@@ -31,6 +31,7 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   Obituary "%o is now swiss cheese.";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
+  DCYMonster.ScientificName "Timor aranearum";
   }
   
   override void Tick()

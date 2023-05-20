@@ -26,6 +26,7 @@ Class DCY_BattlemindGeomancer : DCY_SmallEnemySpider
   +NOGRAVITY
   +FLOAT
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Aranea triae";
   }
   
   override void Tick()

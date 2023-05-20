@@ -13,6 +13,7 @@ Class DCY_Abater : DCY_KnightHell
   Health 1000;
   +BOSSDEATH //just in case
   Obituary "%o was burnt to a inferno crisp by a Abater.";
+  DCYMonster.ScientificName "Bellum dominus";
   }
   
   int shielded;

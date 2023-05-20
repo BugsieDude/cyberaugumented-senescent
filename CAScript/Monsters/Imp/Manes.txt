@@ -22,6 +22,7 @@ Class DCY_Manes : DCY_Impe
   Tag "\c[w9]manes\c-";
   RenderStyle "Add";
   Obituary "%o succumbed awaiting death.";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   override void Tick()

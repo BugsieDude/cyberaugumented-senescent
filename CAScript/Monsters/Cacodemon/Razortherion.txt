@@ -27,6 +27,7 @@ Class DCY_Razortherion : DCY_CacoParent
   Tag "\c[x9]Elite Prophet Razortherion\c-";
   DamageFactor 0.9;
   DamageFactor "RazortherionDamage", 0.00;
+  DCYMonster.ScientificName "Animae invidia";
   }
   
   override void Tick()

@@ -28,6 +28,7 @@ Class DCY_WastelandInfiltrator : DCY_BaronParent
   HitObituary "It's the Firestormer's melee flaming move! And %o is dead.";
   DCYMonster.WalkFlames "DCY_WalkFlames";
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Gehennae transgressor";
   }
   
   void A_WastelandShotty()

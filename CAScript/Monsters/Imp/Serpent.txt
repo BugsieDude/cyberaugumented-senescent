@@ -11,6 +11,7 @@ Class DCY_Serpent : DCY_Impe
   ActiveSound "Serpent/Active";
   PainSound "Serpent/Pain";
   DeathSound "Serpent/Death";
+  DCYMonster.ScientificName "Acidum serpentis";
   }
   
   States

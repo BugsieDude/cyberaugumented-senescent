@@ -18,6 +18,7 @@ Class DCY_ArachnoParent : DCYMonster
   Tag "$FN_ARACH";
   Species "Arachno";
   DCYMonster.GibType "DCY_FatGiblets";
+  DCYMonster.ScientificName "Araneae mechanicus";
   }
   
   void A_BabyMetal()

@@ -18,6 +18,7 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
   PainSound "Theristis/Pain";
   Speed 4;
   Obituary "%o embraced the void.";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   void A_ResetSpeed()
@@ -25,6 +26,11 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
 	tics = 2;
 	A_SetSpeed(4);
 	glitching = false;
+  }
+  
+  override void PostBeginPlay()
+  {
+	DCYMonster.postBeginPlay();
   }
   
   void A_TheristisChase()

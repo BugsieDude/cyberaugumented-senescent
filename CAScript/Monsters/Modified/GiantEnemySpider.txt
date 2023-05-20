@@ -26,6 +26,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Spider Masterminds";
 	DCYMonster.GibType "DCY_FatGiblets";
+	DCYMonster.ScientificName "Regina aranearum";
   }
   
   void A_MetalII()

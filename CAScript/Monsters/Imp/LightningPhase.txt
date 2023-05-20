@@ -24,6 +24,7 @@ Class DCY_LightningPhase : DCY_Impe
   MeleeDamage 6;
   PainChance 100;
   BloodColor "852121";
+  DCYMonster.ScientificName "Fortis ruptor";
   }
   
   int phased;

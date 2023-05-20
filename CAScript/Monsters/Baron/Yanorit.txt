@@ -20,6 +20,7 @@ Class DCY_PrimeYanorit : DCY_BaronParent
   BloodColor "Yellow";
   Speed 10;
   FastSpeed 13;
+  DCYMonster.ScientificName "Brutis volatilia";
   }
   
   override void Tick()

@@ -21,6 +21,7 @@ Class DCY_Kaiser : DCY_Befouler
   BloodColor "2ba0ff";
   DamageFactor "Plasma", 0.85;
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Operatio oculus";
   }
   
   States

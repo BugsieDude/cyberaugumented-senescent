@@ -30,7 +30,7 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
   
   override void PostBeginPlay()
   {
-	super.PostBeginPlay();
+	DCYMonster.PostBeginPlay();
 	ThingAnnounce("Get ready.", "0RCHWARN", "Ultramarine");
   }
   

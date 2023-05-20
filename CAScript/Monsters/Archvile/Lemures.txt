@@ -21,6 +21,7 @@ Class DCY_Lemures : DCY_VileParent
   +QUICKTORETALIATE
   Speed 10;
   FastSpeed 15;
+  DCYMonster.ScientificName "NO DATA";
   }
   
   int ballangle;

@@ -15,6 +15,7 @@ Class DCY_Disrelish : DCY_SkinnyFat
   PainChance 50;
   +QUICKTORETALIATE
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Dipem vomitum";
   }
   
   States

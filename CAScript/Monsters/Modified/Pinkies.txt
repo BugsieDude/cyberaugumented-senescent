@@ -16,6 +16,7 @@ Class DCY_PinkyParent : DCYMonster
   Obituary "$OB_DEMONHIT";
   Tag "$FN_DEMON";
   Species "Pinkies";
+  DCYMonster.ScientificName "Daemonium serunt";
   }
   
   State A_PinkyRam(double recoilSpeed)

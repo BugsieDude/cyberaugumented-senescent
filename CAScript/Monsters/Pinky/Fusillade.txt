@@ -23,6 +23,7 @@ Class DCY_Fusillade : DCY_Pinke
   Tag "\c[x1]Fusillade\c-";
   +MISSILEMORE
   MeleeRange 100;
+  DCYMonster.ScientificName "Flamma devorans";
   }
   
   void A_FusilladeStep()

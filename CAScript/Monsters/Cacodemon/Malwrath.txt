@@ -13,6 +13,7 @@ Class DCY_Malwrath : DCY_FlyingMeatballOutOfTouch
   ActiveSound "Malwrath/Active";
   PainSound "Malwrath/Pain";
   DeathSound "Malwrath/Death";
+  DCYMonster.ScientificName "Monogrammos globus";
   +QUICKTORETALIATE
   Speed 6;
   FastSpeed 9;

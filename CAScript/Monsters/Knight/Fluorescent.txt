@@ -20,6 +20,7 @@ Class DCY_FluorescentChevalier : DCY_KnightHell
   DeathSound "SKnight/Death";
   MeleeSound "knight/melee";
   DamageFactor "FWave", 0.00;
+  DCYMonster.ScientificName "Brutis simulacrum";
   }
   
   States

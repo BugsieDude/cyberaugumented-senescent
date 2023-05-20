@@ -18,6 +18,7 @@ Class DCY_Malloc : DCY_KnightHell
   +DONTHARMCLASS
   +MISSILEMORE
   BloodColor "Red";
+  DCYMonster.ScientificName "Brutis eruca";
   }
   
   void A_Malloc()

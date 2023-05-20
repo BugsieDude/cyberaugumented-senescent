@@ -16,6 +16,7 @@ Class DCY_Perserver : DCY_Impe
   DropItem "DCY_UltramodernEnergy", 25;
   Obituary "%o got outsmarted by a Perserver.";
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Ignauus surculus";
   }
   
   States

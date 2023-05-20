@@ -16,6 +16,7 @@ Class DCY_Pryer : DCY_Impe
   BloodType "AndroidNeonFluid";
   BloodColor "ad3002";
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Ignauus surculus";
   }
   States
   {

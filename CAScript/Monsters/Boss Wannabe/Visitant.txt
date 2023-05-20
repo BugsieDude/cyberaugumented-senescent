@@ -19,6 +19,7 @@ Class DCY_Visitant : DCY_CacoParent
   DamageFactor 0.65;
   PainChance 10;
   Obituary "FACILIS DECENSUS AVERNO";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   override void PostBeginPlay()

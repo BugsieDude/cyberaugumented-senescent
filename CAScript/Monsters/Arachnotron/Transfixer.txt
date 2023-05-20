@@ -16,6 +16,7 @@ Class DCY_Transfixer : DCY_ArachnoParent
   +NOINFIGHTING
   PainChance 50;
   Scale 1.2;
+  DCYMonster.ScientificName "Tenebris demergi";
   }
   
   bool forcefield;

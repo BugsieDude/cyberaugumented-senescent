@@ -17,6 +17,7 @@ Class DCY_CalamityTsar : DCY_KnightHell
   PainSound "Tsar/Pain";
   DeathSound "Tsar/Death";
   DCYMonster.WalkFlames "DCY_YellowWalkFlames";
+  DCYMonster.ScientificName "Brutis ductor";
   Speed 8;
   FastSpeed 10;
   }

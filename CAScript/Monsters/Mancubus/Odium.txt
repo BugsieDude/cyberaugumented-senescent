@@ -9,5 +9,6 @@ Class DCY_Odium : DCY_SkinnyFat
   DCYMonster.GibType "DCY_GibletsLava";
   Tag "\c[n0]Odium\c-";
   Obituary "%o faced the Odium's hatred.";
+  DCYMonster.ScientificName "Corpulentus quaesitor";
   }
 }

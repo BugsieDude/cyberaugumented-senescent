@@ -16,6 +16,7 @@ Class DCY_Impe : DCYMonster
   HitObituary "$OB_IMPHIT";
   Obituary "$OB_IMP";
   Species "Imps";
+  DCYMonster.ScientificName "Iniquum hominem";
   }
   
   void A_ImpLunge()

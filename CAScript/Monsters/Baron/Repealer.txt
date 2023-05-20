@@ -12,6 +12,7 @@ Class DCY_Repealer : DCY_BaronParent
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   Tag "\c[y4]Repealer\c-";
   DamageFactor "Electric", 0.00;
+  DCYMonster.ScientificName "Ambulans exstirpatio";
   +MISSILEEVENMORE
   }
   

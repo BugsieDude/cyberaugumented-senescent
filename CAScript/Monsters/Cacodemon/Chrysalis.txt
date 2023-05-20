@@ -17,6 +17,7 @@ Class DCY_Chrysalis : DCY_CacoParent
   DamageFactor "Arcane", 0.000;
   DropItem "Blursphere", 40;
   Obituary "A Chrysalis tricked %o.";
+  DCYMonster.ScientificName "NO DATA";
   -MISSILEMORE
   +FLOAT
   +NOBLOOD

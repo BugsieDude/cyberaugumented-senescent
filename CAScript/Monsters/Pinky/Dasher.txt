@@ -20,6 +20,7 @@ Class DCY_Dasher : DCY_PinkyParent
   +NODROPOFF
   MeleeDamage 10;
   Tag "Dasher";
+  DCYMonster.ScientificName "Tenebris devorantem";
   }
   
   int meleeloop;

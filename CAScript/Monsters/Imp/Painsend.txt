@@ -15,6 +15,7 @@ Class DCY_Painsend : DCY_Impe
   DeathSound "Doom4Imp/Death";
   ActiveSound "Doom4Imp/Active";
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Imitantur ignavum";
   MeleeThreshold 88;
   +DONTHARMSPECIES
   +SLIDESONWALLS

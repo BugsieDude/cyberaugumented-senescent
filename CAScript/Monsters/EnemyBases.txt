@@ -84,6 +84,9 @@ CLASS DCYMonster : Actor abstract
   property TagColor: tcol;
   property GibType: gib;
   
+  string scientific;
+  property ScientificName : scientific;
+  
   override void tick()
   {
 	super.tick();
@@ -96,6 +99,8 @@ CLASS DCYMonster : Actor abstract
   {
 	super.PostBeginPlay();
 	sfxdistance = 1500;
+	
+	A_ScientificName();
 	
 	let x = DCY_Variables.Get();
 	
@@ -243,7 +248,44 @@ CLASS DCYMonster : Actor abstract
 	
 	Super.Die(source,inflictor,dmgflags,meansofdeath);
   }
+  
+  static const string human_firstname[] =
+  {
+	"Alex", "Jacob", "Jon", "Joe", "Bruno", "Kevin", "Kelvin", "Tashiro", "Nomi", "Okada", "Pablo", "Juan", "Carlos", "Zi", "Zheng", "Xia", "Mia",
+	"Gabby", "Haiden", "Eric", "Erick", "Lynn", "Spencer", "Archie", "Isaac", "Zach", "Frank", "Cayden", "Joel", "Lee", "Sammy", "Axel", "Eduardo", "Maia", "Sam",
+	"Mulweri", "Lavani", "Dwayne", "Johnathan", "Joshua", "Andres", "Avery", "Max", "Otonia", "Ctimene"
+  };
+  
+  static const string human_middlename[] =
+  {
+	"Miguel", "Chan", "Gabe", "Fox", "Davis", "Retta", "Idaeus"
+  };
+  
+  static const string human_lastname[] =
+  {
+	"Xiang", "Francis", "Cervantes", "Joe", "Cook", "Knight", "Zensetsu", "Yamagata", "Akimi", "Akira", "Rodriguez", "Coronel", "Velez", "Hernandez", "Lawrence", "Hong", "Chang",
+	"Miu", "Hildur", "Stefan", "Chapman", "Walker", "Wilson", "Miles", "Tsan'wisi", "Rick", "Lau", "Zhang", "Labrador", "Zhihao"
+  };
+  
+  void A_SetHumanNickname(string extra = "")
+  {
+	if (!dcy_humanname) return;
 	
+	bool middlename = random(0, 4);
+	SetTag(extra.." "..((middlename) ? human_firstname[random(0, human_firstname.Size() - 1)].." "..human_middlename[random(0, human_middlename.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]
+	: human_firstname[random(0, human_firstname.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]));
+  }
+  
+  void A_ScientificName()
+  {
+	if (!dcy_scientificname) return;
+	switch (dcy_scientificname)
+	{
+		case 1: SetTag(GetTag().." ".."["..scientific.."]"); break;
+		case 2: SetTag(scientific); break;
+	}
+  }
+  
   States
   {
   Death.Massacre:

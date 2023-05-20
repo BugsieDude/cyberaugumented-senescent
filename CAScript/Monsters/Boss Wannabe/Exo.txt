@@ -26,6 +26,7 @@ Class DCY_ExoImp : DCY_Impe
   HitObituary "%o no longer has a functioning heart.";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
+  DCYMonster.ScientificName "Decidit caelum";
   }
   
   int emissile;

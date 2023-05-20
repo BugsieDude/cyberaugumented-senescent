@@ -18,6 +18,7 @@ Class DCY_Espouser : DCY_VileParent
   DeathSound "Espouser/Death";
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   BloodColor "White";
+  DCYMonster.ScientificName "Anima fraudator";
   }
   
   override void Tick()

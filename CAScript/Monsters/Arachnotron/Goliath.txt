@@ -21,6 +21,7 @@ Class DCY_Goliath : DCY_ArachnoParent
   Speed 6;
   FastSpeed 10;
   Obituary "%o felt the might of a Goliath.";
+  DCYMonster.ScientificName "Nullum signum";
   }
   
   States

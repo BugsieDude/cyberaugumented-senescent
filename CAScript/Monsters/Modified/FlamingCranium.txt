@@ -35,6 +35,7 @@ Class DCY_SkullParent : DCYMonster
   Species "Souls";
   Speed 3;
   Health 50;
+  DCYMonster.ScientificName "Soul";
   }
   
   States

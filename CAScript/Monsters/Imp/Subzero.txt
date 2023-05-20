@@ -21,6 +21,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   PainSound "SuperShadow/Pain";
   DeathSound "SuperShadow/Death";
   +DONTHARMCLASS
+  DCYMonster.ScientificName "NO DATA";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

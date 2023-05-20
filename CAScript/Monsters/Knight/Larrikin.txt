@@ -13,6 +13,7 @@ Class DCY_Larrikin : DCY_KnightHell
   DeathSound "Larrikin/Death";
   BloodColor "Orange";
   Scale 1.1;
+  DCYMonster.ScientificName "Brutis machinatio";
   }
   
   void A_LarrikinCleavingLaser()

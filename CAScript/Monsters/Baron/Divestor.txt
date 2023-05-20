@@ -26,6 +26,7 @@ Class DCY_Divestor : DCY_BaronParent
   DCYMonster.WalkFlames "DCY_SoulWalkFlames";
   MaxTargetRange 500;
   DamageFactor "FWave", 0.00;
+  DCYMonster.ScientificName "Patiens animarum";
   }
   
   int timer, cooldown;

@@ -21,6 +21,7 @@ Class DCY_Excoriator : DCY_BaronParent
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +FLOAT
+  DCYMonster.ScientificName "Volans eversor";
   }
   
   void Napalm()

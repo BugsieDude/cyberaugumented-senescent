@@ -10,6 +10,7 @@ Class DCY_RadiationCorpulence : DCY_SkinnyFat
   DeathSound "LightningEttinDeath";
   Tag "Corpulence";
   BloodType "AndroidNeonFluid";
+  DCYMonster.ScientificName "Radiorum corporale";
   BloodColor "9eff03";
   }
   

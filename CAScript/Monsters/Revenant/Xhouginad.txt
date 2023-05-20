@@ -24,6 +24,7 @@ Class DCY_Xhouginad : DCY_Rev
   ActiveSound "DarkDroid/Active";
   PainSound "";
   DeathSound "DarkDroid/Death";
+  DCYMonster.ScientificName "Decend lux";
   }
   
   States

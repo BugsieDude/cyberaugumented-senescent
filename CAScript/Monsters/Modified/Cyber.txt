@@ -24,6 +24,7 @@ Class DCY_Cybie : DCYMonster
 	TeleFogDestType "DCY_CyberTeleport";
 	Species "Cyberdemons";
 	DCYMonster.GibType "DCY_FatGiblets";
+	DCYMonster.ScientificName "Dux tormentorum";
   }
   
   void A_Cyberstep(bool step)

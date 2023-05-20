@@ -25,6 +25,7 @@ Class DCY_HellRazer : DCY_Impe
   +DONTHARMCLASS
   +NOINFIGHTING
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Infernum miles";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

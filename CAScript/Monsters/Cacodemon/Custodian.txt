@@ -19,6 +19,7 @@ Class DCY_HellCustodian : DCY_FlyingMeatballOutOfTouch
   Speed 8;
   FastSpeed 12;
   DCYMonster.GibType "DCY_GibletsLava";
+  DCYMonster.ScientificName "Praefervidus globus";
   }
   
   States

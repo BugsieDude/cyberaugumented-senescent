@@ -12,6 +12,7 @@ Class DCY_Anathema : DCY_Impe
   +MISSILEEVENMORE
   DamageType "Fire";
   Obituary "The anathema's cluster ripped %o apart.";
+  DCYMonster.ScientificName "Daemonium ardenti";
   }
   
   States

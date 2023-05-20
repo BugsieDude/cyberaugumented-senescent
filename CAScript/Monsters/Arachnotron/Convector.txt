@@ -17,6 +17,7 @@ Class DCY_Convector : DCY_ArachnoParent
   ActiveSound "Convector/Hover";
   PainSound "Convector/Pain";
   DeathSound "Convector/Death";
+  DCYMonster.ScientificName "Ardenti aranea";
   }
   
   int ballcount;

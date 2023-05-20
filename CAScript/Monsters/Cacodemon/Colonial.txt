@@ -29,6 +29,7 @@ Class DCY_Tagati : DCY_CacoParent
   Obituary "%o got hexed by a Tagati.";
   BloodColor "4a0b23";
   BloodType "DCY_SpiritBlood";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   void A_BishopChase() //borrowed

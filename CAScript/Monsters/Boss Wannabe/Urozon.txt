@@ -75,6 +75,7 @@ Class DCY_Urozon : DCY_Pinke
   Obituary "%o got mauled into pieces by Urozon.";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
+  DCYMonster.ScientificName "Insana risus";
   }
   
   int missile;

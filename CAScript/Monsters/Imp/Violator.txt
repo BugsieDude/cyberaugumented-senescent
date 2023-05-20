@@ -10,6 +10,7 @@ Class DCY_Violator : DCY_Dastard
   Speed 8;
   PainChance 200;
   Obituary "%o was persecuted by a Violator.";
+  DCYMonster.ScientificName "Violare humanum";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

@@ -25,6 +25,7 @@ Class DCY_Executioner : DCY_TheGiantEnemySpider
   FloatSpeed 5;
   Scale 1.1;
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Aranea dei";
   }
   
   int missile;

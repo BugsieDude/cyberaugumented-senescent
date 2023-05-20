@@ -35,6 +35,7 @@ Class DCY_Emptiness : DCY_VileParent
   Obituary "%o could not explain what %g has beholded before \c[g2]The Emptiness\c- sodomized %h.";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
+  DCYMonster.ScientificName "!)_#)<D?@)$_#+W?Z";
   }
   
   void A_EmptinessFaceTarget()

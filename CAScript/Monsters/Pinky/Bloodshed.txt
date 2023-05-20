@@ -18,6 +18,7 @@ Class DCY_BloodshedAssailant : DCY_Pinke
   PainSound "DEM2PAI";
   DeathSound "DEM2SIT";
   MeleeThreshold 150;
+  DCYMonster.ScientificName "Sanguis abactor";
   }
   
   int hologram;

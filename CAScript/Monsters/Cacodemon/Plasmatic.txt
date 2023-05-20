@@ -26,6 +26,7 @@ Class DCY_Deluder : DCY_CacoParent
   MeleeSound "wizard/melee";
   Obituary "%o was wrong as the Deluder manipulated %h's mind.";
   Tag "\c[a6]Deluder\c-";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   int missile;

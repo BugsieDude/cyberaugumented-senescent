@@ -20,6 +20,7 @@ Class DCY_VoidCaster : DCY_VileParent
   +NODROPOFF
   StencilColor "Blue";
   Obituary "%o was extirpated by a Voidcaster.";
+  DCYMonster.ScientificName "Beatus inanis";
   }
   
   int teleloop;

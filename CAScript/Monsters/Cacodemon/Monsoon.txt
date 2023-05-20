@@ -16,6 +16,7 @@ Class DCY_Monsoon : DCY_CacoParent
   +NOINFIGHTING
   +QUICKTORETALIATE
   Tag "\c[x5]Monsoon\c-";
+  DCYMonster.ScientificName "Vivos globum tonitrui";
   }
   
   override void Tick()

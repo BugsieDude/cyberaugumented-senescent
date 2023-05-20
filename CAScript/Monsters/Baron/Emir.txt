@@ -15,6 +15,7 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
   PainSound "Emir/Pain";
   BloodColor "EB 34 89";
   DamageFactor "EmirWave", 0.00;
+  DCYMonster.ScientificName "Se brutis";
   +MISSILEEVENMORE
   +QUICKTORETALIATE
   }

@@ -22,6 +22,7 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
   Speed 9;
   FastSpeed 14;
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Aurea iuba";
   }
   
   void A_TracPlasma()

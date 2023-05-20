@@ -15,6 +15,7 @@ Class DCY_Mindmonarch : DCY_TheGiantEnemySpider
   DropItem "DCY_UltramodernEnergy", 128;
   DropItem "DCY_UltramodernEnergy", 128;
   Obituary "%o carried the lethal weight of the Mindmonarch's discharge.";
+  DCYMonster.ScientificName "Nulla personatus";
   }
   
   void A_BigLaser(string laser)

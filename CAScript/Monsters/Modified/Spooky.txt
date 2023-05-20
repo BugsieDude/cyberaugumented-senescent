@@ -18,6 +18,7 @@ Class DCY_Rev : DCYMonster
 	Obituary "$OB_UNDEAD";
 	Tag "$FN_REVEN";
 	Species "Agitated Skeletons";
+	DCYMonster.ScientificName "Undead Skeleton";
   }
   
   States

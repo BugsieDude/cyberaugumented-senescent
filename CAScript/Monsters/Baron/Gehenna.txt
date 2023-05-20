@@ -19,6 +19,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   Speed 9;
   BloodColor "ad3002";
   BloodType "AndroidNeonFluid";
+  DCYMonster.ScientificName "Volans exstirpatio";
   }
   
   int bombloop;

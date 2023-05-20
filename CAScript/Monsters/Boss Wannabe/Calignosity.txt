@@ -11,6 +11,7 @@ Class DCY_Calignosity : DCY_HeckBaron
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
   Tag "\c[n0]Caliginos Megidora\c-";
+  DCYMonster.ScientificName "Nebulosum nanctus dominus";
   DCYMonster.GibType "DCY_MechaGiblets";
   Speed 11;
   FastSpeed 21;

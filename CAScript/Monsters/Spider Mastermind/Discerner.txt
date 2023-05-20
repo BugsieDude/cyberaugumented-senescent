@@ -15,6 +15,7 @@ Class DCY_Discerner : DCY_TheGiantEnemySpider
   FastSpeed 16;
   PainChance 20;
   Scale 1.2;
+  DCYMonster.ScientificName "Sycophant MK-II";
   }
   
   double v;

@@ -19,6 +19,7 @@ Class DCY_AvernusGuard : DCY_Cybie
   +DONTGIB
   DamageFactor "Fire", 0.3;
   StencilColor "ad3002";
+  DCYMonster.ScientificName "Torrens igneus";
   }
   
   bool down;

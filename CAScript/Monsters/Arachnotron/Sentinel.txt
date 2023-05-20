@@ -29,6 +29,7 @@ Class DCY_FluorescentSentinel : DCY_SmallEnemySpider
   PainSound "FSentinel/Pain";
   DropItem "DCY_UltramodernEnergy", 128;
   DropItem "DCY_UltramodernEnergy", 128;
+  DCYMonster.ScientificName "Volantem custodis";
   }
   
   void A_Orb(double angle, double direct)

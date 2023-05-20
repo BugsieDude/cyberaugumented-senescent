@@ -73,6 +73,7 @@ Class DCY_ChoricoNepheloma : DCY_NavyTerminator
   Speed 10;
   FloatSpeed 10;
   DamageFactor "Lunacy", 0.00;
+  DCYMonster.ScientificName "Gehenna";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

@@ -26,6 +26,7 @@ Class DCY_LunarChiller : DCY_CacoParent
   PainSound "LunarChiller/Pain";
   DeathSound "LunarChiller/Death";
   Translation "192:195=[255,255,255]:[128,255,255]", "196:198=[81,255,255]:[0,128,255]", "199:204=[0,124,249]:[0,0,160]";
+  DCYMonster.ScientificName "Exspiravit eques";
   }
   
   override void Tick()

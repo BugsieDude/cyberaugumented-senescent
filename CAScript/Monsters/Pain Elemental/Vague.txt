@@ -21,6 +21,7 @@ Class DCY_Vague : DCY_Befouler
   BloodColor "Purple";
   Obituary "%o felt like a rotten, disintegrating fruit.";
   HitObituary "%o does not exist.";
+  DCYMonster.ScientificName "Nebulae corvus";
   }
   
   bool awaken;

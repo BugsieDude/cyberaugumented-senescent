@@ -23,6 +23,7 @@ Class DCY_Castrator : DCY_Impe
   +DONTHARMCLASS
   +MISSILEEVENMORE
   +NODROPOFF
+  DCYMonster.ScientificName "Delirare electricae";
   }
   States
   {

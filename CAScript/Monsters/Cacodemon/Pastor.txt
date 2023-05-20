@@ -26,6 +26,7 @@ Class DCY_Inscrutable : DCY_CacoParent
   DropItem "DCY_Eminence", 128;
   DropItem "DCY_Eminence", 50;
   BloodColor "White";
+  DCYMonster.ScientificName "NO DATA";
   }
   
   void A_PastorDash()

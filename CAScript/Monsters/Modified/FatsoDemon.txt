@@ -21,6 +21,7 @@ Class DCY_SkinnyFat : DCYMonster
 	Species "Mancubi";
 	MeleeRange 90;
 	DCYMonster.GibType "DCY_ShorterGiblets";
+	DCYMonster.ScientificName "Adipem cadaverosa";
   }
   
   void A_FatThrower()

@@ -18,6 +18,7 @@ Class DCY_BaronParent : DCYMonster
   Tag "Templar";
   DamageFactor "Bruiser", 0.000;
   Species "Barons";
+  DCYMonster.ScientificName "Brutis cruribus";
   }
   
   bool down;
@@ -159,6 +160,7 @@ Class DCY_KnightHell : DCY_BaronParent
   BloodColor "Green";
   DamageFactor "Bruiser", 0.000;
   Species "Hell Knights";
+  DCYMonster.ScientificName "Brutis fractis";
   }
   States
   {

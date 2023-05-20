@@ -21,6 +21,7 @@ Class DCY_Apollyon : DCY_VileParent
   Obituary "%o got turned into scarlet dust by an Apollyon.";
   HitObituary "%o got turned into scarlet dust by an Apollyon.";
   MeleeThreshold 200;
+  DCYMonster.ScientificName "Magus immolationis";
   }
   
   int cooldown;

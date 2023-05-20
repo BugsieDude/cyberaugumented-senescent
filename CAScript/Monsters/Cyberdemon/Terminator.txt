@@ -24,6 +24,7 @@ Class DCY_NavyTerminator : DCY_Cybie
   +NOBLOODDECALS
   Speed 12;
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ScientificName "Erethanger alcephalus";
   }
   
   int nmissile;

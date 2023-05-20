@@ -20,6 +20,7 @@ Class DCY_RegulusImp : DCY_Impe
   HitObituary "A varmint entangled %o in cold blood.";
   BloodColor "7377c9";
   Tag "\c[y9]Varmint\c-";
+  DCYMonster.ScientificName "Torpore ruptae";
   +FLOAT
   +NOGRAVITY
   +QUICKTORETALIATE

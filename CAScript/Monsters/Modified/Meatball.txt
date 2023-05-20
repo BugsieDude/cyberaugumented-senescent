@@ -17,6 +17,7 @@ Class DCY_CacoParent : DCYMonster
 	HitObituary "$OB_CACOHIT";
 	Tag "$FN_CACO";
 	Species "Cacodemons";
+	DCYMonster.ScientificName "Tristique cibum";
   }
   
   void A_HeadAttack()
