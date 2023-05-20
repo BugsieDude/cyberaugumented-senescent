@@ -14,7 +14,7 @@ Class DCY_Divestor : DCY_BaronParent
   +DONTHARMCLASS
   +DONTHARMSPECIES
   +NOICEDEATH
-  BloodColor "3242a8";
+  BloodColor "031f66";
   StencilColor "042378";
   SeeSound "DCYDivestor/Sight";
   ActiveSound "DCYDivestor/Idle";
@@ -36,6 +36,16 @@ Class DCY_Divestor : DCY_BaronParent
 	if (level.isFrozen()) return;
 	super.Tick();
 	if (cooldown > 0) cooldown--;
+  }
+  
+  void A_SpiritExplosion()
+  {
+	if (!DCY_EffectDistance(2000)) return;
+	
+	for (int i = 25; i > 0; i--) {
+		if (health > 0) A_SpawnItemEx("DCY_AndroidExplosion", frandom(-radius, radius) * 3, frandom(-radius, radius) * 3, frandom(0, height), zvel: frandom(1.5, 2.5), failchance: 120);
+		A_SpawnParticleEx(0x031f66, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 200, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), startalphaf: 0.5, fadestepf: 0.005, sizestep: 4.525);
+	}
   }
   
   States
@@ -148,8 +158,10 @@ Class DCY_Divestor : DCY_BaronParent
 		A_FaceTarget();
 		A_SetRenderStyle(0.4, STYLE_AddStencil);
 		bNOPAIN = true;
+		bSLIDESONWALLS = true;
 		bSHOOTABLE = false;
 		bTHRUACTORS = true;
+		A_SpiritExplosion();
 	}
 	D3V_ A 1
 	{
@@ -168,6 +180,7 @@ Class DCY_Divestor : DCY_BaronParent
 		if (timer > 50)
 		{
 			bNOPAIN = false;
+			bSLIDESONWALLS = false;
 			bSHOOTABLE = true;
 			bTHRUACTORS = false;
 			A_SetRenderStyle(1, STYLE_NORMAL);
@@ -182,6 +195,24 @@ Class DCY_Divestor : DCY_BaronParent
 	D3V_ J 4;
 	D3V_ J 4 A_Pain();
 	Goto See;
+  Death:
+	D3V_ J 10 A_Pain();
+	D3D_ A 20 A_Scream();
+	D3D_ B 5 A_NoBlocking();
+	D3D_ C 5 A_StartSound("DCYDivestor/ScreamExplosion", 10, volume: 0.75, attenuation: 0.65);
+	D3D_ D 5
+	{
+		DCY_Gibs(false);
+		A_SpiritExplosion();
+		for (int i = 15; i > 0; i--) A_SpawnParticleEx(0x031f66, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 200, 0, frandom(-20, 20), frandom(-20, 20), 36 + frandom(-20, 20), frandom(-2.5, 2.5), frandom(-2.5, 2.5), frandom(-2.5, 2.5), startalphaf: 0.5, fadestepf: 0.0025, sizestep: 6.525);
+		for (int i = 3; i > 0; i--) A_SpawnItemEx("DCY_Explosion_1_Biggie", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20), flags: SXF_USEBLOODCOLOR);
+		for (int i = 2; i > 0; i--) A_SpawnItemEx("DCY_AndroidExplosionBiggie", frandom(-20, 20), frandom(-20, 20), frandom(-20, 20));
+	}
+	D3D_ EEEEEFFFFFGGGGGHHHHHIIIII 1 DCY_SoulExplode();
+	D3D_ J -1 A_BossDeath2();
+	Stop;
+  Raise:
+	Stop;
   }
 }
 

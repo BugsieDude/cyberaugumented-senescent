@@ -92,16 +92,26 @@ CLASS DCYMonster : Actor abstract
 	super.tick();
 	
 	//Tag handling
-	if ((dcy_scientificname > 0 && dcy_scientificname < 3)) A_ScientificName();
-	
-	if (dcy_scientificname >= 3) {
-		if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners") SetTag((dcy_humanname && humantag != "") ? humantag : oldtag);
+	switch (dcy_scientificname)
+	{
+		case 0: SetTag((dcy_humanname && humantag != "") ? humantag : oldtag); break;
+		case 1: case 2: A_ScientificName(); break;
+		case 3: case 4: A_CheckForTag(); break;
 	}
-	
-	if (!dcy_scientificname) SetTag((dcy_humanname && humantag != "") ? humantag : oldtag);
 	
 	if (!particlefire)
 		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
+  }
+  
+  bool A_CheckForTag()
+  {
+	if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners")
+	{
+		SetTag((dcy_humanname && humantag != "") ? humantag : oldtag);
+		return true;
+	}
+	else A_ScientificName();
+	return false;
   }
   
   override void PostBeginPlay()
