@@ -63,6 +63,7 @@ CLASS DCYMonster : Actor abstract
   }
   
   int warningdistance;
+  bool bossfound;
   property WD : warningdistance;
   
   private int b;
@@ -272,18 +273,27 @@ CLASS DCYMonster : Actor abstract
   {
 	"Alex", "Jacob", "Jon", "Joe", "Bruno", "Kevin", "Kelvin", "Tashiro", "Nomi", "Okada", "Pablo", "Juan", "Carlos", "Zi", "Zheng", "Xia", "Mia",
 	"Gabby", "Haiden", "Eric", "Erick", "Lynn", "Spencer", "Archie", "Isaac", "Zach", "Frank", "Cayden", "Joel", "Lee", "Sammy", "Axel", "Eduardo", "Maia", "Sam",
-	"Mulweri", "Lavani", "Dwayne", "Johnathan", "Joshua", "Andres", "Avery", "Max", "Otonia", "Ctimene"
+	"Mulweri", "Lavani", "Dwayne", "Nathan", "Johnathan", "Joshua", "Andres", "Avery", "Max", "Otonia", "Ctimene", "Dylan", "Anton", "Vladimir", "Tisha", "Aaron",
+	"Alfred", "Charlie", "Will", "Peter", "Tom", "Elmer", "Jesse", "Grover", "Ernest", "Eugene", "Francis", "Edgar", "Otto", "Jack", "Luther", "Patrick",
+	"Harvey", "William", "Achilles", "Alexander", "Gianna", "Giovanna", "Grant", "Arushi", "Maxwell", "Athena", "Chloris", "Mark", "Dzmitry", "Dmitri", "Adetokunbo",
+	"Terminus", "Brooke", "Amery", "Burt", "Tommy", "Jane", "John"
   };
   
   static const string human_middlename[] =
   {
-	"Miguel", "Chan", "Gabe", "Fox", "Davis", "Retta", "Idaeus"
+	"Miguel", "Chan", "Gabe", "Fox", "Davis", "Retta", "Idaeus", "Vadik", "Diya", "Giulio", "Julio", "August", "Augustus", "Augustine", "Cormac", "Caio", "Beck", "Simon", "Mario", "Gallcobar", "Ovidius",
+	"Marianna", "Emmanuelle", "Viktor", "Vigdis", "Yeruti", "Hanna", "al-Din", "Sienna", "Ekrem", "Luciano", "Tamara", "Segdae", "Sveinn", "Daliborka",
+	"Magda", "Ness", "Alfonz", "Zakaria", "Bonaventure", "Bernard", "Koronis", "Eugenios", "Achan", "Sydney", "Sondra", "Deana", "Case", "Ariyah", "Earl",
+	"Elma", "Shavon", "Honey", "Bertrand", "Lylah", "Rubye", "Ruby", "Gorden", "Meryl", "Bert", "Bertina", "Pippa", "Dorian"
   };
   
   static const string human_lastname[] =
   {
 	"Xiang", "Francis", "Cervantes", "Joe", "Cook", "Knight", "Zensetsu", "Yamagata", "Akimi", "Akira", "Rodriguez", "Coronel", "Velez", "Hernandez", "Lawrence", "Hong", "Chang",
-	"Miu", "Hildur", "Stefan", "Chapman", "Walker", "Wilson", "Miles", "Tsan'wisi", "Rick", "Lau", "Zhang", "Labrador", "Zhihao"
+	"Miu", "Hildur", "Stefan", "Chapman", "Walker", "Wilson", "Miles", "Tsan'wisi", "Rick", "Lau", "Zhang", "Labrador", "Zhihao", "Dmitri", "Petrovich", "Antonovich",
+	"Gonzales", "Clyde", "Stone", "Lester", "Edgar", "August", "Augustus", "Chan", "Ho", "Aten", "Atem", "Hayley", "Hailey", "Helena", "Hemera", "Asuke", "Harvey", "Harve",
+	"Charlton", "Ingram", "Chu", "Rais", "Pierre", "Adallinda", "Yama", "Hovhannes", "Felicia", "Ginny", "Gayle", "Elissa", "Emily", "Connie", "Anemone", "Garnet", "Kassandra",
+	"Rosy", "Kermit", "Jaki", "Elle", "Doe"
   };
   
   void A_SetHumanNickname(string extra = "")

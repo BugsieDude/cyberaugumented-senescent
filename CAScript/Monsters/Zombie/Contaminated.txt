@@ -4,6 +4,7 @@ Class DCY_Contaminated : DCY_Zombe
   {
   Health 120;
   Tag "\cgContaminated\c-";
+  DCYMonster.ScientificName "Infectis hominibus";
   Speed 12;
   FastSpeed 15;
   Obituary "%o suffered the contaminated soldier's feast for blood.";
@@ -17,6 +18,11 @@ Class DCY_Contaminated : DCY_Zombe
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +NODROPOFF
+  }
+  
+  override void PostBeginPlay()
+  {
+	DCYMonster.postBeginPlay();
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
