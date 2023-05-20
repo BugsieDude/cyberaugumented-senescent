@@ -118,13 +118,13 @@ Class DCY_Divestor : DCY_BaronParent
 	D3V_ EE 10 A_FaceTarget();
 	D3V_ F 10
 	{
-		for (int i = 30; i > -31; i -= 30)
+		for (int i = 30; i > -31; i -= 60)
 		{
-			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch - 5);
-			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch + 5);
+			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch - 10);
+			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i, CMF_OFFSETPITCH, pitch + 10);
 		}
 		
-		for (int i = 40; i > -41; i -= 20)
+		for (int i = 40; i > -41; i -= 40)
 			A_SpawnProjectile("DCY_DivestorBall", 34, 10, i);
 		
 		A_FaceTarget();
