@@ -60,6 +60,7 @@ CLASS DCYMonster : Actor abstract
 	TeleFogDestType "DCY_EnemyTeleport";
 	DamageFactor "SpawnerDeath", 0;
 	DCYMonster.WD 4000;
+	DCYMonster.ExtraPrefix "";
   }
   
   int warningdistance;
@@ -87,6 +88,8 @@ CLASS DCYMonster : Actor abstract
   
   string scientific, oldtag, humantag;
   property ScientificName : scientific;
+  string extran;
+  property ExtraPrefix : extran;
   
   override void tick()
   {
@@ -106,7 +109,7 @@ CLASS DCYMonster : Actor abstract
   
   bool A_CheckForTag()
   {
-	if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners")
+	if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners" || self is 'DCY_BionicZombie')
 	{
 		SetTag((dcy_humanname && humantag != "") ? humantag : oldtag);
 		return true;
@@ -301,8 +304,8 @@ CLASS DCYMonster : Actor abstract
 	if (!dcy_humanname) return;
 	
 	bool middlename = random(0, 4);
-	humantag = (extra.." "..((!middlename) ? human_firstname[random(0, human_firstname.Size() - 1)].." "..human_middlename[random(0, human_middlename.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]
-	: human_firstname[random(0, human_firstname.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]));
+	humantag = (extra..((extra != "") ? " " : "")..((!middlename) ? human_firstname[random(0, human_firstname.Size() - 1)].." "..human_middlename[random(0, human_middlename.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]
+	: human_firstname[random(0, human_firstname.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]).."\c-");
   }
   
   void A_ScientificName()

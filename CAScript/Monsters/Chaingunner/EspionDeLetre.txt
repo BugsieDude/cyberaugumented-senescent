@@ -4,6 +4,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
   {
   Health 400;
   Tag "\c[j1]Espion de L'être\c-";
+  DCYMonster.ExtraPrefix "\c[j1]Espion";
   SeeSound "Raison/Sight";
   PainSound "Raison/Attack";
   AttackSound "Raison/Attack";

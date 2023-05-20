@@ -4,6 +4,7 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
   {
   Health 350;
   Tag "\c[e7]The 'Death Dealer'\c-";
+  DCYMonster.ExtraPrefix "\c[e7]Director";
   Speed 13;
   FastSpeed 16;
   +QUICKTORETALIATE

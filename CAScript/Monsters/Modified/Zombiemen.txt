@@ -18,14 +18,13 @@ Class DCY_ZombeParent : DCYMonster
   Tag "Hell Soldier";
   Species "Former Humans";
   DCYMonster.ScientificName "Homo sapien";
-  DCYMonster.TagColor "l5";
   +DOHARMSPECIES;
   }
   
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
-	A_SetHumanNickname();
+	A_SetHumanNickname(extran);
   }
   
   States
@@ -135,12 +134,13 @@ Class DCY_ShotgunZombe : DCYMonster
   Tag "Hell Sergeant";
   DCYMonster.ScientificName "Homo sapien";
   Species "Sergeants";
+  DCYMonster.ExtraPrefix "Sgt.";
   }
   
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
-	A_SetHumanNickname("Sgt.");
+	A_SetHumanNickname(extran);
   }
   
   States
@@ -245,12 +245,13 @@ Class DCY_Plutonia : DCYMonster
   DCYMonster.ScientificName "Homo sapien";
   Dropitem "DCY_CyberRifle";
   Species "Chaingunners";
+  DCYMonster.ExtraPrefix "Cpt.";
   }
   
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
-	A_SetHumanNickname("Cpt.");
+	A_SetHumanNickname(extran);
   }
   
   States

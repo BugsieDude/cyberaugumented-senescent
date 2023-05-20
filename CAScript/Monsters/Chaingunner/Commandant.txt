@@ -9,6 +9,7 @@ Class DCY_Commandant : DCY_Plutonia
   Obituary "%o got shredded by a hell commandant.";
   +NODROPOFF
   Tag "Hell Commandant";
+  DCYMonster.ExtraPrefix "Com.";
   SeeSound "Commandant/Sight";
   ActiveSound "Commandant/Active";
   PainSound "Commandant/Pain";

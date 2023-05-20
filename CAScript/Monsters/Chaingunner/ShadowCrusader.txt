@@ -4,6 +4,7 @@ Class DCY_ShadowCrusader : DCY_Plutonia
   {
   Health 400;
   BloodColor "Purple";
+  DCYMonster.ExtraPrefix "\c[t7]";
   Speed 12;
   FastSpeed 19;
   Tag "\c[t7]Shadow Crusader\c-";

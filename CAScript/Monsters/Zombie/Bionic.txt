@@ -19,6 +19,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
   BloodType "AndroidNeonFluid";
   BloodColor "2ba0ff";
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.ExtraPrefix "\c[Red]";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

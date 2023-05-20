@@ -7,6 +7,7 @@ Class DCY_Transmuter : DCY_ShotgunZombe
   Speed 4;
   FastSpeed 6;
   Tag "\c[Ultramarine]Transmuter\c-";
+  DCYMonster.ExtraPrefix "\c[Ultramarine]";
   PainChance 90;
   +MISSILEMORE
   +MISSILEEVENMORE

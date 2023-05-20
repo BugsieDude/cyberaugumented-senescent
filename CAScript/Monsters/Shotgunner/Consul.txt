@@ -17,6 +17,7 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
   DropItem "Clip";
   DropItem "Shotgun", 180;
   Tag "\c[g3]Dark Ion Consul\c-";
+  DCYMonster.ExtraPrefix "\c[g3]";
   BloodColor "01 01 01";
   SeeSound "DarkConsul/Sight";
   DeathSound "DarkConsul/Death";

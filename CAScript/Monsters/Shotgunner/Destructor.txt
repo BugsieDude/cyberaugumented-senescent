@@ -5,6 +5,7 @@ Class DCY_Destructor : DCY_ShotgunZombe
   Health 110;
   Translation "16:47=[255,0,0]:[0,0,0]", "168:191=[255,0,0]:[0,0,0]", "80:111=[255,255,255]:[0,0,0]", "48:79=%[0.00,0.00,0.00]:[0.95,0.78,0.65]", "9:12=%[0.00,0.00,0.00]:[0.50,0.00,0.00]";
   Tag "\c[Red]Destructor\c-";
+  DCYMonster.ExtraPrefix "\c[Red]Sgt.";
   Obituary "%o saw the Destructor's strength.";
   Speed 8;
   FastSpeed 12;

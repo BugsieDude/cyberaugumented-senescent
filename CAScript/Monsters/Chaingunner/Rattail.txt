@@ -7,6 +7,7 @@ Class DCY_Rattail : DCY_Plutonia
   BloodType "AndroidNeonFluid";
   BloodColor "2ba0ff";
   Tag "\c[l5]Rattail\c-";
+  DCYMonster.ExtraPrefix "\c[l5]Purger";
   SeeSound "Rattail/Sight";
   ActiveSound "Rattail/Active";
   PainSound "Rattail/Pain";

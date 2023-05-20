@@ -19,6 +19,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
   DropItem "DCY_Deterrence", 50;
   Tag "\c[l7]Z-Exec\c-";
   Obituary "%o got gunned down by the Z-Spec Ops Exec.";
+  DCYMonster.ExtraPrefix "\c[l7]Z-Exec";
   SeeSound "Exec/Sight";
   ActiveSound "Exec/Active";
   PainSound "Exec/Pain";

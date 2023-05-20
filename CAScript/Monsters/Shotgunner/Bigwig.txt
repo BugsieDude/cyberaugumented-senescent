@@ -4,6 +4,7 @@ Class DCY_DecedentBigwig : DCY_ShotgunZombe
   {
   Health 128;
   Tag "Decedent Bigwig";
+  DCYMonster.ExtraPrefix "Eng.";
   Obituary "%o got outsmarted by a Decedent Bigwig.";
   BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
   BloodColor "2ba0ff";
