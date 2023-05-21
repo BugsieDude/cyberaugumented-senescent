@@ -287,6 +287,23 @@ CLASS DCYMonster : Actor abstract
 	Super.Die(source,inflictor,dmgflags,meansofdeath);
   }
   
+  static const string human_extraname[] =
+  {
+	"Pvt.", "Lcpl.", "Cpl.", "Dr.", "Mr.", "WO1.", "CW2.", "CW3.", "CW4.", "CW5.", "Lt.", "2nd Lt.", "1st Lt.", "Lil", "", "", ""
+  };
+  
+  static const string human_extranamesg[] =
+  {
+	"Sgt.", "SSgt.", "Col.", "LtCol.", "Mr.", "Pvt.", "CW2.", "CW3.", "CW4.", "CW5.", "Dr.", "2nd Lt.", "1st Lt.", "SgtMa.", "Major",
+	"MSgt.", "GySgt.", "MGySg.", "", "", ""
+  };
+  
+  static const string human_extranamecg[] =
+  {
+	"Cpt.", "Cap.", "MajCol.", "Maj.", "BGen.", "MajGen.", "LtCol.", "PFC.", "CW4.", "CW5.", "Com.", "Commander", "Captain", "SgtMa.", "Major",
+	"Col.", "Colonel", "", "", ""
+  };
+  
   static const string human_firstname[] =
   {
 	"Alex", "Jacob", "Jon", "Joe", "Bruno", "Kevin", "Kelvin", "Tashiro", "Nomi", "Okada", "Pablo", "Juan", "Carlos", "Zi", "Zheng", "Xia", "Mia",
@@ -294,7 +311,17 @@ CLASS DCYMonster : Actor abstract
 	"Mulweri", "Lavani", "Dwayne", "Nathan", "Johnathan", "Joshua", "Andres", "Avery", "Max", "Otonia", "Ctimene", "Dylan", "Anton", "Vladimir", "Tisha", "Aaron",
 	"Alfred", "Charlie", "Will", "Peter", "Tom", "Elmer", "Jesse", "Grover", "Ernest", "Eugene", "Francis", "Edgar", "Otto", "Jack", "Luther", "Patrick",
 	"Harvey", "William", "Achilles", "Alexander", "Gianna", "Giovanna", "Grant", "Arushi", "Maxwell", "Athena", "Chloris", "Mark", "Dzmitry", "Dmitri", "Adetokunbo",
-	"Terminus", "Brooke", "Amery", "Burt", "Tommy", "Jane", "John"
+	"Terminus", "Brooke", "Amery", "Burt", "Tommy", "Jane", "John", "Philbert", "Fortune", "Alexandra", "Mirela", "Fawziya", "Sasha", "Yalcin", "Metis", "Faysal", "Ferdo", "Vulcan", 
+	"Vayu", "Mokosh", "Pontus", "Lycus", "Kalevi", "Brighid", "Venus", "Nanaya", "Dagda", "Hermes", "Lir", "Karme", "Polyhymnia", "Maxie", "Marilena", "Ilean", "Shon", "Lucius", "Cannon", 
+	"Ryker", "Kira", "Khloe", "Vinny", "Petre", "Wisteria", "Florina", "Lenora", "Solomon", "Mabel", "Celinda", "Annette", "Derek", "Averill", "Shelagh", "Charlene", "Joi", "Gwendolyn", 
+	"Morris", "Erik", "Jinny", "Kelia", "Chelsey", "Kodey", "Fortune", "Ida", "Laila", "Yaroslava", "Avdey", "Vladilen", "Trofim", "Roman", "Veronika", "Kirill", "Marusya", "Artemi", 
+	"Alexandru", "Zakariyya", "Jathbiyya", "Mansur", "Abul-Fazl", "Latifah", "Nora", "Salma", "Aya", "Chi", "Huy", "Argos", "Calypso", "Erebus", "Alecto", "Achilleus", "Phaidra", "Antinanco", 
+	"Diindiisi", "Itzamna", "Ha-o-zinne", "Liwen", "Yeruti", "Aslaug", "Margarete", "Christa", "Jon", "Atle", "Gernot", "Adrian", "Jacobine", "Willy", "Stine", "Tilman", "Walther", "Walter", 
+	"Ernst", "Tim", "Timmy", "Jane", "Christin", "Archil", "Mimoza", "Franz", "Xaver", "Toni", "Hermann", "Erich", "Golzar", "Roshan", "Hyun-Joo", "Eun-U", "Ji-Young", "Hwan", "Jong", "Misao",
+	"Minoru", "Chihiro", "Shinobu", "Hibiki", "Yoshi", "Rin", "Laverne", "Daly", "Kendal", "Jessy", "Leighton", "Casey", "Logan", "Sage", "Kasey", "Leighton", "Reign", "Eddie", "Karsyn", "Ryley", 
+	"Berny", "Dene", "Austyn", "Alexis", "Leighton", "Chandler", "Everest", "Allison", "Alexandros", "Pelias", "Damocles", "Megaera", "Aether", "Rheie", "Nike", "Alastor", "Asteria", "Hyperion", 
+	"Afina", "Acantha", "Glaukos", "Billie-Jo", "Naamah", "Sweetsmile", "AutumnCinder", "Iron-Hit", "Dolly-Leigh", "Gentlecheeks", "Olyvya", "Cindy-Dawn", "Bubba", "Karlee", "Stone", "Masher", 
+	"Grapple", "Atomic-Crusher", "Billie-Rae", "Peaceflow"
   };
   
   static const string human_middlename[] =
@@ -302,7 +329,10 @@ CLASS DCYMonster : Actor abstract
 	"Miguel", "Chan", "Gabe", "Fox", "Davis", "Retta", "Idaeus", "Vadik", "Diya", "Giulio", "Julio", "August", "Augustus", "Augustine", "Cormac", "Caio", "Beck", "Simon", "Mario", "Gallcobar", "Ovidius",
 	"Marianna", "Emmanuelle", "Viktor", "Vigdis", "Yeruti", "Hanna", "al-Din", "Sienna", "Ekrem", "Luciano", "Tamara", "Segdae", "Sveinn", "Daliborka",
 	"Magda", "Ness", "Alfonz", "Zakaria", "Bonaventure", "Bernard", "Koronis", "Eugenios", "Achan", "Sydney", "Sondra", "Deana", "Case", "Ariyah", "Earl",
-	"Elma", "Shavon", "Honey", "Bertrand", "Lylah", "Rubye", "Ruby", "Gorden", "Meryl", "Bert", "Bertina", "Pippa", "Dorian"
+	"Elma", "Shavon", "Honey", "Bertrand", "Lylah", "Rubye", "Ruby", "Gorden", "Meryl", "Bert", "Bertina", "Pippa", "Dorian", "Malone", "Everest", "Andy", "Odell", 
+	"Hera", "Blythe", "Lindsay", "Regan", "Greer", "Courtney", "Jojo", "Justy", "Skyler", "Jaden", "Laurie", "Quin", "Dana", "Dannie", "Quinlan", "Remington", "Gray",
+	"Bellamy", "Justice", "Cedar", "Hamilton", "Fran", "McKenzie", "Carlisle", "Collyn", "Jerry", "Riley", "Beck", "Emory", "Shawn", "Devon", "Tracy", "Pacey", "Rorie", 
+	"Riley", "September", "Briar"
   };
   
   static const string human_lastname[] =
@@ -311,15 +341,32 @@ CLASS DCYMonster : Actor abstract
 	"Miu", "Hildur", "Stefan", "Chapman", "Walker", "Wilson", "Miles", "Tsan'wisi", "Rick", "Lau", "Zhang", "Labrador", "Zhihao", "Dmitri", "Petrovich", "Antonovich",
 	"Gonzales", "Clyde", "Stone", "Lester", "Edgar", "August", "Augustus", "Chan", "Ho", "Aten", "Atem", "Hayley", "Hailey", "Helena", "Hemera", "Asuke", "Harvey", "Harve",
 	"Charlton", "Ingram", "Chu", "Rais", "Pierre", "Adallinda", "Yama", "Hovhannes", "Felicia", "Ginny", "Gayle", "Elissa", "Emily", "Connie", "Anemone", "Garnet", "Kassandra",
-	"Rosy", "Kermit", "Jaki", "Elle", "Doe"
+	"Rosy", "Kermit", "Jaki", "Elle", "Doe", "King", "Takara", "Yoshie", "Chiaki", "Kazumi", "Shiori", "Yuki", "Kohaku", "Aoi", "Amore", "Giusi", "Fiore", "Gio", "Celeste", "Giusi", 
+	"Maria", "Fiore", "Shea", "Aran", "Shay", "Nollaig", "Bronte", "Paget", "Blue", "Sheridan", "Haze", "Cree", "Fortune", "Darcy", "Jaden", "Camryn", "Terry", "Monroe", "Andie", "Jules", 
+	"Malone", "Ridley", "Berny", "Dakota", "Jayme", "Kevyn", "Shelby", "Dusty", "Blessing", "Darian", "Marshall", "Woods", "Wood", "Rock", "Beau", "Teddie", "Campbell", "Romilly", "Justice", 
+	"Parker", "Stace", "Chris", "Cary", "Daley", "Martie", "Rorie", "Adair", "Stacey", "Franny", "Sydney", "Silver", "Salem", "Frankie", "Waverly", "Noel", "Jess", "Frankie", "Johnie", "Bobbie",
+	"Malone", "Everest", "Andy", "Odell", "Peyton", "Blythe", "Lindsay", "Regan", "Greer", "Courtney", "Jojo", "Justy", "Skyler", "Jaden", "Laurie", "Quin", "Dana", "Dannie", "Quinlan", "Remington", 
+	"Gray", "Bellamy", "Justice", "Cedar", "Hamilton", "Fran", "McKenzie", "Carlisle", "Collyn", "Jerry", "Riley", "Beck", "Emory", "Shawn", "Devon", "Tracy", "Pacey", "Rorie", "Riley", "September", 
+	"Briar", "Laverne", "Daly", "Kendal", "Jessy", "Leighton", "Casey", "Logan", "Sage", "Kasey", "Leighton", "Reign", "Eddie", "Karsyn", "Ryley", "Berny", "Dene", "Austyn", "Alexis", "Leighton", 
+	"Chandler", "Everest", "Allison", "Alexandros", "Pelias", "Damocles", "Megaera", "Aether", "Rheie", "Nike", "Alastor", "Asteria", "Hyperion", "Afina", "Acantha", "Glaukos", "Billie-Jo", "Naamah", 
+	"Sweetsmile", "AutumnCinder", "Iron-Hit", "Dolly-Leigh", "Gentlecheeks", "Olyvya", "Cindy-Dawn", "Bubba", "Karlee", "Stone", "Masher", "Grapple", "Atomic-Crusher", "Billie-Rae", "Peaceflow"
   };
   
-  void A_SetHumanNickname(string extra = "")
+  void A_SetHumanNickname(string extra = "", int ranktype = 0)
   {
 	if (!dcy_humanname) return;
+	string rank;
+	
+	switch(ranktype)
+	{
+		case 0: rank = human_extraname[random(0, human_extraname.Size() - 1)]; break;
+		case 1: rank = human_extranamesg[random(0, human_extranamesg.Size() - 1)]; break;
+		case 2: rank = human_extranamecg[random(0, human_extranamecg.Size() - 1)]; break;
+	}
 	
 	bool middlename = random(0, 4);
-	humantag = (extra..((extra != "") ? " " : "")..((!middlename) ? human_firstname[random(0, human_firstname.Size() - 1)].." "..human_middlename[random(0, human_middlename.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]
+	humantag = (((extra == "random") ? rank : extra)..((extra != "") ? " " : "")..
+	((!middlename) ? human_firstname[random(0, human_firstname.Size() - 1)].." "..human_middlename[random(0, human_middlename.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]
 	: human_firstname[random(0, human_firstname.Size() - 1)].." "..human_lastname[random(0, human_lastname.Size() - 1)]).."\c-");
   }
   
