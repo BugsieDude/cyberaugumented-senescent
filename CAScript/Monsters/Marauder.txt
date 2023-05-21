@@ -59,7 +59,7 @@ Class DCY_Marauder : DCY_Plutonia
   {
   Health 800;
   Obituary "%o got hacked and sliced by the deranged Marauder.";
-  Tag "\c[u2]Marauder\c-";
+  Tag "\c[u2]The Marauder\c-";
   SeeSound "DCYMarauder/Sight";
   ActiveSound "DCYMarauder/Talk";
   PainSound "DCYMarauder/Pain";
@@ -81,6 +81,7 @@ Class DCY_Marauder : DCY_Plutonia
   DCYMonster.AnnounceSound "CMYSTERY";
   DCYMonster.AnnounceColor "u2";
   DCYMonster.AnnounceMessage "'Non compos mentis' in the sky.";
+  DCYMonster.ExtraPrefix "\c[u2]The Marauder -";
   }
   
   bool doggo;

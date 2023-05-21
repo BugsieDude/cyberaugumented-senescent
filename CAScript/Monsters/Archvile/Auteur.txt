@@ -23,8 +23,9 @@ Class DCY_Auteur : DCY_VileParent
   
   void A_TracerCheck()
   {
-	if (tracer)
+	if (target && tracer)
 	{
+		target.A_StopSound(10);
 		tracer.A_StopSound(10);
 		A_Remove(AAPTR_TRACER, RMVF_EVERYTHING, "DCY_AuteurVile");
 	}
