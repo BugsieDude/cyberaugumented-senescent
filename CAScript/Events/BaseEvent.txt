@@ -208,16 +208,6 @@ CLASS CyberaugumentedEventHandler : EventHandler
 	let d = DCY_Variables.Get();
 	plvl = d.dcylevel;
 	
-	if (level.time == 5)
-	{
-		//Debug
-		if (d)
-		{
-			Console.Printf("Boss Monster Count: %d", d.minibosscount);
-			Console.Printf("Superboss Monster Count: %d", d.superbosscount);
-		}
-	}
-	
 	if ((level.time > 20) && restartmus) { S_ChangeMusic("*"); restartmus = false; }
   }
   
