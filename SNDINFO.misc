@@ -34,6 +34,9 @@ Announce/CompletionistReward "Sounds/Announcements/dcy_completionist.ogg"
 dcy/mapdone "Sounds/Announcements/dcy_winwin.ogg"
 dcy/fail "Sounds/Announcements/dcy_youfuckedup.ogg"
 dcy/allover "Sounds/Announcements/dcy_over.ogg"
+$random dcy/nobossarea { dcy/nobossarea1 dcy/nobossarea2 }
+dcy/nobossarea1 "Sounds/Announcements/dcy_allbossesdefeated.ogg"
+dcy/nobossarea2 "Sounds/Announcements/dcy_allbossesdefeated2.ogg"
 
 //Enemy Announcements
 CMYSTERY "Sounds/Announcements/Minibosses/dcy_it_is_a_mystery.ogg"

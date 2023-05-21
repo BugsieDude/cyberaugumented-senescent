@@ -26,6 +26,7 @@ Class DCY_Overdemoniac : DCY_VileParent
   DamageFactor "Ice", 0.5;
   DCYMonster.GibType "DCY_GibletsLava";
   DCYMonster.ScientificName "Purissimum dominum argenteum";
+  +DCYMONSTER.DCYBOSS;
   }
   
   int phasecooldown;

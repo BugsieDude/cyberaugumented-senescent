@@ -27,6 +27,12 @@ Class DCY_ExoImp : DCY_Impe
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
   DCYMonster.ScientificName "Decidit caelum";
+  +DCYMONSTER.DCYBOSS;
+  DCYMonster.WD 1000;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "EXOIMPCHOIR";
+  DCYMonster.AnnounceColor "m8";
+  DCYMonster.AnnounceMessage "An angel has fallen.";
   }
   
   int emissile;
@@ -40,12 +46,6 @@ Class DCY_ExoImp : DCY_Impe
 	};
 
 	return messages[Random(0, messages.Size() - 1)];
-  }
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("An angel has fallen.", "EXOIMPCHOIR", "m8");
   }
   
   States

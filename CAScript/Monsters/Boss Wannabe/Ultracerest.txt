@@ -36,6 +36,12 @@ Class DCY_Ultracerest : DCY_Violator //stronk
   DeathSound "Ultracerest/Death";
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
+  +DCYMONSTER.DCYSUPERBOSS;
+  DCYMonster.WD 2000;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "WHATDONE";
+  DCYMonster.AnnounceColor "l5";
+  DCYMonster.AnnounceMessage "???: Sup, fuckface?!";
   }
   
   int dash;
@@ -56,12 +62,6 @@ Class DCY_Ultracerest : DCY_Violator //stronk
   }
   
   int attack;
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("???: Sup, fuckface!", "WHATDONE", "l5");
-  }
   
   States
   {

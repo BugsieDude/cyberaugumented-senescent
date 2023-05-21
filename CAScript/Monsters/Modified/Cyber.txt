@@ -25,6 +25,7 @@ Class DCY_Cybie : DCYMonster
 	Species "Cyberdemons";
 	DCYMonster.GibType "DCY_FatGiblets";
 	DCYMonster.ScientificName "Dux tormentorum";
+	+DCYMONSTER.DCYNORMALBOSS;
   }
   
   void A_Cyberstep(bool step)

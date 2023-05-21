@@ -19,6 +19,7 @@ Class DCY_Espouser : DCY_VileParent
   BloodType "DCY_SpiritBlood", "DCY_SpiritBlood", "DCY_SpiritBlood";
   BloodColor "White";
   DCYMonster.ScientificName "Anima fraudator";
+  +DCYMONSTER.DCYNORMALBOSS;
   }
   
   override void Tick()

@@ -107,7 +107,8 @@ Class DCY_ContraptionUpperBody : DCY_TheGiantEnemySpider
   PainSound "COH/Pain";
   DeathSound "COH/Die";
   DCYMonster.GibType "DCY_MechaGiblets";
-  DCYMonster.ScientificName "NO DATA";
+  DCYMonster.ScientificName "Possessed Warmachine";
+  +DCYMONSTER.DCYBOSS;
   }
   
   override void Tick()

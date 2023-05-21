@@ -47,6 +47,12 @@ OptionValue "DisableEnableAnnounce"
   1, "Stay Silent"
 }
 
+OptionValue "BossPiano"
+{
+  0, "Silence"
+  1, "Play"
+}
+
 OptionValue "EnableDisable2"
 {
   0, "Off"
@@ -80,6 +86,12 @@ OptionValue "Scienceyn"
   4, "Scientific Name only (Except for humans)"
 }
 
+OptionValue "DisableEnableAnnounce2"
+{
+  0, "Distance-based"
+  1, "Instant"
+}
+
 AddOptionMenu "OptionsMenu"
 {
 	StaticText " "
@@ -96,6 +108,7 @@ OptionMenu "DCYModOptionsMenu"
 	SubMenu "Visuals", "CyberaugumentedVisual"
 	StaticText ""
 	Option "Enemy Announcements", "cyberaugumented_noenemyannouncements", "DisableEnableAnnounce"
+	Option "Announcement Mode", "dcy_announcetype", "DisableEnableAnnounce2"
 	Option "Refrain Souls from the Kill Count",	"dcy_soulcount", "EnableDisable2"
 	Option "Refrain the Resurrected from the Kill Count",	"dcy_rescount", "EnableDisable2"
 	Option "Low Health Alarm", "cl_dcy_alarmsound", "EnableDisable2"
@@ -111,7 +124,7 @@ OptionMenu "DCYModOptionsMenu"
 	Option "All enemies' spawn type", "dcy_vanillaspawns", "EnemySpawnYN"
 	Option "Former Human Names", "dcy_humanname", "YesNo"
 	Option "Scientific Names for Demons", "dcy_scientificname", "Scienceyn"
-	
+	Option "Boss Piano Notification", "dcy_audiblebossnotif", "BossPiano"
 }
 
 OptionMenu "CyberaugumentedDashingMenu" 

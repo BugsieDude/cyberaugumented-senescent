@@ -28,6 +28,7 @@ Class DCY_Razortherion : DCY_CacoParent
   DamageFactor 0.9;
   DamageFactor "RazortherionDamage", 0.00;
   DCYMonster.ScientificName "Animae invidia";
+  +DCYMONSTER.DCYBOSS;
   }
   
   override void Tick()

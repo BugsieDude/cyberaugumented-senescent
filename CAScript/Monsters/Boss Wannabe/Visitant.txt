@@ -20,14 +20,18 @@ Class DCY_Visitant : DCY_CacoParent
   PainChance 10;
   Obituary "FACILIS DECENSUS AVERNO";
   DCYMonster.ScientificName "NO DATA";
+  +DCYMONSTER.DCYSUPERBOSS;
+  DCYMonster.WD 2000;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "ORBWARN0";
+  DCYMonster.AnnounceColor "x1";
+  DCYMonster.AnnounceMessage "Someone petitioned to put a huge fucking orb";
   }
   
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
 	A_SpawnItemEx("DCY_VisitantBody", flags: SXF_SETMASTER|SXF_NOCHECKPOSITION);
-	
-	ThingAnnounce("We stole your balls", "ORBWARN0", "x1");
   }
   
   override void Tick()

@@ -1,4 +1,5 @@
 server bool cyberaugumented_noenemyannouncements = false;
+server int dcy_announcetype = 0;
 server bool dcy_intro = true;
 
 server bool sv_allowdash = true;
@@ -35,6 +36,7 @@ user bool dcy_readsound = true;
 
 server bool dcy_tracker = true;
 server bool dcy_completionist = true;
+server bool dcy_audiblebossnotif = true;
 
 server int dcy_liquids = 1;
 noarchive nosave server int dcy_intermissioncut = 0;

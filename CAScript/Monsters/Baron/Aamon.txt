@@ -23,6 +23,7 @@ Class DCY_Aamon : DCY_HeckBaron
   Obituary "%o embraced the Aamon's gift.";
   HitObituary "%o is now cutted vegetables.";
   DCYMonster.ScientificName "Furentes bruta";
+  +DCYMONSTER.DCYBOSS;
   }
   
   int loop1;

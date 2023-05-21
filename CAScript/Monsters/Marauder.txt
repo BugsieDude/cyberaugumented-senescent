@@ -75,18 +75,18 @@ Class DCY_Marauder : DCY_Plutonia
   +DONTHARMSPECIES
   +DONTHARMCLASS
   PainChance 255;
+  +DCYMONSTER.DCYBOSS
+  DCYMonster.WD 1700;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "CMYSTERY";
+  DCYMonster.AnnounceColor "u2";
+  DCYMonster.AnnounceMessage "'Non compos mentis' in the sky.";
   }
   
   bool doggo;
   bool attackmode;
   int shieldm;
   bool rushing;
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("'Non compos mentis' in the sky.", "CMYSTERY", "u2");
-  }
   
   override void Tick()
   {

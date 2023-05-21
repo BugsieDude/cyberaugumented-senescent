@@ -17,10 +17,16 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
   BloodColor "Purple";
   DamageFactor "Arche", 0.00;
   BloodType "DCY_AndroidNeonFluid";
+  +DCYMONSTER.DCYSUPERBOSS;
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +BOSS
   +MISSILEMORE
+  DCYMonster.WD 3000;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "0RCHWARN";
+  DCYMonster.AnnounceColor "Ultramarine";
+  DCYMonster.AnnounceMessage "Get ready.";
   }
   
   int flashtimer;
@@ -31,7 +37,6 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
   override void PostBeginPlay()
   {
 	DCYMonster.PostBeginPlay();
-	ThingAnnounce("Get ready.", "0RCHWARN", "Ultramarine");
   }
   
   override int DamageMobj(Actor inflictor, Actor source, int damage, Name mod, int flags, double angle)

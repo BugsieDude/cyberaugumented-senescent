@@ -36,6 +36,12 @@ Class DCY_Emptiness : DCY_VileParent
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
   DCYMonster.ScientificName "!)_#)<D?@)$_#+W?Z";
+  +DCYMONSTER.DCYSUPERBOSS;
+  DCYMonster.WD 2000;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "Warp/Choir";
+  DCYMonster.AnnounceColor "w2";
+  DCYMonster.AnnounceMessage "Quietus has come.";
   }
   
   void A_EmptinessFaceTarget()
@@ -57,12 +63,6 @@ Class DCY_Emptiness : DCY_VileParent
 		A_Chase(null, null, CHF_NOPLAYACTIVE|CHF_NIGHTMAREFAST);
 	
 	A_FaceTarget();
-  }
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("Quietus has come.", "Warp/Choir", "w2");
   }
   
   override void Tick()

@@ -24,6 +24,7 @@ Class DCY_Curator : DCY_Violator //Not a boss, but something else
   +MISSILEEVENMORE
   +QUICKTORETALIATE
   +BOSS
+  +DCYMONSTER.DCYBOSS;
   }
   
   int death;

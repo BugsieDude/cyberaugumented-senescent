@@ -21,6 +21,7 @@ Class DCY_Crusader : DCY_Rev
   HitObituary "%o got sliced and diced by a demonic Crusader.";
   Obituary "%o beholded the demonic Crusader's bloodthirst.";
   PainChance 46;
+  +DCYMONSTER.DCYBOSS;
   }
   
   bool hasbuffed;

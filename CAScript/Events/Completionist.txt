@@ -1,7 +1,7 @@
 extend class CyberaugumentedEventHandler
 {
-	bool tmonster, tsecret, titem;
-	int mc, ic, sc, tm, ti, ts, t;
+	bool tmonster, tsecret, titem, tboss, tsuperboss;
+	int mc, ic, sc, bc, sbc, tm, ti, ts, tb, tsb, t, t2;
 	
 	override void PlayerEntered(PlayerEvent e)
 	{
@@ -11,11 +11,17 @@ extend class CyberaugumentedEventHandler
 	
 	void Tracker()
 	{
+		let d = DCY_Variables.Get();
+		
 		if (t >= 15)
 		{
 			if (!dcy_tracker) return;
 			mc = level.killed_monsters;
 			tm = level.total_monsters;
+			bc = d.minibossbeaten;
+			tb = d.minibosscount;
+			sbc = d.superbossbeaten;
+			tsb = d.superbosscount;
 			ic = level.found_items;
 			ti = level.total_items;
 			sc = level.found_secrets;
@@ -30,6 +36,21 @@ extend class CyberaugumentedEventHandler
 			if (mc >= tm && !tmonster) { TrackerMessage("monster"); tmonster = true; }
 			if (ic >= ti && !titem) { TrackerMessage("items"); titem = true; }
 			if (sc >= ts && !tsecret) { TrackerMessage("secrets"); tsecret = true; }
+			
+			if (bc < 2) return;
+			if (!tb && !tboss) return;
+			if (dcy_audiblebossnotif)
+			{
+				if (bc >= tb && !tboss)
+				{
+					t2++;
+					if (t2 > 100)
+					{
+						S_StartSound("dcy/nobossarea", 60, CHANF_UI, 1, 0);
+						tboss = true;
+					}
+				}
+			}
 		}
 		else t++;
 	}

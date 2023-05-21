@@ -32,6 +32,12 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
   DCYMonster.ScientificName "Timor aranearum";
+  +DCYMONSTER.DCYBOSS;
+  DCYMonster.WD 1300;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "SECOIN";
+  DCYMonster.AnnounceColor "y0";
+  DCYMonster.AnnounceMessage "FACE YOUR FEARS";
   }
   
   override void Tick()
@@ -61,12 +67,6 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   int spinloop;
   int missile;
   int ang;
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("FACE YOUR FEARS", "SECOIN", "y0");
-  }
   
   States
   {

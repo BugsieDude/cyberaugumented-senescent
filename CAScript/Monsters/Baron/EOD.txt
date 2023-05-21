@@ -23,6 +23,7 @@ Class DCY_EOD : DCY_HeckBaron
   PainSound "DCYEOD/Pain";
   DeathSound "DCYEOD/Death";
   DCYMonster.ScientificName "Dominus superbus";
+  +DCYMONSTER.DCYNORMALBOSS;
   }
   
   void A_EODChase()

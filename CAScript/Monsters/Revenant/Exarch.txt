@@ -15,6 +15,7 @@ Class DCY_AbyssalExarch : DCY_Rev
   PainSound "Exarch/Pain";
   DeathSound "Exarch/Death";
   Obituary "%o couldn't react before %h saw the Abyssal Exarch, resulting in a paradoxal fiasco.";
+  +DCYMONSTER.DCYNORMALBOSS;
   }
   
   bool dead;

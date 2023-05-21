@@ -76,6 +76,11 @@ Class DCY_Urozon : DCY_Pinke
   TeleFogSourceType "DCY_BossTeleport";
   TeleFogDestType "DCY_BossTeleport";
   DCYMonster.ScientificName "Insana risus";
+  +DCYMONSTER.DCYBOSS;
+  DCYMonster.CanAnnounce true;
+  DCYMonster.AnnounceSound "UROZONHASRISEN";
+  DCYMonster.AnnounceColor "Red";
+  DCYMonster.AnnounceMessage "To the pits with you.";
   }
   
   int missile;
@@ -102,12 +107,6 @@ Class DCY_Urozon : DCY_Pinke
 			}
 		}
 	}
-  }
-  
-  override void PostBeginPlay()
-  {
-	Super.PostBeginPlay();
-	ThingAnnounce("To the pits with you.", "UROZONHASRISEN", "Red");
   }
   
   States

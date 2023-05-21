@@ -59,13 +59,20 @@ CLASS DCYMonster : Actor abstract
 	TeleFogSourceType "DCY_EnemySourceTeleport";
 	TeleFogDestType "DCY_EnemyTeleport";
 	DamageFactor "SpawnerDeath", 0;
-	DCYMonster.WD 4000;
+	DCYMonster.WD 1000;
 	DCYMonster.ExtraPrefix "";
+	DCYMonster.CanAnnounce false;
   }
   
-  int warningdistance;
+  double warningdistance;
   bool bossfound;
+  bool bosscanannounce;
   property WD : warningdistance;
+  string bosssnd, bossmsg, bosscol;
+  property CanAnnounce : bosscanannounce;
+  property AnnounceSound : bosssnd;
+  property AnnounceMessage : bossmsg;
+  property AnnounceColor : bosscol;
   
   private int b;
   flagdef dcynormalBoss : b, 1;
@@ -103,13 +110,17 @@ CLASS DCYMonster : Actor abstract
 		case 3: case 4: A_CheckForTag(); break;
 	}
 	
+	if (!cyberaugumented_noenemyannouncements && bosscanannounce && dcy_announcetype == 0 && !bossfound)
+		if (DCY_EffectRange(warningdistance)) { ThingAnnounce(bossmsg, bosssnd, bosscol); bossfound = true; }
+	if (cyberaugumented_noenemyannouncements) bossfound = true;
+	
 	if (!particlefire)
 		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
   }
   
   bool A_CheckForTag()
   {
-	if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners" || self is 'DCY_BionicZombie')
+	if (species == "Former Humans" || species == "Sergeants" || species == "Chaingunners" || self is 'DCY_BionicZombie' || self is 'DCY_ArcheSpiritwalker')
 	{
 		SetTag((dcy_humanname && humantag != "") ? humantag : oldtag);
 		return true;
@@ -124,6 +135,10 @@ CLASS DCYMonster : Actor abstract
 	sfxdistance = 1500;
 	
 	oldtag = GetTag();
+	
+	if ((!cyberaugumented_noenemyannouncements && bosscanannounce) && dcy_announcetype == 1 && !bossfound)
+		{ ThingAnnounce(bossmsg, bosssnd, bosscol); bossfound = true; }
+	else if ((cyberaugumented_noenemyannouncements && bosscanannounce) && dcy_announcetype == 1 && !bossfound) bossfound = true;
 	
 	let x = DCY_Variables.Get();
 	

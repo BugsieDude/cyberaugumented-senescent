@@ -19,6 +19,7 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
   Speed 4;
   Obituary "%o embraced the void.";
   DCYMonster.ScientificName "NO DATA";
+  +DCYMONSTER.DCYNORMALBOSS;
   }
   
   void A_ResetSpeed()
