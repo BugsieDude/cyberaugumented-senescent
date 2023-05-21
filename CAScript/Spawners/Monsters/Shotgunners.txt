@@ -26,7 +26,7 @@ Class DCY_BossSG : DCY_Spawner
   Default
   {
   DropItem "DCY_ShotgunZombe", 0, 255;
-  DropItem "DCY_ArcheSpiritwalker", 28, 45;
-  DropItem "DCY_Marauder", 100, 45;
+  DropItem "DCY_ArcheSpiritwalker", 28, 35;
+  DropItem "DCY_Marauder", 100, 35;
   }
 }

@@ -12,6 +12,5 @@ Class DCY_MadMartian : DCY_Spawner
   DropItem "DCY_Espouser", 28, 20;
   //DropItem "DCY_Prestidigitator", 45, 6;
   DropItem "DCY_Emptiness", 15, 1;
-  DropItem "DCY_Emptiness", 55, 1;
   }
 }

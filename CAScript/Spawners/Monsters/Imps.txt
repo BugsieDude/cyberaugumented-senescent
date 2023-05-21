@@ -29,7 +29,7 @@ Class DCY_RareImp : DCY_Spawner
   DropItem "DCY_Anathema", 15, 30;
   DropItem "DCY_SubzeroUmbrage", 20, 25;
   DropItem "DCY_Manes", 11, 20;
-  DropItem "DCY_BossImp", 17, 8;
+  DropItem "DCY_BossImp", 17, 7;
   }
 }
 
@@ -40,9 +40,9 @@ Class DCY_BossImp : DCY_Spawner
   Default
   {
   DropItem "DCY_Dastard", 0, 255;
-  DropItem "DCY_Curator", 20, 70;
-  DropItem "DCY_Eavesdropper", 17, 80;
-  DropItem "DCY_ExoImp", 25, 50;
+  DropItem "DCY_Curator", 20, 55;
+  DropItem "DCY_Eavesdropper", 17, 60;
+  DropItem "DCY_ExoImp", 25, 36;
   DropItem "DCY_Ultracerest", 50, 10;
   }
 }

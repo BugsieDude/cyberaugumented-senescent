@@ -111,7 +111,7 @@ CLASS DCYMonster : Actor abstract
 	}
 	
 	if (!cyberaugumented_noenemyannouncements && bosscanannounce && dcy_announcetype == 0 && !bossfound)
-		if (DCY_EffectRange(warningdistance)) { ThingAnnounce(bossmsg, bosssnd, bosscol); bossfound = true; }
+		if (DCY_EffectRange(warningdistance * 1.65)) { ThingAnnounce(bossmsg, bosssnd, bosscol); bossfound = true; }
 	if (cyberaugumented_noenemyannouncements) bossfound = true;
 	
 	if (!particlefire)
