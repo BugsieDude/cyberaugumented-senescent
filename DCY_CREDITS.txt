@@ -163,6 +163,8 @@ ravage - Sprites
 osjclatchford - Sprites
 Skeleton - Sprites
 ItsNatureToDie - Sprites
+Enjay - Sprites + Switch sound code
+DavidRaven - Sprites
 Orka - Sprites
 DimosHunter - Sprites
 Tango Gameworks - Sounds
@@ -220,7 +222,7 @@ Funcom - Sounds
 Running with Scissors (Postal) - Sounds
 ShotgunBastard - Sounds
 Bitter Heretic (Lagi) - Sprites
-Data East - Quit Background
+Data East - Quit Background + Sounds
 SEGA - Quit Background
 Abysswalker - Sprites
 Binisfox (Stardust Arena) - Sounds

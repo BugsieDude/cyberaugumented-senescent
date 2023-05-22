@@ -106,7 +106,7 @@
    scr: 7000 exp: 80      type: baron         filter: "DCY_GehennaChasseur";
    scr: 7000 exp: 80      type: baron         filter: "DCY_WastelandInfiltrator";
    scr: 7000 exp: 80      type: baron         filter: "DCY_Utrotrion";
-   scr: 9000 exp: 120      type: baron        filter: "DCY_ArmageddonPredominator";
+   scr: 9000 exp: 120      type: baron        filter: "DCY_Divestor";
    scr: 9000 exp: 120      type: baron        filter: "DCY_EOD";
    scr: 9000 exp: 120      type: baron        filter: "DCY_Aamon";
    scr: 14000 exp: 180     type: baron        filter: "DCY_Calignosity";
@@ -157,12 +157,15 @@
    scr: 28000 exp: 570    type: cyberdemon    filter: "DCY_Emptiness";
    
    scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_NavyTerminator";
+   scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_AvernusGuard";
+   scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_Trounce";
    scr: 30000 exp: 570    type: cyberdemon    filter: "DCY_Arbiter";
    scr: 40000 exp: 660    type: cyberdemon    filter: "DCY_ChoricoNepheloma";
    
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_TheGiantEnemySpider";
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_Executioner";
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_Mindmonarch";
+   scr: 28000 exp: 560    type: mastermind    filter: "DCY_Discerner";
    scr: 28000 exp: 560    type: mastermind    filter: "DCY_ContraptionOfHell";
    scr: 0 exp: 0    type: mastermind    filter: "DCY_ContraptionUpperBody";
 }

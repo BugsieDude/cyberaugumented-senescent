@@ -297,9 +297,9 @@ Class DCyb_HUD : BaseStatusBar
 	vector2 bpos = (-32 + xx, 30 + yy);
 	
 	DrawImage("CHUDDEST", bpos, DI_ITEM_LEFT_BOTTOM);
-	DrawString(dcyb_font, ((CY_GetCVar("cl_dcy_hudinfo")) ? level.mapname..": " : "")..level.levelname, bpos + (-5, -11), flags: DI_TEXT_ALIGN_RIGHT);
+	DrawString(dcyb_font, ((CY_GetCVar("cl_dcy_mapinfo")) ? level.mapname..": " : "")..level.levelname, bpos + (-5, -11), flags: DI_TEXT_ALIGN_RIGHT);
   }
-  
+	
   virtual void CA_DrawInfo()
   {
 	vector2 bpos = (-26 + xx, 36 + yy);
@@ -309,6 +309,17 @@ Class DCyb_HUD : BaseStatusBar
 		DrawString(dcyb_font3, "\c[q7]".."Monsters: ".."\c-"..(!(level.total_monsters) ? "N/A" : (level.killed_monsters.." / "..level.total_monsters)), bpos, flags: DI_TEXT_ALIGN_RIGHT);
 		DrawString(dcyb_font3, "\c[m4]".."Items: ".."\c-"..(!(level.total_items) ? "N/A" : (level.found_items.." / "..level.total_items)), bpos + (0, 10), flags: DI_TEXT_ALIGN_RIGHT);
 		DrawString(dcyb_font3, "\c[z2]".."Secrets: ".."\c-"..(!(level.total_secrets) ? "N/A" : (level.found_secrets.." / "..level.total_secrets)), bpos + (0, 20), flags: DI_TEXT_ALIGN_RIGHT);
+	}
+	
+	if (CY_GetCVar("cl_dcy_hudtime"))
+	{
+		let s = Thinker.Tics2Seconds(level.maptime);
+		let t = String.Format("%02i:%02i:%02i", s / 3600, (s % 3600) / 60, s % 60);
+		let s2 = Thinker.Tics2Seconds(level.totaltime);
+		let tt = String.Format("%02i:%02i:%02i", s2 / 3600, (s2 % 3600) / 60, s2 % 60);
+		
+		DrawString(dcyb_font3, "\c[v7]".."Time: ".."\c-"..t, bpos + (0, (0 + ((CY_GetCVar("cl_dcy_hudinfo")) ? 30 : 0))), flags: DI_TEXT_ALIGN_RIGHT);
+		if (CY_GetCVar("cl_dcy_hudtotaltime")) DrawString(dcyb_font3, "\c[v7]".."Total Time: ".."\c-"..tt, bpos + (0, (10 + ((CY_GetCVar("cl_dcy_hudinfo")) ? 30 : 0))), flags: DI_TEXT_ALIGN_RIGHT);
 	}
   }
   
