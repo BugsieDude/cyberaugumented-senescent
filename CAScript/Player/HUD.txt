@@ -22,7 +22,7 @@ Class DCyb_HUD : BaseStatusBar
   
   string tn;
   
-  HUDFont dcyb_font, dcyb_font2;
+  HUDFont dcyb_font, dcyb_font2, dcyb_font3;
   InventoryBarState dcyb_diparms;
   
   enum DCyb_BarStates
@@ -54,7 +54,9 @@ Class DCyb_HUD : BaseStatusBar
 	dcyb_font = HUDFont.Create(fnt);
     fnt = "SMALLFONT";
 	dcyb_font2 = HUDFont.Create(fnt, fnt.GetCharWidth("0"), true);
-
+	Font smallfnt = "TINYDCYFONT";
+	dcyb_font3 = HUDFont.Create(smallfnt);
+	
     dcyb_diparms = InventoryBarState.Create(dcyb_font, boxgfx: "CHUDITEM", selgfx: "CHUDITEH", leftgfx: "CHUDARR1", rightgfx: "CHUDARL1");
 	
 	DCyb_HUDSet();
@@ -69,6 +71,12 @@ Class DCyb_HUD : BaseStatusBar
 	{
 		BeginHUD(resW : CY_RESW, resH : CY_RESH);
 		CA_DrawHUD();
+	}
+	
+	if(state == HUD_StatusBar)
+	{
+		CA_DrawXYZLocation();
+		CA_DrawInfo();
 	}
   }
   
@@ -268,23 +276,51 @@ Class DCyb_HUD : BaseStatusBar
 	if (lvl && lvl2 && g) DrawString(dcyb_font, "\c[p7]"..FormatNumber(g, 0, 9999), (apos.x + 78, apos.y + 3), flags: DI_TEXT_ALIGN_LEFT);
   }
   
+  virtual void CA_DrawXYZLocation()
+  {
+	if (!CY_GetCVar("cl_dcy_position")) return;
+	
+	vector2 apos = (32 + xx, -97 + yy);
+	double px, py, pz;
+	
+	px = CPlayer.mo.x;
+	py = CPlayer.mo.y;
+	pz = CPlayer.mo.z;
+	
+	DrawString(dcyb_font, String.format("X: %f", px), (apos.x, apos.y - 24), flags: DI_TEXT_ALIGN_LEFT, alpha: 0.5);
+	DrawString(dcyb_font, String.format("Y: %f", py), (apos.x, apos.y - 12), flags: DI_TEXT_ALIGN_LEFT, alpha: 0.5);
+	DrawString(dcyb_font, String.format("Z: %f", pz), (apos.x, apos.y), flags: DI_TEXT_ALIGN_LEFT, alpha: 0.5);
+  }
+  
   virtual void CA_DrawDestination()
   {
 	vector2 bpos = (-32 + xx, 30 + yy);
 	
 	DrawImage("CHUDDEST", bpos, DI_ITEM_LEFT_BOTTOM);
-	DrawString(dcyb_font, level.levelname, bpos + (-5, -11), flags: DI_TEXT_ALIGN_RIGHT);
+	DrawString(dcyb_font, ((CY_GetCVar("cl_dcy_hudinfo")) ? level.mapname..": " : "")..level.levelname, bpos + (-5, -11), flags: DI_TEXT_ALIGN_RIGHT);
   }
   
+  virtual void CA_DrawInfo()
+  {
+	vector2 bpos = (-26 + xx, 36 + yy);
+	
+	if (CY_GetCVar("cl_dcy_hudinfo"))
+	{
+		DrawString(dcyb_font3, "\c[q7]".."Monsters: ".."\c-"..(!(level.total_monsters) ? "N/A" : (level.killed_monsters.." / "..level.total_monsters)), bpos, flags: DI_TEXT_ALIGN_RIGHT);
+		DrawString(dcyb_font3, "\c[m4]".."Items: ".."\c-"..(!(level.total_items) ? "N/A" : (level.found_items.." / "..level.total_items)), bpos + (0, 10), flags: DI_TEXT_ALIGN_RIGHT);
+		DrawString(dcyb_font3, "\c[z2]".."Secrets: ".."\c-"..(!(level.total_secrets) ? "N/A" : (level.found_secrets.." / "..level.total_secrets)), bpos + (0, 20), flags: DI_TEXT_ALIGN_RIGHT);
+	}
+  }
+  
+  override void DrawAutomapHUD( double ticFrac ) { }
+	
   protected void CA_DrawHUD()
   {
 	CA_DrawKeys();
 	CA_DrawInventory();
 	
 	if (isInventoryBarVisible())
-	{
-	  DCY_DrawInvBar(dcyb_diparms, (0, 0), 6, DI_ITEM_CENTER|DI_SCREEN_CENTER|DI_DRAWCURSORFIRST|DI_ALTICONFIRST|DI_SKIPSPAWN);
-	}
+		DCY_DrawInvBar(dcyb_diparms, (0, 0), 6, DI_ITEM_CENTER|DI_SCREEN_CENTER|DI_DRAWCURSORFIRST|DI_ALTICONFIRST|DI_SKIPSPAWN);
 	
 	CA_DrawStatBars();
 	CA_DrawAmmo();
@@ -352,7 +388,7 @@ Class DCyb_HUD : BaseStatusBar
 	if ((CPlayer.health > 0) && (CPlayer.health < 10) && CY_GetCVar("cl_dcy_alarmsound"))
 	{
 		if ((level.time % (36 * i_timescale)) == 0)
-			S_StartSound("slayer/lowhealth", 14, volume: 0.5);
+			S_StartSound("slayer/lowhealth", 14, volume: 0.375);
 	}
 			
 	if (!CY_GetCVar("cl_hudshake")) { xx = 0; yy = 0; }

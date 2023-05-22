@@ -31,6 +31,11 @@ user int cl_effectdistance = 1000;
 user bool cl_dcy_mapname = true;
 user bool cl_dcy_hud_level = true;
 user bool cl_dcy_alarmsound = true;
+user bool cl_dcy_mapinfo = true;
+user bool cl_dcy_hudinfo = true;
+user bool cl_dcy_hudtime = true;
+user bool cl_dcy_hudtotaltime = true;
+user bool cl_dcy_position = true;
 
 user bool dcy_readsound = true;
 

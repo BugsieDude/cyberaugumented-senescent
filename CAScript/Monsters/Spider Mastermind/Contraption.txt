@@ -11,7 +11,7 @@ Class DCY_ContraptionOfHell : DCY_TheGiantEnemySpider
   +NODAMAGE
   Radius 64;
   Height 100;
-  Tag "uhm";
+  Tag "Contraption";
   DamageFactor 0;
   Scale 1.6;
   Speed 10;
