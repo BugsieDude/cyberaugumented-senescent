@@ -289,12 +289,12 @@ CLASS DCYMonster : Actor abstract
   
   static const string human_extraname[] =
   {
-	"Pvt.", "Lcpl.", "Cpl.", "Dr.", "Mr.", "WO1.", "CW2.", "CW3.", "CW4.", "CW5.", "Lt.", "2nd Lt.", "1st Lt.", "Lil", "", "", ""
+	"Pvt.", "Lcpl.", "Cpl.", "Dr.", "Mr.", "WO1.", "CW2.", "CW3.", "CW4.", "CW5.", "Lt.", "2ndLt.", "1stLt.", "Lil", "", "", ""
   };
   
   static const string human_extranamesg[] =
   {
-	"Sgt.", "SSgt.", "Col.", "LtCol.", "Mr.", "Pvt.", "CW2.", "CW3.", "CW4.", "CW5.", "Dr.", "2nd Lt.", "1st Lt.", "SgtMa.", "Major",
+	"Sgt.", "SSgt.", "Col.", "LtCol.", "Mr.", "Pvt.", "CW2.", "CW3.", "CW4.", "CW5.", "Dr.", "2ndLt.", "1stLt.", "SgtMa.", "Major",
 	"MSgt.", "GySgt.", "MGySg.", "", "", ""
   };
   
@@ -310,7 +310,7 @@ CLASS DCYMonster : Actor abstract
 	"Gabby", "Haiden", "Eric", "Erick", "Lynn", "Spencer", "Archie", "Isaac", "Zach", "Frank", "Cayden", "Joel", "Lee", "Sammy", "Axel", "Eduardo", "Maia", "Sam",
 	"Mulweri", "Lavani", "Dwayne", "Nathan", "Johnathan", "Joshua", "Andres", "Avery", "Max", "Otonia", "Ctimene", "Dylan", "Anton", "Vladimir", "Tisha", "Aaron",
 	"Alfred", "Charlie", "Will", "Peter", "Tom", "Elmer", "Jesse", "Grover", "Ernest", "Eugene", "Francis", "Edgar", "Otto", "Jack", "Luther", "Patrick",
-	"Harvey", "William", "Achilles", "Alexander", "Gianna", "Giovanna", "Grant", "Arushi", "Maxwell", "Athena", "Chloris", "Mark", "Dzmitry", "Dmitri", "Adetokunbo",
+	"Harvey", "William", "Achilles", "Alexander", "Gianna", "Gianni", "Giovanna", "Grant", "Arushi", "Maxwell", "Athena", "Chloris", "Mark", "Dzmitry", "Dmitri", "Adetokunbo",
 	"Terminus", "Brooke", "Amery", "Burt", "Tommy", "Jane", "John", "Philbert", "Fortune", "Alexandra", "Mirela", "Fawziya", "Sasha", "Yalcin", "Metis", "Faysal", "Ferdo", "Vulcan", 
 	"Vayu", "Mokosh", "Pontus", "Lycus", "Kalevi", "Brighid", "Venus", "Nanaya", "Dagda", "Hermes", "Lir", "Karme", "Polyhymnia", "Maxie", "Marilena", "Ilean", "Shon", "Lucius", "Cannon", 
 	"Ryker", "Kira", "Khloe", "Vinny", "Petre", "Wisteria", "Florina", "Lenora", "Solomon", "Mabel", "Celinda", "Annette", "Derek", "Averill", "Shelagh", "Charlene", "Joi", "Gwendolyn", 
@@ -321,7 +321,9 @@ CLASS DCYMonster : Actor abstract
 	"Minoru", "Chihiro", "Shinobu", "Hibiki", "Yoshi", "Rin", "Laverne", "Daly", "Kendal", "Jessy", "Leighton", "Casey", "Logan", "Sage", "Kasey", "Leighton", "Reign", "Eddie", "Karsyn", "Ryley", 
 	"Berny", "Dene", "Austyn", "Alexis", "Leighton", "Chandler", "Everest", "Allison", "Alexandros", "Pelias", "Damocles", "Megaera", "Aether", "Rheie", "Nike", "Alastor", "Asteria", "Hyperion", 
 	"Afina", "Acantha", "Glaukos", "Billie-Jo", "Naamah", "Sweetsmile", "AutumnCinder", "Iron-Hit", "Dolly-Leigh", "Gentlecheeks", "Olyvya", "Cindy-Dawn", "Bubba", "Karlee", "Stone", "Masher", 
-	"Grapple", "Atomic-Crusher", "Billie-Rae", "Peaceflow"
+	"Grapple", "Atomic-Crusher", "Billie-Rae", "Peaceflow", "Vance", "Faust", "Conlaoch", "Coatlicue", "Jody", "Shaw", "Billie", "Robinson", "Jackie", "Johnston", "Danny", "Doyle", "Jackie",
+	"Morris", "Rowan", "Manning", "Kris", "Sullivan", "Kerry", "Pace", "Brice", "Bailey", "Reed", "Mendez", "Gwen", "Harley", "Barrett", "Jo", "Hunter", "Sammy", "Graham", "Scott", "Mccoy",
+	"Kiran", "Joyce", "Raylee", "Lowe", "Bret", "Guerra"
   };
   
   static const string human_middlename[] =
