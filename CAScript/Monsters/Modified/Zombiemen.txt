@@ -19,6 +19,7 @@ Class DCY_ZombeParent : DCYMonster
   Species "Former Humans";
   DCYMonster.ScientificName "Homo sapien";
   DCYMonster.ExtraPrefix "random";
+  DCYMonster.canIFallback true;
   +DOHARMSPECIES;
   }
   
@@ -51,11 +52,19 @@ Class DCY_ZombeParent : DCYMonster
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	POSP AABBCCDD 3 A_Chase();
+	POSP AABBCCDD 3 DCY_Chase();
 	Loop;
+  Fallback:
+	POSP DDCCBBAA 3
+	{
+		A_Recoil(2);
+		A_FaceTarget();
+	}
+	Goto See;
   Missile:
-	POSP E 0 A_Jump(50, "Run");
-	POSP E 0 A_JumpIfCloser(256, "BackUp");
+	POSP E 0 A_CheckLOFRanged("Gun", "DodgeMode");
+	Goto Gun;
+  Gun:
 	POSP E 10 A_FaceTarget();
 	POSP F 4 Bright
 	{
@@ -65,12 +74,12 @@ Class DCY_ZombeParent : DCYMonster
 	}
 	POSP E 12;
 	Goto See;
+  DodgeMode:
+	POSP E 0 A_Jump(50, "Run");
+	POSP E 0 A_JumpIfCloser(256, "BackUp");
+	Goto Fallback;
   Run:
-	POSP AABBCCDD 2
-	{
-		A_Chase(null, null);
-		A_Chase(null, null);
-	}
+	POSP AABBCCDD 2 DCY_Chase(null, null, CHF_NOPLAYACTIVE, 4);
 	Goto Missile+2;
   BackUp:
 	POSP E 12

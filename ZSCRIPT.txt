@@ -10,6 +10,7 @@ Version "4.10.0"
 #include "CAScript/Player/NewPlayer.txt"
 
 //Misc.
+#include "CAScript/Mathematics.txt"
 #include "CAScript/AABB.txt"
 #include "CAScript/Mindful.txt"
 #include "CAScript/Varietastic.txt"

@@ -283,9 +283,9 @@ Class DCyb_HUD : BaseStatusBar
 	vector2 apos = (32 + xx, -97 + yy);
 	double px, py, pz;
 	
-	px = CPlayer.mo.x;
-	py = CPlayer.mo.y;
-	pz = CPlayer.mo.z;
+	px = CPlayer.mo.pos.x;
+	py = CPlayer.mo.pos.y;
+	pz = CPlayer.mo.pos.z;
 	
 	DrawString(dcyb_font, String.format("X: %f", px), (apos.x, apos.y - 24), flags: DI_TEXT_ALIGN_LEFT, alpha: 0.5);
 	DrawString(dcyb_font, String.format("Y: %f", py), (apos.x, apos.y - 12), flags: DI_TEXT_ALIGN_LEFT, alpha: 0.5);
