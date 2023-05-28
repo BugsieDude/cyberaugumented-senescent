@@ -47,12 +47,15 @@ CLASS DCYMonster : Actor abstract
 {
   mixin DCY_Effects;
   double sfxdistance;
+  bool smoothm;
   
   Default
   {
 	Monster;
 	+FLOORCLIP;
 	+ROLLCENTER;
+	+ROLLSPRITE;
+	+SLIDESONWALLS;
 	DCYMonster.TagColor "j";
 	DCYMonster.GibType "DCY_Giblets";
 	Tag "Monster";
@@ -141,7 +144,7 @@ CLASS DCYMonster : Actor abstract
 	
   //The main custom A_Chase function
 	
-  virtual void DCY_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0, double recoil = 0.15)
+  virtual void DCY_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0, double recoil = 0.00)
   {
 	if (willBeLooking) return;
 	
@@ -381,6 +384,8 @@ CLASS DCYMonster : Actor abstract
 	
 	if (!particlefire)
 		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
+	
+	smoothm = dcy_smoothmovement;
   }
   
   bool A_CheckForTag()

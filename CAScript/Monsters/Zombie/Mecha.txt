@@ -90,7 +90,8 @@ Class DCY_Huntsman : DCY_ZombeParent
 	RFTR W 10 A_CustomMeleeAttack(random(10, 15), "Fist/PunchEntity", "");
 	Goto Missile+1;
   Pain:
-    RFTR G 5 { roll = 0; A_Pain(); }
+	RFTR G 4 { roll = 0; }
+    RFTR G 4 A_Pain();
 	Goto See;
   Death:
     RFTR H 2 { roll = 0; if (!random(0, 1)) SetStateLabel("Death1"); }

@@ -59,6 +59,8 @@ server int dcy_scientificname = 0;
 server bool dcy_gibbing = true;
 server int dcy_gibtime = 2000;
 
+server bool dcy_smoothmovement = true;
+
 //Replacements
 nosave server bool dcy_monsters = true;
 nosave server bool dcy_props = true;

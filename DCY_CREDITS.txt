@@ -234,6 +234,7 @@ Housemarque (Returnal) - Sounds
 Vigil Games (Darksiders II) - Sounds
 590a1shooter - Sounds
 Sebabdukeboss20 - Sprites
+popguy12 - Enemy AI Library guy
 
 Who even made the BFG 10k General sprites in LCA? I swear complex addon creators forget how to credit stuff
 help (I'd just credit Skulltag)
