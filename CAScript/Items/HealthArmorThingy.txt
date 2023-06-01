@@ -71,15 +71,15 @@ Class DCY_GreenArmorThing : GreenArmor
   Default
   {
   Inventory.PickupSound "GreenArmor/Pickup";
-  Inventory.PickupMessage "Picked up the \c[Green]Common Armor Chestplate.\c- (100+ Armor)";
-  Tag "Common Armor Chestplate";
+  Inventory.PickupMessage "Picked up the \c[Green]Safeguard Vest\c- (100+ Armor)";
+  Tag "Safeguard Chestplate";
   }
   
   States
   {
   Spawn:
-    ARM1 A 25;
-	ARM1 BCB 5;
+    D_A1 A 25;
+	D_A1 BCB 5;
     Loop;
   }
 }
@@ -89,15 +89,15 @@ Class DCY_BlueArmorThing : BlueArmor
   Default
   {
   Inventory.PickupSound "BlueArmor/Pickup";
-  Inventory.PickupMessage "Picked up the \c[Sapphire]Defensive Chestplate.\c- (200+ Armor)";
-  Tag "Defensive Chestplate";
+  Inventory.PickupMessage "Picked up the \c[Sapphire]Shatterproof Chestplate.\c- (200+ Armor)";
+  Tag "Shatterproof Chestplate";
   }
   
   States
   {
   Spawn:
-    ARM2 A 25;
-	ARM2 BCB 7;
+    D_A2 A 25;
+	D_A2 BCB 7;
     Loop;
   }
 }
@@ -114,7 +114,7 @@ Class DCY_HiResArmorThing : BlueArmor
   DamageFactor "Lunacy", 0.75;
   Armor.SavePercent 80;
   Armor.SaveAmount 300;
-  Inventory.Icon "ARM3A0";
+  Inventory.Icon "D_A3A0";
   Inventory.PickupMessage "Picked up the \c[Red]Defiance Chestplate.\c- (300+ Armor)";
   Tag "Defiance Chestplate";
   }
@@ -122,8 +122,8 @@ Class DCY_HiResArmorThing : BlueArmor
   States
   {
   Spawn:
-    ARM3 A 25;
-	ARM3 BCB 7;
+    D_A3 A 25;
+	D_A3 BCB 7;
     Loop;
   }
 }

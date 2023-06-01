@@ -327,23 +327,14 @@ Class DCY_RadiationSymbol : DCY_Powerup
   Default
   {
   -FLOATBOB
-  +BRIGHT
-  +VISIBILITYPULSE
-  RenderStyle "Add";
+  RenderStyle "Normal";
   Alpha 1.0;
   Scale 1.1;
   Inventory.PickupSound "RadiationSphere/PickedUp";
   Inventory.PickupMessage "\c[Green]You feel protection against most hazards.\c-";
-  Tag "Hazard Protection";
+  Tag "Anti-Hazard Boots";
   DCY_Powerup.EffectColor1 "004a0b";
   DCY_Powerup.LightRadius 30;
-  }
-  
-  override void Tick()
-  {
-	super.Tick();
-	if (DCY_EffectDistance(1000) && !level.isFrozen() && !(level.time % 2))
-		A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 150, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.15, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
   }
   
   States
@@ -357,6 +348,10 @@ Class DCY_RadiationSymbol : DCY_Powerup
   {
 	Owner.A_SetBlend("Green", 0.6, 30, "Yellow");
 	Owner.GiveInventory("DCY_HazardProtection", 1);
+	
+	for (int i = 0; i < 360; i += random(10, 45))
+		owner.A_SpawnParticleEx(effectcolor, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 80, 150, 0, frandom(20, -20), frandom(-20, 20), frandom(-20, 20), frandom(-0.1, 0.1) + 7, frandom(-0.1, 0.1), frandom(0.1, -0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(-0.1, 0.1), startalphaf: 0.15, fadestepf: 0.005, sizestep: 0.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+	
 	return true;
   }
 }
