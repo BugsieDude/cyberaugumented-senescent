@@ -27,7 +27,7 @@ Class DCY_Vandal : DCY_Plutonia
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	DCHR AABBCCDD 2 A_Chase();
+	DCHR AABBCCDD 2 DCY_Chase();
 	Loop;
   Missile:
 	DCHR E 18 A_FaceTarget();

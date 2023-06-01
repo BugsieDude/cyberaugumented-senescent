@@ -20,6 +20,7 @@ Class DCY_BionicZombie : DCY_ZombeParent
   BloodColor "2ba0ff";
   DCYMonster.GibType "DCY_GibletsAdd";
   DCYMonster.ExtraPrefix "\c[Red]";
+  DCYMonster.FootStepSound "";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -70,11 +71,11 @@ Class DCY_BionicZombie : DCY_ZombeParent
   See:
 	UCYQ A 0 A_JumpIfInventory("DCY_BionicShieldInventory", 10, "EnableShield");
 	UCYQ A 0 A_JumpIf(shield <= 0, "EnableShield");
-	UCYQ AA 4 A_Chase();
+	UCYQ AA 4 DCY_Chase();
 	UCYQ A 0 A_StartSound("Monsters/NBWalk");
-	UCYQ BBCC 4 A_Chase();
+	UCYQ BBCC 4 DCY_Chase();
 	UCYQ A 0 A_StartSound("Monsters/NBWalk");
-	UCYQ DD 4 A_Chase();
+	UCYQ DD 4 DCY_Chase();
 	Loop;
   EnableShield:
 	UCYQ E 10 A_StartSound("UpgradedMechaZombie/Attack", CHAN_VOICE);

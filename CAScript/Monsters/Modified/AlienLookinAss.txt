@@ -25,6 +25,7 @@ Class DCY_VileParent : DCYMonster
 	Species "Archviles";
 	DCYMonster.GibType "DCY_ShorterGiblets";
 	DCYMonster.ScientificName "Alienata";
+	DCYMonster.FootstepFrames 0, 3, 6;
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

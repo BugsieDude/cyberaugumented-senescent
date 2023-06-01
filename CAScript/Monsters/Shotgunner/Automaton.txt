@@ -51,7 +51,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	AJLS AAABBBCCCDDD 3 A_Chase();
+	AJLS AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Missile:
 	AJLS A 0

@@ -66,6 +66,15 @@ dashw1 "Sounds/DCY SFX/dcy_cyberpinky_step1.ogg"
 dashw2 "Sounds/DCY SFX/dcy_cyberpinky_step2.ogg"
 dashw3 "Sounds/DCY SFX/dcy_cyberpinky_step3.ogg"
 
+$random dcyhuman/walk { humwalk1 humwalk2 humwalk3 humwalk4 humwalk5 humwalk6 humwalk7 }
+humwalk1 "Sounds/Footsteps/dcy_human_footstep1.ogg"
+humwalk2 "Sounds/Footsteps/dcy_human_footstep2.ogg"
+humwalk3 "Sounds/Footsteps/dcy_human_footstep3.ogg"
+humwalk4 "Sounds/Footsteps/dcy_human_footstep4.ogg"
+humwalk5 "Sounds/Footsteps/dcy_human_footstep5.ogg"
+humwalk6 "Sounds/Footsteps/dcy_human_footstep6.ogg"
+humwalk7 "Sounds/Footsteps/dcy_human_footstep7.ogg"
+
 $random WastelandInfiltrator/Step { CYHOOF1 CYHOOF2 CYHOOF3 CYHOOF4 CYHOOF5 CYHOOF6 }
 CYHOOF1 "Sounds/DCY SFX/dcy_cyhoof1.ogg"
 CYHOOF2 "Sounds/DCY SFX/dcy_cyhoof2.ogg"

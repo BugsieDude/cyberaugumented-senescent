@@ -30,7 +30,7 @@ Class DCY_Anathema : DCY_Impe
   See:
 	SAIM AAAABBBBCCCCDDDD 2
 	{
-		A_Chase("Missile", "Missile");
+		DCY_Chase("Missile", "Missile");
 		Return A_Jump(10, "Dodge");
 	}
 	Loop;
@@ -38,7 +38,7 @@ Class DCY_Anathema : DCY_Impe
 	SAIM A 10
 	{
 		bNoDropOff = true;
-		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		DCY_Chase("Missile", "Missile", CHF_DONTMOVE);
 		A_Dodging(24);
 		A_Hop(5);
 	}

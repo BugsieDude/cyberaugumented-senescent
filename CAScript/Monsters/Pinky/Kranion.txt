@@ -49,7 +49,7 @@ Class DCY_Kranion : DCY_Pinke //iron demon but awesome
 		}
 		Else
 		{
-			A_Chase("Melee", null);
+			DCY_Chase("Melee", null);
 			Return ResolveState(null);
 		}
 	}
@@ -78,8 +78,8 @@ Class DCY_Kranion : DCY_Pinke //iron demon but awesome
 		}
 		Else
 		{
-			A_Chase(null, null, CHF_NIGHTMAREFAST);
-			A_Chase(null, null, CHF_NIGHTMAREFAST);
+			DCY_Chase(null, null, CHF_NIGHTMAREFAST);
+			DCY_Chase(null, null, CHF_NIGHTMAREFAST);
 			selfdestruct++;
 			Return A_JumpIfCloser(80, "Explode");
 		}

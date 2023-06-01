@@ -80,7 +80,7 @@ Class DCY_Curator : DCY_Violator //Not a boss, but something else
   
   void A_CuratorChase()
   {
-	A_Chase();
+	DCY_Chase();
 	if (!random(0, 20) && (target && Distance3D(target) < 355 && (target.pos.z < self.pos.z - 10) || (target.pos.z > self.pos.z + 10))) { A_FaceTarget(); SetStateLabel("JumpChase"); }
 	if (!random(0, self.health * 4) && target && Distance3D(target) < 2000) SetStateLabel("Dissapear");
   }
@@ -106,11 +106,11 @@ Class DCY_Curator : DCY_Violator //Not a boss, but something else
 	{
 		for (int i = 20; i > 0; i--)
 		{
-			if (health < 500) A_Chase(null, null, CHF_NOPLAYACTIVE);
+			if (health < 500) DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 			else
 			{
 			A_Wander();
-			if (!random(0, 2)) A_Chase(null, null, CHF_NOPLAYACTIVE);
+			if (!random(0, 2)) DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 			}
 		}
 	}

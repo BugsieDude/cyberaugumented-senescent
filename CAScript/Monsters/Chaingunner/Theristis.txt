@@ -36,7 +36,7 @@ Class DCY_TheristisPsichisl : DCY_Plutonia
   
   void A_TheristisChase()
   {
-	A_Chase();
+	DCY_Chase();
 	
 	if (Health < 111)
 	{

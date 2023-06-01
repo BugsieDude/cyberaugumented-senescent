@@ -117,12 +117,12 @@ Class DCY_Urozon : DCY_Pinke
   See:
 	UROZ A 0 A_Jump(13, "NothingPersonal");
 	UROZ A 0 A_Jump(40, "Dash");
-	UROZ AABBCCDD 3 A_Chase();
+	UROZ AABBCCDD 3 DCY_Chase();
 	Loop;
   Dash:
 	UROZ AAABBBCCCDDD 1
 	{
-		A_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
+		DCY_Chase("Melee", "Missile", CHF_NIGHTMAREFAST);
 		if (DCY_EffectDistance(4000)) A_SpawnItemEx("DCY_UrozonAura", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
 	UROZ A 0 A_Jump(80, "See");
@@ -144,8 +144,8 @@ Class DCY_Urozon : DCY_Pinke
 	{
 		for (int i = 7; i > 0; i--)
 		{
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 			
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
@@ -172,8 +172,8 @@ Class DCY_Urozon : DCY_Pinke
 	{
 		for (int i = 7; i > 0; i--)
 		{
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 			
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_SpawnItemEx("DCY_UrozonAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
@@ -248,7 +248,7 @@ Class DCY_Urozon : DCY_Pinke
 		
 		Return A_Jump(40, "Lunge", "JumpNLunge", "MissileFire");
 	}
-	UROZ AABBCCDD 3 A_Chase("Melee", null);
+	UROZ AABBCCDD 3 DCY_Chase("Melee", null);
 	Loop;
   MissileFire:
 	UROZ EOEOEFPFP 2 A_FaceTarget();

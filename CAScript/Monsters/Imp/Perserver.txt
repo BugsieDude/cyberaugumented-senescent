@@ -31,7 +31,7 @@ Class DCY_Perserver : DCY_Impe
     "####" "#" 0 DCY_AlertSound();
     Goto See;
   See:
-	SDDM AABBCCDD 2 A_Chase();
+	SDDM AABBCCDD 2 DCY_Chase();
 	Loop;
   Melee:
   Missile:

@@ -82,7 +82,7 @@ Class DCY_EspionDeLetre : DCY_Plutonia
 	DBGE AABBCCDD 2
 	{
 		seen = true;
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Missile:

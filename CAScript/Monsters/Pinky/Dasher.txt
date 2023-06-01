@@ -41,9 +41,9 @@ Class DCY_Dasher : DCY_PinkyParent
 	U1X_ EFFFFFFE 4 A_FaceTarget();
 	Goto See;
   See:
-	U1X_ AABB 2 A_Chase();
+	U1X_ AABB 2 DCY_Chase();
 	U1X_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
-	U1X_ CCDD 2 A_Chase();
+	U1X_ CCDD 2 DCY_Chase();
 	U1X_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
 	Loop;
   Missile:

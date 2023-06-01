@@ -48,7 +48,7 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
   See:
 	3V3S AABBCCDD 2
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(25, "Dodge", "Rush");
 	}
 	Loop;
@@ -58,11 +58,11 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
   Rush:
 	3V3S AABBCCDD 1
 	{
-		A_Chase(null, null);
+		DCY_Chase(null, null);
 		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_EavesdropperTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
 		Return A_Jump(15, "See", "Dodge");
 	}
-	3V3S A 0 A_Chase();
+	3V3S A 0 DCY_Chase();
 	Loop;
   Melee:
 	3V3S EF 4 A_FaceTarget();

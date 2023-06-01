@@ -28,6 +28,7 @@ Class DCY_TheGiantEnemySpider : DCYMonster
 	DCYMonster.GibType "DCY_FatGiblets";
 	DCYMonster.ScientificName "Regina aranearum";
 	+DCYMONSTER.DCYNORMALBOSS;
+	DCYMonster.FootstepFrames 0, 3, 6;
   }
   
   void A_MetalII()

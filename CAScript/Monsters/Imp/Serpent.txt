@@ -12,6 +12,7 @@ Class DCY_Serpent : DCY_Impe
   PainSound "Serpent/Pain";
   DeathSound "Serpent/Death";
   DCYMonster.ScientificName "Acidum serpentis";
+  DCYMonster.FootStepSound "";
   }
   
   States
@@ -27,7 +28,7 @@ Class DCY_Serpent : DCY_Impe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    SERP AAABBBCCCDDD 3 A_Chase();
+    SERP AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Melee:
 	SERP EF 8 A_FaceTarget();
@@ -65,7 +66,11 @@ Class DCY_Serpent : DCY_Impe
 	SERP GF 8;
 	Goto See;
   Dash:
-    SERP AAAAABBBBBCCCCCDDDDDAAAAABBBBBCCCCCDDDDD 1 A_Chase(null, null);
+    SERP AAAAABBBBBCCCCCDDDDDAAAAABBBBBCCCCCDDDDD 1
+	{
+		A_Recoil(-2);
+		A_FaceTarget();
+	}
 	SERP EF 7 A_FaceTarget();
 	SERP G 0 A_SpawnProjectile("DCY_SerpentBall", 33, 0, random(-2, 2));
 	SERP GF 4 A_FaceTarget();

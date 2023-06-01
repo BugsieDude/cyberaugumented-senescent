@@ -22,6 +22,7 @@ Class DCY_SkinnyFat : DCYMonster
 	MeleeRange 90;
 	DCYMonster.GibType "DCY_ShorterGiblets";
 	DCYMonster.ScientificName "Adipem cadaverosa";
+	DCYMonster.FootstepFrames 0, 3, 6;
   }
   
   void A_FatThrower()

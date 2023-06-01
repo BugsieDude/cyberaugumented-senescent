@@ -37,7 +37,7 @@ Class DCY_Violator : DCY_Dastard
 	"####" G 10 DCY_AlertSound();
 	Goto See;
   See:
-	VI0_ AAABBBCCCDDD 2 A_Chase();
+	VI0_ AAABBBCCCDDD 2 DCY_Chase();
 	Loop;
   Melee:
 	VI0_ EF 8 A_FaceTarget();

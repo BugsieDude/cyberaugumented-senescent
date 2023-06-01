@@ -34,7 +34,7 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	LS20 AABBCCDD 2 A_Chase();
+	LS20 AABBCCDD 2 DCY_Chase();
 	Loop;
   Melee:
   Missile:

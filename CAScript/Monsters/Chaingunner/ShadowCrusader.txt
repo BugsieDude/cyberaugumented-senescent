@@ -67,7 +67,7 @@ Class DCY_ShadowCrusader : DCY_Plutonia
 			SetStateLabel("Cloaked");
 		
 		A_Jump(10, "Dodge");
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Dodge:
@@ -81,7 +81,7 @@ Class DCY_ShadowCrusader : DCY_Plutonia
 			SetStateLabel("See");
 		
 		A_SpawnItemEx("DCY_PhasicRazerTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-		A_Chase(null, "Grenades", CHF_NOPLAYACTIVE);
+		DCY_Chase(null, "Grenades", CHF_NOPLAYACTIVE);
 	}
 	Loop;
   Grenades:

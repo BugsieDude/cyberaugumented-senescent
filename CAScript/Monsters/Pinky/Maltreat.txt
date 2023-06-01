@@ -28,7 +28,7 @@ Class DCY_Maltreat : DCY_PinkyParent
   See:
 	MLT_ AAABBBCCCDDD 2
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(20, "Dash");
 	}
 	Loop;
@@ -37,8 +37,8 @@ Class DCY_Maltreat : DCY_PinkyParent
 	{
 		for (int i = 2; i > 0; i--)
 		{
-			A_Chase();
-			A_Chase();
+			DCY_Chase();
+			DCY_Chase();
 			A_SpawnItemEx("DCY_GTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSPRITEFRAME);
 		}
 		
@@ -51,7 +51,7 @@ Class DCY_Maltreat : DCY_PinkyParent
 		if (target && Distance3D(target) < 255)
 			Return ResolveState("Lunge");
 			
-		A_Chase("Melee", null);
+		DCY_Chase("Melee", null);
 		Return A_Jump(100, "Dash");
 	}
 	MLT_ AABBBCCCDDD 2 Fast
@@ -61,7 +61,7 @@ Class DCY_Maltreat : DCY_PinkyParent
 		if (target && Distance3D(target) < 455)
 			Return ResolveState("Rockets");
 			
-		A_Chase("Melee", null);
+		DCY_Chase("Melee", null);
 		Return ResolveState(null);
 	}
 	Goto See;

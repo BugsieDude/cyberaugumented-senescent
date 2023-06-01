@@ -66,15 +66,11 @@ Class DCY_Transmuter : DCY_ShotgunZombe
 	Goto See;
   See:
     TNT1 A 0 A_Jump(80, "Dodge");
-    RZ22 AABBCCDD 2 A_Chase();
+    RZ22 AABBCCDD 2 DCY_Chase();
 	Loop;
   Dodge:
-    RZ22 A 0 A_TransmuterDodge(10);
+    RZ22 A 0 A_TransmuterDodge(random(7, 10));
 	RZ22 AAAAAAAAAAAAAA 1 A_Chase(null, "RareMissile", CHF_DONTMOVE);
-	Goto See;
-  Dodge2:
-	TNT1 A 0 A_TransmuterDodge(7);
-	RZ22 AAAAAAAAAAAAAA 1 A_Chase(null, "MissileReturn", CHF_DONTMOVE);
 	Goto See;
   RareMissile:
     TNT1 A 0 A_Jump(95, "MissileReturn");
@@ -83,7 +79,7 @@ Class DCY_Transmuter : DCY_ShotgunZombe
 	TNT1 A 0 
 	{
 		torpedos = 0;
-		Return A_Jump(128, "Dodge2");
+		Return A_Jump(128, "Dodge");
 	}
 	Goto MissileReturn;
   MissileReturn:

@@ -55,7 +55,7 @@ Class DCY_ZEnsign : DCY_Zombe
   
   void A_EnsignChase()
   {
-	A_Chase();
+	DCY_Chase();
 	
 	if (target && CheckSight(target))
 	{
@@ -202,7 +202,7 @@ Class DCY_ZEnsign : DCY_Zombe
 		oldspeed = speed;
 		A_SetSpeed(15);
 	}
-	#### AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 A_Chase(null, null);
+	#### AABBCCDDAABBCCDDAABBCCDDAABBCCDD 2 DCY_Chase(null, null);
 	#### A 0
 	{
 		bFRIGHTENED = false;

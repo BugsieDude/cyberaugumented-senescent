@@ -22,6 +22,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
   DeathSound "SuperShadow/Death";
   +DONTHARMCLASS
   DCYMonster.ScientificName "NO DATA";
+  DCYMonster.FootStepSound "";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
@@ -69,7 +70,7 @@ Class DCY_SubzeroUmbrage : DCY_Impe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    SZ83 BBCCDDEE 2 A_Chase();
+    SZ83 BBCCDDEE 2 DCY_Chase();
 	Loop;
   Melee:
     SZ83 EF 4 A_FaceTarget();

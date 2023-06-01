@@ -40,7 +40,7 @@ Class DCY_DeathDealer : DCY_ShotgunZombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	BF_T AABBCCDD 3 A_Chase();
+	BF_T AABBCCDD 3 DCY_Chase();
 	Loop;
   Missile:
 	BF_T E 0 A_JumpIf(target && Distance3D(target) < 256, "Laser");

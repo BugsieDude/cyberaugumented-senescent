@@ -54,39 +54,39 @@ Class DCY_ExoImp : DCY_Impe
 	FAEM A 10 A_Look();
 	Loop;
   See:
-	FAEM AA 3 A_Chase();
+	FAEM AA 3 DCY_Chase();
 	FAEM B 3
 	{
-		A_Chase();
+		DCY_Chase();
 		A_StartSound("IMPFLY2", CHAN_BODY, CHANF_OVERLAP);
 		Return A_Jump(80, "Dashe");
 	}
-	FAEM BCCDD 3 A_Chase();
+	FAEM BCCDD 3 DCY_Chase();
 	Loop;
   Dashe:
 	FAEM A 10;
 	FAEM A 1
 	{
 		A_Dodging(frandom(25, 32));
-		A_Chase(null, "Missile", CHF_DONTMOVE);
+		DCY_Chase(null, "Missile", CHF_DONTMOVE);
 		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	FAEM AAAAAAAAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	FAEM A 1
 	{
 		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_Chase(null, "Missile", CHF_DONTMOVE);
+		DCY_Chase(null, "Missile", CHF_DONTMOVE);
 	}
 	FAEM AAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	FAEM A 1
 	{
 		A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_Chase(null, "Missile", CHF_DONTMOVE);
+		DCY_Chase(null, "Missile", CHF_DONTMOVE);
 	}
 	FAEM AAA 1 A_SpawnItemEx("DCY_ExoTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	FAEM A 5
 	{
-		A_Chase(null, "Missile", CHF_DONTMOVE);
+		DCY_Chase(null, "Missile", CHF_DONTMOVE);
 		A_Stop();
 	}
 	Goto See;

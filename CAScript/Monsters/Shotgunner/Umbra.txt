@@ -52,7 +52,7 @@ Class DCY_Umbra : DCY_ShotgunZombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	CYBS A 3 A_Chase();
+	CYBS A 3 DCY_Chase();
 	Loop;
   Missile:
 	CYBS E 10 { missile = random(0, 1); A_FaceTarget(); }

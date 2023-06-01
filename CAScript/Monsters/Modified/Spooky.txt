@@ -19,6 +19,7 @@ Class DCY_Rev : DCYMonster
 	Tag "$FN_REVEN";
 	Species "Agitated Skeletons";
 	DCYMonster.ScientificName "Undead Skeleton";
+	DCYMonster.FootstepFrames 0, 3, 6;
   }
   
   States

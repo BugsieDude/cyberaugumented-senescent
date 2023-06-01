@@ -69,8 +69,8 @@ Class DCY_Ultracerest : DCY_Violator //stronk
 	ANDV A 10 A_Look();
 	Loop;
   See:
-	ANDV AAAABBBB 3 A_Chase();
-	ANDV CCCCDDDD 3 A_Chase();
+	ANDV AAAABBBB 3 DCY_Chase();
+	ANDV CCCCDDDD 3 DCY_Chase();
 	Loop;
   Missile:
 	ANDV F 1;

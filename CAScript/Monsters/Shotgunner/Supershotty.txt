@@ -25,7 +25,7 @@ Class DCY_SuperShotgunSoldier : DCY_ShotgunZombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	ZSDO AABBCCDD 4 A_Chase();
+	ZSDO AABBCCDD 4 DCY_Chase();
 	Loop;
   Missile:
 	ZSDO E 20 A_FaceTarget();

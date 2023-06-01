@@ -47,7 +47,7 @@ Class DCY_Castrator : DCY_Impe
 			tics = 10;
 		}
 		
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Melee:

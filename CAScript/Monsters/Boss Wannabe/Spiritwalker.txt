@@ -99,10 +99,10 @@ Class DCY_ArcheSpiritwalker : DCY_ZombeParent
 			A_ArcheTrail(frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0, 2.0));
 			
 			for (int i = 2; i > 0; i--)
-				A_Chase();
+				DCY_Chase();
 		}
 		
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(20, "Rush", "Dodge");
 	}
 	Loop;

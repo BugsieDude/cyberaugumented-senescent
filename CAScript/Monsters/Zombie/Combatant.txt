@@ -54,7 +54,7 @@ Class DCY_Combatant : DCY_Zombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	RR3_ AABBCCDD random(2, 3) A_Chase();
+	RR3_ AABBCCDD random(2, 3) DCY_Chase();
 	Loop;
   Missile:
 	RR3_ A 0

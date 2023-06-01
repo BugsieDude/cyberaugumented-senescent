@@ -43,7 +43,7 @@ Class DCY_RegulusImp : DCY_Impe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    FAEM AABBCCDD 3 A_Chase();
+    FAEM AABBCCDD 3 DCY_Chase();
     Loop;
   Melee:
     FAEM EF 4 { A_Recoil(-4); A_FaceTarget(); }

@@ -93,7 +93,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
   See:
 	ZSEC AAABBBCCCDDD 2
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(50, "Run", "Dodge");
 	}
 	Loop;
@@ -102,7 +102,7 @@ Class DCY_Z_Exec : DCY_ShotgunZombe
 	{
 		bFRIGHTENED = random(0, 1);
 		for (int i = 2; i > 0; i--)
-			A_Chase();
+			DCY_Chase();
 	}
 	Goto See;
   Dodge:

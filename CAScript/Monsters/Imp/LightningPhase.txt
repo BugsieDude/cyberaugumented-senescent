@@ -55,7 +55,7 @@ Class DCY_LightningPhase : DCY_Impe
   
   void A_PhasedChase()
   {
-	A_Chase(null, null, CHF_NOPLAYACTIVE);
+	DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 	
 	if (target && distance3D(target) < 128) { atkp = true; SetStateLabel("Unphase"); }
   }
@@ -80,7 +80,7 @@ Class DCY_LightningPhase : DCY_Impe
 		if (phased)
 			SetStateLabel("SeePhased");
 	}
-    LMEI AABBCCDD 3 A_Chase();
+    LMEI AABBCCDD 3 DCY_Chase();
 	Goto See+1;
   Lunge:
 	LMEI E 7 

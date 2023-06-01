@@ -49,7 +49,7 @@ Class DCY_DarkIonConsul : DCY_ShotgunZombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    Y9MD AAAABBBBCCCCDDDD 2 A_Chase();
+    Y9MD AAAABBBBCCCCDDDD 2 DCY_Chase();
 	Loop;
   MissileStart:
     Goto Missile+1;

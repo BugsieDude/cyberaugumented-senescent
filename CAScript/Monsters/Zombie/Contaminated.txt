@@ -49,7 +49,7 @@ Class DCY_Contaminated : DCY_Zombe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    P0Z_ AAABBBCCCDDD 2 A_Chase();
+    P0Z_ AAABBBCCCDDD 2 DCY_Chase();
 	Loop;
   Missile:
     P0Z_ E 15

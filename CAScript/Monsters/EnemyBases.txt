@@ -65,6 +65,9 @@ CLASS DCYMonster : Actor abstract
 	DCYMonster.WD 1000;
 	DCYMonster.ExtraPrefix "";
 	DCYMonster.CanAnnounce false;
+	DCYMonster.FootstepSound "dcyhuman/walk";
+	DCYMonster.FootstepFrames 0, 2, 4;
+	DCYMonster.StepVolPitchAtt 1, 1, 1;
   }
   
   double warningdistance;
@@ -100,6 +103,9 @@ CLASS DCYMonster : Actor abstract
   property ScientificName : scientific;
   string extran;
   property ExtraPrefix : extran;
+  
+  //for reloading
+  int ammo;
   
   //thanks, Popguy12!
   int EnemyLastSighted;
@@ -143,10 +149,28 @@ CLASS DCYMonster : Actor abstract
   double leapDistance;
 	
   //The main custom A_Chase function
-	
+  
+  int ftf, ftf2, ftf3;
+  Property FootstepFrames : ftf, ftf2, ftf3;
+  double ftv, ftp, fta;
+  Property StepVolPitchAtt : ftv, ftp, fta;
+  
   virtual void DCY_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0, double recoil = 0.00)
   {
 	if (willBeLooking) return;
+	
+	//Check for Footsteps
+	if (ft != "")
+	{
+		bool f;
+		
+		if (DCY_EffectRange(sfxdistance) && !(flags & CHF_DONTMOVE) && (frame == ftf || frame == ftf2 || frame == ftf3) && CheckOnGround() && !f)
+		{
+			f = true;
+			A_StartSound(ft, 30, CHANF_OVERLAP, ftv, fta, ftp);
+		}
+		else f = false;
+	}
 	
 	if (target && isFriend(target))
 	{
@@ -365,7 +389,7 @@ CLASS DCYMonster : Actor abstract
 		
 	return false;
   }
-	
+  
   override void tick()
   {
 	super.tick();
@@ -441,26 +465,32 @@ CLASS DCYMonster : Actor abstract
 	//A_KillMaster("SpawnerDeath");
   }
   
-  void DCY_Footstep()
-  {
-	if (ft == "") return;
-	if (DCY_EffectDistance(sfxdistance)) A_StartSound(ft, 30);
-  }
-  
   void A_WalkFlame()
   {
 	if (wf == "") return;
 	if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx(wf, xvel: 1, flags: SXF_NOCHECKPOSITION);
   }
   
-  void DCY_Look()
+  virtual void DCY_Look()
   {
 	A_LookEx((level.levelname == "Decimal Error") ? LOF_NOSOUNDCHECK|LOF_NOSEESOUND : LOF_NOSEESOUND, label: "Look");
   }
   
-  void DCY_LookingForPlayer()
+  virtual void DCY_LookingForPlayer(int flags = 0)
   {
-	A_Chase(null, "Alert", CHF_NOPLAYACTIVE);
+	A_Chase(null, "Alert", flags|CHF_NOPLAYACTIVE);
+	
+	//Check for Footsteps
+	if (ft == "") return;
+	
+	bool f;
+	
+	if (DCY_EffectRange(sfxdistance) && !(flags & CHF_DONTMOVE) && (frame == ftf || frame == ftf2 || frame == ftf3) && CheckOnGround() && !f)
+	{
+		f = true;
+		A_StartSound(ft, 30, CHANF_OVERLAP, ftv, fta, ftp);
+	}
+	else f = false;
   }
   
   void A_Dodging(double speed)

@@ -29,7 +29,7 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
   void A_HoodlumChase()
   {
 	bool rushing;
-	A_Chase();
+	DCY_Chase();
 		
 	if (random(0, 100) == 0)
 		A_Dodging(10);
@@ -38,7 +38,7 @@ Class DCY_Hoodlum : DCY_SuperShotgunSoldier
 	
 	if (rushing)
 	{
-		A_Chase();	
+		DCY_Chase();	
 		A_SpawnItemEx("DCY_GTrail", zofs: 4, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 	}
   }

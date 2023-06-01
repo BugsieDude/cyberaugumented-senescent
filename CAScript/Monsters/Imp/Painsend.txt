@@ -63,7 +63,7 @@ Class DCY_Painsend : DCY_Impe
 		if (distance2D(target) > 200 && distance2D(target) < 350) A_Recoil(-0.25);
 	}
 	
-	if (!(getAge() % 5)) A_Chase(flags: CHF_DONTMOVE|CHF_NORANDOMTURN);
+	if (!(getAge() % 5)) DCY_Chase(flags: CHF_DONTMOVE|CHF_NORANDOMTURN);
 	A_Recoil(-0.25);
 	vel.x += frandom(-2, 2);
 	vel.y += frandom(-2, 2);

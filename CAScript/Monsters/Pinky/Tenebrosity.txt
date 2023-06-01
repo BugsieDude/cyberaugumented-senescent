@@ -36,7 +36,7 @@ Class DCY_Tenebrosity : DCY_Pinke
 	SAR3 FFFE 6 A_FaceTarget();
 	Goto See;
   See:
-	SAR3 AAABBBCCCDDD 2 Fast A_Chase();
+	SAR3 AAABBBCCCDDD 2 Fast DCY_Chase();
 	Loop;
   Missile:
 	SAR3 A 2
@@ -44,7 +44,7 @@ Class DCY_Tenebrosity : DCY_Pinke
 		if (target && Distance3D(target) < 222)
 			Return ResolveState("Lunge");
 			
-		A_Chase("Melee", null);
+		DCY_Chase("Melee", null);
 		Return A_Jump(121, "SPEEEEEEEEEEEEED");
 	}
 	SAR3 AABBBCCCDDD 2 Fast
@@ -52,7 +52,7 @@ Class DCY_Tenebrosity : DCY_Pinke
 		if (target && Distance3D(target) < 222)
 			Return ResolveState("Lunge");
 			
-		A_Chase("Melee", null);
+		DCY_Chase("Melee", null);
 		Return ResolveState(null);
 	}
 	Goto See;
@@ -78,7 +78,7 @@ Class DCY_Tenebrosity : DCY_Pinke
 	{
 		for (int i = 5; i > 0; i--)
 		{
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 			A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
 			A_Wander();
 			A_SpawnItemEx("DCY_TenebrosityAura", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);

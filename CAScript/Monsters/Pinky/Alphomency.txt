@@ -40,9 +40,9 @@ Class DCY_Alphomency : DCY_PinkeII
 	Goto See;
   See:
 	UU8_ A 0 Fast A_Jump(10, "FadeAway");
-	UU8_ AABB 2 Fast A_Chase("Melee", "Missile");
+	UU8_ AABB 2 Fast DCY_Chase("Melee", "Missile");
 	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
-	UU8_ CCDD 2 Fast A_Chase("Melee", "Missile");
+	UU8_ CCDD 2 Fast DCY_Chase("Melee", "Missile");
 	UU8_ A 0 A_StartSound("Dasher/Walk", CHAN_BODY);
 	UU8_ A 0 Fast A_Jump(45, "FadeAway");
 	Loop;
@@ -54,14 +54,14 @@ Class DCY_Alphomency : DCY_PinkeII
 	}
 	UU8_ AABBC 2 Fast
 	{
-		A_Chase(null, null);
+		DCY_Chase(null, null);
 		A_FadeOut(0.2, 0);
 	}
 	UU8_ C 0 Fast A_HideThing();
 	Goto SeeFaded;
   SeeFaded:
 	UU8_ A 0 Fast A_Jump(55, "FadeIn");
-	UU8_ AABBCCDD 2 Fast A_Chase(null, null);
+	UU8_ AABBCCDD 2 Fast DCY_Chase(null, null);
 	Loop;
   FadeIn:
 	UU8_ A 0 Fast
@@ -72,7 +72,7 @@ Class DCY_Alphomency : DCY_PinkeII
 	}
 	UU8_ AABBC 2 Fast
 	{
-		A_Chase(null, null);
+		DCY_Chase(null, null);
 		A_FadeIn(0.2, 0);
 	}
 	Goto See;
@@ -92,7 +92,7 @@ Class DCY_Alphomency : DCY_PinkeII
 		
 		Return A_Jump(20, "FadeAway");
 	}
-	UU8_ AABBCCDD 2 Fast A_Chase("Melee", null);
+	UU8_ AABBCCDD 2 Fast DCY_Chase("Melee", null);
 	Loop;
   Yeet:
 	UU8_ EEEEEEEEE 1 A_FaceTarget();

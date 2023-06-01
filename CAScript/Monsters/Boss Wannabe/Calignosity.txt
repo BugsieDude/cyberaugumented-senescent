@@ -45,7 +45,7 @@ Class DCY_Calignosity : DCY_HeckBaron
 	  A_SetTics(1);
 	  calirush--;
 	 }
-	A_Chase();
+	DCY_Chase();
   }
   
   
@@ -61,7 +61,7 @@ Class DCY_Calignosity : DCY_HeckBaron
 	 A_SetTics(1);
 	A_StartSound("CYBRFOOT", CHAN_BODY);
 	A_QuakeEx(0, 0, 2, 8, 0, 500, "", QF_SCALEDOWN|QF_3D);
-	A_Chase();
+	DCY_Chase();
   }
   
   void A_CalignosityStomp()

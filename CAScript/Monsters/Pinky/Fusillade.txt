@@ -84,9 +84,9 @@ Class DCY_Fusillade : DCY_Pinke
 	}
 	Goto See;
   See:
-	CYF3 AABB 2 A_Chase();
+	CYF3 AABB 2 DCY_Chase();
 	CYF3 C 0 A_FusilladeStep();
-	CYF3 CCDD 2 A_Chase();
+	CYF3 CCDD 2 DCY_Chase();
 	CYF3 A 0 A_FusilladeStep();
 	Loop;
   Missile:

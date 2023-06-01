@@ -45,10 +45,10 @@ Class DCY_Caviler : DCY_Impe
 	Goto See;
   See:
     TNT1 A 0 A_Jump(128, "Avoid", "FastChasing");
-    V3LG AABBCCDD 3 A_Chase();
+    V3LG AABBCCDD 3 DCY_Chase();
 	Loop;
   FastChasing:
-    V3LG AABBCCDD 3 A_Chase(flags: CHF_FASTCHASE);
+    V3LG AABBCCDD 3 DCY_Chase(flags: CHF_FASTCHASE);
 	TNT1 A 0 A_Jump(128, "See");
 	Loop;
   Avoid:
@@ -57,7 +57,7 @@ Class DCY_Caviler : DCY_Impe
 		A_Dodging(8);
 		A_FaceTarget();
 	}
-	V3LG AAAAAAAAAA 1 A_Chase(flags: CHF_DONTMOVE);
+	V3LG AAAAAAAAAA 1 DCY_Chase(flags: CHF_DONTMOVE);
 	TNT1 A 0 A_Jump(128, "FastChasing");
 	Goto See;
   Melee:
@@ -202,14 +202,14 @@ Class DCY_Pathogen : DCY_Impe
 	Goto See;
   See:
     TNT1 A 0 A_Jump(128, "Avoid", "FastChasing");
-    V4LG AABBCCDD 4 A_Chase();
+    V4LG AABBCCDD 4 DCY_Chase();
 	Loop;
   FastChasing:
-    V4LG AABBCCDD 4 A_Chase(flags: CHF_FASTCHASE);
+    V4LG AABBCCDD 4 DCY_Chase(flags: CHF_FASTCHASE);
 	TNT1 A 0 A_Jump(128, "FASTERCHASING", "See");
 	Loop;
   FASTERCHASING:
-    V4LG AAAABBBBCCCCDDDD 1 A_Chase(flags: CHF_FASTCHASE);
+    V4LG AAAABBBBCCCCDDDD 1 DCY_Chase(flags: CHF_FASTCHASE);
 	TNT1 A 0 A_Jump(128, "See");
 	Loop;
   Avoid:
@@ -218,7 +218,7 @@ Class DCY_Pathogen : DCY_Impe
 		A_Dodging(25);
 		A_FaceTarget();
 	}
-	V4LG AAAAAAAAAA 1 A_Chase(flags: CHF_DONTMOVE);
+	V4LG AAAAAAAAAA 1 DCY_Chase(flags: CHF_DONTMOVE);
 	TNT1 A 0 A_Jump(128, "FastChasing", "FASTERCHASING");
 	Goto See;
   Melee:

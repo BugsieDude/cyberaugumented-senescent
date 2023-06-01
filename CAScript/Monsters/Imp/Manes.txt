@@ -23,6 +23,7 @@ Class DCY_Manes : DCY_Impe
   RenderStyle "Add";
   Obituary "%o succumbed awaiting death.";
   DCYMonster.ScientificName "NO DATA";
+  DCYMonster.FootStepSound "";
   }
   
   override void Tick()
@@ -83,7 +84,7 @@ Class DCY_Manes : DCY_Impe
 		if (target && distance3D(target) > 2000)
 			SetStateLabel("Teleporting");
 		
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Teleporting:
@@ -91,7 +92,7 @@ Class DCY_Manes : DCY_Impe
 	TNT1 A 1
 	{
 		for (int i = random(20, 80); i > 0; i--)
-			A_Chase(flags: CHF_NOPLAYACTIVE);
+			DCY_Chase(flags: CHF_NOPLAYACTIVE);
 		
 		if (target && distance3D(target) < 200)
 			SetStateLabel("Breath");

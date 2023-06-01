@@ -31,7 +31,7 @@ Class DCY_AlacritousGuy : DCY_Plutonia
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    UCHG AAABBBCCCDDD 3 A_Chase();
+    UCHG AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Missile:
     UCHG E 0 A_StartSound("Minigun/WindUp", CHAN_WEAPON, pitch: 0.85);

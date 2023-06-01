@@ -30,7 +30,7 @@ Class DCY_Malignant : DCY_Impe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	JAAS AABBCCDD 4 A_Chase("Missile", "Missile");
+	JAAS AABBCCDD 4 DCY_Chase("Missile", "Missile");
 	Loop;
   Jump:
 	JAAS EF 5 A_FaceTarget();

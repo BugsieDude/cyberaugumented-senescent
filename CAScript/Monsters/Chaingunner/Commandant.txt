@@ -45,14 +45,14 @@ Class DCY_Commandant : DCY_Plutonia
   See:
     TNT1 A 0 A_Jump(85, "Strafing");
     TNT1 A 0 A_JumpIfInTargetLOS("Strafing", 150);
-    UU2_ AAABBB 3 A_Chase();
+    UU2_ AAABBB 3 DCY_Chase();
 	TNT1 A 0 A_JumpIfInTargetLOS("Strafing", 150);
-	UU2_ CCCDDD 3 A_Chase();
+	UU2_ CCCDDD 3 DCY_Chase();
 	Loop;
   Strafing:
     UU2_ AAABBBCCCDDD 3 
 	{
-		A_Chase("Missile", "Missile", CHF_DONTMOVE);
+		DCY_Chase("Missile", "Missile", CHF_DONTMOVE);
 		A_ChangeVelocity(random(-1, 1), random(-1, 1), 0);
 		
 		if (random(0, 5) == 0)

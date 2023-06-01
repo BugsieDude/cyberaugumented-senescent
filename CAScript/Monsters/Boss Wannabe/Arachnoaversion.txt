@@ -76,7 +76,7 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
   See:
 	TBB2 AB 2
 	{
-		A_Chase();
+		DCY_Chase();
 		strafing = false;
 		Return A_Jump(5, "Dodge", "Dash");
 	}
@@ -86,7 +86,7 @@ Class DCY_Arachnoaversion : DCY_ArachnoParent
 	TBB2 AABB 1
 	{
 		for (int i = 4; i > 0; i--)
-			A_Chase(null, null);
+			DCY_Chase(null, null);
 		
 		A_SpawnItemEx("DCY_AversionTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		

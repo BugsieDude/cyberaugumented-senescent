@@ -31,7 +31,7 @@ Class DCY_Pryer : DCY_Impe
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	XX5_ AABBCCDD 4 A_Chase("Missile", "Missile");
+	XX5_ AABBCCDD 4 DCY_Chase("Missile", "Missile");
 	Loop;
   Missile:
 	XX5_ Q 0 A_Jump(90, "Dash", "Jump");

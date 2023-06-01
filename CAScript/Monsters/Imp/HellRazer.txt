@@ -63,7 +63,7 @@ Class DCY_HellRazer : DCY_Impe
     PRZR AABBCCDD 4
 	{
 		A_StopSound(CHAN_7);
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Missile:

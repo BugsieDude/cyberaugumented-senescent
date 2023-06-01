@@ -19,6 +19,7 @@ Class DCY_ArachnoParent : DCYMonster
   Species "Arachno";
   DCYMonster.GibType "DCY_FatGiblets";
   DCYMonster.ScientificName "Araneae mechanicus";
+  DCYMonster.FootstepFrames 0, 3, 6;
   }
   
   void A_BabyMetal()

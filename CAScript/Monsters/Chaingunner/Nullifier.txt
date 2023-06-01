@@ -47,12 +47,12 @@ Class DCY_Nullifier : DCY_Plutonia
 			A_SpawnItemEx("DCY_NullifierRush", zofs: 5, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
 			
 			for(int i = random(1, 2); i > 0; i--)
-				A_Chase();
+				DCY_Chase();
 		}
 		
 		tics = (bufftimer > 0) ? 1 : 4;
 		
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Missile:
