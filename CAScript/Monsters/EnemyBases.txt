@@ -92,7 +92,7 @@ CLASS DCYMonster : Actor abstract
   
   string wf;
   property WalkFlames : wf;
-  sound ft;
+  sound ft, sft;
   property FootstepSound : ft;
   
   property BurnSound: brns;
@@ -150,27 +150,31 @@ CLASS DCYMonster : Actor abstract
 	
   //The main custom A_Chase function
   
+  bool f, y;
   int ftf, ftf2, ftf3;
   Property FootstepFrames : ftf, ftf2, ftf3;
   double ftv, ftp, fta;
   Property StepVolPitchAtt : ftv, ftp, fta;
   
-  virtual void DCY_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0, double recoil = 0.00)
+  void DCY_Foot(int flags = 0)
   {
-	if (willBeLooking) return;
-	
-	//Check for Footsteps
-	if (ft != "")
+	if (ft == "") return;
+	if (frame == ftf || frame == ftf2 || frame == ftf3)
 	{
-		bool f;
-		
-		if (DCY_EffectRange(sfxdistance) && !(flags & CHF_DONTMOVE) && (frame == ftf || frame == ftf2 || frame == ftf3) && CheckOnGround() && !f)
-		{
-			f = true;
+		if (DCY_EffectRange(sfxdistance) && !(flags & CHF_DONTMOVE) && CheckOnGround() && !f)
 			A_StartSound(ft, 30, CHANF_OVERLAP, ftv, fta, ftp);
-		}
-		else f = false;
 	}
+	
+	f = true;
+	if (frame != ftf && frame != ftf2 && frame != ftf3) f = false;
+  }
+  
+  virtual void DCY_Chase(statelabel melee = '_a_chase_default', statelabel missile = '_a_chase_default', int flags = 0, double recoil = 0)
+  {
+	//Check for Footsteps
+	if (!(flags & CHF_DONTMOVE)) DCY_Foot();
+	
+	if (willBeLooking) return;
 	
 	if (target && isFriend(target))
 	{
@@ -181,7 +185,7 @@ CLASS DCYMonster : Actor abstract
 	{
 		A_ClearTarget();
 		Wandering == true;
-		A_Wander();
+		if (!(flags & CHF_DONTMOVE)) A_Wander();
 		DCY_Look();
 		return;
 	}
@@ -192,10 +196,15 @@ CLASS DCYMonster : Actor abstract
 	if (CheckSight(target) && CheckIfCloser(target, 3000))
 	{
 		double dist = Distance3D(target);
+		
 		let aimActor = AimTarget();
 		let fw = 33;
 		
-		MissileChance = (random(1,300));
+		if (bMISSILEEVENMORE && bMISSILEMORE) MissileChance = (random(1,300));
+		if (bMISSILEEVENMORE) MissileChance = (random(1,400));
+		if (bMISSILEMORE) MissileChance = (random(1,500));
+		if (!bMISSILEMORE && !bMISSILEEVENMORE) MissileChance = (random(1,600));
+		
 		ActiveSoundPlayChance = (random(1,300));
 		
 		//check if sight of player or close enough to "hear" player for memory
@@ -208,40 +217,43 @@ CLASS DCYMonster : Actor abstract
 		//check if closer than 2000 units
 		if(dist <= 2000)
 		{
-			A_FaceTarget(3, 3);
-			A_Recoil(-(self.speedmult));
-			
-			//only sometimes play the active sound
-			if((ActiveSoundPlayChance < 4 )) A_ActiveSound();
-			
-			if (self.canRoll)
+			if (!(flags & CHF_DONTMOVE))
 			{
-				//dodging system check
-				LookExParams look;
-				look.FOV = 2;
-				int chance = (random(1,300));
-				if(target != NULL)
+				A_FaceTarget(3, 3);
+				A_Recoil(-(self.speedmult));
+				
+				if (self.canRoll)
 				{
-					if(target.IsVisible(self, false, look) && chance <= 10 && dist <= 1500)
+					//dodging system check
+					LookExParams look;
+					look.FOV = 2;
+					int chance = (random(1,300));
+					if(target != NULL)
 					{
-						A_FaceTarget();
-						SetStateLabel("Roll");
+						if(target.IsVisible(self, false, look) && chance <= 10 && dist <= 1500)
+						{
+							A_FaceTarget();
+							SetStateLabel("Roll");
+						}
 					}
 				}
 			}
+			
+			//only sometimes play the active sound
+			if((ActiveSoundPlayChance < 4)) A_ActiveSound();
 				
 			//go to melee state if close enough
-			if(dist <= MeleeThreshold) SetStateLabel("Melee");
-			if((dist <= self.enemyRange) && (MissileChance < 6)) SetStateLabel("Missile");
-			else A_Chase(melee, missile, flags);
+			if(dist <= MeleeThreshold) { SetStateLabel("Melee"); }
+			if((dist <= self.enemyRange) && (MissileChance < 6)) { SetStateLabel("Missile"); }
+			else A_Chase(melee, missile, 0|flags);
 		}
 	}
 	else if (CheckSight(target) == false && abs(Level.MapTime - EnemyLastSighted) < 360)
 	{
 		ActiveSoundPlayChance = (random(1,300));
 		//because 1 tic A_Chase calls spams this lol
-		if((ActiveSoundPlayChance > 5 )) A_Chase("Look", "Look", CHF_NOPLAYACTIVE);
-		else A_Chase(melee, missile, flags);
+		if((ActiveSoundPlayChance > 5 )) A_Chase("Look", "Look", CHF_NOPLAYACTIVE|flags);
+		else A_Chase(melee, missile, 0|flags);
 	}
 	else
 	{
@@ -409,6 +421,7 @@ CLASS DCYMonster : Actor abstract
 	if (!particlefire)
 		particlefire = TexMan.CheckForTexture("graphics/Particles/dcysmokep.png");
 	
+	if (ft != "") ftp = (frandom(0.95, 1.05));
 	smoothm = dcy_smoothmovement;
   }
   
@@ -430,7 +443,9 @@ CLASS DCYMonster : Actor abstract
 	heardOpponent = 0;
 	MaxHealth = health;
 	oldLeap = false;
-		
+	
+	sft = ft;
+	
 	sfxdistance = 1500;
 	
 	oldtag = GetTag();
@@ -481,16 +496,7 @@ CLASS DCYMonster : Actor abstract
 	A_Chase(null, "Alert", flags|CHF_NOPLAYACTIVE);
 	
 	//Check for Footsteps
-	if (ft == "") return;
-	
-	bool f;
-	
-	if (DCY_EffectRange(sfxdistance) && !(flags & CHF_DONTMOVE) && (frame == ftf || frame == ftf2 || frame == ftf3) && CheckOnGround() && !f)
-	{
-		f = true;
-		A_StartSound(ft, 30, CHANF_OVERLAP, ftv, fta, ftp);
-	}
-	else f = false;
+	DCY_Foot();
   }
   
   void A_Dodging(double speed)

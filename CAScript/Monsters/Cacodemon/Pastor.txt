@@ -31,7 +31,7 @@ Class DCY_Inscrutable : DCY_CacoParent
   
   void A_PastorDash()
   {
-	A_Chase(null, null);
+	DCY_Chase(null, null);
 	A_SpawnItemEx("DCY_DFX3", flags: SXF_NOCHECKPOSITION);
   }
   
@@ -49,14 +49,14 @@ Class DCY_Inscrutable : DCY_CacoParent
 	1DSC G 15 A_StartSound(SeeSound, CHAN_VOICE);
 	Goto See;
   See:
-    1DSC AAABBB 3 A_Chase();
+    1DSC AAABBB 3 DCY_Chase();
 	TNT1 A 0 A_Jump(80, "Blur", "Dodge");
 	Loop;
   Blur:
     1DSC A 1
 	{
 		A_StartSound("dcy/blur");
-		A_Chase(null, null);
+		DCY_Chase(null, null);
 	}
     1DSC AAAAAAAAAAAAAA 1 A_PastorDash();
     1DSC A 0 A_Jump(96, "See");

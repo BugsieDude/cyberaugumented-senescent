@@ -25,6 +25,7 @@ Class DCY_LightningPhase : DCY_Impe
   PainChance 100;
   BloodColor "852121";
   DCYMonster.ScientificName "Fortis ruptor";
+  DCYMonster.FootstepSound "dcyknight/walk";
   }
   
   int phased;
@@ -51,6 +52,8 @@ Class DCY_LightningPhase : DCY_Impe
   {
 	super.Tick();
 	if (phased && health > 0 && !isFrozen()) A_LightningPhaseTrail();
+	if (phased) ft = "";
+	else ft = sft;
   }
   
   void A_PhasedChase()

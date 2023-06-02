@@ -27,6 +27,7 @@ Class DCY_Overdemoniac : DCY_VileParent
   DCYMonster.GibType "DCY_GibletsLava";
   DCYMonster.ScientificName "Purissimum dominum argenteum";
   +DCYMONSTER.DCYBOSS;
+  DCYMonster.FootStepSound "dcybaron/walk";
   }
   
   int phasecooldown;
@@ -39,7 +40,7 @@ Class DCY_Overdemoniac : DCY_VileParent
 	DSJ1 A 10 DCY_Look();
 	Loop;
   Look:
-	#### AABBCCDDEEFF 2 DCY_LookingForPlayer();
+	#### AAABBBCCCDDDEEEFFF 2 DCY_LookingForPlayer();
 	#### # 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
@@ -49,7 +50,7 @@ Class DCY_Overdemoniac : DCY_VileParent
 	DSJ1 AAABBBCCCDDDEEEFFF 2
 	{
 		if (phasecooldown <= 0 && !random(0, 20)) SetStateLabel("Teleportation");
-		A_Chase(null, "Missile");
+		DCY_Chase(null, "Missile");
 		
 		if (phasecooldown > 0) phasecooldown--;
 	}

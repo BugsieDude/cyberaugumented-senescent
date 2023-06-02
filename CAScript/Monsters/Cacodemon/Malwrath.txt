@@ -34,7 +34,7 @@ Class DCY_Malwrath : DCY_FlyingMeatballOutOfTouch
     CALI A 3
 	{
 		if (!random(0, 80)) A_ChangeVelocity(random(-4, 4), random(-4, 4), random(-4, 4), CVF_REPLACE|CVF_RELATIVE);
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Missile:

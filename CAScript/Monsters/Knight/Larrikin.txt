@@ -14,6 +14,7 @@ Class DCY_Larrikin : DCY_KnightHell
   BloodColor "Orange";
   Scale 1.1;
   DCYMonster.ScientificName "Brutis machinatio";
+  DCYMonster.FootstepSound "";
   }
   
   void A_LarrikinCleavingLaser()

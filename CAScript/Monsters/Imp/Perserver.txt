@@ -17,6 +17,7 @@ Class DCY_Perserver : DCY_Impe
   Obituary "%o got outsmarted by a Perserver.";
   DCYMonster.GibType "DCY_GibletsAdd";
   DCYMonster.ScientificName "Ignauus surculus";
+  DCYMonster.FootstepSound "dcyrocky/walk";
   }
   
   States

@@ -21,6 +21,8 @@ Class DCY_AbyssalSycophant : DCY_Impe
   +NODROPOFF
   +NOBLOOD
   DCYMonster.ScientificName "Sycophant";
+  DCYMonster.FootstepSound "dcymetal/walk";
+  DCYMonster.FootstepFrames 1, 5, 5;
   }
   
   void A_SycophantLaser()

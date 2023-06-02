@@ -18,6 +18,7 @@ Class DCY_CacoParent : DCYMonster
 	Tag "$FN_CACO";
 	Species "Cacodemons";
 	DCYMonster.ScientificName "Tristique cibum";
+	DCYMonster.FootstepSound "";
   }
   
   void A_HeadAttack()
@@ -53,7 +54,7 @@ Class DCY_CacoParent : DCYMonster
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	HEAD A 3 A_Chase();
+	HEAD A 3 DCY_Chase();
 	Loop;
   Missile:
 	HEAD B 5 A_FaceTarget();
@@ -105,7 +106,7 @@ Class DCY_FlyingMeatballOutOfTouch : DCY_CacoParent
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	3GGS A 3 A_Chase();
+	3GGS A 3 DCY_Chase();
 	Loop;
   Missile:
 	3GGS B 5 A_FaceTarget();

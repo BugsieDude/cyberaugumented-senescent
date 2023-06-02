@@ -19,6 +19,7 @@ Class DCY_Wastrel : DCY_KnightHell
   DamageFactor "Ice", 1.2;
   Tag "\c[l4]Wastrel\c-";
   DCYMonster.ScientificName "Ignis serpentis";
+  DCYMonster.FootstepSound "";
   }
   
   States
@@ -35,7 +36,7 @@ Class DCY_Wastrel : DCY_KnightHell
 	WAWA FGFE 7 A_FaceTarget();
 	Goto See;
   See:
-	WAWA AAAAABBBBBCCCCCDDDDD 2 A_Chase();
+	WAWA AAAAABBBBBCCCCCDDDDD 2 DCY_Chase();
 	Loop;
   Melee:
 	WAWA E 0 A_StartSound("Wastrel/Swing", CHAN_BODY);
@@ -72,7 +73,7 @@ Class DCY_Wastrel : DCY_KnightHell
 		A_FaceTarget();
 		Return A_Jump(80, "MissileContinue");
 	}
-	WAWA AAAAAABBBBBBCCCCCCDDDDDD 1 A_Recoil(-2);
+	WAWA AAAAAABBBBBBCCCCCCDDDDDD 1 A_Recoil(-1.65);
 	Loop;
   Pain:
 	WAWA H 4;

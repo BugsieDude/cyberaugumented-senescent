@@ -20,6 +20,7 @@ Class DCY_Rev : DCYMonster
 	Species "Agitated Skeletons";
 	DCYMonster.ScientificName "Undead Skeleton";
 	DCYMonster.FootstepFrames 0, 3, 6;
+	DCYMonster.FootstepSound "dcyskeleton/walk";
   }
   
   States
@@ -35,7 +36,7 @@ Class DCY_Rev : DCYMonster
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	SKEL AABBCCDDEEFF 2 A_Chase();
+	SKEL AABBCCDDEEFF 2 DCY_Chase();
 	Loop;
   Melee:
 	SKEL G 6

@@ -20,6 +20,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
   BloodColor "ad3002";
   BloodType "AndroidNeonFluid";
   DCYMonster.ScientificName "Volans exstirpatio";
+  DCYMonster.FootstepSound "";
   }
   
   int bombloop;
@@ -59,7 +60,7 @@ Class DCY_GehennaChasseur : DCY_BaronParent
     "####" "#" 0 DCY_AlertSound();
     Goto See;
   See:
-	HYCY ABABAB 3 A_Chase();
+	HYCY ABABAB 3 DCY_Chase();
 	Loop;
   Melee:
   Missile:

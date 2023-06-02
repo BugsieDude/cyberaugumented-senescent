@@ -34,7 +34,7 @@ Class DCY_HellCustodian : DCY_FlyingMeatballOutOfTouch
 	"####" "#" 0 A_StartSound(SeeSound, CHAN_VOICE);
 	Goto See;
   See:
-	HELE A 3 A_Chase();
+	HELE A 3 DCY_Chase();
 	Loop;
   Melee:
 	HELE BC 4 A_FaceTarget();

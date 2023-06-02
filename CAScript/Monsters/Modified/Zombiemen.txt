@@ -59,6 +59,7 @@ Class DCY_ZombeParent : DCYMonster
 	{
 		A_Recoil(2);
 		A_FaceTarget();
+		DCY_Foot();
 	}
 	Goto See;
   Missile:

@@ -39,7 +39,7 @@ Class DCY_Remainder : DCY_Rev
 		}
 		
 		if (phasecooldown > 0) phasecooldown -= random(1, 3);
-		A_Chase();
+		DCY_Chase();
 	}
 	Loop;
   Phase:

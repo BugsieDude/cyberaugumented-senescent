@@ -165,6 +165,7 @@ Class DCY_Pathogen : DCY_Impe
   +MISSILEEVENMORE
   +NODROPOFF
   +NOFEAR
+  DCYMonster.FootstepSound "dcyflesh/walk";
   }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)

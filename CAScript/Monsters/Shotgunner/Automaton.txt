@@ -22,6 +22,7 @@ Class DCY_AutomatonSupervisor : DCY_Zombe
   +QUICKTORETALIATE;
   DropItem "Pistol";
   DCYMonster.GibType "DCY_GibletsAdd";
+  DCYMonster.FootstepSound "dcyautomaton/walk";
   }
   
   bool deploydroid;

@@ -39,7 +39,7 @@ Class DCY_PrimerialEmir : DCY_HeckBaron
 	LHS_ QPRPQPRPQ 4 A_FaceTarget();
 	Goto See;
   See:
-    LHS_ AAABBBCCCDDD 3 A_Chase();
+    LHS_ AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Melee:
   Missile:

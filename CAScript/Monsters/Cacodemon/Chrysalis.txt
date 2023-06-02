@@ -48,21 +48,23 @@ Class DCY_Chrysalis : DCY_CacoParent
   See:
 	GARD ABCDEF 3
 	{
+		int speed;
+		
 		If(Health <= 100)
 		{
-			A_Chase();
+			DCY_Chase();
 			A_SetSpeed(15);
 			Return ResolveState(null);
 		}
 		Else If(Health <= 45)
 		{
-			A_Chase();
+			DCY_Chase();
 			A_SetTics(2);
 			Return ResolveState(null);
 		}
 		Else
 		{
-			A_Chase();
+			DCY_Chase();
 			Return ResolveState(null);
 		}
 	}

@@ -19,6 +19,7 @@ Class DCY_HellPrototypeMech : DCY_Plutonia
   DropItem "DCY_Cyberrifle";
   GibHealth 100;
   DCYMonster.GibType "DCY_MechaGiblets";
+  DCYMonster.FootstepSound "dcymetal/walk";
   }
   
   States

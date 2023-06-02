@@ -25,6 +25,7 @@ Class DCY_Befouler : DCYMonster
 	BloodType "AndroidNeonFluid";
 	DCYMonster.GibType "DCY_GibletsLava";
 	DCYMonster.ScientificName "Aptenus tibetisci";
+	DCYMonster.FootstepSound "";
   }
   
   int t, t2, ang, angt;
@@ -87,7 +88,7 @@ Class DCY_Befouler : DCYMonster
 	DAJK AABBCC 3
 	{
 		A_Recoil(-0.05);
-		A_Chase();
+		DCY_Chase();
 		
 		if (!random(0, 50)) SetStateLabel("Dodge");
 	}
@@ -95,7 +96,8 @@ Class DCY_Befouler : DCYMonster
   Dodge:
 	DAJK G 2
 	{
-		xv = t = 1;
+		xv = 1;
+		t = 1;
 		vel.z -= 2;
 		A_StartSound("EternalPainElemental/Dodge");
 		a = angle = random(0, 4) * 90;

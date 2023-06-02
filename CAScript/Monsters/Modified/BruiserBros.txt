@@ -19,6 +19,7 @@ Class DCY_BaronParent : DCYMonster
   DamageFactor "Bruiser", 0.000;
   Species "Barons";
   DCYMonster.ScientificName "Brutis cruribus";
+  DCYMonster.FootstepSound "dcybaron/walk";
   }
   
   bool down;
@@ -44,7 +45,7 @@ Class DCY_BaronParent : DCYMonster
 	B1SS A 10 DCY_Look();
 	Loop;
   Look:
-	B1SS AABBCCDD 2 DCY_LookingForPlayer();
+	B1SS AABBCCDD 4 DCY_LookingForPlayer();
 	"####" "#" 0 A_CheckSight("Look");
 	Goto Alert;
   Alert:
@@ -57,28 +58,13 @@ Class DCY_BaronParent : DCYMonster
 	}
 	Goto See;
   See:
-	B1SS AABBCCDD 2
-	{
-		if (target && distance3D(target) < 311)
-			SetStateLabel("NormalChase");
-		If (target && distance3D(target) < 411)
-			SetStateLabel("MediumChase");
-		
-		for (int i = 2; i > 0; i--)
-			A_Chase();
-	}
+	B1SS AABBCCDD 4 DCY_Chase();
 	Loop;
   Roar:
 	B2SS ABC 5 A_FaceTarget();
 	B2SS D 4 DCY_AlertSound();
 	B2SS EDFDEDF 4 A_FaceTarget();
 	Goto See;
-  MediumChase:
-	B1SS AAABBBCCCDDD 2 A_Chase();
-	Loop;
-  NormalChase:
-	B1SS AABBCCDD 3 A_Chase();
-	Loop;
   Melee:
 	B1SS EF 7 A_FaceTarget();
 	B1SS G 7 A_CustomMeleeAttack(5 * random(1, 10), "knight/melee", "");
@@ -161,6 +147,7 @@ Class DCY_KnightHell : DCY_BaronParent
   DamageFactor "Bruiser", 0.000;
   Species "Hell Knights";
   DCYMonster.ScientificName "Brutis fractis";
+  DCYMonster.FootstepSound "dcyknight/walk";
   }
   States
   {
@@ -183,14 +170,14 @@ Class DCY_KnightHell : DCY_BaronParent
 			SetStateLabel("MediumChase");
 		
 		for (int i = 2; i > 0; i--)
-			A_Chase();
+			DCY_Chase();
 	}
 	Loop;
   MediumChase:
-	SS0B AAABBBCCCDDD 2 A_Chase();
+	SS0B AAABBBCCCDDD 2 DCY_Chase();
 	Loop;
   NormalChase:
-	SS0B AABBCCDD 3 A_Chase();
+	SS0B AABBCCDD 3 DCY_Chase();
 	Loop;
   Melee:
 	SS0B EF 7 A_FaceTarget();

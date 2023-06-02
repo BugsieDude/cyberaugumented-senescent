@@ -47,7 +47,7 @@ Class DCY_Deluder : DCY_CacoParent
   void A_PlasmaticDash()
   {
 	A_SpawnItemEx("DCY_PWZFX1", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME);
-	A_Chase();
+	DCY_Chase();
   }
   
   void A_PlasmaticAttack()
@@ -77,7 +77,7 @@ Class DCY_Deluder : DCY_CacoParent
   See:
     PWIZ A 0 A_SetTranslucent(1, 0);
 	TNT1 A 0 A_Jump(90, "Dash");
-    PWIZ AAABBB 2 A_Chase();
+    PWIZ AAABBB 2 DCY_Chase();
     Loop;
   Dash:
     PWIZ A 1 A_StartSound("dcy/blur");

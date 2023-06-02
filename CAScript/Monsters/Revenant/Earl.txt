@@ -17,6 +17,8 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
   PainThreshold 500;
   DCYMonster.GibType "DCY_MechaGiblets";
   +DCYMONSTER.DCYNORMALBOSS;
+  DCYMonster.FootstepFrames 0, 2, 4;
+  DCYMonster.FootstepSound "dcyabater/walk";
   }
   
   int missilecount;
@@ -41,7 +43,7 @@ Class DCY_DestructiveEarl : DCY_SoulCrusher
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	E3RL AABBCCDD 4 A_Chase();
+	E3RL AABBCCDD 4 DCY_Chase();
 	Loop;
   Melee:
   Missile:

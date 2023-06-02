@@ -17,6 +17,7 @@ Class DCY_Auteur : DCY_VileParent
   +MISSILEMORE
   +DONTHARMSPECIES
   +DONTHARMCLASS
+  DCYMonster.FootStepSound "";
   }
   
   bool xdirection;
@@ -44,7 +45,7 @@ Class DCY_Auteur : DCY_VileParent
 	#### # 0 DCY_AlertSound();
 	Goto See;
   See:
-    A_1_ A 3 A_Chase("Missile", "Missile", CHF_RESURRECT);
+    A_1_ A 3 DCY_Chase("Missile", "Missile", CHF_RESURRECT);
 	Loop;
   Heal:
 	A_1_ E 20;

@@ -49,7 +49,7 @@ Class DCY_TresherDoot : DCY_Rev
   See:
 	SKE2 AABBCCDD 4
 	{
-		A_Chase();
+		DCY_Chase();
 		if (random(0, 60)) fast = (!fast) ? true : false;
 		tics = (fast) ? 2 : 4;
 	}

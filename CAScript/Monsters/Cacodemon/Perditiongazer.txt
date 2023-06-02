@@ -19,7 +19,7 @@ Class DCY_Perditiongazer : DCY_CacoParent
   void A_PGChase()
   {
 	A_Recoil(-0.1);
-	A_Chase();
+	DCY_Chase();
 	
 	if (!random(0, 10))
 		A_Dodging(-2);

@@ -40,7 +40,7 @@ Class DCY_Wretched : DCY_CacoParent
 	{
 		phasecooldown--;
 		A_Recoil(-0.15);
-		A_Chase("Flame", "Missile");
+		DCY_Chase("Flame", "Missile");
 	}
 	Loop;
   Dodge:

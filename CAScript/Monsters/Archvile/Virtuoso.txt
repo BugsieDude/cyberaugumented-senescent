@@ -20,6 +20,7 @@ Class DCY_FulminationVirtuoso : DCY_VileParent
   DeathSound "virtuoso/death";
   ActiveSound "virtuoso/active";
   DCYMonster.ScientificName "Iratus tonitrui";
+  DCYMonster.FootStepSound "";
   }
   
   States

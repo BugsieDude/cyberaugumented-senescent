@@ -44,7 +44,7 @@ Class DCY_Monsoon : DCY_CacoParent
   See:
 	8RVV A 2
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(20, "Dodge");
 	}
 	Loop;

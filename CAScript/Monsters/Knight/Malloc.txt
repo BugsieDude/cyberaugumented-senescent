@@ -19,6 +19,7 @@ Class DCY_Malloc : DCY_KnightHell
   +MISSILEMORE
   BloodColor "Red";
   DCYMonster.ScientificName "Brutis eruca";
+  DCYMonster.FootstepSound "dcyabater/walk";
   }
   
   void A_Malloc()
@@ -46,7 +47,7 @@ Class DCY_Malloc : DCY_KnightHell
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	BRUS AAABBBCCCDDD 3 A_Chase();
+	BRUS AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Missile:
 	BRUS E 0 A_Jump(200, "Ball");

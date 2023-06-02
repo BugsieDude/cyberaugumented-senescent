@@ -22,6 +22,8 @@ Class DCY_SoulCrusher : DCY_Rev
   ActiveSound "roborev/active";
   PainSound "roborev/pain";
   DeathSound "roborev/death";
+  DCYMonster.FootstepSound "dcyabater/walk";
+  DCYMonster.FootstepFrames 0, 2, 4;
   }
   
   void A_BVITorpedo()
@@ -47,14 +49,14 @@ Class DCY_SoulCrusher : DCY_Rev
 	
 	if (target && checkSight(target) && rushing)
 	{
-		A_Recoil(-0.8);
+		A_Recoil(-2);
 		tics = 2;
 		A_FaceTarget(5, 5);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", -0.5, zofs: 6, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
-		A_Chase(flags: CHF_DONTMOVE);
+		DCY_Chase("Melee", "Missile", CHF_DONTMOVE);
 	}
 	else
-		A_Chase();
+		DCY_Chase();
 	
 	if (!random(0, 1) && (!(getAge() % 100))) rushing = !rushing;
   }

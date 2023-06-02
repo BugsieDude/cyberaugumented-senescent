@@ -39,7 +39,7 @@ Class DCY_RadiationCorpulence : DCY_SkinnyFat
 	B01_ G 20 DCY_AlertSound();
 	Goto See;
   See:
-	B01_ AABBCCDDEEFF 4 A_Chase();
+	B01_ AABBCCDDEEFF 4 DCY_Chase();
 	Loop;
   Missile:
 	B01_ G 20

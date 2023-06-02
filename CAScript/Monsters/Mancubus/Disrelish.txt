@@ -30,7 +30,7 @@ Class DCY_Disrelish : DCY_SkinnyFat
 	FOFO G 20 DCY_AlertSound();
 	Goto See;
   See:
-	FOFO AAABBBCCCDDDEEEFFF 3 A_Chase();
+	FOFO AAABBBCCCDDDEEEFFF 3 DCY_Chase();
 	Loop;
   Melee:
   Missile:

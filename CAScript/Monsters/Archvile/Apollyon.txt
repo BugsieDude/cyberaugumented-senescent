@@ -40,7 +40,7 @@ Class DCY_Apollyon : DCY_VileParent
 	#### # 0 DCY_AlertSound();
 	Goto See;
   See:
-	A_PB AABBCCDDEEFF 2 A_Chase("Pillars", "Missile");
+	A_PB AABBCCDDEEFF 2 DCY_Chase("Pillars", "Missile");
 	Loop;
   Pillars:
 	A_PB A 0 A_Jump(50, "MissileContinue");

@@ -25,6 +25,7 @@ Class DCY_Xhouginad : DCY_Rev
   PainSound "";
   DeathSound "DarkDroid/Death";
   DCYMonster.ScientificName "Decend lux";
+  DCYMonster.FootstepSound "";
   }
   
   States
@@ -42,7 +43,7 @@ Class DCY_Xhouginad : DCY_Rev
   See:
 	PSEV AAAAABBBBB 2
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(10, "Avoid");
 	}
 	Loop;
@@ -56,7 +57,7 @@ Class DCY_Xhouginad : DCY_Rev
 	}
 	Goto AvoidStart;
   AvoidStart:
-	PSEV AB 5 A_Chase(null, "Missile", CHF_DONTMOVE);
+	PSEV AB 5 DCY_Chase(null, "Missile", CHF_DONTMOVE);
 	Goto See;
   Melee:
   Missile:

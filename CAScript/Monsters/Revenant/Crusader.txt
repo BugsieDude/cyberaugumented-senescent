@@ -22,6 +22,7 @@ Class DCY_Crusader : DCY_Rev
   Obituary "%o beholded the demonic Crusader's bloodthirst.";
   PainChance 46;
   +DCYMONSTER.DCYBOSS;
+  DCYMonster.FootstepFrames 0, 2, 4;
   }
   
   bool hasbuffed;

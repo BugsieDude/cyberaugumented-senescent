@@ -16,6 +16,7 @@ Class DCY_AbyssalExarch : DCY_Rev
   DeathSound "Exarch/Death";
   Obituary "%o couldn't react before %h saw the Abyssal Exarch, resulting in a paradoxal fiasco.";
   +DCYMONSTER.DCYNORMALBOSS;
+  DCYMonster.FootstepFrames 0, 2, 4;
   }
   
   bool dead;
@@ -47,7 +48,7 @@ Class DCY_AbyssalExarch : DCY_Rev
   See:
 	DDAN AABBCCDD 3
 	{
-		A_Chase();
+		DCY_Chase();
 		Return A_Jump(10, "Dash");
 	}
 	Loop;
@@ -55,7 +56,7 @@ Class DCY_AbyssalExarch : DCY_Rev
 	DDAN AABBCCDD 1
 	{
 		for (int i = 2; i > 0; i--)
-			A_Chase();
+			DCY_Chase();
 		
 		A_SpawnItemEx("DCY_ExarchGhost", zofs: 5, xvel: frandom(-3.75, 3.75), yvel: frandom(-3.75, 3.75), zvel: frandom(0, 3.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 140);
 		A_SpawnParticleEx(0x222222, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_SUBTRACT, SPF_FULLBRIGHT|SPF_RELATIVE, 200, 180, 0, frandom(-20, 20) - 10, frandom(-20, 20), 36 + frandom(-20, 20), frandom(-0.5, 0.5), frandom(-0.5, 0.5), frandom(-0.5, 0.5), startalphaf: 0.2, fadestepf: 0.003, sizestep: 1.525);
@@ -88,7 +89,7 @@ Class DCY_AbyssalExarch : DCY_Rev
 		for (int i = 20; i > 0; i--)
 		{
 			A_Wander();
-			A_Chase(null, null, CHF_NOPLAYACTIVE);
+			DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 		}
 		
 		A_SpawnItemEx("DCY_ExarchGhost", zofs: 5, xvel: frandom(-2.75, 2.75), yvel: frandom(-2.75, 2.75), zvel: frandom(0, 2.75), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERPITCH|SXF_TRANSFERSPRITEFRAME, failchance: 40);

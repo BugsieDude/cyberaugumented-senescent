@@ -40,7 +40,7 @@ Class DCY_VoidCaster : DCY_VileParent
   See:
     EX1E AABBCCDDEEFF 2
 	{
-		A_Chase(null, "Missile", CHF_RESURRECT);
+		DCY_Chase(null, "Missile", CHF_RESURRECT);
 		Return A_Jump(25, "TeleportStart");
 	}
 	Loop;
@@ -67,9 +67,9 @@ Class DCY_VoidCaster : DCY_VileParent
 		if (teleloop >= 35)
 			Return ResolveState("TeleportEnd");
 		
-		A_Chase(null, null, CHF_NIGHTMAREFAST|CHF_NOPLAYACTIVE);
-		A_Chase(null, null, CHF_NIGHTMAREFAST|CHF_NOPLAYACTIVE);
-		A_Chase(null, null, CHF_NOPLAYACTIVE);
+		DCY_Chase(null, null, CHF_NIGHTMAREFAST|CHF_NOPLAYACTIVE);
+		DCY_Chase(null, null, CHF_NIGHTMAREFAST|CHF_NOPLAYACTIVE);
+		DCY_Chase(null, null, CHF_NOPLAYACTIVE);
 		
 		for (int i = 12; i > 0; i--)
 			A_SpawnItemEx("DCY_VTele", frandom(-18, 18), frandom(-18, 18), frandom(0, 75), 0, 0, 0, Angle, SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH);
@@ -89,7 +89,7 @@ Class DCY_VoidCaster : DCY_VileParent
     EX12 A 3 Bright;
 	Goto SeeNoTele;
   SeeNoTele:
-    EX1E AABBCCDDEEFF 3 A_Chase(null, "Missile", CHF_RESURRECT);
+    EX1E AABBCCDDEEFF 3 DCY_Chase(null, "Missile", CHF_RESURRECT);
 	Goto See;
   Missile:
 	EX1E G 0 A_JumpIf(target && Distance3D(target) < 256, "PushPlayerAway");

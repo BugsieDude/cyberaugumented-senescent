@@ -23,6 +23,7 @@ Class DCY_SkinnyFat : DCYMonster
 	DCYMonster.GibType "DCY_ShorterGiblets";
 	DCYMonster.ScientificName "Adipem cadaverosa";
 	DCYMonster.FootstepFrames 0, 3, 6;
+	DCYMonster.FootstepSound "dcyfat/walk";
   }
   
   void A_FatThrower()
@@ -47,7 +48,7 @@ Class DCY_SkinnyFat : DCYMonster
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	#### AABBCCDDEEFF 4 A_Chase();
+	#### AABBCCDDEEFF 4 DCY_Chase();
 	Loop;
   Melee:
 	#### J 15 { bNOPAIN = true; A_StartSound(AttackSound, CHAN_VOICE); A_FaceTarget(); }

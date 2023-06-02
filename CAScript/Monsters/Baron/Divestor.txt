@@ -27,6 +27,7 @@ Class DCY_Divestor : DCY_BaronParent
   MaxTargetRange 500;
   DamageFactor "FWave", 0.00;
   DCYMonster.ScientificName "Patiens animarum";
+  DCYMonster.FootstepSound "";
   }
   
   int timer, cooldown;
@@ -80,17 +81,17 @@ Class DCY_Divestor : DCY_BaronParent
 	{
 		if (target && checkSight(target) && distance3D(target) > 600 && !random(0, 1) && cooldown <= 0) SetStateLabel("Dashing");
 	}
-    D3V_ AAA 2 A_Chase();
+    D3V_ AAA 2 DCY_Chase();
 	D3V_ A 0 A_WalkFlame();
-	D3V_ BBB 2 A_Chase();
+	D3V_ BBB 2 DCY_Chase();
 	D3V_ B 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);
 		A_WalkFlame();
 	}
-	D3V_ CCC 2 A_Chase();
+	D3V_ CCC 2 DCY_Chase();
 	D3V_ C 0 A_WalkFlame();
-	D3V_ DDD 2 A_Chase();
+	D3V_ DDD 2 DCY_Chase();
 	D3V_ D 0
 	{
 		A_StartSound("WastelandInfiltrator/Step", CHAN_BODY);

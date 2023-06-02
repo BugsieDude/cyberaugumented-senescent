@@ -66,7 +66,7 @@ Class DCY_Chimera : DCY_Rev
 	{
 		if (rush) { A_Recoil(-0.175); A_SpawnItemEx("DCY_HexodenicanTrail2", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSTENCILCOL); }
 		tics = (rush) ? 1 : 4;
-		A_Chase();
+		DCY_Chase();
 		
 		if (!random(0, 50)) { tics = 10; rush = !rush; }
 		if (!random(0, 400)) { SetStateLabel("GoBonkers"); }

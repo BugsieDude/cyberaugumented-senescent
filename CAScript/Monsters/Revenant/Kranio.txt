@@ -32,7 +32,7 @@ Class DCY_KranioThanatou : DCY_Rev
   
   void A_KranioChase()
   {
-	A_Chase();
+	DCY_Chase();
 	
 	if (random(0, 200) == 0) dash = true;
 		

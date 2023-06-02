@@ -17,6 +17,7 @@ Class DCY_Pryer : DCY_Impe
   BloodColor "ad3002";
   DCYMonster.GibType "DCY_GibletsLava";
   DCYMonster.ScientificName "Ignauus surculus";
+  DCYMonster.FootstepSound "dcyrocky/walk";
   }
   States
   {

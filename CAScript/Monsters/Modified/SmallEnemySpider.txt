@@ -20,12 +20,13 @@ Class DCY_ArachnoParent : DCYMonster
   DCYMonster.GibType "DCY_FatGiblets";
   DCYMonster.ScientificName "Araneae mechanicus";
   DCYMonster.FootstepFrames 0, 3, 6;
+  DCYMonster.FootstepSound "";
   }
   
   void A_BabyMetal()
   {
 	A_StartSound("dcyarachno/walk", CHAN_BODY, CHANF_DEFAULT, 1, ATTN_IDLE);
-	A_Chase();
+	DCY_Chase();
   }
 	
   States
@@ -46,9 +47,9 @@ Class DCY_ArachnoParent : DCYMonster
   See:
 	BSPI A 20;
 	BSPI A 3 A_BabyMetal();
-	BSPI ABBCC 3 A_Chase();
+	BSPI ABBCC 3 DCY_Chase();
 	BSPI D 3 A_BabyMetal();
-	BSPI DEEFF 3 A_Chase();
+	BSPI DEEFF 3 DCY_Chase();
 	Goto See+1;
   Missile:
 	BSPI A 20 BRIGHT A_FaceTarget();
@@ -103,9 +104,9 @@ Class DCY_SmallEnemySpider : DCY_ArachnoParent
   See:
 	PSPI A 20;
 	PSPI A 3 A_BabyMetal();
-	PSPI ABBCC 3 A_Chase();
+	PSPI ABBCC 3 DCY_Chase();
 	PSPI D 3 A_BabyMetal();
-	PSPI DEEFF 3 A_Chase();
+	PSPI DEEFF 3 DCY_Chase();
 	Goto See+1;
   Missile:
 	PSPI AAAAAGGGGG 2 A_FaceTarget();

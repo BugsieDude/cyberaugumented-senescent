@@ -12,6 +12,7 @@ Class DCY_Psyche : DCY_Rev
   BloodColor "0330fc";
   StencilColor "0330fc";
   BloodType "DCY_SpiritBlood";
+  DCYMonster.FootstepFrames 0, 2, 4;
   }
   
   States
@@ -27,7 +28,7 @@ Class DCY_Psyche : DCY_Rev
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-    GK38 AAABBBCCCDDD 3 A_Chase();
+    GK38 AAABBBCCCDDD 3 DCY_Chase();
 	Loop;
   Melee:
     GK38 A 0
