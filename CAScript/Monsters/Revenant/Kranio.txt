@@ -2,8 +2,9 @@ Class DCY_KranioThanatou : DCY_Rev
 {
   Default
   {
-  Translation "168:191=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "224:231=[255,255,255]:[191,255,128]", "208:223=[255,255,255]:[158,255,51]", "232:235=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "236:239=%[0.00,0.00,0.00]:[0.48,0.48,0.48]", "48:79=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "128:159=%[0.00,0.00,0.00]:[0.73,0.73,0.73]", "13:15=%[0.00,0.00,0.00]:[0.73,0.73,0.73]", "160:167=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "9:12=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "112:127=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "248:255=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "16:47=%[0.00,0.00,0.00]:[1.29,2.00,0.55]", "192:207=%[0.00,0.00,0.00]:[1.29,2.00,0.55]";
-  +NOBLOOD;
+  Translation "0:255=%[0.24,0.09,0.00]:[2.00,1.57,0.65]", "1:15=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "4:4=[189,189,189]:[153,153,153]", "80:111=[190,190,190]:[10,10,10]", "128:159=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "236:239=%[0.00,0.00,0.00]:[0.49,0.49,0.49]", "0:0=%[0.00,0.00,0.00]:[0.00,0.00,0.00]";
+  BloodColor "ff871f";
+  BloodType "AndroidNeonFluid";
   Health 600;
   SeeSound "D4Revenant/Sight";
   ActiveSound "D4Revenant/Idle";
@@ -11,11 +12,13 @@ Class DCY_KranioThanatou : DCY_Rev
   DeathSound "D4Revenant/Death";
   Speed 12;
   FastSpeed 15;
-  Tag "\c[j5]Kranio Thanatou\c-";
+  MeleeThreshold 100;
+  Tag "\c[y4]Kranio Thanatou\c-";
   +MISSILEMORE
   +DONTHARMSPECIES
   Obituary "%o embraced Kranio Thanatou's insanity.";
-  HitObituary "%o's bones are now burnt to a crisp.";
+  HitObituary "%o's face is now a burnt crisp.";
+  DCYMonster.WalkFlames "DCY_YellowWalkFlames";
   }
   
   double direction;
@@ -28,8 +31,6 @@ Class DCY_KranioThanatou : DCY_Rev
 	direction = randompick(14, -14);
   }
   
-  static const string ParticleColors[] = { "ffffff", "f6ffcc", "cdff87" };
-  
   void A_KranioChase()
   {
 	DCY_Chase();
@@ -38,16 +39,20 @@ Class DCY_KranioThanatou : DCY_Rev
 		
 	if (dash)
 	{
-		tics = 1;
+		tics = 2;
+		A_Chase(null, null);
 		A_SpawnItemEx("DCY_GFTrail", zofs: 5, flags: SXF_TRANSFERSPRITEFRAME|SXF_NOCHECKPOSITION);
+		A_WalkFlame();
 		
 		if (random(0, 70) == 0)
 			dash = false;
 	}
 	
-	if (random(0, 165) == 0)
+	if (!dash && random(0, 2) == 0) A_WalkFlame();
+	
+	if (random(0, 265) == 0)
 		A_Dodging(10);
-	if (random(0, 165) == 3 && vel.z == 0)
+	if (random(0, 265) == 3 && vel.z == 0)
 	{
 		A_Dodging(5);
 		A_Hop(7);
@@ -70,8 +75,12 @@ Class DCY_KranioThanatou : DCY_Rev
 	KRAV AABBCCDDEEFF 3 A_KranioChase();
 	Loop;
   Melee:
-	KRAV G 5 A_SkelWhoosh();
-	KEAV H 5 A_FaceTarget();
+	KRAV G 5
+	{
+		A_Recoil(-8);
+		A_SkelWhoosh();
+	}
+	KRAV H 5 A_FaceTarget();
 	KRAV I 6 A_SkelFist();
 	Goto See;
   Missile:
@@ -135,12 +144,12 @@ Class DCY_KranioThanatou : DCY_Rev
   }
 }
 
-Class DCY_GFTrail : DCY_HexodenicanTrail
+Class DCY_GFTrail : DCY_HexodenicanTrail2
 {
   Default
   {
   RenderStyle "Add";
-  Translation "0:255=%[0.00,0.00,0.00]:[0.59,1.19,0.00]";
+  Translation "0:255=%[0.00,0.00,0.00]:[0.80,0.42,0.00]";
   Scale 1.0;
   }
 }
@@ -149,7 +158,7 @@ Class DCY_GFRocket : DCY_HomingMissile
 {
   Default
   {
-  Translation "80:111=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "16:47=%[0.00,0.00,0.00]:[1.01,2.00,0.00]", "160:255=%[0.00,0.00,0.00]:[1.01,2.00,0.00]";
+  Translation "80:111=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "16:47=%[0.00,0.00,0.00]:[2.00,1.57,0.65]", "160:255=%[0.00,0.00,0.00]:[2.00,1.57,0.65]";
   Speed 16;
   FastSpeed 21;
   DamageType "Fire";
@@ -162,8 +171,7 @@ Class DCY_GFRocket : DCY_HomingMissile
 	HMIS A 0 NoDelay A_StartSound("skeleton/seeker", CHAN_6, CHANF_LOOPING, pitch: 1.375);
 	HMIS A 2 Bright
 	{
-		A_SpawnItemEx("DCY_HyperclusterCommanderJetFlareSmall", frandom(-1, 1) - 16, frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_RocketSmonk", frandom(-1, 1) - 16, frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("ff871f", 20, 30, 0, true, frandom(-2.5, 2.5), thrust: 4);
 		A_Weave(3, 3, 1, 1);
 		A_Tracer2(2);
 	}
@@ -176,35 +184,42 @@ Class DCY_GFRocket : DCY_HomingMissile
 		A_StopSound(CHAN_6);
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
-		A_SpawnItemEx("DCY_GreenFireEXPSmall", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("DCY_GreenFireEXPSmall", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_Explosion_1", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	TNT1 A 17;
 	Stop;
   }
 }
 
-Class DCY_GFMicroRocket : FastProjectile
+Class DCY_GFMicroRocket : DCY_FastProjectile
 {
   Default
   {
-  Translation "80:111=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "16:47=%[0.00,0.00,0.00]:[1.01,2.00,0.00]", "160:255=%[0.00,0.00,0.00]:[1.01,2.00,0.00]";
-  Speed 55;
-  FastSpeed 60;
+  Translation "80:111=%[0.00,0.00,0.00]:[0.75,0.75,0.75]", "16:47=%[0.00,0.00,0.00]:[2.00,1.57,0.65]", "160:255=%[0.00,0.00,0.00]:[2.00,1.57,0.65]";
+  Speed 30;
+  FastSpeed 40;
   DamageType "Fire";
   -ROCKETTRAIL
   Damage 4;
   Scale 1.1;
   MissileType "DCY_GFSmonk";
   MissileHeight 6;
-  SeeSound "skeleton/attack";
-  DeathSound "skeleton/tracex";
+  SeeSound "dcyskeleton/attack";
+  DeathSound "dcyskeleton/tracex";
   }
   
   States
   {
   Spawn:
-	SMOL A 1;
+	SMOL A 1
+	{
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("ffc44f", 10, 26, 0, false, frandom(-1.5, 1.5));
+		
+		vel.x += frandom(-1, 1);
+		vel.y += frandom(-1, 1);
+		vel.z += frandom(-1, 1);
+	}
 	Loop;
   Death:
   	TNT1 A 1 Bright
@@ -213,34 +228,9 @@ Class DCY_GFMicroRocket : FastProjectile
 		A_StopSound(CHAN_6);
 		A_QuakeEx(2, 2, 2, 17, 0, 250, "none", QF_RELATIVE|QF_SCALEDOWN, 0, 0, 0, 500);
 		A_SetTranslucent(1.0, 1);
-		A_SpawnItemEx("DCY_GreenFireEXPSmall", flags: SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("DCY_Explosion_1_Small", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	TNT1 A 17;
 	Stop;
   }
 }
-
-Class DCY_GFSmonk : DCY_Smonk
-{
-  Default
-  {
-  Scale 0.35;
-  Alpha 0.45;
-  Translation "0:255=%[0.00,0.00,0.00]:[0.77,1.54,0.00]";
-  }
-  
-  States
-  {
-  Spawn:
-	SM03 A 0 NoDelay
-	{
-		A_SetRoll(frandom(0, 360));
-		alpha = frandom(0.55, 0.65);
-	}
-	SM03 ABCDEF 1 A_FadeOut(0.05, 0);
-	Stop;
-  }
-}
-
-Class DCY_GreenFireEXP : DCY_Explosion_1 { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.77,1.54,0.00]"; } }
-Class DCY_GreenFireEXPSmall : DCY_Explosion_1_Small { Default { Translation "0:255=%[0.00,0.00,0.00]:[0.77,1.54,0.00]"; } }

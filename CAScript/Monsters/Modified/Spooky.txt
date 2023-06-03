@@ -8,7 +8,7 @@ Class DCY_Rev : DCYMonster
 	Mass 500;
 	Speed 10;
 	PainChance 100;
-	MeleeThreshold 196;
+	MeleeThreshold 96;
 	+MISSILEMORE 
 	SeeSound "skeleton/sight";
 	PainSound "skeleton/pain";
