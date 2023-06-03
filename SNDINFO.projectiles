@@ -523,3 +523,6 @@ FIR3LOOP "Sounds/DCY SFX/dcy_fire_loop.ogg"
 FIR3LOOPBIG "Sounds/DCY SFX/dcy_fireloopb.ogg"
 $limit fir3loop 8
 $limit fir3loopbig 8
+
+SpearGun "Sounds/Projectiles/dcy_speargun.ogg"
+$limit SpearGun 0

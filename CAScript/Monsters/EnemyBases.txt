@@ -578,7 +578,7 @@ CLASS DCYMonster : Actor abstract
 		}
 		
 	for (int i = random(10, 24); i > 0; i--)
-		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0x4f403d, TexMan.CheckForTexture("graphics/Particles/dcysquarep.png"), STYLE_TRANSLUCENT, SPF_RELATIVE, random(90, 95), random(2, 4), 0, frandom(-20, 20) * (gscale / 100), frandom(-20, 20) * (gscale / 100), 10, velx: frandom(-9, 9) * (gscale / 100), vely: frandom(-9, 9) * (gscale / 100), velz: frandom(1, 6) * (gscale / 100), accelz: -0.5, sizestep: -0.05);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0x4f403d, TexMan.CheckForTexture("graphics/particles/dcysquarep.png"), STYLE_TRANSLUCENT, SPF_RELATIVE, random(90, 95), random(2, 4), 0, frandom(-20, 20) * (gscale / 100), frandom(-20, 20) * (gscale / 100), 10, velx: frandom(-9, 9) * (gscale / 100), vely: frandom(-9, 9) * (gscale / 100), velz: frandom(1, 6) * (gscale / 100), accelz: -0.5, sizestep: -0.05);
   }
   
   void A_Restore()
