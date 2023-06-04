@@ -2195,6 +2195,7 @@ KRNNPAI4 "Sounds/DCY Monsters/Kranion/dcy_kranion_pain4.ogg"
 KRNNPAI5 "Sounds/DCY Monsters/Kranion/dcy_kranion_pain5.ogg"
 Kranion/Death "Sounds/DCY Monsters/Kranion/dcy_kranion_death.ogg"
 Kranion/Beep "Sounds/DCY Monsters/Kranion/dcy_kranion_beep.ogg"
+Kranion/Suicide "Sounds/DCY SFX/dcy_kranion_suicide.ogg"
 
 $random dasher/sight { DSHRSIT1 DSHRSIT2 DSHRSIT3 DSHRSIT4 DSHRSIT5 DSHRSIT6 DSHRSIT7 DSHRSIT8 DSHRSIT9 DSHRSIT10 DSHRSIT11 DSHRSIT12 }
 DSHRSIT1 "Sounds/DCY Monsters/Dasher/dcy_dasher_anger1.ogg"
