@@ -46,10 +46,7 @@ Class DCY_Tracnomechatron : DCY_SmallEnemySpider
     BSP2 DEEFF 2 DCY_LookingForPlayer();
     Loop;
   Alert:
-    "####" "#" 0 DCY_AlertSound();
-	Goto See1;
-  See1:
-	BSP2 A 30;
+	BSP2 A 30 DCY_AlertSound();
 	Goto See;
   See:
 	BSP2 A 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);

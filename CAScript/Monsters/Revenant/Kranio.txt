@@ -165,6 +165,17 @@ Class DCY_GFRocket : DCY_HomingMissile
   -ROCKETTRAIL
   }
   
+  int o, t, r, f;
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	o = random(0, 4);
+	t = random(0, 4);
+	r = random(0, 2);
+	f = random(0, 2);
+  }
+  
   States
   {
   Spawn:
@@ -172,7 +183,7 @@ Class DCY_GFRocket : DCY_HomingMissile
 	HMIS A 2 Bright
 	{
 		if (DCY_EffectDistance(sfxdistance)) A_SpawnFlames("ff871f", 20, 30, 0, true, frandom(-2.5, 2.5), thrust: 4);
-		A_Weave(3, 3, 1, 1);
+		A_Weave(o, t, r, f);
 		A_Tracer2(2);
 	}
 	Goto Spawn+1;

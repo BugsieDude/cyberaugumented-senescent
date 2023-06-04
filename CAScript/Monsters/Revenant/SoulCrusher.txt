@@ -47,18 +47,18 @@ Class DCY_SoulCrusher : DCY_Rev
 	if (rushing) A_SetSpeed((skill >= 4) ? 35 : 25);
 	else A_SetSpeed((skill >= 4) ? 25 : 20);
 	
-	if (target && checkSight(target) && rushing)
+	if (target && checkSight(target) && rushing && !wandering)
 	{
+		A_FaceTarget(5, 5);
 		A_Recoil(-2);
 		tics = 2;
-		A_FaceTarget(5, 5);
 		A_SpawnItemEx("DCY_HexodenicanTrail2", -0.5, zofs: 6, flags: SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSTENCILCOL);
-		DCY_Chase("Melee", "Missile", CHF_DONTMOVE);
+		A_Chase(flags: CHF_DONTMOVE);
 	}
-	else
-		DCY_Chase();
+	else DCY_Chase();
 	
-	if (!random(0, 1) && (!(getAge() % 100))) rushing = !rushing;
+	DCY_Foot();
+	if (!random(0, 1) && (!(getAge() % 100))) { A_FaceTarget(); rushing = !rushing; }
   }
   
   States

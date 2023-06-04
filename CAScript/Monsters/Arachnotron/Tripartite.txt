@@ -246,7 +246,6 @@ Class DCY_Tripartite : DCY_SmallEnemySpider
 	CSP3 P -1 A_BossDeath2();
 	Stop;
   XDeath:
-  Death.Massacre:
 	CSP3 I 10;
 	CSP3 I 5
 	{

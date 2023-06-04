@@ -135,6 +135,7 @@
 #include "CAScript/Monsters/Cyberdemon/AvernusGuard.txt"
 #include "CAScript/Monsters/Spider Mastermind/Discerner.txt"
 #include "CAScript/Monsters/Baron/Divestor.txt"
+#include "CAScript/Monsters/Arachnotron/Praetorian.txt"
 #include "CAScript/Monsters/Atmospheric/Intone.txt"
 #include "CAScript/Monsters/Marauder.txt"
 #include "CAScript/Monsters/Boss Wannabe/Curator.txt"

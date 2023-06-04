@@ -24,6 +24,7 @@ Class DCY_Fusillade : DCY_Pinke
   +MISSILEMORE
   MeleeRange 100;
   DCYMonster.ScientificName "Flamma devorans";
+  DCYMonster.FootstepSound "";
   }
   
   void A_FusilladeStep()

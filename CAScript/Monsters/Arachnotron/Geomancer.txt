@@ -54,11 +54,11 @@ Class DCY_BattlemindGeomancer : DCY_SmallEnemySpider
     "####" "#" 0 DCY_AlertSound();
     Goto See;
   See:
-	C8RP ABABAB 3 A_Chase();
+	C8RP ABABAB 3 DCY_Chase();
 	C8RP A 0 A_Jump(68, "Dodge");
 	Loop;
   Dodge:
-	C8RP AB 3 A_Chase(null, null);
+	C8RP AB 3 DCY_Chase(null, null);
 	C8RP A 0 A_Dodging(20);
 	C8RP ABABAB 3;
 	C8RP A 0 A_Stop();

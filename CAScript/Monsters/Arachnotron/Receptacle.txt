@@ -166,7 +166,6 @@ Class DCY_ReceptaclePlasma : DCY_RehauledPlasma
   Speed 15;
   FastSpeed 18;
   Damage 3;
-  Scale 1.1;
   +RANDOMIZE
   +SEEKERMISSILE
   SeeSound "SpearGun";

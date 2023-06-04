@@ -48,7 +48,7 @@ Class DCY_Auteur : DCY_VileParent
     A_1_ A 3 DCY_Chase("Missile", "Missile", CHF_RESURRECT);
 	Loop;
   Heal:
-	A_1_ E 20;
+	A_1_ E 40;
 	Goto See;
   Missile:
 	A_1_ B 0

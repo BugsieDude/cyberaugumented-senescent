@@ -152,13 +152,7 @@ Class DCY_ShotgunZombe : DCYMonster
   override void PostBeginPlay()
   {
 	super.PostBeginPlay();
-	
-	if (GetTag() == "Hell Sergeant")
-	{
-	canroll = random(0, 1);
-	canjump = random(0, 1);
-	}
-	
+	if (GetTag() == "Hell Sergeant") canroll = random(0, 1);
 	A_SetHumanNickname(extran, 1);
   }
   
@@ -259,12 +253,6 @@ Class DCY_ShotgunZombe : DCYMonster
 	C0L1 M 5 A_Restore();
     C0L1 LKJIH 5;
     Goto See;
-  Leap:
-	#### A random(10, 30) A_FaceTarget();
-	Goto LeapL;
-  LeapL:
-	#### E 1 A_Leap();
-	Loop;
   }
 }
 

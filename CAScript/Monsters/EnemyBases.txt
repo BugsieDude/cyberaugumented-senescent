@@ -241,11 +241,9 @@ CLASS DCYMonster : Actor abstract
 			
 			//only sometimes play the active sound
 			if((ActiveSoundPlayChance < 4)) A_ActiveSound();
-				
-			//go to melee state if close enough
-			if(dist <= MeleeThreshold) { SetStateLabel("Melee"); }
-			if((dist <= self.enemyRange) && (MissileChance < 6)) { SetStateLabel("Missile"); }
-			else A_Chase(melee, missile, 0|flags);
+			
+			//if((dist <= self.enemyRange) && (MissileChance < 6)) SetStateLabel("Missile");
+			A_Chase(melee, missile, 0|flags);
 		}
 	}
 	else if (CheckSight(target) == false && abs(Level.MapTime - EnemyLastSighted) < 360)
@@ -326,7 +324,7 @@ CLASS DCYMonster : Actor abstract
 	}
 	else if (vel.z > 0)
 	{
-	  vector3 newdir = (cos(angle)*2, sin(angle)*2, 0);
+	  vector3 newdir = (cos(angle)*1.5, sin(angle)*1.5, 0);
 	  vel += newdir;
 	  frame = oldLeap+1;
 	}

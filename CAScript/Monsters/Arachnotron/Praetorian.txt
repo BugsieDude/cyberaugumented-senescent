@@ -1,0 +1,73 @@
+Class DCY_Praetorian : DCY_ArachnoParent
+{
+  Default
+  {
+  Health 700;
+  Tag "Praetorian";
+  BloodColor "Black";
+  Translation "236:239=%[0.00,0.00,0.00]:[0.61,0.54,0.53]", "13:15=%[0.00,0.00,0.00]:[0.61,0.54,0.53]", "128:143=[160,148,146]:[14,11,10]", "144:151=[107,94,92]:[14,11,10]", "192:207=%[0.00,0.00,0.00]:[0.00,1.96,2.00]", "152:159=[130,109,104]:[14,11,10]", "198:207=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "80:111=[255,255,255]:[0,0,0]", "16:47=%[0.00,0.00,0.00]:[0.89,0.89,0.89]", "48:79=%[0.00,0.00,0.00]:[1.01,1.01,1.01]", "168:191=%[0.00,0.08,0.20]:[1.14,1.36,1.61]", "160:167=%[0.00,0.00,0.00]:[1.14,1.36,1.61]", "208:235=%[0.00,0.00,0.00]:[1.14,1.36,1.61]";
+  Scale 1.1;
+  SeeSound "BGSpider/Sight";
+  ActiveSound "BGSpider/Active";
+  DeathSound "BGSpider/AltDeath";
+  PainSound "BGSpider/Pain";
+  Obituary "%o has seen the consequences after messing up with the Praetorian.";
+  Speed 12;
+  FastSpeed 14;
+  GibHealth -700;
+  }
+  
+  States
+  {
+  Spawn:
+	SCRP B 10 DCY_Look();
+	Loop;
+  Look:
+	SCRP A 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    SCRP AABB 2 DCY_LookingForPlayer();
+    SCRP B 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    SCRP CCC 2 DCY_LookingForPlayer();
+    Loop;
+  Alert:
+	SCRP D 30 { A_FaceTarget(); DCY_AlertSound(); }
+	Goto See;
+  See:
+	SCRP A 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    SCRP AABB 2 A_Chase();
+    SCRP B 2 A_StartSound("Aracgunner/Walk", CHAN_BODY);
+    SCRP CCC 2 A_Chase();
+    Loop;
+  Missile:
+	Stop;
+  Pain:
+	SCRP F 4;
+	SCRP F 4 A_Pain();
+	Goto See;
+  Death:
+    SCRP F 10;
+	SCRP G 5
+	{
+		A_NoBlocking();
+		A_Scream();
+	}
+	SCRP I 9 DCY_ArachnoExplosion();
+	SCRP JK 9;
+	SCRP L -1 A_BossDeath2();
+	Stop;
+  XDeath:
+	SCRP F 10;
+	SCRP G 5
+	{
+		A_NoBlocking();
+		A_Scream();
+		A_StartSound("BGSpider/Scream", CHAN_VOICE, CHANF_OVERLAP, 1.0, 0.35);
+	}
+	SCRP I 9 DCY_ArachnoExplosion();
+	SCRP JK 9;
+	SCRP L -1 A_BossDeath2();
+	Stop;
+  Raise:
+	SCRP LKJIGF 6;
+	Goto See;
+  }
+}

@@ -17,6 +17,8 @@ Class DCY_PinkyParent : DCYMonster
   Tag "$FN_DEMON";
   Species "Pinkies";
   DCYMonster.ScientificName "Daemonium serunt";
+  DCYMonster.CanIJump true;
+  DCYMonster.MaxLeapDistance 2048;
   }
   
   State A_PinkyRam(double recoilSpeed)
@@ -42,10 +44,14 @@ Class DCY_PinkyParent : DCYMonster
 	"####" "#" 0 DCY_AlertSound();
 	Goto See;
   See:
-	SARG A 0 Fast A_JumpIf(target && distance3D(target) < 400, "LeFastBoi");
-	SARG AAABBB 3 DCY_Chase();
-	SARG CCCDDD 3 DCY_Chase();
+	#### A 0 Fast A_JumpIf(target && distance3D(target) < 400, "LeFastBoi");
+	#### AAABBB 3 DCY_Chase();
+	#### CCCDDD 3 DCY_Chase();
     Loop;
+  Leap:
+	#### E 0 A_StartSound(MeleeSound, CHAN_VOICE);
+	#### # 1 A_Leap();
+	Goto Leap+1;
   LeFastBoi:
 	SARG AABB 2 Fast DCY_Chase();
 	SARG CCDD 2 Fast DCY_Chase();
@@ -68,11 +74,10 @@ Class DCY_PinkyParent : DCYMonster
 	SARG A 10;
 	Goto See;
   Dash:
-	SARG E 0 A_Flip();
 	SARG EF 5 A_FaceTarget();
 	SARG G 10
 	{
-		A_Recoil(-13);
+		A_Recoil(-6);
 		A_FaceTarget();
 		A_StartSound(AttackSound, CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
@@ -95,7 +100,7 @@ Class DCY_PinkyParent : DCYMonster
     SARG H 2 Fast A_Pain();
     Goto See;
   Death:
-    SARG I 8;
+    SARG I 8 A_Flip();
     SARG J 7 A_Scream();
     SARG K 5;
     SARG L 4 A_NoBlocking();
@@ -121,6 +126,7 @@ Class DCY_Pinke : DCY_PinkyParent
   PainSound "dcyruffian/pain";
   DeathSound "dcyruffian/death";
   ActiveSound "dcyruffian/idle";
+  DCYMonster.FootstepSound "dcyabater/walk";
   }
   
   States
@@ -165,7 +171,7 @@ Class DCY_Pinke : DCY_PinkyParent
 	_FUS EF 5 A_FaceTarget();
 	_FUS G 10
 	{
-		A_Recoil(-13);
+		A_Recoil(-6);
 		A_FaceTarget();
 		A_StartSound(AttackSound, CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
@@ -295,7 +301,7 @@ Class DCY_PinkeII : DCY_Pinke
 	UU9_ EF 5 { A_FaceTarget(); activated = true; }
 	UU9_ G 10
 	{
-		A_Recoil(-13);
+		A_Recoil(-6);
 		A_FaceTarget();
 		A_StartSound(AttackSound, CHAN_VOICE);
 		A_ChangeVelocity(0, 0, random(6, 7), CVF_RELATIVE);
