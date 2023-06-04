@@ -13,6 +13,7 @@ Class DCY_Cyberrifle : DCY_Weapon
 	Obituary "%o got holes in %h body by %k's Warbringer.";
 	Inventory.PickupMessage "The Warbringer! It's a mauve rifle with some resemblance of the Heavy Cannon Rifle.";
 	+WEAPON.WIMPY_WEAPON;
+	Weapon.SelectionOrder 700;
 	//+WEAPON.NOAUTOFIRE;
   }
   

@@ -15,6 +15,7 @@ Class DCY_Razorwind : DCY_Weapon
 	Inventory.PickupMessage "You got the Razorwind! Laser Pistol or Plasmatic Deagle of some sorts?";
 	+WEAPON.WIMPY_WEAPON;
 	+WEAPON.NOAUTOFIRE;
+	Weapon.SelectionOrder 1900;
   }
   
   action void A_Deagle()

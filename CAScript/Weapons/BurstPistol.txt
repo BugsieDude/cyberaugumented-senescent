@@ -16,6 +16,7 @@ Class DCY_BurstPistol : DCY_Weapon
 	  Inventory.PickupMessage "You got back your Burst Pistol";
 	  +WEAPON.WIMPY_WEAPON;
 	  +WEAPON.NOAUTOFIRE;
+	  Weapon.SelectionOrder 2400;
   }
   
   action void A_PistolFire()

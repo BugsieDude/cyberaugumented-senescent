@@ -11,6 +11,7 @@
   Weapon.AmmoType "DCY_UltramodernEnergy";
   Weapon.AmmoUse 600;
   Weapon.AmmoGive 100;
+  Weapon.SelectionOrder 1;
   Weapon.SlotNumber 9;
   Inventory.Icon "BHL_Z0";
   +FLOORCLIP

@@ -15,6 +15,7 @@ Class DCY_BallistaManefista : DCY_Weapon
 	Inventory.Icon "PWBXZ0";
 	Inventory.PickupSound "dcy/plasmariflepickup";
 	Scale 0.7;
+	Weapon.SelectionOrder 60;
   }
   
   action void A_Ballista()

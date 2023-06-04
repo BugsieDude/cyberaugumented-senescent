@@ -2,7 +2,7 @@ Class DCY_TheBFG10000 : DCY_Weapon
 {
   Default
   {
-	Weapon.Selectionorder 2800;
+	Weapon.Selectionorder 2500;
 	Weapon.AmmoUse1 1;
 	Weapon.AmmoGive 40;
 	Weapon.AmmoType1 "Cell";

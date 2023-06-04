@@ -318,6 +318,8 @@ Class DCY_LightningPhaseDischarge : DCY_FastProjectile
 		vel.y = 0;
 		vel.z = 0;
 		
+		A_SpawnItemEx("DCY_LightningExplode", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		
 		for (int i = 4; i > 0; i--)
 		{
 			A_SpawnParticle(0x008028, SPF_FULLBRIGHT, random(10, 20), random(6, 9), frandom(0, 360), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-6.5, 6.5), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0));
@@ -494,8 +496,7 @@ Class DCY_LightningPhaseBouncer : DCY_LightningPhaseBall
     {
 		A_Explode(20, 100);
 		A_StopSound(CHAN_BODY);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-		A_SpawnItemEx("DCY_Explosion_1_Small", 0, 0, 0, random(-3, 3), random(-3, 3), random(-3, 3), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("DCY_LightningExplode", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		for (int i = random(15, 25); i > 0; i--) A_SpawnItemEx("DCY_ElecDeathbase", 0, 0, 0, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), random(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	}
 	Stop;

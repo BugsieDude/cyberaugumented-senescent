@@ -7,6 +7,7 @@ Class DCY_ThrowHands : DCY_Weapon
 	+WEAPON.WIMPY_WEAPON;
 	+WEAPON.NOALERT;
 	+WEAPON.MELEEWEAPON;
+	Weapon.SelectionOrder 3700;
   }
   
   action state A_CheckBerserk(StateLabel State1, StateLabel State2)

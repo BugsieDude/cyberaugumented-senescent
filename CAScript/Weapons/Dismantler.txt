@@ -8,6 +8,7 @@ Class DCY_VeneratedTruncheon : DCY_Weapon
   Weapon.AmmoType "DCY_Eminence";
   Weapon.AmmoGive 100;
   Weapon.AmmoUse 1;
+  Weapon.SelectionOrder 9000;
   Weapon.Kickback 50;
   Weapon.SlotNumber 8;
   Weapon.UpSound "VeneratedTruncheon/Up";

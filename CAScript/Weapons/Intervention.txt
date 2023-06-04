@@ -3,7 +3,7 @@ Class DCY_Grenades : DCY_Weapon
   Default
   {
 	Tag "Intervention Y0";
-	Weapon.SelectionOrder 2500;
+	Weapon.SelectionOrder 2800;
 	Weapon.SlotNumber 5;
 	+WEAPON.NOAUTOFIRE;
 	+WEAPON.EXPLOSIVE;

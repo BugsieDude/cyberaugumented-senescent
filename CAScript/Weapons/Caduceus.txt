@@ -10,6 +10,7 @@ Class DCY_NeonicWand : DCY_Weapon
 	+WEAPON.EXPLOSIVE;
 	DamageType "Neonic";
 	Weapon.SlotNumber 6;
+	Weapon.SelectionOrder 2000;
 	Inventory.Icon "NNW3Z0";
 	Inventory.PickupSound "dcy/plasmariflepickup";
 	Inventory.PickupMessage "You hands hold the presence of the \c[l5]Caduceus.\cL Not your general plasma rifle.";

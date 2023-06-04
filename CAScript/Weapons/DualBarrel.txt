@@ -9,6 +9,7 @@ Class DCY_SuperShotty : DCY_Weapon
 	Weapon.AmmoUse 2;
 	Weapon.AmmoGive 8;
 	Weapon.AmmoType "Shell";
+	Weapon.SelectionOrder 600;
   }
   
   action void A_SuperShotgunFire()

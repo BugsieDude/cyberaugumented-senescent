@@ -31,7 +31,7 @@ Class DCY_Gib : DCY_GoreBase
 {
   Default
   {
-	BounceFactor 0.2;
+	BounceFactor 0.1;
 	Mass 2;
   }
   
