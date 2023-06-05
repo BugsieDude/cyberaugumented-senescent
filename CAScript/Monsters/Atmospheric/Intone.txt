@@ -109,7 +109,7 @@ Class DCY_Intone : DCY_SkullParent
   }
 }
 
-Class DCY_IntoneDischarge : DCY_LightningPhaseDischarge { Default { Damage 2; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.10,0.15]"; SeeSound ""; DeathSound ""; -NOGRAVITY }
+Class DCY_IntoneDischarge : DCY_LightningPhaseDischarge { Default { Damage 2; Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.10,0.15]"; SeeSound ""; DeathSound ""; -NOGRAVITY; DCY_LightningPhaseDischarge.Elec false; }
 override void tick()
 {  
 	if (level.isFrozen()) return;

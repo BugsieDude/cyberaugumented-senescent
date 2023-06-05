@@ -860,6 +860,7 @@ Eavesdropper/Sight "Sounds/DCY Monsters/Eavesdropper/dcy_eavesdropper_sight.ogg"
 Eavesdropper/Active "Sounds/DCY Monsters/Eavesdropper/dcy_eavesdropper_idle.ogg"
 Eavesdropper/Pain "Sounds/DCY Monsters/Eavesdropper/dcy_eavesdropper_hurt.ogg"
 Eavesdropper/Death "Sounds/DCY Monsters/Eavesdropper/dcy_eavesdropper_death.ogg"
+EavesDropper/WingBreak "Sounds/DCY Monsters/Eavesdropper/dcy_eavesdropper_break.ogg"
 
 $random Warwire/Sight { WWRESIT1 WWRESIT2 WWRESIT3 WWRESIT4 WWRESIT5 WWRESIT6 WWRESIT7 WWRESIT8 WWRESIT9 }
 WWRESIT1 "Sounds/DCY Monsters/Warwire/dcy_warwire_sight1.ogg"

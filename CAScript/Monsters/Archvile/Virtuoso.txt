@@ -178,16 +178,12 @@ Class DCY_VirtuosoProjectile : CacodemonBall
 		A_SetRoll(frandom(0, 360));
 		A_SpawnItemEx("DCY_Explosion_1_Smaller", flags: SXF_TRANSFERTRANSLATION);
 		
-		for (int i = 4; i > 0; i--)
-		{
-			A_SpawnItemEx("DCY_BigSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(0, 360), SXF_NOCHECKPOSITION, 100);
-			A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
-		}
+		for (int i = 4; i > 0; i--) A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
 	}
 	TSAR EFGHIJKLMNO 1
 	{
 		A_Explode(4, 100, damagetype: "lightning");
-		A_SpawnItemEx("DCY_FallingSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), frandom(0, 360), SXF_NOCHECKPOSITION, 100);
+		A_SpawnItemEx("DCY_FallingSpark", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-8, 8), frandom(-8, 8), frandom(-8, 16), frandom(0, 360), SXF_NOCHECKPOSITION, 200);
 		A_SpawnItemEx("DCY_Arc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, failchance: 100);
 		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
 	}
@@ -278,7 +274,7 @@ Class DCY_VirtuosoBall : LostSoul
 	LFX2 KMNLOLKOLMNLOKMNLOLKKMNLOLKOLMNLOKMNLKMNLOLKOLMNLOKMNLOLK 1
 	{
 		A_FaceTarget();
-		A_SpawnItemEx("DCY_ElecDeathBase", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
+		A_SpawnItemEx("DCY_SiriusArc", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), frandom(0, 360), SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION, 100);
 	}
 	LFX2 K 1
 	{

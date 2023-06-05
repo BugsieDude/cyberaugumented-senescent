@@ -291,10 +291,14 @@ Class DCY_LightningPhaseDischarge : DCY_FastProjectile
   DCY_FastProjectile.CSY true;
   DCY_FastProjectile.CT true;
   DCY_FastProjectile.CV true;
+  DCY_LightningPhaseDischarge.Elec true;
   Translation "0:255=%[0.00,0.00,0.00]:[0.45,2.00,0.45]";
   Obituary "%o was all safe until a Lightning Phase sneaked upon %h.";
   RenderStyle "Add";
   }
+  
+  bool ist;
+  property Elec : ist;
   
   States
   {
@@ -318,7 +322,7 @@ Class DCY_LightningPhaseDischarge : DCY_FastProjectile
 		vel.y = 0;
 		vel.z = 0;
 		
-		A_SpawnItemEx("DCY_LightningExplode", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		if (ist) A_SpawnItemEx("DCY_LightningExplode", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		
 		for (int i = 4; i > 0; i--)
 		{

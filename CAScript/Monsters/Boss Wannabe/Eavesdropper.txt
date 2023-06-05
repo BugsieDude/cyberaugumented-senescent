@@ -2,15 +2,18 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
 {
   Default
   {
-  Health 800;
+  Health 600;
   DamageFactor 0.7;
-  +BOSS
+  Mass 600;
   +MISSILEEVENMORE
   +NEVERFAST
   PainChance 30;
-  Tag "\c[Sapphire]Eaves\c[g2]dropper\c-";
-  Speed 15;
-  Scale 1.075;
+  Tag "\c[x1]Eavesdropper\c-";
+  DamageFactor "Fire", 0.00;
+  BloodType "AndroidNeonFluid", "AndroidNeonFluid", "AndroidNeonFluid";
+  BloodColor "ad3002";
+  Speed 12;
+  Scale 1.1;
   SeeSound "Eavesdropper/Sight";
   ActiveSound "Eavesdropper/Active";
   PainSound "Eavesdropper/Pain";
@@ -22,11 +25,13 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
   int dmissile;
   int wingangle;
   
-  static const string balls[] =
+  override void PostBeginPlay()
   {
-	"DCY_LightningVulgarShotTiny",
-	"DCY_DarkeningVulgarShotTiny"
-  };
+	super.PostBeginPlay();
+	sx = spriteoffset.x;
+	sy = spriteoffset.y;
+	xx = 1;
+  }
   
   override string GetObituary (Actor victim, Actor inflictor, Name mod, bool playerattack)
   {
@@ -34,32 +39,80 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
 	{
 		"%o got outwitted by the Eavesdropper.",
 		"Is that some kind of dbz reference or what",
-		"%o got outwitted by some kind of crazy fusion between the vulgars."
+		"%o got outwitted by some kind of lava mother."
 	};
 
 	return messages[Random(0, messages.Size() - 1)];
   }
   
+  override void Tick()
+  {
+	if (level.isFrozen()) return;
+	super.Tick();
+	
+	if (DCY_EffectDistance(1000) && !(level.time % 2) && health > 0)
+	{
+		if ((level.time % random(1, 20)) == 0)
+				A_SpawnParticleEx(0xef5501, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 90, 3, frandom(0, 360), frandom(-15.0, 15.0), frandom(-15.0, 15.0), 20 + frandom(-4.0, 13.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 5.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), -frandom(0.05, 0.2), fadestepf: 0, sizestep: -0.05);
+			
+		A_SpawnParticleEx(0x261401, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 180, random(50, 100), angle, frandom(-self.radius, self.radius) / 2, frandom(-self.radius, self.radius) / 2, frandom(30, 50), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.1, 3.4), startalphaf: 0.1, fadestepf: 0.005, sizestep: 0.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
+	}
+  }
+  
+  double sx, sy, xx;
+  
   States
   {
   Spawn:
-	3V3S A 10 A_Look();
+	3V3S A 10 DCY_Look();
 	Loop;
+  Look:
+	3V3S AABBCCDD 3 DCY_LookingForPlayer();
+	3V3S D 0 A_CheckSight("Look");
+	Goto Alert;
+  Alert:
+	3V3S E 0 A_StartSound(SeeSound, CHAN_VOICE, attenuation: 0.35);
+	3V3S GFEE 3 A_FaceTarget();
+	3V3S EEEEEHHHHHHHHHHHHHHHHHHHEEEEEEE 1
+	{
+		A_FaceTarget();
+		
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			let trail = Spawn("De_Blood_BigSplat", pos + (0, 0, 40), NO_REPLACE);
+		
+			if (trail)
+			{
+				trail.vel.x = frandom(-2, 2);
+				trail.vel.y = frandom(-2, 2);
+				trail.vel.z = frandom(-2, 2);
+				trail.A_SetRenderStyle(2, STYLE_ADD);
+				trail.translation = bloodtranslation;
+				trail.bBRIGHT = true;
+			}
+		}
+	}
   See:
-	3V3S AABBCCDD 2
+	3V3S AABBCCDD 3
 	{
 		DCY_Chase();
-		Return A_Jump(25, "Dodge", "Rush");
+		if (!random(0, 100)) SetStateLabel("Dodge");
+		Return A_Jump(5, "Dodge", "Rush");
 	}
 	Loop;
   Dodge:
-	3V3S A 10 A_Dodging(random(15, 30));
+	3V3S A 10
+	{
+		A_Hop(random(0, 5));
+		A_Dodging(random(4, 15));
+	}
 	Goto See;
   Rush:
 	3V3S AABBCCDD 1
 	{
 		DCY_Chase(null, null);
-		if (DCY_EffectDistance(sfxdistance)) A_SpawnItemEx("DCY_EavesdropperTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		A_Recoil(-1);
+		if (DCY_EffectDistance(sfxdistance)) A_SpawnParticleEx(0xff801f, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 180, random(50, 100), angle, frandom(-self.radius, self.radius) / 2, frandom(-self.radius, self.radius) / 2, frandom(30, 50), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.1, 3.4), startalphaf: 1, fadestepf: 0.05, sizestep: 0.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 		Return A_Jump(15, "See", "Dodge");
 	}
 	3V3S A 0 DCY_Chase();
@@ -70,55 +123,48 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
 	Goto See;
   Missile:
 	3V3S E 0 A_JumpIf(target && Distance3D(target) < 250, "HighAttack");
-	3V3S E 0 A_Jump(128, "Darkness", "LightningA");
-	Goto LightningA;
-  LightningA:
-	3V3S EF 4 A_FaceTarget();
-	3V3S G 4
-	{
-		if (target)
-		{
-			for (int i = 30; i > -35; i -= 30)
-				A_SpawnProjectile("DCY_LightningVulgarShot", 35, 0, i);
-			
-			A_FaceTarget();
-		}
-	}
 	Goto See;
-  Darkness:
-	3V3S E 3
-	{
-		A_FaceTarget();
-		dmissile = 0;
-	}
-	3V3S F 3 A_FaceTarget();
-	3V3S G 3
-	{
-		if (target)
-		{
-			A_SpawnProjectile("DCY_DarkeningVulgarShot", 35);
-			A_FaceTarget();
-			dmissile += 1;
-		}
-	}
-	3V3S E 3 A_JumpIf(dmissile > 3, "See");
-	Goto Darkness+1;
   HighAttack:
 	3V3S E 0 A_Jump(192, "Lunge", "Wings");
-	Goto LightningA;
+	Goto Lunge;
   Lunge:
 	3V3S EF 7 A_FaceTarget();
 	3V3S G 1 A_StartSound("MonsterSpit", CHAN_WEAPON, attenuation: 0.85);
 	3V3S GGGGGGGGGGG 1
 	{
-		A_Recoil(-6);
+		A_Recoil(-4);
 		A_FaceTarget(1.6, 1.6);
-		A_SpawnItemEx("DCY_EavesdropperTrail", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
+		A_CustomMeleeAttack(10 * random(5, 8), "imp/melee");
+		A_SpawnParticleEx(0xff801f, TexMan.CheckForTexture("graphics/Particles/dcyflamep.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 180, random(50, 100), angle, frandom(-self.radius, self.radius) / 2, frandom(-self.radius, self.radius) / 2, frandom(30, 50), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.1, 3.4), startalphaf: 1, fadestepf: 0.05, sizestep: 0.2, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.1 : -0.1);
 	}
 	3V3S FE 7 A_FaceTarget();
 	Goto See;
   Wings:
-	3V3S G 5 A_FaceTarget();
+	3V3S A 10 A_FaceTarget();
+	3V3S A 0 A_StartSound("EavesDropper/WingBreak", CHAN_BODY, attenuation: 0.75, pitch: frandom(0.85, 1.25));
+	3V3S HHHHHHHHHHHHHHGGGG 2
+	{
+		A_FaceTarget();
+		
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			let trail = Spawn("De_Blood_BigSplat", pos + (0, 0, 40), NO_REPLACE);
+		
+			if (trail)
+			{
+				trail.Vel3DFromAngle(-frandom(3, 8) / 2, angle + frandom(-60, 60), frandom(-60, 60));
+				trail.A_SetRenderStyle(2, STYLE_ADD);
+				trail.translation = bloodtranslation;
+				trail.bBRIGHT = true;
+			}
+		}
+		
+		xx = -xx;
+		spriteoffset = (2 * xx, sy);
+	}
+	Goto WingsStart;
+  WingsStart:
+	3V3S G 5 { SpriteOffset = (sx, sy); A_FaceTarget(); }
 	3V3S F 5
 	{
 		A_StartSound("Eavesdropper/Sight", CHAN_VOICE, attenuation: 0.65);
@@ -135,7 +181,7 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
 		if (wingangle > 125)
 			SetStateLabel("WingLoop");
 	}
-	Goto Wings+2;
+	Goto WingsStart+2;
   WingLoop:
 	3V3S E 1
 	{
@@ -150,122 +196,84 @@ Class DCY_Eavesdropper : DCY_Caviler //Imagine an Lightning and Darkening Vulgar
 		if (target && distance3D(target) > 550)
 			SetStateLabel("See");
 		
-		A_SpawnProjectile("DCY_EavesdropperWing",40,10,-125,2,-28);
-		
-		for (int i = 2; i > 0; i--)
-		{
-			A_SpawnProjectile(balls[Random(0, balls.Size() - 1)],frandom(48,70),frandom(45,78),angle+frandom(18,-18),CMF_ABSOLUTEPITCH|CMF_ABSOLUTEANGLE ,pitch+frandom(18,-18));
-			A_SpawnProjectile(balls[Random(0, balls.Size() - 1)],frandom(48,70),frandom(-45,-78),angle+frandom(18,-18),CMF_ABSOLUTEPITCH|CMF_ABSOLUTEANGLE ,pitch+frandom(18,-18));
-		}
+		A_SpawnProjectile("DCY_EavesdropperWing", 40, 10, -125, 2, -28);
 		
 		Return A_MonsterRefire(170, "See");
 	}
 	Loop;
   Pain:
-	3V3S H 3 A_Jump(30, "Rush", "Dodge");
+	3V3S H 3 { SpriteOffset = (sx, sy); A_Jump(30, "Rush", "Dodge"); }
 	3V3S H 4 A_Pain();
 	3V3S H 1 A_Jump(10, "Rush", "Dodge");
 	Goto See;
   Death:
   XDeath:
-	3V3S H 1;
+	3V3S H 1 { SpriteOffset = (sx, sy); }
 	3V3S H 10 A_Scream();
-	3V3S H 1
+	3V3S H 4
 	{
 		A_NoBlocking();
 		A_StartSound("ROTHPOLO", CHAN_BODY, attenuation: 0.5);
-		
-		for (int i = 2; i > 0; i--)
-			A_SpawnItemEx("DCY_EavesdropperDeathTrail", zofs: 5, flags: SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERSPRITEFRAME);
-			
-		A_QuakeEx(4, 4, 4, 30, 0, 2000, "", QF_SCALEDOWN|QF_3D, 0.5, 0.5, 0.5, rollintensity: 1, rollwave: 0.1);
-		
-		let imp1 = Spawn("DCY_Pathogen", pos + (0, -10, 0));
-		if (imp1)
+		A_StartSound("dcyfatso/gore", 14, pitch: frandom(1.14, 1.65));
+		actor x = Spawn("DCY_Explosion_1", pos + (0, 0, 36), NO_REPLACE);
+		A_QuakeEx(2, 2, 2, 50, 0, 400, "", QF_SCALEDOWN|QF_3D);
+		if (DCY_EffectDistance(sfxdistance))
 		{
-			imp1.health = 100;
-			imp1.A_ChangeVelocity(frandom(10.0, -10.0), frandom(10.0, -10.0), frandom(1, 5), CVF_REPLACE);
-			imp1.tics *= 0.5;
-			imp1.bThruSpecies = true;
-			
-			if (bFriendly == true)
-				imp1.bFriendly = true;
-		}
+			for (int i = 20; i > 0; i--)
+			{
+				let trail = Spawn("De_Blood_BigSplat", pos + (0, 0, 36), NO_REPLACE);
 		
-		let imp2 = Spawn("DCY_Caviler", pos + (0, 10, 0));
-		if (imp2)
-		{
-			imp2.health = 100;
-			imp2.A_ChangeVelocity(frandom(10.0, -10.0), frandom(10.0, -10.0), frandom(1, 5), CVF_REPLACE);
-			imp2.tics *= 0.5;
-			imp2.bThruSpecies = true;
-			
-			if (bFriendly == true)
-				imp2.bFriendly = true;
+				if (trail)
+				{
+					trail.Vel3DFromAngle(frandom(5, 15), angle + frandom(-40, 40), frandom(-40, 40));
+					trail.scale *= 1.75;
+					trail.A_SetRenderStyle(5, STYLE_ADD);
+					trail.translation = bloodtranslation;
+					trail.bBRIGHT = true;
+				}
+			}
 		}
 	}
-	TNT1 A 40;
-	Stop;
-  Death.Massacre:
-	3V3S H 1;
-	3V3S H 10 A_Scream();
+	3V3S HHHHHH random(1, 3)
+	{
+		if (DCY_EffectDistance(sfxdistance))
+		{
+			for (int i = random(1, 3); i > 0; i--)
+			{
+				let trail = Spawn("De_Blood_BigSplat", pos + (0, 0, 36), NO_REPLACE);
+		
+				if (trail)
+				{
+					trail.Vel3DFromAngle(frandom(5, 15) / 2, angle + frandom(-40, 40), frandom(-40, 40));
+					trail.scale *= 1.75;
+					trail.A_SetRenderStyle(5, STYLE_ADD);
+					trail.translation = bloodtranslation;
+					trail.bBRIGHT = true;
+				}
+			}
+		}
+	}
+	3V3S IJKLM 6;
+	3V3S NNNNNNNNNNNNNNNNNN random(1, 20)
+	{
+		if (!random(0, 1)) A_SpawnParticleEx(0xef5501, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 90, 3, frandom(0, 360), frandom(-15.0, 15.0), frandom(-15.0, 15.0), frandom(-4.0, 13.0), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 5.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), -frandom(0.05, 0.2), fadestepf: 0, sizestep: -0.05);
+		if (!random(0, 1))
+		{
+			let trail = Spawn("De_Blood_BigSplat", pos + (0, 0, 5), NO_REPLACE);
+		
+			if (trail)
+			{
+				trail.Vel3DFromAngle(frandom(5, 15) / 2, frandom(0, 360), frandom(-20, 20) - 90);
+				trail.scale *= 1.75;
+				trail.A_SetRenderStyle(5, STYLE_ADD);
+				trail.translation = bloodtranslation;
+				trail.bBRIGHT = true;
+			}
+		}
+	}
+	3V3S N -1;
 	Stop;
   Raise:
-	Stop;
-  }
-}
-
-Class DCY_LightningVulgarShotTiny : DCY_LightningVulgarShot
-{
-  Default
-  {
-	Damage 1;
-	Scale 0.4;
-	Radius 8;
-	Height 8;
-	SeeSound "CYBRSMS2";
-	DeathSound "CYBRSMSH";
-  }
-  
-  States
-  {
-  Spawn:
-	P_FX AAABBB 1
-	{
-		for (int i = 3; i > 0; i--)
-			A_SpawnParticle(0xa6e1ff, SPF_FULLBRIGHT, 6, 5, 0, frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
-	}
-	Loop;
-  }
-}
-
-Class DCY_DarkeningVulgarShotTiny : DCY_DarkeningVulgarShot
-{
-  Default
-  {
-	Damage 1;
-	Scale 0.4;
-	Alpha 1.0;
-	Radius 8;
-	Height 8;
-	SeeSound "CYBRSMS2";
-	DeathSound "CYBRSMSH";
-	Translation "0:255=%[0.00,0.00,0.00]:[1.20,2.00,1.20]";
-  }
-  
-  States
-  {
-  Spawn:
-	ETV6 AABB 1
-	{
-		for (int i = 3; i > 0; i--)
-			A_SpawnParticle(0x0f0a3d, SPF_FULLBRIGHT, 6, 5, 0, frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-3.5, 3.5), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0));
-		
-		A_Weave(2, 2, 1, 1);
-	}
-	Loop;
-  Death:
-    P_FX CDEFGH 2;
 	Stop;
   }
 }
@@ -280,73 +288,47 @@ Class DCY_EavesdropperWing : Actor
 	RenderStyle "Add";
 	Scale 0.2;
 	Alpha 1.0;
+	Gravity 0.25;
 	Projectile;
 	Speed 20;
-	+NOGRAVITY
 	+BRIGHT
 	+THRUACTORS
 	+BOUNCEONWALLS
 	+BOUNCEONCEILINGS
 	+DONTSPLASH
 	+BOUNCEONFLOORS
-	Translation "0:255=%[0.00,0.00,0.00]:[0.62,0.43,1.38]";
   }
   
-  static const string smoke[] =
+  void A_SpawnWingEffects()
   {
-	"DCY_Smonk",
-	"DCY_RocketSmonk",
-	"DCY_EavesdropperSmonk",
-	"DCY_EavesdropperSmonk2",
-	"DCY_EavesdropperSmonk3",
-	"DCY_EavesdropperSmonk4"
-  };
-  
-  void A_SpawnWingEffects(int maxfirecount, int maxfirecount2)
-  {
-	for (int i = maxfirecount; i > 0; i--)
-		A_SpawnItemEx(smoke[random(0, 1)], frandom(-9,9), frandom(-9,9), frandom(-9,18), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_TRANSFERTRANSLATION|SXF_TRANSFERALPHA|SXF_NOCHECKPOSITION, 78);
-	for (int i = maxfirecount2; i > 0; i--)
-		A_SpawnItemEx(smoke[random(2, 5)], frandom(-9,9), frandom(-9,9), frandom(-9,18), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_NOCHECKPOSITION, 78);
+	if (!random(0, 3)) A_SpawnParticleEx(0xef5501, TexMan.CheckForTexture("graphics/particles/dcysquare.png"), STYLE_ADD, SPF_FULLBRIGHT, 90, 3, frandom(0, 360), frandom(-9, 9), frandom(-9, 9), frandom(-9, 18), frandom(-0.35, 0.35), frandom(-0.35, 0.35), frandom(-0.35, 5.35), frandom(-0.1, 0.1), frandom(-0.1, 0.1), -frandom(0.05, 0.2), fadestepf: 0, sizestep: -0.05);
+	A_SpawnParticleEx(0xff801f, TexMan.CheckForTexture("graphics/Particles/dcysmokep.png"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, 180, random(50, 100), angle, frandom(-9, 9), frandom(-9, 9), frandom(-9, 18), frandom(-0.1, 0.1), frandom(-0.1, 0.1), frandom(1.1, 3.4), startalphaf: 1, fadestepf: 0.04, sizestep: 0.4, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.8 : -0.8);
+	if (!random(0, 1)) A_SpawnParticleEx(0xff801f, TexMan.CheckForTexture("graphics/Particles/dcybloodp.png"), STYLE_ADD, SPF_FULLBRIGHT|SPF_ROLL, 90, frandom(30, 100), frandom(0, 360), frandom(-9, 9), frandom(-9, 9), frandom(-9, 18), frandom(-2.35, 2.35), frandom(-2.35, 2.35), frandom(-0.35, 4.35), accelz: -0.5, fadestepf: 0.1, sizestep: 5, startroll: frandom(0, 360), rollvel: frandom(-10, 10));
   }
   
   States
   {
   Spawn:
-	TNT1 AA 1 A_SpawnWingEffects(2, 5);
+	TNT1 AA 1 A_SpawnWingEffects();
 	TNT1 AA 1
 	{
-		A_SpawnWingEffects(2, 5);
+		A_SpawnWingEffects();
 		A_Recoil(1);
 	}
 	TNT1 AAA 1
 	{
-		A_SpawnWingEffects(2, 3);
+		A_SpawnWingEffects();
 		A_Recoil(1);
 	}
-	TNT1 A 1 A_SpawnWingEffects(2, 3);
+	TNT1 A 1 A_SpawnWingEffects();
 	TNT1 A 2
 	{
-		A_SpawnWingEffects(1, 1);
+		A_SpawnWingEffects();
 		A_Recoil(1);
 		A_FadeOut(0.05);
 	}
-	TNT1 A 1
-	{
-		A_FadeOut(0.05);
-		A_SpawnItemEx(smoke[random(0, 1)], frandom(-4,4), frandom(-4,4), frandom(-3,7), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
-	}
-	TNT1 A 1
-	{
-		A_FadeOut(0.05);
-		A_SpawnItemEx(smoke[random(2, 3)], frandom(-4,4), frandom(-4,4), frandom(-3,7), frandom(-2.5,2.5), frandom(-2.5,2.5), frandom(-2.5,2.5), 0, SXF_NOCHECKPOSITION);
-	}
+	TNT1 AA 1 A_FadeOut(0.05);
 	TNT1 A 1 A_FadeOut(0.05);
 	Wait;
   }
 }
-
-Class DCY_EavesdropperSmonk : DCY_FluorescentJetFlare { Default { Alpha 0.75; Translation "0:255=%[0.00,0.00,0.00]:[0.55,0.64,0.95]"; } }
-Class DCY_EavesdropperSmonk2 : DCY_FluorescentJetFlare { Default { Alpha 0.5; RenderStyle "Subtract"; Translation "0:255=%[0.00,0.00,0.00]:[0.23,0.38,0.13]"; } }
-Class DCY_EavesdropperSmonk3 : DCY_ImpFlame1 { Default { Alpha 0.35; Scale 1.4; Translation "0:255=%[0.00,0.00,0.00]:[0.55,0.64,0.95]"; } }
-Class DCY_EavesdropperSmonk4 : DCY_ImpFlame1 { Default { Alpha 0.35; Scale 1.4; RenderStyle "Subtract"; Translation "0:255=%[0.00,0.00,0.00]:[0.23,0.38,0.13]"; } }

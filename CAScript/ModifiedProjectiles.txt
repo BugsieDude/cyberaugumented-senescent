@@ -14,11 +14,6 @@ Mixin Class DCY_Projectiles
   +FORCEXYBILLBOARD
   }
   
-  static const string dcy_projectile_sprite[] =
-  {
-	"_2WMD0", "_2WME0", "_2WMF0", "_2WMG0"
-  };
-  
   action void A_SpawnFlames(string fcolor = "ffffff", float ftimer = 20, float fsize = 40, float faccel = 0,
 							bool smonk = true, float offsets = 1, bool allsmoke = false, double thrust = 0, bool ember = true)
   {
